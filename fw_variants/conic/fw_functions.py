@@ -35,7 +35,7 @@ def general_lmo(gradient, radius, constraint_set):
             # Handle the case when the gradient is zero
             s = np.zeros_like(gradient)
         return s
-    elif constraint_set == "nonnnegative_orthant":
+    elif constraint_set == "nonnegative_orthant":
         index_flat = np.argmax(-gradient)
         index_multi = np.unravel_index(index_flat, gradient.shape)
         s = np.zeros_like(gradient)
@@ -143,13 +143,13 @@ class ConicFrankWolfe:
             else:
                 # Implement the step size using Lipschitz constant
                 if step_type == 'FW':
-                    gamma = gap_fw/(self.L * np.linalg.norm(d)**2)
+                    gamma = gap_fw/(self.L * np.linalg.norm(s)**2)
                     self.x = self.x + gamma * s
                 elif step_type == 'Away':
-                    gamma = min(gap_away/(self.L * np.linalg.norm(d)**2), gamma_max)
+                    gamma = min(gap_away/(self.L * np.linalg.norm(away_vertex)**2), gamma_max)
                     self.x = self.x - gamma * away_vertex
                 
-
+            # Update weights in active set
             if step_type == "FW":              
                 # Check if s is in active set
                 s_flat = s.flatten()
@@ -162,6 +162,7 @@ class ConicFrankWolfe:
                     self.active_set = np.vstack((self.active_set, s_flat))
                     self.weights = np.append(self.weights, gamma)
             else:  # Away step
+                print('Away step occurred')
                 if gamma == gamma_max:
                     # Remove the atom from the active set and remove the weight
                     self.active_set = np.delete(self.active_set, away_vertex_index, axis=0)
