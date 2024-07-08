@@ -68,6 +68,46 @@ class BoostedFrankWolfe:
         self.oracle_calls = None
         self.fw_gaps = None
 
+    def segment_search(self, x, y, tol=1e-15, stepsize=True):
+        """
+        Minimizes f over [x, y], i.e., f(x+gamma*(y-x)) as a function of scalar gamma in [0,1]
+        """
+        # restrict segment of search to [x, y]
+        d = (y-x).copy()
+        left, right = x.copy(), y.copy()
+        
+        # if the minimum is at an endpoint
+        if np.dot(d, self.objective.gradient(x))*np.dot(d, self.objective.gradient(y)) >= 0:
+            if self.objective.evaluate(y) <= self.objective.evaluate(x):
+                return y, 1
+            else:
+                return x, 0
+        
+        # apply golden-section method to segment
+        gold = (1+np.sqrt(5))/2
+        improv = np.inf
+        while improv > tol:
+            old_left, old_right = left, right
+            new = left+(right-left)/(1+gold)
+            probe = new+(right-new)/2
+            if self.objective.evaluate(probe) <= self.objective.evaluate(new):
+                left, right = new, right
+            else:
+                left, right = left, probe
+            improv = np.linalg.norm(self.objective.evaluate(right)-self.objective.evaluate(old_right))+np.linalg.norm(self.objective.evaluate(left)-self.objective.evaluate(old_left))
+        
+        x_min = (left+right)/2
+        
+        # compute step size gamma
+        gamma = 0
+        if stepsize == True:
+            for i in range(len(d)):
+                if d[i] != 0:
+                    gamma = (x_min[i]-x[i])/d[i]
+                    break
+        
+        return x_min, gamma
+    
     def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short'):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
@@ -119,16 +159,15 @@ class BoostedFrankWolfe:
             g = d / Lambda
             
             # Step size calculation
-            if step_size_strategy == 'short':
+            if step_size_strategy == 'Short':
                 eta = align(-grad, g)
                 gamma = min(eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
-            elif step_size_strategy == 'line_search':
-                gamma = self.line_search(x, g)
+                # Update x
+                x = x + gamma * g
+            elif step_size_strategy == 'LineSearch':
+                x, gamma = self.segment_search(x, x + g)
             else:
-                raise ValueError("Invalid step_size_strategy. Choose 'short' or 'line_search'.")
-            
-            # Update x
-            x = x + gamma * g
+                raise ValueError("Invalid step_size_strategy. Choose 'Short' or 'LineSearch'.")
             
             # Record function value and oracle calls
             self.func_vals[t] = self.objective.evaluate(x)
@@ -138,12 +177,7 @@ class BoostedFrankWolfe:
                 self.oracle_calls[t] = k + 1
         
         self.x = x
-
-    def line_search(self, x, g):
-        # Implement line search here
-        # This is a placeholder implementation
-        return 1.0
-
+    
     def plot_convergence(self):
         n_steps = len(self.func_vals)
 

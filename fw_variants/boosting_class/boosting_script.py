@@ -39,7 +39,7 @@ x0 = 0.8 * x0 / np.linalg.norm(x0, ord=1) * radius  # Project onto the L1 ball
 
 # Create and run the Boosted Frank-Wolfe algorithm
 Boosted = fw.BoostedFrankWolfe(obj_fn, lmo_fn, 2*radius)
-Boosted.run(x0, n_steps=1000, K=5, delta=1e-3, step_size_strategy='short')
+Boosted.run(x0, n_steps=1000, K=5, delta=1e-3, step_size_strategy='Short')
 
 # Plot the results
 Boosted.plot_convergence()
