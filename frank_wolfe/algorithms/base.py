@@ -17,10 +17,10 @@ class FrankWolfe:
         n_steps = len(self.gaps)
         fig, axs = plt.subplots(1, 2, figsize=(20, 6))
 
-        axs[0].semilogy(range(n_steps), self.func_vals, label='Functional values')
-        axs[0].set_title('Functional values')
+        axs[0].semilogy(range(n_steps), self.func_vals - np.min(self.func_vals), label='Functional values')
+        axs[0].set_title('Functional value gap')
         axs[0].set_xlabel('Iterations')
-        axs[0].set_ylabel('Functional Values')
+        axs[0].set_ylabel('Functional gap')
         axs[0].legend()
 
         axs[1].semilogy(range(n_steps), self.gaps, label='FW Gaps', linewidth=1)
