@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from frank_wolfe.algorithms.base import FrankWolfe
-from frank_wolfe.core.utils import line_search
+from frank_wolfe.core.utils import segment_search
 
 class AwayFrankWolfe(FrankWolfe):
     def __init__(self, objective_fn, lmo_fn, L):
@@ -51,10 +51,12 @@ class AwayFrankWolfe(FrankWolfe):
                 gamma_max = self.weights[away_vertex_index] / (1 - self.weights[away_vertex_index])
 
             if step_rule == 'LineSearch':
-                gamma = self._line_search(d, grad)
-            else:
+                _, gamma = segment_search(self, self.x, self.x + d, tol=tol)
+            elif step_rule == 'Short':
                 # Implement the step size using Lipschitz constant
                 gamma = min(gap_fw / (self.L * np.linalg.norm(d)**2), gamma_max)
+            else:
+                break
 
             gamma = min(gamma, gamma_max)
             self.x = self.x + gamma * d
@@ -66,24 +68,6 @@ class AwayFrankWolfe(FrankWolfe):
             self.gaps[i] = gap_fw
 
         return self.x
-
-    def _line_search(self, d, grad):
-        left, right = 0, 1
-        gold = (1 + np.sqrt(5)) / 2
-
-        def obj(gamma):
-            return self.objective.evaluate(self.x + gamma * d)
-
-        while right - left > 1e-6:
-            gamma1 = right - (right - left) / gold
-            gamma2 = left + (right - left) / gold
-            
-            if obj(gamma1) <= obj(gamma2):
-                right = gamma2
-            else:
-                left = gamma1
-
-        return (left + right) / 2
 
     def _update_active_set(self, step_type, s, away_vertex_index, gamma):
         if step_type == "FW":

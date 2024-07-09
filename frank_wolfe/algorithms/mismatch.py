@@ -15,7 +15,7 @@ class MismatchFrankWolfe(FrankWolfe):
         self.gaps = np.zeros(n_steps)
         average_direction = np.zeros_like(x0)
 
-        for i in tqdm(range(n_steps), desc="Frank-Wolfe Progress"):
+        for i in tqdm(range(n_steps), desc="Mismatch Frank-Wolfe Progress"):
             step_size = 2.0 / (i + 2)
             true_grad = self.objective.true_gradient(self.x)
             if mismatch:

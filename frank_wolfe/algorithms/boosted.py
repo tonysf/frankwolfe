@@ -11,74 +11,107 @@ class BoostedFrankWolfe(FrankWolfe):
         self.oracle_calls = None
         self.fw_gaps = None
 
-    def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short'):
+    # def _nnmp(self, x, grad, K, delta):
+    #     d = np.zeros_like(grad)
+    #     Lambda = 0
+    #     k = 0
+    #     align_d = align(-grad, d)
+    #     while k < K:
+    #         r = -(grad + d)
+    #         v = self.lmo(-r)
+    #         v_minus_x = v - x
+    #         if np.allclose(d,np.zeros_like(d)):
+    #             if np.sum(r.flatten() * v_minus_x.flatten()) > 0:
+    #                 u = v_minus_x
+    #                 v_minus_x_flag = True
+    #             else:
+    #                 u = np.zeros_like(x)
+            
+    #         elif np.sum(r.flatten() * v_minus_x.flatten()) > np.sum(r.flatten() * -d.flatten() / np.linalg.norm(d)):
+    #             u = v_minus_x
+    #             v_minus_x_flag = True
+    #         # This is the first step in Cyrille's code
+    #         else:
+    #             u = -d / np.linalg.norm(d)
+            
+    #         lambda_k = np.sum(r.flatten() * u.flatten()) / (np.linalg.norm(u.flatten()) ** 2)
+    #         d_new = d + lambda_k * u
+    #         align_d_new = align(-grad, d_new)
+    #         align_improve = align_d_new - align_d
+    #         if align_improve > delta:
+    #             d = d_new
+    #             if v_minus_x_flag:
+    #                 Lambda += lambda_k
+    #             else:
+    #                 Lambda *= (1 - lambda_k / np.linalg.norm(d))
+    #             k += 1
+    #         else:
+    #             break
+
+    #     return d, Lambda, k + 1
+    def _nnmp(self, x, grad, K, delta):
+        d, Lambda, flag = np.zeros(len(x)), 0 , True
+        G = grad + d
+        align_d = align(-grad, d)
+        for k in range(K):
+            u = self.lmo(G) - x
+            d_norm = np.linalg.norm(d)
+            if d_norm > 0 and np.dot(G, -d/d_norm) < np.dot(G, u):
+                u = -d/d_norm
+                flag = False
+            lambda_k = np.dot(G, -u)/np.linalg.norm(u)**2
+            d_new = d + lambda_k * u
+            align_d_new = align(-grad, d_new)
+            align_improve = align_d_new - align_d
+            if align_improve > delta:
+                d = d_new
+                if flag:
+                    Lambda = Lambda + lambda_k
+                else:
+                    Lambda = Lambda * (1-lambda_k/d_norm)
+                G = grad + d
+                align_d = align_d_new
+                flag = True
+            else:
+                break
+        return d/Lambda, k, align_d
+
+    def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short', f_tol=1e-6):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.oracle_calls = np.zeros(n_steps)
         self.fw_gaps = np.zeros(n_steps)
         x = np.copy(self.x)
         
-        for t in tqdm(range(n_steps), desc="Boosted Frank-Wolfe Progress"):
+        for i in tqdm(range(n_steps), desc="Boosted Frank-Wolfe Progress"):
             grad = self.objective.gradient(x)
             
             # Compute Frank-Wolfe gap
             v_fw = self.lmo(grad)
-            self.fw_gaps[t] = np.sum(grad.flatten() * (x - v_fw).flatten())
+            self.fw_gaps[i] = np.sum(grad.flatten() * (x - v_fw).flatten())
             
-            # Gradient pursuit procedure (NNMP)
-            d = np.zeros_like(grad)
-            Lambda = 0
-            k = 0
-            
-            while k < K:
-                r = -(grad + d)
-                v = self.lmo(-r)
-                v_minus_x = v - x
-                if np.allclose(d, np.zeros_like(d)):
-                    if np.sum(r.flatten() * v_minus_x.flatten()) > 0:
-                        u = v_minus_x
-                        v_minus_x_flag = True
-                    else:
-                        u = 0
-                        v_minus_x_flag = False
-                elif np.sum(r.flatten() * v_minus_x.flatten()) > np.sum(r.flatten() * -d.flatten() / np.linalg.norm(d)):
-                    u = v_minus_x
-                    v_minus_x_flag = True
-                else:
-                    u = -d / np.linalg.norm(d)
-                    v_minus_x_flag = False
-                
-                lambda_k = np.sum(r.flatten() * u.flatten()) / (np.linalg.norm(u.flatten()) ** 2)
-                d_new = d + lambda_k * u
-                
-                if align(-grad, d_new) - align(-grad, d) > delta:
-                    d = d_new
-                    if v_minus_x_flag:
-                        Lambda += lambda_k
-                    else:
-                        Lambda *= (1 - lambda_k / np.linalg.norm(d))
-                    k += 1
-                else:
-                    break
-            
-            g = d / Lambda
-            
+            # Nonnegative Matching Pursuit
+            # d, Lambda, num_oracles = self._nnmp(x, grad, K, delta)
+            # g = d / Lambda
+            g, num_oracles, align_d = self._nnmp(x, grad, K, delta)
+
             # Step size calculation
             if step_size_strategy == 'Short':
-                eta = align(-grad, g)
-                gamma = min(eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
+                # eta = align(-grad, g)
+                # gamma = min(eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
+                gamma = min(align_d*np.linalg.norm(grad)/(self.objective.lipschitz*np.linalg.norm(g)), 1)
                 x = x + gamma * g
             elif step_size_strategy == 'LineSearch':
-                x, _ = segment_search(self, x, x + g)
+                x, gamma = segment_search(self.objective, x, x + g)
             else:
                 raise ValueError("Invalid step_size_strategy. Choose 'Short' or 'LineSearch'.")
             
             # Record function value and oracle calls
-            self.func_vals[t] = self.objective.evaluate(x)
-            if t > 0:
-                self.oracle_calls[t] = self.oracle_calls[t-1] + k + 1 
+            self.func_vals[i] = self.objective.evaluate(x)
+            if i > 0:
+                self.oracle_calls[i] = self.oracle_calls[i-1] + num_oracles
             else:
-                self.oracle_calls[t] = k + 1
+                self.oracle_calls[i] = num_oracles
         
         self.x = x
 

@@ -72,7 +72,7 @@ def line_search(x, d, objective_fn, max_step=1.0, tol=1e-6):
     return (left + right) / 2
 
 def align(d, d_hat):
-    if np.linalg.norm(d_hat) == 0:
+    if np.linalg.norm(d_hat) < 1e-15:
         return -1
     return np.dot(d, d_hat) / (np.linalg.norm(d) * np.linalg.norm(d_hat))
 

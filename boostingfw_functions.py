@@ -123,6 +123,7 @@ class BoostedFrankWolfe:
             v_fw = self.lmo(grad)
             self.fw_gaps[t] = np.sum(grad.flatten() * (x - v_fw).flatten())
             
+            ### BEING NNMP
             # Gradient pursuit procedure (NNMP)
             d = np.zeros_like(grad)
             Lambda = 0
@@ -158,7 +159,8 @@ class BoostedFrankWolfe:
                     break
             
             g = d / Lambda
-            
+            ### END NNMP
+
             # Step size calculation
             if step_size_strategy == 'Short':
                 eta = align(-grad, g)
