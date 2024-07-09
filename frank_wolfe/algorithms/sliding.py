@@ -9,7 +9,7 @@ class CondGradSliding(FrankWolfe):
         super().__init__(objective_fn, lmo_fn)
         self.diam = diam
 
-    def run(self, x0, n_steps=int(1e2), tol=1e-6, step_rule='LineSearch', lam=1.0):
+    def run(self, x0, n_steps=int(1e2), tol=1e-6, step_rule='LineSearch'):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
@@ -18,15 +18,14 @@ class CondGradSliding(FrankWolfe):
         for i in tqdm(range(n_steps), desc="Conditional Gradient Sliding Progress"):
             # 3.0 in numerator according to the Lan+Zhou paper
             step_size = 3.0 / (i + 3)
-            lam = lam0 / np.log(i + 2)
-            beta = (1.0/lam) * 3/(i + 2)
+            beta = self.objective.lipschitz * 3/(i + 2)
 
             z = (1 - step_size) * y  + step_size * x
-            grad = self.objective.moreau_grad(z, lam)
+            grad = self.objective.gradient(z)
 
             inner_gap = np.inf
             # inner_tol is called eta_k in the paper
-            inner_tol = (1.0/lam) * self.objective.lipschitz * (self.diam ** 2)/((i + 1) * (i + 2))
+            inner_tol = self.objective.lipschitz * (self.diam ** 2)/((i + 1) * (i + 2))
             
             #########################
             # CndG loop to update x

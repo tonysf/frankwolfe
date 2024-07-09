@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 # Import the old implementation
 from boostingfw_functions import BoostedFrankWolfe as OldBoostedFrankWolfe
-from boostingfw_functions import ObjectiveFunction as OldObjectiveFunction
 from boostingfw_functions import create_lmo as old_create_lmo
 
 # New implementation
@@ -23,19 +22,6 @@ class BoostingObjective(ObjectiveFunction):
     def gradient(self, x):
         return self.A.T @ (self.A @ x - self.b)
 
-# # Old implementation
-# class OldBoostingObjective(OldObjectiveFunction):
-#     def __init__(self, A, b):
-#         self.A = A
-#         self.b = b
-#         self.lipschitz = np.linalg.norm(A.T @ A, ord=2)
-    
-#     def evaluate(self, x):
-#         return 0.5 * np.linalg.norm(self.A @ x - self.b)**2
-    
-#     def gradient(self, x):
-#         return self.A.T @ (self.A @ x - self.b)
-
 # Set up the problem
 n, m = 100, 10
 np.random.seed(42)  # for reproducibility
@@ -49,9 +35,7 @@ new_obj = BoostingObjective(A, b)
 radius = 1.0 * np.linalg.norm(x_true, ord=1)
 new_lmo = create_lmo(radius, 'l1_ball')
 
-# Create objective and LMO for old implementation
-# old_obj = OldBoostingObjective(A, b)
-# Just use the same obj - does it work?
+# Create LMO for old implementation; can reuse objective from above
 old_lmo = old_create_lmo(radius, 'l1_ball')
 
 # Initialize starting point

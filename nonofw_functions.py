@@ -1,22 +1,85 @@
+from scipy.sparse.linalg import svds
+from scipy.sparse.linalg import eigsh
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
-from frank_wolfe.algorithms.base import FrankWolfe
+import matplotlib.pyplot as plt
 
-class NoNoFrankWolfe(FrankWolfe):
+def general_lmo(gradient, radius, constraint_set):
+    if constraint_set == "l1_ball":
+        # Implement LMO for L1 ball
+        # Handle both vector and matrix inputs
+        index_flat = np.argmax(np.abs(gradient))
+        index_multi = np.unravel_index(index_flat, gradient.shape)
+        s = np.zeros_like(gradient)
+        s[index_multi] = np.sign(gradient[index_multi])
+        s = -radius * s
+        return s
+    elif constraint_set == "nuclear_norm_ball":
+        # Implement LMO for nuclear norm ball
+        # Assume gradient is a matrix
+        u, _, vt = svds(gradient, k=1)
+        s = -radius * np.outer(u, vt)
+        return s
+    elif constraint_set == "psd_trace":
+        # Implement LMO for PSD matrices with bounded trace norm
+        _, u = eigsh(gradient, k=1, which='LM')
+        s = -radius * np.outer(u, u)
+        return s
+    elif constraint_set == "l2_ball":
+        # Implement LMO for L2 ball
+        # Handle both vector and matrix inputs
+        gradient_norm = np.linalg.norm(gradient)
+        if gradient_norm > 0:
+            s = -radius * gradient / gradient_norm
+        else:
+            # Handle the case when the gradient is zero
+            s = np.zeros_like(gradient)
+        return s
+    else:
+        raise ValueError(f"Unsupported constraint set: {constraint_set}")
+
+def create_lmo(radius, constraint_set):
+    def lmo(gradient):
+        return general_lmo(gradient, radius, constraint_set)
+    return lmo
+
+class ObjectiveFunction:
+    def __init__(self):
+        pass
+    
+    def evaluate(self, x):
+        raise NotImplementedError
+    
+    def gradient(self, x):
+        raise NotImplementedError
+    
+    def linear_operator(self, x):
+        raise NotImplementedError
+    
+    def linear_operator_adjoint(self, x):
+        raise NotImplementedError
+    
+    def minimal_norm_selection(self, x):
+        raise NotImplementedError
+
+class FrankWolfe:
     def __init__(self, objective_fn, lmo_fn, prox_fn, objective_type):
-        super().__init__(objective_fn, lmo_fn)
+        self.objective = objective_fn
+        self.lmo = lmo_fn
         self.prox = prox_fn
         self.objective_type = objective_type
+        self.x = None
+        self.func_vals = None
         self.ns_gaps = None
+        self.gaps = None
 
-    def run(self, x0, beta0=1.0, n_steps=int(1e2)):
+    def run(self, x0, beta0 = 1.0, n_steps = int(1e2)):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
         self.ns_gaps = np.zeros(n_steps)
 
-        for i in tqdm(range(n_steps), desc="NoNoFrank-Wolf Progress"):
+        for i in tqdm(range(n_steps), desc="Frank-Wolfe Progress"):
             beta = beta0 / np.log(i + 2)
             step_size = 2.0 / np.sqrt((i + 2))
 
@@ -24,7 +87,6 @@ class NoNoFrankWolfe(FrankWolfe):
             Tx = self.objective.linear_operator(self.x)
             moreau_grad = self.objective.linear_operator_adjoint(Tx - self.prox(Tx, beta))/beta
             combined_grad = grad + moreau_grad
-            
             # Note that svds uses random sampling so fix the seed to compare to other solvers etc
             np.random.seed(42)
             direction = self.lmo(combined_grad)
@@ -112,3 +174,23 @@ class NoNoFrankWolfe(FrankWolfe):
         fig.suptitle('Algorithm Convergence Analysis', fontsize=16, fontweight='bold')
 
         plt.show()
+    
+### Prox type functions ############################################
+
+def proj_nonneg(U):
+    """
+    Projection onto the nonnegative orthon
+    """
+    return np.maximum(U, 0)
+
+def proj_cube(U):
+    return np.clip(U, 0, 1)
+
+def soft_thresh(U, beta):
+    return np.sign(U) * np.maximum(np.abs(U) - beta, 0)
+
+def l1_minimal_norm_selection(U):
+    """
+    U is a numpy array representing a matrix that we are going to compute the minimal norm selection of the l1 subdifferential at.
+    """
+    return np.sign(U)

@@ -76,13 +76,13 @@ def align(d, d_hat):
         return -1
     return np.dot(d, d_hat) / (np.linalg.norm(d) * np.linalg.norm(d_hat))
 
-def proj_nonneg(U):
+def proj_nonneg(U, beta):
     """
     Projection onto the nonnegative orthon
     """
     return np.maximum(U, 0)
 
-def proj_cube(U):
+def proj_cube(U, beta):
     return np.clip(U, 0, 1)
 
 def soft_thresh(U, beta):
