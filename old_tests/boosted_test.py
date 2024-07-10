@@ -38,14 +38,15 @@ new_lmo = create_lmo(radius, 'l1_ball')
 # Initialize starting point
 x0 = np.random.randn(n)
 x0 = 0.8 * x0 / np.linalg.norm(x0, ord=1) * radius  # Project onto the L1 ball
-
+n_steps = 100
+n_K = 5
 # Run new Boosted Frank-Wolfe
 new_bfw = BoostedFrankWolfe(new_obj, new_lmo, 2*radius)
-new_result = new_bfw.run(x0, n_steps=1000, K=5, delta=1e-3, step_size_strategy='Short')
+new_result = new_bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step_size_strategy='Short')
 
 # Run old Boosted Frank-Wolfe
 old_bfw = OldBoostedFrankWolfe(new_obj, new_lmo, 2*radius)
-old_result = old_bfw.run(x0, n_steps=1000, K=5, delta=1e-3, step_size_strategy='Short')
+old_result = old_bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step_size_strategy='Short')
 
 
 # Compare with Cyrille's code
@@ -106,7 +107,7 @@ def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=
         oracles.append(num_oracles)
     return x, values, oracles, gaps
 
-cyrille_x, cyrille_values, cyrille_oracles, cyrille_gaps = cyrille_boostfw(new_obj.evaluate, new_obj.gradient, new_obj.lipschitz, x0, step='Short', n_steps=1000, K=5)
+cyrille_x, cyrille_values, cyrille_oracles, cyrille_gaps = cyrille_boostfw(new_obj.evaluate, new_obj.gradient, new_obj.lipschitz, x0, step='Short', n_steps=n_steps, K=n_K)
 
 
 

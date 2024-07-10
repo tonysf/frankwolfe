@@ -11,44 +11,45 @@ class BoostedFrankWolfe(FrankWolfe):
         self.oracle_calls = None
         self.fw_gaps = None
 
-    # def _nnmp(self, x, grad, K, delta):
-    #     d = np.zeros_like(grad)
-    #     Lambda = 0
-    #     k = 0
-    #     align_d = align(-grad, d)
-    #     while k < K:
-    #         r = -(grad + d)
-    #         v = self.lmo(-r)
-    #         v_minus_x = v - x
-    #         if np.allclose(d,np.zeros_like(d)):
-    #             if np.sum(r.flatten() * v_minus_x.flatten()) > 0:
-    #                 u = v_minus_x
-    #                 v_minus_x_flag = True
-    #             else:
-    #                 u = np.zeros_like(x)
+    def _og_nnmp(self, x, grad, K, delta):
+        d = np.zeros_like(grad)
+        Lambda = 0
+        k = 0
+        align_d = align(-grad, d)
+        while k < K:
+            r = -(grad + d)
+            v = self.lmo(-r)
+            v_minus_x = v - x
+            if np.allclose(d,np.zeros_like(d)):
+                if np.sum(r.flatten() * v_minus_x.flatten()) > 0:
+                    u = v_minus_x
+                    v_minus_x_flag = True
+                else:
+                    u = np.zeros_like(x)
             
-    #         elif np.sum(r.flatten() * v_minus_x.flatten()) > np.sum(r.flatten() * -d.flatten() / np.linalg.norm(d)):
-    #             u = v_minus_x
-    #             v_minus_x_flag = True
-    #         # This is the first step in Cyrille's code
-    #         else:
-    #             u = -d / np.linalg.norm(d)
+            elif np.sum(r.flatten() * v_minus_x.flatten()) > np.sum(r.flatten() * -d.flatten() / np.linalg.norm(d)):
+                u = v_minus_x
+                v_minus_x_flag = True
+            # This is the first step in Cyrille's code
+            else:
+                u = -d / np.linalg.norm(d)
             
-    #         lambda_k = np.sum(r.flatten() * u.flatten()) / (np.linalg.norm(u.flatten()) ** 2)
-    #         d_new = d + lambda_k * u
-    #         align_d_new = align(-grad, d_new)
-    #         align_improve = align_d_new - align_d
-    #         if align_improve > delta:
-    #             d = d_new
-    #             if v_minus_x_flag:
-    #                 Lambda += lambda_k
-    #             else:
-    #                 Lambda *= (1 - lambda_k / np.linalg.norm(d))
-    #             k += 1
-    #         else:
-    #             break
+            lambda_k = np.sum(r.flatten() * u.flatten()) / (np.linalg.norm(u.flatten()) ** 2)
+            d_new = d + lambda_k * u
+            align_d_new = align(-grad, d_new)
+            align_improve = align_d_new - align_d
+            if align_improve > delta:
+                d = d_new
+                if v_minus_x_flag:
+                    Lambda += lambda_k
+                else:
+                    Lambda *= (1 - lambda_k / np.linalg.norm(d))
+                k += 1
+            else:
+                break
 
-    #     return d, Lambda, k + 1
+        return d, Lambda, k
+    
     def _nnmp(self, x, grad, K, delta):
         d, Lambda, flag = np.zeros(len(x)), 0 , True
         G = grad + d
@@ -74,7 +75,7 @@ class BoostedFrankWolfe(FrankWolfe):
                 flag = True
             else:
                 break
-        return d/Lambda, k, align_d
+        return d/Lambda, k + 1, align_d
 
     def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short', f_tol=1e-6):
         self.x = x0
@@ -95,10 +96,19 @@ class BoostedFrankWolfe(FrankWolfe):
             # g = d / Lambda
             g, num_oracles, align_d = self._nnmp(x, grad, K, delta)
 
+            og_d, og_Lam, og_num_orac = self._og_nnmp(x, grad, K, delta)
+            og_g = og_d/og_Lam
+
+            print('The two nnmp procedures used the same number of oracles:')
+            print(f'{og_num_orac=}')
+            print(f'{num_oracles=}')
+            print('The two nnmp procedures produced the same direction:')
+            print(f'{np.linalg.norm(og_g- g)}')
+
             # Step size calculation
             if step_size_strategy == 'Short':
-                # eta = align(-grad, g)
-                # gamma = min(eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
+                og_eta = align(-grad, g)
+                og_gamma = min(og_eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
                 gamma = min(align_d*np.linalg.norm(grad)/(self.objective.lipschitz*np.linalg.norm(g)), 1)
                 x = x + gamma * g
             elif step_size_strategy == 'LineSearch':
