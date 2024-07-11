@@ -5,14 +5,15 @@ from frank_wolfe.algorithms.base import FrankWolfe
 from frank_wolfe.core.utils import line_search
 
 class CondGradSliding(FrankWolfe):
-    def __init__(self, objective_fn, lmo_fn, L, diam):
+    def __init__(self, objective_fn, lmo_fn, diam):
         super().__init__(objective_fn, lmo_fn)
         self.diam = diam
 
-    def run(self, x0, n_steps=int(1e2), tol=1e-6, step_rule='LineSearch'):
+    def run(self, x0, n_steps=int(1e2)):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
+        self.num_oracles = np.zeros(n_steps)
         x = np.copy(self.x)
         y = np.copy(self.x)
         for i in tqdm(range(n_steps), desc="Conditional Gradient Sliding Progress"):
@@ -34,6 +35,7 @@ class CondGradSliding(FrankWolfe):
             while inner_gap > inner_tol:
                 inner_grad = grad + beta * (u - x)
                 inner_direction = self.lmo(inner_grad)
+                self.num_oracles[i] += 1
                 inner_gap = np.sum(inner_grad.flatten() * (u-inner_direction).flatten())
                 inner_step_size = inner_gap /(beta * (np.linalg.norm((inner_direction - u).flatten())**2))
                 alpha = max(0, min(1, inner_step_size))
@@ -44,12 +46,13 @@ class CondGradSliding(FrankWolfe):
             #########################
 
             y = (1 - step_size) * y + step_size * x
-
-            # Compute the number of lmo calls
-            self.gaps[i] = self.gaps[i-1] + k
+            y_grad = self.objective.gradient(y)
+            gap = np.sum(y_grad.flatten() *  (y - self.lmo(y_grad)).flatten())
+            self.gaps[i] = gap
 
             func_val = self.objective.evaluate(y)
             self.func_vals[i] = func_val
+        self.num_oracles = np.cumsum(self.num_oracles)
         self.x = y
 
 

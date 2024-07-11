@@ -5,17 +5,16 @@ from frank_wolfe.algorithms.base import FrankWolfe
 from frank_wolfe.core.utils import segment_search
 
 class AwayFrankWolfe(FrankWolfe):
-    def __init__(self, objective_fn, lmo_fn, L):
+    def __init__(self, objective_fn, lmo_fn):
         super().__init__(objective_fn, lmo_fn)
         self.active_set = None
         self.weights = None
-        self.L = L  # Lipschitz constant
 
-    def run(self, x0, n_steps=int(1e2), tol=1e-6, step_rule='LineSearch'):
+    def run(self, x0, n_steps=int(1e2), tol=1e-6, step='LineSearch'):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
-        
+        self.num_oracles = np.zeros(n_steps)
         # Initialize active set as a 2D numpy array
         self.active_set = np.array([x0.flatten()])
         self.weights = np.array([1.0])
@@ -26,6 +25,7 @@ class AwayFrankWolfe(FrankWolfe):
 
             # Forward step
             s = self.lmo(grad)
+            self.num_oracles[i] += 1
             d_fw = s - self.x
             gap_fw = np.dot(grad_flat, self.x.flatten() - s.flatten())
 
@@ -50,11 +50,11 @@ class AwayFrankWolfe(FrankWolfe):
                 step_type = "Away"
                 gamma_max = self.weights[away_vertex_index] / (1 - self.weights[away_vertex_index])
 
-            if step_rule == 'LineSearch':
+            if step == 'LineSearch':
                 _, gamma = segment_search(self, self.x, self.x + d, tol=tol)
-            elif step_rule == 'Short':
+            elif step == 'Short':
                 # Implement the step size using Lipschitz constant
-                gamma = min(gap_fw / (self.L * np.linalg.norm(d)**2), gamma_max)
+                gamma = min(gap_fw / (self.objective.lipschitz * np.linalg.norm(d)**2), gamma_max)
             else:
                 break
 
@@ -66,8 +66,7 @@ class AwayFrankWolfe(FrankWolfe):
             # Record function value and gap
             self.func_vals[i] = self.objective.evaluate(self.x)
             self.gaps[i] = gap_fw
-
-        return self.x
+        self.num_oracles = np.cumsum(self.num_oracles)
 
     def _update_active_set(self, step_type, s, away_vertex_index, gamma):
         if step_type == "FW":

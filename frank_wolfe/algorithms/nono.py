@@ -15,6 +15,7 @@ class NoNoFrankWolfe(FrankWolfe):
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
         self.ns_gaps = np.zeros(n_steps)
+        self.num_oracles = np.zeros(n_steps)
 
         for i in tqdm(range(n_steps), desc="NoNoFrank-Wolf Progress"):
             beta = beta0 / np.log(i + 2)
@@ -28,6 +29,7 @@ class NoNoFrankWolfe(FrankWolfe):
             # Note that svds uses random sampling so fix the seed to compare to other solvers etc
             np.random.seed(42)
             direction = self.lmo(combined_grad)
+            self.num_oracles[i] += 1
 
             gap = np.sum(combined_grad * (self.x - direction))
             self.gaps[i] = gap
@@ -50,6 +52,7 @@ class NoNoFrankWolfe(FrankWolfe):
             self.ns_gaps[i] = ns_gap
 
             self.x = (1 - step_size) * self.x + step_size * direction
+        self.num_oracles = np.cumsum(self.num_oracles)
 
     def plot_convergence(self):
         gaps = self.gaps

@@ -5,17 +5,29 @@ from frank_wolfe.algorithms.base import FrankWolfe
 from frank_wolfe.core.utils import line_search
 
 class MismatchFrankWolfe(FrankWolfe):
-    def __init__(self, objective_fn, lmo_fn, L):
+    def __init__(self, objective_fn, lmo_fn):
         super().__init__(objective_fn, lmo_fn)
         
 
-    def run(self, x0, n_steps=int(1e2), tol=1e-6, step_rule='LineSearch'):
+    def run(self, x0, n_steps=int(1e2), mismatch=False, averaging=False):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
+        self.num_oracles = np.zeros(n_steps)
         average_direction = np.zeros_like(x0)
+        if mismatch:
+            if averaging:
+                for_string = '(Mismatch Frank-Wolfe with Averaging) Progress'
+            else:
+                for_string = '(Mismatch Frank-Wolfe) Progress'
+        else:
+            if averaging:
+                for_string = '(Frank-Wolfe with Averaging) Progress'
+            else:
+                for_string = '(Frank-Wolfe) Progress'
 
-        for i in tqdm(range(n_steps), desc="Mismatch Frank-Wolfe Progress"):
+        
+        for i in tqdm(range(n_steps), desc=for_string):
             step_size = 2.0 / (i + 2)
             true_grad = self.objective.true_gradient(self.x)
             if mismatch:
@@ -24,6 +36,7 @@ class MismatchFrankWolfe(FrankWolfe):
                 grad = true_grad
             
             direction = self.lmo(grad)
+            self.num_oracles[i] += 1
 
             gap = np.sum(true_grad * (self.x - self.lmo(true_grad)))
             self.gaps[i] = gap
@@ -36,6 +49,7 @@ class MismatchFrankWolfe(FrankWolfe):
                 direction = average_direction
 
             self.x = (1 - step_size) * self.x + step_size * direction
+        self.num_oracles = np.cumsum(self.num_oracles)
 
 
     def plot_convergence(self):

@@ -30,6 +30,8 @@ A = np.random.randn(m, n)
 x_true = np.random.randn(n)
 x_true[x_true < 0.5] = 0  # Sparsify
 b = A @ x_true + 0.01 * np.random.randn(m)
+n_steps = 1000
+n_K = 2
 
 # Create objective and LMO
 obj = MyObjective(A, b)
@@ -39,22 +41,22 @@ lmo = create_lmo(radius, 'l1_ball')
 # Initialize and run Vanilla Frank-Wolfe
 x0 = np.zeros(n)
 vfw = FrankWolfe(obj, lmo)
-vfw.run(x0, n_steps=1000)
+vfw.run(x0, n_steps=n_steps)
 
 # Initialize and run Away-step Frank-Wolfe
 x0 = np.zeros(n)
-afw = AwayFrankWolfe(obj, lmo, obj.lipschitz)
-afw.run(x0, n_steps=1000, step_rule = 'Short')
+afw = AwayFrankWolfe(obj, lmo)
+afw.run(x0, n_steps=n_steps, step = 'Short')
 
 # Initialize and run Boosted Frank-Wolfe
 x0 = np.zeros(n)
 bfw = BoostedFrankWolfe(obj, lmo, 2*radius)
-bfw.run(x0, n_steps=1000, K=5, delta=1e-3, step_size_strategy='Short')
+bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step='Short')
 
 # Initialize and run Conditional Gradient Sliding
 x0 = np.zeros(n)
-cgs = CondGradSliding(obj, lmo, obj.lipschitz, 2*radius)
-cgs.run(x0, n_steps=1000)
+cgs = CondGradSliding(obj, lmo, 2*radius)
+cgs.run(x0, n_steps=5*n_steps)
 
 # Compare with Cyrille's code
 
@@ -91,10 +93,10 @@ def cyrille_nnmp(x, grad_f_x, align_tol, K):
 
 def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=5):
     
-    values, times, oracles, gaps = [f(x)], [0], [0], [np.dot(grad_f(x), x-lmo(grad_f(x)))]
+    values, times, oracles, gaps = [], [0], [0], []
     
     x = lmo(grad_f(x))
-    values.append(f(x))
+    # values.append(f(x))
     oracles.append(1)
     
     for k in range(n_steps):
@@ -114,10 +116,7 @@ def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=
         oracles.append(num_oracles)
     return x, values, oracles, gaps
 
-cyrille_x, cyrille_values, cyrille_oracles, cyrille_gaps = cyrille_boostfw(obj.evaluate, obj.gradient, obj.lipschitz, x0, step='Short', n_steps=1000, K=5)
-
-
-
+cyrille_x, cyrille_values, cyrille_oracles, cyrille_gaps = cyrille_boostfw(obj.evaluate, obj.gradient, obj.lipschitz, x0, step='Short', n_steps=n_steps, K=n_K)
 
 
 # Plot results
@@ -138,11 +137,24 @@ plt.show()
 plt.figure(figsize=(12, 8))
 plt.semilogy(vfw.gaps, label='Vanilla FW')
 plt.semilogy(afw.gaps, label='Away-step FW')
-#plt.semilogy(bfw.gaps, label='Boosted FW')
+plt.semilogy(bfw.gaps, label='Boosted FW')
 plt.semilogy(cgs.gaps, label='Cond. Gradient Sliding')
 plt.semilogy(cyrille_gaps, label='Cyrille')
 plt.title('Comparison of Frank-Wolfe Gaps')
 plt.xlabel('Iterations')
+plt.ylabel('Gap')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Plot gaps
+plt.figure(figsize=(12, 8))
+plt.semilogy(vfw.num_oracles, vfw.gaps, label='Vanilla FW')
+plt.semilogy(afw.num_oracles, afw.gaps, label='Away-step FW')
+plt.semilogy(bfw.num_oracles, bfw.gaps, label='Boosted FW')
+plt.semilogy(cgs.num_oracles, cgs.gaps, label='Cond. Gradient Sliding')
+plt.title('Gaps vs Oracle Calls')
+plt.xlabel('Oracle Calls')
 plt.ylabel('Gap')
 plt.legend()
 plt.grid(True)

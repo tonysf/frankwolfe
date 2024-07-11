@@ -43,7 +43,7 @@ class RobustPCAObjective(ObjectiveFunction):
         return X
     
     def minimal_norm_selection(self, X):
-        return np.sign(X)
+        pass
 
 # Setup
 delta = 0.1

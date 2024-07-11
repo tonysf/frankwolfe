@@ -8,8 +8,6 @@ class BoostedFrankWolfe(FrankWolfe):
     def __init__(self, objective_fn, lmo_fn, diam):
         super().__init__(objective_fn, lmo_fn)
         self.diam = diam
-        self.oracle_calls = None
-        self.fw_gaps = None
 
     def _og_nnmp(self, x, grad, K, delta):
         d = np.zeros_like(grad)
@@ -82,20 +80,20 @@ class BoostedFrankWolfe(FrankWolfe):
                 break
         return d/Lambda, k + 1, align_d
 
-    def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short'):
-        # self.x = self.lmo(self.objective.gradient(x0))
-        self.x = x0
+    def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step='short'):
+        self.x = self.lmo(self.objective.gradient(x0))
+        # self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.oracle_calls = np.zeros(n_steps)
-        self.fw_gaps = np.zeros(n_steps)
-        
+        self.gaps = np.zeros(n_steps)
+        self.num_oracles = np.zeros(n_steps)
         
         for i in tqdm(range(n_steps), desc="Boosted Frank-Wolfe Progress"):
             grad = self.objective.gradient(self.x)
             
-            # Compute Frank-Wolfe gap
+            # Compute Frank-Wolfe gap (this lmo doesn't count towards num_oracles; it's not actually used in the algorithm, just insightful for us)
             v_fw = self.lmo(grad)
-            self.fw_gaps[i] = np.sum(grad.flatten() * (self.x - v_fw).flatten())
+            self.gaps[i] = np.sum(grad.flatten() * (self.x - v_fw).flatten())
             
             # Nonnegative Matching Pursuit
             # d, Lambda, num_oracles = self._nnmp(x, grad, K, delta)
@@ -105,36 +103,34 @@ class BoostedFrankWolfe(FrankWolfe):
             og_d, og_Lam, og_num_orac = self._og_nnmp(self.x, grad, K, delta)
             og_g = og_d / og_Lam
 
-            print('The two nnmp procedures used the same number of oracles:')
-            print(f'{og_num_orac=}')
-            print(f'{num_oracles=}')
-            print('The two nnmp procedures produced the same direction:')
-            print(f'{np.linalg.norm(og_g- g)}')
+            # print('The two nnmp procedures used the same number of oracles:')
+            # print(f'{og_num_orac=}')
+            # print(f'{num_oracles=}')
+            # print('The two nnmp procedures produced the same direction:')
+            # print(f'{np.linalg.norm(og_g- g)}')
 
             # Step size calculation
-            if step_size_strategy == 'Short':
+            if step == 'Short':
                 og_eta = align(-grad, g)
                 og_gamma = min(og_eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
                 gamma = min(align_g*np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
-                # self.x = self.x + gamma * g
-                self.x = self.x + og_gamma * og_g
-            elif step_size_strategy == 'LineSearch':
+                self.x = self.x + gamma * g
+                # self.x = self.x + og_gamma * og_g
+            elif step == 'LineSearch':
                 self.x, gamma = segment_search(self.objective, self.x, self.x + g)
             else:
-                raise ValueError("Invalid step_size_strategy. Choose 'Short' or 'LineSearch'.")
+                raise ValueError("Invalid step type. Choose 'Short' or 'LineSearch'.")
             
             # Record function value and oracle calls
             self.func_vals[i] = self.objective.evaluate(self.x)
-            if i > 0:
-                self.oracle_calls[i] = self.oracle_calls[i-1] + num_oracles
-            else:
-                self.oracle_calls[i] = num_oracles
+            self.num_oracles[i] += num_oracles
+        self.num_oracles = np.cumsum(self.num_oracles)
 
-    def test_run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short'):
+    def test_run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step='short'):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.oracle_calls = np.zeros(n_steps)
-        self.fw_gaps = np.zeros(n_steps)
+        self.gaps = np.zeros(n_steps)
         x = np.copy(self.x)
         new_lmo = self.lmo
 
@@ -174,13 +170,13 @@ class BoostedFrankWolfe(FrankWolfe):
             
             # Compute Frank-Wolfe gap
             v_fw = self.lmo(grad)
-            self.fw_gaps[i] = np.sum(grad.flatten() * (x - v_fw).flatten())
+            self.gaps[i] = np.sum(grad.flatten() * (x - v_fw).flatten())
             
             cyrille_g, cyrille_num_oracles, cyrille_align_g = cyrille_nnmp(x, grad, delta, K)
-            if step_size_strategy == 'Short':
+            if step == 'Short':
                 cyrille_gamma = min(cyrille_align_g*np.linalg.norm(grad)/(self.objective.lipschitz*np.linalg.norm(cyrille_g)), 1)
                 cyrille_x = x+cyrille_gamma*cyrille_g
-            elif step_size_strategy == 'LineSearch':
+            elif step == 'LineSearch':
                 x, gamma = segment_search(f, grad_f, x, x+g)
 
             # Nonnegative Matching Pursuit
@@ -202,15 +198,15 @@ class BoostedFrankWolfe(FrankWolfe):
             # print(f'{np.linalg.norm(cyrille_g-g)}')
 
             # Step size calculation
-            if step_size_strategy == 'Short':
+            if step == 'Short':
                 og_eta = align(-grad, g)
                 og_gamma = min(og_eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
                 gamma = min(align_g*np.linalg.norm(grad)/(self.objective.lipschitz*np.linalg.norm(g)), 1)
                 x = x + gamma * g
-            elif step_size_strategy == 'LineSearch':
+            elif step == 'LineSearch':
                 x, gamma = segment_search(self.objective, x, x + g)
             else:
-                raise ValueError("Invalid step_size_strategy. Choose 'Short' or 'LineSearch'.")
+                raise ValueError("Invalid step type. Choose 'Short' or 'LineSearch'.")
             
             # Record function value and oracle calls
             self.func_vals[i] = self.objective.evaluate(x)
@@ -242,14 +238,14 @@ class BoostedFrankWolfe(FrankWolfe):
         axs[0, 1].legend()
 
         # Plot Frank-Wolfe gaps as a function of iterations
-        axs[1, 0].semilogy(range(n_steps), self.fw_gaps, label='FW gaps')
+        axs[1, 0].semilogy(range(n_steps), self.gaps, label='FW gaps')
         axs[1, 0].set_title('Frank-Wolfe gap vs iterations')
         axs[1, 0].set_xlabel('Iterations')
         axs[1, 0].set_ylabel('FW gap')
         axs[1, 0].legend()
 
         # Plot Frank-Wolfe gaps as a function of LMO calls
-        axs[1, 1].semilogy(self.oracle_calls, self.fw_gaps, label='FW gaps')
+        axs[1, 1].semilogy(self.oracle_calls, self.gaps, label='FW gaps')
         axs[1, 1].set_title('Frank-Wolfe gap vs LMO calls')
         axs[1, 1].set_xlabel('LMO Calls')
         axs[1, 1].set_ylabel('FW gap')
@@ -267,13 +263,13 @@ class oldBoostedFrankWolfe:
         self.func_vals = None
         self.diam = diam
         self.oracle_calls = None
-        self.fw_gaps = None
+        self.gaps = None
 
-    def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step_size_strategy='short'):
+    def run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step='short'):
         self.x = x0
         self.func_vals = np.zeros(n_steps)
         self.oracle_calls = np.zeros(n_steps)
-        self.fw_gaps = np.zeros(n_steps)
+        self.gaps = np.zeros(n_steps)
         x = np.copy(self.x)
         
         for t in tqdm(range(n_steps), desc="Boosted Frank-Wolfe Progress"):
@@ -281,7 +277,7 @@ class oldBoostedFrankWolfe:
             
             # Compute Frank-Wolfe gap
             v_fw = self.lmo(grad)
-            self.fw_gaps[t] = np.sum(grad.flatten() * (x - v_fw).flatten())
+            self.gaps[t] = np.sum(grad.flatten() * (x - v_fw).flatten())
             
             # Gradient pursuit procedure (NNMP)
             d = np.zeros_like(grad)
@@ -320,13 +316,13 @@ class oldBoostedFrankWolfe:
             g = d / Lambda
             
             # Step size calculation
-            if step_size_strategy == 'short':
+            if step == 'short':
                 eta = align(-grad, g)
                 gamma = min(eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
-            elif step_size_strategy == 'line_search':
+            elif step == 'line_search':
                 gamma = self.line_search(x, g)
             else:
-                raise ValueError("Invalid step_size_strategy. Choose 'short' or 'line_search'.")
+                raise ValueError("Invalid step type. Choose 'short' or 'line_search'.")
             
             # Update x
             x = x + gamma * g
@@ -361,14 +357,14 @@ class oldBoostedFrankWolfe:
         axs[0, 1].legend()
 
         # Plot Frank-Wolfe gaps as a function of iterations
-        axs[1, 0].semilogy(range(n_steps), self.fw_gaps, label='FW gaps')
+        axs[1, 0].semilogy(range(n_steps), self.gaps, label='FW gaps')
         axs[1, 0].set_title('Frank-Wolfe gap vs iterations')
         axs[1, 0].set_xlabel('Iterations')
         axs[1, 0].set_ylabel('FW gap')
         axs[1, 0].legend()
 
         # Plot Frank-Wolfe gaps as a function of LMO calls
-        axs[1, 1].semilogy(self.oracle_calls, self.fw_gaps, label='FW gaps')
+        axs[1, 1].semilogy(self.oracle_calls, self.gaps, label='FW gaps')
         axs[1, 1].set_title('Frank-Wolfe gap vs LMO calls')
         axs[1, 1].set_xlabel('LMO Calls')
         axs[1, 1].set_ylabel('FW gap')
