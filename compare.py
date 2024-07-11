@@ -6,17 +6,22 @@ from frank_wolfe.core.utils import *
 import numpy as np
 import matplotlib.pyplot as plt
 
+# 1/2 ||Ax-b||^2
 class MyObjective(ObjectiveFunction):
     def __init__(self, A, b):
         self.A = A
         self.b = b
         self.lipschitz = np.linalg.norm(A.T @ A, ord=2)
     
+    # f(x)
     def evaluate(self, x):
         return 0.5 * np.linalg.norm(self.A @ x - self.b)**2
+        # return 0.5 np.exp(1 + np.log(self.A @ x - self.b))
     
+    # \nabla f(x)
     def gradient(self, x):
         return self.A.T @ (self.A @ x - self.b)
+        # return logistic grad...
 
 # Set up the problem
 n, m = 100, 10
@@ -133,7 +138,7 @@ plt.show()
 plt.figure(figsize=(12, 8))
 plt.semilogy(vfw.gaps, label='Vanilla FW')
 plt.semilogy(afw.gaps, label='Away-step FW')
-plt.semilogy(bfw.gaps, label='Boosted FW')
+#plt.semilogy(bfw.gaps, label='Boosted FW')
 plt.semilogy(cgs.gaps, label='Cond. Gradient Sliding')
 plt.semilogy(cyrille_gaps, label='Cyrille')
 plt.title('Comparison of Frank-Wolfe Gaps')
@@ -149,7 +154,7 @@ print(f"Vanilla FW: {vfw.func_vals[-1]:.6f}")
 print(f"Away-step FW: {afw.func_vals[-1]:.6f}")
 print(f"Boosted FW: {bfw.func_vals[-1]:.6f}")
 print(f"Cond. Gradient Sliding: {cgs.func_vals[-1]:.6f}")
-print(f"Cyrille: {cyrille_func_vals[-1]:.6f}")
+print(f"Cyrille: {cyrille_values[-1]:.6f}")
 
 print("\nL1 Errors:")
 print(f"Vanilla FW: {np.linalg.norm(vfw.x - x_true, ord=1):.6f}")
@@ -165,7 +170,7 @@ plt.stem(vfw.x, markerfmt='bo', linefmt='b-', label='Vanilla FW')
 plt.stem(afw.x, markerfmt='ro', linefmt='r-', label='Away-step FW')
 plt.stem(bfw.x, markerfmt='go', linefmt='g-', label='Boosted FW')
 plt.stem(cgs.x, markerfmt='mo', linefmt='m-', label='Cond. Gradient Sliding')
-plt.stem(cyrille_x, markerfmt='mo', linefmt='m-', label='Cyrille')
+plt.stem(cyrille_x, markerfmt='co', linefmt='m-', label='Cyrille')
 plt.title('Recovered Signals')
 plt.legend()
 plt.grid(True)

@@ -8,6 +8,7 @@ def segment_search(self, x, y, tol=1e-15, stepsize=True):
     d = (y-x).copy()
     left, right = x.copy(), y.copy()
     
+    # NOTE: REWRITE THIS NOT TO USE GRADIENT
     # if the minimum is at an endpoint
     if np.dot(d, self.objective.gradient(x))*np.dot(d, self.objective.gradient(y)) >= 0:
         if self.objective.evaluate(y) <= self.objective.evaluate(x):
@@ -78,11 +79,14 @@ def align(d, d_hat):
 
 def proj_nonneg(U, beta):
     """
-    Projection onto the nonnegative orthon
+    Projection onto the nonnegative orthant
     """
     return np.maximum(U, 0)
 
 def proj_cube(U, beta):
+    """
+    Projection onto the unit cube 
+    """
     return np.clip(U, 0, 1)
 
 def soft_thresh(U, beta):

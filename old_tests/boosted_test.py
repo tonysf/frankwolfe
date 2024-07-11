@@ -38,7 +38,7 @@ new_lmo = create_lmo(radius, 'l1_ball')
 # Initialize starting point
 x0 = np.random.randn(n)
 x0 = 0.8 * x0 / np.linalg.norm(x0, ord=1) * radius  # Project onto the L1 ball
-n_steps = 100
+n_steps = 450
 n_K = 5
 # Run new Boosted Frank-Wolfe
 new_bfw = BoostedFrankWolfe(new_obj, new_lmo, 2*radius)
@@ -84,11 +84,9 @@ def cyrille_nnmp(x, grad_f_x, align_tol, K):
 
 def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=5):
     
-    values, times, oracles, gaps = [f(x)], [0], [0], [np.dot(grad_f(x), x-new_lmo(grad_f(x)))]
+    values, times, oracles, gaps = [], [0], [0], [np.dot(grad_f(x), x-new_lmo(grad_f(x)))]
     
-    x = new_lmo(grad_f(x))
-    values.append(f(x))
-    oracles.append(1)
+    # x = new_lmo(grad_f(x))
     
     for k in range(n_steps):
         grad_f_x = grad_f(x)
@@ -100,9 +98,6 @@ def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=
             x = x+gamma*g
         elif step == 'LineSearch':
             x, gamma = segment_search(f, grad_f, x, x+g)
-        else:
-            gamma = min(-np.dot(g, grad_f_x)/np.dot(g, (np.dot(step, g))), 1)
-            x = x+gamma*g
         values.append(f(x))
         oracles.append(num_oracles)
     return x, values, oracles, gaps
