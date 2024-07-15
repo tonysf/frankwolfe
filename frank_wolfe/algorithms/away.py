@@ -11,7 +11,7 @@ class AwayFrankWolfe(FrankWolfe):
         self.weights = None
 
     def run(self, x0, n_steps=int(1e2), tol=1e-6, step='LineSearch'):
-        self.x = x0
+        self.x = self.lmo(self.objective.gradient(x0))
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
         self.num_oracles = np.zeros(n_steps)
@@ -28,7 +28,9 @@ class AwayFrankWolfe(FrankWolfe):
             self.num_oracles[i] += 1
             d_fw = s - self.x
             gap_fw = np.dot(grad_flat, self.x.flatten() - s.flatten())
-
+            # Record function value and gap
+            self.func_vals[i] = self.objective.evaluate(self.x)
+            self.gaps[i] = gap_fw
             # Away step
             if len(self.weights) > 1:
                 away_vertex_index = np.argmax(np.dot(self.active_set, grad_flat))
@@ -63,9 +65,6 @@ class AwayFrankWolfe(FrankWolfe):
 
             self._update_active_set(step_type, s, away_vertex_index, gamma)
 
-            # Record function value and gap
-            self.func_vals[i] = self.objective.evaluate(self.x)
-            self.gaps[i] = gap_fw
         self.num_oracles = np.cumsum(self.num_oracles)
 
     def _update_active_set(self, step_type, s, away_vertex_index, gamma):

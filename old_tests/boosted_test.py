@@ -42,7 +42,7 @@ n_steps = 450
 n_K = 5
 # Run new Boosted Frank-Wolfe
 new_bfw = BoostedFrankWolfe(new_obj, new_lmo, 2*radius)
-new_result = new_bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step_size_strategy='Short')
+new_result = new_bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step='Short')
 
 # Run old Boosted Frank-Wolfe
 old_bfw = OldBoostedFrankWolfe(new_obj, new_lmo, 2*radius)

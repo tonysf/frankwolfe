@@ -1,6 +1,3 @@
-### NOTE: IN ORDER TO USE THIS WITH THE NEW FRANK-WOLFE PACKAGE, 
-### YOU NEED TO UPDATE self.objective.grad -> self.objective.gradient EVERYWHERE
-
 from scipy.sparse.linalg import svds
 from scipy.sparse.linalg import eigsh
 import numpy as np
@@ -90,7 +87,7 @@ class SlidingFrankWolfe:
             beta = self.objective.lipschitz * 3/(i + 2)
 
             z = (1 - step_size) * y  + step_size * x
-            grad = self.objective.grad(z)
+            grad = self.objective.gradient(z)
 
             inner_gap = np.inf
             # inner_tol is called eta_k in the paper

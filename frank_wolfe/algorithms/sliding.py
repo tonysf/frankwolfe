@@ -10,13 +10,19 @@ class CondGradSliding(FrankWolfe):
         self.diam = diam
 
     def run(self, x0, n_steps=int(1e2)):
-        self.x = x0
+        self.x = self.lmo(self.objective.gradient(x0))
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
         self.num_oracles = np.zeros(n_steps)
         x = np.copy(self.x)
         y = np.copy(self.x)
         for i in tqdm(range(n_steps), desc="Conditional Gradient Sliding Progress"):
+            y_grad = self.objective.gradient(y)
+            gap = np.sum(y_grad.flatten() *  (y - self.lmo(y_grad)).flatten())
+            self.gaps[i] = gap
+            func_val = self.objective.evaluate(y)
+            self.func_vals[i] = func_val
+
             # 3.0 in numerator according to the Lan+Zhou paper
             step_size = 3.0 / (i + 3)
             beta = self.objective.lipschitz * 3/(i + 2)
@@ -46,12 +52,6 @@ class CondGradSliding(FrankWolfe):
             #########################
 
             y = (1 - step_size) * y + step_size * x
-            y_grad = self.objective.gradient(y)
-            gap = np.sum(y_grad.flatten() *  (y - self.lmo(y_grad)).flatten())
-            self.gaps[i] = gap
-
-            func_val = self.objective.evaluate(y)
-            self.func_vals[i] = func_val
         self.num_oracles = np.cumsum(self.num_oracles)
         self.x = y
 

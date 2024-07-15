@@ -24,14 +24,14 @@ class MyObjective(ObjectiveFunction):
         # return logistic grad...
 
 # Set up the problem
-n, m = 100, 10
+n, m = 1000, 750
 np.random.seed(42)  # for reproducibility
 A = np.random.randn(m, n)
 x_true = np.random.randn(n)
-x_true[x_true < 0.5] = 0  # Sparsify
+x_true[np.abs(x_true) < 0.5] = 0  # Sparsify
 b = A @ x_true + 0.01 * np.random.randn(m)
 n_steps = 1000
-n_K = 2
+n_K = 5
 
 # Create objective and LMO
 obj = MyObjective(A, b)
@@ -56,7 +56,7 @@ bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step='Short')
 # Initialize and run Conditional Gradient Sliding
 x0 = np.zeros(n)
 cgs = CondGradSliding(obj, lmo, 2*radius)
-cgs.run(x0, n_steps=5*n_steps)
+cgs.run(x0, n_steps=n_steps)
 
 # Compare with Cyrille's code
 

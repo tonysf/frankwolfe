@@ -94,11 +94,15 @@ class BoostedFrankWolfe(FrankWolfe):
             # Compute Frank-Wolfe gap (this lmo doesn't count towards num_oracles; it's not actually used in the algorithm, just insightful for us)
             v_fw = self.lmo(grad)
             self.gaps[i] = np.sum(grad.flatten() * (self.x - v_fw).flatten())
+            # Record function value
+            self.func_vals[i] = self.objective.evaluate(self.x)
             
             # Nonnegative Matching Pursuit
             # d, Lambda, num_oracles = self._nnmp(x, grad, K, delta)
             # g = d / Lambda
             g, num_oracles, align_g = self._nnmp(self.x, grad, K, delta)
+            # Record number of oracle calls
+            self.num_oracles[i] += num_oracles
 
             og_d, og_Lam, og_num_orac = self._og_nnmp(self.x, grad, K, delta)
             og_g = og_d / og_Lam
@@ -120,10 +124,6 @@ class BoostedFrankWolfe(FrankWolfe):
                 self.x, gamma = segment_search(self.objective, self.x, self.x + g)
             else:
                 raise ValueError("Invalid step type. Choose 'Short' or 'LineSearch'.")
-            
-            # Record function value and oracle calls
-            self.func_vals[i] = self.objective.evaluate(self.x)
-            self.num_oracles[i] += num_oracles
         self.num_oracles = np.cumsum(self.num_oracles)
 
     def test_run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step='short'):

@@ -11,7 +11,7 @@ class NoNoFrankWolfe(FrankWolfe):
         self.ns_gaps = None
 
     def run(self, x0, beta0=1.0, n_steps=int(1e2)):
-        self.x = x0
+        self.x = self.lmo(self.objective.gradient(x0))
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
         self.ns_gaps = np.zeros(n_steps)

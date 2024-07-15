@@ -12,7 +12,7 @@ class FrankWolfe:
         self.num_oracles = None
 
     def run(self, x0, n_steps=int(1e2)):
-        self.x = x0
+        self.x = self.lmo(self.objective.gradient(x0))
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
         self.num_oracles = np.zeros(n_steps)
