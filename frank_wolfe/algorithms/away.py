@@ -10,7 +10,7 @@ class AwayFrankWolfe(FrankWolfe):
         self.active_set = None
         self.weights = None
 
-    def run(self, x0, n_steps=int(1e2), tol=1e-6, step='LineSearch'):
+    def run(self, x0, n_steps=int(1e2), tol=1e-6, step='linesearch'):
         self.x = self.lmo(self.objective.gradient(x0))
         self.func_vals = np.zeros(n_steps)
         self.gaps = np.zeros(n_steps)
@@ -52,9 +52,9 @@ class AwayFrankWolfe(FrankWolfe):
                 step_type = "Away"
                 gamma_max = self.weights[away_vertex_index] / (1 - self.weights[away_vertex_index])
 
-            if step == 'LineSearch':
+            if step == 'linesearch':
                 _, gamma = segment_search(self, self.x, self.x + d, tol=tol)
-            elif step == 'Short':
+            elif step == 'short':
                 # Implement the step size using Lipschitz constant
                 gamma = min(gap_fw / (self.objective.lipschitz * np.linalg.norm(d)**2), gamma_max)
             else:

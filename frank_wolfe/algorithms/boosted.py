@@ -15,6 +15,7 @@ class BoostedFrankWolfe(FrankWolfe):
         k = 0
         align_d = align(-grad, d)
         while k < K:
+            v_minus_x_flag = False
             r = -(grad + d)
             v = self.lmo(-r)
             v_minus_x = v - x
@@ -24,14 +25,14 @@ class BoostedFrankWolfe(FrankWolfe):
                     v_minus_x_flag = True
                 else:
                     u = np.zeros_like(x)
-            
+
             elif np.sum(r.flatten() * v_minus_x.flatten()) > np.sum(r.flatten() * -d.flatten() / np.linalg.norm(d)):
                 u = v_minus_x
                 v_minus_x_flag = True
             # This is the first step in Cyrille's code
             else:
                 u = -d / np.linalg.norm(d)
-            
+
             lambda_k = np.sum(r.flatten() * u.flatten()) / (np.linalg.norm(u.flatten()) ** 2)
             d_new = d + lambda_k * u
             align_d_new = align(-grad, d_new)
@@ -114,16 +115,16 @@ class BoostedFrankWolfe(FrankWolfe):
             # print(f'{np.linalg.norm(og_g- g)}')
 
             # Step size calculation
-            if step == 'Short':
+            if step == 'short':
                 og_eta = align(-grad, g)
                 og_gamma = min(og_eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
                 gamma = min(align_g*np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
                 self.x = self.x + gamma * g
                 # self.x = self.x + og_gamma * og_g
-            elif step == 'LineSearch':
+            elif step == 'linesearch':
                 self.x, gamma = segment_search(self.objective, self.x, self.x + g)
             else:
-                raise ValueError("Invalid step type. Choose 'Short' or 'LineSearch'.")
+                raise ValueError("Invalid step type. Choose 'short' or 'linesearch'.")
         self.num_oracles = np.cumsum(self.num_oracles)
 
     def test_run(self, x0, n_steps=int(1e2), K=float('inf'), delta=1e-3, step='short'):
@@ -173,10 +174,10 @@ class BoostedFrankWolfe(FrankWolfe):
             self.gaps[i] = np.sum(grad.flatten() * (x - v_fw).flatten())
             
             cyrille_g, cyrille_num_oracles, cyrille_align_g = cyrille_nnmp(x, grad, delta, K)
-            if step == 'Short':
+            if step == 'short':
                 cyrille_gamma = min(cyrille_align_g*np.linalg.norm(grad)/(self.objective.lipschitz*np.linalg.norm(cyrille_g)), 1)
                 cyrille_x = x+cyrille_gamma*cyrille_g
-            elif step == 'LineSearch':
+            elif step == 'linesearch':
                 x, gamma = segment_search(f, grad_f, x, x+g)
 
             # Nonnegative Matching Pursuit
@@ -198,15 +199,15 @@ class BoostedFrankWolfe(FrankWolfe):
             # print(f'{np.linalg.norm(cyrille_g-g)}')
 
             # Step size calculation
-            if step == 'Short':
+            if step == 'short':
                 og_eta = align(-grad, g)
                 og_gamma = min(og_eta * np.linalg.norm(grad) / (self.objective.lipschitz * np.linalg.norm(g)), 1)
                 gamma = min(align_g*np.linalg.norm(grad)/(self.objective.lipschitz*np.linalg.norm(g)), 1)
                 x = x + gamma * g
-            elif step == 'LineSearch':
+            elif step == 'linesearch':
                 x, gamma = segment_search(self.objective, x, x + g)
             else:
-                raise ValueError("Invalid step type. Choose 'Short' or 'LineSearch'.")
+                raise ValueError("Invalid step type. Choose 'short' or 'linesearch'.")
             
             # Record function value and oracle calls
             self.func_vals[i] = self.objective.evaluate(x)
@@ -283,8 +284,9 @@ class oldBoostedFrankWolfe:
             d = np.zeros_like(grad)
             Lambda = 0
             k = 0
-            
+
             while k < K:
+                v_minus_x_flag = False
                 r = -(grad + d)
                 v = self.lmo(-r)
                 v_minus_x = v - x
@@ -299,10 +301,10 @@ class oldBoostedFrankWolfe:
                     v_minus_x_flag = True
                 else:
                     u = -d / np.linalg.norm(d)
-                
+
                 lambda_k = np.sum(r.flatten() * u.flatten()) / (np.linalg.norm(u.flatten()) ** 2)
                 d_new = d + lambda_k * u
-                
+
                 if align(-grad, d_new) - align(-grad, d) > delta:
                     d = d_new
                     if v_minus_x_flag:

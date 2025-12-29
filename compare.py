@@ -16,7 +16,6 @@ class MyObjective(ObjectiveFunction):
     # f(x)
     def evaluate(self, x):
         return 0.5 * np.linalg.norm(self.A @ x - self.b)**2
-        # return 0.5 np.exp(1 + np.log(self.A @ x - self.b))
     
     # \nabla f(x)
     def gradient(self, x):
@@ -46,12 +45,12 @@ vfw.run(x0, n_steps=n_steps)
 # Initialize and run Away-step Frank-Wolfe
 x0 = np.zeros(n)
 afw = AwayFrankWolfe(obj, lmo)
-afw.run(x0, n_steps=n_steps, step = 'Short')
+afw.run(x0, n_steps=n_steps, step='short')
 
 # Initialize and run Boosted Frank-Wolfe
 x0 = np.zeros(n)
 bfw = BoostedFrankWolfe(obj, lmo, 2*radius)
-bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step='Short')
+bfw.run(x0, n_steps=n_steps, K=n_K, delta=1e-3, step='short')
 
 # Initialize and run Conditional Gradient Sliding
 x0 = np.zeros(n)
@@ -92,22 +91,22 @@ def cyrille_nnmp(x, grad_f_x, align_tol, K):
     return d/Lbd, k, align_d
 
 def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=5):
-    
+
     values, times, oracles, gaps = [], [0], [0], []
-    
+
     x = lmo(grad_f(x))
     # values.append(f(x))
     oracles.append(1)
-    
+
     for k in range(n_steps):
         grad_f_x = grad_f(x)
         gaps.append(np.dot(grad_f_x, x-lmo(grad_f_x)))
         g, num_oracles, align_g = cyrille_nnmp(x, grad_f_x, align_tol, K)
-        
-        if step == 'Short':
+
+        if step == 'short':
             gamma = min(align_g*np.linalg.norm(grad_f_x)/(L*np.linalg.norm(g)), 1)
             x = x+gamma*g
-        elif step == 'LineSearch':
+        elif step == 'linesearch':
             x, gamma = segment_search(f, grad_f, x, x+g)
         else:
             gamma = min(-np.dot(g, grad_f_x)/np.dot(g, (np.dot(step, g))), 1)
@@ -116,7 +115,7 @@ def cyrille_boostfw(f, grad_f, L, x, step='ls', n_steps=1000, align_tol=1e-3, K=
         oracles.append(num_oracles)
     return x, values, oracles, gaps
 
-cyrille_x, cyrille_values, cyrille_oracles, cyrille_gaps = cyrille_boostfw(obj.evaluate, obj.gradient, obj.lipschitz, x0, step='Short', n_steps=n_steps, K=n_K)
+cyrille_x, cyrille_values, cyrille_oracles, cyrille_gaps = cyrille_boostfw(obj.evaluate, obj.gradient, obj.lipschitz, x0, step='short', n_steps=n_steps, K=n_K)
 
 
 # Plot results
