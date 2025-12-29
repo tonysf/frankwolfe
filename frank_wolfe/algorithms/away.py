@@ -53,7 +53,7 @@ class AwayFrankWolfe(FrankWolfe):
                 gamma_max = self.weights[away_vertex_index] / (1 - self.weights[away_vertex_index])
 
             if step == 'linesearch':
-                _, gamma = segment_search(self, self.x, self.x + d, tol=tol)
+                _, gamma = segment_search(self.objective, self.x, self.x + d, tol=tol)
             elif step == 'short':
                 # Implement the step size using Lipschitz constant
                 gamma = min(gap_fw / (self.objective.lipschitz * np.linalg.norm(d)**2), gamma_max)

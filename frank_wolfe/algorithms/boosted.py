@@ -57,8 +57,6 @@ class BoostedFrankWolfe(FrankWolfe):
             self.func_vals[i] = self.objective.evaluate(self.x)
             
             # Nonnegative Matching Pursuit
-            # d, Lambda, num_oracles = self._nnmp(x, grad, K, delta)
-            # g = d / Lambda
             g, num_oracles, align_g = self._nnmp(self.x, grad, K, delta)
             # Record number of oracle calls
             self.num_oracles[i] += num_oracles

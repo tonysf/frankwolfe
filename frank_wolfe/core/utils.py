@@ -1,21 +1,31 @@
 import numpy as np
 
-def segment_search(self, x, y, tol=1e-15, stepsize=True):
+def segment_search(objective, x, y, tol=1e-15, stepsize=True):
     """
     Minimizes f over [x, y], i.e., f(x+gamma*(y-x)) as a function of scalar gamma in [0,1]
+
+    Args:
+        objective: Objective function with evaluate() and gradient() methods
+        x: Starting point
+        y: End point
+        tol: Tolerance for convergence
+        stepsize: If True, return gamma; otherwise return 0
+
+    Returns:
+        Tuple (x_min, gamma) where x_min is the minimizer and gamma is the step size
     """
     # restrict segment of search to [x, y]
     d = (y-x).copy()
     left, right = x.copy(), y.copy()
-    
+
     # NOTE: REWRITE THIS NOT TO USE GRADIENT
     # if the minimum is at an endpoint
-    if np.dot(d, self.objective.gradient(x))*np.dot(d, self.objective.gradient(y)) >= 0:
-        if self.objective.evaluate(y) <= self.objective.evaluate(x):
+    if np.dot(d, objective.gradient(x))*np.dot(d, objective.gradient(y)) >= 0:
+        if objective.evaluate(y) <= objective.evaluate(x):
             return y, 1
         else:
             return x, 0
-    
+
     # apply golden-section method to segment
     gold = (1+np.sqrt(5))/2
     improv = np.inf
@@ -23,14 +33,14 @@ def segment_search(self, x, y, tol=1e-15, stepsize=True):
         old_left, old_right = left, right
         new = left+(right-left)/(1+gold)
         probe = new+(right-new)/2
-        if self.objective.evaluate(probe) <= self.objective.evaluate(new):
+        if objective.evaluate(probe) <= objective.evaluate(new):
             left, right = new, right
         else:
             left, right = left, probe
-        improv = np.linalg.norm(self.objective.evaluate(right)-self.objective.evaluate(old_right))+np.linalg.norm(self.objective.evaluate(left)-self.objective.evaluate(old_left))
-    
+        improv = np.linalg.norm(objective.evaluate(right)-objective.evaluate(old_right))+np.linalg.norm(objective.evaluate(left)-objective.evaluate(old_left))
+
     x_min = (left+right)/2
-    
+
     # compute step size gamma
     gamma = 0
     if stepsize == True:
@@ -38,7 +48,7 @@ def segment_search(self, x, y, tol=1e-15, stepsize=True):
             if d[i] != 0:
                 gamma = (x_min[i]-x[i])/d[i]
                 break
-    
+
     return x_min, gamma
 
 def line_search(x, d, objective_fn, max_step=1.0, tol=1e-6):
