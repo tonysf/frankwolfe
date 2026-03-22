@@ -7,22 +7,26 @@ Layout:
   [1,0] Min and avg smoothed gaps vs beta0 (combined)
   [1,1] Schedule comparison: beta_k = beta0/(k+1)^{1/4} vs beta0/log(k+2)
 """
-import sys, os
+
+import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import numpy as np
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from tqdm import tqdm
-from frank_wolfe.algorithms.nono import NoNoFrankWolfe
-from frank_wolfe.algorithms.base import FrankWolfe
-from experiments.nonneg_matrix_factorization import (
+from examples.nonneg_matrix_factorization import (
     MatrixFactorizationObjective,
     create_spectral_ball_product_lmo,
-    nonneg_prox,
     generate_nonneg_mf_problem,
+    nonneg_prox,
 )
+from frank_wolfe.algorithms.base import FrankWolfe
+from frank_wolfe.algorithms.nono import NoNoFrankWolfe
+from tqdm import tqdm
 
 
 class NoNoFrankWolfe_LogSchedule(FrankWolfe):
@@ -52,9 +56,9 @@ class NoNoFrankWolfe_LogSchedule(FrankWolfe):
 
             grad = self.objective.gradient(self.x)
             Tx = self.objective.linear_operator(self.x)
-            moreau_grad = self.objective.linear_operator_adjoint(
-                Tx - self.prox(Tx, beta)
-            ) / beta
+            moreau_grad = (
+                self.objective.linear_operator_adjoint(Tx - self.prox(Tx, beta)) / beta
+            )
             combined_grad = grad + moreau_grad
 
             direction = self.lmo(combined_grad)
@@ -65,9 +69,7 @@ class NoNoFrankWolfe_LogSchedule(FrankWolfe):
             self.func_vals[i] = self.objective.evaluate(self.x)
 
             if self.objective_type == "indicator":
-                ns_gap = 0.5 * np.linalg.norm(
-                    (Tx - self.prox(Tx, beta)).flatten()
-                ) ** 2
+                ns_gap = 0.5 * np.linalg.norm((Tx - self.prox(Tx, beta)).flatten()) ** 2
             elif self.objective_type == "lipschitz":
                 ns_grad = self.objective.linear_operator_adjoint(
                     self.objective.minimal_norm_selection(Tx)
@@ -98,7 +100,7 @@ X_star_fro = np.linalg.norm(X_star, "fro")
 
 svs = np.linalg.svd(X_star, compute_uv=False)
 print(f"Nonzero singular values of X*: {svs[:r].round(2)}")
-print(f"Condition number (rank-r): {svs[0]/svs[r-1]:.2f}")
+print(f"Condition number (rank-r): {svs[0] / svs[r - 1]:.2f}")
 print(f"||X*||_F = {X_star_fro:.2f}")
 print(f"tau_U = {tau_U:.4f},  tau_V = {tau_V:.4f}")
 print()
@@ -125,8 +127,8 @@ for beta0 in beta0_values:
     U_f, V_f = obj._unpack(nsfw.x)
     print(
         f"[power]  beta0={beta0:10.4f}  |  rel_err={rel_err[-1]:.4f}  "
-        f"dist_D^2={2*nsfw.ns_gaps[-1]:.4e}  "
-        f"neg_frac_U={np.mean(U_f<0):.3f}  neg_frac_V={np.mean(V_f<0):.3f}"
+        f"dist_D^2={2 * nsfw.ns_gaps[-1]:.4e}  "
+        f"neg_frac_U={np.mean(U_f < 0):.3f}  neg_frac_V={np.mean(V_f < 0):.3f}"
     )
 
 # ─── Part 2: schedule comparison at shared beta0 ─────────────────────────────
@@ -149,8 +151,8 @@ res_log = {
 U_f, V_f = obj._unpack(nsfw_log.x)
 print(
     f"[log]    beta0={beta0_shared:10.4f}  |  rel_err={rel_err_log[-1]:.4f}  "
-    f"dist_D^2={2*nsfw_log.ns_gaps[-1]:.4e}  "
-    f"neg_frac_U={np.mean(U_f<0):.3f}  neg_frac_V={np.mean(V_f<0):.3f}"
+    f"dist_D^2={2 * nsfw_log.ns_gaps[-1]:.4e}  "
+    f"neg_frac_U={np.mean(U_f < 0):.3f}  neg_frac_V={np.mean(V_f < 0):.3f}"
 )
 
 # ─── Plotting ─────────────────────────────────────────────────────────────────
@@ -180,7 +182,11 @@ for idx, beta0 in enumerate(beta0_values):
     avg_gaps = np.cumsum(R["gaps"]) / iters
     axs[1, 0].semilogy(iters, min_gaps, color=c, label=lab, alpha=0.8)
     axs[1, 0].semilogy(
-        iters, avg_gaps, color=c, linestyle="--", alpha=0.5,
+        iters,
+        avg_gaps,
+        color=c,
+        linestyle="--",
+        alpha=0.5,
     )
 
 # Reference lines
@@ -194,8 +200,7 @@ C_gap = (
     * (n_steps // 4 + 1) ** 0.25
 )
 axs[1, 0].semilogy(
-    iters, C_gap / iters**0.25, "--", color="gray", linewidth=2,
-    label=r"$O(k^{-1/4})$"
+    iters, C_gap / iters**0.25, "--", color="gray", linewidth=2, label=r"$O(k^{-1/4})$"
 )
 
 # ─── [1,1] Schedule comparison ────────────────────────────────────────────────
@@ -206,28 +211,40 @@ min_power = np.minimum.accumulate(res_power["gaps"])
 min_log = np.minimum.accumulate(res_log["gaps"])
 
 axs[1, 1].semilogy(
-    iters, avg_power,
-    color="C0", label=rf"$\beta_k = {beta0_shared}/(k\!+\!1)^{{1/4}}$ (avg)",
+    iters,
+    avg_power,
+    color="C0",
+    label=rf"$\beta_k = {beta0_shared}/(k\!+\!1)^{{1/4}}$ (avg)",
 )
 axs[1, 1].semilogy(
-    iters, min_power,
-    color="C0", linestyle="--",
+    iters,
+    min_power,
+    color="C0",
+    linestyle="--",
     label=rf"$\beta_k = {beta0_shared}/(k\!+\!1)^{{1/4}}$ (min)",
 )
 axs[1, 1].semilogy(
-    iters, avg_log,
-    color="C3", label=rf"$\beta_k = {beta0_shared}/\log(k\!+\!2)$ (avg)",
+    iters,
+    avg_log,
+    color="C3",
+    label=rf"$\beta_k = {beta0_shared}/\log(k\!+\!2)$ (avg)",
 )
 axs[1, 1].semilogy(
-    iters, min_log,
-    color="C3", linestyle="--",
+    iters,
+    min_log,
+    color="C3",
+    linestyle="--",
     label=rf"$\beta_k = {beta0_shared}/\log(k\!+\!2)$ (min)",
 )
 
 # Reference O(k^{-1/4})
 C_ref = avg_power[n_steps // 4] * (n_steps // 4 + 1) ** 0.25
 axs[1, 1].semilogy(
-    iters, C_ref / iters**0.25, "--", color="gray", linewidth=2,
+    iters,
+    C_ref / iters**0.25,
+    "--",
+    color="gray",
+    linewidth=2,
     label=r"$O(k^{-1/4})$",
 )
 
@@ -250,6 +267,7 @@ axs[1, 0].set_xlabel("Iteration $k$")
 axs[1, 0].set_ylabel("Smoothed gap")
 # Add manual style entries for solid=min, dashed=avg
 from matplotlib.lines import Line2D
+
 style_handles = [
     Line2D([0], [0], color="black", linestyle="-", label="solid = min"),
     Line2D([0], [0], color="black", linestyle="--", label="dashed = avg"),
@@ -258,9 +276,7 @@ handles, labels = axs[1, 0].get_legend_handles_labels()
 axs[1, 0].legend(handles=handles + style_handles, fontsize=6, ncol=2)
 axs[1, 0].grid(True, alpha=0.3)
 
-axs[1, 1].set_title(
-    rf"Schedule comparison ($\beta_0 = {beta0_shared}$)"
-)
+axs[1, 1].set_title(rf"Schedule comparison ($\beta_0 = {beta0_shared}$)")
 axs[1, 1].set_xlabel("Iteration $k$")
 axs[1, 1].set_ylabel("Smoothed gap")
 axs[1, 1].legend(fontsize=7)
