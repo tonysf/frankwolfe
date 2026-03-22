@@ -1,10 +1,40 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 from frank_wolfe.algorithms.base import FrankWolfe
 
+
 class NoNoFrankWolfe(FrankWolfe):
+    """
+    NonSmooth Frank-Wolfe (NSFW) algorithm from Algorithm 1.
+
+    Solves: min_{x in C} f(x) + g(Tx)
+
+    where f is smooth, g is either an indicator (Assumption 1.4(I)) or
+    Lipschitz weakly convex (Assumption 1.4(II)), and T is linear.
+
+    The algorithm smooths g via its Moreau envelope with parameter beta_k -> 0
+    and applies one FW step per iteration with open-loop step size gamma_k -> 0.
+
+    Schedules (Theorem 3.5):
+        gamma_k = 1 / (k+1)^{1/2}
+        beta_k  = beta_0 / (k+1)^{1/4}
+    """
+
     def __init__(self, objective_fn, lmo_fn, prox_fn, objective_type):
+        """
+        Parameters
+        ----------
+        objective_fn : ObjectiveFunction
+            Must implement evaluate, gradient, linear_operator, linear_operator_adjoint.
+        lmo_fn : callable
+            Linear minimization oracle for the constraint set C.
+        prox_fn : callable
+            prox_{beta * g}(y) for the nonsmooth term g.
+            Signature: prox_fn(y, beta) -> array.
+        objective_type : str
+            "indicator" for g = iota_D (Assumption 1.4(I)),
+            "lipschitz" for g Lipschitz weakly convex (Assumption 1.4(II)).
+        """
         super().__init__(objective_fn, lmo_fn)
         self.prox = prox_fn
         self.objective_type = objective_type
@@ -17,32 +47,41 @@ class NoNoFrankWolfe(FrankWolfe):
         self.ns_gaps = np.zeros(n_steps)
         self.num_oracles = np.zeros(n_steps)
 
-        for i in tqdm(range(n_steps), desc="NoNoFrank-Wolf Progress"):
-            beta = beta0 / np.log(i + 2)
-            step_size = 2.0 / np.sqrt((i + 2))
+        for i in tqdm(range(n_steps), desc="NSFW Progress"):
+            # Algorithm 1 schedules
+            beta = beta0 / (i + 1) ** 0.25
+            step_size = 1.0 / (i + 1) ** 0.5
 
+            # Smoothed gradient: nabla f(x) + T^* (Tx - prox_{beta g}(Tx)) / beta
             grad = self.objective.gradient(self.x)
             Tx = self.objective.linear_operator(self.x)
-            moreau_grad = self.objective.linear_operator_adjoint(Tx - self.prox(Tx, beta))/beta
+            moreau_grad = self.objective.linear_operator_adjoint(
+                Tx - self.prox(Tx, beta)
+            ) / beta
             combined_grad = grad + moreau_grad
-            
-            # Note that svds uses random sampling so fix the seed to compare to other solvers etc
-            np.random.seed(42)
+
+            # LMO step
             direction = self.lmo(combined_grad)
             self.num_oracles[i] += 1
 
+            # Smoothed gap: <nabla Phi_k(x_k), x_k - s_k>
             gap = np.sum(combined_grad * (self.x - direction))
             self.gaps[i] = gap
 
-            func_val = self.objective.evaluate(self.x)
-            self.func_vals[i] = func_val
+            # Objective value f(x_k) (without g, since g may be infinite)
+            self.func_vals[i] = self.objective.evaluate(self.x)
 
+            # Nonsmooth gap / feasibility measure
             if self.objective_type == "indicator":
-                # Implement the ns_gap calculation you want here
-                # ns_gap = 0.5 * np.linalg.norm(beta * moreau_grad.flatten()) ** 2
-                ns_gap = 0.5 * np.linalg.norm((self.x - self.prox(self.x, beta)).flatten()) ** 2
+                # 0.5 * dist_D^2(x_k) when T = Id,
+                # or 0.5 * ||Tx - P_D(Tx)||^2 more generally
+                ns_gap = 0.5 * np.linalg.norm(
+                    (Tx - self.prox(Tx, beta)).flatten()
+                ) ** 2
             elif self.objective_type == "lipschitz":
-                ns_grad = self.objective.linear_operator_adjoint(self.objective.minimal_norm_selection(Tx))
+                ns_grad = self.objective.linear_operator_adjoint(
+                    self.objective.minimal_norm_selection(Tx)
+                )
                 combined_ns_grad = grad + ns_grad
                 ns_direction = self.lmo(combined_ns_grad)
                 ns_gap = np.sum(combined_ns_grad * (self.x - ns_direction))
@@ -51,67 +90,7 @@ class NoNoFrankWolfe(FrankWolfe):
 
             self.ns_gaps[i] = ns_gap
 
+            # Update: x_{k+1} = (1 - gamma_k) x_k + gamma_k s_k
             self.x = (1 - step_size) * self.x + step_size * direction
+
         self.num_oracles = np.cumsum(self.num_oracles)
-
-    def plot_convergence(self):
-        gaps = self.gaps
-        n_steps = len(gaps)
-        min_gaps = np.zeros(n_steps)
-        avg_gaps = np.zeros(n_steps)
-        min_gaps[0] = gaps[0]
-        avg_gaps[0] = gaps[0]
-
-        for i in range(1, n_steps):
-            # Update min_gaps and avg_gaps using online update
-            min_gaps[i] = min(gaps[i], min_gaps[i-1])
-            avg_gaps[i] = avg_gaps[i-1] + (gaps[i] - avg_gaps[i-1]) / (i + 1)
-
-        fig, axs = plt.subplots(1, 3, figsize=(20, 6))
-
-        if self.objective_type == "indicator":
-            middle_title = r"Squared distance to feasible region $\mathcal{D}$"
-            middle_label = r"$\frac{1}{2}\mathrm{dist}_{\mathcal{D}}$"
-            middle_data = self.ns_gaps
-        elif self.objective_type == "lipschitz":
-            middle_title = "Difference in gaps"
-            middle_label = "gaps - ns_gaps"
-            middle_data = self.gaps - self.ns_gaps
-        else:
-            ValueError(f"Unknown objective type: {self.objective_type}")
-
-        # Plot functional values
-        axs[0].plot(range(n_steps), self.func_vals, label=r'Functional values')
-        axs[0].plot(range(0, n_steps), np.sqrt(n_steps + 1) * (1.1 * self.func_vals[n_steps//2]) / np.sqrt(np.array(range(1, n_steps + 1))), '--', label=r'$O\left(k^{-1/2}\right)$')
-        axs[0].set_title(r'Functional values')
-        axs[0].set_xlabel('Iterations')
-        axs[0].set_ylabel('Functional Values')
-        axs[0].legend()
-
-        # Plot feasibility
-        axs[1].plot(range(n_steps), middle_data, label=middle_label)
-        axs[1].set_title(middle_title)
-        axs[1].set_xlabel('Iterations')
-        axs[1].set_ylabel(middle_label)
-        axs[1].legend()
-
-        # Plot gaps
-        axs[2].semilogy(range(n_steps), self.gaps, label='Smoothed Gaps', linewidth=3)
-        axs[2].semilogy(range(n_steps), min_gaps, label='Min (Smoothed Gaps)')
-        axs[2].semilogy(range(n_steps), avg_gaps, label='Avg (Smoothed Gaps)')
-        if self.objective_type == "lipschitz":
-            axs[2].semilogy(range(n_steps), self.ns_gaps, label='Nonsmooth Gaps')
-        axs[2].semilogy(range(0, n_steps), np.sqrt(n_steps + 1) * (1.1 * avg_gaps[n_steps//2]) / np.sqrt(np.array(range(1, n_steps + 1))), '--', label=r'$O\left(k^{-1/2}\right)$')
-        axs[2].set_title(r'Smoothed gaps $\sup_{s\in \mathcal{C}}\ \left\langle -\nabla \phi_k(x_k), s-x_k\right\rangle$')
-        axs[2].set_xlabel('Iterations')
-        axs[2].set_ylabel('FW Gaps')
-        axs[2].legend()
-
-        # Adjust spacing and alignment
-        plt.tight_layout()
-        fig.subplots_adjust(top=0.88)  # Adjust the top spacing
-
-        # Add a common title for the entire figure
-        fig.suptitle('Algorithm Convergence Analysis', fontsize=16, fontweight='bold')
-
-        plt.show()
