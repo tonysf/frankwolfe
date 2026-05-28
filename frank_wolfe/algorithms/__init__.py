@@ -4,7 +4,15 @@ from .base import FrankWolfe
 from .away import AwayFrankWolfe
 from .boosted import BoostedFrankWolfe
 from .mismatch import MismatchFrankWolfe
-from .nono import NoNoFrankWolfe
+from .frames import Frames, FramesFrankWolfe
 from .sliding import CondGradSliding
 
-__all__ = ['FrankWolfe', 'AwayFrankWolfe', 'BoostedFrankWolfe', 'MismatchFrankWolfe', 'NoNoFrankWolfe', 'CondGradSliding']
+__all__ = [
+    "FrankWolfe",
+    "AwayFrankWolfe",
+    "BoostedFrankWolfe",
+    "MismatchFrankWolfe",
+    "Frames",
+    "FramesFrankWolfe",
+    "CondGradSliding",
+]

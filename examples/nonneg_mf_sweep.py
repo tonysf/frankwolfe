@@ -3,7 +3,7 @@ Sweep over beta0 values and compare smoothing schedules.
 
 Layout:
   [0,0] Relative reconstruction error vs beta0
-  [0,1] Feasibility dist_D^2 vs beta0
+  [0,1] Feasibility dist_D vs beta0
   [1,0] Min and avg smoothed gaps vs beta0 (combined)
   [1,1] Schedule comparison: beta_k = beta0/(k+1)^{1/4} vs beta0/log(k+2)
 """
@@ -25,13 +25,13 @@ from examples.nonneg_matrix_factorization import (
     nonneg_prox,
 )
 from frank_wolfe.algorithms.base import FrankWolfe
-from frank_wolfe.algorithms.nono import NoNoFrankWolfe
+from frank_wolfe import Frames
 from tqdm import tqdm
 
 
-class NoNoFrankWolfe_LogSchedule(FrankWolfe):
+class FramesLogSchedule(FrankWolfe):
     """
-    Same as NoNoFrankWolfe but with the 'bad' smoothing schedule
+    Same as FRAMES but with the alternate smoothing schedule
     beta_k = beta_0 / log(k+2) instead of beta_0 / (k+1)^{1/4}.
     Step size also uses the old 2/sqrt(k+2).
     """
@@ -49,8 +49,7 @@ class NoNoFrankWolfe_LogSchedule(FrankWolfe):
         self.ns_gaps = np.zeros(n_steps)
         self.num_oracles = np.zeros(n_steps)
 
-        for i in tqdm(range(n_steps), desc="NSFW (log schedule) Progress"):
-            # "Bad" schedules from old nono.py
+        for i in tqdm(range(n_steps), desc="FRAMES (log schedule) Progress"):
             beta = beta0 / np.log(i + 2)
             step_size = 2.0 / np.sqrt(i + 2)
 
@@ -115,19 +114,19 @@ beta0_values = [1e-4, 1e-3, 1e-2, 0.1, 0.5, 1.0, 5.0, 10.0]
 results = {}
 
 for beta0 in beta0_values:
-    nsfw = NoNoFrankWolfe(obj, lmo, nonneg_prox, "indicator")
-    nsfw.run(x0, beta0=beta0, n_steps=n_steps)
-    rel_err = np.sqrt(2.0 * np.maximum(nsfw.func_vals, 0)) / X_star_fro
+    frames = Frames(obj, lmo, nonneg_prox, "indicator")
+    frames.run(x0, beta0=beta0, n_steps=n_steps)
+    rel_err = np.sqrt(2.0 * np.maximum(frames.func_vals, 0)) / X_star_fro
     results[beta0] = {
-        "gaps": nsfw.gaps.copy(),
-        "ns_gaps": nsfw.ns_gaps.copy(),
-        "func_vals": nsfw.func_vals.copy(),
+        "gaps": frames.gaps.copy(),
+        "ns_gaps": frames.ns_gaps.copy(),
+        "func_vals": frames.func_vals.copy(),
         "rel_error": rel_err,
     }
-    U_f, V_f = obj._unpack(nsfw.x)
+    U_f, V_f = obj._unpack(frames.x)
     print(
         f"[power]  beta0={beta0:10.4f}  |  rel_err={rel_err[-1]:.4f}  "
-        f"dist_D^2={2 * nsfw.ns_gaps[-1]:.4e}  "
+        f"dist_D={np.sqrt(2 * frames.ns_gaps[-1]):.4e}  "
         f"neg_frac_U={np.mean(U_f < 0):.3f}  neg_frac_V={np.mean(V_f < 0):.3f}"
     )
 
@@ -139,19 +138,19 @@ beta0_shared = 1.0
 res_power = results[beta0_shared]
 
 # Log schedule
-nsfw_log = NoNoFrankWolfe_LogSchedule(obj, lmo, nonneg_prox, "indicator")
-nsfw_log.run(x0, beta0=beta0_shared, n_steps=n_steps)
-rel_err_log = np.sqrt(2.0 * np.maximum(nsfw_log.func_vals, 0)) / X_star_fro
+frames_log = FramesLogSchedule(obj, lmo, nonneg_prox, "indicator")
+frames_log.run(x0, beta0=beta0_shared, n_steps=n_steps)
+rel_err_log = np.sqrt(2.0 * np.maximum(frames_log.func_vals, 0)) / X_star_fro
 res_log = {
-    "gaps": nsfw_log.gaps.copy(),
-    "ns_gaps": nsfw_log.ns_gaps.copy(),
-    "func_vals": nsfw_log.func_vals.copy(),
+    "gaps": frames_log.gaps.copy(),
+    "ns_gaps": frames_log.ns_gaps.copy(),
+    "func_vals": frames_log.func_vals.copy(),
     "rel_error": rel_err_log,
 }
-U_f, V_f = obj._unpack(nsfw_log.x)
+U_f, V_f = obj._unpack(frames_log.x)
 print(
     f"[log]    beta0={beta0_shared:10.4f}  |  rel_err={rel_err_log[-1]:.4f}  "
-    f"dist_D^2={2 * nsfw_log.ns_gaps[-1]:.4e}  "
+    f"dist_D={np.sqrt(2 * frames_log.ns_gaps[-1]):.4e}  "
     f"neg_frac_U={np.mean(U_f < 0):.3f}  neg_frac_V={np.mean(V_f < 0):.3f}"
 )
 
@@ -175,7 +174,9 @@ for idx, beta0 in enumerate(beta0_values):
     axs[0, 0].semilogy(iters, R["rel_error"], color=c, label=lab, alpha=0.8)
 
     # [0,1] Feasibility
-    axs[0, 1].semilogy(iters, 2.0 * R["ns_gaps"], color=c, label=lab, alpha=0.8)
+    axs[0, 1].semilogy(
+        iters, np.sqrt(2.0 * R["ns_gaps"]), color=c, label=lab, alpha=0.8
+    )
 
     # [1,0] Min and avg smoothed gaps (combined)
     min_gaps = np.minimum.accumulate(R["gaps"])
@@ -190,9 +191,11 @@ for idx, beta0 in enumerate(beta0_values):
     )
 
 # Reference lines
-C_feas = (2.0 * results[1.0]["ns_gaps"][n_steps // 4]) * (n_steps // 4 + 1) ** 0.25
+C_feas = np.sqrt(2.0 * results[1.0]["ns_gaps"][n_steps // 4]) * (
+    n_steps // 4 + 1
+) ** 0.125
 axs[0, 1].semilogy(
-    iters, C_feas / iters**0.25, "--", color="gray", label=r"$O(k^{-1/4})$"
+    iters, C_feas / iters**0.125, "--", color="gray", label=r"$O(k^{-1/8})$"
 )
 
 C_gap = (
@@ -256,9 +259,9 @@ axs[0, 0].set_ylabel(r"$\|U_k V_k^\top - X^*\|_F \;/\; \|X^*\|_F$")
 axs[0, 0].legend(fontsize=6)
 axs[0, 0].grid(True, alpha=0.3)
 
-axs[0, 1].set_title(r"Feasibility: $\mathrm{dist}_D^2(x_k)$")
+axs[0, 1].set_title(r"Feasibility: $\mathrm{dist}_D(x_k)$")
 axs[0, 1].set_xlabel("Iteration $k$")
-axs[0, 1].set_ylabel(r"$\mathrm{dist}_D^2(x_k)$")
+axs[0, 1].set_ylabel(r"$\mathrm{dist}_D(x_k)$")
 axs[0, 1].legend(fontsize=6)
 axs[0, 1].grid(True, alpha=0.3)
 
@@ -283,12 +286,13 @@ axs[1, 1].legend(fontsize=7)
 axs[1, 1].grid(True, alpha=0.3)
 
 fig.suptitle(
-    f"NSFW for Nonneg Matrix Factorization\n"
+    f"FRAMES for Nonnegative Matrix Factorization\n"
     f"$m={m},\\; n={n},\\; r={r},\\; N={n_steps},\\; "
     f"\\mathrm{{margin}}={margin}$",
     fontsize=13,
 )
 plt.tight_layout()
-fig.savefig("/home/claude/experiments/nonneg_mf_beta_sweep.png", dpi=150)
+outpath = os.path.join(os.path.dirname(__file__), "nonneg_mf_beta_sweep.png")
+fig.savefig(outpath, dpi=150)
 plt.close(fig)
-print("\nSaved to experiments/nonneg_mf_beta_sweep.png")
+print(f"\nSaved to {outpath}")

@@ -1,5 +1,5 @@
 """
-Nonnegative low-rank matrix factorization via NSFW (Algorithm 1).
+Nonnegative low-rank matrix factorization via FRAMES.
 
 Problem:
     min_{U, V}  f(U, V) + g(U, V)
@@ -12,7 +12,7 @@ where:
 This is an instance of (P) with T = Id, C = spectral-norm-ball product,
 and g = iota_D with D = {(U,V) : U >= 0, V >= 0}.
 
-The NSFW algorithm smooths g via its Moreau envelope (here: squared distance
+FRAMES smooths g via its Moreau envelope (here: squared distance
 to the nonneg orthant, scaled by 1/(2 beta)) and applies one FW step per
 iteration with schedules gamma_k = 1/(k+1)^{1/2}, beta_k = beta0/(k+1)^{1/4}.
 """
@@ -25,7 +25,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from frank_wolfe import NoNoFrankWolfe
+from frank_wolfe import Frames
 from frank_wolfe.core.objective import ObjectiveFunction
 
 
@@ -166,32 +166,32 @@ def run_experiment(
     lmo = create_spectral_ball_product_lmo(tau_U, tau_V, m, n, r)
     x0 = np.zeros(m * r + n * r)
 
-    # Run NSFW
-    nsfw = NoNoFrankWolfe(obj, lmo, nonneg_prox, "indicator")
-    nsfw.run(x0, beta0=beta0, n_steps=n_steps)
+    # Run FRAMES
+    frames = Frames(obj, lmo, nonneg_prox, "indicator")
+    frames.run(x0, beta0=beta0, n_steps=n_steps)
 
     # Derived quantities
-    rel_error = np.sqrt(2.0 * np.maximum(nsfw.func_vals, 0)) / X_star_fro
+    rel_error = np.sqrt(2.0 * np.maximum(frames.func_vals, 0)) / X_star_fro
     iters = np.arange(1, n_steps + 1)
 
     # ── Compute running min and running average of smoothed gaps ──
-    min_gaps = np.minimum.accumulate(nsfw.gaps)
-    avg_gaps = np.cumsum(nsfw.gaps) / iters
+    min_gaps = np.minimum.accumulate(frames.gaps)
+    avg_gaps = np.cumsum(frames.gaps) / iters
 
     # ── Negative-entry fraction per iteration (from stored final x only;
     #    we approximate the trajectory via the gap/feasibility arrays) ──
 
     # ── Print summary ──
-    U_final, V_final = obj._unpack(nsfw.x)
+    U_final, V_final = obj._unpack(frames.x)
     X_rec = U_final @ V_final.T
     final_rel = np.linalg.norm(X_rec - X_star, "fro") / X_star_fro
     frac_neg_U = np.mean(U_final < 0)
     frac_neg_V = np.mean(V_final < 0)
 
     print(f"Final relative error ||UV^T - X*||_F / ||X*||_F = {final_rel:.6f}")
-    print(f"Final f(x) = {nsfw.func_vals[-1]:.6f}")
-    print(f"Final smoothed gap = {nsfw.gaps[-1]:.6f}")
-    print(f"Final dist_D^2 = {2 * nsfw.ns_gaps[-1]:.6e}")
+    print(f"Final f(x) = {frames.func_vals[-1]:.6f}")
+    print(f"Final smoothed gap = {frames.gaps[-1]:.6f}")
+    print(f"Final dist_D = {np.sqrt(2 * frames.ns_gaps[-1]):.6e}")
     print(f"Fraction negative entries: U {frac_neg_U:.4f}, V {frac_neg_V:.4f}")
     print()
 
@@ -205,25 +205,26 @@ def run_experiment(
     axs[0, 0].set_title("Relative reconstruction error")
     axs[0, 0].grid(True, alpha=0.3)
 
-    # (0,1) Feasibility: dist_D^2(x_k) = 2 * ns_gaps
-    axs[0, 1].semilogy(iters, 2.0 * nsfw.ns_gaps)
-    # Reference rate O(beta_k) = O(k^{-1/4})
-    C_feas = (2.0 * nsfw.ns_gaps[n_steps // 4]) * (n_steps // 4 + 1) ** 0.25
+    # (0,1) Feasibility: dist_D(x_k) = sqrt(2 * ns_gaps)
+    dist_D = np.sqrt(2.0 * frames.ns_gaps)
+    axs[0, 1].semilogy(iters, dist_D)
+    # If dist_D^2 follows O(k^{-1/4}), dist_D follows O(k^{-1/8}).
+    C_feas = dist_D[n_steps // 4] * (n_steps // 4 + 1) ** 0.125
     axs[0, 1].semilogy(
         iters,
-        C_feas / iters ** 0.25,
+        C_feas / iters ** 0.125,
         "--",
         color="gray",
-        label=r"$O(k^{-1/4})$",
+        label=r"$O(k^{-1/8})$",
     )
     axs[0, 1].set_xlabel("Iteration $k$")
-    axs[0, 1].set_ylabel(r"$\mathrm{dist}_D^2(x_k)$")
-    axs[0, 1].set_title(r"Squared distance to $D = \{(U,V) \geq 0\}$")
+    axs[0, 1].set_ylabel(r"$\mathrm{dist}_D(x_k)$")
+    axs[0, 1].set_title(r"Distance to $D = \{(U,V) \geq 0\}$")
     axs[0, 1].legend()
     axs[0, 1].grid(True, alpha=0.3)
 
     # (1,0) Smoothed gaps with min and avg
-    axs[1, 0].semilogy(iters, nsfw.gaps, alpha=0.5, label="Smoothed gap")
+    axs[1, 0].semilogy(iters, frames.gaps, alpha=0.5, label="Smoothed gap")
     axs[1, 0].semilogy(iters, min_gaps, label="Min smoothed gap")
     axs[1, 0].semilogy(iters, avg_gaps, label="Avg smoothed gap")
     # Reference rate O(k^{-1/4})
@@ -245,7 +246,7 @@ def run_experiment(
     axs[1, 0].grid(True, alpha=0.3)
 
     # (1,1) Functional values f(x_k)
-    axs[1, 1].plot(iters, nsfw.func_vals)
+    axs[1, 1].plot(iters, frames.func_vals)
     axs[1, 1].set_xlabel("Iteration $k$")
     axs[1, 1].set_ylabel(r"$f(x_k)$")
     axs[1, 1].set_title(
@@ -254,17 +255,18 @@ def run_experiment(
     axs[1, 1].grid(True, alpha=0.3)
 
     fig.suptitle(
-        f"NSFW for Nonneg Matrix Factorization\n"
+        f"FRAMES for Nonnegative Matrix Factorization\n"
         f"$m={m},\\; n={n},\\; r={r},\\; "
         f"\\beta_0={beta0},\\; \\mathrm{{margin}}={margin}$",
         fontsize=13,
     )
     plt.tight_layout()
-    fig.savefig("/home/claude/experiments/nonneg_mf_results.png", dpi=150)
+    outpath = os.path.join(os.path.dirname(__file__), "nonneg_mf_results.png")
+    fig.savefig(outpath, dpi=150)
     plt.close(fig)
-    print("Saved plot to experiments/nonneg_mf_results.png")
+    print(f"Saved plot to {outpath}")
 
-    return nsfw, obj
+    return frames, obj
 
 
 if __name__ == "__main__":

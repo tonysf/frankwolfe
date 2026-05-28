@@ -6,9 +6,19 @@ from .algorithms.base import FrankWolfe
 from .algorithms.away import AwayFrankWolfe
 from .algorithms.boosted import BoostedFrankWolfe
 from .algorithms.mismatch import MismatchFrankWolfe
-from .algorithms.nono import NoNoFrankWolfe
+from .algorithms.frames import Frames, FramesFrankWolfe
 from .algorithms.sliding import CondGradSliding
 
 __version__ = "0.1.0"
 
-__all__ = ['create_lmo', 'ObjectiveFunction', 'FrankWolfe', 'AwayFrankWolfe', 'BoostedFrankWolfe', 'MismatchFrankWolfe', 'NoNoFrankWolfe', 'CondGradSliding']
+__all__ = [
+    "create_lmo",
+    "ObjectiveFunction",
+    "FrankWolfe",
+    "AwayFrankWolfe",
+    "BoostedFrankWolfe",
+    "MismatchFrankWolfe",
+    "Frames",
+    "FramesFrankWolfe",
+    "CondGradSliding",
+]
