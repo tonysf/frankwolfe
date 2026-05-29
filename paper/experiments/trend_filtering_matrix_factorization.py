@@ -21,9 +21,7 @@ Ground truth: U* is piecewise constant (blockwise), V* is random,
 X* = U* V*^T.
 """
 
-import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
 import matplotlib

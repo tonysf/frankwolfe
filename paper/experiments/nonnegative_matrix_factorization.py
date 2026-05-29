@@ -17,9 +17,7 @@ to the nonneg orthant, scaled by 1/(2 beta)) and applies one FW step per
 iteration with schedules gamma_k = 1/(k+1)^{1/2}, beta_k = beta0/(k+1)^{1/4}.
 """
 
-import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import numpy as np
 import matplotlib

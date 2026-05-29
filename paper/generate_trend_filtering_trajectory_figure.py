@@ -38,7 +38,7 @@ suptitlefontsize = 24
 import numpy as np
 
 from frank_wolfe import Frames
-from examples.trend_filtering_mf import (
+from paper.experiments.trend_filtering_matrix_factorization import (
     TrendFilteredMFObjective,
     create_spectral_ball_product_lmo,
     generate_piecewise_constant_mf,

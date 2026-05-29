@@ -20,9 +20,6 @@ where x_bar = w_1 x_1 + w_2 x_2 and ||·||_inf is the support function of B_1.
 """
 
 import os
-import sys
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import matplotlib
 import numpy as np

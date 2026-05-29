@@ -1,8 +1,7 @@
 # Paper Figure Scripts
 
-This directory contains only the paper-facing figure-generation entrypoints.
-They reuse experiment helpers from `examples/` and algorithms from
-`frank_wolfe/`.
+This directory contains the paper-facing figure-generation entrypoints and their
+local experiment helpers. They use algorithms from `frank_wolfe/`.
 
 - `generate_main_figures.py` generates the main matrix-factorization and splitting
   figures.

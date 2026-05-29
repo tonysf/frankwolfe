@@ -52,7 +52,7 @@ def estimate_lipschitz(obj, lmo, dim, n_samples=500, seed=99):
 
 
 def figure1():
-    from examples.nonneg_matrix_factorization import (
+    from paper.experiments.nonnegative_matrix_factorization import (
         MatrixFactorizationObjective,
         create_spectral_ball_product_lmo,
         generate_nonneg_mf_problem,
@@ -192,7 +192,7 @@ def figure1():
 
 
 def figure3():
-    from examples.l1_splitting_nonconvex import (
+    from paper.experiments.l1_splitting_nonconvex import (
         IndefiniteQuadraticSplitting,
         create_product_l1_lmo,
         generate_indefinite_quadratic,
