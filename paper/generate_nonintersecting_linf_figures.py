@@ -331,10 +331,7 @@ def draw_geometry(ax, traces):
 
 
 def title_label(beta0, step_schedule):
-    return (
-        rf"$\beta_0={beta0:g}$, "
-        rf"$\beta_k=\beta_0(k+1)^{{-1/4}}$, {step_schedule.label()}"
-    )
+    return rf"$\beta_0={beta0:g}$, {step_schedule.label()}"
 
 
 def save_trajectory_figure(traces, outfile, dpi):

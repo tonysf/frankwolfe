@@ -304,15 +304,19 @@ def run_experiment(n=50, n_steps=5000, frac_neg=0.3, seed=42):
         # Nonsmooth gap can be negative for nonconvex f when x_bar not in C_tilde;
         # plot absolute value for log scale
         abs_nsgaps = np.abs(R["ns_gaps"])
-        # Running min of |ns_gap| is not quite right; track the gap itself
-        # and plot it with sign awareness
-        axs[0, 0].semilogy(iters, min_sgaps, color=c, label=lab + " (smoothed)")
+        # Plot the absolute nonsmooth gap so the diagnostic stays on log scale.
+        axs[0, 0].semilogy(
+            iters,
+            min_sgaps,
+            color=c,
+            label=lab + " (smoothed minimum)",
+        )
         axs[0, 0].semilogy(
             iters,
             np.minimum.accumulate(abs_nsgaps),
             color=c,
             linestyle="--",
-            label=lab + " (|nonsmooth|)",
+            label=lab + " (|nonsmooth| minimum)",
         )
 
         # [0,1] Feasibility
@@ -329,10 +333,19 @@ def run_experiment(n=50, n_steps=5000, frac_neg=0.3, seed=42):
 
         # [1,1] Avg smoothed gap
         avg_sgaps = np.cumsum(R["smoothed_gaps"]) / iters
-        axs[1, 1].semilogy(iters, avg_sgaps, color=c, label=lab + " (smoothed)")
+        axs[1, 1].semilogy(
+            iters,
+            avg_sgaps,
+            color=c,
+            label=lab + " (smoothed average)",
+        )
         avg_abs_nsgaps = np.cumsum(abs_nsgaps) / iters
         axs[1, 1].semilogy(
-            iters, avg_abs_nsgaps, color=c, linestyle="--", label=lab + " (|nonsmooth|)"
+            iters,
+            avg_abs_nsgaps,
+            color=c,
+            linestyle="--",
+            label=lab + " (|nonsmooth| average)",
         )
 
     # Reference rates
@@ -373,15 +386,18 @@ def run_experiment(n=50, n_steps=5000, frac_neg=0.3, seed=42):
     )
 
     # Labels
-    axs[0, 0].set_title("Min gaps: smoothed vs $|$nonsmooth$|$")
+    axs[0, 0].set_title("Minimum gap statistics")
     axs[0, 0].set_xlabel("Iteration $k$")
-    axs[0, 0].set_ylabel("Gap")
+    axs[0, 0].set_ylabel(
+        r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$ or "
+        r"$\min_{1\leq j\leq k}|\widetilde{\mathrm{gap}}(\bar{x}_j)|$"
+    )
     axs[0, 0].legend(fontsize=6, ncol=2)
     axs[0, 0].grid(True, alpha=0.3)
 
     axs[0, 1].set_title(r"Feasibility: $\|x_{1,k} - x_{2,k}\|$")
     axs[0, 1].set_xlabel("Iteration $k$")
-    axs[0, 1].set_ylabel(r"$\|x_1 - x_2\|$")
+    axs[0, 1].set_ylabel(r"$\|x_{1,k} - x_{2,k}\|$")
     axs[0, 1].legend(fontsize=7)
     axs[0, 1].grid(True, alpha=0.3)
 
@@ -393,9 +409,12 @@ def run_experiment(n=50, n_steps=5000, frac_neg=0.3, seed=42):
     axs[1, 0].legend(fontsize=7)
     axs[1, 0].grid(True, alpha=0.3)
 
-    axs[1, 1].set_title("Avg gaps: smoothed vs $|$nonsmooth$|$")
+    axs[1, 1].set_title("Average gap statistics")
     axs[1, 1].set_xlabel("Iteration $k$")
-    axs[1, 1].set_ylabel("Gap")
+    axs[1, 1].set_ylabel(
+        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$ or "
+        r"$\frac{1}{k}\sum_{j=1}^{k}|\widetilde{\mathrm{gap}}(\bar{x}_j)|$"
+    )
     axs[1, 1].legend(fontsize=6, ncol=2)
     axs[1, 1].grid(True, alpha=0.3)
 
@@ -408,7 +427,7 @@ def run_experiment(n=50, n_steps=5000, frac_neg=0.3, seed=42):
     plt.tight_layout()
     outpath = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        "l1_splitting_nonconvex_results.png",
+        "l1_splitting_nonconvex_results.pdf",
     )
     fig.savefig(outpath, dpi=150)
     plt.close(fig)

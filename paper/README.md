@@ -1,6 +1,6 @@
 # Paper Figure Scripts
 
-This directory contains the paper-facing figure-generation entrypoints and their
+This directory contains the scripts to generate the figures and their
 local experiment helpers. They use algorithms from `frank_wolfe/`.
 
 - `generate_main_figures.py` generates the main matrix-factorization and splitting
@@ -17,5 +17,3 @@ python -m paper.generate_main_figures
 python -m paper.generate_nonintersecting_linf_figures
 python -m paper.generate_trend_filtering_trajectory_figure
 ```
-
-Generated figures are ignored by git unless explicitly added for a release.

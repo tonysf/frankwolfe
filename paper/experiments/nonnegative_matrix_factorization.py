@@ -222,9 +222,22 @@ def run_experiment(
     axs[0, 1].grid(True, alpha=0.3)
 
     # (1,0) Smoothed gaps with min and avg
-    axs[1, 0].semilogy(iters, frames.gaps, alpha=0.5, label="Smoothed gap")
-    axs[1, 0].semilogy(iters, min_gaps, label="Min smoothed gap")
-    axs[1, 0].semilogy(iters, avg_gaps, label="Avg smoothed gap")
+    axs[1, 0].semilogy(
+        iters,
+        frames.gaps,
+        alpha=0.5,
+        label=r"$\mathrm{gap}^{\beta_k}(x_k)$",
+    )
+    axs[1, 0].semilogy(
+        iters,
+        min_gaps,
+        label=r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$",
+    )
+    axs[1, 0].semilogy(
+        iters,
+        avg_gaps,
+        label=r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
+    )
     # Reference rate O(k^{-1/4})
     C_gap = avg_gaps[n_steps // 4] * (n_steps // 4 + 1) ** 0.25
     axs[1, 0].semilogy(
@@ -235,12 +248,9 @@ def run_experiment(
         label=r"$O(k^{-1/4})$",
     )
     axs[1, 0].set_xlabel("Iteration $k$")
-    axs[1, 0].set_ylabel("Smoothed gap")
-    axs[1, 0].set_title(
-        r"$\mathrm{gap}_{\beta_k}(x_k) "
-        r"= \max_{s \in C}\;\langle \nabla\Phi_k(x_k),\, x_k - s\rangle$"
-    )
-    axs[1, 0].legend(fontsize=8)
+    axs[1, 0].set_ylabel("Smoothed gap statistic")
+    axs[1, 0].set_title("Smoothed gap statistics")
+    axs[1, 0].legend(fontsize=7)
     axs[1, 0].grid(True, alpha=0.3)
 
     # (1,1) Functional values f(x_k)
@@ -259,7 +269,7 @@ def run_experiment(
         fontsize=13,
     )
     plt.tight_layout()
-    outpath = os.path.join(os.path.dirname(__file__), "nonneg_mf_results.png")
+    outpath = os.path.join(os.path.dirname(__file__), "nonneg_mf_results.pdf")
     fig.savefig(outpath, dpi=150)
     plt.close(fig)
     print(f"Saved plot to {outpath}")

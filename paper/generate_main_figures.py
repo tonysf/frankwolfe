@@ -72,7 +72,7 @@ def figure1():
     x0 = np.zeros(m * r + n * r)
     L = estimate_lipschitz(obj, lmo, m * r + n * r)
     inv_L = 1.0 / L
-    print(f"Estimated L_{{nabla f}} = {L:.2f},  1/L = {inv_L:.6f}")
+    print(f"Estimated L_{{nabla f}} approx {L:.2f},  1/L approx {inv_L:.6f}")
     beta0_values = [0.2, 0.5, 1.0, 2.0, 5.0, inv_L]
     results = {}
     for beta0 in beta0_values:
@@ -146,16 +146,20 @@ def figure1():
     # Avg gaps
     axs[0, 0].set_title("Average smoothed gaps", fontsize=titlefontsize)
     axs[0, 0].set_xlabel("Iteration $k$", fontsize=labelfontsize)
-    axs[0, 0].set_ylabel(r"$\mathrm{avg\; gap}^{\beta_k}$", fontsize=labelfontsize)
+    axs[0, 0].set_ylabel(
+        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
+        fontsize=labelfontsize,
+    )
     axs[0, 0].legend(**leg_kw)
     axs[0, 0].grid(True, alpha=0.3)
     axs[0, 0].set_ylim(2.5e4, 3e5)
 
     # Min gaps
-    axs[0, 1].set_title("Min smoothed gaps", fontsize=titlefontsize)
+    axs[0, 1].set_title("Minimum smoothed gaps", fontsize=titlefontsize)
     axs[0, 1].set_xlabel("Iteration $k$", fontsize=labelfontsize)
     axs[0, 1].set_ylabel(
-        r"$\min_{j \le k}\; \mathrm{gap}^{\beta_j}$", fontsize=labelfontsize
+        r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$",
+        fontsize=labelfontsize,
     )
     axs[0, 1].legend(**leg_kw)
     axs[0, 1].grid(True, alpha=0.3)
@@ -269,17 +273,20 @@ def figure3():
     metric_specs = [
         (
             "Smoothed gaps",
-            r"$\mathrm{gap}^{\beta_k}$",
+            r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
+            r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$",
             lambda R: R["smoothed_gaps"],
         ),
         (
             "Feasibility",
-            r"$\|x_1 - x_2\|$",
+            r"$\frac{1}{k}\sum_{j=1}^{k}\|x_{1,j}-x_{2,j}\|$",
+            r"$\min_{1\leq j\leq k}\|x_{1,j}-x_{2,j}\|$",
             lambda R: np.sqrt(np.maximum(R["feasibility"], 0.0)),
         ),
         (
             "Nonsmooth gaps",
-            r"$|\widetilde{\mathrm{gap}}|$",
+            r"$\frac{1}{k}\sum_{j=1}^{k}|\widetilde{\mathrm{gap}}(\bar{x}_j)|$",
+            r"$\min_{1\leq j\leq k}|\widetilde{\mathrm{gap}}(\bar{x}_j)|$",
             lambda R: np.abs(R["ns_gaps"]),
         ),
     ]
@@ -290,7 +297,7 @@ def figure3():
         lw = 2.0 if beta0 == inv_L else 1.2
         zorder = 10 if beta0 == 4.0 else 2
 
-        for row, (_, _, metric_fn) in enumerate(metric_specs):
+        for row, (_, _, _, metric_fn) in enumerate(metric_specs):
             y_power = metric_fn(results[beta0])
             y_log = metric_fn(results_log[beta0])
 
@@ -336,13 +343,11 @@ def figure3():
                 zorder=zorder,
             )
 
-    for row, (title, ylabel, _) in enumerate(metric_specs):
+    for row, (title, avg_ylabel, min_ylabel, _) in enumerate(metric_specs):
         axs[row, 0].set_title(f"Average {title.lower()}", fontsize=titlefontsize)
-        axs[row, 1].set_title(f"Min {title.lower()}", fontsize=titlefontsize)
-        axs[row, 0].set_ylabel(rf"$\mathrm{{avg}}\;$ {ylabel}", fontsize=labelfontsize)
-        axs[row, 1].set_ylabel(
-            rf"$\min_{{j \le k}}\;$ {ylabel}", fontsize=labelfontsize
-        )
+        axs[row, 1].set_title(f"Minimum {title.lower()}", fontsize=titlefontsize)
+        axs[row, 0].set_ylabel(avg_ylabel, fontsize=labelfontsize)
+        axs[row, 1].set_ylabel(min_ylabel, fontsize=labelfontsize)
 
         for col in range(2):
             axs[row, col].set_xlabel("Iteration $k$", fontsize=labelfontsize)

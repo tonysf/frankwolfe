@@ -407,26 +407,80 @@ def run_experiment(
     axs[0, 0].grid(True, alpha=0.3)
 
     # [0,1] Smoothed gaps: min and avg
-    axs[0, 1].semilogy(iters, m_l1["min_gaps"], color="C0", label=r"$\|\cdot\|_1$ (min)")
-    axs[0, 1].semilogy(iters, m_l1["avg_gaps"], color="C0", linestyle="--", alpha=0.6, label=r"$\|\cdot\|_1$ (avg)")
-    axs[0, 1].semilogy(iters, m_scad["min_gaps"], color="C1", label=r"SCAD (min)")
-    axs[0, 1].semilogy(iters, m_scad["avg_gaps"], color="C1", linestyle="--", alpha=0.6, label=r"SCAD (avg)")
+    axs[0, 1].semilogy(
+        iters,
+        m_l1["min_gaps"],
+        color="C0",
+        label=r"$\|\cdot\|_1$ (minimum)",
+    )
+    axs[0, 1].semilogy(
+        iters,
+        m_l1["avg_gaps"],
+        color="C0",
+        linestyle="--",
+        alpha=0.6,
+        label=r"$\|\cdot\|_1$ (average)",
+    )
+    axs[0, 1].semilogy(
+        iters,
+        m_scad["min_gaps"],
+        color="C1",
+        label=r"SCAD (minimum)",
+    )
+    axs[0, 1].semilogy(
+        iters,
+        m_scad["avg_gaps"],
+        color="C1",
+        linestyle="--",
+        alpha=0.6,
+        label=r"SCAD (average)",
+    )
     C_ref = m_l1["avg_gaps"][n_steps // 4] * (n_steps // 4 + 1) ** 0.25
     axs[0, 1].semilogy(iters, C_ref / iters**0.25, "--", color="gray", linewidth=2, label=r"$O(k^{-1/4})$")
     axs[0, 1].set_title("Smoothed gaps")
     axs[0, 1].set_xlabel("Iteration $k$")
-    axs[0, 1].set_ylabel(r"$\mathrm{gap}_{\beta_k}(x_k)$")
+    axs[0, 1].set_ylabel(
+        r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$ or "
+        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$"
+    )
     axs[0, 1].legend(fontsize=7)
     axs[0, 1].grid(True, alpha=0.3)
 
     # [0,2] Nonsmooth gaps: min and avg
-    axs[0, 2].semilogy(iters, m_l1["min_ns_gaps"], color="C0", label=r"$\|\cdot\|_1$ (min)")
-    axs[0, 2].semilogy(iters, m_l1["avg_ns_gaps"], color="C0", linestyle="--", alpha=0.6, label=r"$\|\cdot\|_1$ (avg)")
-    axs[0, 2].semilogy(iters, m_scad["min_ns_gaps"], color="C1", label=r"SCAD (min)")
-    axs[0, 2].semilogy(iters, m_scad["avg_ns_gaps"], color="C1", linestyle="--", alpha=0.6, label=r"SCAD (avg)")
+    axs[0, 2].semilogy(
+        iters,
+        m_l1["min_ns_gaps"],
+        color="C0",
+        label=r"$\|\cdot\|_1$ (minimum)",
+    )
+    axs[0, 2].semilogy(
+        iters,
+        m_l1["avg_ns_gaps"],
+        color="C0",
+        linestyle="--",
+        alpha=0.6,
+        label=r"$\|\cdot\|_1$ (average)",
+    )
+    axs[0, 2].semilogy(
+        iters,
+        m_scad["min_ns_gaps"],
+        color="C1",
+        label=r"SCAD (minimum)",
+    )
+    axs[0, 2].semilogy(
+        iters,
+        m_scad["avg_ns_gaps"],
+        color="C1",
+        linestyle="--",
+        alpha=0.6,
+        label=r"SCAD (average)",
+    )
     axs[0, 2].set_title("Nonsmooth gaps")
     axs[0, 2].set_xlabel("Iteration $k$")
-    axs[0, 2].set_ylabel(r"$\mathrm{gap}(x_k; \xi_k)$")
+    axs[0, 2].set_ylabel(
+        r"$\min_{1\leq j\leq k}\mathrm{gap}(x_j;\xi_j)$ or "
+        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}(x_j;\xi_j)$"
+    )
     axs[0, 2].legend(fontsize=7)
     axs[0, 2].grid(True, alpha=0.3)
 
@@ -474,7 +528,7 @@ def run_experiment(
     plt.tight_layout()
     outpath = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        "trend_filtering_results.png",
+        "trend_filtering_results.pdf",
     )
     fig.savefig(outpath, dpi=150)
     plt.close(fig)

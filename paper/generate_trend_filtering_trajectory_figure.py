@@ -1,10 +1,5 @@
 """
 Generate the trend-filtering trajectory comparison figure.
-
-This reads saved best configurations from hyperparam_sweep_outputs when they
-exist, otherwise it uses the default configurations embedded below. It
-reconstructs the SCAD and MCP trajectories used in the paper comparison plot
-without rerunning the full hyperparameter sweep.
 """
 
 import argparse
@@ -46,7 +41,7 @@ from paper.experiments.trend_filtering_matrix_factorization import (
     make_scad_functions,
 )
 
-DEFAULT_OUTPUT_DIR = THIS_DIR / "hyperparam_sweep_outputs"
+DEFAULT_OUTPUT_DIR = THIS_DIR
 DEFAULT_BEST_CONFIGS = {
     "scad": {
         "lam": 8.254041852680183,
@@ -196,7 +191,7 @@ def save_plot(args, best_configs):
             trace["min_gaps"][plot_idx],
             linewidth=2.0,
             color=color,
-            label=trace["label"] + " min",
+            label=trace["label"] + " minimum",
         )
         axes[1].semilogy(
             plot_iters,
@@ -205,7 +200,7 @@ def save_plot(args, best_configs):
             linewidth=1.8,
             alpha=0.75,
             color=color,
-            label=trace["label"] + " avg",
+            label=trace["label"] + " average",
         )
 
     axes[0].set_title("Relative reconstruction error", fontsize=titlefontsize)
@@ -219,7 +214,11 @@ def save_plot(args, best_configs):
 
     axes[1].set_title("Smoothed gaps", fontsize=titlefontsize)
     axes[1].set_xlabel(r"Iteration $k$", fontsize=labelfontsize)
-    axes[1].set_ylabel(r"$\mathrm{gap}^{\beta_k}$", fontsize=labelfontsize)
+    axes[1].set_ylabel(
+        r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$ or "
+        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
+        fontsize=labelfontsize,
+    )
     axes[1].set_ylim(9e5, 4e6)
     axes[1].grid(True, alpha=0.3)
     axes[1].legend(fontsize=legendfontsize)
