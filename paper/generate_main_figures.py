@@ -48,6 +48,7 @@ def estimate_lipschitz(obj, lmo, dim, n_samples=500, seed=99):
         if diff < 1e-12:
             continue
         L_est = max(L_est, np.linalg.norm(obj.gradient(z1) - obj.gradient(z2)) / diff)
+    print("L_est is " + str(L_est))
     return L_est
 
 
@@ -147,7 +148,7 @@ def figure1():
     axs[0, 0].set_title("Average smoothed gaps", fontsize=titlefontsize)
     axs[0, 0].set_xlabel("Iteration $k$", fontsize=labelfontsize)
     axs[0, 0].set_ylabel(
-        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
+        r"$\frac{1}{k}\sum\limits_{j=0}^{k-1}\mathrm{gap}^{\beta_j}((U_j,V_j))$",
         fontsize=labelfontsize,
     )
     axs[0, 0].legend(**leg_kw)
@@ -158,7 +159,7 @@ def figure1():
     axs[0, 1].set_title("Minimum smoothed gaps", fontsize=titlefontsize)
     axs[0, 1].set_xlabel("Iteration $k$", fontsize=labelfontsize)
     axs[0, 1].set_ylabel(
-        r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$",
+        r"$\min\limits_{0\leq j\leq k-1}\mathrm{gap}^{\beta_j}((U_j,V_j))$",
         fontsize=labelfontsize,
     )
     axs[0, 1].legend(**leg_kw)
@@ -168,7 +169,7 @@ def figure1():
     # Feasibility
     axs[1, 0].set_title("Feasibility", fontsize=titlefontsize)
     axs[1, 0].set_xlabel("Iteration $k$", fontsize=labelfontsize)
-    axs[1, 0].set_ylabel(r"$\mathrm{dist}_D(x_k)$", fontsize=labelfontsize)
+    axs[1, 0].set_ylabel(r"$\mathrm{dist}_D((U_k,V_k))$", fontsize=labelfontsize)
     axs[1, 0].legend(**leg_kw_feas)
     axs[1, 0].grid(True, alpha=0.3)
     axs[1, 0].set_ylim(1.4e-1, 2e0)
@@ -273,20 +274,20 @@ def figure3():
     metric_specs = [
         (
             "Smoothed gaps",
-            r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
-            r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$",
+            r"$\frac{1}{k}\sum\limits_{j=0}^{k-1}\mathrm{gap}^{\beta_j}(\mathbf{x}_j)$",
+            r"$\min\limits_{0\leq j\leq k-1}\mathrm{gap}^{\beta_j}(\mathbf{x}_j)$",
             lambda R: R["smoothed_gaps"],
         ),
         (
             "Feasibility",
-            r"$\frac{1}{k}\sum_{j=1}^{k}\|x_{1,j}-x_{2,j}\|$",
-            r"$\min_{1\leq j\leq k}\|x_{1,j}-x_{2,j}\|$",
+            r"$\frac{1}{k}\sum\limits_{j=0}^{k-1}\mathrm{dist}_{\mathcal{D}}(T\mathbf{x}_j)$",
+            r"$\min\limits_{0\leq j\leq k-1}\mathrm{dist}_{\mathcal{D}}(T\mathbf{x}_j)$",
             lambda R: np.sqrt(np.maximum(R["feasibility"], 0.0)),
         ),
         (
             "Nonsmooth gaps",
-            r"$\frac{1}{k}\sum_{j=1}^{k}|\widetilde{\mathrm{gap}}(\bar{x}_j)|$",
-            r"$\min_{1\leq j\leq k}|\widetilde{\mathrm{gap}}(\bar{x}_j)|$",
+            r"$\frac{1}{k}\sum\limits_{j=0}^{k-1}|\widetilde{\mathrm{gap}}(\mathbf{x}_j)|$",
+            r"$\min\limits_{0\leq j\leq k-1}|\widetilde{\mathrm{gap}}(\mathbf{x}_j)|$",
             lambda R: np.abs(R["ns_gaps"]),
         ),
     ]
@@ -368,8 +369,7 @@ def figure3():
     axs[2, 1].set_ylim(5e-7, 2e-1)
 
     fig.suptitle(
-        f"Nonconvex splitting,  $n={nn},\\; {n_neg}$ neg.\\ eigs,"
-        rf"  $L_{{\nabla f}} = \|Q\|_{{\mathrm{{op}}}}/2 = {L_product:.2f}$",
+        f"Nonconvex splitting,  $n={nn},\\; {n_neg}$ neg.\\ eigs",
         fontsize=suptitlefontsize,
     )
     plt.tight_layout()

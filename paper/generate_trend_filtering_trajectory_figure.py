@@ -31,8 +31,8 @@ titlefontsize = 20
 labelfontsize = 18
 suptitlefontsize = 24
 import numpy as np
-
 from frank_wolfe import Frames
+
 from paper.experiments.trend_filtering_matrix_factorization import (
     TrendFilteredMFObjective,
     create_spectral_ball_product_lmo,
@@ -73,7 +73,7 @@ def parse_args():
     parser.add_argument(
         "--outfile",
         type=Path,
-        default=DEFAULT_OUTPUT_DIR / "trend_filtering_trajectory_comparison.pdf",
+        default=DEFAULT_OUTPUT_DIR / "paper_fig2_trend_filtering.pdf",
     )
     parser.add_argument("--scad-color", default=SCAD_COLOR)
     parser.add_argument("--mcp-color", default=MCP_COLOR)
@@ -215,8 +215,7 @@ def save_plot(args, best_configs):
     axes[1].set_title("Smoothed gaps", fontsize=titlefontsize)
     axes[1].set_xlabel(r"Iteration $k$", fontsize=labelfontsize)
     axes[1].set_ylabel(
-        r"$\min_{1\leq j\leq k}\mathrm{gap}^{\beta_j}(x_j)$ or "
-        r"$\frac{1}{k}\sum_{j=1}^{k}\mathrm{gap}^{\beta_j}(x_j)$",
+        r"Smoothed gaps",
         fontsize=labelfontsize,
     )
     axes[1].set_ylim(9e5, 4e6)
