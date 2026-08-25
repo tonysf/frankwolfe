@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 from frank_wolfe.algorithms.base import FrankWolfe
 from frank_wolfe.core.utils import line_search
@@ -53,6 +52,8 @@ class MismatchFrankWolfe(FrankWolfe):
 
 
     def plot_convergence(self):
+        import matplotlib.pyplot as plt
+
         gaps = self.gaps
         n_steps = len(gaps)
 

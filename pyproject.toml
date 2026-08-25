@@ -19,6 +19,17 @@ dependencies = [
 dev = [
     "pytest",
 ]
+qpt = [
+    "h5py",
+]
+qpt-jax = [
+    "h5py",
+    "jax>=0.4.30",
+]
+
+[project.scripts]
+qpt-stochastic-frames = "paper.experiments.quantum_process_tomography:main"
+qpt-stochastic-frames-jax = "paper.experiments.quantum_process_tomography_jax:main"
 
 [tool.setuptools.packages.find]
 include = ["frank_wolfe*", "paper*"]

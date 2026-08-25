@@ -6,7 +6,14 @@ from .algorithms.base import FrankWolfe
 from .algorithms.away import AwayFrankWolfe
 from .algorithms.boosted import BoostedFrankWolfe
 from .algorithms.mismatch import MismatchFrankWolfe
-from .algorithms.frames import Frames, FramesFrankWolfe
+from .algorithms.frames import (
+    AdaptiveFrames,
+    AdaptiveFramesFrankWolfe,
+    Frames,
+    FramesFrankWolfe,
+    StochasticFrames,
+    StochasticFramesFrankWolfe,
+)
 from .algorithms.sliding import CondGradSliding
 
 __version__ = "0.1.0"
@@ -18,7 +25,11 @@ __all__ = [
     "AwayFrankWolfe",
     "BoostedFrankWolfe",
     "MismatchFrankWolfe",
+    "AdaptiveFrames",
+    "AdaptiveFramesFrankWolfe",
     "Frames",
     "FramesFrankWolfe",
+    "StochasticFrames",
+    "StochasticFramesFrankWolfe",
     "CondGradSliding",
 ]

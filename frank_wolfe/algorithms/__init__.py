@@ -4,7 +4,14 @@ from .base import FrankWolfe
 from .away import AwayFrankWolfe
 from .boosted import BoostedFrankWolfe
 from .mismatch import MismatchFrankWolfe
-from .frames import Frames, FramesFrankWolfe
+from .frames import (
+    AdaptiveFrames,
+    AdaptiveFramesFrankWolfe,
+    Frames,
+    FramesFrankWolfe,
+    StochasticFrames,
+    StochasticFramesFrankWolfe,
+)
 from .sliding import CondGradSliding
 
 __all__ = [
@@ -12,7 +19,11 @@ __all__ = [
     "AwayFrankWolfe",
     "BoostedFrankWolfe",
     "MismatchFrankWolfe",
+    "AdaptiveFrames",
+    "AdaptiveFramesFrankWolfe",
     "Frames",
     "FramesFrankWolfe",
+    "StochasticFrames",
+    "StochasticFramesFrankWolfe",
     "CondGradSliding",
 ]

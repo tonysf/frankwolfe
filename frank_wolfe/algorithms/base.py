@@ -1,6 +1,5 @@
 import numpy as np
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 
 class FrankWolfe:
     def __init__(self, objective_fn, lmo_fn):
@@ -29,6 +28,8 @@ class FrankWolfe:
         self.num_oracles = np.cumsum(self.num_oracles)
 
     def plot_convergence(self):
+        import matplotlib.pyplot as plt
+
         n_steps = len(self.gaps)
         fig, axs = plt.subplots(1, 2, figsize=(20, 6))
 

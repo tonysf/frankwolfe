@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from tqdm import tqdm
 from frank_wolfe.algorithms.base import FrankWolfe
 from frank_wolfe.core.utils import segment_search, align
@@ -89,6 +88,8 @@ class BoostedFrankWolfe(FrankWolfe):
         self.oracle_calls = self.num_oracles.copy()
 
     def plot_convergence(self):
+        import matplotlib.pyplot as plt
+
         n_steps = len(self.func_vals)
 
         fig, axs = plt.subplots(2, 2, figsize=(12, 9))
