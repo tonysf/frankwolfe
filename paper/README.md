@@ -3,6 +3,9 @@
 This directory contains the scripts to generate the figures and their
 local experiment helpers. They use algorithms from `frank_wolfe/`.
 
+The reusable seven-problem stochastic-FRAMES benchmark layer is documented in
+[`experiments/stochastic_frames_suite/README.md`](experiments/stochastic_frames_suite/README.md).
+
 - `generate_main_figures.py` generates the main matrix-factorization and splitting
   figures.
 - `generate_nonintersecting_linf_figures.py` generates the inconsistent
