@@ -151,6 +151,10 @@ reduces the transferred sampling chunk while increasing dispatch frequency.
 
 ## Benchmark on Ruche
 
+For measured CPU/GPU memory profiling, follow
+[Measured QPT comparison](qpt_benchmark.md). It separates unmonitored timing
+runs from memory profiles and preserves logs and partial failure reports.
+
 Run this on the same allocated A100 with the original HDF5 file. It validates
 and converts that file once, then runs the old and new paths in separate fresh
 processes with identical initialization seeds, sampling seeds and schedules.
@@ -187,15 +191,17 @@ device execution and excludes chunk sampling/transfers; the latter includes
 compilation, warmup, transfers and diagnostics after data loading. The report
 also separates data-loading time and complete fresh-process wall time.
 
-Memory entries are clearly labeled estimates: dense static tensors and scan
-history are accounted from shape and dtype; structured compiled memory comes
-from the backend's executable memory analysis (`null` if unavailable). These values exclude allocator
-reservation and do not measure peak GPU usage. For a separate allocation check,
-record the process's GPU memory on Ruche with your normal cluster monitoring
-tools; JAX preallocation can dominate a simple `nvidia-smi` reading. A CPU
+The `memory_estimates` entries describe array sizes, not runtime peaks.
+Add `--profile-memory` to run a separate monitored worker for each backend;
+its OS RSS, JAX allocator counters, and sampled process VRAM are reported in
+`memory_profiles`. Use `--require-gpu-memory` to flag unavailable GPU
+measurements. The default `--allocator grow` disables JAX preallocation for
+both backends; this differs from earlier unconfigured runs. A CPU
 smoke benchmark validates the command and parity, but does not establish A100
 speedup. Once the dense baseline no longer fits, `--backends structured` runs
 only the compact path while still reporting dense array-size estimates.
+The benchmark retains a sibling artifact directory and refuses to overwrite
+an existing report or artifact directory; use a new output path for each job.
 
 For regression checks:
 

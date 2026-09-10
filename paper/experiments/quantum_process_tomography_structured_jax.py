@@ -141,6 +141,7 @@ def run_qpt_structured_jax(
     uses beta[T-1], matching the dense runner. Compilation is always separated
     from synchronized optimizer time; optional warmup runs only one chunk.
     """
+    started_setup = perf_counter()
     if not isinstance(data, StructuredQPTData):
         raise TypeError("data must be StructuredQPTData.")
     n_steps = _positive_integer(n_steps, "n_steps")
@@ -191,8 +192,10 @@ def run_qpt_structured_jax(
     complex_dtype = np.complex128 if precision == "64" else np.complex64
     real_dtype = np.float64 if precision == "64" else np.float32
     noiseless = data.observation_mode == "noiseless"
+    setup_seconds = perf_counter() - started_setup
     start_wall = perf_counter()
     compile_seconds = optimizer_total = metric_seconds = transfer_seconds = 0.0
+    warmup_seconds = 0.0
     plan_digest = hashlib.sha256()
     scalar_gaps = np.empty(n_steps, dtype=real_dtype)
     stored_factors = []
@@ -206,6 +209,7 @@ def run_qpt_structured_jax(
         def put(value, dtype):
             return jax.device_put(np.asarray(value, dtype=dtype), selected)
 
+        started_initial_transfer = perf_counter()
         bank = put(vectors if use_rank_one else data.local_measurements, complex_dtype)
         basis = put(data.local_basis, complex_dtype)
         truth = put(
@@ -215,6 +219,7 @@ def run_qpt_structured_jax(
         factor = put(factor0, complex_dtype)
         state = (factor, jnp.zeros_like(factor))
         jax.block_until_ready((bank, basis, truth, state))
+        initial_transfer_seconds = perf_counter() - started_initial_transfer
         scan = _build_scan(jax, jnp, float(tau), noiseless, use_rank_one)
         values_fn = rank_one_measurement_values if use_rank_one else measurement_values
         gradient_fn = rank_one_measurement_loss_and_gradient if use_rank_one else measurement_loss_and_gradient
@@ -306,8 +311,10 @@ def run_qpt_structured_jax(
                         executable_memory_bytes = max(executable_memory_bytes or 0, estimate)
                 executable = compiled[length]
                 if warmup and not did_warmup:
+                    started_warmup = perf_counter()
                     warm = executable(*args)
                     jax.block_until_ready(warm)
+                    warmup_seconds += perf_counter() - started_warmup
                     del warm
                     did_warmup = True
                 started = perf_counter()
@@ -347,6 +354,8 @@ def run_qpt_structured_jax(
         "observation_count": data.m, "sampled_measurements": n_steps * batch_size,
         "optimizer_seconds": float(optimizer_total), "compile_seconds": float(compile_seconds),
         "sampling_transfer_seconds": float(transfer_seconds), "metric_seconds": float(metric_seconds),
+        "setup_seconds": float(setup_seconds), "initial_transfer_seconds": float(initial_transfer_seconds),
+        "warmup_seconds": float(warmup_seconds),
         "wall_seconds": float(perf_counter() - start_wall), "warmup": bool(warmup),
         "store_checkpoints": bool(store_checkpoints),
         "compiled_memory_estimate_bytes": executable_memory_bytes,
