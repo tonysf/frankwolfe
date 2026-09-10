@@ -1,5 +1,8 @@
 # A100 deployment: stochastic FRAMES for QPT
 
+For the compact tensor-product runner, streaming HDF5 conversion, and dense
+parity benchmarks, see [Structured QPT](qpt_structured.md).
+
 This guide deploys the nonconvex factor-space stochastic-FRAMES QPT experiment
 on one visible NVIDIA A100. The optimizer stays in the Burer--Monteiro factor
 `U`; only the sampled measurement-loss gradient enters the momentum estimator,
@@ -26,7 +29,7 @@ The repository has a large historical object store. A shallow clone avoids
 downloading unrelated history:
 
 ```bash
-git clone --depth 1 --branch adaptive-frames \
+git clone --depth 1 --branch stochastic-frames \
   https://github.com/tonysf/frankwolfe.git
 cd frankwolfe
 

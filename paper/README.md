@@ -3,6 +3,10 @@
 This directory contains the scripts to generate the figures and their
 local experiment helpers. They use algorithms from `frank_wolfe/`.
 
+The [structured QPT GPU runner](../docs/qpt_structured.md) replaces dense
+measurement and trace-preservation tensors with compact verified operators,
+and avoids retaining the complete iterate history.
+
 The reusable seven-problem stochastic-FRAMES benchmark layer is documented in
 [`experiments/stochastic_frames_suite/README.md`](experiments/stochastic_frames_suite/README.md).
 
