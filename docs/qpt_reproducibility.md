@@ -117,3 +117,9 @@ results as provisional until its agreement failure is understood.
 For a local smoke check, use a small local benchmark report with
 `--device cpu`. CPU execution can test input freezing, replay comparisons,
 and report generation; it does not validate V100 GPU reproducibility.
+
+If execution is repeatable but dense and structured final factors still
+disagree, use the [full-data, same-factor CPU diagnostic](qpt_same_factor.md)
+to separate function/metric disagreement from different optimization
+trajectories. On Ruche this check still requires a CPU allocation, not a
+login-node run.
