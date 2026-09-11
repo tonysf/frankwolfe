@@ -172,3 +172,8 @@ A100 speedup until it has actually run on that hardware. If the dense backend
 runs out of memory, its failure is a capacity result, not a finite measured
 speedup. A later `--backends structured` experiment can characterize the new
 path alone but cannot supply a measured dense baseline.
+
+If repeated runs disagree despite matching seeds, use the
+[QPT reproducibility diagnostic](qpt_reproducibility.md) to separate
+same-executable replay, fresh-process compilation, and fixed-input operator
+agreement before changing tolerances or interpreting long trajectories.
