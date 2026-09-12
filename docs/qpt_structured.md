@@ -13,6 +13,10 @@ experiment, it has the required JAX GPU installation. See [A100 setup](qpt_a100.
 for a fresh environment. The implementation uses one visible GPU; requesting
 four GPUs does not distribute this runner.
 
+For new four- and five-qubit experiments, use the
+[direct compact noisy-data generator and scaling workflow](qpt_scaling.md).
+It avoids creating a dense HDF5 file in the first place.
+
 ## Convert the existing HDF5 once
 
 ```bash

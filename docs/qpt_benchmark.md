@@ -4,6 +4,13 @@ This benchmark compares the original dense runner and the structured runner
 on the same GPU and original noisy HDF5 data. It records timing separately
 from memory profiling and never connects to a cluster or submits work.
 
+For larger-qubit structured-only experiments, `--data compact.npz` bypasses
+HDF5 conversion and defaults to sampled metrics. See the
+[compact data generation and scaling workflow](qpt_scaling.md). In that mode,
+completion does not assert dense/structured parity, and the supplied compact
+archive remains in its original location rather than being copied into the
+artifact directory.
+
 ## Run the benchmark
 
 Run from the repository root in an existing GPU allocation with the QPT
