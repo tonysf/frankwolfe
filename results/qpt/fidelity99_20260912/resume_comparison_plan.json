@@ -1,0 +1,53 @@
+{
+  "directory": "fidelity99_resume_comparison_20260913_01",
+  "source": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_prefetch_validation_20260912_01/source",
+  "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n10.npz",
+  "n_qubits": 10,
+  "noise_std": 0.05,
+  "batch_size": 65536,
+  "rank": 1,
+  "tau": 40,
+  "chunk_steps": 10,
+  "prefetch": true,
+  "precision": "64",
+  "measurement_backend": "product-state",
+  "metrics_every": 1000,
+  "metric_samples": 512,
+  "metric_batch_size": 512,
+  "metric_seed": 12345,
+  "rho": [
+    2,
+    4,
+    0.6
+  ],
+  "step": [
+    10,
+    10,
+    1
+  ],
+  "smoothing_offset": 1,
+  "smoothing_exponent": 0.25,
+  "initialization_seed": 0,
+  "sampling_seed": 0,
+  "cases": [
+    {
+      "task": 0,
+      "name": "baseline_200k",
+      "parent": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_n10_fixed_20260912_01/latest_restart.npz",
+      "start_step": 100000,
+      "total_steps": 200000,
+      "smoothing_scale": 1000000000
+    },
+    {
+      "task": 1,
+      "name": "beta1e8_100k",
+      "parent": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_stronger_tp_20260913_01/beta_100000000/latest_restart.npz",
+      "start_step": 10000,
+      "total_steps": 100000,
+      "smoothing_scale": 100000000
+    }
+  ],
+  "rationale": "Baseline late fidelity increased8.39x over50k steps,42/50 checkpoint increments positive; beta1e8 had best matched10k fidelity among four penalty scales and lower TP than baseline. Absolute fidelities remain very low; bounded continuations test sustained growth, without extrapolating a99% convergence time.",
+  "runtime": "Two A100 tasks,2CPU/12G/4h each. Expected approximately2.5–3h per continuation from measured throughput.",
+  "preservation": "Resume original immutable parent NPZ directly; retain momentum, exact RNG state, absolute schedule position. New output directories only; no model, noise, update or past schedule changes."
+}

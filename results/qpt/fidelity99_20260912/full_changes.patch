@@ -1,0 +1,1392 @@
+diff --git a/docs/qpt_scaling.md b/docs/qpt_scaling.md
+index 5c6df91..4760623 100644
+--- a/docs/qpt_scaling.md
++++ b/docs/qpt_scaling.md
+@@ -1,5 +1,9 @@
+ # Larger-qubit structured QPT experiments
+ 
++For scaling beyond the stored-observation workflow below, see
++[on-demand noisy QPT](qpt_on_demand.md). Its explicit `synthetic-noisy` mode
++generates only sampled targets and stores no `24**n` observation array.
++
+ The direct generator creates **new synthetic noisy data** in the compact
+ format, without first constructing the legacy dense HDF5 arrays. Start with
+ four and five qubits. This does not resize or replace the three-qubit archive,
+diff --git a/docs/qpt_structured.md b/docs/qpt_structured.md
+index 1478824..a1368d8 100644
+--- a/docs/qpt_structured.md
++++ b/docs/qpt_structured.md
+@@ -1,5 +1,9 @@
+ # Structured QPT on an A100
+ 
++The explicit [on-demand noisy mode](qpt_on_demand.md) supports larger synthetic
++experiments without storing the entire observation table. The stored-data
++workflow and default settings described below remain available.
++
+ The structured runner keeps the same factor-space stochastic-FRAMES updates
+ and the same noisy observations as the original QPT experiment. It replaces
+ the dense measurement and trace-preservation tensors with local operators,
+diff --git a/paper/experiments/qpt_generate_data.py b/paper/experiments/qpt_generate_data.py
+index 54d6653..9567629 100644
+--- a/paper/experiments/qpt_generate_data.py
++++ b/paper/experiments/qpt_generate_data.py
+@@ -196,6 +196,46 @@ def generate_compact_data(n_qubits, *, noise_std=0.05, channel_seed=0, noise_see
+                              truth_factor=truth, metadata=metadata)
+ 
+ 
++def generate_on_demand_data(n_qubits, *, noise_std=0.05, channel_seed=0, noise_seed=0,
++                            max_memory_bytes=DEFAULT_MAX_MEMORY_BYTES):
++    """Build only Haar truth and local operators for a fixed virtual noisy dataset."""
++    from .qpt_observation_noise import NOISE_GENERATOR, fixed_row_noise
++    n_qubits, d, dimension, count = _dimensions(n_qubits)
++    channel_seed = _integer(channel_seed, "channel_seed", 0)
++    noise_seed = _integer(noise_seed, "noise_seed", 0)
++    if channel_seed > np.iinfo(np.uint64).max:
++        raise ValueError("Channel seed must fit uint64.")
++    fixed_row_noise(np.zeros(1, dtype=np.int64), noise_seed, noise_std)
++    estimate = 12 * 16 * dimension + 2**20
++    if estimate > _integer(max_memory_bytes, "max_memory_bytes"):
++        raise ValueError(f"Truth generation estimate {estimate} exceeds max_memory_bytes={max_memory_bytes}.")
++    began = perf_counter()
++    basis, bank = standard_local_basis(), standard_local_measurements()
++    truth = np.ascontiguousarray(pauli_matrices_to_coefficients(
++        _haar_unitary(d, channel_seed)[None, :, :], basis, xp=np))
++    violation = float(np.linalg.norm(trace_preserving_residual(truth, basis, xp=np)))
++    if violation > 1e-10 * np.sqrt(d) or not np.isclose(np.vdot(truth, truth).real, d):
++        raise FloatingPointError("On-demand truth failed TP/trace validation.")
++    metadata = dict(
++        generator="qpt_on_demand_v1", source_kind="synthetic_on_demand",
++        verification="constructed", channel_model="haar_unitary", channel_seed=channel_seed,
++        truth_rank=1, truth_trace=float(np.vdot(truth, truth).real), truth_tp_violation=violation,
++        truth_factor_sha256=_array_sha256(truth), noise_generator=NOISE_GENERATOR,
++        noise_seed=noise_seed, noise_std=float(noise_std), noise_model="iid_additive_gaussian",
++        noise_realization="fixed_by_legacy_row_index; different from sequential PCG64 archives",
++        observation_formula="real(vdot(D_s, c c^H)) + fixed_row_noise(s)",
++        noise_clipped=False, shot_noise=False, legacy_observations_reused=False,
++        row_order=ROW_ORDER, virtual_observations=count, stored_observations=0,
++        resource_estimate_bytes=estimate, generation_seconds=perf_counter() - began,
++        numpy_version=np.__version__, python_version=platform.python_version(),
++        numerical_source_sha256={name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
++                                for name in ("qpt_generate_data.py", "qpt_observation_noise.py",
++                                             "qpt_structured_data.py", "qpt_structured_operators.py")},
++    )
++    return StructuredQPTData(n_qubits, bank, basis, truth_factor=truth,
++                             observation_mode="synthetic-noisy", metadata=metadata)
++
++
+ def main(argv=None):
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--n-qubits", type=int, required=True)
+@@ -206,6 +246,8 @@ def main(argv=None):
+     parser.add_argument("--max-observations", type=int, default=DEFAULT_MAX_OBSERVATIONS)
+     parser.add_argument("--max-memory-mib", type=float, default=512)
+     parser.add_argument("--save", type=Path, required=True, help="New compact NPZ; never overwrite an existing path.")
++    parser.add_argument("--observation-mode", choices=("stored", "synthetic-noisy"), default="stored",
++                        help="synthetic-noisy stores only truth/operators and a reproducible row-noise recipe.")
+     args = parser.parse_args(argv)
+     if not math.isfinite(args.max_memory_mib) or args.max_memory_mib <= 0:
+         parser.error("--max-memory-mib must be finite and positive.")
+@@ -213,7 +255,7 @@ def main(argv=None):
+                    batch_size=args.batch_size, max_observations=args.max_observations,
+                    max_memory_bytes=int(args.max_memory_mib * 2**20))
+     try:
+-        validated = _validate(args.n_qubits, **options)
++        validated = _validate(args.n_qubits, **options) if args.observation_mode == "stored" else _dimensions(args.n_qubits)
+     except ValueError as error:
+         parser.error(str(error))
+     # Do not resolve through a symlink at the destination, including a broken one.
+@@ -221,12 +263,16 @@ def main(argv=None):
+     if os.path.lexists(destination):
+         raise FileExistsError(f"Refusing to overwrite existing path: {destination}")
+     destination.parent.mkdir(parents=True, exist_ok=True)
+-    estimated_archive_bytes = 8 * validated[3] + 16 * validated[2] + 2**20
++    estimated_archive_bytes = (8 * validated[3] if args.observation_mode == "stored" else 0) + 16 * validated[2] + 2**20
+     if shutil.disk_usage(destination.parent).free < estimated_archive_bytes:
+         raise OSError("Insufficient free disk space for the uncompressed-sized compact archive estimate.")
+-    print(f"Generating {validated[3]} observations for n={args.n_qubits}; "
+-          f"estimated major-array storage={validated[-1] / 2**20:.2f} MiB", flush=True)
+-    data = generate_compact_data(args.n_qubits, **options)
++    print(f"Generating n={args.n_qubits}, mode={args.observation_mode}, virtual rows={validated[3]}", flush=True)
++    if args.observation_mode == "stored":
++        data = generate_compact_data(args.n_qubits, **options)
++    else:
++        data = generate_on_demand_data(args.n_qubits, noise_std=args.noise_std,
++                                       channel_seed=args.channel_seed, noise_seed=args.noise_seed,
++                                       max_memory_bytes=options["max_memory_bytes"])
+     # Publish only a complete archive, atomically and without clobbering a path
+     # created by another process while generation was running.
+     with tempfile.TemporaryDirectory(prefix=".qpt-generate-", dir=destination.parent) as temporary:
+@@ -235,9 +281,9 @@ def main(argv=None):
+         os.link(staged, destination)
+     print(json.dumps({
+         "status": "complete", "data": str(destination), "n_qubits": data.n_qubits,
+-        "observations": data.m, "observation_bytes": int(data.observations.nbytes),
++        "observations": data.m, "observation_bytes": int(data.observations.nbytes) if data.observations is not None else 0,
+         "truth_factor_sha256": data.metadata["truth_factor_sha256"],
+-        "observations_sha256": data.metadata["observations_sha256"],
++        "observations_sha256": data.metadata.get("observations_sha256"),
+         "generation_seconds": data.metadata["generation_seconds"],
+         "generator_process_peak_rss_bytes": process_peak_rss_bytes(),
+     }, indent=2, allow_nan=False), flush=True)
+diff --git a/paper/experiments/qpt_structured_data.py b/paper/experiments/qpt_structured_data.py
+index 59c243e..cad5356 100644
+--- a/paper/experiments/qpt_structured_data.py
++++ b/paper/experiments/qpt_structured_data.py
+@@ -123,8 +123,8 @@ class StructuredQPTData:
+             raise ValueError("local_basis must be Hilbert-Schmidt orthonormal.")
+         self.local_measurements = np.asarray(bank, dtype=np.complex128)
+         self.local_basis = np.asarray(basis, dtype=np.complex128)
+-        if self.observation_mode not in ("stored", "noiseless"):
+-            raise ValueError("observation_mode must be 'stored' or 'noiseless'.")
++        if self.observation_mode not in ("stored", "noiseless", "synthetic-noisy"):
++            raise ValueError("observation_mode must be 'stored', 'noiseless' or 'synthetic-noisy'.")
+         if self.observations is not None:
+             observations = _numeric_array(self.observations, "observations")
+             if observations.shape != (self.m,):
+@@ -144,15 +144,23 @@ class StructuredQPTData:
+             self.truth_factor = np.asarray(truth, dtype=np.complex128)
+         if self.observation_mode == "stored" and self.observations is None:
+             raise ValueError("stored mode requires observations.")
+-        if self.observation_mode == "noiseless":
++        if self.observation_mode in ("noiseless", "synthetic-noisy"):
+             if self.truth_factor is None:
+-                raise ValueError("noiseless mode requires truth_factor.")
++                raise ValueError("On-demand mode requires truth_factor.")
+             if self.observations is not None:
+-                raise ValueError("noiseless mode must not include stored observations.")
++                raise ValueError("On-demand mode must not include stored observations.")
+         if not isinstance(self.metadata, dict):
+             raise ValueError("metadata must be a JSON-compatible dictionary.")
+         # Round-tripping also rejects arrays, arbitrary objects, and NaN metadata.
+         self.metadata = json.loads(json.dumps(self.metadata, allow_nan=False))
++        if self.observation_mode == "synthetic-noisy":
++            from .qpt_observation_noise import NOISE_GENERATOR, fixed_row_noise
++            if self.metadata.get("noise_generator") != NOISE_GENERATOR:
++                raise ValueError("Unknown on-demand noise generator.")
++            if self.m > np.iinfo(np.int64).max:
++                raise ValueError("On-demand fixed row noise requires int64 row indices.")
++            fixed_row_noise(np.zeros(1, dtype=np.int64), self.metadata.get("noise_seed"),
++                            self.metadata.get("noise_std", float("nan")))
+ 
+     @property
+     def m(self):
+@@ -243,7 +251,17 @@ class StructuredQPTData:
+         if self.observation_mode == "stored":
+             return self.observations[self.symbols_to_indices(symbols)]
+         applied = self.apply_measurements(self.truth_factor, symbols)
+-        return np.einsum("kr,bkr->b", self.truth_factor.conj(), applied).real
++        targets = np.einsum("kr,bkr->b", self.truth_factor.conj(), applied).real
++        return targets + self.noise_for_symbols(symbols)
++
++    def noise_for_symbols(self, symbols):
++        """Small host batch of fixed noise; no truth evaluation or JAX import."""
++        symbols = self._validate_symbols(symbols)
++        if self.observation_mode != "synthetic-noisy":
++            return np.zeros(symbols.shape[0], dtype=np.float64)
++        from .qpt_observation_noise import fixed_row_noise
++        return fixed_row_noise(self.symbols_to_indices(symbols), self.metadata["noise_seed"],
++                               self.metadata["noise_std"])
+ 
+     def save_npz(self, path):
+         """Save portable arrays and JSON metadata; no pickled Python objects."""
+diff --git a/paper/experiments/qpt_structured_operators.py b/paper/experiments/qpt_structured_operators.py
+index 3b87fd1..1a74462 100644
+--- a/paper/experiments/qpt_structured_operators.py
++++ b/paper/experiments/qpt_structured_operators.py
+@@ -207,6 +207,86 @@ def rank_one_measurement_loss_and_gradient(
+     return loss, gradient
+ 
+ 
++def product_state_measurement_bank(local_measurements, local_basis, *, rtol=1e-10, atol=1e-12):
++    """Verify sensing vectors are rank-one matrices in an orthonormal basis.
++
++    If ``h`` is a coefficient sensing vector, its basis transform must be
++    ``Q = l r^H``. Then ``h^H u = l^H K r`` for the transformed factor K.
++    This identity derives the conjugations from the existing sensing bank;
++    it does not replace its convention with an assumed Born convention.
++    Return (left, right, basis), or None when the factorization is invalid.
++    """
++    basis = np.asarray(local_basis, dtype=np.complex128)
++    if basis.shape != (4, 2, 2):
++        raise ValueError("local_basis must have shape (4, 2, 2).")
++    flat = basis.reshape(4, 4)
++    if not np.allclose(flat.conj() @ flat.T, np.eye(4), rtol=rtol, atol=atol):
++        return None
++    vectors = rank_one_measurement_vectors(local_measurements, rtol=rtol, atol=atol)
++    if vectors is None:
++        return None
++    matrices = np.einsum("bk,kij->bij", vectors, basis)
++    left, singular, right_h = np.linalg.svd(matrices)
++    left = left[:, :, 0] * np.sqrt(singular[:, :1])
++    right = right_h[:, 0, :].conj() * np.sqrt(singular[:, :1])
++    if not np.allclose(left[:, :, None] * right[:, None, :].conj(), matrices,
++                       rtol=rtol, atol=atol):
++        return None
++    return left, right, basis
++
++
++def _product_states(symbols, local_states, xp):
++    product = local_states[symbols[:, 0]]
++    for slot in range(1, symbols.shape[1]):
++        product = (product[:, :, None] * local_states[symbols[:, slot]][:, None, :]).reshape(
++            (symbols.shape[0], -1))
++    return product
++
++
++def _product_state_amplitudes(factor, symbols, bank, xp):
++    factor, symbols = xp.asarray(factor), xp.asarray(symbols)
++    n = _factor_qubits(factor)
++    if symbols.ndim != 2 or symbols.shape[1] != n or symbols.shape[0] < 1:
++        raise ValueError("symbols must have nonempty shape (batch, n_qubits).")
++    if not np.issubdtype(symbols.dtype, np.integer):
++        raise TypeError("symbols must contain integers.")
++    if xp is np and (np.any(symbols < 0) or np.any(symbols >= 24)):
++        raise IndexError("measurement symbols must be in [0, 24).")
++    left, right, basis = (xp.asarray(item) for item in bank)
++    if left.shape != (24, 2) or right.shape != (24, 2):
++        raise ValueError("product-state bank must contain two (24, 2) arrays.")
++    left, right = _product_states(symbols, left, xp), _product_states(symbols, right, xp)
++    kraus = pauli_coefficients_to_matrices(factor, basis, xp=xp)
++    applied = xp.matmul(kraus, right.T)
++    amplitudes = xp.einsum("bi,rib->br", xp.conj(left), applied)
++    return left, right, amplitudes
++
++
++def product_state_measurement_values(factor, symbols, bank, *, xp=np):
++    """Same sensing values with O(rank*d**2 + batch*rank*d) workspace."""
++    _, _, amplitudes = _product_state_amplitudes(factor, symbols, bank, xp)
++    return xp.sum(xp.real(xp.conj(amplitudes) * amplitudes), axis=1)
++
++
++def product_state_measurement_loss_and_gradient(factor, symbols, observations, bank, *, xp=np):
++    """Use matrix products instead of materializing batch sensing vectors.
++
++    The objective and real-Frobenius gradient match the rank-one coefficient
++    backend. Arithmetic remains O(batch*rank*d**2), while workspace no longer
++    scales as batch*d**2. The Pauli adjoint returns the original coordinates.
++    """
++    left, right, amplitudes = _product_state_amplitudes(factor, symbols, bank, xp)
++    observations = xp.asarray(observations)
++    if observations.shape != (amplitudes.shape[0],):
++        raise ValueError("observations must have shape (batch,).")
++    predicted = xp.sum(xp.real(xp.conj(amplitudes) * amplitudes), axis=1)
++    residual = predicted - observations
++    weights = (residual[:, None] * amplitudes).T
++    kraus_gradient = (2.0 / amplitudes.shape[0]) * xp.matmul(
++        left.T, weights[:, :, None] * xp.conj(right)[None, :, :])
++    return 0.5 * xp.mean(residual**2), pauli_matrices_to_coefficients(kraus_gradient, bank[2], xp=xp)
++
++
+ def _transform_axis(tensor, transform, axis, xp):
+     tensor = xp.moveaxis(tensor, axis, -1)
+     tensor = xp.matmul(tensor, xp.swapaxes(transform, -1, -2))
+diff --git a/paper/experiments/quantum_process_tomography_structured_jax.py b/paper/experiments/quantum_process_tomography_structured_jax.py
+index 6b23955..1e3dd2c 100644
+--- a/paper/experiments/quantum_process_tomography_structured_jax.py
++++ b/paper/experiments/quantum_process_tomography_structured_jax.py
+@@ -9,9 +9,12 @@ Scans return scalar gaps, not an iterate history. Metrics use a fixed sample
+ from __future__ import annotations
+ 
+ import argparse
++from concurrent.futures import ThreadPoolExecutor
++from contextlib import nullcontext
+ from dataclasses import dataclass, fields
+ import hashlib
+ import json
++import os
+ from pathlib import Path
+ from time import perf_counter
+ 
+@@ -28,6 +31,8 @@ from .qpt_structured_operators import (
+     measurement_loss_and_gradient, measurement_values,
+     trace_preserving_loss_and_gradient, rank_one_measurement_vectors,
+     rank_one_measurement_values, rank_one_measurement_loss_and_gradient,
++    product_state_measurement_bank, product_state_measurement_values,
++    product_state_measurement_loss_and_gradient,
+ )
+ 
+ 
+@@ -94,16 +99,62 @@ def _executable_memory_estimate(executable):
+     )) - getattr(analysis, "alias_size_in_bytes", 0))
+ 
+ 
+-def _build_scan(jax, jnp, tau, noiseless, rank_one=False):
+-    values_fn = rank_one_measurement_values if rank_one else measurement_values
+-    gradient_fn = rank_one_measurement_loss_and_gradient if rank_one else measurement_loss_and_gradient
++def _array_digest(array):
++    array = np.ascontiguousarray(array)
++    return hashlib.sha256(memoryview(array).cast("B")).hexdigest()
++
++
++def _data_digest(data):
++    digest = hashlib.sha256()
++    for value in (data.local_measurements, data.local_basis, data.truth_factor, data.observations):
++        if value is not None:
++            array = np.ascontiguousarray(value)
++            digest.update(str((array.shape, str(array.dtype))).encode())
++            digest.update(memoryview(array).cast("B"))
++    digest.update(json.dumps({key: data.metadata.get(key) for key in
++                             ("noise_generator", "noise_seed", "noise_std")}, sort_keys=True).encode())
++    digest.update(f"{data.n_qubits}:{data.observation_mode}".encode())
++    return digest.hexdigest()
++
++
++def load_structured_restart(path):
++    with np.load(path, allow_pickle=False) as archive:
++        if set(archive.files) != {"factor", "gradient_estimate", "metadata_json"}:
++            raise ValueError("Unexpected structured restart fields.")
++        metadata = json.loads(str(archive["metadata_json"].item()))
++        if metadata.get("format") != "qpt_structured_restart" or metadata.get("schema_version") != 1:
++            raise ValueError("Unsupported structured restart format/version.")
++        return dict(metadata=metadata, factor=archive["factor"].copy(),
++                    gradient_estimate=archive["gradient_estimate"].copy())
++
++
++def save_structured_restart(path, factor, estimate, metadata):
++    """Atomically replace this run's rolling restart, retaining bounded state."""
++    path = Path(path)
++    path.parent.mkdir(parents=True, exist_ok=True)
++    temporary = path.with_name(path.name + f".{os.getpid()}.tmp")
++    with temporary.open("xb") as handle:
++        np.savez(handle, factor=factor, gradient_estimate=estimate,
++                 metadata_json=np.asarray(json.dumps(metadata, sort_keys=True, allow_nan=False)))
++    os.replace(temporary, path)
++
++
++def _measurement_functions(rank_one=False, product_state=False):
++    if product_state:
++        return product_state_measurement_values, product_state_measurement_loss_and_gradient
++    return ((rank_one_measurement_values, rank_one_measurement_loss_and_gradient)
++            if rank_one else (measurement_values, measurement_loss_and_gradient))
++
++
++def _build_scan(jax, jnp, tau, noiseless, rank_one=False, product_state=False):
++    values_fn, gradient_fn = _measurement_functions(rank_one, product_state)
+ 
+     def scan(state, start, symbols, observations, rho, beta, gamma, bank, basis, truth):
+         def step(carry, inputs):
+             factor, previous = carry
+             iteration, batch, targets, weight, smoothing, step_size = inputs
+             if noiseless:
+-                targets = values_fn(truth, batch, bank, xp=jnp)
++                targets = values_fn(truth, batch, bank, xp=jnp) + targets
+             _, sampled = gradient_fn(factor, batch, targets, bank, xp=jnp)
+             estimate = jax.lax.cond(
+                 iteration == 0, lambda: sampled,
+@@ -131,6 +182,7 @@ def run_qpt_structured_jax(
+     metric_samples=512, metric_batch_size=32, metric_seed=12345,
+     store_checkpoints=False, device="auto", device_index=0, precision="64",
+     warmup=False, show_progress=True, measurement_backend="auto",
++    restart_path=None, resume=None, fidelity_target=None, prefetch=False,
+ ):
+     """Run structured FRAMES with host-resident observations and bounded scans.
+ 
+@@ -156,29 +208,51 @@ def run_qpt_structured_jax(
+         raise ValueError("tau and beta0 must be finite and positive.")
+     if metric_mode not in {"sampled", "full"}:
+         raise ValueError("metric_mode must be sampled or full.")
+-    if measurement_backend not in {"auto", "tensor", "rank-one"}:
+-        raise ValueError("measurement_backend must be auto, tensor or rank-one.")
++    if measurement_backend not in {"auto", "tensor", "rank-one", "product-state"}:
++        raise ValueError("measurement_backend must be auto, tensor, rank-one or product-state.")
+     vectors = rank_one_measurement_vectors(data.local_measurements)
+     if measurement_backend == "rank-one" and vectors is None:
+         raise ValueError("rank-one backend requires a verified rank-one PSD bank.")
+     use_rank_one = measurement_backend != "tensor" and vectors is not None
++    use_product_state = measurement_backend == "product-state"
++    product_bank = product_state_measurement_bank(data.local_measurements, data.local_basis) if use_product_state else None
++    if use_product_state and product_bank is None:
++        raise ValueError("product-state backend requires verified product states and an orthonormal basis.")
+     if metric_mode == "full" and data.m > np.iinfo(np.int64).max:
+         raise ValueError("Full enumeration exceeds int64; use sampled metrics.")
+-    for flag, name in ((store_checkpoints, "store_checkpoints"), (warmup, "warmup"), (show_progress, "show_progress")):
++    for flag, name in ((store_checkpoints, "store_checkpoints"), (warmup, "warmup"),
++                       (show_progress, "show_progress"), (prefetch, "prefetch")):
+         if not isinstance(flag, (bool, np.bool_)):
+             raise TypeError(f"{name} must be boolean.")
+     checkpoints = checkpoint_iterations(n_steps, metrics_frequency)
+     rho, beta, gamma = _materialize_schedules(
+         n_steps, beta0, rho_schedule, smoothing_schedule, step_size_schedule,
+     )
++    if fidelity_target is not None:
++        if not np.isfinite(fidelity_target) or not 0 < fidelity_target <= 1:
++            raise ValueError("fidelity_target must be in (0, 1].")
++        if data.truth_factor is None or data.truth_factor.shape[1] != 1:
++            raise ValueError("fidelity_target requires rank-one synthetic truth.")
++    restart = load_structured_restart(resume) if resume is not None else None
++    start_step = 0
++    if restart is not None:
++        if x0 is not None:
++            raise ValueError("resume and x0 cannot be combined.")
++        start_step = restart["metadata"]["completed_steps"]
++        if not isinstance(start_step, int) or not 0 <= start_step < n_steps:
++            raise ValueError("Resume step must be below the requested total n_steps.")
+     rng = np.random.default_rng(sampling_seed)
++    if restart is not None:
++        rng.bit_generator.state = restart["metadata"]["sampling_rng_state"]
+     metric_rng = np.random.default_rng(metric_seed)
+     metric_symbols = (
+         data.sample_symbols(metric_rng, metric_samples)
+         if metric_mode == "sampled" else np.empty((0, data.n_qubits), dtype=np.int32)
+     )
+     x0_provided = x0 is not None
+-    if x0 is None:
++    if restart is not None:
++        x0 = np.concatenate((restart["factor"].real.ravel(), restart["factor"].imag.ravel()))
++    elif x0 is None:
+         x0 = make_factor_initial_point(data, rank, initialization_seed)
+     factor0 = unpack_factor(np.asarray(x0), data.process_dimension, rank)
+     if not np.all(np.isfinite(factor0)) or np.linalg.norm(factor0, ord=2) > tau + 1e-10:
+@@ -191,43 +265,58 @@ def run_qpt_structured_jax(
+     selected = select_jax_device(device, device_index)
+     complex_dtype = np.complex128 if precision == "64" else np.complex64
+     real_dtype = np.float64 if precision == "64" else np.float32
+-    noiseless = data.observation_mode == "noiseless"
++    restart_configuration = (dict(data_sha256=_data_digest(data), rank=rank, tau=float(tau),
++                                  batch_size=batch_size, precision=precision, measurement_backend=measurement_backend)
++                             if restart_path is not None or restart is not None else None)
++    if restart is not None:
++        if restart["metadata"]["configuration"] != restart_configuration:
++            raise ValueError("Restart data or optimizer configuration does not match.")
++        hashes = [_array_digest(values[:start_step]) for values in (rho, beta, gamma)]
++        if restart["metadata"]["schedule_prefix_sha256"] != hashes:
++            raise ValueError("Restart schedule prefix does not match.")
++        if (restart["gradient_estimate"].shape != factor0.shape
++                or not np.all(np.isfinite(restart["gradient_estimate"]))):
++            raise ValueError("Invalid restart gradient estimate.")
++    # In generated modes, observations carries only fixed noise (or zeros).
++    noiseless = data.observation_mode != "stored"
+     setup_seconds = perf_counter() - started_setup
+     start_wall = perf_counter()
+     compile_seconds = optimizer_total = metric_seconds = transfer_seconds = 0.0
+     warmup_seconds = 0.0
++    host_preparation_seconds = 0.0
+     plan_digest = hashlib.sha256()
+     scalar_gaps = np.empty(n_steps, dtype=real_dtype)
+     stored_factors = []
+     rows = []
++    recorded_steps = []
+     times = []
+     compiled = {}
+     executable_memory_bytes = None
+     did_warmup = False
+ 
+-    with jax.default_device(selected):
++    with jax.default_device(selected), (ThreadPoolExecutor(max_workers=1) if prefetch else nullcontext(None)) as worker:
+         def put(value, dtype):
+             return jax.device_put(np.asarray(value, dtype=dtype), selected)
+ 
+         started_initial_transfer = perf_counter()
+-        bank = put(vectors if use_rank_one else data.local_measurements, complex_dtype)
++        bank = (tuple(put(item, complex_dtype) for item in product_bank) if use_product_state
++                else put(vectors if use_rank_one else data.local_measurements, complex_dtype))
+         basis = put(data.local_basis, complex_dtype)
+         truth = put(
+             data.truth_factor if data.truth_factor is not None
+             else np.empty((data.process_dimension, 0)), complex_dtype,
+         )
+         factor = put(factor0, complex_dtype)
+-        state = (factor, jnp.zeros_like(factor))
++        state = (factor, put(restart["gradient_estimate"], complex_dtype) if restart is not None else jnp.zeros_like(factor))
+         jax.block_until_ready((bank, basis, truth, state))
+         initial_transfer_seconds = perf_counter() - started_initial_transfer
+-        scan = _build_scan(jax, jnp, float(tau), noiseless, use_rank_one)
+-        values_fn = rank_one_measurement_values if use_rank_one else measurement_values
+-        gradient_fn = rank_one_measurement_loss_and_gradient if use_rank_one else measurement_loss_and_gradient
++        scan = _build_scan(jax, jnp, float(tau), noiseless, use_rank_one, use_product_state)
++        values_fn, gradient_fn = _measurement_functions(use_rank_one, use_product_state)
+ 
+         @jax.jit
+         def metric_batch(factor, symbols, observations, bank, truth):
+             if noiseless:
+-                observations = values_fn(truth, symbols, bank, xp=jnp)
++                observations = values_fn(truth, symbols, bank, xp=jnp) + observations
+             return gradient_fn(factor, symbols, observations, bank, xp=jnp)
+ 
+         @jax.jit
+@@ -259,7 +348,7 @@ def run_qpt_structured_jax(
+                 else:
+                     symbols = data.indices_to_symbols(np.arange(offset, offset + count, dtype=np.int64))
+                 observations = (
+-                    np.zeros(count, dtype=real_dtype) if noiseless
++                    data.noise_for_symbols(symbols) if noiseless
+                     else data.observations_for_symbols(symbols)
+                 )
+                 batch_loss, batch_gradient = metric_batch(
+@@ -275,23 +364,51 @@ def run_qpt_structured_jax(
+             if not np.all(np.isfinite(values[:4])):
+                 raise FloatingPointError(f"Nonfinite checkpoint metrics at step {step}.")
+             rows.append(values)
++            recorded_steps.append(step)
+             times.append(optimizer_total)
+             if store_checkpoints:
+                 stored_factors.append(np.asarray(jax.device_get(factor)))
+             metric_seconds += perf_counter() - started
++            if restart_path is not None:
++                saved_factor, saved_estimate = (np.asarray(jax.device_get(item)) for item in state)
++                save_structured_restart(restart_path, saved_factor, saved_estimate, dict(
++                    format="qpt_structured_restart", schema_version=1, completed_steps=step,
++                    configuration=restart_configuration, sampling_rng_state=rng.bit_generator.state,
++                    schedule_prefix_sha256=[_array_digest(values[:step]) for values in (rho, beta, gamma)],
++                    fidelity=float(rows[-1][4]) if np.isfinite(rows[-1][4]) else None,
++                    tp_violation=float(rows[-1][1]),
++                    initialization_seed=initialization_seed, sampling_seed=sampling_seed,
++                    resume_parent=str(resume) if resume is not None else None,
++                ))
++
++        record(start_step)
++        completed = start_step
++
++        def prepare_batch(length):
++            began = perf_counter()
++            symbols = data.sample_symbols(rng, length * batch_size).reshape(length, batch_size, data.n_qubits)
++            observations = (
++                data.noise_for_symbols(symbols.reshape(-1, data.n_qubits)).reshape(length, batch_size) if noiseless
++                else data.observations_for_symbols(symbols.reshape(-1, data.n_qubits)).reshape(length, batch_size)
++            )
++            return symbols, observations, perf_counter() - began
+ 
+-        record(0)
+-        completed = 0
+-        for checkpoint in checkpoints[1:]:
++        for checkpoint in checkpoints[checkpoints > start_step]:
++            if fidelity_target is not None and rows[-1][4] >= fidelity_target:
++                break
++            pending = None
+             while completed < checkpoint:
+                 length = min(chunk_steps, int(checkpoint) - completed)
+                 transfer_started = perf_counter()
+-                symbols = data.sample_symbols(rng, length * batch_size).reshape(length, batch_size, data.n_qubits)
++                symbols, observations, prepared_seconds = (pending.result() if pending is not None else prepare_batch(length))
++                host_preparation_seconds += prepared_seconds
++                pending = None
++                # Never read beyond a checkpoint: its RNG state must describe
++                # exactly the samples already consumed by the optimizer.
++                remaining = int(checkpoint) - completed - length
++                if worker is not None and remaining > 0:
++                    pending = worker.submit(prepare_batch, min(chunk_steps, remaining))
+                 plan_digest.update(np.asarray(symbols, dtype=np.int32).tobytes())
+-                observations = (
+-                    np.zeros((length, batch_size), dtype=real_dtype) if noiseless
+-                    else data.observations_for_symbols(symbols.reshape(-1, data.n_qubits)).reshape(length, batch_size)
+-                )
+                 args = (
+                     state, put(completed, np.int32), put(symbols, np.int32),
+                     put(observations, real_dtype), put(rho[completed:completed+length], real_dtype),
+@@ -327,7 +444,7 @@ def run_qpt_structured_jax(
+                     raise FloatingPointError("Nonfinite estimated gaps during structured QPT.")
+             record(int(checkpoint))
+             if show_progress:
+-                print(f"step {checkpoint}/{n_steps}: loss={rows[-1][0]:.6g}, TP={rows[-1][1]:.6g}, optimizer={optimizer_total:.3f}s")
++                print(f"step {checkpoint}/{n_steps}: fidelity={rows[-1][4]:.9g}, loss={rows[-1][0]:.6g}, TP={rows[-1][1]:.6g}, optimizer={optimizer_total:.3f}s", flush=True)
+ 
+         final_factor, estimate = (np.asarray(jax.device_get(value)) for value in state)
+     if not np.all(np.isfinite(final_factor)) or not np.all(np.isfinite(estimate)):
+@@ -340,36 +457,47 @@ def run_qpt_structured_jax(
+         "device_kind": selected.device_kind, "jax_version": jax.__version__,
+         "jaxlib_version": jaxlib.__version__, "numpy_version": np.__version__,
+         "precision": precision, "rank": rank, "tau": float(tau), "n_qubits": data.n_qubits,
+-        "n_steps": n_steps, "batch_size": batch_size, "chunk_steps": chunk_steps,
++        "n_steps": completed, "requested_n_steps": n_steps,
++        "start_step": start_step, "segment_steps": completed-start_step,
++        "resume_from": str(resume) if resume is not None else None,
++        "fidelity_target": fidelity_target,
++        "fidelity_target_reached": bool(fidelity_target is not None and rows[-1][4] >= fidelity_target),
++        "batch_size": batch_size, "chunk_steps": chunk_steps,
+         "initialization_seed": None if x0_provided else int(initialization_seed),
+         "x0_provided": x0_provided,
+         "initial_factor_sha256": hashlib.sha256(np.ascontiguousarray(factor0).tobytes()).hexdigest(),
+         "initial_factor_dtype": str(factor0.dtype),
+         "sampling_seed": int(sampling_seed),
+         "batch_symbols_sha256": plan_digest.hexdigest(), "metric_seed": int(metric_seed),
++        "batch_symbols_hash_scope": "current_segment",
+         "metric_mode": metric_mode, "metric_samples": metric_samples if metric_mode == "sampled" else data.m,
+         "metric_batch_size": metric_batch_size, "metrics_frequency": int(metrics_frequency),
+         "gap_is_exact": metric_mode == "full", "observation_mode": data.observation_mode,
+-        "measurement_backend": "rank-one" if use_rank_one else "tensor",
+-        "observation_count": data.m, "sampled_measurements": n_steps * batch_size,
++        "measurement_backend": "product-state" if use_product_state else ("rank-one" if use_rank_one else "tensor"),
++        "observation_count": data.m, "sampled_measurements": (completed-start_step) * batch_size,
++        "target_evaluation": "on_device_truth_plus_fixed_host_noise" if noiseless else "stored_host_lookup",
++        "noise_generator": data.metadata.get("noise_generator"),
++        "noise_seed": data.metadata.get("noise_seed"), "noise_std": data.metadata.get("noise_std"),
+         "optimizer_seconds": float(optimizer_total), "compile_seconds": float(compile_seconds),
+         "sampling_transfer_seconds": float(transfer_seconds), "metric_seconds": float(metric_seconds),
++        "prefetch": bool(prefetch), "host_preparation_seconds": float(host_preparation_seconds),
++        "host_preparation_timing_note": "May overlap GPU work when prefetch is enabled; do not add phase totals.",
+         "setup_seconds": float(setup_seconds), "initial_transfer_seconds": float(initial_transfer_seconds),
+         "warmup_seconds": float(warmup_seconds),
+         "wall_seconds": float(perf_counter() - start_wall), "warmup": bool(warmup),
+         "store_checkpoints": bool(store_checkpoints),
+         "compiled_memory_estimate_bytes": executable_memory_bytes,
+         "operator_bank_bytes": int(data.local_measurements.nbytes + data.local_basis.nbytes),
+-        "device_operator_bytes": int(bank.nbytes + basis.nbytes),
++        "device_operator_bytes": int(sum(item.nbytes for item in bank) + basis.nbytes) if use_product_state else int(bank.nbytes + basis.nbytes),
+         "host_observation_bytes": int(data.observations.nbytes) if data.observations is not None else 0,
+         "data_metadata": data.metadata,
+     }
+     return StructuredQPTResult(
+-        metadata, final_factor, estimate, checkpoints,
++        metadata, final_factor, estimate, np.asarray(recorded_steps, dtype=int),
+         np.stack(stored_factors) if store_checkpoints else np.empty((0,) + final_factor.shape, dtype=complex_dtype),
+-        beta[np.minimum(checkpoints, n_steps - 1)], np.asarray(times),
++        beta[np.minimum(recorded_steps, n_steps - 1)], np.asarray(times),
+         metrics[:, 0], metrics[:, 1], metrics[:, 2], metrics[:, 3], metrics[:, 4],
+-        scalar_gaps, rho, beta, gamma, metric_symbols,
++        scalar_gaps[start_step:completed], rho[start_step:completed], beta[start_step:completed], gamma[start_step:completed], metric_symbols,
+     )
+ 
+ 
+@@ -427,7 +555,7 @@ def main(argv=None):
+     parser.add_argument("--metric-samples", type=int, default=512)
+     parser.add_argument("--metric-batch-size", type=int, default=32)
+     parser.add_argument("--metric-seed", type=int, default=12345)
+-    parser.add_argument("--measurement-backend", choices=("auto", "tensor", "rank-one"), default="auto")
++    parser.add_argument("--measurement-backend", choices=("auto", "tensor", "rank-one", "product-state"), default="auto")
+     parser.add_argument("--initialization-seed", type=int, default=0)
+     parser.add_argument("--sampling-seed", type=int, default=0)
+     parser.add_argument("--device", choices=("auto", "cpu", "gpu", "tpu"), default="auto")
+@@ -435,6 +563,10 @@ def main(argv=None):
+     parser.add_argument("--precision", choices=("64", "32"), default="64")
+     parser.add_argument("--store-checkpoints", action="store_true")
+     parser.add_argument("--warmup", action="store_true", help="Execute one extra chunk outside optimizer timing.")
++    parser.add_argument("--restart-path", type=Path, help="Atomically update a rolling factor/momentum/RNG restart at checkpoints.")
++    parser.add_argument("--resume", type=Path, help="Continue a validated restart; --steps is the new total iteration target.")
++    parser.add_argument("--fidelity-target", type=float, help="Stop at a saved checkpoint reaching this synthetic-truth fidelity.")
++    parser.add_argument("--prefetch", action="store_true", help="Prepare one host chunk ahead while the GPU executes.")
+     for name, scale, offset, exponent in (("rho", 4.0, 8.0, 2.0/3.0), ("smoothing", 10.0, 1.0, 0.25), ("step", 1.0, 1.0, 0.5)):
+         parser.add_argument(f"--{name}-scale", type=float, default=scale)
+         parser.add_argument(f"--{name}-offset", type=float, default=offset)
+@@ -458,6 +590,8 @@ def main(argv=None):
+         device=args.device, device_index=args.device_index, precision=args.precision,
+         store_checkpoints=args.store_checkpoints, warmup=args.warmup, show_progress=not args.quiet,
+         measurement_backend=args.measurement_backend,
++        restart_path=args.restart_path, resume=args.resume, fidelity_target=args.fidelity_target,
++        prefetch=args.prefetch,
+     )
+     save_structured_result(args.save, result)
+     if args.plot:
+diff --git a/scripts/benchmark_qpt_structured.py b/scripts/benchmark_qpt_structured.py
+index 978ba85..dd07eb7 100644
+--- a/scripts/benchmark_qpt_structured.py
++++ b/scripts/benchmark_qpt_structured.py
+@@ -39,6 +39,8 @@ NUMERICAL_SOURCE_FILES = (
+     "paper/experiments/quantum_process_tomography_jax.py",
+     "paper/experiments/quantum_process_tomography_structured_jax.py",
+     "paper/experiments/qpt_benchmark_resources.py",
++    "paper/experiments/qpt_observation_noise.py",
++    "paper/experiments/qpt_generate_data.py",
+ )
+ SCHEDULER_ENVIRONMENT_KEYS = ("SLURM_JOB_ID", "SLURM_ARRAY_JOB_ID", "SLURM_ARRAY_TASK_ID", "SLURM_CPUS_PER_TASK")
+ 
+@@ -57,6 +59,8 @@ class BenchmarkParser(argparse.ArgumentParser):
+ 
+ def parser():
+     result = BenchmarkParser(description=__doc__)
++    result.add_argument("--allow-synthetic-noisy", action="store_true",
++                        help="Explicitly admit virtual fixed-noise synthetic data with no stored observations.")
+     source = result.add_mutually_exclusive_group(required=True)
+     source.add_argument("--h5", type=Path, help="Legacy HDF5 to convert and compare (default backends: dense structured).")
+     source.add_argument("--data", type=Path, help="Existing compact NPZ; structured-only, with no HDF5 access or conversion.")
+@@ -72,6 +76,7 @@ def parser():
+     result.add_argument("--tau", type=float, default=10.0)
+     result.add_argument("--batch-size", type=int, default=32)
+     result.add_argument("--chunk-steps", type=int, default=100)
++    result.add_argument("--prefetch", action="store_true", help="Prepare one structured host chunk ahead of GPU execution.")
+     result.add_argument("--metrics-every", type=int, default=100)
+     result.add_argument("--metric-mode", choices=("sampled", "full"),
+                         help="Default: full with --h5, sampled with --data.")
+@@ -82,7 +87,7 @@ def parser():
+     result.add_argument("--sampling-seed", type=int, default=0)
+     result.add_argument("--repeats", type=int, default=3)
+     result.add_argument("--backends", nargs="+", choices=("dense", "structured"))
+-    result.add_argument("--measurement-backend", choices=("auto", "tensor", "rank-one"), default="auto")
++    result.add_argument("--measurement-backend", choices=("auto", "tensor", "rank-one", "product-state"), default="auto")
+     result.add_argument("--rtol", type=float, default=1e-10, help="HDF5 operator-verification relative tolerance.")
+     result.add_argument("--atol", type=float, default=1e-12, help="HDF5 operator-verification absolute tolerance.")
+     result.add_argument("--allocator", choices=("grow", "default"), default="grow",
+@@ -233,7 +238,8 @@ def run_worker(args):
+         started = perf_counter()
+         data = (QPTData.from_hdf5(args.h5) if args.worker == "dense"
+                 else StructuredQPTData.load_npz(args.compact_data or args.data))
+-        if args.data is not None and data.observation_mode != "stored":
++        if args.data is not None and data.observation_mode != "stored" and not (
++                args.allow_synthetic_noisy and data.observation_mode == "synthetic-noisy"):
+             raise ValueError("Compact benchmark requires stored observations, including their fixed noise realization.")
+         row["load_seconds"] = phases["data_load_seconds"] = perf_counter() - started
+         runner_started = perf_counter()
+@@ -281,7 +287,8 @@ def run_worker(args):
+             result = run_qpt_structured_jax(
+                 data, chunk_steps=args.chunk_steps, metric_mode=args.metric_mode,
+                 metric_samples=args.metric_samples, metric_batch_size=args.metric_batch_size,
+-                metric_seed=args.metric_seed, measurement_backend=args.measurement_backend, **common_options(args),
++                metric_seed=args.metric_seed, measurement_backend=args.measurement_backend,
++                prefetch=args.prefetch, **common_options(args),
+             )
+             runner_finished = perf_counter()
+             meta = result.metadata
+@@ -294,6 +301,7 @@ def run_worker(args):
+                 batch_symbols_sha256=meta["batch_symbols_sha256"],
+                 compiled_memory_estimate_bytes=meta["compiled_memory_estimate_bytes"],
+                 sampling_transfer_seconds=meta["sampling_transfer_seconds"],
++                prefetch=meta["prefetch"], host_preparation_seconds=meta["host_preparation_seconds"],
+                 measurement_backend=meta["measurement_backend"],
+                 final_measurement_loss=finite_scalar(result.measurement_loss[-1], "measurement loss"),
+                 final_smoothed_gap=finite_scalar(result.smoothed_gap[-1], "smoothed gap"),
+@@ -372,7 +380,7 @@ def memory_estimates(data, args):
+         "dense_scan_iterate_history_device_bytes": args.steps * n * args.rank * complex_bytes,
+         "dense_host_iterate_history_bytes": args.steps * n * args.rank * complex_bytes,
+         "dense_history_note": "one history only; native warmup/history copies can coexist",
+-        "structured_host_observation_bytes": int(data.observations.nbytes),
++        "structured_host_observation_bytes": int(data.observations.nbytes) if data.observations is not None else 0,
+         "structured_full_local_bank_device_bytes": (24 * 4 * 4 + 4 * 2 * 2) * complex_bytes,
+         "factor_device_bytes": n * args.rank * complex_bytes, "structured_checkpoint_factor_bytes": 0,
+         "structured_host_scalar_traces_scale": "O(steps), not O(steps * process_dimension * rank)",
+@@ -596,7 +604,8 @@ def main(argv=None):
+             started = perf_counter()
+             data = StructuredQPTData.load_npz(compact)
+             report["compact_parent_load_seconds"] = perf_counter() - started
+-            if data.observation_mode != "stored":
++            if data.observation_mode != "stored" and not (
++                    args.allow_synthetic_noisy and data.observation_mode == "synthetic-noisy"):
+                 raise ValueError("Compact benchmark requires stored observations, including their fixed noise realization.")
+             report.update(conversion_seconds=None, compact_save_seconds=None, hdf5_accessed=False,
+                           verification=data.metadata.get("verification", "not_recorded"),
+@@ -622,8 +631,8 @@ def main(argv=None):
+                 if source_fingerprint(args.h5) != fingerprint:
+                     raise RuntimeError("HDF5 source changed during the benchmark; comparison would not be matched.")
+         report.update(n_qubits=data.n_qubits, measurement_count=data.m, process_dimension=data.process_dimension,
+-                      observations_preserved=True, observation_mode=data.observation_mode, source_metadata=data.metadata,
+-                      observations_fingerprint=array_fingerprint(data.observations),
++                      observations_preserved=data.observation_mode == "stored", observation_mode=data.observation_mode, source_metadata=data.metadata,
++                      observations_fingerprint=array_fingerprint(data.observations) if data.observations is not None else None,
+                       truth_factor_fingerprint=array_fingerprint(data.truth_factor) if data.truth_factor is not None else None,
+                       memory_estimates=memory_estimates(data, args))
+         if args.data is not None:
+diff --git a/tests/test_qpt_structured_jax.py b/tests/test_qpt_structured_jax.py
+index 1125a8c..6bf16b5 100644
+--- a/tests/test_qpt_structured_jax.py
++++ b/tests/test_qpt_structured_jax.py
+@@ -189,7 +189,8 @@ def test_compiled_scan_emits_only_final_state_and_scalar_history():
+     import jax.numpy as jnp
+ 
+     data, _ = paired_data()
+-    with jax.experimental.enable_x64():
++    enable_x64 = jax.enable_x64 if hasattr(jax, "enable_x64") else jax.experimental.enable_x64
++    with enable_x64(True):
+         factor = jnp.zeros((4, 2), dtype=jnp.complex128)
+         scan = _build_scan(jax, jnp, 3.0, False)
+         for steps in (3, 31):
+diff --git a/tests/test_qpt_structured_operators.py b/tests/test_qpt_structured_operators.py
+index e452bfd..adae8fa 100644
+--- a/tests/test_qpt_structured_operators.py
++++ b/tests/test_qpt_structured_operators.py
+@@ -267,7 +267,8 @@ def test_jax_jit_operators_and_autodiff_match_numpy(rank_one):
+ 
+     # Limit precision configuration to the test, rather than changing the
+     # process-wide JAX mode used by other experiment tests.
+-    with jax.experimental.enable_x64():
++    enable_x64 = jax.enable_x64 if hasattr(jax, "enable_x64") else jax.experimental.enable_x64
++    with enable_x64(True):
+         arguments = tuple(jnp.asarray(value) for value in (pack_factor(factor), compiled_measurements, local, symbols, observations))
+         loss, gradient = jax.jit(compiled_objective)(*arguments)
+         autodiff = jax.jit(jax.grad(lambda *args: compiled_objective(*args)[0]))(*arguments)
+diff --git a/docs/qpt_on_demand.md b/docs/qpt_on_demand.md
+new file mode 100644
+index 0000000..a065980
+--- /dev/null
++++ b/docs/qpt_on_demand.md
+@@ -0,0 +1,130 @@
++# On-demand noisy structured QPT
++
++The explicit `synthetic-noisy` mode stores a Haar-unitary truth factor, local
++operators, and a random-access noise recipe. It never enumerates or allocates
++the `24**n` observations. Existing stored datasets and CLI defaults retain
++their original behavior.
++
++For each sampled legacy row `s`, the target is
++`real(vdot(D_s, c c^H)) + sigma * z_s`. The GPU evaluates the truth response
++inside the same bounded scan as the optimizer. The CPU generates only the
++small array of fixed row noise for the next chunk; GPU target generation is
++included in optimizer timing. CPU prefetch is opt-in with `--prefetch`.
++
++## Fixed virtual noise
++
++`splitmix64_box_muller_row_v1` maps the unsigned 64-bit noise seed and legacy
++row index to two domain-separated SplitMix64 outputs, then applies the
++Box-Muller transform in NumPy float64. A row always has the same noise,
++independent of sampling order, repeats, chunk size, and metric cadence.
++There is no cache whose memory grows with rows visited. The row index uses
++all its bits; supported virtual datasets fit signed int64 (up to 13 qubits).
++
++This is a new pseudorandom realization, different from the sequential PCG64
++noise in the earlier stored archives. It preserves the fixed noisy empirical
++problem interpretation. Generating fresh independent noise at every revisit
++would instead define an online-noise experiment and is not this mode.
++Cross-platform elementary functions need not produce bitwise-identical noise.
++Archives record the algorithm version, seeds, standard deviation, truth hash,
++and source hashes. New code using another recipe must use another version.
++
++## Allocated usage
++
++Run both truth construction and GPU work inside scheduler allocations. These
++commands are the payload inside an already prepared allocation, not a Slurm
++submission recipe. Every output path must be new.
++
++```bash
++python -m paper.experiments.qpt_generate_data \
++  --n-qubits 10 --observation-mode synthetic-noisy \
++  --noise-std 0.05 --channel-seed 0 --noise-seed 0 \
++  --save /new/output/n10.npz
++```
++
++Use the existing structured benchmark with `--data /new/output/n10.npz` and
++the explicit opt-in `--allow-synthetic-noisy`. The benchmark otherwise rejects
++non-stored observations as before. It reports zero stored observation bytes
++and `observations_preserved=false`; source/truth provenance is still checked.
++The direct structured runner also accepts the new archive mode.
++
++The explicit `--measurement-backend product-state` verifies an additional
++factorization of each local sensing vector after the orthonormal basis
++transform. It evaluates exactly the same measurements using products of
++matrices of dimension `2**n`, with workspace proportional to `batch*2**n`
++instead of `batch*4**n`. The bank itself determines all conjugations; invalid
++factorizations are rejected. Existing `auto`, `tensor`, and `rank-one` choices
++retain their behavior. This changes numerical kernels, not the FRAMES update,
++TP constraint, or observation model. Floating-point trajectories can differ.
++
++At rank one, choose `tau >= sqrt(2**n)` to contain the TP truth and the current
++initializer. `tau=10` only suffices through six qubits. Record all schedules
++and the radius explicitly; increasing the qubit count is not a reason to
++silently change defaults or normalize the mathematical objective.
++
++## What to measure
++
++`scripts/profile_qpt_components.py` separately times truth target evaluation,
++measurement gradients with ready targets, generated targets plus measurement
++gradients, and exact TP gradients. It also times fixed-noise preparation for a
++100-step host chunk. Isolated kernel timings include dispatch/synchronization;
++compilation and one warmup call are excluded. They are not additive timings
++for the fused optimizer scan and do not establish its precise time breakdown.
++
++The tensor backend and existing rank-one backend evaluate the same operators;
++their floating-point trajectories can diverge. Run their profiles separately.
++Use the main benchmark's fresh worker repetitions and separate memory run for
++whole-optimizer timing, peak process RSS, JAX allocator memory, and sampled
++driver VRAM. Those memory definitions remain distinct.
++
++The data-size wall is removed, but one rank-one factor still has `4**n`
++complex entries. A tensor measurement batch costs `O(B*n*4**n)` arithmetic;
++the rank-one backend costs `O(B*4**n)`. Exact TP costs
++`O(n*4**n + 8**n)` and is evaluated at every optimizer step.
++
++Computational feasibility is separate from recovery. A general unitary has
++approximately `4**n` real degrees of freedom, and a batch-32, 10,000-step run
++visits only 320,000 measurement rows. With Haar truth, mean outcome probability
++is `1/2**n`, so fixed absolute noise `0.05` changes relative noise with size.
++A control using `sigma_n = 0.05 * 2**(5-n)` preserves n=5's ratio of noise
++standard deviation to mean probability; label it separately from fixed-noise
++runs. Neither sample count nor noise scaling guarantees optimizer convergence.
++
++## Long runs
++
++For long experiments the direct runner accepts `--restart-path latest.npz`,
++which atomically replaces that run's rolling checkpoint at each metric
++checkpoint. It retains the factor, measurement momentum, sampling RNG state,
++and absolute step. Use `--resume latest.npz --steps NEW_TOTAL` to continue;
++the data, batch, radius, rank, precision, measurement backend, and past schedule
++values must match. Metric and chunk cadence may change. The result contains
++the current segment's trace with absolute checkpoint steps. The sample hash
++and optimizer time describe that segment. Keep earlier results alongside it.
++
++`--fidelity-target 0.99` stops at the first recorded checkpoint meeting the
++factor-based fidelity target. It requires rank-one synthetic truth. Truth
++is used only for generating observations and evaluating diagnostics/stopping;
++the optimizer receives the sampled targets, never truth-derived initialization
++or update directions. The TP violation must still be reported separately.
++
++`--prefetch` prepares one host chunk while the GPU executes the current one.
++It does not sample beyond a metric checkpoint, so saved RNG state always
++matches the last consumed row. Only one additional chunk is retained; the
++sampling sequence and fixed row noise are unchanged. Host preparation time
++can overlap optimizer time and must not be added to it when reporting elapsed
++time. Prefetch, chunk cadence, and metric cadence may change on resume.
++
++## Validation
++
++`tests/test_qpt_product_state.py` checks same-factor values, gradients,
++directional derivatives, complex bases, and complete noisy trajectories.
++`tests/test_qpt_restart.py` compares interrupted/resumed trajectories against
++uninterrupted runs and checks incompatible restarts are rejected. Both accept
++`QPT_TEST_DEVICE=gpu` for allocated GPU validation.
++
++`tests/test_qpt_on_demand.py` checks an independent scalar noise reference,
++high row-index bits, repeated/permuted/batched access, distribution sanity,
++archive round trips, and generation guards. It compares complete small
++optimizer trajectories and metrics against explicitly materialized noisy
++observations for both tensor and rank-one backends, then changes chunk and
++metric boundaries. `QPT_TEST_DEVICE=gpu` runs those trajectory checks on the
++allocated GPU. An integration test covers the explicit benchmark opt-in.
+diff --git a/paper/experiments/qpt_observation_noise.py b/paper/experiments/qpt_observation_noise.py
+new file mode 100644
+index 0000000..fff991c
+--- /dev/null
++++ b/paper/experiments/qpt_observation_noise.py
+@@ -0,0 +1,40 @@
++"""Random-access Gaussian observation noise, with no dataset-sized state.
++
++Each legacy row index owns one fixed pseudorandom draw. SplitMix64 provides
++two domain-separated uniform streams; Box-Muller maps them to a normal draw.
++This defines a NEW noise realization, not the sequential PCG64 archive stream.
++Only small host batches use this module; noiseless targets are computed on GPU.
++"""
++
++import numpy as np
++
++
++NOISE_GENERATOR = "splitmix64_box_muller_row_v1"
++
++
++def _mix64(value):
++    with np.errstate(over="ignore"):
++        value = np.asarray(value, dtype=np.uint64) + np.uint64(0x9E3779B97F4A7C15)
++        value = (value ^ (value >> np.uint64(30))) * np.uint64(0xBF58476D1CE4E5B9)
++        value = (value ^ (value >> np.uint64(27))) * np.uint64(0x94D049BB133111EB)
++        return value ^ (value >> np.uint64(31))
++
++
++def fixed_row_noise(indices, seed, std):
++    """Return fixed float64 noise, invariant to batching, order and repeats."""
++    indices = np.asarray(indices)
++    if indices.dtype.kind not in "iu" or np.any(indices < 0):
++        raise ValueError("Noise indices must be nonnegative integers.")
++    if (isinstance(seed, (bool, np.bool_)) or not isinstance(seed, (int, np.integer))
++            or not 0 <= seed <= np.iinfo(np.uint64).max):
++        raise ValueError("Noise seed must be a uint64 integer.")
++    if not np.isfinite(std) or std < 0:
++        raise ValueError("Noise std must be finite and nonnegative.")
++    rows = indices.astype(np.uint64, copy=False)
++    key = _mix64(np.uint64(seed) ^ np.uint64(0xD2B74407B1CE6E93))
++    first = _mix64(rows ^ key)
++    second = _mix64(rows ^ _mix64(key))
++    # u1 in (0, 1], u2 in [0, 1): log never receives zero.
++    u1 = ((first >> np.uint64(11)).astype(np.float64) + 1.0) * 2.0**-53
++    u2 = (second >> np.uint64(11)).astype(np.float64) * 2.0**-53
++    return float(std) * np.sqrt(-2.0 * np.log(u1)) * np.cos(2.0 * np.pi * u2)
+diff --git a/scripts/profile_qpt_components.py b/scripts/profile_qpt_components.py
+new file mode 100644
+index 0000000..642056f
+--- /dev/null
++++ b/scripts/profile_qpt_components.py
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python3
++"""Isolated synchronized QPT kernel timings; run only in an allocation.
++
++These timings include per-call dispatch/synchronization and do not add up to
++the fused optimizer scan time. Compilation and warmup are excluded. The data
++archive remains compact; only one bounded batch and current factors are used.
++"""
++
++import argparse
++import hashlib
++import json
++import os
++from pathlib import Path
++import socket
++import statistics
++import sys
++from time import perf_counter
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT))
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--data", type=Path, required=True)
++    parser.add_argument("--result", type=Path, help="Use the saved final factor instead of initialization.")
++    parser.add_argument("--save", type=Path, required=True)
++    parser.add_argument("--device", choices=("gpu", "cpu"), default="gpu")
++    parser.add_argument("--measurement-backend", choices=("tensor", "rank-one"), default="tensor")
++    parser.add_argument("--batch-size", type=int, default=32)
++    parser.add_argument("--repeats", type=int, default=10)
++    args = parser.parse_args()
++    if args.batch_size <= 0 or args.repeats <= 0:
++        parser.error("batch size and repeats must be positive")
++    if args.save.exists():
++        raise FileExistsError(args.save)
++
++    import numpy as np
++    from paper.experiments.qpt_structured_data import StructuredQPTData
++    from paper.experiments.quantum_process_tomography import make_factor_initial_point, unpack_factor
++    from paper.experiments.quantum_process_tomography_jax import _require_jax, _configure_jax_precision, select_jax_device
++    from paper.experiments.quantum_process_tomography_structured_jax import _executable_memory_estimate
++    from paper.experiments.qpt_structured_operators import (
++        measurement_values, measurement_loss_and_gradient,
++        rank_one_measurement_values, rank_one_measurement_loss_and_gradient,
++        rank_one_measurement_vectors, trace_preserving_loss_and_gradient,
++    )
++    jax = _require_jax()
++    _configure_jax_precision(jax, "64")
++    import jax.numpy as jnp
++    device = select_jax_device(args.device)
++    data = StructuredQPTData.load_npz(args.data)
++    if data.observation_mode != "synthetic-noisy":
++        raise ValueError("This profiler expects explicit on-demand synthetic noisy data.")
++    if args.result:
++        with np.load(args.result, allow_pickle=False) as z:
++            factor = z["final_factor"]
++    else:
++        factor = unpack_factor(make_factor_initial_point(data, 1, 0), data.process_dimension, 1)
++    if factor.shape != (data.process_dimension, 1):
++        raise ValueError("Expected a matching rank-one factor.")
++    symbols = data.sample_symbols(np.random.default_rng(12345), args.batch_size)
++    noise = data.noise_for_symbols(symbols)
++    rank_one = args.measurement_backend == "rank-one"
++    bank = rank_one_measurement_vectors(data.local_measurements) if rank_one else data.local_measurements
++    if bank is None:
++        raise ValueError("Bank failed rank-one validation.")
++    values = rank_one_measurement_values if rank_one else measurement_values
++    gradient = rank_one_measurement_loss_and_gradient if rank_one else measurement_loss_and_gradient
++    u, truth, s, eps, bank, basis = [jax.device_put(x, device) for x in
++                                   (factor, data.truth_factor, symbols.astype(np.int32), noise, bank, data.local_basis)]
++    jax.block_until_ready((u, truth, s, eps, bank, basis))
++
++    def targets(truth, symbols, noise, bank):
++        return values(truth, symbols, bank, xp=jnp) + noise
++
++    def sampled_gradient(factor, symbols, targets, bank):
++        return gradient(factor, symbols, targets, bank, xp=jnp)
++
++    def generated_gradient(factor, truth, symbols, noise, bank):
++        return gradient(factor, symbols, targets(truth, symbols, noise, bank), bank, xp=jnp)
++
++    def tp(factor, basis):
++        return trace_preserving_loss_and_gradient(factor, basis, xp=jnp)
++
++    y = jax.jit(targets)(truth, s, eps, bank)
++    jax.block_until_ready(y)
++    kernels = {}
++    for name, fn, inputs in (
++        ("truth_targets", targets, (truth, s, eps, bank)),
++        ("measurement_gradient_with_ready_targets", sampled_gradient, (u, s, y, bank)),
++        ("generated_targets_and_measurement_gradient", generated_gradient, (u, truth, s, eps, bank)),
++        ("exact_tp_gradient", tp, (u, basis)),
++    ):
++        began = perf_counter()
++        executable = jax.jit(fn).lower(*inputs).compile()
++        compilation = perf_counter() - began
++        jax.block_until_ready(executable(*inputs))
++        samples = []
++        for _ in range(args.repeats):
++            began = perf_counter()
++            jax.block_until_ready(executable(*inputs))
++            samples.append(perf_counter() - began)
++        kernels[name] = dict(median_seconds=statistics.median(samples), min_seconds=min(samples),
++                             samples_seconds=samples, compile_seconds=compilation,
++                             compiled_memory_estimate_bytes=_executable_memory_estimate(executable))
++    chunk_symbols = data.sample_symbols(np.random.default_rng(0), 100 * args.batch_size)
++    samples = []
++    for _ in range(args.repeats):
++        began = perf_counter()
++        data.noise_for_symbols(chunk_symbols)
++        samples.append(perf_counter() - began)
++    report = dict(status="complete", n_qubits=data.n_qubits, precision="64", rank=1,
++                  batch_size=args.batch_size, measurement_backend=args.measurement_backend,
++                  device=str(device), device_kind=device.device_kind, hostname=socket.gethostname(),
++                  slurm_job_id=os.environ.get("SLURM_JOB_ID"), kernels=kernels,
++                  fixed_noise_100_step_chunk_median_seconds=statistics.median(samples),
++                  timing_scope="Isolated calls include dispatch/synchronization; not additive fused-scan timings.",
++                  data=str(args.data.resolve()), result=str(args.result.resolve()) if args.result else None,
++                  factor_sha256=hashlib.sha256(memoryview(np.ascontiguousarray(factor)).cast("B")).hexdigest(),
++                  script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
++                  jax_version=jax.__version__)
++    args.save.parent.mkdir(parents=True, exist_ok=True)
++    with args.save.open("x") as handle:
++        json.dump(report, handle, indent=2, allow_nan=False)
++    print(json.dumps({"n_qubits": data.n_qubits, "backend": args.measurement_backend,
++                      "kernel_milliseconds": {k: 1000*v["median_seconds"] for k,v in kernels.items()}}, indent=2))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/tests/test_qpt_on_demand.py b/tests/test_qpt_on_demand.py
+new file mode 100644
+index 0000000..846c5cd
+--- /dev/null
++++ b/tests/test_qpt_on_demand.py
+@@ -0,0 +1,113 @@
++"""Fixed virtual noise, materialized equivalence, and bounded generation."""
++
++import json
++import os
++import numpy as np
++import pytest
++
++from paper.experiments.qpt_generate_data import generate_on_demand_data
++from paper.experiments.qpt_observation_noise import fixed_row_noise
++from paper.experiments.qpt_structured_data import StructuredQPTData
++
++
++def test_random_access_noise_matches_independent_scalar_reference():
++    mask = (1 << 64) - 1
++    def mix(x):
++        x = (x + 0x9E3779B97F4A7C15) & mask
++        x = ((x ^ (x >> 30)) * 0xBF58476D1CE4E5B9) & mask
++        x = ((x ^ (x >> 27)) * 0x94D049BB133111EB) & mask
++        return x ^ (x >> 31)
++    rows = np.array([0, 5, 5, 2**32 + 5, 24**10 - 1], dtype=np.int64)
++    for seed in (0, 123, 2**64 - 1):
++        key = mix(seed ^ 0xD2B74407B1CE6E93)
++        expected = []
++        for row in rows:
++            u = ((mix(int(row) ^ key) >> 11) + 1) * 2.0**-53
++            v = (mix(int(row) ^ mix(key)) >> 11) * 2.0**-53
++            expected.append(0.05 * np.sqrt(-2*np.log(u)) * np.cos(2*np.pi*v))
++        np.testing.assert_array_equal(fixed_row_noise(rows, seed, 0.05), expected)
++        np.testing.assert_array_equal(fixed_row_noise(rows[::-1], seed, 0.05), np.asarray(expected)[::-1])
++        assert expected[1] == expected[2] and expected[1] != expected[3]
++
++
++def test_noise_moments_and_batch_partition_are_stable():
++    rows = np.arange(100_000, dtype=np.int64)
++    z = fixed_row_noise(rows, 17, 1.0)
++    np.testing.assert_array_equal(z, np.concatenate([fixed_row_noise(r, 17, 1.0) for r in np.array_split(rows, 11)]))
++    assert abs(z.mean()) < 0.02
++    assert abs(z.var() - 1) < 0.03
++    assert abs(np.corrcoef(z[:-1], z[1:])[0, 1]) < 0.02
++
++
++def test_virtual_archive_roundtrip_and_fixed_targets(tmp_path):
++    data = generate_on_demand_data(2, channel_seed=3, noise_seed=7)
++    assert data.observations is None
++    symbols = data.indices_to_symbols(np.array([0, 14, 14, data.m-1]))
++    target = data.observations_for_symbols(symbols)
++    assert target[1] == target[2]
++    path = tmp_path / "virtual.npz"
++    data.save_npz(path)
++    with np.load(path) as archive:
++        assert "observations" not in archive.files
++    loaded = StructuredQPTData.load_npz(path)
++    np.testing.assert_array_equal(loaded.observations_for_symbols(symbols), target)
++    assert loaded.metadata == data.metadata
++    assert data.metadata["truth_tp_violation"] < 1e-12
++
++
++def test_truth_memory_guard_rejects_before_allocating():
++    with pytest.raises(ValueError, match="Truth generation estimate"):
++        generate_on_demand_data(10, max_memory_bytes=1024)
++
++
++@pytest.mark.parametrize("backend", ["tensor", "rank-one"])
++def test_virtual_and_materialized_optimizer_trajectories_match(backend):
++    pytest.importorskip("jax")
++    from paper.experiments.quantum_process_tomography_structured_jax import run_qpt_structured_jax
++    data = generate_on_demand_data(2, channel_seed=3, noise_seed=11)
++    symbols = data.indices_to_symbols(np.arange(data.m))
++    stored = StructuredQPTData(2, data.local_measurements, data.local_basis,
++                               observations=data.observations_for_symbols(symbols), truth_factor=data.truth_factor)
++    options = dict(n_steps=17, tau=3., rank=1, batch_size=5, chunk_steps=4,
++                   metrics_frequency=4, metric_mode="full", metric_batch_size=32,
++                   rho_schedule=lambda k: .7/(k+1)**.3, smoothing_schedule=lambda k: 20/(k+1)**.25,
++                   step_size_schedule=lambda k: .2/(k+1)**.6, initialization_seed=3, sampling_seed=17,
++                   device=os.environ.get("QPT_TEST_DEVICE", "cpu"), precision="64",
++                   store_checkpoints=True, measurement_backend=backend)
++    actual = run_qpt_structured_jax(data, **options)
++    expected = run_qpt_structured_jax(stored, **options)
++    for field in ("checkpoint_factors", "gradient_estimate", "measurement_loss", "tp_violation",
++                  "smoothed_gap", "process_fidelity_proxy"):
++        np.testing.assert_allclose(getattr(actual, field), getattr(expected, field), rtol=2e-10, atol=2e-11)
++    options.update(chunk_steps=7, metric_mode="sampled", metric_samples=13, metrics_frequency=5)
++    other = run_qpt_structured_jax(data, **options)
++    np.testing.assert_allclose(other.final_factor, actual.final_factor, rtol=2e-10, atol=2e-11)
++    assert other.metadata["batch_symbols_sha256"] == actual.metadata["batch_symbols_sha256"]
++    assert actual.metadata["observation_mode"] == "synthetic-noisy"
++    json.dumps(actual.metadata, allow_nan=False)
++
++
++@pytest.mark.parametrize("backend,prefetch", [("auto", False), ("product-state", True)])
++def test_benchmark_explicitly_admits_virtual_data(tmp_path, backend, prefetch):
++    pytest.importorskip("jax")
++    import subprocess
++    import sys
++    from pathlib import Path
++    root = Path(__file__).resolve().parents[1]
++    data_path, report_path = tmp_path / "data.npz", tmp_path / "report.json"
++    generate_on_demand_data(1).save_npz(data_path)
++    command = [sys.executable, str(root / "scripts/benchmark_qpt_structured.py"),
++        "--data", str(data_path), "--allow-synthetic-noisy", "--device", "cpu",
++        "--steps", "3", "--repeats", "1", "--tau", "3", "--metric-samples", "7",
++        "--measurement-backend", backend, "--save", str(report_path)]
++    if prefetch:
++        command.append("--prefetch")
++    completed = subprocess.run(command, capture_output=True, text=True)
++    assert completed.returncode == 0, completed.stdout + completed.stderr
++    report = json.loads(report_path.read_text())
++    assert report["status"] == "complete"
++    assert report["observation_mode"] == "synthetic-noisy"
++    assert report["memory_estimates"]["structured_host_observation_bytes"] == 0
++    assert report["observations_fingerprint"] is None
++    assert report["observations_preserved"] is False
++    assert Path(report["runs"][0]["structured_result_path"]).is_file()
+diff --git a/tests/test_qpt_product_state.py b/tests/test_qpt_product_state.py
+new file mode 100644
+index 0000000..909d522
+--- /dev/null
++++ b/tests/test_qpt_product_state.py
+@@ -0,0 +1,76 @@
++"""Independent equivalence checks for the memory-bounded product-state backend."""
++
++import os
++import numpy as np
++import pytest
++
++from paper.experiments.qpt_structured_data import standard_local_basis, standard_local_measurements
++from paper.experiments.qpt_structured_operators import (
++    product_state_measurement_bank, product_state_measurement_values,
++    product_state_measurement_loss_and_gradient, measurement_loss_and_gradient,
++    rank_one_measurement_vectors, rank_one_measurement_values,
++    pauli_matrices_to_coefficients,
++)
++
++
++@pytest.mark.parametrize("n,rank", [(1, 1), (2, 1), (3, 2)])
++@pytest.mark.parametrize("complex_basis", [False, True])
++def test_same_factor_predictions_gradients_and_directional_derivatives(n, rank, complex_basis):
++    rng = np.random.default_rng(63)
++    basis, measurements = standard_local_basis(), standard_local_measurements()
++    if complex_basis:
++        rotation, _ = np.linalg.qr(rng.normal(size=(4, 4)) + 1j*rng.normal(size=(4, 4)))
++        basis = np.einsum("kj,jab->kab", rotation, basis)
++        # Independent physical matrices define a complex-basis sensing bank.
++        left = rng.normal(size=(24, 2)) + 1j*rng.normal(size=(24, 2))
++        right = rng.normal(size=(24, 2)) + 1j*rng.normal(size=(24, 2))
++        matrices = left[:, :, None] * right[:, None, :].conj()
++        vectors = pauli_matrices_to_coefficients(matrices, basis).T
++        measurements = vectors[:, :, None] * vectors[:, None, :].conj()
++    bank = product_state_measurement_bank(measurements, basis)
++    assert bank is not None
++    u = (rng.normal(size=(4**n, rank)) + 1j*rng.normal(size=(4**n, rank)))/np.sqrt(4**n)
++    symbols = rng.integers(0, 24, (31, n), dtype=np.int32)
++    observations = rng.normal(size=31)
++    values = product_state_measurement_values(u, symbols, bank)
++    reference = rank_one_measurement_values(u, symbols, rank_one_measurement_vectors(measurements))
++    np.testing.assert_allclose(values, reference, rtol=3e-12, atol=3e-12)
++    loss, gradient = product_state_measurement_loss_and_gradient(u, symbols, observations, bank)
++    old_loss, old_gradient = measurement_loss_and_gradient(u, symbols, observations, measurements)
++    np.testing.assert_allclose(loss, old_loss, rtol=3e-12, atol=3e-12)
++    np.testing.assert_allclose(gradient, old_gradient, rtol=3e-11, atol=3e-11)
++    direction = rng.normal(size=u.shape) + 1j*rng.normal(size=u.shape)
++    delta = 1e-6
++    plus = product_state_measurement_loss_and_gradient(u+delta*direction, symbols, observations, bank)[0]
++    minus = product_state_measurement_loss_and_gradient(u-delta*direction, symbols, observations, bank)[0]
++    np.testing.assert_allclose((plus-minus)/(2*delta), np.vdot(gradient, direction).real, rtol=2e-7, atol=2e-7)
++
++
++def test_product_state_bank_rejects_invalid_factorizations():
++    basis, measurements = standard_local_basis(), standard_local_measurements()
++    assert product_state_measurement_bank(measurements, 2*basis) is None
++    bad = np.zeros_like(measurements)
++    bad[:, 0, 0] = 1  # Coefficient rank one, but physical Q=I/sqrt(2) has rank two.
++    assert product_state_measurement_bank(bad, basis) is None
++
++
++@pytest.mark.parametrize("rank", [1, 2])
++def test_product_state_scan_matches_existing_noisy_trajectory(rank):
++    pytest.importorskip("jax")
++    from paper.experiments.qpt_generate_data import generate_on_demand_data
++    from paper.experiments.quantum_process_tomography_structured_jax import run_qpt_structured_jax
++    data = generate_on_demand_data(2, channel_seed=5, noise_seed=3)
++    options = dict(n_steps=19, rank=rank, tau=3., batch_size=11, chunk_steps=4,
++                   metrics_frequency=4, metric_mode="sampled", metric_samples=17,
++                   metric_batch_size=5, rho_schedule=lambda k: .7/(k+1)**.3,
++                   smoothing_schedule=lambda k: 20/(k+1)**.25,
++                   step_size_schedule=lambda k: .2/(k+1)**.6, initialization_seed=7,
++                   sampling_seed=9, device=os.environ.get("QPT_TEST_DEVICE", "cpu"),
++                   precision="64", store_checkpoints=True, show_progress=False)
++    old = run_qpt_structured_jax(data, measurement_backend="rank-one", **options)
++    new = run_qpt_structured_jax(data, measurement_backend="product-state", **options)
++    for field in ("checkpoint_factors", "gradient_estimate", "measurement_loss", "tp_violation",
++                  "smoothed_gap", "process_fidelity_proxy"):
++        np.testing.assert_allclose(getattr(new, field), getattr(old, field), rtol=2e-9, atol=2e-10)
++    assert new.metadata["batch_symbols_sha256"] == old.metadata["batch_symbols_sha256"]
++    assert new.metadata["measurement_backend"] == "product-state"
+diff --git a/tests/test_qpt_restart.py b/tests/test_qpt_restart.py
+new file mode 100644
+index 0000000..1504257
+--- /dev/null
++++ b/tests/test_qpt_restart.py
+@@ -0,0 +1,73 @@
++"""Restart must retain momentum, sample RNG, and absolute schedule position."""
++import os
++import numpy as np
++import pytest
++
++pytest.importorskip("jax")
++from paper.experiments.qpt_generate_data import generate_on_demand_data
++from paper.experiments.quantum_process_tomography_structured_jax import (
++    run_qpt_structured_jax, load_structured_restart,
++)
++from paper.experiments.qpt_structured_operators import pack_factor
++
++
++def options():
++    return dict(rank=1, tau=3., batch_size=7, chunk_steps=3, metrics_frequency=4,
++                metric_samples=11, metric_batch_size=5, precision="64",
++                device=os.environ.get("QPT_TEST_DEVICE", "cpu"),
++                measurement_backend="product-state", show_progress=False,
++                rho_schedule=lambda k: .7/(k+1)**.3,
++                smoothing_schedule=lambda k: 20/(k+1)**.25,
++                step_size_schedule=lambda k: .2/(k+1)**.6)
++
++
++def test_restart_matches_uninterrupted_trajectory_with_changed_chunk_and_metrics(tmp_path):
++    data = generate_on_demand_data(2, channel_seed=3, noise_seed=5)
++    cfg = options()
++    whole = run_qpt_structured_jax(data, n_steps=19, **cfg)
++    path = tmp_path / "restart.npz"
++    first = run_qpt_structured_jax(data, n_steps=7, restart_path=path, prefetch=True, **cfg)
++    saved = load_structured_restart(path)
++    assert saved["metadata"]["completed_steps"] == 7
++    np.testing.assert_array_equal(saved["gradient_estimate"], first.gradient_estimate)
++    cfg.update(chunk_steps=5, metrics_frequency=6, metric_samples=13)
++    second = run_qpt_structured_jax(data, n_steps=19, resume=path, prefetch=True,
++                                    restart_path=tmp_path/"continued.npz", **cfg)
++    np.testing.assert_allclose(second.final_factor, whole.final_factor, rtol=2e-11, atol=2e-12)
++    np.testing.assert_allclose(second.gradient_estimate, whole.gradient_estimate, rtol=2e-11, atol=2e-12)
++    np.testing.assert_allclose(np.r_[first.estimated_gaps, second.estimated_gaps], whole.estimated_gaps,
++                               rtol=2e-11, atol=2e-12)
++    assert second.checkpoint_steps[0] == 7 and second.checkpoint_steps[-1] == 19
++    assert second.metadata["start_step"] == 7 and second.metadata["segment_steps"] == 12
++    assert second.metadata["sampled_measurements"] == 12*7
++
++
++def test_prefetch_retains_sampling_plan_and_all_checkpoint_values():
++    data = generate_on_demand_data(2, noise_seed=6)
++    baseline = run_qpt_structured_jax(data, n_steps=17, **options())
++    prefetched = run_qpt_structured_jax(data, n_steps=17, prefetch=True, **options())
++    assert prefetched.metadata["batch_symbols_sha256"] == baseline.metadata["batch_symbols_sha256"]
++    for field in ("final_factor", "gradient_estimate", "estimated_gaps", "process_fidelity_proxy", "tp_violation"):
++        np.testing.assert_array_equal(getattr(prefetched, field), getattr(baseline, field))
++
++
++def test_restart_rejects_changed_noise_batch_or_schedule(tmp_path):
++    data = generate_on_demand_data(1, noise_seed=7)
++    path = tmp_path/"restart.npz"
++    run_qpt_structured_jax(data, n_steps=3, restart_path=path, **options())
++    for overrides in (dict(batch_size=8), dict(smoothing_schedule=lambda k: 3.)):
++        with pytest.raises(ValueError, match="does not match"):
++            run_qpt_structured_jax(data, n_steps=5, resume=path, **(options() | overrides))
++    with pytest.raises(ValueError, match="does not match"):
++        run_qpt_structured_jax(generate_on_demand_data(1, noise_seed=8), n_steps=5, resume=path, **options())
++
++
++def test_fidelity_stopping_saves_zero_step_state_without_optimizing(tmp_path):
++    data = generate_on_demand_data(1)
++    path = tmp_path/"restart.npz"
++    result = run_qpt_structured_jax(data, n_steps=100, x0=pack_factor(data.truth_factor),
++                                     fidelity_target=.99, restart_path=path, **options())
++    assert result.metadata["fidelity_target_reached"] and result.metadata["n_steps"] == 0
++    assert result.estimated_gaps.size == 0
++    np.testing.assert_array_equal(result.final_factor, data.truth_factor)
++    assert load_structured_restart(path)["metadata"]["completed_steps"] == 0

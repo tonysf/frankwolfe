@@ -1,0 +1,133 @@
+{
+  "checked_at_utc": "2026-09-13T08:07:24.401731+00:00",
+  "scheduler": "1888850_0|RUNNING|0:0|00:48:13|04:00:00\n1888850_1|RUNNING|0:0|00:48:13|04:00:00\n",
+  "queue": "1888850_0|qpt99_resume|RUNNING|48:13|ruche-gpu15\n1888850_1|qpt99_resume|RUNNING|48:13|ruche-gpu15\n",
+  "runs": [
+    {
+      "name": "baseline_200k",
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_resume_comparison_20260913_01/baseline_200k",
+      "final_exists": false,
+      "checkpoint": {
+        "completed_steps": 128000,
+        "fidelity": 0.00010239438644045587,
+        "tp_violation": 9.430421795705113,
+        "resume_parent": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_n10_fixed_20260912_01/latest_restart.npz"
+      },
+      "source_verified": "paper/experiments/qpt_structured_operators.py: OK\npaper/experiments/quantum_process_tomography_structured_jax.py: OK\n",
+      "parent_data_sha256": "d8139559ee9701714b8720826f693bf12903f65d977748d367757ae07d595049  /gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_n10_fixed_20260912_01/latest_restart.npz\na909f4b225b021f4c91a4ef8df85ae29c976555a17093940d4240ccf03b33cf4  /gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n10.npz\n",
+      "log_start": [
+        "Validated parent step 100000 fidelity 4.014800202174878e-05",
+        "step 101000/200000: fidelity=4.15723211e-05, loss=0.00116206, TP=10.3649, optimizer=94.996s",
+        "step 102000/200000: fidelity=4.25249237e-05, loss=0.00116215, TP=10.3283, optimizer=189.832s",
+        "step 103000/200000: fidelity=4.53077042e-05, loss=0.00116253, TP=10.2854, optimizer=284.667s"
+      ],
+      "log_tail": [
+        "step 119000/200000: fidelity=7.66116962e-05, loss=0.00116193, TP=9.7092, optimizer=1801.781s",
+        "step 120000/200000: fidelity=7.93084113e-05, loss=0.00116229, TP=9.68206, optimizer=1896.592s",
+        "step 121000/200000: fidelity=8.20936531e-05, loss=0.00116246, TP=9.64984, optimizer=1991.410s",
+        "step 122000/200000: fidelity=8.44801924e-05, loss=0.00116269, TP=9.61611, optimizer=2086.239s",
+        "step 123000/200000: fidelity=8.70110267e-05, loss=0.00116262, TP=9.57978, optimizer=2181.046s",
+        "step 124000/200000: fidelity=8.95682714e-05, loss=0.00116232, TP=9.55164, optimizer=2275.865s",
+        "step 125000/200000: fidelity=9.33332744e-05, loss=0.00116245, TP=9.52218, optimizer=2370.669s",
+        "step 126000/200000: fidelity=9.59861266e-05, loss=0.00116277, TP=9.49029, optimizer=2465.489s",
+        "step 127000/200000: fidelity=9.8320566e-05, loss=0.00116271, TP=9.46057, optimizer=2560.315s",
+        "step 128000/200000: fidelity=0.000102394386, loss=0.0011624, TP=9.43042, optimizer=2655.137s"
+      ],
+      "scalar_log": [
+        "step 101000/200000: fidelity=4.15723211e-05, loss=0.00116206, TP=10.3649, optimizer=94.996s",
+        "step 102000/200000: fidelity=4.25249237e-05, loss=0.00116215, TP=10.3283, optimizer=189.832s",
+        "step 103000/200000: fidelity=4.53077042e-05, loss=0.00116253, TP=10.2854, optimizer=284.667s",
+        "step 104000/200000: fidelity=4.71151501e-05, loss=0.00116262, TP=10.2434, optimizer=379.486s",
+        "step 105000/200000: fidelity=4.89347896e-05, loss=0.00116307, TP=10.2072, optimizer=474.318s",
+        "step 106000/200000: fidelity=5.04051858e-05, loss=0.00116329, TP=10.1716, optimizer=569.134s",
+        "step 107000/200000: fidelity=5.1628712e-05, loss=0.00116295, TP=10.1322, optimizer=663.960s",
+        "step 108000/200000: fidelity=5.30703116e-05, loss=0.00116274, TP=10.0974, optimizer=758.773s",
+        "step 109000/200000: fidelity=5.48981903e-05, loss=0.00116267, TP=10.0601, optimizer=853.587s",
+        "step 110000/200000: fidelity=5.59268428e-05, loss=0.00116278, TP=10.0219, optimizer=948.408s",
+        "step 111000/200000: fidelity=5.66587361e-05, loss=0.00116305, TP=9.98134, optimizer=1043.221s",
+        "step 112000/200000: fidelity=5.8867029e-05, loss=0.001163, TP=9.94272, optimizer=1138.030s",
+        "step 113000/200000: fidelity=6.11251006e-05, loss=0.00116299, TP=9.9115, optimizer=1232.852s",
+        "step 114000/200000: fidelity=6.48396302e-05, loss=0.00116279, TP=9.87724, optimizer=1327.673s",
+        "step 115000/200000: fidelity=6.79408549e-05, loss=0.00116264, TP=9.8454, optimizer=1422.504s",
+        "step 116000/200000: fidelity=7.00468242e-05, loss=0.0011625, TP=9.812, optimizer=1517.331s",
+        "step 117000/200000: fidelity=7.18671697e-05, loss=0.00116225, TP=9.77186, optimizer=1612.150s",
+        "step 118000/200000: fidelity=7.37119914e-05, loss=0.00116206, TP=9.73923, optimizer=1706.973s",
+        "step 119000/200000: fidelity=7.66116962e-05, loss=0.00116193, TP=9.7092, optimizer=1801.781s",
+        "step 120000/200000: fidelity=7.93084113e-05, loss=0.00116229, TP=9.68206, optimizer=1896.592s",
+        "step 121000/200000: fidelity=8.20936531e-05, loss=0.00116246, TP=9.64984, optimizer=1991.410s",
+        "step 122000/200000: fidelity=8.44801924e-05, loss=0.00116269, TP=9.61611, optimizer=2086.239s",
+        "step 123000/200000: fidelity=8.70110267e-05, loss=0.00116262, TP=9.57978, optimizer=2181.046s",
+        "step 124000/200000: fidelity=8.95682714e-05, loss=0.00116232, TP=9.55164, optimizer=2275.865s",
+        "step 125000/200000: fidelity=9.33332744e-05, loss=0.00116245, TP=9.52218, optimizer=2370.669s",
+        "step 126000/200000: fidelity=9.59861266e-05, loss=0.00116277, TP=9.49029, optimizer=2465.489s",
+        "step 127000/200000: fidelity=9.8320566e-05, loss=0.00116271, TP=9.46057, optimizer=2560.315s",
+        "step 128000/200000: fidelity=0.000102394386, loss=0.0011624, TP=9.43042, optimizer=2655.137s"
+      ]
+    },
+    {
+      "name": "beta1e8_100k",
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_resume_comparison_20260913_01/beta1e8_100k",
+      "final_exists": false,
+      "checkpoint": {
+        "completed_steps": 38000,
+        "fidelity": 1.0323219924194925e-05,
+        "tp_violation": 2.2667726556619434,
+        "resume_parent": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_stronger_tp_20260913_01/beta_100000000/latest_restart.npz"
+      },
+      "source_verified": "paper/experiments/qpt_structured_operators.py: OK\npaper/experiments/quantum_process_tomography_structured_jax.py: OK\n",
+      "parent_data_sha256": "8b20aeb74eeaff32262e30577dcd1cae9c2c3c69417c0b6d1e5f0ac61152ae03  /gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_stronger_tp_20260913_01/beta_100000000/latest_restart.npz\na909f4b225b021f4c91a4ef8df85ae29c976555a17093940d4240ccf03b33cf4  /gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n10.npz\n",
+      "log_start": [
+        "Validated parent step 10000 fidelity 4.481089985316042e-06",
+        "step 11000/100000: fidelity=3.89134086e-06, loss=0.00116162, TP=4.1339, optimizer=95.179s",
+        "step 12000/100000: fidelity=2.68336402e-06, loss=0.00115911, TP=3.9673, optimizer=190.126s",
+        "step 13000/100000: fidelity=3.68468089e-06, loss=0.00115868, TP=3.80806, optimizer=285.056s"
+      ],
+      "log_tail": [
+        "step 29000/100000: fidelity=4.98149167e-06, loss=0.00116386, TP=2.58762, optimizer=1803.415s",
+        "step 30000/100000: fidelity=5.82502298e-06, loss=0.00116281, TP=2.54804, optimizer=1898.289s",
+        "step 31000/100000: fidelity=5.97802278e-06, loss=0.00116297, TP=2.50001, optimizer=1993.168s",
+        "step 32000/100000: fidelity=6.019179e-06, loss=0.00116223, TP=2.46598, optimizer=2088.043s",
+        "step 33000/100000: fidelity=7.18186386e-06, loss=0.00116146, TP=2.4277, optimizer=2182.913s",
+        "step 34000/100000: fidelity=8.53616639e-06, loss=0.0011607, TP=2.3929, optimizer=2277.787s",
+        "step 35000/100000: fidelity=8.87502142e-06, loss=0.00116097, TP=2.35789, optimizer=2372.676s",
+        "step 36000/100000: fidelity=8.97581776e-06, loss=0.00116087, TP=2.32533, optimizer=2467.557s",
+        "step 37000/100000: fidelity=9.00231323e-06, loss=0.00116124, TP=2.29581, optimizer=2562.434s",
+        "step 38000/100000: fidelity=1.03232199e-05, loss=0.00116216, TP=2.26677, optimizer=2657.301s"
+      ],
+      "scalar_log": [
+        "step 11000/100000: fidelity=3.89134086e-06, loss=0.00116162, TP=4.1339, optimizer=95.179s",
+        "step 12000/100000: fidelity=2.68336402e-06, loss=0.00115911, TP=3.9673, optimizer=190.126s",
+        "step 13000/100000: fidelity=3.68468089e-06, loss=0.00115868, TP=3.80806, optimizer=285.056s",
+        "step 14000/100000: fidelity=4.75069875e-06, loss=0.00115819, TP=3.67977, optimizer=379.969s",
+        "step 15000/100000: fidelity=3.94638511e-06, loss=0.00116142, TP=3.56308, optimizer=474.881s",
+        "step 16000/100000: fidelity=3.60754026e-06, loss=0.00116157, TP=3.45318, optimizer=569.799s",
+        "step 17000/100000: fidelity=4.32363097e-06, loss=0.00116183, TP=3.35263, optimizer=664.723s",
+        "step 18000/100000: fidelity=3.95061776e-06, loss=0.00116258, TP=3.25627, optimizer=759.642s",
+        "step 19000/100000: fidelity=4.94380072e-06, loss=0.00116191, TP=3.17705, optimizer=854.566s",
+        "step 20000/100000: fidelity=4.86576175e-06, loss=0.00116218, TP=3.09642, optimizer=949.472s",
+        "step 21000/100000: fidelity=4.63163644e-06, loss=0.00116332, TP=3.02892, optimizer=1044.368s",
+        "step 22000/100000: fidelity=4.16648168e-06, loss=0.00116405, TP=2.96271, optimizer=1139.252s",
+        "step 23000/100000: fidelity=3.42486535e-06, loss=0.0011639, TP=2.89442, optimizer=1234.139s",
+        "step 24000/100000: fidelity=3.25878166e-06, loss=0.00116338, TP=2.83653, optimizer=1329.022s",
+        "step 25000/100000: fidelity=4.17970485e-06, loss=0.00116338, TP=2.78011, optimizer=1423.900s",
+        "step 26000/100000: fidelity=4.21359454e-06, loss=0.00116256, TP=2.72559, optimizer=1518.791s",
+        "step 27000/100000: fidelity=4.40412635e-06, loss=0.00116277, TP=2.68102, optimizer=1613.672s",
+        "step 28000/100000: fidelity=4.44916134e-06, loss=0.00116422, TP=2.63187, optimizer=1708.545s",
+        "step 29000/100000: fidelity=4.98149167e-06, loss=0.00116386, TP=2.58762, optimizer=1803.415s",
+        "step 30000/100000: fidelity=5.82502298e-06, loss=0.00116281, TP=2.54804, optimizer=1898.289s",
+        "step 31000/100000: fidelity=5.97802278e-06, loss=0.00116297, TP=2.50001, optimizer=1993.168s",
+        "step 32000/100000: fidelity=6.019179e-06, loss=0.00116223, TP=2.46598, optimizer=2088.043s",
+        "step 33000/100000: fidelity=7.18186386e-06, loss=0.00116146, TP=2.4277, optimizer=2182.913s",
+        "step 34000/100000: fidelity=8.53616639e-06, loss=0.0011607, TP=2.3929, optimizer=2277.787s",
+        "step 35000/100000: fidelity=8.87502142e-06, loss=0.00116097, TP=2.35789, optimizer=2372.676s",
+        "step 36000/100000: fidelity=8.97581776e-06, loss=0.00116087, TP=2.32533, optimizer=2467.557s",
+        "step 37000/100000: fidelity=9.00231323e-06, loss=0.00116124, TP=2.29581, optimizer=2562.434s",
+        "step 38000/100000: fidelity=1.03232199e-05, loss=0.00116216, TP=2.26677, optimizer=2657.301s"
+      ]
+    }
+  ],
+  "stderr": {
+    "resume_0.e1888851": "",
+    "resume_1.e1888850": ""
+  }
+}

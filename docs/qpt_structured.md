@@ -1,5 +1,9 @@
 # Structured QPT on an A100
 
+The explicit [on-demand noisy mode](qpt_on_demand.md) supports larger synthetic
+experiments without storing the entire observation table. The stored-data
+workflow and default settings described below remain available.
+
 The structured runner keeps the same factor-space stochastic-FRAMES updates
 and the same noisy observations as the original QPT experiment. It replaces
 the dense measurement and trace-preservation tensors with local operators,

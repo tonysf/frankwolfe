@@ -41,6 +41,19 @@ qpt_*.png
 # Cluster job scripts stay local
 *.slurm
 
+# Keep QPT scalar evidence and experiment recipes in Git. Binary checkpoints,
+# generated figures, transient logs and historical automation files travel in
+# the separately checksummed experiment backup.
+/results/**/*
+!/results/**/
+!/results/**/*.py
+!/results/**/*.md
+!/results/**/*.json
+!/results/**/*.patch
+!/results/**/*.csv
+!/results/**/*.txt
+/results/**/__pycache__/
+
 # Large exploratory datasets from earlier development history
 fw_variants/nonconvex_nonsmooth/MNIST_CSV/generate_mnist_csv.py
 fw_variants/nonconvex_nonsmooth/MNIST_CSV/mnist_test.csv

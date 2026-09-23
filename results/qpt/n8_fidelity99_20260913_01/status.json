@@ -1,0 +1,131 @@
+{
+  "job_id": "1889210",
+  "array_tasks": [
+    "1889210_0"
+  ],
+  "status": "completed",
+  "submitted_at_utc": "2026-09-13T10:51:28.643730+00:00",
+  "remote_directory": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_03",
+  "target": {
+    "n_qubits": 8,
+    "noise_std": 0.05,
+    "fidelity": 0.99
+  },
+  "prior_n10_campaign": "remains stopped; automation remains paused",
+  "failed_attempt": {
+    "job_id": "1889113",
+    "state": "FAILED",
+    "node": "ruche-gpu12",
+    "reason": "CUDA initialization failed before optimization",
+    "files_preserved": true
+  },
+  "pending_large_batch_walltime": "01:30:00",
+  "confirmed_default_account": "fwllm",
+  "primary_target_met": true,
+  "baseline": {
+    "state": "COMPLETED",
+    "step": 200000,
+    "fidelity": 0.9088526491387247,
+    "tp_violation": 0.4834645018647628,
+    "independently_verified": true
+  },
+  "large_batch_last_checkpoint": {
+    "step": 148000,
+    "fidelity": 0.9900265254378854,
+    "tp_violation": 0.1990072803857349,
+    "state": "COMPLETED",
+    "independently_verified": true,
+    "batch_size": 65536
+  },
+  "prepared_continuation": "Executed successfully as1889210_0; stopped at148000 total steps.",
+  "completed_comparison_job": "1889115",
+  "comparison_states": [
+    "COMPLETED",
+    "COMPLETED"
+  ],
+  "large_batch_100k": {
+    "status": "verified",
+    "checked_at_utc": "2026-09-13T12:00:43.430415+00:00",
+    "n_qubits": 8,
+    "step": 100000,
+    "noise_std": 0.05,
+    "fidelity_numpy": 0.984856510677257,
+    "fidelity_matrix_numpy": 0.9848565106772577,
+    "saved_fidelity": 0.9848565106772565,
+    "tp_violation_numpy": 0.24452562605011202,
+    "saved_tp_violation": 0.24452562605011127,
+    "truth_tp_violation": 4.9076768461114915e-14,
+    "factor_norm2": 252.82914921913664,
+    "truth_norm2": 255.99999999999966,
+    "target_reached": false,
+    "primary_target_met": false,
+    "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n8.npz",
+    "result": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_02/batch65536_100k/final.npz",
+    "data_sha256": "c05b02bdbc1b8955a89ae0cff2da77a986c76f96d2971860f3d2f7d0b925e439",
+    "result_sha256": "e5c016e441f15b76a86eb1f884108c5a22d1a952c04422787896b981e038ca8e",
+    "script_sha256": "bdc569cd7e7547ee404940518d88281c4c73f299896d6f5cf0ad9b1fa628d022",
+    "numpy_version": "2.5.3",
+    "host": "ruche-gpu15.cluster",
+    "slurm_job_id": "1889115",
+    "result_optimizer_seconds": 820.1998834151309,
+    "initialization_seed": 0,
+    "sampling_seed": 0,
+    "initial_factor_sha256": "f798178177e171e5175a9caba5f9092f611547a8cbed994714234ea58647dfa6",
+    "verification": "complete saved factors; NumPy only; no optimization"
+  },
+  "continuation_submitted_at_utc": "2026-09-13T12:03:10.272572+00:00",
+  "selected_chunk_steps": 1,
+  "last_continuation_checkpoint": {
+    "step": 148000,
+    "fidelity": 0.9900265254378854,
+    "tp_violation": 0.1990072803857349,
+    "state": "COMPLETED",
+    "independently_verified": true
+  },
+  "final_verification": {
+    "status": "verified",
+    "checked_at_utc": "2026-09-13T12:24:03.335304+00:00",
+    "n_qubits": 8,
+    "step": 148000,
+    "noise_std": 0.05,
+    "fidelity_numpy": 0.9900265254378854,
+    "fidelity_matrix_numpy": 0.9900265254378857,
+    "saved_fidelity": 0.9900265254378827,
+    "tp_violation_numpy": 0.1990072803857349,
+    "saved_tp_violation": 0.19900728038573476,
+    "truth_tp_violation": 4.9076768461114915e-14,
+    "factor_norm2": 253.414486974206,
+    "truth_norm2": 255.99999999999966,
+    "target_reached": true,
+    "primary_target_met": true,
+    "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n8.npz",
+    "result": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_03/batch65536_200k/final.npz",
+    "data_sha256": "c05b02bdbc1b8955a89ae0cff2da77a986c76f96d2971860f3d2f7d0b925e439",
+    "result_sha256": "c66ef3d400a94b042eb8f6af6e822d7b2a2c8c5196632b8a16292740f8f86ab7",
+    "script_sha256": "bdc569cd7e7547ee404940518d88281c4c73f299896d6f5cf0ad9b1fa628d022",
+    "numpy_version": "2.5.3",
+    "host": "ruche-gpu15.cluster",
+    "slurm_job_id": "1889210",
+    "result_optimizer_seconds": 479.62507546599954,
+    "initialization_seed": 0,
+    "sampling_seed": 0,
+    "initial_factor_sha256": "e2df2fe9192755627fdd764afb81def844235da13cd5b8a00d2c2be7335caa6a",
+    "verification": "complete saved factors; NumPy only; no optimization"
+  },
+  "completed_at_utc": "2026-09-13T12:27:30.975859+00:00",
+  "active_jobs": [],
+  "winning_optimizer_seconds": 1299.8249588811304,
+  "winning_runner_seconds": 4699.394099174999,
+  "winning_batch_elapsed_seconds": 4804,
+  "verified_local_sha256": {
+    "batch65536_200k/final.npz": "c66ef3d400a94b042eb8f6af6e822d7b2a2c8c5196632b8a16292740f8f86ab7",
+    "batch65536_200k/latest_restart.npz": "2aae50a7f34d2f9d357f735e811ba7380d2f9a76ead3621a8261e94f06969f5e",
+    "n8.npz": "c05b02bdbc1b8955a89ae0cff2da77a986c76f96d2971860f3d2f7d0b925e439"
+  },
+  "next_action": "The n=8 sigma=.05 99% target is independently verified. No further experiments are needed or submitted. Preserve all results and checkpoints. The prior n10 campaign and heartbeat remain stopped/paused.",
+  "final_job_states": {
+    "1889115_0": "COMPLETED",
+    "1889115_1": "COMPLETED",
+    "1889210_0": "COMPLETED"
+  }
+}

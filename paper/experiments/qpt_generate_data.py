@@ -196,6 +196,46 @@ def generate_compact_data(n_qubits, *, noise_std=0.05, channel_seed=0, noise_see
                              truth_factor=truth, metadata=metadata)
 
 
+def generate_on_demand_data(n_qubits, *, noise_std=0.05, channel_seed=0, noise_seed=0,
+                            max_memory_bytes=DEFAULT_MAX_MEMORY_BYTES):
+    """Build only Haar truth and local operators for a fixed virtual noisy dataset."""
+    from .qpt_observation_noise import NOISE_GENERATOR, fixed_row_noise
+    n_qubits, d, dimension, count = _dimensions(n_qubits)
+    channel_seed = _integer(channel_seed, "channel_seed", 0)
+    noise_seed = _integer(noise_seed, "noise_seed", 0)
+    if channel_seed > np.iinfo(np.uint64).max:
+        raise ValueError("Channel seed must fit uint64.")
+    fixed_row_noise(np.zeros(1, dtype=np.int64), noise_seed, noise_std)
+    estimate = 12 * 16 * dimension + 2**20
+    if estimate > _integer(max_memory_bytes, "max_memory_bytes"):
+        raise ValueError(f"Truth generation estimate {estimate} exceeds max_memory_bytes={max_memory_bytes}.")
+    began = perf_counter()
+    basis, bank = standard_local_basis(), standard_local_measurements()
+    truth = np.ascontiguousarray(pauli_matrices_to_coefficients(
+        _haar_unitary(d, channel_seed)[None, :, :], basis, xp=np))
+    violation = float(np.linalg.norm(trace_preserving_residual(truth, basis, xp=np)))
+    if violation > 1e-10 * np.sqrt(d) or not np.isclose(np.vdot(truth, truth).real, d):
+        raise FloatingPointError("On-demand truth failed TP/trace validation.")
+    metadata = dict(
+        generator="qpt_on_demand_v1", source_kind="synthetic_on_demand",
+        verification="constructed", channel_model="haar_unitary", channel_seed=channel_seed,
+        truth_rank=1, truth_trace=float(np.vdot(truth, truth).real), truth_tp_violation=violation,
+        truth_factor_sha256=_array_sha256(truth), noise_generator=NOISE_GENERATOR,
+        noise_seed=noise_seed, noise_std=float(noise_std), noise_model="iid_additive_gaussian",
+        noise_realization="fixed_by_legacy_row_index; different from sequential PCG64 archives",
+        observation_formula="real(vdot(D_s, c c^H)) + fixed_row_noise(s)",
+        noise_clipped=False, shot_noise=False, legacy_observations_reused=False,
+        row_order=ROW_ORDER, virtual_observations=count, stored_observations=0,
+        resource_estimate_bytes=estimate, generation_seconds=perf_counter() - began,
+        numpy_version=np.__version__, python_version=platform.python_version(),
+        numerical_source_sha256={name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
+                                for name in ("qpt_generate_data.py", "qpt_observation_noise.py",
+                                             "qpt_structured_data.py", "qpt_structured_operators.py")},
+    )
+    return StructuredQPTData(n_qubits, bank, basis, truth_factor=truth,
+                             observation_mode="synthetic-noisy", metadata=metadata)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n-qubits", type=int, required=True)
@@ -206,6 +246,8 @@ def main(argv=None):
     parser.add_argument("--max-observations", type=int, default=DEFAULT_MAX_OBSERVATIONS)
     parser.add_argument("--max-memory-mib", type=float, default=512)
     parser.add_argument("--save", type=Path, required=True, help="New compact NPZ; never overwrite an existing path.")
+    parser.add_argument("--observation-mode", choices=("stored", "synthetic-noisy"), default="stored",
+                        help="synthetic-noisy stores only truth/operators and a reproducible row-noise recipe.")
     args = parser.parse_args(argv)
     if not math.isfinite(args.max_memory_mib) or args.max_memory_mib <= 0:
         parser.error("--max-memory-mib must be finite and positive.")
@@ -213,7 +255,7 @@ def main(argv=None):
                    batch_size=args.batch_size, max_observations=args.max_observations,
                    max_memory_bytes=int(args.max_memory_mib * 2**20))
     try:
-        validated = _validate(args.n_qubits, **options)
+        validated = _validate(args.n_qubits, **options) if args.observation_mode == "stored" else _dimensions(args.n_qubits)
     except ValueError as error:
         parser.error(str(error))
     # Do not resolve through a symlink at the destination, including a broken one.
@@ -221,12 +263,16 @@ def main(argv=None):
     if os.path.lexists(destination):
         raise FileExistsError(f"Refusing to overwrite existing path: {destination}")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    estimated_archive_bytes = 8 * validated[3] + 16 * validated[2] + 2**20
+    estimated_archive_bytes = (8 * validated[3] if args.observation_mode == "stored" else 0) + 16 * validated[2] + 2**20
     if shutil.disk_usage(destination.parent).free < estimated_archive_bytes:
         raise OSError("Insufficient free disk space for the uncompressed-sized compact archive estimate.")
-    print(f"Generating {validated[3]} observations for n={args.n_qubits}; "
-          f"estimated major-array storage={validated[-1] / 2**20:.2f} MiB", flush=True)
-    data = generate_compact_data(args.n_qubits, **options)
+    print(f"Generating n={args.n_qubits}, mode={args.observation_mode}, virtual rows={validated[3]}", flush=True)
+    if args.observation_mode == "stored":
+        data = generate_compact_data(args.n_qubits, **options)
+    else:
+        data = generate_on_demand_data(args.n_qubits, noise_std=args.noise_std,
+                                       channel_seed=args.channel_seed, noise_seed=args.noise_seed,
+                                       max_memory_bytes=options["max_memory_bytes"])
     # Publish only a complete archive, atomically and without clobbering a path
     # created by another process while generation was running.
     with tempfile.TemporaryDirectory(prefix=".qpt-generate-", dir=destination.parent) as temporary:
@@ -235,9 +281,9 @@ def main(argv=None):
         os.link(staged, destination)
     print(json.dumps({
         "status": "complete", "data": str(destination), "n_qubits": data.n_qubits,
-        "observations": data.m, "observation_bytes": int(data.observations.nbytes),
+        "observations": data.m, "observation_bytes": int(data.observations.nbytes) if data.observations is not None else 0,
         "truth_factor_sha256": data.metadata["truth_factor_sha256"],
-        "observations_sha256": data.metadata["observations_sha256"],
+        "observations_sha256": data.metadata.get("observations_sha256"),
         "generation_seconds": data.metadata["generation_seconds"],
         "generator_process_peak_rss_bytes": process_peak_rss_bytes(),
     }, indent=2, allow_nan=False), flush=True)

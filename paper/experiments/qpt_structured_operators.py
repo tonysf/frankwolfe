@@ -207,6 +207,86 @@ def rank_one_measurement_loss_and_gradient(
     return loss, gradient
 
 
+def product_state_measurement_bank(local_measurements, local_basis, *, rtol=1e-10, atol=1e-12):
+    """Verify sensing vectors are rank-one matrices in an orthonormal basis.
+
+    If ``h`` is a coefficient sensing vector, its basis transform must be
+    ``Q = l r^H``. Then ``h^H u = l^H K r`` for the transformed factor K.
+    This identity derives the conjugations from the existing sensing bank;
+    it does not replace its convention with an assumed Born convention.
+    Return (left, right, basis), or None when the factorization is invalid.
+    """
+    basis = np.asarray(local_basis, dtype=np.complex128)
+    if basis.shape != (4, 2, 2):
+        raise ValueError("local_basis must have shape (4, 2, 2).")
+    flat = basis.reshape(4, 4)
+    if not np.allclose(flat.conj() @ flat.T, np.eye(4), rtol=rtol, atol=atol):
+        return None
+    vectors = rank_one_measurement_vectors(local_measurements, rtol=rtol, atol=atol)
+    if vectors is None:
+        return None
+    matrices = np.einsum("bk,kij->bij", vectors, basis)
+    left, singular, right_h = np.linalg.svd(matrices)
+    left = left[:, :, 0] * np.sqrt(singular[:, :1])
+    right = right_h[:, 0, :].conj() * np.sqrt(singular[:, :1])
+    if not np.allclose(left[:, :, None] * right[:, None, :].conj(), matrices,
+                       rtol=rtol, atol=atol):
+        return None
+    return left, right, basis
+
+
+def _product_states(symbols, local_states, xp):
+    product = local_states[symbols[:, 0]]
+    for slot in range(1, symbols.shape[1]):
+        product = (product[:, :, None] * local_states[symbols[:, slot]][:, None, :]).reshape(
+            (symbols.shape[0], -1))
+    return product
+
+
+def _product_state_amplitudes(factor, symbols, bank, xp):
+    factor, symbols = xp.asarray(factor), xp.asarray(symbols)
+    n = _factor_qubits(factor)
+    if symbols.ndim != 2 or symbols.shape[1] != n or symbols.shape[0] < 1:
+        raise ValueError("symbols must have nonempty shape (batch, n_qubits).")
+    if not np.issubdtype(symbols.dtype, np.integer):
+        raise TypeError("symbols must contain integers.")
+    if xp is np and (np.any(symbols < 0) or np.any(symbols >= 24)):
+        raise IndexError("measurement symbols must be in [0, 24).")
+    left, right, basis = (xp.asarray(item) for item in bank)
+    if left.shape != (24, 2) or right.shape != (24, 2):
+        raise ValueError("product-state bank must contain two (24, 2) arrays.")
+    left, right = _product_states(symbols, left, xp), _product_states(symbols, right, xp)
+    kraus = pauli_coefficients_to_matrices(factor, basis, xp=xp)
+    applied = xp.matmul(kraus, right.T)
+    amplitudes = xp.einsum("bi,rib->br", xp.conj(left), applied)
+    return left, right, amplitudes
+
+
+def product_state_measurement_values(factor, symbols, bank, *, xp=np):
+    """Same sensing values with O(rank*d**2 + batch*rank*d) workspace."""
+    _, _, amplitudes = _product_state_amplitudes(factor, symbols, bank, xp)
+    return xp.sum(xp.real(xp.conj(amplitudes) * amplitudes), axis=1)
+
+
+def product_state_measurement_loss_and_gradient(factor, symbols, observations, bank, *, xp=np):
+    """Use matrix products instead of materializing batch sensing vectors.
+
+    The objective and real-Frobenius gradient match the rank-one coefficient
+    backend. Arithmetic remains O(batch*rank*d**2), while workspace no longer
+    scales as batch*d**2. The Pauli adjoint returns the original coordinates.
+    """
+    left, right, amplitudes = _product_state_amplitudes(factor, symbols, bank, xp)
+    observations = xp.asarray(observations)
+    if observations.shape != (amplitudes.shape[0],):
+        raise ValueError("observations must have shape (batch,).")
+    predicted = xp.sum(xp.real(xp.conj(amplitudes) * amplitudes), axis=1)
+    residual = predicted - observations
+    weights = (residual[:, None] * amplitudes).T
+    kraus_gradient = (2.0 / amplitudes.shape[0]) * xp.matmul(
+        left.T, weights[:, :, None] * xp.conj(right)[None, :, :])
+    return 0.5 * xp.mean(residual**2), pauli_matrices_to_coefficients(kraus_gradient, bank[2], xp=xp)
+
+
 def _transform_axis(tensor, transform, axis, xp):
     tensor = xp.moveaxis(tensor, axis, -1)
     tensor = xp.matmul(tensor, xp.swapaxes(transform, -1, -2))

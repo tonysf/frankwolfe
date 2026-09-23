@@ -267,7 +267,8 @@ def test_jax_jit_operators_and_autodiff_match_numpy(rank_one):
 
     # Limit precision configuration to the test, rather than changing the
     # process-wide JAX mode used by other experiment tests.
-    with jax.experimental.enable_x64():
+    enable_x64 = jax.enable_x64 if hasattr(jax, "enable_x64") else jax.experimental.enable_x64
+    with enable_x64(True):
         arguments = tuple(jnp.asarray(value) for value in (pack_factor(factor), compiled_measurements, local, symbols, observations))
         loss, gradient = jax.jit(compiled_objective)(*arguments)
         autodiff = jax.jit(jax.grad(lambda *args: compiled_objective(*args)[0]))(*arguments)

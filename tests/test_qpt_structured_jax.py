@@ -189,7 +189,8 @@ def test_compiled_scan_emits_only_final_state_and_scalar_history():
     import jax.numpy as jnp
 
     data, _ = paired_data()
-    with jax.experimental.enable_x64():
+    enable_x64 = jax.enable_x64 if hasattr(jax, "enable_x64") else jax.experimental.enable_x64
+    with enable_x64(True):
         factor = jnp.zeros((4, 2), dtype=jnp.complex128)
         scan = _build_scan(jax, jnp, 3.0, False)
         for steps in (3, 31):

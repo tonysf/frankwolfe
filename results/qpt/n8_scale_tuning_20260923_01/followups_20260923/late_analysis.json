@@ -1,0 +1,354 @@
+{
+  "scope": "Local scalar analysis only; no QPT execution, remote operation, or new experiment.",
+  "observed": [
+    {
+      "name": "n8_step0p5_rho0p6",
+      "step_scale": 0.5,
+      "rho_scale": 0.6,
+      "endpoint": {
+        "step": 148000,
+        "fidelity": 0.9876890721216587,
+        "measurement_loss": 0.001135829498469919,
+        "tp_violation": 0.19768053922079545,
+        "smoothed_gap": 0.0049473272718306375,
+        "smoothed_objective": 0.0011358678218024245,
+        "smoothing_parameter": 509840.7814749799
+      },
+      "windows": [
+        {
+          "start": 100000,
+          "end": 120000,
+          "gain_pp": 0.5056541751419896,
+          "gain_pp_per_10000": 0.2528270875709948
+        },
+        {
+          "start": 120000,
+          "end": 138000,
+          "gain_pp": 0.3001384605212154,
+          "gain_pp_per_10000": 0.166743589178453
+        },
+        {
+          "start": 138000,
+          "end": 148000,
+          "gain_pp": 0.11370119554355851,
+          "gain_pp_per_10000": 0.11370119554355851
+        }
+      ],
+      "tail_fidelity_decreases": 0,
+      "tp_reduction_fraction_100k_to_148k": 0.17191943951433686
+    },
+    {
+      "name": "n8_step0p5_rho2",
+      "step_scale": 0.5,
+      "rho_scale": 2,
+      "endpoint": {
+        "step": 148000,
+        "fidelity": 0.9335811714690647,
+        "measurement_loss": 0.0011363497467087413,
+        "tp_violation": 0.3750980500828441,
+        "smoothed_gap": 0.004873717282699782,
+        "smoothed_objective": 0.0011364877295381738,
+        "smoothing_parameter": 509840.7814749799
+      },
+      "windows": [
+        {
+          "start": 100000,
+          "end": 120000,
+          "gain_pp": 1.5383797687157474,
+          "gain_pp_per_10000": 0.7691898843578737
+        },
+        {
+          "start": 120000,
+          "end": 138000,
+          "gain_pp": 1.055536212361774,
+          "gain_pp_per_10000": 0.5864090068676523
+        },
+        {
+          "start": 138000,
+          "end": 148000,
+          "gain_pp": 0.48507576642157213,
+          "gain_pp_per_10000": 0.4850757664215721
+        }
+      ],
+      "tail_fidelity_decreases": 0,
+      "tp_reduction_fraction_100k_to_148k": 0.17457586272355385
+    },
+    {
+      "name": "n8_step1_rho0p6",
+      "step_scale": 1,
+      "rho_scale": 0.6,
+      "endpoint": {
+        "step": 148000,
+        "fidelity": 0.9836336165540325,
+        "measurement_loss": 0.0011358163725877994,
+        "tp_violation": 0.19645585867699564,
+        "smoothed_gap": 0.00497160244234302,
+        "smoothed_objective": 0.0011358542225458753,
+        "smoothing_parameter": 509840.7814749799
+      },
+      "windows": [
+        {
+          "start": 100000,
+          "end": 120000,
+          "gain_pp": 0.17782186566394076,
+          "gain_pp_per_10000": 0.08891093283197038
+        },
+        {
+          "start": 120000,
+          "end": 138000,
+          "gain_pp": 0.13515777598447354,
+          "gain_pp_per_10000": 0.07508765332470752
+        },
+        {
+          "start": 138000,
+          "end": 148000,
+          "gain_pp": 0.04590075687987971,
+          "gain_pp_per_10000": 0.04590075687987971
+        }
+      ],
+      "tail_fidelity_decreases": 12,
+      "tp_reduction_fraction_100k_to_148k": 0.1657268807240001
+    },
+    {
+      "name": "n8_step1_rho2",
+      "step_scale": 1,
+      "rho_scale": 2,
+      "endpoint": {
+        "step": 148000,
+        "fidelity": 0.9774480231462298,
+        "measurement_loss": 0.0011356872379180245,
+        "tp_violation": 0.3658482033808997,
+        "smoothed_gap": 0.004918940253806465,
+        "smoothed_objective": 0.001135818499394921,
+        "smoothing_parameter": 509840.7814749799
+      },
+      "windows": [
+        {
+          "start": 100000,
+          "end": 120000,
+          "gain_pp": 0.712684864975599,
+          "gain_pp_per_10000": 0.3563424324877995
+        },
+        {
+          "start": 120000,
+          "end": 138000,
+          "gain_pp": 0.5027367369774383,
+          "gain_pp_per_10000": 0.2792981872096879
+        },
+        {
+          "start": 138000,
+          "end": 148000,
+          "gain_pp": 0.2341694422402507,
+          "gain_pp_per_10000": 0.23416944224025069
+        }
+      ],
+      "tail_fidelity_decreases": 0,
+      "tp_reduction_fraction_100k_to_148k": 0.17121573017382508
+    }
+  ],
+  "scenarios": [
+    {
+      "model": "linear_fidelity",
+      "start": 100000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9981442880618075,
+      "estimated_99_step": 156498.41529946847,
+      "slope": 0.0001872181925755915,
+      "intercept": 0.9607006495466892
+    },
+    {
+      "model": "exponential_infidelity",
+      "start": 100000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9934223166986326,
+      "estimated_99_step": 163845.56414073028,
+      "slope": -0.011586475671804314,
+      "intercept": -2.706777543138466
+    },
+    {
+      "model": "power_infidelity",
+      "start": 100000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9920522543717293,
+      "estimated_99_step": 170257.19246405788,
+      "slope": -1.4266244469612321,
+      "intercept": 12.578614678198011
+    },
+    {
+      "model": "linear_fidelity",
+      "start": 120000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9956080859395299,
+      "estimated_99_step": 162129.92641071894,
+      "slope": 0.00014808753741416602,
+      "intercept": 0.9659905784566967
+    },
+    {
+      "model": "exponential_infidelity",
+      "start": 120000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9929127565841593,
+      "estimated_99_step": 167005.6820237167,
+      "slope": -0.010434785383152958,
+      "intercept": -2.8625017363035212
+    },
+    {
+      "model": "power_infidelity",
+      "start": 120000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9919525316158492,
+      "estimated_99_step": 171171.3656109112,
+      "slope": -1.3955959123300654,
+      "intercept": 12.212347366251953
+    },
+    {
+      "model": "linear_fidelity",
+      "start": 128000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9948032061706792,
+      "estimated_99_step": 164316.66462001592,
+      "slope": 0.00013460642396600277,
+      "intercept": 0.9678819213774786
+    },
+    {
+      "model": "exponential_infidelity",
+      "start": 128000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9926935637010084,
+      "estimated_99_step": 168375.01842021412,
+      "slope": -0.009923466602195475,
+      "intercept": -2.934306314051048
+    },
+    {
+      "model": "power_infidelity",
+      "start": 128000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9918754524054978,
+      "estimated_99_step": 171837.45865496836,
+      "slope": -1.3685004464305228,
+      "intercept": 11.891150631578228
+    },
+    {
+      "model": "linear_fidelity",
+      "start": 138000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9938207733034433,
+      "estimated_99_step": 167435.13939951462,
+      "slope": 0.00011732810253105817,
+      "intercept": 0.9703551527972317
+    },
+    {
+      "model": "exponential_infidelity",
+      "start": 138000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9923506449438949,
+      "estimated_99_step": 170605.69864769347,
+      "slope": -0.00911618044223555,
+      "intercept": -3.0498978526420557
+    },
+    {
+      "model": "power_infidelity",
+      "start": 138000,
+      "end": 148000,
+      "predict_step": 200000,
+      "predicted_fidelity": 0.9916963694431554,
+      "estimated_99_step": 173415.2080578458,
+      "slope": -1.3033308611262224,
+      "intercept": 11.117488728737085
+    }
+  ],
+  "retrospective_checks": [
+    {
+      "model": "linear_fidelity",
+      "start": 60000,
+      "end": 100000,
+      "predict_step": 148000,
+      "predicted_fidelity": 1.0047980573022086,
+      "estimated_99_step": 119293.01995813265,
+      "slope": 0.0005154863827761287,
+      "intercept": 0.9285060726513417,
+      "actual_fidelity": 0.9876890721216587,
+      "prediction_error_pp": 1.710898518054993
+    },
+    {
+      "model": "exponential_infidelity",
+      "start": 60000,
+      "end": 100000,
+      "predict_step": 148000,
+      "predicted_fidelity": 0.9906909475544762,
+      "estimated_99_step": 143796.47537646454,
+      "slope": -0.017032797815235867,
+      "intercept": -2.1559138943572274,
+      "actual_fidelity": 0.9876890721216587,
+      "prediction_error_pp": 0.3001875432817491
+    },
+    {
+      "model": "power_infidelity",
+      "start": 60000,
+      "end": 100000,
+      "predict_step": 148000,
+      "predicted_fidelity": 0.9872152582030724,
+      "estimated_99_step": 177715.44886922702,
+      "slope": -1.3426542385765066,
+      "intercept": 11.62475227858564,
+      "actual_fidelity": 0.9876890721216587,
+      "prediction_error_pp": -0.04738139185862522
+    },
+    {
+      "model": "linear_fidelity",
+      "start": 80000,
+      "end": 120000,
+      "predict_step": 148000,
+      "predicted_fidelity": 0.9933513116799417,
+      "estimated_99_step": 137478.63701433074,
+      "slope": 0.0003185244805740915,
+      "intercept": 0.9462096885549762,
+      "actual_fidelity": 0.9876890721216587,
+      "prediction_error_pp": 0.5662239558283044
+    },
+    {
+      "model": "exponential_infidelity",
+      "start": 80000,
+      "end": 120000,
+      "predict_step": 148000,
+      "predicted_fidelity": 0.9892349050960533,
+      "estimated_99_step": 153076.5381815886,
+      "slope": -0.014522466121412244,
+      "intercept": -2.3821213462629025,
+      "actual_fidelity": 0.9876890721216587,
+      "prediction_error_pp": 0.15458329743945898
+    },
+    {
+      "model": "power_infidelity",
+      "start": 80000,
+      "end": 120000,
+      "predict_step": 148000,
+      "predicted_fidelity": 0.987827805300581,
+      "estimated_99_step": 169667.6498289322,
+      "slope": -1.4387046431200572,
+      "intercept": 12.719131042934482,
+      "actual_fidelity": 0.9876890721216587,
+      "prediction_error_pp": 0.01387331789223234
+    }
+  ],
+  "fit_definitions": {
+    "linear_fidelity": "OLS F(t)=a*t+b",
+    "exponential_infidelity": "OLS log(1-F(t))=a*t+b",
+    "power_infidelity": "OLS log(1-F(t))=a*log(t)+b"
+  },
+  "caveat": "Descriptive extrapolations, not confidence intervals or convergence certificates. All assume their fitted trend continues; none identifies a nonzero asymptotic error floor.",
+  "input_sha256": {
+    "comparison_data.json": "5131a666e01d91526474a4e173ca1cab75d07b7b6262c3ff8adb2feeb3ca6bd2"
+  }
+}

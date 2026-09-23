@@ -1,0 +1,294 @@
+{
+  "checked_at_utc": "2026-09-22T18:49:38.932175+00:00",
+  "queue": {
+    "returncode": 0,
+    "stdout": "             JOBID    PARTITION                     NAME      STATE       TIME TIME_LIMIT             NODELIST(REASON)\n   1925110_[1-3%2]      gpua100            qpt_exp_large    PENDING       0:00    4:00:00                   (Priority)\n",
+    "stderr": ""
+  },
+  "accounting": {
+    "returncode": 0,
+    "stdout": "1925109|1925109|COMPLETED|0:0|00:02:38|ruche-gpu09|2026-09-22T19:10:48|2026-09-22T19:13:26\n1925128|1925110_0|COMPLETED|0:0|00:11:43|ruche-gpu15|2026-09-22T18:39:25|2026-09-22T18:51:08\n1925110|1925110_[1-3%2]|PENDING|0:0|00:00:00|None assigned|Unknown|Unknown\n",
+    "stderr": ""
+  },
+  "progress": {
+    "checked_at_utc": "2026-09-22T18:49:39.586816+00:00",
+    "runs": [
+      {
+        "name": "n4_beta10",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:11:02.986252+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:11:22.959225+00:00",
+        "completed_at_utc": "2026-09-22T17:11:33.496187+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.41923476309086777,
+          "measurement_loss": 0.0022133953507616363,
+          "tp_violation": 0.021352696178135365,
+          "smoothed_gap": 0.25534250074464826,
+          "smoothed_objective": 0.0024413641677995144,
+          "smoothing_parameter": 1.0
+        },
+        "optimizer_seconds": 1.6480606790282764,
+        "runner_seconds": 6.90058544598287,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.419234763,
+          "measurement_loss": 0.0022134,
+          "tp_violation": 0.0213527,
+          "optimizer_seconds": 1.648
+        }
+      },
+      {
+        "name": "n4_beta100",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:11:33.497281+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:11:37.955294+00:00",
+        "completed_at_utc": "2026-09-22T17:11:46.936834+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.9966891750887659,
+          "measurement_loss": 0.0012662843382009199,
+          "tp_violation": 0.020498338692559872,
+          "smoothed_gap": 0.03571751070305919,
+          "smoothed_objective": 0.0012872934326586647,
+          "smoothing_parameter": 10.0
+        },
+        "optimizer_seconds": 1.6121458918205462,
+        "runner_seconds": 6.894876880047377,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.996689175,
+          "measurement_loss": 0.00126628,
+          "tp_violation": 0.0204983,
+          "optimizer_seconds": 1.612
+        }
+      },
+      {
+        "name": "n4_beta1000",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:11:46.937879+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:11:51.467160+00:00",
+        "completed_at_utc": "2026-09-22T17:12:00.680574+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.9669447544369659,
+          "measurement_loss": 0.0013603820771947157,
+          "tp_violation": 0.023710236544864507,
+          "smoothed_gap": 0.013374867202427908,
+          "smoothed_objective": 0.0013631929537797829,
+          "smoothing_parameter": 100.0
+        },
+        "optimizer_seconds": 1.6181853202870116,
+        "runner_seconds": 7.11356500495458,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.966944754,
+          "measurement_loss": 0.00136038,
+          "tp_violation": 0.0237102,
+          "optimizer_seconds": 1.618
+        }
+      },
+      {
+        "name": "n4_beta10000",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:12:00.681754+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:12:05.242837+00:00",
+        "completed_at_utc": "2026-09-22T17:12:14.361279+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.9622095198548426,
+          "measurement_loss": 0.0013723105875683374,
+          "tp_violation": 0.1708793815677884,
+          "smoothed_gap": 0.013304035762909498,
+          "smoothed_objective": 0.0013869104690908322,
+          "smoothing_parameter": 1000.0
+        },
+        "optimizer_seconds": 1.6139232986606658,
+        "runner_seconds": 7.015634729003068,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.96220952,
+          "measurement_loss": 0.00137231,
+          "tp_violation": 0.170879,
+          "optimizer_seconds": 1.614
+        }
+      },
+      {
+        "name": "n5_beta10",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:12:14.362470+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:12:20.275476+00:00",
+        "completed_at_utc": "2026-09-22T17:12:32.813010+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.009728842891245629,
+          "measurement_loss": 0.002178535521895915,
+          "tp_violation": 0.01842131426474859,
+          "smoothed_gap": 0.1589724320290204,
+          "smoothed_objective": 0.00234820793151623,
+          "smoothing_parameter": 1.0
+        },
+        "optimizer_seconds": 2.22604861255968,
+        "runner_seconds": 9.05765714799054,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.00972884289,
+          "measurement_loss": 0.00217854,
+          "tp_violation": 0.0184213,
+          "optimizer_seconds": 2.226
+        }
+      },
+      {
+        "name": "n5_beta100",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:12:32.815298+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:12:38.751850+00:00",
+        "completed_at_utc": "2026-09-22T17:12:50.521164+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.09127248268282974,
+          "measurement_loss": 0.0018910953037246767,
+          "tp_violation": 0.02082830349777899,
+          "smoothed_gap": 0.02901786086997625,
+          "smoothed_objective": 0.0019127862150544563,
+          "smoothing_parameter": 10.0
+        },
+        "optimizer_seconds": 2.182134919858072,
+        "runner_seconds": 8.451883896021172,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.0912724827,
+          "measurement_loss": 0.0018911,
+          "tp_violation": 0.0208283,
+          "optimizer_seconds": 2.182
+        }
+      },
+      {
+        "name": "n5_beta1000",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:12:50.522306+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:12:56.377906+00:00",
+        "completed_at_utc": "2026-09-22T17:13:08.232340+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.9306211377248964,
+          "measurement_loss": 0.001371782806950371,
+          "tp_violation": 0.020426904128234245,
+          "smoothed_gap": 0.007612621354079998,
+          "smoothed_objective": 0.0013738690990116914,
+          "smoothing_parameter": 100.0
+        },
+        "optimizer_seconds": 2.1792417121469043,
+        "runner_seconds": 8.551591463969089,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.930621138,
+          "measurement_loss": 0.00137178,
+          "tp_violation": 0.0204269,
+          "optimizer_seconds": 2.179
+        }
+      },
+      {
+        "name": "n5_beta10000",
+        "target_steps": 10000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T17:13:08.233587+00:00",
+        "job_id": "1925109",
+        "array_task_id": null,
+        "hostname": "ruche-gpu09.cluster",
+        "production_started_at_utc": "2026-09-22T17:13:14.060072+00:00",
+        "completed_at_utc": "2026-09-22T17:13:26.110280+00:00",
+        "final": {
+          "step": 10000,
+          "fidelity": 0.892758482454572,
+          "measurement_loss": 0.0014054883270593396,
+          "tp_violation": 0.14213558044237293,
+          "smoothed_gap": 0.007639877495204681,
+          "smoothed_objective": 0.0014155895886731847,
+          "smoothing_parameter": 1000.0
+        },
+        "optimizer_seconds": 2.2026898140320554,
+        "runner_seconds": 8.773719132004771,
+        "latest_checkpoint": {
+          "step": 10000,
+          "fidelity": 0.892758482,
+          "measurement_loss": 0.00140549,
+          "tp_violation": 0.142136,
+          "optimizer_seconds": 2.203
+        }
+      },
+      {
+        "name": "n8_b8192_fixed",
+        "target_steps": 200000,
+        "status": "completed",
+        "started_at_utc": "2026-09-22T16:39:47.520601+00:00",
+        "job_id": "1925128",
+        "array_task_id": "0",
+        "hostname": "ruche-gpu15.cluster",
+        "production_started_at_utc": "2026-09-22T16:40:15.838113+00:00",
+        "completed_at_utc": "2026-09-22T16:51:08.969533+00:00",
+        "final": {
+          "step": 200000,
+          "fidelity": 0.7553769911836947,
+          "measurement_loss": 0.001145184106170984,
+          "tp_violation": 0.8668691574856509,
+          "smoothed_gap": 0.004956270013809572,
+          "smoothed_objective": 0.0011459786806393654,
+          "smoothing_parameter": 472870.8045015879
+        },
+        "optimizer_seconds": 295.13110951078124,
+        "runner_seconds": 648.4716986310086,
+        "latest_checkpoint": {
+          "step": 200000,
+          "fidelity": 0.755376991,
+          "measurement_loss": 0.00114518,
+          "tp_violation": 0.866869,
+          "optimizer_seconds": 295.131
+        }
+      },
+      {
+        "name": "n8_b65536_fixed",
+        "target_steps": 148000,
+        "status": "not_started"
+      },
+      {
+        "name": "n10_b65536_fixed",
+        "target_steps": 100000,
+        "status": "not_started"
+      },
+      {
+        "name": "n10_b65536_relative",
+        "target_steps": 57000,
+        "status": "not_started"
+      }
+    ]
+  }
+}

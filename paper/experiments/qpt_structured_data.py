@@ -123,8 +123,8 @@ class StructuredQPTData:
             raise ValueError("local_basis must be Hilbert-Schmidt orthonormal.")
         self.local_measurements = np.asarray(bank, dtype=np.complex128)
         self.local_basis = np.asarray(basis, dtype=np.complex128)
-        if self.observation_mode not in ("stored", "noiseless"):
-            raise ValueError("observation_mode must be 'stored' or 'noiseless'.")
+        if self.observation_mode not in ("stored", "noiseless", "synthetic-noisy"):
+            raise ValueError("observation_mode must be 'stored', 'noiseless' or 'synthetic-noisy'.")
         if self.observations is not None:
             observations = _numeric_array(self.observations, "observations")
             if observations.shape != (self.m,):
@@ -144,15 +144,23 @@ class StructuredQPTData:
             self.truth_factor = np.asarray(truth, dtype=np.complex128)
         if self.observation_mode == "stored" and self.observations is None:
             raise ValueError("stored mode requires observations.")
-        if self.observation_mode == "noiseless":
+        if self.observation_mode in ("noiseless", "synthetic-noisy"):
             if self.truth_factor is None:
-                raise ValueError("noiseless mode requires truth_factor.")
+                raise ValueError("On-demand mode requires truth_factor.")
             if self.observations is not None:
-                raise ValueError("noiseless mode must not include stored observations.")
+                raise ValueError("On-demand mode must not include stored observations.")
         if not isinstance(self.metadata, dict):
             raise ValueError("metadata must be a JSON-compatible dictionary.")
         # Round-tripping also rejects arrays, arbitrary objects, and NaN metadata.
         self.metadata = json.loads(json.dumps(self.metadata, allow_nan=False))
+        if self.observation_mode == "synthetic-noisy":
+            from .qpt_observation_noise import NOISE_GENERATOR, fixed_row_noise
+            if self.metadata.get("noise_generator") != NOISE_GENERATOR:
+                raise ValueError("Unknown on-demand noise generator.")
+            if self.m > np.iinfo(np.int64).max:
+                raise ValueError("On-demand fixed row noise requires int64 row indices.")
+            fixed_row_noise(np.zeros(1, dtype=np.int64), self.metadata.get("noise_seed"),
+                            self.metadata.get("noise_std", float("nan")))
 
     @property
     def m(self):
@@ -243,7 +251,17 @@ class StructuredQPTData:
         if self.observation_mode == "stored":
             return self.observations[self.symbols_to_indices(symbols)]
         applied = self.apply_measurements(self.truth_factor, symbols)
-        return np.einsum("kr,bkr->b", self.truth_factor.conj(), applied).real
+        targets = np.einsum("kr,bkr->b", self.truth_factor.conj(), applied).real
+        return targets + self.noise_for_symbols(symbols)
+
+    def noise_for_symbols(self, symbols):
+        """Small host batch of fixed noise; no truth evaluation or JAX import."""
+        symbols = self._validate_symbols(symbols)
+        if self.observation_mode != "synthetic-noisy":
+            return np.zeros(symbols.shape[0], dtype=np.float64)
+        from .qpt_observation_noise import fixed_row_noise
+        return fixed_row_noise(self.symbols_to_indices(symbols), self.metadata["noise_seed"],
+                               self.metadata["noise_std"])
 
     def save_npz(self, path):
         """Save portable arrays and JSON metadata; no pickled Python objects."""

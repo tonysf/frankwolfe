@@ -1,5 +1,9 @@
 # Larger-qubit structured QPT experiments
 
+For scaling beyond the stored-observation workflow below, see
+[on-demand noisy QPT](qpt_on_demand.md). Its explicit `synthetic-noisy` mode
+generates only sampled targets and stores no `24**n` observation array.
+
 The direct generator creates **new synthetic noisy data** in the compact
 format, without first constructing the legacy dense HDF5 arrays. Start with
 four and five qubits. This does not resize or replace the three-qubit archive,

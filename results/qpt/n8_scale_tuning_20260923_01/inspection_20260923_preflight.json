@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-09-23T07:42:13.590189+00:00",
+  "accounting": {
+    "returncode": 0,
+    "stdout": "1931825|1931802_0|RUNNING|0:0|00:00:38|ruche-gpu15|2026-09-23T09:41:35|Unknown\n1931802|1931802_[1-3%1]|PENDING|0:0|00:00:00|None assigned|Unknown|Unknown\n1931810|1931810|COMPLETED|0:0|00:04:44|ruche-gpu15|2026-09-23T09:36:51|2026-09-23T09:41:35\n",
+    "stderr": ""
+  },
+  "progress": {
+    "returncode": 0,
+    "stdout": "{\n  \"checked_at_utc\": \"2026-09-23T07:42:13.727006+00:00\",\n  \"runs\": [\n    {\n      \"name\": \"n8_step0p5_rho0p6\",\n      \"target_steps\": 148000,\n      \"status\": \"running\",\n      \"started_at_utc\": \"2026-09-23T07:41:44.020354+00:00\",\n      \"job_id\": \"1931825\",\n      \"array_task_id\": \"0\",\n      \"hostname\": \"ruche-gpu15.cluster\",\n      \"production_started_at_utc\": \"2026-09-23T07:41:54.383263+00:00\",\n      \"latest_checkpoint\": {\n        \"step\": 1000,\n        \"fidelity\": 0.00664543058,\n        \"measurement_loss\": 0.00115162,\n        \"tp_violation\": 3.06735,\n        \"optimizer_seconds\": 8.016\n      }\n    },\n    {\n      \"name\": \"n8_step0p5_rho2\",\n      \"target_steps\": 148000,\n      \"status\": \"not_started\"\n    },\n    {\n      \"name\": \"n8_step1_rho0p6\",\n      \"target_steps\": 148000,\n      \"status\": \"not_started\"\n    },\n    {\n      \"name\": \"n8_step1_rho2\",\n      \"target_steps\": 148000,\n      \"status\": \"not_started\"\n    }\n  ]\n}\n",
+    "stderr": ""
+  },
+  "preflight": {
+    "status": "validated",
+    "selected": "fast",
+    "runner_speedup": 1.7858386506060222,
+    "runner_medians_seconds": {
+      "original": 28.316808426985517,
+      "fast": 15.856308416987304
+    },
+    "checks": [
+      "decoder_n1",
+      "decoder_n2",
+      "decoder_n3",
+      "decoder_n4",
+      "decoder_n5",
+      "decoder_n6",
+      "decoder_n7",
+      "decoder_n8",
+      "decoder_n9",
+      "decoder_n10",
+      "decoder_n11",
+      "decoder_n12",
+      "decoder_n13",
+      "batch_symbols_noise_rng_1",
+      "batch_symbols_noise_rng_7",
+      "batch_symbols_noise_rng_65536",
+      "batch_symbols_noise_rng_131072",
+      "partition_invariance",
+      "three_repeat_full_factor_momentum_scalar_bitwise_equivalence",
+      "original_to_fast_restart_bitwise_equivalence"
+    ]
+  }
+}

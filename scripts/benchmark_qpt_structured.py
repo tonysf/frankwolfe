@@ -39,6 +39,8 @@ NUMERICAL_SOURCE_FILES = (
     "paper/experiments/quantum_process_tomography_jax.py",
     "paper/experiments/quantum_process_tomography_structured_jax.py",
     "paper/experiments/qpt_benchmark_resources.py",
+    "paper/experiments/qpt_observation_noise.py",
+    "paper/experiments/qpt_generate_data.py",
 )
 SCHEDULER_ENVIRONMENT_KEYS = ("SLURM_JOB_ID", "SLURM_ARRAY_JOB_ID", "SLURM_ARRAY_TASK_ID", "SLURM_CPUS_PER_TASK")
 
@@ -57,6 +59,8 @@ class BenchmarkParser(argparse.ArgumentParser):
 
 def parser():
     result = BenchmarkParser(description=__doc__)
+    result.add_argument("--allow-synthetic-noisy", action="store_true",
+                        help="Explicitly admit virtual fixed-noise synthetic data with no stored observations.")
     source = result.add_mutually_exclusive_group(required=True)
     source.add_argument("--h5", type=Path, help="Legacy HDF5 to convert and compare (default backends: dense structured).")
     source.add_argument("--data", type=Path, help="Existing compact NPZ; structured-only, with no HDF5 access or conversion.")
@@ -72,6 +76,7 @@ def parser():
     result.add_argument("--tau", type=float, default=10.0)
     result.add_argument("--batch-size", type=int, default=32)
     result.add_argument("--chunk-steps", type=int, default=100)
+    result.add_argument("--prefetch", action="store_true", help="Prepare one structured host chunk ahead of GPU execution.")
     result.add_argument("--metrics-every", type=int, default=100)
     result.add_argument("--metric-mode", choices=("sampled", "full"),
                         help="Default: full with --h5, sampled with --data.")
@@ -82,7 +87,7 @@ def parser():
     result.add_argument("--sampling-seed", type=int, default=0)
     result.add_argument("--repeats", type=int, default=3)
     result.add_argument("--backends", nargs="+", choices=("dense", "structured"))
-    result.add_argument("--measurement-backend", choices=("auto", "tensor", "rank-one"), default="auto")
+    result.add_argument("--measurement-backend", choices=("auto", "tensor", "rank-one", "product-state"), default="auto")
     result.add_argument("--rtol", type=float, default=1e-10, help="HDF5 operator-verification relative tolerance.")
     result.add_argument("--atol", type=float, default=1e-12, help="HDF5 operator-verification absolute tolerance.")
     result.add_argument("--allocator", choices=("grow", "default"), default="grow",
@@ -233,7 +238,8 @@ def run_worker(args):
         started = perf_counter()
         data = (QPTData.from_hdf5(args.h5) if args.worker == "dense"
                 else StructuredQPTData.load_npz(args.compact_data or args.data))
-        if args.data is not None and data.observation_mode != "stored":
+        if args.data is not None and data.observation_mode != "stored" and not (
+                args.allow_synthetic_noisy and data.observation_mode == "synthetic-noisy"):
             raise ValueError("Compact benchmark requires stored observations, including their fixed noise realization.")
         row["load_seconds"] = phases["data_load_seconds"] = perf_counter() - started
         runner_started = perf_counter()
@@ -281,7 +287,8 @@ def run_worker(args):
             result = run_qpt_structured_jax(
                 data, chunk_steps=args.chunk_steps, metric_mode=args.metric_mode,
                 metric_samples=args.metric_samples, metric_batch_size=args.metric_batch_size,
-                metric_seed=args.metric_seed, measurement_backend=args.measurement_backend, **common_options(args),
+                metric_seed=args.metric_seed, measurement_backend=args.measurement_backend,
+                prefetch=args.prefetch, **common_options(args),
             )
             runner_finished = perf_counter()
             meta = result.metadata
@@ -294,6 +301,7 @@ def run_worker(args):
                 batch_symbols_sha256=meta["batch_symbols_sha256"],
                 compiled_memory_estimate_bytes=meta["compiled_memory_estimate_bytes"],
                 sampling_transfer_seconds=meta["sampling_transfer_seconds"],
+                prefetch=meta["prefetch"], host_preparation_seconds=meta["host_preparation_seconds"],
                 measurement_backend=meta["measurement_backend"],
                 final_measurement_loss=finite_scalar(result.measurement_loss[-1], "measurement loss"),
                 final_smoothed_gap=finite_scalar(result.smoothed_gap[-1], "smoothed gap"),
@@ -372,7 +380,7 @@ def memory_estimates(data, args):
         "dense_scan_iterate_history_device_bytes": args.steps * n * args.rank * complex_bytes,
         "dense_host_iterate_history_bytes": args.steps * n * args.rank * complex_bytes,
         "dense_history_note": "one history only; native warmup/history copies can coexist",
-        "structured_host_observation_bytes": int(data.observations.nbytes),
+        "structured_host_observation_bytes": int(data.observations.nbytes) if data.observations is not None else 0,
         "structured_full_local_bank_device_bytes": (24 * 4 * 4 + 4 * 2 * 2) * complex_bytes,
         "factor_device_bytes": n * args.rank * complex_bytes, "structured_checkpoint_factor_bytes": 0,
         "structured_host_scalar_traces_scale": "O(steps), not O(steps * process_dimension * rank)",
@@ -596,7 +604,8 @@ def main(argv=None):
             started = perf_counter()
             data = StructuredQPTData.load_npz(compact)
             report["compact_parent_load_seconds"] = perf_counter() - started
-            if data.observation_mode != "stored":
+            if data.observation_mode != "stored" and not (
+                    args.allow_synthetic_noisy and data.observation_mode == "synthetic-noisy"):
                 raise ValueError("Compact benchmark requires stored observations, including their fixed noise realization.")
             report.update(conversion_seconds=None, compact_save_seconds=None, hdf5_accessed=False,
                           verification=data.metadata.get("verification", "not_recorded"),
@@ -622,8 +631,8 @@ def main(argv=None):
                 if source_fingerprint(args.h5) != fingerprint:
                     raise RuntimeError("HDF5 source changed during the benchmark; comparison would not be matched.")
         report.update(n_qubits=data.n_qubits, measurement_count=data.m, process_dimension=data.process_dimension,
-                      observations_preserved=True, observation_mode=data.observation_mode, source_metadata=data.metadata,
-                      observations_fingerprint=array_fingerprint(data.observations),
+                      observations_preserved=data.observation_mode == "stored", observation_mode=data.observation_mode, source_metadata=data.metadata,
+                      observations_fingerprint=array_fingerprint(data.observations) if data.observations is not None else None,
                       truth_factor_fingerprint=array_fingerprint(data.truth_factor) if data.truth_factor is not None else None,
                       memory_estimates=memory_estimates(data, args))
         if args.data is not None:

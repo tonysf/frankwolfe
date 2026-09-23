@@ -1,0 +1,93 @@
+{
+  "status": "complete",
+  "n_qubits": 6,
+  "precision": "64",
+  "rank": 1,
+  "batch_size": 32,
+  "measurement_backend": "tensor",
+  "device": "cuda:0",
+  "device_kind": "Tesla V100-PCIE-32GB",
+  "hostname": "ruche-gpu04.cluster",
+  "slurm_job_id": "1886898",
+  "kernels": {
+    "truth_targets": {
+      "median_seconds": 0.00025613303296267986,
+      "min_seconds": 0.00025119498604908586,
+      "samples_seconds": [
+        0.0002925629960373044,
+        0.00026338500902056694,
+        0.00025850097881630063,
+        0.00025487400125712156,
+        0.0002570580109022558,
+        0.0002581049920991063,
+        0.00025520805502310395,
+        0.00025119498604908586,
+        0.0002536510000936687,
+        0.00025406101485714316
+      ],
+      "compile_seconds": 0.000715697999112308,
+      "compiled_memory_estimate_bytes": 8512304
+    },
+    "measurement_gradient_with_ready_targets": {
+      "median_seconds": 0.0002653605188243091,
+      "min_seconds": 0.0002611149684526026,
+      "samples_seconds": [
+        0.00033482303842902184,
+        0.0002976349787786603,
+        0.0002785719698294997,
+        0.0002613810356706381,
+        0.0002616309793666005,
+        0.0002637060242705047,
+        0.0002611149684526026,
+        0.00026706798234954476,
+        0.00026329897809773684,
+        0.0002670150133781135
+      ],
+      "compile_seconds": 0.342115959036164,
+      "compiled_memory_estimate_bytes": 8569416
+    },
+    "generated_targets_and_measurement_gradient": {
+      "median_seconds": 0.0005311435088515282,
+      "min_seconds": 0.000522816029842943,
+      "samples_seconds": [
+        0.0005724329967051744,
+        0.0005318999756127596,
+        0.0005303870420902967,
+        0.000522816029842943,
+        0.0005337210022844374,
+        0.0005287250387482345,
+        0.0005387389683164656,
+        0.0005257810116745532,
+        0.0005291089764796197,
+        0.0005347029655240476
+      ],
+      "compile_seconds": 0.5752171089989133,
+      "compiled_memory_estimate_bytes": 12829256
+    },
+    "exact_tp_gradient": {
+      "median_seconds": 0.00021376952645368874,
+      "min_seconds": 0.00020802300423383713,
+      "samples_seconds": [
+        0.00024377700174227357,
+        0.00021445902530103922,
+        0.00021308002760633826,
+        0.0002110190107487142,
+        0.00020890298765152693,
+        0.00020802300423383713,
+        0.00020828499691560864,
+        0.0024063820019364357,
+        0.00035847898107022047,
+        0.00021540996385738254
+      ],
+      "compile_seconds": 0.31476538197603077,
+      "compiled_memory_estimate_bytes": 4460584
+    }
+  },
+  "fixed_noise_100_step_chunk_median_seconds": 0.0011108900362160057,
+  "timing_scope": "Isolated calls include dispatch/synchronization; not additive fused-scan timings.",
+  "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n6.npz",
+  "result": null,
+  "factor_sha256": "b2a78ea59f455d7daf0c1b120a3c59c1887cb398bf82b88d7f026deb1368b5d9",
+  "script_sha256": "7bb935a2a43f25dda6129a14fce89f80ad46be73416f331a3f303982a71d5ed1",
+  "jax_version": "0.11.1"
+}

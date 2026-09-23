@@ -1,0 +1,6 @@
+# Reports are binary files even when their PDF encoding contains no NUL bytes.
+*.pdf binary
+
+# Historical experiment evidence is retained byte-for-byte so recorded hashes
+# stay meaningful; do not normalize its line endings or archived whitespace.
+results/** -text -whitespace

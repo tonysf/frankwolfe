@@ -1,0 +1,93 @@
+{
+  "status": "complete",
+  "n_qubits": 10,
+  "precision": "64",
+  "rank": 1,
+  "batch_size": 32,
+  "measurement_backend": "tensor",
+  "device": "cuda:0",
+  "device_kind": "NVIDIA A100-SXM4-40GB",
+  "hostname": "ruche-gpu12.cluster",
+  "slurm_job_id": "1886910",
+  "kernels": {
+    "truth_targets": {
+      "median_seconds": 0.03612368748872541,
+      "min_seconds": 0.035994237987324595,
+      "samples_seconds": [
+        0.04457003000425175,
+        0.03763091599103063,
+        0.03631606500130147,
+        0.03622798598371446,
+        0.03613245498854667,
+        0.03611491998890415,
+        0.03606222796952352,
+        0.036053233954589814,
+        0.035994237987324595,
+        0.03608118899865076
+      ],
+      "compile_seconds": 0.001773878000676632,
+      "compiled_memory_estimate_bytes": 1094806096
+    },
+    "measurement_gradient_with_ready_targets": {
+      "median_seconds": 0.03749496449017897,
+      "min_seconds": 0.03739275998668745,
+      "samples_seconds": [
+        0.03739275998668745,
+        0.03752267797244713,
+        0.03751221299171448,
+        0.03749702399363741,
+        0.03749290498672053,
+        0.037512807990424335,
+        0.037458202976267785,
+        0.037414215970784426,
+        0.037567210965789855,
+        0.037470391020178795
+      ],
+      "compile_seconds": 0.5615207010414451,
+      "compiled_memory_estimate_bytes": 1107389032
+    },
+    "generated_targets_and_measurement_gradient": {
+      "median_seconds": 0.0723747159645427,
+      "min_seconds": 0.07233930000802502,
+      "samples_seconds": [
+        0.07241978897945955,
+        0.07236423302674666,
+        0.07238036999478936,
+        0.07236378599191085,
+        0.07237770594656467,
+        0.07237172598252073,
+        0.07241762400371954,
+        0.07239215995650738,
+        0.07233930000802502,
+        0.0723573419963941
+      ],
+      "compile_seconds": 0.7796170039800927,
+      "compiled_memory_estimate_bytes": 1661040232
+    },
+    "exact_tp_gradient": {
+      "median_seconds": 0.003664278017822653,
+      "min_seconds": 0.003629623039159924,
+      "samples_seconds": [
+        0.00366509601008147,
+        0.003631112980656326,
+        0.003629623039159924,
+        0.003652008017525077,
+        0.003663460025563836,
+        0.0036794120096601546,
+        0.0036542360321618617,
+        0.003706800052896142,
+        0.0037046539946459234,
+        0.0037456059944815934
+      ],
+      "compile_seconds": 0.4537528849905357,
+      "compiled_memory_estimate_bytes": 71309096
+    }
+  },
+  "fixed_noise_100_step_chunk_median_seconds": 0.0018272899906150997,
+  "timing_scope": "Isolated calls include dispatch/synchronization; not additive fused-scan timings.",
+  "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n10.npz",
+  "result": null,
+  "factor_sha256": "cc3debaf1403ef63f9391512bb23fbb4c7bd522a466799284e95dd4df87291a8",
+  "script_sha256": "7bb935a2a43f25dda6129a14fce89f80ad46be73416f331a3f303982a71d5ed1",
+  "jax_version": "0.11.1"
+}

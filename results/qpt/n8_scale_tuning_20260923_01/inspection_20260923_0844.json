@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-09-23T08:44:50.260987+00:00",
+  "queue": {
+    "returncode": 0,
+    "stdout": "1931802_[2-3%1]|PENDING|0:00|(JobArrayTaskLimit)\n1931802_1|RUNNING|30:25|ruche-gpu15\n",
+    "stderr": ""
+  },
+  "accounting": {
+    "returncode": 0,
+    "stdout": "1931825|1931802_0|COMPLETED|0:0|00:32:49|ruche-gpu15|2026-09-23T09:41:35|2026-09-23T10:14:24\n1932778|1931802_1|RUNNING|0:0|00:30:25|ruche-gpu15|2026-09-23T10:14:25|Unknown\n1931802|1931802_[2-3%1]|PENDING|0:0|00:00:00|None assigned|Unknown|Unknown\n",
+    "stderr": ""
+  },
+  "progress": {
+    "returncode": 0,
+    "stdout": "{\n  \"checked_at_utc\": \"2026-09-23T08:44:50.565009+00:00\",\n  \"runs\": [\n    {\n      \"name\": \"n8_step0p5_rho0p6\",\n      \"target_steps\": 148000,\n      \"status\": \"completed\",\n      \"started_at_utc\": \"2026-09-23T07:41:44.020354+00:00\",\n      \"job_id\": \"1931825\",\n      \"array_task_id\": \"0\",\n      \"hostname\": \"ruche-gpu15.cluster\",\n      \"production_started_at_utc\": \"2026-09-23T07:41:54.383263+00:00\",\n      \"completed_at_utc\": \"2026-09-23T08:14:24.792491+00:00\",\n      \"final\": {\n        \"step\": 148000,\n        \"fidelity\": 0.9876890721216587,\n        \"measurement_loss\": 0.001135829498469919,\n        \"tp_violation\": 0.19768053922079545,\n        \"smoothed_gap\": 0.0049473272718306375,\n        \"smoothed_objective\": 0.0011358678218024245,\n        \"smoothing_parameter\": 509840.7814749799\n      },\n      \"optimizer_seconds\": 1180.5011167159537,\n      \"runner_seconds\": 1943.403760886984,\n      \"latest_checkpoint\": {\n        \"step\": 148000,\n        \"fidelity\": 0.987689072,\n        \"measurement_loss\": 0.00113583,\n        \"tp_violation\": 0.197681,\n        \"optimizer_seconds\": 1180.501\n      }\n    },\n    {\n      \"name\": \"n8_step0p5_rho2\",\n      \"target_steps\": 148000,\n      \"status\": \"running\",\n      \"started_at_utc\": \"2026-09-23T08:14:36.405545+00:00\",\n      \"job_id\": \"1932778\",\n      \"array_task_id\": \"1\",\n      \"hostname\": \"ruche-gpu15.cluster\",\n      \"production_started_at_utc\": \"2026-09-23T08:15:04.657306+00:00\",\n      \"latest_checkpoint\": {\n        \"step\": 142000,\n        \"fidelity\": 0.930744011,\n        \"measurement_loss\": 0.00113649,\n        \"tp_violation\": 0.383321,\n        \"optimizer_seconds\": 1122.891\n      }\n    },\n    {\n      \"name\": \"n8_step1_rho0p6\",\n      \"target_steps\": 148000,\n      \"status\": \"not_started\"\n    },\n    {\n      \"name\": \"n8_step1_rho2\",\n      \"target_steps\": 148000,\n      \"status\": \"not_started\"\n    }\n  ]\n}\n",
+    "stderr": ""
+  }
+}

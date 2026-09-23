@@ -1,0 +1,60 @@
+{
+  "cases": [
+    {
+      "chunk_steps": 10,
+      "repeat": 0,
+      "equivalent": true,
+      "optimizer_seconds": 0.9375908610527404,
+      "sampling_transfer_seconds": 2.6350497568491846,
+      "host_preparation_seconds": 3.6975480560795404,
+      "wall_seconds": 6.699198143032845,
+      "steady_seconds": 3.572640617901925,
+      "compiled_memory_estimate_bytes": 844118996,
+      "result": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_03/batch65536_200k/chunk_profile/chunk10_repeat0.npz"
+    },
+    {
+      "chunk_steps": 1,
+      "repeat": 0,
+      "equivalent": true,
+      "optimizer_seconds": 1.0110833047656342,
+      "sampling_transfer_seconds": 1.464206081989687,
+      "host_preparation_seconds": 2.5732695461483672,
+      "wall_seconds": 5.142970652028453,
+      "steady_seconds": 2.475289386755321,
+      "compiled_memory_estimate_bytes": 819475324,
+      "result": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_03/batch65536_200k/chunk_profile/chunk1_repeat0.npz"
+    },
+    {
+      "chunk_steps": 10,
+      "repeat": 1,
+      "equivalent": true,
+      "optimizer_seconds": 0.8565954579389654,
+      "sampling_transfer_seconds": 2.6582667310722172,
+      "host_preparation_seconds": 3.7159675720031373,
+      "wall_seconds": 6.383618893043604,
+      "steady_seconds": 3.5148621890111826,
+      "compiled_memory_estimate_bytes": 844118996,
+      "result": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_03/batch65536_200k/chunk_profile/chunk10_repeat1.npz"
+    },
+    {
+      "chunk_steps": 1,
+      "repeat": 1,
+      "equivalent": true,
+      "optimizer_seconds": 1.006069987488445,
+      "sampling_transfer_seconds": 1.526722268492449,
+      "host_preparation_seconds": 2.5933138027321547,
+      "wall_seconds": 5.151108024991117,
+      "steady_seconds": 2.532792255980894,
+      "compiled_memory_estimate_bytes": 819475324,
+      "result": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_fidelity99_20260913_03/batch65536_200k/chunk_profile/chunk1_repeat1.npz"
+    }
+  ],
+  "equivalent": true,
+  "selected_chunk_steps": 1,
+  "mean_optimizer_plus_blocking_transfer_seconds": {
+    "10": 3.543751403456554,
+    "1": 2.5040408213681076
+  },
+  "timing_scope": "100 steps; host preparation overlaps GPU work and is not added",
+  "decision": "Require bitwise equivalence and at least 5% measured improvement to choose chunk1."
+}

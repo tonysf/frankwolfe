@@ -1,0 +1,1053 @@
+{
+  "configuration": {
+    "h5": null,
+    "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/scaling_ybuXlx/n4.npz",
+    "max_data_mib": 256,
+    "save": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/scaling_ybuXlx/smoothing_100_1000_10000_10k/n4_beta10000_benchmark.json",
+    "artifacts_dir": null,
+    "device": "gpu",
+    "device_index": 0,
+    "precision": "64",
+    "steps": 10000,
+    "rank": 1,
+    "tau": 10.0,
+    "batch_size": 32,
+    "chunk_steps": 100,
+    "metrics_every": 100,
+    "metric_mode": "sampled",
+    "metric_samples": 512,
+    "metric_batch_size": 32,
+    "metric_seed": 12345,
+    "initialization_seed": 0,
+    "sampling_seed": 0,
+    "repeats": 1,
+    "backends": [
+      "structured"
+    ],
+    "measurement_backend": "tensor",
+    "rtol": 1e-10,
+    "atol": 1e-12,
+    "allocator": "grow",
+    "profile_memory": false,
+    "memory_poll_ms": 100.0,
+    "require_gpu_memory": false,
+    "rho_scale": 2.0,
+    "rho_offset": 4.0,
+    "rho_exponent": 0.6,
+    "smoothing_scale": 10000.0,
+    "smoothing_offset": 1.0,
+    "smoothing_exponent": 0.25,
+    "step_scale": 2.0,
+    "step_offset": 2.0,
+    "step_exponent": 1.0
+  },
+  "segments": [
+    {
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/scaling_ybuXlx/smoothing_100_1000_10000_10k/n4_beta10000_benchmark_artifacts/timing_structured_0_result.npz",
+      "archive_sha256": "e699942e6e2e45593b54a2eb5d28e0c403f77f01182c5fca6e0c3eb391b45005",
+      "metadata": {
+        "backend": "jax",
+        "batch_size": 32,
+        "batch_symbols_sha256": "dc3c78a5f5798e4f93c261705b3e5e340f6fa9cf2084bf0fd40d9c350c3fc92d",
+        "chunk_steps": 100,
+        "compile_seconds": 0.7829173430000083,
+        "compiled_memory_estimate_bytes": 4597756,
+        "data_metadata": {
+          "channel_model": "haar_unitary",
+          "channel_rng": "Generator(PCG64(SeedSequence(channel_seed, spawn_key=(0,))))",
+          "channel_seed": 0,
+          "coefficient_convention": "c_k=Tr(P_k^H H), no 1/d; P local=[I,X,-iY,Z]/sqrt(2)",
+          "generated_observations": 331776,
+          "generation_batch_size": 1024,
+          "generation_seconds": 1.682870808057487,
+          "generator": "qpt_generate_data_v1",
+          "generator_process_peak_rss_bytes": 50036736,
+          "legacy_observations_reused": false,
+          "noise_clipped": false,
+          "noise_model": "iid_additive_gaussian",
+          "noise_rng": "Generator(PCG64(SeedSequence(noise_seed, spawn_key=(1,))))",
+          "noise_seed": 0,
+          "noise_standard_normals_sha256": "80c7f12189b95d1f4215af9132dab134ed4a85f61a4f131eb9329146980cdb44",
+          "noise_std": 0.05,
+          "noiseless_max": 0.5667420957384868,
+          "noiseless_min": 3.254505185694362e-07,
+          "numerical_source_sha256": {
+            "qpt_generate_data.py": "8c16af946565511fbfb94f85c75326fa23d4aa05668fd0f8bcdb8879ef4e2787",
+            "qpt_structured_data.py": "65bc789f2385555d2099af56f8f408162d9e48e7c1e31513425092bde1e09c23",
+            "qpt_structured_operators.py": "f0d955d900f2c3ed77b0a8e5bea06acf03dbadfa272abb9e708c357e219c715d"
+          },
+          "numpy_version": "2.5.3",
+          "observation_formula": "real(vdot(D_s, c c^H)) + noise_std * z_s; z_s iid N(0,1)",
+          "observations_sha256": "cdbd197b676be0368de585359662d01588e9da8bcdb0ff003f9a0a8a5eb1ff4d",
+          "physical_convention_note": "Preserves upstream D/chi convention; sensing is Born(conjugate(H)) in the real basis.",
+          "python_version": "3.12.14",
+          "resource_estimate_bytes": 26116096,
+          "resource_estimate_note": "Major-array estimate with headroom, not measured/enforced total process RAM.",
+          "row_order": "qpt_bfw_input_axis_reversed_outcome_forward",
+          "shot_noise": false,
+          "source_kind": "synthetic_compact",
+          "truth_factor_sha256": "7dda9fa964cf3430702512a673baf3de105c2626bb77172cfa4ede8435337113",
+          "truth_rank": 1,
+          "truth_tp_violation": 6.484835276348463e-15,
+          "truth_trace": 15.999999999999986,
+          "unitary_sha256": "b36e7d525db993a28e9f23df85d95a23ada4b4c6d7a9f3305b02d057ade2bf44",
+          "upstream_generator": "https://github.com/LeNavil/QPT_BFW/blob/48e9aa80250e8da065734de593afe549f05912ce/qutomo_gt_gen.ipynb",
+          "verification": "constructed"
+        },
+        "device": "cuda:0",
+        "device_kind": "Tesla V100S-PCIE-32GB",
+        "device_operator_bytes": 6400,
+        "device_platform": "gpu",
+        "format": "qpt_structured_result",
+        "formulation": "nonlinear_tp_moreau_exact",
+        "gap_is_exact": false,
+        "host_observation_bytes": 2654208,
+        "initial_factor_dtype": "complex128",
+        "initial_factor_sha256": "45890c46d3eea3547e483f022f1f711e559570548f46a6aca04d9fbdef616b36",
+        "initial_transfer_seconds": 0.14842817099997774,
+        "initialization_seed": 0,
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1",
+        "measurement_backend": "tensor",
+        "metric_batch_size": 32,
+        "metric_mode": "sampled",
+        "metric_samples": 512,
+        "metric_seconds": 3.297712334994685,
+        "metric_seed": 12345,
+        "metrics_frequency": 100,
+        "n_qubits": 4,
+        "n_steps": 10000,
+        "numpy_version": "2.5.3",
+        "observation_count": 331776,
+        "observation_mode": "stored",
+        "operator_bank_bytes": 6400,
+        "optimizer_seconds": 1.610207129002447,
+        "penalty_coefficient": "1/(2*beta)",
+        "precision": "64",
+        "rank": 1,
+        "sampled_measurements": 320000,
+        "sampling_seed": 0,
+        "sampling_transfer_seconds": 0.3415072679945297,
+        "schema_version": 1,
+        "setup_seconds": 0.07466062100047566,
+        "store_checkpoints": false,
+        "tau": 10.0,
+        "wall_seconds": 6.23612809000042,
+        "warmup": true,
+        "warmup_seconds": 0.023184904999652645,
+        "x0_provided": false
+      },
+      "trajectory": [
+        {
+          "step": 0,
+          "fidelity": 0.0021880528588293265,
+          "measurement_loss": 0.016591465256647068,
+          "tp_violation": 12.104629296362933,
+          "smoothed_gap": 0.37911311672876796,
+          "smoothed_objective": 0.023917567776765458,
+          "smoothing_parameter": 10000.0
+        },
+        {
+          "step": 100,
+          "fidelity": 0.024622418442440046,
+          "measurement_loss": 0.003078478914995722,
+          "tp_violation": 2.052937248012762,
+          "smoothed_gap": 0.023359609624757707,
+          "smoothed_objective": 0.0037465177297634268,
+          "smoothing_parameter": 3154.4210090125716
+        },
+        {
+          "step": 200,
+          "fidelity": 0.2847440190207425,
+          "measurement_loss": 0.002516766027349924,
+          "tp_violation": 1.4441493752221402,
+          "smoothed_gap": 0.0189964680903352,
+          "smoothed_objective": 0.0029094048620160818,
+          "smoothing_parameter": 2655.834362038789
+        },
+        {
+          "step": 300,
+          "fidelity": 0.7309082353957704,
+          "measurement_loss": 0.001695457731237623,
+          "tp_violation": 0.8195297814075284,
+          "smoothed_gap": 0.01593196811871225,
+          "smoothed_objective": 0.001835333056302424,
+          "smoothing_parameter": 2400.813232436532
+        },
+        {
+          "step": 400,
+          "fidelity": 0.9179887635482386,
+          "measurement_loss": 0.0014057288456569498,
+          "tp_violation": 0.5029280136813928,
+          "smoothed_gap": 0.013592983184561152,
+          "smoothed_objective": 0.0014623225017688884,
+          "smoothing_parameter": 2234.672614587923
+        },
+        {
+          "step": 500,
+          "fidelity": 0.9445196873390755,
+          "measurement_loss": 0.0013643823561360325,
+          "tp_violation": 0.47056040959369005,
+          "smoothed_gap": 0.012863817447685739,
+          "smoothed_objective": 0.001416761718368566,
+          "smoothing_parameter": 2113.686475352412
+        },
+        {
+          "step": 600,
+          "fidelity": 0.9540277747182585,
+          "measurement_loss": 0.001370961894254505,
+          "tp_violation": 0.42335781546437634,
+          "smoothed_gap": 0.013584406371525403,
+          "smoothed_objective": 0.001415333361041921,
+          "smoothing_parameter": 2019.6744990814784
+        },
+        {
+          "step": 700,
+          "fidelity": 0.9628474960907534,
+          "measurement_loss": 0.0012976983044577339,
+          "tp_violation": 0.366070734951076,
+          "smoothed_gap": 0.01184468492655071,
+          "smoothed_objective": 0.0013321753094023027,
+          "smoothing_parameter": 1943.4371286466896
+        },
+        {
+          "step": 800,
+          "fidelity": 0.9673185395767089,
+          "measurement_loss": 0.0014020717599053023,
+          "tp_violation": 0.35694889024961757,
+          "smoothed_gap": 0.01325469344209319,
+          "smoothed_objective": 0.0014359632142424681,
+          "smoothing_parameter": 1879.7144109379665
+        },
+        {
+          "step": 900,
+          "fidelity": 0.9637990159575219,
+          "measurement_loss": 0.0013990502405612937,
+          "tp_violation": 0.31880504879948257,
+          "smoothed_gap": 0.015174622110819373,
+          "smoothed_objective": 0.0014268923145446667,
+          "smoothing_parameter": 1825.2350597289787
+        },
+        {
+          "step": 1000,
+          "fidelity": 0.9694615943582578,
+          "measurement_loss": 0.0013354555686798774,
+          "tp_violation": 0.3441890708829088,
+          "smoothed_gap": 0.011467906933364027,
+          "smoothed_objective": 0.0013687730893337468,
+          "smoothing_parameter": 1777.835117834348
+        },
+        {
+          "step": 1100,
+          "fidelity": 0.9736319830992287,
+          "measurement_loss": 0.0013187948593379102,
+          "tp_violation": 0.28459144464506164,
+          "smoothed_gap": 0.01206429129489641,
+          "smoothed_objective": 0.0013421219466306406,
+          "smoothing_parameter": 1736.0137883653344
+        },
+        {
+          "step": 1200,
+          "fidelity": 0.9719990289163887,
+          "measurement_loss": 0.001326833387080458,
+          "tp_violation": 0.2905157797007198,
+          "smoothed_gap": 0.012120370692604219,
+          "smoothed_objective": 0.0013516758819805143,
+          "smoothing_parameter": 1698.6904615390663
+        },
+        {
+          "step": 1300,
+          "fidelity": 0.9729218243624463,
+          "measurement_loss": 0.0013126611770374111,
+          "tp_violation": 0.2853787759662457,
+          "smoothed_gap": 0.011714920878698371,
+          "smoothed_objective": 0.001337117021869892,
+          "smoothing_parameter": 1665.063021331967
+        },
+        {
+          "step": 1400,
+          "fidelity": 0.9742658443690689,
+          "measurement_loss": 0.0013251005880258104,
+          "tp_violation": 0.2619432397787501,
+          "smoothed_gap": 0.012502712953147876,
+          "smoothed_objective": 0.0013460896933810865,
+          "smoothing_parameter": 1634.5208550906666
+        },
+        {
+          "step": 1500,
+          "fidelity": 0.9766067538983771,
+          "measurement_loss": 0.001299304502551786,
+          "tp_violation": 0.25764142660187017,
+          "smoothed_gap": 0.01201972855500292,
+          "smoothed_objective": 0.00131996289711295,
+          "smoothing_parameter": 1606.589139947839
+        },
+        {
+          "step": 1600,
+          "fidelity": 0.980060503909182,
+          "measurement_loss": 0.0012857099298266095,
+          "tp_violation": 0.27635635223489285,
+          "smoothed_gap": 0.011097403342625559,
+          "smoothed_objective": 0.0013098649130660932,
+          "smoothing_parameter": 1580.8918736018309
+        },
+        {
+          "step": 1700,
+          "fidelity": 0.9810917962868443,
+          "measurement_loss": 0.0013060095618585839,
+          "tp_violation": 0.23370398363678402,
+          "smoothed_gap": 0.011560715775514669,
+          "smoothed_objective": 0.001323547491090966,
+          "smoothing_parameter": 1557.1265924273337
+        },
+        {
+          "step": 1800,
+          "fidelity": 0.9792074098854694,
+          "measurement_loss": 0.001274193615052696,
+          "tp_violation": 0.22186781826267002,
+          "smoothed_gap": 0.010818115056906167,
+          "smoothed_objective": 0.0012902274370564261,
+          "smoothing_parameter": 1535.0466273476402
+        },
+        {
+          "step": 1900,
+          "fidelity": 0.9782042141850545,
+          "measurement_loss": 0.0012573213678179801,
+          "tp_violation": 0.23588695720339484,
+          "smoothed_gap": 0.01112799989609944,
+          "smoothed_objective": 0.0012756919698972305,
+          "smoothing_parameter": 1514.4483653457573
+        },
+        {
+          "step": 2000,
+          "fidelity": 0.9821241675414465,
+          "measurement_loss": 0.001295307015685063,
+          "tp_violation": 0.23032325510637638,
+          "smoothed_gap": 0.012320145519542657,
+          "smoothed_objective": 0.0013130471684729393,
+          "smoothing_parameter": 1495.1619210137342
+        },
+        {
+          "step": 2100,
+          "fidelity": 0.9832755848523922,
+          "measurement_loss": 0.001306149275380356,
+          "tp_violation": 0.2305975581757837,
+          "smoothed_gap": 0.011284282282616943,
+          "smoothed_objective": 0.0013241498316308848,
+          "smoothing_parameter": 1477.0441839838193
+        },
+        {
+          "step": 2200,
+          "fidelity": 0.9817673584385133,
+          "measurement_loss": 0.001304854622707293,
+          "tp_violation": 0.20374238720031423,
+          "smoothed_gap": 0.012261504850407976,
+          "smoothed_objective": 0.001319070962515989,
+          "smoothing_parameter": 1459.9735551020908
+        },
+        {
+          "step": 2300,
+          "fidelity": 0.9835997560502595,
+          "measurement_loss": 0.001302477697687369,
+          "tp_violation": 0.22157703673934706,
+          "smoothed_gap": 0.01159978705803225,
+          "smoothed_objective": 0.0013194796447286031,
+          "smoothing_parameter": 1443.8459045637164
+        },
+        {
+          "step": 2400,
+          "fidelity": 0.984844155803358,
+          "measurement_loss": 0.0012949520676342032,
+          "tp_violation": 0.2134354061315517,
+          "smoothed_gap": 0.011374434893810369,
+          "smoothed_objective": 0.0013108962030408922,
+          "smoothing_parameter": 1428.5714285714287
+        },
+        {
+          "step": 2500,
+          "fidelity": 0.9845036274842867,
+          "measurement_loss": 0.001280324652937587,
+          "tp_violation": 0.2089501206199697,
+          "smoothed_gap": 0.011777109107007855,
+          "smoothed_objective": 0.0012957623914197334,
+          "smoothing_parameter": 1414.0721763615936
+        },
+        {
+          "step": 2600,
+          "fidelity": 0.9858204763544672,
+          "measurement_loss": 0.001265911337814127,
+          "tp_violation": 0.19441484644295182,
+          "smoothed_gap": 0.011449493549329087,
+          "smoothed_objective": 0.001279407613647998,
+          "smoothing_parameter": 1400.2800840280097
+        },
+        {
+          "step": 2700,
+          "fidelity": 0.9852474171532153,
+          "measurement_loss": 0.0012994519562224496,
+          "tp_violation": 0.1972912477262665,
+          "smoothed_gap": 0.01130230819375778,
+          "smoothed_objective": 0.001313482250791331,
+          "smoothing_parameter": 1387.135396134823
+        },
+        {
+          "step": 2800,
+          "fidelity": 0.9848238453350483,
+          "measurement_loss": 0.0013030085470721246,
+          "tp_violation": 0.19975677452759322,
+          "smoothed_gap": 0.011472175948769042,
+          "smoothed_objective": 0.0013175230215226408,
+          "smoothing_parameter": 1374.5853873561505
+        },
+        {
+          "step": 2900,
+          "fidelity": 0.9841718804288128,
+          "measurement_loss": 0.0012861778911669962,
+          "tp_violation": 0.19185632406029499,
+          "smoothed_gap": 0.011250340614895795,
+          "smoothed_objective": 0.0012996848997216383,
+          "smoothing_parameter": 1362.5833186164054
+        },
+        {
+          "step": 3000,
+          "fidelity": 0.984804183635089,
+          "measurement_loss": 0.0012937936264332012,
+          "tp_violation": 0.180215952615055,
+          "smoothed_gap": 0.01191955896830377,
+          "smoothed_objective": 0.0013058127546155135,
+          "smoothing_parameter": 1351.0875782466069
+        },
+        {
+          "step": 3100,
+          "fidelity": 0.9850371650220944,
+          "measurement_loss": 0.0012450394701524583,
+          "tp_violation": 0.19125937846062244,
+          "smoothed_gap": 0.010537932400242752,
+          "smoothed_objective": 0.001258688158778354,
+          "smoothing_parameter": 1340.0609703902353
+        },
+        {
+          "step": 3200,
+          "fidelity": 0.9862418014489767,
+          "measurement_loss": 0.00126943404759415,
+          "tp_violation": 0.17117008526620398,
+          "smoothed_gap": 0.011558167984797208,
+          "smoothed_objective": 0.0012804531737915204,
+          "smoothing_parameter": 1329.470121552445
+        },
+        {
+          "step": 3300,
+          "fidelity": 0.9869437216467153,
+          "measurement_loss": 0.001282230589296752,
+          "tp_violation": 0.16558641118330852,
+          "smoothed_gap": 0.010710022622587256,
+          "smoothed_objective": 0.0012926221498500172,
+          "smoothing_parameter": 1319.2849826560469
+        },
+        {
+          "step": 3400,
+          "fidelity": 0.9872441771965965,
+          "measurement_loss": 0.001265292349859223,
+          "tp_violation": 0.16790973560987585,
+          "smoothed_gap": 0.010609490226043307,
+          "smoothed_objective": 0.001276057582459488,
+          "smoothing_parameter": 1309.4784088494807
+        },
+        {
+          "step": 3500,
+          "fidelity": 0.9879587077872388,
+          "measurement_loss": 0.0012670389459660857,
+          "tp_violation": 0.16617993694793398,
+          "smoothed_gap": 0.011120532923626861,
+          "smoothed_objective": 0.0012776601857059616,
+          "smoothing_parameter": 1300.0258030303269
+        },
+        {
+          "step": 3600,
+          "fidelity": 0.9882068721438825,
+          "measurement_loss": 0.0012647521623205633,
+          "tp_violation": 0.16592704192790533,
+          "smoothed_gap": 0.011108693224539376,
+          "smoothed_objective": 0.001275415916529643,
+          "smoothing_parameter": 1290.9048119049419
+        },
+        {
+          "step": 3700,
+          "fidelity": 0.9873321394047136,
+          "measurement_loss": 0.001265086547196446,
+          "tp_violation": 0.15792109987244415,
+          "smoothed_gap": 0.011037735166414948,
+          "smoothed_objective": 0.0012748124538213572,
+          "smoothing_parameter": 1282.095065618135
+        },
+        {
+          "step": 3800,
+          "fidelity": 0.9876491484788398,
+          "measurement_loss": 0.0012842323587182966,
+          "tp_violation": 0.16124138307705063,
+          "smoothed_gap": 0.011831187734696684,
+          "smoothed_objective": 0.001294439344298083,
+          "smoothing_parameter": 1273.5779537147298
+        },
+        {
+          "step": 3900,
+          "fidelity": 0.9870644081164962,
+          "measurement_loss": 0.001275687195632136,
+          "tp_violation": 0.14278322101426325,
+          "smoothed_gap": 0.011225561388115708,
+          "smoothed_objective": 0.0012837431749332994,
+          "smoothing_parameter": 1265.336431553635
+        },
+        {
+          "step": 4000,
+          "fidelity": 0.9880854733207005,
+          "measurement_loss": 0.0012847461703970687,
+          "tp_violation": 0.14581902068170427,
+          "smoothed_gap": 0.011406011368444966,
+          "smoothed_objective": 0.0012932016938129432,
+          "smoothing_parameter": 1257.3548523709017
+        },
+        {
+          "step": 4100,
+          "fidelity": 0.9877431115865878,
+          "measurement_loss": 0.0012837745319130246,
+          "tp_violation": 0.15491545047090424,
+          "smoothed_gap": 0.01130540593115293,
+          "smoothed_objective": 0.0012933769788314071,
+          "smoothing_parameter": 1249.6188210455527
+        },
+        {
+          "step": 4200,
+          "fidelity": 0.9887561481465019,
+          "measurement_loss": 0.0012674269944572968,
+          "tp_violation": 0.15531084764802291,
+          "smoothed_gap": 0.010864467753277726,
+          "smoothed_objective": 0.0012771368273268142,
+          "smoothing_parameter": 1242.1150663093795
+        },
+        {
+          "step": 4300,
+          "fidelity": 0.9898641863454952,
+          "measurement_loss": 0.001254915615373212,
+          "tp_violation": 0.1622841009720086,
+          "smoothed_gap": 0.010468428854529133,
+          "smoothed_objective": 0.0012655794723779171,
+          "smoothing_parameter": 1234.8313286962123
+        },
+        {
+          "step": 4400,
+          "fidelity": 0.9901189112841133,
+          "measurement_loss": 0.001256430277438513,
+          "tp_violation": 0.14268488244664013,
+          "smoothed_gap": 0.011106734849627188,
+          "smoothed_objective": 0.0012647214083043618,
+          "smoothing_parameter": 1227.7562619756611
+        },
+        {
+          "step": 4500,
+          "fidelity": 0.9898166561285623,
+          "measurement_loss": 0.0012475473738142219,
+          "tp_violation": 0.15959126528177262,
+          "smoothed_gap": 0.010532453347947055,
+          "smoothed_objective": 0.0012579781227796587,
+          "smoothing_parameter": 1220.879346182712
+        },
+        {
+          "step": 4600,
+          "fidelity": 0.989725990804207,
+          "measurement_loss": 0.0012743768707395831,
+          "tp_violation": 0.16169108355300285,
+          "smoothed_gap": 0.011121557263643663,
+          "smoothed_objective": 0.001285142891315232,
+          "smoothing_parameter": 1214.190810654674
+        },
+        {
+          "step": 4700,
+          "fidelity": 0.9895539507496441,
+          "measurement_loss": 0.001278893908685057,
+          "tp_violation": 0.1480889788843882,
+          "smoothed_gap": 0.011041492443415814,
+          "smoothed_objective": 0.0012879734319175293,
+          "smoothing_parameter": 1207.6815657340048
+        },
+        {
+          "step": 4800,
+          "fidelity": 0.9895660784132843,
+          "measurement_loss": 0.001317497216637462,
+          "tp_violation": 0.14007213627016588,
+          "smoothed_gap": 0.011781757897673623,
+          "smoothed_objective": 0.0013256631613510715,
+          "smoothing_parameter": 1201.3431419997485
+        },
+        {
+          "step": 4900,
+          "fidelity": 0.9898512199310905,
+          "measurement_loss": 0.0012846457751985016,
+          "tp_violation": 0.14639170356052225,
+          "smoothed_gap": 0.010839009886915473,
+          "smoothed_objective": 0.0012936112668269404,
+          "smoothing_parameter": 1195.167636059902
+        },
+        {
+          "step": 5000,
+          "fidelity": 0.9887859316224147,
+          "measurement_loss": 0.001306961371801362,
+          "tp_violation": 0.1293252855021904,
+          "smoothed_gap": 0.012118309189571828,
+          "smoothed_objective": 0.00131399373203869,
+          "smoothing_parameter": 1189.1476620784008
+        },
+        {
+          "step": 5100,
+          "fidelity": 0.9898219308968681,
+          "measurement_loss": 0.0012886508323568997,
+          "tp_violation": 0.13579202190438394,
+          "smoothed_gap": 0.011520291169667008,
+          "smoothed_objective": 0.0012964425345498238,
+          "smoothing_parameter": 1183.27630832875
+        },
+        {
+          "step": 5200,
+          "fidelity": 0.9895017973608123,
+          "measurement_loss": 0.001268768382183696,
+          "tp_violation": 0.143573406288315,
+          "smoothed_gap": 0.011296836951168367,
+          "smoothed_objective": 0.001277521035485351,
+          "smoothing_parameter": 1177.547098165759
+        },
+        {
+          "step": 5300,
+          "fidelity": 0.9886593556249428,
+          "measurement_loss": 0.0012815809241684285,
+          "tp_violation": 0.12363304073951722,
+          "smoothed_gap": 0.012206539382175625,
+          "smoothed_objective": 0.0012881021397412387,
+          "smoothing_parameter": 1171.9539548906698
+        },
+        {
+          "step": 5400,
+          "fidelity": 0.9897571577867036,
+          "measurement_loss": 0.0012920933087740057,
+          "tp_violation": 0.1350074519495915,
+          "smoothed_gap": 0.012434525426457742,
+          "smoothed_objective": 0.0012999060606189458,
+          "smoothing_parameter": 1166.4911700559132
+        },
+        {
+          "step": 5500,
+          "fidelity": 0.9912625487964672,
+          "measurement_loss": 0.0012919332684122229,
+          "tp_violation": 0.14636807547897102,
+          "smoothed_gap": 0.012225906578789737,
+          "smoothed_objective": 0.001301158412128837,
+          "smoothing_parameter": 1161.1533748159525
+        },
+        {
+          "step": 5600,
+          "fidelity": 0.9916944558219912,
+          "measurement_loss": 0.0012959336248722694,
+          "tp_violation": 0.12679227508425664,
+          "smoothed_gap": 0.012607948976779356,
+          "smoothed_objective": 0.001302887421527267,
+          "smoothing_parameter": 1155.9355139819634
+        },
+        {
+          "step": 5700,
+          "fidelity": 0.9913591672793479,
+          "measurement_loss": 0.0012735606386560167,
+          "tp_violation": 0.13300680501358586,
+          "smoothed_gap": 0.011828671847887516,
+          "smoothed_objective": 0.0012812467290395746,
+          "smoothing_parameter": 1150.8328224819247
+        },
+        {
+          "step": 5800,
+          "fidelity": 0.9910752694580248,
+          "measurement_loss": 0.0012690052205973615,
+          "tp_violation": 0.12022711610028827,
+          "smoothed_gap": 0.011501529735504612,
+          "smoothed_objective": 0.001275312623596003,
+          "smoothing_parameter": 1145.8408039652334
+        },
+        {
+          "step": 5900,
+          "fidelity": 0.9913971094700006,
+          "measurement_loss": 0.0012582195557743839,
+          "tp_violation": 0.13328472968175173,
+          "smoothed_gap": 0.010596000645491736,
+          "smoothed_objective": 0.0012660046199863852,
+          "smoothing_parameter": 1140.9552113232264
+        },
+        {
+          "step": 6000,
+          "fidelity": 0.9912431304073418,
+          "measurement_loss": 0.0012711912119854974,
+          "tp_violation": 0.12479897020023481,
+          "smoothed_gap": 0.01122828388160206,
+          "smoothed_objective": 0.0012780452721834843,
+          "smoothing_parameter": 1136.1720289247878
+        },
+        {
+          "step": 6100,
+          "fidelity": 0.990515462266441,
+          "measurement_loss": 0.001284766476838174,
+          "tp_violation": 0.13181766958894706,
+          "smoothed_gap": 0.011881289641054437,
+          "smoothed_objective": 0.0012924448200304596,
+          "smoothing_parameter": 1131.4874563902297
+        },
+        {
+          "step": 6200,
+          "fidelity": 0.9901268189604491,
+          "measurement_loss": 0.0012742650710824393,
+          "tp_violation": 0.12786256020955145,
+          "smoothed_gap": 0.011216109933565336,
+          "smoothed_objective": 0.001281518982192777,
+          "smoothing_parameter": 1126.897893747447
+        },
+        {
+          "step": 6300,
+          "fidelity": 0.9908124487738484,
+          "measurement_loss": 0.0012763608688259867,
+          "tp_violation": 0.12679473686982856,
+          "smoothed_gap": 0.011787868644104426,
+          "smoothed_objective": 0.0012835227123450508,
+          "smoothing_parameter": 1122.399927832396
+        },
+        {
+          "step": 6400,
+          "fidelity": 0.9916350435533713,
+          "measurement_loss": 0.0012715895034344277,
+          "tp_violation": 0.1180909076719543,
+          "smoothed_gap": 0.011661894430323394,
+          "smoothed_objective": 0.001277826347451617,
+          "smoothing_parameter": 1117.9903198116708
+        },
+        {
+          "step": 6500,
+          "fidelity": 0.9915586363190005,
+          "measurement_loss": 0.0012738113504034763,
+          "tp_violation": 0.11832295527300463,
+          "smoothed_gap": 0.010881946544262694,
+          "smoothed_objective": 0.0012800970419050138,
+          "smoothing_parameter": 1113.6659937186616
+        },
+        {
+          "step": 6600,
+          "fidelity": 0.9920891032899767,
+          "measurement_loss": 0.0012693150544219075,
+          "tp_violation": 0.11438284033264338,
+          "smoothed_gap": 0.01085254064376771,
+          "smoothed_objective": 0.0012752115529008682,
+          "smoothing_parameter": 1109.424025906767
+        },
+        {
+          "step": 6700,
+          "fidelity": 0.9924361891377413,
+          "measurement_loss": 0.001276422125058049,
+          "tp_violation": 0.10914020851644037,
+          "smoothed_gap": 0.011425346506560043,
+          "smoothed_objective": 0.0012818107066998139,
+          "smoothing_parameter": 1105.261635333637
+        },
+        {
+          "step": 6800,
+          "fidelity": 0.9921210001289634,
+          "measurement_loss": 0.0012646516553463459,
+          "tp_violation": 0.1025807039438551,
+          "smoothed_gap": 0.010940894082802573,
+          "smoothed_objective": 0.0012694296377729283,
+          "smoothing_parameter": 1101.1761745996446
+        },
+        {
+          "step": 6900,
+          "fidelity": 0.991972848084589,
+          "measurement_loss": 0.001257114803699894,
+          "tp_violation": 0.11486825959454586,
+          "smoothed_gap": 0.01078369323844371,
+          "smoothed_objective": 0.001263127899086199,
+          "smoothing_parameter": 1097.1651216718976
+        },
+        {
+          "step": 7000,
+          "fidelity": 0.9919236103114957,
+          "measurement_loss": 0.0012458088120969983,
+          "tp_violation": 0.11204766440155099,
+          "smoothed_gap": 0.010663791144271847,
+          "smoothed_objective": 0.001251550844516792,
+          "smoothing_parameter": 1093.2260722322567
+        },
+        {
+          "step": 7100,
+          "fidelity": 0.9916742001007649,
+          "measurement_loss": 0.0012279199993617807,
+          "tp_violation": 0.11649217816290393,
+          "smoothed_gap": 0.010379639113691767,
+          "smoothed_objective": 0.0012341486419942184,
+          "smoothing_parameter": 1089.356732594137
+        },
+        {
+          "step": 7200,
+          "fidelity": 0.9909449015545806,
+          "measurement_loss": 0.0012245361569143064,
+          "tp_violation": 0.11519674153012134,
+          "smoothed_gap": 0.010296743206972374,
+          "smoothed_objective": 0.0012306483715515152,
+          "smoothing_parameter": 1085.5549131384678
+        },
+        {
+          "step": 7300,
+          "fidelity": 0.991137132311968,
+          "measurement_loss": 0.0012460870965169235,
+          "tp_violation": 0.10315620998929986,
+          "smoothed_gap": 0.010781366613422511,
+          "smoothed_objective": 0.0012510052983413288,
+          "smoothing_parameter": 1081.81852222413
+        },
+        {
+          "step": 7400,
+          "fidelity": 0.9918845996400176,
+          "measurement_loss": 0.0012699526119141226,
+          "tp_violation": 0.11787685983374095,
+          "smoothed_gap": 0.011015453559263526,
+          "smoothed_objective": 0.0012763965257013294,
+          "smoothing_parameter": 1078.1455605326007
+        },
+        {
+          "step": 7500,
+          "fidelity": 0.9919255320530326,
+          "measurement_loss": 0.0012795748719351,
+          "tp_violation": 0.1028689313677706,
+          "smoothed_gap": 0.011145213095471956,
+          "smoothed_objective": 0.0012844988742934458,
+          "smoothing_parameter": 1074.5341158104325
+        },
+        {
+          "step": 7600,
+          "fidelity": 0.9922384411611376,
+          "measurement_loss": 0.001265020635886181,
+          "tp_violation": 0.10904486089565801,
+          "smoothed_gap": 0.01079593146087901,
+          "smoothed_objective": 0.0012705719792856266,
+          "smoothing_parameter": 1070.982357976701
+        },
+        {
+          "step": 7700,
+          "fidelity": 0.9929774169496266,
+          "measurement_loss": 0.0012449222477139647,
+          "tp_violation": 0.11280746994740627,
+          "smoothed_gap": 0.010542363331560839,
+          "smoothed_objective": 0.0012508827451169241,
+          "smoothing_parameter": 1067.488534565643
+        },
+        {
+          "step": 7800,
+          "fidelity": 0.993219518079591,
+          "measurement_loss": 0.0012497930669882423,
+          "tp_violation": 0.10770834721243394,
+          "smoothed_gap": 0.010910234652063665,
+          "smoothed_objective": 0.0012552444449883203,
+          "smoothing_parameter": 1064.050966477505
+        },
+        {
+          "step": 7900,
+          "fidelity": 0.9926817925566249,
+          "measurement_loss": 0.0012633983081551802,
+          "tp_violation": 0.10633022524264313,
+          "smoothed_gap": 0.011429865676130392,
+          "smoothed_objective": 0.0012687280231701503,
+          "smoothing_parameter": 1060.668044013101
+        },
+        {
+          "step": 8000,
+          "fidelity": 0.9927168942122537,
+          "measurement_loss": 0.0012762766966525597,
+          "tp_violation": 0.0968098755623768,
+          "smoothed_gap": 0.011739918277461753,
+          "smoothed_objective": 0.0012807086521995303,
+          "smoothing_parameter": 1057.3382231698124
+        },
+        {
+          "step": 8100,
+          "fidelity": 0.9930676070337013,
+          "measurement_loss": 0.0012732924147218746,
+          "tp_violation": 0.10225466887694808,
+          "smoothed_gap": 0.011373001266689607,
+          "smoothed_objective": 0.0012782522922844073,
+          "smoothing_parameter": 1054.0600221787618
+        },
+        {
+          "step": 8200,
+          "fidelity": 0.992709934125976,
+          "measurement_loss": 0.0012674533613398027,
+          "tp_violation": 0.09284756139121125,
+          "smoothed_gap": 0.011292733427220097,
+          "smoothed_objective": 0.0012715551918448013,
+          "smoothing_parameter": 1050.8320182646987
+        },
+        {
+          "step": 8300,
+          "fidelity": 0.9924414869962231,
+          "measurement_loss": 0.0012628723034317402,
+          "tp_violation": 0.10084729577444346,
+          "smoothed_gap": 0.010726132309037819,
+          "smoothed_objective": 0.0012677260949893754,
+          "smoothing_parameter": 1047.6528446117497
+        },
+        {
+          "step": 8400,
+          "fidelity": 0.9924141724473975,
+          "measurement_loss": 0.0012682804349036206,
+          "tp_violation": 0.09656850460742634,
+          "smoothed_gap": 0.01136973993782222,
+          "smoothed_objective": 0.0012727444305571023,
+          "smoothing_parameter": 1044.521187519647
+        },
+        {
+          "step": 8500,
+          "fidelity": 0.9931772920193023,
+          "measurement_loss": 0.001267348031283263,
+          "tp_violation": 0.08912499560327078,
+          "smoothed_gap": 0.011327461600366424,
+          "smoothed_objective": 0.001271161643685165,
+          "smoothing_parameter": 1041.435783736368
+        },
+        {
+          "step": 8600,
+          "fidelity": 0.9932974076246235,
+          "measurement_loss": 0.0012713648842784344,
+          "tp_violation": 0.10268537700761633,
+          "smoothed_gap": 0.011523843435100368,
+          "smoothed_objective": 0.0012764420863099924,
+          "smoothing_parameter": 1038.3954179543146
+        },
+        {
+          "step": 8700,
+          "fidelity": 0.9928966731683248,
+          "measurement_loss": 0.0012734394463751885,
+          "tp_violation": 0.10771841183857873,
+          "smoothed_gap": 0.011771764309366602,
+          "smoothed_objective": 0.0012790427245029513,
+          "smoothing_parameter": 1035.3989204582258
+        },
+        {
+          "step": 8800,
+          "fidelity": 0.9927346857036481,
+          "measurement_loss": 0.0012601490236096944,
+          "tp_violation": 0.09849557781307051,
+          "smoothed_gap": 0.011305522480440908,
+          "smoothed_objective": 0.0012648472774145533,
+          "smoothing_parameter": 1032.445164914008
+        },
+        {
+          "step": 8900,
+          "fidelity": 0.9931095875294134,
+          "measurement_loss": 0.0012651936088170712,
+          "tp_violation": 0.09440966878437303,
+          "smoothed_gap": 0.01134794391188343,
+          "smoothed_objective": 0.00126952236029278,
+          "smoothing_parameter": 1029.5330662885426
+        },
+        {
+          "step": 9000,
+          "fidelity": 0.9933772983464377,
+          "measurement_loss": 0.0012685840895353012,
+          "tp_violation": 0.09795593082429772,
+          "smoothed_gap": 0.011148043512952444,
+          "smoothed_objective": 0.001273257179763347,
+          "smoothing_parameter": 1026.6615788913382
+        },
+        {
+          "step": 9100,
+          "fidelity": 0.9938026416650979,
+          "measurement_loss": 0.0012687213658978166,
+          "tp_violation": 0.09270218894513746,
+          "smoothed_gap": 0.011272945233667897,
+          "smoothed_objective": 0.001272918204435093,
+          "smoothing_parameter": 1023.829694529625
+        },
+        {
+          "step": 9200,
+          "fidelity": 0.9935187837057257,
+          "measurement_loss": 0.0012659096241484898,
+          "tp_violation": 0.10657177866487218,
+          "smoothed_gap": 0.011025365951441247,
+          "smoothed_objective": 0.0012714713962627341,
+          "smoothing_parameter": 1021.0364407691543
+        },
+        {
+          "step": 9300,
+          "fidelity": 0.9928272649822063,
+          "measurement_loss": 0.0012615085473499466,
+          "tp_violation": 0.09848929506149935,
+          "smoothed_gap": 0.010637511832678194,
+          "smoothed_objective": 0.0012662715461643998,
+          "smoothing_parameter": 1018.2808792935684
+        },
+        {
+          "step": 9400,
+          "fidelity": 0.9925113239399902,
+          "measurement_loss": 0.0012680040194452376,
+          "tp_violation": 0.10368033930240131,
+          "smoothed_gap": 0.011035795978710607,
+          "smoothed_objective": 0.0012732964642458834,
+          "smoothing_parameter": 1015.5621043557657
+        },
+        {
+          "step": 9500,
+          "fidelity": 0.9928367203908629,
+          "measurement_loss": 0.0012700878209352402,
+          "tp_violation": 0.09781027953588661,
+          "smoothed_gap": 0.011116304863370067,
+          "smoothed_objective": 0.0012748104227976627,
+          "smoothing_parameter": 1012.8792413151787
+        },
+        {
+          "step": 9600,
+          "fidelity": 0.9936143279719617,
+          "measurement_loss": 0.0012711835166574347,
+          "tp_violation": 0.10167151486229448,
+          "smoothed_gap": 0.011091443836798064,
+          "smoothed_objective": 0.0012762997189806463,
+          "smoothing_parameter": 1010.2314452553563
+        },
+        {
+          "step": 9700,
+          "fidelity": 0.9938050451607904,
+          "measurement_loss": 0.0012747413112117968,
+          "tp_violation": 0.0996468861148903,
+          "smoothed_gap": 0.011122042516665064,
+          "smoothed_objective": 0.0012796685271314328,
+          "smoothing_parameter": 1007.6178996766521
+        },
+        {
+          "step": 9800,
+          "fidelity": 0.9937115271860498,
+          "measurement_loss": 0.0012707083185005761,
+          "tp_violation": 0.1023423839980106,
+          "smoothed_gap": 0.011215349138502143,
+          "smoothed_objective": 0.0012759190495812245,
+          "smoothing_parameter": 1005.037815259212
+        },
+        {
+          "step": 9900,
+          "fidelity": 0.9940157506766902,
+          "measurement_loss": 0.0012683766820305224,
+          "tp_violation": 0.10104057405462502,
+          "smoothed_gap": 0.011020105748408601,
+          "smoothed_objective": 0.0012734685997751191,
+          "smoothing_parameter": 1002.490428691808
+        },
+        {
+          "step": 10000,
+          "fidelity": 0.9942916112696522,
+          "measurement_loss": 0.0012774716827579575,
+          "tp_violation": 0.0982632110828267,
+          "smoothed_gap": 0.011156427410985013,
+          "smoothed_objective": 0.0012822995120841114,
+          "smoothing_parameter": 1000.0
+        }
+      ]
+    }
+  ]
+}

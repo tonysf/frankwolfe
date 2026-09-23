@@ -1,0 +1,64 @@
+{
+  "completed_runs": [
+    {
+      "condition": "fixed",
+      "job_id": 1888459,
+      "step": 100000,
+      "fidelity": 4.014800202174878e-05,
+      "tp": 10.407019880726523,
+      "loss": 0.0011618599174532053,
+      "result_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_n10_fixed_20260912_01/final.npz",
+      "final": true,
+      "state": "COMPLETED"
+    },
+    {
+      "condition": "relative",
+      "job_id": 1888460,
+      "step": 57000,
+      "fidelity": 0.9900454746610079,
+      "tp": 0.510533018353108,
+      "loss": 1.1605935267274708e-06,
+      "result_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_n10_relative_20260912_01/final.npz",
+      "final": true,
+      "state": "COMPLETED"
+    }
+  ],
+  "last_inspected_continuations_before_cancellation": [
+    {
+      "name": "baseline_200k",
+      "state": "CANCELLED",
+      "step": 148000,
+      "fidelity": 0.00018934980395904724,
+      "fidelity_percent": 0.018934980395904723,
+      "tp_violation": 8.89929183367668,
+      "source_verified": true,
+      "stderr_bytes": 0,
+      "growth_since_previous_check": 1.8492205534056054,
+      "fidelity_ratio_since_resume": 4.716294570685575,
+      "metric_scope": "Last inspected checkpoint before cancellation, not a terminal measurement."
+    },
+    {
+      "name": "beta1e8_100k",
+      "state": "CANCELLED",
+      "step": 58000,
+      "fidelity": 2.3781607860965388e-05,
+      "fidelity_percent": 0.002378160786096539,
+      "tp_violation": 1.8390519351847228,
+      "source_verified": true,
+      "stderr_bytes": 0,
+      "growth_since_previous_check": 2.3037005929930374,
+      "matched_baseline_fidelity": 7.537180505552471e-06,
+      "matched_baseline_tp": 12.907070584640232,
+      "matched_baseline_fidelity_ratio": 3.1552392626720316,
+      "metric_scope": "Last inspected checkpoint before cancellation, not a terminal measurement."
+    }
+  ],
+  "campaign_status": "stopped_by_user",
+  "validation": {
+    "job_id": 1888457,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "passed": 484,
+    "gpu_checks_passed": 13
+  }
+}

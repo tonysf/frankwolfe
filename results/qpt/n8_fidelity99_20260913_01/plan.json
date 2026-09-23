@@ -1,0 +1,46 @@
+{
+  "target": {
+    "n_qubits": 8,
+    "noise_std": 0.05,
+    "fidelity_minimum": 0.99
+  },
+  "base_commit": "ba85bff73c306ee5f12b97aa3a24910851f585ae",
+  "source": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_prefetch_validation_20260912_01/source",
+  "source_sha256": {
+    "paper/experiments/qpt_structured_operators.py": "e5b2ba4e4933d4b9241927642a813241d57a18949f575ffe54f4e8ed2bcc253e",
+    "paper/experiments/quantum_process_tomography_structured_jax.py": "ce5d41bf8abaab6b1d6bf8b71dfdf7ccd38eda34a5cc70dceb70391c32710cea",
+    "scripts/benchmark_qpt_structured.py": "4a2e6c9fde39d9c14e7e886274c6877699ce0d371e93ce95bc88e60043ac5a16",
+    "tests/test_qpt_product_state.py": "b293babebce59789e299fd288947aed33229e33ce39ab6b8cb304749a50bfcec",
+    "tests/test_qpt_restart.py": "3329a99dabb77d8f63704e200be380f910c7540f11d11ca429e5f977d0e2ed25",
+    "tests/test_qpt_on_demand.py": "e5125db8cdc176d59e86f012b0ae5a2751739c0fc8d189ad31693d840eb70221",
+    "docs/qpt_on_demand.md": "6fb56d01068f97ab35541f6d28bc46aad9c7682d72aeddaa9c46c22a3f735d53"
+  },
+  "data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/on_demand_profile_20260912_04/n8.npz",
+  "fresh_initial_factor_sha256": "f798178177e171e5175a9caba5f9092f611547a8cbed994714234ea58647dfa6",
+  "cases": [
+    {
+      "name": "baseline_b8192_200k",
+      "batch_size": 8192,
+      "start_step": 30000,
+      "total_steps": 200000,
+      "resume": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/fidelity99_product_profile_20260912_02/n8_fixed_step10_restart.npz"
+    },
+    {
+      "name": "batch65536_100k",
+      "batch_size": 65536,
+      "start_step": 0,
+      "total_steps": 100000,
+      "smoke_steps": 100
+    }
+  ],
+  "scheduler": {
+    "partition": "gpua100",
+    "array": "0-1%2",
+    "cpus_per_task": 2,
+    "mem": "8G",
+    "time": "00:45:00",
+    "exclude": "ruche-gpu13"
+  },
+  "status": "prepared",
+  "automation": "Previous n10 follow-up remains paused; no recurring automation activated."
+}
