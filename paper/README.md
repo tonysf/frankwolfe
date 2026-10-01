@@ -27,6 +27,12 @@ The reusable seven-problem stochastic-FRAMES benchmark layer is documented in
 - `experiments/qpt_bfw_factor_baseline.py` keeps QPT_BFW's original
   Burer--Monteiro rank, operator-norm radius, and fixed TP penalty as a
   formulation-compatible momentum stochastic-FW baseline.
+- `experiments/qpt_quiroga_sensing.py` and `experiments/qpt_quiroga_frames.py`
+  implement, separately and matrix-free, the reduced sensing design of
+  Quiroga and Kyrillidis: `4**n` global probe states and one 2d-outcome POVM,
+  giving `2 * 8**n` rows. They add stochastic-FRAMES and exact-adaFGD hooks.
+  The local-Pauli `24**n` benchmark above is unchanged; see
+  [the design notes](../docs/qpt_quiroga_sensing.md).
 
 Run scripts from the repository root, for example:
 
