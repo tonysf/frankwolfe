@@ -20,6 +20,7 @@ tolerance-controlled Lanczos solve.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from time import perf_counter
 
 import numpy as np
 from scipy.sparse.linalg import ArpackNoConvergence, LinearOperator, eigsh
@@ -271,7 +272,7 @@ def run_quiroga_sensing_stochastic_frames(
 
 
 def _adafgd_spectral_norm(design, weights, *, method="auto", dense_max_process_dimension=1024,
-                          tolerance=1e-10, maxiter=None):
+                          tolerance=1e-10, maxiter=None, return_diagnostics=False):
     """Numerical spectral norm of the Hermitian adjoint ``A^H(weights)``.
 
     ``dense`` is the small-system reference.  ``matrix-free`` uses the exact
@@ -294,15 +295,26 @@ def _adafgd_spectral_norm(design, weights, *, method="auto", dense_max_process_d
     if selected == "auto":
         selected = ("dense" if design.process_dimension <= dense_max_process_dimension
                     else "matrix-free")
+    began = perf_counter()
     if selected == "dense":
         matrix = design.dense_adjoint(
             weights, max_process_dimension=dense_max_process_dimension)
-        return float(np.max(np.abs(np.linalg.eigvalsh(matrix)))), selected
+        value = float(np.max(np.abs(np.linalg.eigvalsh(matrix))))
+        diagnostics = {
+            "seconds": perf_counter() - began,
+            "operator_calls": 1,
+            "adjoint_column_equivalent": design.process_dimension,
+        }
+        return ((value, selected, diagnostics) if return_diagnostics
+                else (value, selected))
 
     size = design.process_dimension
     weights = np.asarray(weights, dtype=np.float64)
+    operator_calls = 0
 
     def matvec(vector):
+        nonlocal operator_calls
+        operator_calls += 1
         column = np.asarray(vector, dtype=np.complex128).reshape(size, 1)
         return np.asarray(design.full_adjoint(column, weights))[:, 0]
 
@@ -324,7 +336,13 @@ def _adafgd_spectral_norm(design, weights, *, method="auto", dense_max_process_d
     value = float(abs(eigenvalue))
     if not np.isfinite(value):
         raise FloatingPointError("Matrix-free spectral-norm eigensolve returned a nonfinite value.")
-    return value, selected
+    diagnostics = {
+        "seconds": perf_counter() - began,
+        "operator_calls": operator_calls,
+        "adjoint_column_equivalent": operator_calls,
+    }
+    return ((value, selected, diagnostics) if return_diagnostics
+            else (value, selected))
 
 
 def quiroga_adafgd_step(
@@ -366,10 +384,11 @@ def quiroga_adafgd_step(
     predicted = design.full_values(factor)[rows]
     residual = predicted - targets
     weights = np.bincount(rows, weights=residual, minlength=data.m)
-    numerator, spectral_norm_method_used = _adafgd_spectral_norm(
+    numerator, spectral_norm_method_used, spectral_norm_diagnostics = _adafgd_spectral_norm(
         design, weights, method=spectral_norm_method,
         dense_max_process_dimension=dense_max_process_dimension,
-        tolerance=spectral_norm_tolerance, maxiter=spectral_norm_maxiter)
+        tolerance=spectral_norm_tolerance, maxiter=spectral_norm_maxiter,
+        return_diagnostics=True)
     denominator = float(np.linalg.norm(predicted))
     denominator_floor = np.finfo(np.float64).eps * max(
         1.0, float(np.linalg.norm(factor, ord="fro") ** 2))
@@ -385,6 +404,10 @@ def quiroga_adafgd_step(
         "eta": eta, "spectral_norm_numerator": numerator,
         "spectral_norm_method": spectral_norm_method_used,
         "spectral_norm_tolerance": float(spectral_norm_tolerance),
+        "spectral_norm_seconds": spectral_norm_diagnostics["seconds"],
+        "spectral_norm_operator_calls": spectral_norm_diagnostics["operator_calls"],
+        "spectral_norm_adjoint_column_equivalent": spectral_norm_diagnostics[
+            "adjoint_column_equivalent"],
         "prediction_norm_denominator": denominator,
         "measurement_loss_sum": float(0.5 * np.sum(residual**2)),
         "tp_penalty_unhalved": float(2.0 * tp_half_loss),
