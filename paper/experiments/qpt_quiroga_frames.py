@@ -11,10 +11,10 @@ checkpoint metrics scale with the sensing backend.
 For small systems, ``QuirogaSensingData.to_dense_qpt_data`` instead feeds the
 existing dense NumPy/JAX runners without modifying them.
 
-``quiroga_adafgd_step`` is the published adaFGD update.  Its adaptive
-numerator is the spectral norm of a dense ``d**2``-by-``d**2`` matrix, so it
-is refused above ``max_process_dimension``; the backend's scalability does not
-make exact adaFGD scalable.
+``quiroga_adafgd_step`` implements the adaptive update printed in the paper.
+For small systems it computes the numerator with a dense Hermitian eigensolve;
+at larger sizes it applies the same Hermitian operator matrix-free and uses a
+tolerance-controlled Lanczos solve.
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import numpy as np
+from scipy.sparse.linalg import ArpackNoConvergence, LinearOperator, eigsh
 
 from frank_wolfe import ObjectiveFunction, StochasticFrames
 
@@ -269,47 +270,122 @@ def run_quiroga_sensing_stochastic_frames(
     )
 
 
-def quiroga_adafgd_step(data, factor, *, eta_scale, tp_weight, rows=None, observations=None,
-                        max_process_dimension=1024):
-    """One exact adaFGD update of Quiroga and Kyrillidis (arXiv:2312.01311).
+def _adafgd_spectral_norm(design, weights, *, method="auto", dense_max_process_dimension=1024,
+                          tolerance=1e-10, maxiter=None):
+    """Numerical spectral norm of the Hermitian adjoint ``A^H(weights)``.
+
+    ``dense`` is the small-system reference.  ``matrix-free`` uses the exact
+    :meth:`QuirogaSensingDesign.full_adjoint` matrix-vector action with ARPACK;
+    only the eigensolve is tolerance-based.  ``auto`` selects the dense oracle
+    up to ``dense_max_process_dimension`` and the matrix-free path above it.
+    """
+    if method not in ("auto", "dense", "matrix-free"):
+        raise ValueError("spectral_norm_method must be 'auto', 'dense', or 'matrix-free'.")
+    dense_max_process_dimension = _positive_integer(
+        dense_max_process_dimension, "dense_max_process_dimension")
+    if (isinstance(tolerance, (bool, np.bool_)) or np.ndim(tolerance) != 0
+            or not np.isfinite(tolerance) or tolerance < 0):
+        raise ValueError("spectral_norm_tolerance must be finite and nonnegative.")
+    tolerance = float(tolerance)
+    if maxiter is not None:
+        maxiter = _positive_integer(maxiter, "spectral_norm_maxiter")
+
+    selected = method
+    if selected == "auto":
+        selected = ("dense" if design.process_dimension <= dense_max_process_dimension
+                    else "matrix-free")
+    if selected == "dense":
+        matrix = design.dense_adjoint(
+            weights, max_process_dimension=dense_max_process_dimension)
+        return float(np.max(np.abs(np.linalg.eigvalsh(matrix)))), selected
+
+    size = design.process_dimension
+    weights = np.asarray(weights, dtype=np.float64)
+
+    def matvec(vector):
+        column = np.asarray(vector, dtype=np.complex128).reshape(size, 1)
+        return np.asarray(design.full_adjoint(column, weights))[:, 0]
+
+    operator = LinearOperator(
+        (size, size), matvec=matvec, rmatvec=matvec, dtype=np.complex128)
+    rng = np.random.default_rng(0)
+    v0 = rng.standard_normal(size) + 1j * rng.standard_normal(size)
+    v0 /= np.linalg.norm(v0)
+    try:
+        eigenvalue = eigsh(
+            operator, k=1, which="LM", tol=tolerance, maxiter=maxiter,
+            v0=v0, return_eigenvectors=False,
+        )[0]
+    except ArpackNoConvergence as error:
+        raise RuntimeError(
+            "Matrix-free spectral-norm eigensolve did not converge; increase "
+            "spectral_norm_maxiter or relax spectral_norm_tolerance."
+        ) from error
+    value = float(abs(eigenvalue))
+    if not np.isfinite(value):
+        raise FloatingPointError("Matrix-free spectral-norm eigensolve returned a nonfinite value.")
+    return value, selected
+
+
+def quiroga_adafgd_step(
+    data,
+    factor,
+    *,
+    eta_scale,
+    tp_weight,
+    rows=None,
+    observations=None,
+    spectral_norm_method="auto",
+    dense_max_process_dimension=1024,
+    spectral_norm_tolerance=1e-10,
+    spectral_norm_maxiter=None,
+):
+    """One printed-rule adaFGD update of Quiroga and Kyrillidis.
 
     ``U+ = U - eta (A^H(A(UU^H) - f) U + lambda grad_chi H(UU^H) U)`` with the
     summed half-squared loss, ``H = ||Tr_out(UU^H) - I||_F**2`` (not halved)
     and ``eta = eta_scale ||A^H(A(UU^H) - f)||_2 / ||A(UU^H)||_2``.  The paper
     reports neither ``eta_scale`` nor ``lambda = tp_weight``.
 
-    The numerator is the spectral norm of the dense Hermitian
-    ``d**2``-by-``d**2`` matrix ``A^H(r)``: ``16 d**4`` bytes (64 GiB at n=8)
-    and O(d**6) dense eigensolver work.  It is therefore refused above
-    ``max_process_dimension`` (default ``d**2 <= 1024``, i.e. n <= 5).  The
-    factor terms themselves are matrix-free.  Pass ``observations`` when
-    looping so that targets are not regenerated at every update.
+    This is the rule printed in arXiv:2312.01311, not the exact line-search
+    rule in its cited reference [47].  It is not scale-covariant and needs
+    calibration for each sensing design.
+
+    ``spectral_norm_method='auto'`` uses a dense small-system oracle up to
+    ``dense_max_process_dimension`` and a matrix-free, tolerance-controlled
+    Hermitian eigensolve above it.  The matrix-vector action and both factor
+    terms are exact structured operators.  Pass ``observations`` when looping
+    so targets are not regenerated at every update.
     """
     for value, name in ((eta_scale, "eta_scale"), (tp_weight, "tp_weight")):
         if isinstance(value, (bool, np.bool_)) or not np.isfinite(value) or value < 0:
             raise ValueError(f"{name} must be finite and nonnegative.")
-    if data.process_dimension > max_process_dimension:
-        raise ValueError(
-            "Exact adaFGD needs the spectral norm of a dense "
-            f"{data.process_dimension}x{data.process_dimension} matrix "
-            f"({16 * data.process_dimension**2} bytes); this exceeds max_process_dimension="
-            f"{max_process_dimension}. The matrix-free sensing backend does not remove this cost."
-        )
     rows, targets = _active_rows_and_targets(data, rows, observations)
     factor = np.asarray(factor, dtype=np.complex128)
     design = data.design
     predicted = design.full_values(factor)[rows]
     residual = predicted - targets
     weights = np.bincount(rows, weights=residual, minlength=data.m)
-    matrix_gradient = design.dense_adjoint(weights, max_process_dimension=max_process_dimension)
-    numerator = float(np.max(np.abs(np.linalg.eigvalsh(matrix_gradient))))
+    numerator, spectral_norm_method_used = _adafgd_spectral_norm(
+        design, weights, method=spectral_norm_method,
+        dense_max_process_dimension=dense_max_process_dimension,
+        tolerance=spectral_norm_tolerance, maxiter=spectral_norm_maxiter)
     denominator = float(np.linalg.norm(predicted))
-    eta = eta_scale * numerator / max(denominator, np.finfo(np.float64).tiny)
+    denominator_floor = np.finfo(np.float64).eps * max(
+        1.0, float(np.linalg.norm(factor, ord="fro") ** 2))
+    if not np.isfinite(denominator) or denominator <= denominator_floor:
+        raise FloatingPointError(
+            "The adaFGD prediction-norm denominator is zero or numerically negligible; "
+            "the printed adaptive step is undefined for this iterate and active row set.")
+    eta = eta_scale * numerator / denominator
     measurement_term = design.full_adjoint(factor, weights)
     tp_half_loss, tp_term = trace_preserving_loss_and_gradient(factor)
     updated = factor - eta * (measurement_term + tp_weight * tp_term)
     return updated, {
-        "eta": eta, "spectral_norm_numerator": numerator, "prediction_norm_denominator": denominator,
+        "eta": eta, "spectral_norm_numerator": numerator,
+        "spectral_norm_method": spectral_norm_method_used,
+        "spectral_norm_tolerance": float(spectral_norm_tolerance),
+        "prediction_norm_denominator": denominator,
         "measurement_loss_sum": float(0.5 * np.sum(residual**2)),
         "tp_penalty_unhalved": float(2.0 * tp_half_loss),
     }

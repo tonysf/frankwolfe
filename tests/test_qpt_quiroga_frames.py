@@ -7,6 +7,7 @@ import pytest
 
 from paper.experiments.qpt_quiroga_frames import (
     QuirogaSensingObjective,
+    _adafgd_spectral_norm,
     quiroga_adafgd_step,
     run_quiroga_sensing_stochastic_frames,
 )
@@ -159,7 +160,41 @@ def test_exact_adafgd_step_matches_the_dense_published_update():
     np.testing.assert_array_equal(again, updated)
 
 
-def test_exact_adafgd_refuses_the_dense_spectral_norm_at_scale():
-    data = generate_quiroga_sensing_data(6)
-    with pytest.raises(ValueError, match="dense 4096x4096"):
-        quiroga_adafgd_step(data, data.truth_factor, eta_scale=1.0, tp_weight=1.0)
+@pytest.mark.parametrize("n", [1, 2, 3])
+def test_matrix_free_adafgd_spectral_norm_matches_dense_oracle(n):
+    data = _noisy(n)
+    rng = np.random.default_rng(80 + n)
+    weights = rng.normal(size=data.m)
+    dense, dense_method = _adafgd_spectral_norm(data.design, weights, method="dense")
+    matrix_free, matrix_free_method = _adafgd_spectral_norm(
+        data.design, weights, method="matrix-free", tolerance=1e-12)
+    assert dense_method == "dense" and matrix_free_method == "matrix-free"
+    assert matrix_free == pytest.approx(dense, rel=2e-10, abs=1e-12)
+
+
+def test_adafgd_auto_uses_matrix_free_spectral_norm_above_dense_cutoff():
+    data = _noisy(3)
+    factor = unpack_factor(
+        make_factor_initial_point(data, rank=1, seed=0), data.process_dimension, 1)
+    updated, info = quiroga_adafgd_step(
+        data, factor, eta_scale=0.03, tp_weight=0.7,
+        dense_max_process_dimension=16, spectral_norm_tolerance=1e-11)
+    assert info["spectral_norm_method"] == "matrix-free"
+    assert np.all(np.isfinite(updated)) and np.isfinite(info["eta"])
+
+
+def test_adafgd_rejects_undefined_prediction_norm_denominator():
+    data = generate_quiroga_sensing_data(1)
+    with pytest.raises(FloatingPointError, match="denominator.*undefined"):
+        quiroga_adafgd_step(
+            data, np.zeros_like(data.truth_factor), eta_scale=0.1, tp_weight=1.0)
+
+    # For outcome zero, this nonzero Kraus factor maps every selected input to
+    # |1>, which has zero overlap with E_0 = a|0><0|.
+    factor = np.zeros_like(data.truth_factor)
+    factor[1::data.d, 0] = 1.0
+    rows = np.arange(0, data.m, data.design.outcome_count, dtype=np.int64)
+    assert np.all(data.design.values(factor, rows) == 0)
+    with pytest.raises(FloatingPointError, match="denominator.*undefined"):
+        quiroga_adafgd_step(
+            data, factor, eta_scale=0.1, tp_weight=1.0, rows=rows)

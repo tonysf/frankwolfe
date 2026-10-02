@@ -28,8 +28,9 @@ Outcomes ``j`` (Baldwin et al. Eq. (18)): j = 0 is ``a|0><0|``; j = m in
 largest common value for which the throw-away element satisfies ``E >= b I``.
 
 Every element is ``alpha I + beta|0><0| + |0><u| + |u><0|``, so all 2d
-outcomes of one probe cost O(r d).  Predictions and factor gradients cost
-O(r d) per sampled row and O(r d**3) for all rows; no D_s, J or other
+outcomes of one probe cost O(r d).  A sampled row's arithmetic is O(r d),
+while the current dense factor-gradient return allocates O(r d**2) entries;
+full predictions and gradients cost O(r d**3).  No D_s, J or other
 d**2-by-d**2 matrix is formed.  Pass ``xp=jax.numpy`` for JIT-compatible
 evaluation; NumPy inputs are validated, JAX inputs are not.
 """
@@ -337,8 +338,9 @@ def pure_target_process_fidelity(factor, truth, *, xp=np):
 
     For a rank-one target ``t t^H`` this is ``sum_a |t^H U_a|**2 /
     (||t||**2 ||U||_F**2)``, i.e. the fidelity of the normalized Choi states
-    used by Qiskit's ``process_fidelity``.  It matches the overlap formula of
-    the existing QPT runners.
+    used by Qiskit's ``process_fidelity``.  It matches the existing runners'
+    overlap formula when the pure truth has the channel normalization
+    ``||t||**2 = d``.
     """
     factor, truth = xp.asarray(factor), xp.asarray(truth)
     if truth.ndim == 1:
@@ -725,10 +727,10 @@ class QuirogaSensingData:
 
     def all_observations(self, *, probe_chunk=4096):
         """Complete observation vector; equal to ``observations_for_rows``."""
+        probe_chunk = _positive_integer(probe_chunk, "probe_chunk")
         if self.observation_mode == "stored":
             return self.observations.copy()
         if self.observation_mode == "shots":
-            probe_chunk = _positive_integer(probe_chunk, "probe_chunk")
             return np.concatenate([
                 self.shot_frequencies(np.arange(start, min(start + probe_chunk, self.design.probe_count))).reshape(-1)
                 for start in range(0, self.design.probe_count, probe_chunk)

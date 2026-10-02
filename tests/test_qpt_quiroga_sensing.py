@@ -344,6 +344,11 @@ def test_observation_models_are_deterministic_and_random_access():
     assert stored.noise_std == 0.0 and stored.metadata["noise_std"] == 0.05
     np.testing.assert_array_equal(stored.observations_for_rows(rows), full[rows])
     np.testing.assert_array_equal(stored.all_observations(), full)
+    for invalid_chunk in (0, -1):
+        with pytest.raises(ValueError, match="probe_chunk"):
+            gaussian.all_observations(probe_chunk=invalid_chunk)
+        with pytest.raises(ValueError, match="probe_chunk"):
+            gaussian.materialize(probe_chunk=invalid_chunk)
 
     shots = generate_quiroga_sensing_data(n, channel_seed=1, observation_mode="shots", shots=1000, shot_seed=3)
     frequencies = shots.all_observations()

@@ -8,7 +8,7 @@ backend.
 The local-Pauli benchmark, its data formats, runners and defaults are
 unchanged, and it remains the default QPT experiment.
 `paper/experiments/qpt_quiroga_frames.py` connects the new rows to stochastic
-FRAMES and to the exact adaFGD update of [32].
+FRAMES and to the adaptive update printed in [32].
 
 ## Two benchmarks
 
@@ -135,29 +135,46 @@ For n <= 3, `data.to_dense_qpt_data(rows)` builds a `QPTData` with
 unmodified dense NumPy and JAX runners then reproduce the structured runner's
 trajectory and metrics.
 
-`quiroga_adafgd_step(data, U, eta_scale=c, tp_weight=lam)` performs one
-published update,
+`quiroga_adafgd_step(data, U, eta_scale=c, tp_weight=lam)` implements the
+adaptive update printed in [32],
 `U <- U - eta (A^H(A(UU^H) - f) U + lam grad_chi H(UU^H) U)`, with the summed
 loss, the unhalved `H = ||Tr_out(UU^H) - I||_F**2`, and
 `eta = c ||A^H(A(UU^H) - f)||_2 / ||A(UU^H)||_2`. [32] reports neither `c`
 nor `lam`, so both are required arguments. Pass `observations=` when looping
-so targets are not regenerated at every update.
+so targets are not regenerated at every update. A zero or numerically
+negligible denominator raises because this printed quotient is undefined.
 
-## Exact adaFGD does not scale
+## Matrix-free adaptive numerator
 
-The numerator of the adaptive step of [32] is the spectral norm of the
-Hermitian `d**2`-by-`d**2` matrix `A^H(r) = sum_s r_s D_s`. Computing it as
-published means forming that dense matrix, `16 d**4` bytes in complex128
-(256 MiB at n = 6, 4 GiB at n = 7, 64 GiB at n = 8), and running a dense
-Hermitian eigensolver with `O(d**6)` work (about 2.8e14 at n = 8) at every
-update. The matrix-free backend does not remove this cost. It removes the
-`d**2`-by-`d**2` cost from everything else: `A(UU^H)`, the factor term
-`A^H(r) U`, the TP penalty and its gradient all cost `O(r d**3)`. The scalar
-spectral norm still requires the dense matrix. `quiroga_adafgd_step`
-therefore refuses process dimensions above `max_process_dimension=1024`
-(n >= 6) unless the caller raises that limit explicitly. A Lanczos or power
-estimate from `O(r d**3)` matrix-free products would define a different,
-approximate step rule; it is neither implemented nor validated here.
+The numerator is the spectral norm of the Hermitian operator
+`A^H(r) = sum_s r_s D_s`. It does **not** require materializing its
+`d**2`-by-`d**2` matrix: `design.full_adjoint(v, r)` applies that operator
+to a vector in `O(d**3)` time and `O(d**2)` working memory. By default,
+`quiroga_adafgd_step` uses a dense Hermitian eigensolve as a small-system
+oracle through n = 5, then a deterministic, tolerance-controlled ARPACK
+Lanczos solve using this exact matrix-vector action. Tests compare the
+matrix-free and dense norms at n = 1, 2 and 3. The iterative numerical
+eigensolve is approximate to its requested tolerance, just as a dense
+floating-point eigensolve is numerical; it does not change the operator whose
+norm is requested.
+
+One matrix-free norm evaluation costs multiple full operator passes, with the
+number determined by spectral convergence. It therefore remains substantially
+more expensive per iteration than FRAMES even though the dense-memory and
+`O(d**6)` dense-eigensolver barriers are gone. The optional dense oracle
+would occupy `16 d**4` raw bytes (256 MiB at n = 6, 4 GiB at n = 7 and
+64 GiB at n = 8), plus eigensolver workspace.
+
+The printed step in [32] also needs a scientific qualification. [32] describes
+it as coming from its reference [47], but [47] gives an exact line-search rule
+`mu = ||P_S grad f||_F**2 / ||A P_S grad f||_2**2`, not the printed
+spectral-norm quotient above. The printed quotient is not scale-covariant:
+rescaling the sensing operator and observations changes its effective update
+by the wrong power, and rescaling the factor and observations exposes the
+same problem. It also tends to zero with the residual. This implementation is
+useful for auditing the literal printed rule, but its constants must be
+calibrated per sensing design; poor results from it are not evidence that
+fixed-step or line-search FGD fails.
 
 ## Scaling, n = 2 to 8
 
@@ -169,7 +186,7 @@ median of three runs after one warm-up. The FRAMES column is optimizer time
 per step, without checkpoint metrics, averaged over 200 steps at batch size
 32. Each size ran in a fresh process.
 
-| n | Probes | Outcomes | Rows `2*8**n` | Local-Pauli `24**n` | float64 targets | Full loss + gradient | Exact TP | FRAMES step | adaFGD dense matrix | Dense eigensolver `d**6` |
+| n | Probes | Outcomes | Rows `2*8**n` | Local-Pauli `24**n` | float64 targets | Full loss + gradient | Exact TP | FRAMES step | Optional dense adjoint | Optional dense eigensolver `d**6` |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 2 | 16 | 8 | 128 | 576 | 1 KiB | 0.19 ms | 0.021 ms | | 4 KiB | 4.1e3 |
 | 3 | 64 | 16 | 1,024 | 13,824 | 8 KiB | 0.23 ms | 0.021 ms | | 64 KiB | 2.6e5 |
@@ -182,7 +199,10 @@ per step, without checkpoint metrics, averaged over 200 steps at batch size
 Full passes grow by about eight per qubit, as `O(r d**3)` predicts. The
 n = 2 to 8 timing process peaked at 541 MiB RSS; the FRAMES processes peaked
 at 133 MiB, 376 MiB and 1.07 GiB for n = 6, 7, 8. A rank-one factor occupies
-`16 d**2` bytes (1 MiB at n = 8). Dense `D_s` tensors would need
+`16 d**2` bytes (1 MiB at n = 8). The optional dense adaFGD adjoint needs
+additional eigensolver workspace beyond the raw matrix sizes in the table
+(the measured peak at n = 5 was about 50.7 MiB versus a 16 MiB raw matrix).
+Dense `D_s` tensors would need
 `16 * 2 d**3 * d**4` bytes, already 8 GiB at n = 4, so `to_dense_qpt_data`
 and `dense_sensing_matrices` refuse above `2**26` entries. In an n = 8
 FRAMES step, about 40% of the time goes to the exact TP map and Jacobian
@@ -219,10 +239,12 @@ fidelity 1 (twelve decimals) from twelve of twelve random starts. Both
 methods below started from the default initializer, at fidelity 0.25.
 FRAMES with the local-Pauli power schedules above (5,000 steps, batch 32)
 reduced the loss about sixfold and the TP violation to 0.0013, but ended at
-fidelity 0.09. Exact adaFGD ran 3,000 steps for each
+fidelity 0.09. The literal printed adaFGD rule ran 3,000 steps for each
 `(eta_scale, tp_weight)` in `{0.03, 0.1, 0.3, 1} x {0.1, 1, 10}`. Four of
 the twelve runs diverged, and the rest ended between fidelity 0.125 and
-0.29. Calibrate both methods on this design before comparing them.
+0.29. This diagnoses that uncalibrated printed rule, not FGD generally:
+fixed-step FGD on the same smooth objective can recover the target after
+calibration. Calibrate both methods on this design before comparing them.
 
 ## Validation
 
@@ -245,8 +267,9 @@ scaling CLI and, when JAX is installed, JIT parity with NumPy.
 sampled batches and the TP/Moreau terms. It checks that the runner reproduces
 `run_qpt_stochastic_frames` with explicit and default schedules, and the JAX
 runner when installed, and that both runners share defaults. It also runs the
-backend at n = 5, where dense tensors are refused, checks one adaFGD update
-against the dense published formula, and checks the refusal at n = 6.
+backend at n = 5, where dense sensing tensors are refused, checks one
+printed-rule adaFGD update against the dense formula, compares the matrix-free
+and dense spectral norms, and exercises automatic matrix-free selection.
 
 ## Limitations
 
@@ -264,24 +287,32 @@ against the dense published formula, and checks the refusal at n = 6.
 Section 5.2 of the boosting manuscript (arXiv:2605.25255v1) says that "by
 using Pauli bases [32]" there are 4^n inputs, 3^n settings and 2^n outcomes,
 for 24^n rows. It also says that the loss functions are implemented
-"faithfully as in [32]". The loss functions do match [32]. The 24^n sensing
-design does not; it is the traditional local-Pauli design, which [32]
-replaces with a reduced one. Suggested replacement:
+"faithfully as in [32]". The functional form is related, but the normalization
+is not: [32] defines `F = 0.5 sum_s r_s**2`, whereas the project runners use
+`0.5 mean_s r_s**2`. With the same coefficient on `H`, converting the
+implemented objective to sum normalization multiplies the effective TP weight
+by the number of active rows. The 24^n sensing design also differs: it is the
+traditional local-Pauli design, which [32] replaces with a reduced one.
+Suggested replacement:
 
 > We use a local Pauli design: product input states from
 > {|0⟩, |1⟩, |+⟩, |+i⟩}^⊗ñ, product Pauli measurement settings from
 > {X, Y, Z}^⊗ñ and 2^ñ outcomes per setting, giving 4^ñ·3^ñ·2^ñ = 24^ñ
-> sensing pairs (A_s, f_s). We adopt the least-squares loss F, the
-> trace-preservation penalty H, the Burer–Monteiro factorization and the
-> Haar-unitary ground truth of [32], but not its measurement design. [32]
+> sensing pairs (A_s, f_s). We use the same least-squares residual form,
+> trace-preservation penalty H, Burer–Monteiro factorization and Haar-unitary
+> ground truth as [32], but normalize the measurement loss by the number of
+> active rows and do not use its measurement design. Thus the TP coefficient
+> must be rescaled before comparing it with a coefficient multiplying [32]'s
+> summed loss. [32]
 > probes the process with d² = 4^ñ global states (computational-basis states
 > and their pairwise real and imaginary superpositions) and measures a single
 > 2d-outcome POVM that is informationally complete for pure states, giving
 > 2·8^ñ sensing rows (128 for ñ = 2). Our results therefore do not reproduce
 > the experiments of [32].
 
-Also replace "implement the loss functions faithfully as in [32]" with "use
-the loss functions of [32]". Qualify "full-measurements" as all 24^ñ
+Also replace "implement the loss functions faithfully as in [32]" with
+"use the residual and TP-penalty forms of [32], with a mean rather than summed
+measurement loss." Qualify "full-measurements" as all 24^ñ
 local-Pauli rows; in [32] the term means all 2·8^ñ rows of the reduced
 design. If results on the reduced design are added, label them as a second
 benchmark that follows [32]. State the POVM constants used, here
