@@ -13,56 +13,75 @@ separate experiment and cannot enter this comparison.
   `quiroga_adafgd_step`. Do not silently replace it with the line search from
   the paper's cited reference.
 - **Diagnostic control:** full-gradient FGD with Armijo backtracking on the
-  same penalized objective. This establishes whether an instance is
-  recoverable by ordinary FGD and helps distinguish a failure of the printed
-  adaptive step from a failure of the sensing problem. It is not a third
-  primary competitor and must not be reported as “Quiroga's method.”
+  selected fixed printed-adaFGD objective. This establishes whether an
+  instance is recoverable by ordinary FGD and helps distinguish a failure of
+  the printed adaptive step from a failure of the sensing problem. It does not
+  share FRAMES's time-varying penalty, is not a third primary competitor, and
+  must not be reported as “Quiroga's method.”
 - MiFGD, Nesterov variants, momentum SGD, and the local-Pauli runs are outside
   this direct comparison.
 
-## Primary shared-objective lane
+## Primary best-for-best lane
 
-For active training rows `S`, let `m = |S|`, let
+The primary comparison does **not** force a common TP coefficient or a common
+penalized objective. This rule supersedes the earlier shared-`alpha`,
+constant-`beta` protocol. Fairness comes from shared sensing data, row sets,
+initial factors, ranks, logical row budgets, checkpoints, metrics, and recovery
+gate, while each method receives its own calibrated TP treatment.
+
+For active rows `S`, let `m = |S|`, let
 `r_S(U) = A_S(U U^H) - y_S`, and define
+`H(U) = ||Tr_out(U U^H) - I||_F^2`.
+
+Printed-adaFGD uses the fixed objective
 
 ```text
-H(U)       = ||Tr_out(U U^H) - I||_F^2
-L_alpha(U) = (1 / (2m)) ||r_S(U)||_2^2 + alpha H(U).
+Q_printed(U) = 0.5 ||r_S(U)||_2^2 + lambda_Q H(U).
 ```
 
-Every paired primary comparison must use one common, predeclared `alpha`.
-The two implementations are parameterized as follows:
+Use `alpha_Q = lambda_Q / m` as the portable calibration coordinate. Tune
+`alpha_Q` and `eta_scale` on calibration instances; for each run set
+`lambda_Q = m * alpha_Q` once and hold it fixed over all iterations. Freeze
+the selected values for every held-out run in that regime and archive both
+`alpha_Q` and `lambda_Q`.
+
+FRAMES uses its intended changing smoothing penalty. For zero-based update
+index `t = 0, 1, ...`,
 
 ```text
-printed-adaFGD: lambda = m * alpha
-FRAMES:         beta   = 1 / (2 * alpha), held constant (no smoothing decay)
+Q_frames,t(U) = (1 / (2m)) ||r_S(U)||_2^2 + alpha_F(t) H(U)
+alpha_F(t)    = alpha_F(0) * (t + 1)^p
+beta_t        = 1 / (2 alpha_F(t)),                    p > 0.
 ```
 
-Thus the summed objective used by printed-adaFGD is exactly
-`m * L_alpha`; FRAMES's mean-loss smoothed objective is exactly `L_alpha`.
-As scalar functions on the common factor space, their values and gradients
-differ only by the positive factor `m`; the FRAMES-only domain restriction is
-documented below. Archive `m`, `alpha`, `lambda`, and `beta`, and validate
-these identities in the runner. A fixed numerical `lambda` must never be
-reused when `m` changes; it would change `alpha`.
+Tune the initial penalty `alpha_F(0)` and FRAMES-specific controls on
+calibration instances. Predeclare `p` (the planned default is `0.25`), or
+include it explicitly in the calibration grid. The primary lane requires
+`p > 0`, so the TP penalty increases and the smoothing parameter decreases;
+`p = 0` is a constant-penalty control only. Freeze the initial value and
+complete schedule before held-out evaluation, and archive the exact applied
+`alpha_F(t)` and `beta_t` sequence. At a checkpoint after `T > 0` updates,
+the last applied coefficient is `alpha_F(T - 1) = alpha_F(0) * T^p`, not
+`alpha_F(T)`.
 
-The primary result is either the complete paired `alpha` grid or a single
-`alpha` selected by a method-independent rule on calibration instances.
-Choosing one penalty for printed-adaFGD and another for FRAMES is not a
-primary shared-objective comparison.
+Select the best calibrated configuration separately for each method under a
+predeclared, gate-based rule, then compare those frozen configurations
+head-to-head on paired held-out instances. Because the objectives differ and
+the FRAMES penalty changes over time, raw penalized-objective values are
+method diagnostics and must not be used as a cross-method score.
 
-## Secondary method-tuned lane
+## Superseded matched-penalty ablation
 
-A separate best-attempt lane may tune `alpha` as well as algorithm-specific
-parameters independently for each method. Label it **method-tuned,
-different-objective** whenever the selected `alpha` values differ. It answers
-how well each method can be made to work, not which optimizer is better on
-the same objective.
+The former mapping `lambda = m * alpha` with constant
+`beta = 1 / (2 * alpha)` may be retained only as a clearly labeled
+matched-penalty ablation. It is not the primary comparison and its archives
+must carry a different protocol/cohort identifier.
 
-In particular, earlier held-out runs that used `beta=100` for printed-adaFGD
-and `beta=1000` for FRAMES have mismatched penalties. Preserve them as
-exploratory evidence, but do not reuse them in the primary comparison or
-count their held-out seeds as unseen primary test instances.
+Earlier held-out runs with different fixed `beta` values remain exploratory,
+not because unequal penalties are now forbidden, but because their tuning and
+selection were not frozen under this best-for-best protocol and their seeds
+have already been exposed. Do not count those seeds as unseen primary test
+instances.
 
 ## Paired experimental unit
 
@@ -155,9 +174,13 @@ measurement RMSE                 <= 1e-6
 ||Tr_out(U U^H) - I||_F / sqrt(d) <= 1e-3
 ```
 
-Always report the three components as well as the aggregate gate. Also report
-training measurement loss, `L_alpha`, factor norm, and constraint activity
-`||U||_2 / tau` for FRAMES.
+Always report the three gate components and aggregate decision using common
+metric code. Also report active-row loss/RMSE, factor norms, and
+`||U||_2 / tau` for FRAMES. Report method-native diagnostics separately:
+the fixed `alpha_Q`, `lambda_Q`, and printed objective for adaFGD; and the
+`alpha_F(t)`/`beta_t` trajectory and time-varying smoothed objective for
+FRAMES. Raw penalized objectives are not comparable across methods and must
+not determine the head-to-head ranking.
 
 Run the regimes in this order:
 
@@ -181,11 +204,29 @@ that time.
 
 ## Calibration and held-out evaluation
 
-Use designated calibration channel seeds to set the shared `alpha` grid,
-adaFGD `eta_scale`, FRAMES batch/schedule controls, `tau`, epoch horizon, and
-all selection rules. Freeze the complete protocol before running unseen
-held-out channel seeds. Boundary refinement is exploratory until it is
-evaluated on fresh seeds that played no role in choosing the expanded range.
+Use designated calibration channel seeds and calibrate the methods
+independently:
+
+- for printed-adaFGD, search `alpha_Q` and `eta_scale` while keeping the
+  selected TP coefficient fixed within every trajectory;
+- for FRAMES, search `alpha_F(0)`, the increasing penalty schedule when it is
+  not fixed in advance, batch/schedule controls, and `tau`.
+
+Predeclare the candidate grids, comparable per-method tuning budgets, shared
+evaluation horizon, and a gate-first selection rule based only on common
+recovery metrics. Give both methods the same calibration data and disclose
+every candidate, numerical failure, and tuning cost. Freeze both complete
+selected configurations and the shared held-out budget before running unseen
+channel seeds. Boundary refinement is exploratory until it is evaluated on
+fresh seeds that played no role in choosing the expanded range.
+
+“Best” means selected only from calibration and any predeclared validation
+stage, never from held-out outcomes. Every validation and held-out record must
+store the calibration/selection manifest SHA-256, the selected printed-adaFGD
+and FRAMES configuration IDs. The immutable referenced manifest must store
+the candidate-grid and selection-rule IDs and all candidate outcomes.
+Held-out records may aggregate only when the recorded frozen selection identities
+match; cohorts tied to different selection manifests must never be combined.
 
 Keep seed roles distinct in the archive: channel/truth, observation, row
 subset, initialization, and FRAMES sampling. A held-out channel seed exposed
@@ -212,17 +253,20 @@ an efficiency and reproducibility limitation, not additional evidence.
 
 ## Runner invocation
 
-After committing the runner, replace `FULL_COMMIT` with its full commit hash
-and `UNIQUE` with a fresh run identifier. From the repository root, this is
-a safe n=2 full-design smoke invocation:
+After committing the runner, replace `FULL_COMMIT`, `PRINTED_ALPHA`,
+`FRAMES_ALPHA0`, and `PRINTED_ETA` with the pinned commit and predeclared
+calibration-candidate values, and replace `UNIQUE` with a fresh run identifier.
+From the repository root, this is a safe n=2 full-design smoke invocation:
 
 ```bash
 python -m paper.experiments.qpt_quiroga_direct_comparison \
   --n-qubits 2 \
   --row-epochs 2 \
   --checkpoint-epochs 1 \
-  --tp-weight-per-row 0.005 \
-  --eta-scale 0.003 \
+  --printed-tp-weight-per-row PRINTED_ALPHA \
+  --frames-initial-tp-weight-per-row FRAMES_ALPHA0 \
+  --frames-penalty-exponent 0.25 \
+  --eta-scale PRINTED_ETA \
   --rank 1 \
   --tau 3.0 \
   --subset-size 0 \
@@ -235,8 +279,8 @@ python -m paper.experiments.qpt_quiroga_direct_comparison \
   --shot-seed 0 \
   --batch-size 32 \
   --spectral-norm-method dense \
-  --cohort-id n2-full-smoke-v1 \
-  --trial-id n2-full-c0-i0-s0-smoke-UNIQUE \
+  --cohort-id n2-full-best-for-best-smoke-v1 \
+  --trial-id n2-full-best-for-best-c0-i0-s0-smoke-UNIQUE \
   --split calibration \
   --expected-commit FULL_COMMIT \
   --require-clean \
@@ -247,6 +291,8 @@ python -m paper.experiments.qpt_quiroga_direct_comparison \
 
 The two logical row epochs and one-epoch checkpoint cadence are only a
 plumbing smoke test, not a production, calibration, or paper-result budget.
+`PRINTED_ALPHA` and `FRAMES_ALPHA0` are independent method-specific values;
+the command does not impose or imply an objective match.
 The runner writes the requested NPZ and an inferred same-stem JSON sidecar,
 and refuses to run if either path already exists. Use a new path and trial ID
 for every invocation; do not overwrite or repurpose a prior pair. Replace the
@@ -259,9 +305,10 @@ would make subsequent tasks fail their clean-worktree preflight.
 Before production:
 
 1. run the focused unit tests and a tiny CPU comparison locally;
-2. verify objective equality, paired hashes, logical-row accounting and
-   implementation-work reporting, aligned checkpoints, endpoint full-design
-   RMSE for subsets, failure-status/log preservation, and deterministic replay;
+2. verify printed fixed-penalty normalization and the FRAMES increasing-penalty
+   sequence, paired hashes, selection-manifest/config-ID propagation, logical
+   row accounting, aligned checkpoints, endpoint full-design RMSE for subsets,
+   failure-status/log preservation, and deterministic replay;
 3. run one short Ruche smoke job through Slurm using the production
    environment and resource shape; and
 4. inspect its status, stderr, archive, and resource use before submitting a
@@ -272,6 +319,9 @@ Git commit and dirty-state diff, complete command/configuration, source-file
 hashes, host and hardware, Slurm job/task IDs, requested resources, module and
 package versions, thread settings, start/end times, every seed, data/row/
 observation/initialization hashes, spectral-solver settings, and output path.
+For best-for-best records, also archive the selection-manifest SHA-256, both
+selected configuration IDs, `alpha_Q`, `lambda_Q`, `alpha_F(0)`, `p`, and the
+realized FRAMES penalty/smoothing coefficients at every checkpoint.
 Use unique immutable run directories and a manifest; preserve failed and
 superseded runs with their status instead of overwriting them.
 
@@ -279,6 +329,8 @@ The current sidecar aggregation is metadata-only. Before paper use, run a
 separate JSON/NPZ/checksum validator that cross-checks arrays and metadata,
 expected keys, shapes, dtypes and finiteness, and every archive checksum.
 
-The primary paper claim is based only on paired held-out results from the
-shared-objective lane. The method-tuned lane and Armijo recovery control must
-be shown separately and described according to the questions they answer.
+The primary paper claim is based only on paired held-out results from the two
+independently tuned, frozen best-for-best configurations under one selection
+manifest. The matched-penalty ablation and Armijo recovery control must be
+shown separately and described according to the different questions they
+answer.

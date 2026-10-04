@@ -113,6 +113,65 @@ def test_campaign_shares_inputs_and_matches_frames_penalty_scaling():
     np.testing.assert_array_equal(frames.cumulative_data_row_accesses, [0, 3, 6])
 
 
+def test_campaign_dynamic_frames_penalty_records_checkpoint_normalization():
+    data = generate_quiroga_sensing_data(1, channel_seed=12)
+    rows = data.fixed_row_subset(8, seed=2)
+    beta0 = 20.0
+    schedule = PowerSchedule(beta0, 1.0, 0.25)
+    metadata, _, traces = run_campaign(
+        data, methods=("frames",), rows=rows, initialization_seed=4,
+        sampling_seed=6, n_steps=1, frames_steps=4, metrics_frequency=1,
+        frames_metrics_frequency=2, eta_scale=1e-4, tp_weight=0.75,
+        frames_beta0=beta0, frames_smoothing_schedule=schedule,
+        batch_size=4, show_progress=False)
+
+    trace = traces["frames"]
+    expected_iteration_beta = beta0 / np.arange(1, 5) ** 0.25
+    np.testing.assert_allclose(
+        trace.diagnostics["smoothing_parameter"], expected_iteration_beta)
+    np.testing.assert_allclose(
+        trace.diagnostics["tp_weight_per_row_alpha"],
+        1.0 / (2.0 * expected_iteration_beta))
+    checkpoint_beta = trace.diagnostics["checkpoint_smoothing_parameter"]
+    checkpoint_lambda = rows.size / (2.0 * checkpoint_beta)
+    np.testing.assert_allclose(
+        trace.penalized_objective,
+        trace.measurement_loss_sum + checkpoint_lambda * trace.tp_violation**2)
+    configuration = metadata["configuration"]
+    assert configuration["frames_penalty_mode"] == "independent_schedule"
+    assert configuration["frames_beta0"] == pytest.approx(beta0)
+    assert configuration["frames_smoothing_schedule"] == {
+        "type": "PowerSchedule", "scale": beta0, "offset": 1.0,
+        "exponent": 0.25, "cap": None,
+    }
+
+
+def test_campaign_frames_failure_uses_frames_initial_penalty(monkeypatch):
+    data = generate_quiroga_sensing_data(1, channel_seed=14)
+    rows = data.fixed_row_subset(8, seed=3)
+
+    def fail_frames(*args, **kwargs):
+        raise FloatingPointError("synthetic failure")
+
+    monkeypatch.setattr(
+        campaign, "run_quiroga_sensing_stochastic_frames", fail_frames)
+    beta0 = 100.0
+    _, _, traces = run_campaign(
+        data, methods=("frames",), rows=rows, n_steps=1, frames_steps=2,
+        metrics_frequency=1, eta_scale=1e-4, tp_weight=7.0,
+        frames_beta0=beta0,
+        frames_smoothing_schedule=PowerSchedule(beta0, 1.0, 0.25),
+        batch_size=4, show_progress=False)
+
+    trace = traces["frames"]
+    assert trace.status == "failed"
+    expected_lambda0 = rows.size / (2.0 * beta0)
+    assert trace.penalized_objective[0] == pytest.approx(
+        trace.measurement_loss_sum[0] + expected_lambda0 * trace.tp_violation[0] ** 2)
+    assert trace.penalized_objective[0] != pytest.approx(
+        trace.measurement_loss_sum[0] + 7.0 * trace.tp_violation[0] ** 2)
+
+
 def test_atomic_archive_is_pickle_free_and_refuses_to_clobber(tmp_path):
     data = generate_quiroga_sensing_data(1, channel_seed=2)
     metadata, payload, _ = run_campaign(

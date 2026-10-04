@@ -1,10 +1,10 @@
 """Direct FRAMES versus printed-adaFGD comparisons on Quiroga sensing.
 
 The validated campaign core already makes methods share sensing rows,
-observations, and an initial factor.  This thin protocol layer additionally
-forces the two-method comparison, matches nominal active-row budgets and
-checkpoints, records a common penalty normalization and recovery gate, and
-aggregates compatible JSON sidecars.
+observations, and an initial factor. This protocol layer additionally forces
+the two-method comparison, matches nominal active-row budgets and checkpoints,
+records independently tuned method-native TP penalties and a common recovery
+gate, and aggregates compatible JSON sidecars.
 
 One nominal row epoch is ``m`` row accesses.  This is not compute-equivalent:
 FRAMES samples with replacement, while printed adaFGD performs a full pass and
@@ -39,19 +39,30 @@ from .qpt_quiroga_sensing import generate_quiroga_sensing_data
 from .quantum_process_tomography import PowerSchedule
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 FORMAT = "qpt_quiroga_direct_comparison"
 SUMMARY_FORMAT = "qpt_quiroga_direct_comparison_summary"
-PROTOCOL = "shared_objective_matched_nominal_row_accesses_v1"
+PROTOCOL = "method_tuned_dynamic_frames_matched_nominal_row_accesses_v2"
 DIRECT_METHODS = ("printed-adafgd", "frames")
 
-_ENDPOINT_METRICS = (
-    *COMMON_METRICS,
+_PHYSICAL_METRICS = tuple(
+    metric for metric in COMMON_METRICS if metric != "penalized_objective"
+)
+_METHOD_ENDPOINT_METRICS = (
+    *_PHYSICAL_METRICS,
+    "native_penalized_objective",
+    "native_tp_weight_per_row_alpha",
+    "native_summed_tp_weight_lambda",
+    "native_smoothing_beta",
     "full_design_rmse",
     "factor_frobenius_norm",
     "factor_operator_norm",
     "optimizer_seconds",
     "cumulative_data_row_accesses",
+)
+_PAIRED_ENDPOINT_METRICS = (
+    *_PHYSICAL_METRICS,
+    "full_design_rmse",
 )
 _SOURCE_PATHS = (
     "paper/experiments/qpt_quiroga_direct_comparison.py",
@@ -68,8 +79,11 @@ _SOURCE_PATHS = (
 )
 _COHORT_CONFIGURATION_FIELDS = (
     "methods", "n_steps", "frames_steps", "metrics_frequency",
-    "frames_metrics_frequency", "rank", "eta_scale", "tp_weight_lambda",
-    "tp_weight_per_row_alpha", "frames_beta", "tau", "batch_size",
+    "frames_metrics_frequency", "rank", "eta_scale",
+    "printed_tp_weight_per_row_alpha", "printed_summed_tp_weight_lambda",
+    "frames_beta0",
+    "frames_initial_tp_weight_per_row_alpha", "frames_initial_tp_weight_lambda",
+    "frames_smoothing_exponent", "frames_smoothing_schedule", "tau", "batch_size",
     "spectral_norm_method", "dense_max_process_dimension",
     "spectral_norm_tolerance", "spectral_norm_maxiter", "rho_schedule",
     "step_size_schedule", "observation_mode", "noise_std", "shots",
@@ -92,6 +106,41 @@ def _finite_positive(value, name):
     return value
 
 
+def _selection_provenance(
+    split, selection_manifest_sha256, printed_config_id, frames_config_id
+):
+    values = (selection_manifest_sha256, printed_config_id, frames_config_id)
+    provided = tuple(value is not None for value in values)
+    if any(provided) and not all(provided):
+        raise ValueError(
+            "selection_manifest_sha256, printed_config_id, and frames_config_id "
+            "must be supplied together.")
+    if split in {"validation", "heldout"} and not all(provided):
+        raise ValueError(
+            "validation and heldout runs require a selection manifest hash and "
+            "both selected config IDs.")
+    if not any(provided):
+        return None
+    if (not isinstance(selection_manifest_sha256, str)
+            or len(selection_manifest_sha256) != 64
+            or any(character not in "0123456789abcdef"
+                   for character in selection_manifest_sha256)):
+        raise ValueError("selection_manifest_sha256 must be a lowercase SHA-256 hex digest.")
+    config_ids = []
+    for value, name in (
+        (printed_config_id, "printed_config_id"),
+        (frames_config_id, "frames_config_id"),
+    ):
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(f"{name} must be a nonempty string.")
+        config_ids.append(value.strip())
+    return {
+        "selection_manifest_sha256": selection_manifest_sha256,
+        "printed_config_id": config_ids[0],
+        "frames_config_id": config_ids[1],
+    }
+
+
 def _validated_schedule(value, name):
     if value is None or isinstance(value, PowerSchedule):
         return value
@@ -101,6 +150,26 @@ def _validated_schedule(value, name):
     if not math.isfinite(value):
         raise ValueError(f"{name} must be finite.")
     return value
+
+
+def _frames_penalty_at_completed_steps(beta0, exponent, completed_steps):
+    beta0 = _finite_positive(beta0, "frames_beta0")
+    exponent = _finite_positive(exponent, "frames_smoothing_exponent")
+    if (isinstance(completed_steps, (bool, np.bool_))
+            or not isinstance(completed_steps, (int, np.integer))
+            or completed_steps < 0):
+        raise ValueError("completed_steps must be a nonnegative integer.")
+    try:
+        beta = beta0 / max(1, int(completed_steps)) ** exponent
+        alpha = 1.0 / (2.0 * beta)
+    except (OverflowError, ZeroDivisionError) as error:
+        raise ValueError(
+            "The FRAMES penalty schedule underflows or overflows at the endpoint."
+        ) from error
+    if not math.isfinite(beta) or beta <= 0.0 or not math.isfinite(alpha):
+        raise ValueError(
+            "The FRAMES penalty schedule must have finite positive endpoint beta and alpha.")
+    return beta, alpha
 
 
 def _canonical_json(value):
@@ -341,6 +410,23 @@ def _cohort_spec(metadata):
     configuration = metadata["configuration"]
     provenance = metadata["provenance"]
     data_metadata = metadata.get("data_metadata", {})
+    method_penalties = comparison["method_penalties"]
+    predeclared_method_penalties = {
+        "printed-adafgd": dict(method_penalties["printed-adafgd"]),
+        "frames": {
+            name: method_penalties["frames"][name]
+            for name in (
+                "type",
+                "initial_tp_weight_per_row_alpha",
+                "initial_summed_tp_weight_lambda",
+                "initial_smoothing_beta",
+                "smoothing_exponent",
+                "smoothing_schedule",
+                "schedule_index",
+                "checkpoint_alignment",
+            )
+        },
+    }
     return {
         "protocol": comparison["protocol"],
         "cohort_id": comparison.get("cohort_id"),
@@ -361,13 +447,17 @@ def _cohort_spec(metadata):
             "numpy_version": metadata["numpy_version"],
             "scipy_version": metadata["scipy_version"],
         },
-        "objective": metadata["objective"],
+        "method_objectives": metadata["method_objectives"],
         "configuration": {
             name: configuration[name] for name in _COHORT_CONFIGURATION_FIELDS
         },
         "method_domains": metadata["method_domains"],
         "budget": comparison["budget"],
-        "shared_penalty": comparison["shared_penalty"],
+        # Realized endpoint coefficients depend on whether FRAMES completes.
+        # Excluding them prevents failed trials from being split into a
+        # different cohort and silently dropped from failure-rate estimates.
+        "method_penalties": predeclared_method_penalties,
+        "selection_provenance": comparison["selection_provenance"],
         "gate": comparison["gate"],
         "source": {
             "git_commit": provenance["git"].get("commit"),
@@ -381,6 +471,11 @@ def _endpoint_values(metadata, method):
     values = dict(metadata["methods"][method])
     diagnostics = metadata["comparison"]["endpoint_diagnostics"][method]
     values.update({
+        "native_tp_weight_per_row_alpha": diagnostics[
+            "native_tp_weight_per_row_alpha"],
+        "native_summed_tp_weight_lambda": diagnostics[
+            "native_summed_tp_weight_lambda"],
+        "native_smoothing_beta": diagnostics["native_smoothing_beta"],
         "full_design_rmse": diagnostics["full_design_metrics"]["rmse"],
         "factor_frobenius_norm": diagnostics["factor_frobenius_norm"],
         "factor_operator_norm": diagnostics["factor_operator_norm"],
@@ -392,8 +487,9 @@ def _endpoint_differences(metadata):
     printed = _endpoint_values(metadata, "printed-adafgd")
     frames = _endpoint_values(metadata, "frames")
     values = {}
-    for metric in _ENDPOINT_METRICS:
-        left, right = _finite_number(frames.get(metric)), _finite_number(printed.get(metric))
+    for metric in _PAIRED_ENDPOINT_METRICS:
+        left = _finite_number(frames.get(metric))
+        right = _finite_number(printed.get(metric))
         values[metric] = None if left is None or right is None else left - right
     return {"orientation": "frames_minus_printed_adafgd", "values": values}
 
@@ -431,29 +527,45 @@ def _first_gate_passage(trace, gate, active_row_count, available):
 
 
 def run_direct_comparison(
-    data, *, rows=None, row_epochs, checkpoint_epochs, tp_weight_per_row,
-    eta_scale, rank=1, initialization_seed=0, sampling_seed=0, tau=None,
+    data, *, rows=None, row_epochs, checkpoint_epochs,
+    printed_tp_weight_per_row, frames_initial_tp_weight_per_row,
+    eta_scale, frames_smoothing_exponent=0.25, rank=1,
+    initialization_seed=0, sampling_seed=0, tau=None,
     batch_size=32, spectral_norm_method="auto",
     dense_max_process_dimension=1024, spectral_norm_tolerance=1e-10,
     spectral_norm_maxiter=None, rho_schedule=None, step_size_schedule=None,
     gate=None, trial_id=None, cohort_id=None, split="unspecified",
-    expected_commit=None, require_clean=False, show_progress=False,
+    selection_manifest_sha256=None, printed_config_id=None,
+    frames_config_id=None, expected_commit=None, require_clean=False,
+    show_progress=False,
 ):
-    """Run one direct pair using ``alpha`` as the portable TP coefficient."""
-    if split not in {"calibration", "heldout", "unspecified"}:
-        raise ValueError("split must be 'calibration', 'heldout', or 'unspecified'.")
+    """Run one paired best-vs-best comparison with method-native TP penalties."""
+    if split not in {"calibration", "validation", "heldout", "unspecified"}:
+        raise ValueError(
+            "split must be 'calibration', 'validation', 'heldout', or 'unspecified'.")
     for value, name in ((trial_id, "trial_id"), (cohort_id, "cohort_id")):
         if value is not None and (not isinstance(value, str) or not value.strip()):
             raise ValueError(f"{name} must be a nonempty string or None.")
+    selection_provenance = _selection_provenance(
+        split, selection_manifest_sha256, printed_config_id, frames_config_id)
     if not isinstance(require_clean, (bool, np.bool_)):
         raise TypeError("require_clean must be a boolean.")
     active_rows = (np.arange(data.m, dtype=np.int64) if rows is None
                    else data.design.validate_rows(rows))
     budget = derive_matched_row_budget(
         active_rows.size, batch_size, row_epochs, checkpoint_epochs)
-    alpha = _finite_positive(tp_weight_per_row, "tp_weight_per_row")
-    summed_lambda = active_rows.size * alpha
-    expected_beta = 1.0 / (2.0 * alpha)
+    printed_alpha = _finite_positive(
+        printed_tp_weight_per_row, "printed_tp_weight_per_row")
+    frames_alpha0 = _finite_positive(
+        frames_initial_tp_weight_per_row, "frames_initial_tp_weight_per_row")
+    smoothing_exponent = _finite_positive(
+        frames_smoothing_exponent, "frames_smoothing_exponent")
+    printed_lambda = active_rows.size * printed_alpha
+    frames_beta0 = 1.0 / (2.0 * frames_alpha0)
+    frames_schedule = PowerSchedule(
+        frames_beta0, 1.0, smoothing_exponent, cap=None)
+    _frames_penalty_at_completed_steps(
+        frames_beta0, smoothing_exponent, budget.frames_steps)
     gate = RecoveryGate() if gate is None else gate
     if not isinstance(gate, RecoveryGate):
         raise TypeError("gate must be a RecoveryGate.")
@@ -484,43 +596,109 @@ def run_direct_comparison(
         n_steps=budget.printed_adafgd_steps, frames_steps=budget.frames_steps,
         metrics_frequency=budget.printed_adafgd_metrics_frequency,
         frames_metrics_frequency=budget.frames_metrics_frequency,
-        eta_scale=eta_scale, tp_weight=summed_lambda, tau=tau,
+        eta_scale=eta_scale, tp_weight=printed_lambda, tau=tau,
         batch_size=budget.batch_size, spectral_norm_method=spectral_norm_method,
         dense_max_process_dimension=dense_max_process_dimension,
         spectral_norm_tolerance=spectral_norm_tolerance,
         spectral_norm_maxiter=spectral_norm_maxiter, rho_schedule=rho_schedule,
+        frames_beta0=frames_beta0, frames_smoothing_schedule=frames_schedule,
         step_size_schedule=step_size_schedule, show_progress=show_progress,
     )
     configuration = metadata["configuration"]
     configuration.update({
-        "tp_weight_per_row_alpha": alpha,
+        "printed_tp_weight_per_row_alpha": printed_alpha,
+        "printed_summed_tp_weight_lambda": printed_lambda,
+        "frames_smoothing_exponent": smoothing_exponent,
         "observation_mode": data.observation_mode,
         "noise_std": float(data.noise_std),
         "noise_seed": int(data.noise_seed),
         "shots": data.shots,
         "shot_seed": int(data.shot_seed),
     })
-    if not math.isclose(configuration["frames_beta"], expected_beta, rel_tol=1e-14):
-        raise RuntimeError("FRAMES beta does not match the shared penalty.")
+    if not math.isclose(configuration["tp_weight_lambda"], printed_lambda, rel_tol=1e-14):
+        raise RuntimeError("Printed adaFGD lambda does not match its configured alpha.")
+    if not math.isclose(configuration["frames_beta0"], frames_beta0, rel_tol=1e-14):
+        raise RuntimeError("FRAMES beta0 does not match its configured initial alpha.")
+    if not math.isclose(
+            configuration["frames_initial_tp_weight_per_row_alpha"],
+            frames_alpha0, rel_tol=1e-14):
+        raise RuntimeError("FRAMES initial alpha does not match beta0.")
+
+    printed_endpoint = metadata["methods"]["printed-adafgd"]
+    printed_endpoint["native_penalized_objective"] = printed_endpoint.pop(
+        "penalized_objective")
+    frames_endpoint = metadata["methods"]["frames"]
+    frames_summed_objective = frames_endpoint.pop("penalized_objective")
+    frames_endpoint["summed_equivalent_penalized_objective"] = (
+        frames_summed_objective)
+    frames_endpoint["native_penalized_objective"] = (
+        None if frames_summed_objective is None
+        else frames_summed_objective / active_rows.size)
 
     initial_metrics = {}
-    for metric in COMMON_METRICS:
+    for metric in _PHYSICAL_METRICS:
         values = [float(getattr(traces[name], metric)[0]) for name in DIRECT_METHODS]
         if not np.allclose(values, values[0], rtol=1e-13, atol=1e-15):
-            raise RuntimeError(f"Methods do not share initial {metric}.")
+            raise RuntimeError(f"Methods do not share initial physical metric {metric}.")
         initial_metrics[metric] = values[0]
+    initial_native_objectives = {
+        "printed-adafgd": float(traces["printed-adafgd"].penalized_objective[0]),
+        "frames": float(
+            traces["frames"].penalized_objective[0] / active_rows.size),
+    }
 
+    frames_trace = traces["frames"]
+    frames_completed_steps = int(frames_trace.checkpoint_steps[-1])
+    frames_endpoint_beta, frames_endpoint_alpha = _frames_penalty_at_completed_steps(
+        frames_beta0, smoothing_exponent, frames_completed_steps)
+    recorded_checkpoint_beta = frames_trace.diagnostics.get(
+        "checkpoint_smoothing_parameter")
+    if recorded_checkpoint_beta is not None and len(recorded_checkpoint_beta):
+        recorded_endpoint_beta = float(recorded_checkpoint_beta[-1])
+        if not math.isclose(
+                recorded_endpoint_beta, frames_endpoint_beta, rel_tol=1e-13):
+            raise RuntimeError("FRAMES endpoint beta is inconsistent with its schedule.")
+        frames_endpoint_beta = recorded_endpoint_beta
+    endpoint_penalties = {
+        "printed-adafgd": {
+            "alpha": printed_alpha,
+            "lambda": active_rows.size * printed_alpha,
+            "beta": None,
+        },
+        "frames": {
+            "alpha": frames_endpoint_alpha,
+            "lambda": active_rows.size * frames_endpoint_alpha,
+            "beta": frames_endpoint_beta,
+        },
+    }
     all_rows = np.arange(data.m, dtype=np.int64)
     all_targets = data.all_observations()
-    full_lambda = data.m * alpha
     endpoint_diagnostics = {}
     for method, trace in traces.items():
+        penalty = endpoint_penalties[method]
+        # Printed adaFGD keeps the exact lambda_Q used for training, even when
+        # a subset-trained factor is diagnosed on every sensing row. FRAMES's
+        # native mean normalization instead keeps alpha_F fixed across row sets.
+        full_lambda = (
+            penalty["lambda"] if method == "printed-adafgd"
+            else data.m * penalty["alpha"])
         full_metrics = evaluate_common_metrics(
             data, trace.final_factor, all_rows, all_targets, full_lambda)
+        summed_equivalent = full_metrics.pop("penalized_objective")
+        if method == "frames":
+            full_metrics["summed_equivalent_penalized_objective"] = (
+                summed_equivalent)
+            full_metrics["native_penalized_objective"] = (
+                summed_equivalent / data.m)
+        else:
+            full_metrics["native_penalized_objective"] = summed_equivalent
         frobenius = float(np.linalg.norm(trace.final_factor, ord="fro"))
         operator = float(np.linalg.norm(trace.final_factor, ord=2))
         endpoint_diagnostics[method] = {
             "full_design_metrics": full_metrics,
+            "native_tp_weight_per_row_alpha": penalty["alpha"],
+            "native_summed_tp_weight_lambda": penalty["lambda"],
+            "native_smoothing_beta": penalty["beta"],
             "final_factor_sha256": _array_sha256(trace.final_factor),
             "factor_frobenius_norm": frobenius,
             "factor_operator_norm": operator,
@@ -528,25 +706,57 @@ def run_direct_comparison(
         }
 
     metadata["base_format"] = metadata["format"]
+    metadata["base_objective"] = metadata["objective"]
     metadata["format"] = FORMAT
     metadata["schema_version"] = SCHEMA_VERSION
+    metadata["objective"] = "method-specific TP penalties with shared physical metrics"
+    metadata["method_objectives"] = {
+        "printed-adafgd": (
+            "0.5*sum(residual^2)+lambda_Q*||Tr_out(UU^H)-I||_F^2; "
+            "lambda_Q fixed throughout the run"),
+        "frames": (
+            "0.5*mean(residual^2)+alpha_F,k*||Tr_out(UU^H)-I||_F^2; "
+            "alpha_F,k=1/(2*beta_k) and beta_k=beta0/(k+1)^p"),
+    }
     metadata["provenance"] = provenance
     metadata["source_sha256"] = dict(provenance["source_sha256"])
+    method_penalties = {
+        "printed-adafgd": {
+            "type": "fixed_quadratic_tp_penalty",
+            "tp_weight_per_row_alpha": printed_alpha,
+            "summed_tp_weight_lambda": printed_lambda,
+        },
+        "frames": {
+            "type": "increasing_moreau_tp_penalty",
+            "initial_tp_weight_per_row_alpha": frames_alpha0,
+            "initial_summed_tp_weight_lambda": active_rows.size * frames_alpha0,
+            "initial_smoothing_beta": frames_beta0,
+            "smoothing_exponent": smoothing_exponent,
+            "smoothing_schedule": configuration["frames_smoothing_schedule"],
+            "schedule_index": "zero_based_optimizer_iteration",
+            "checkpoint_alignment": (
+                "x_k uses beta_k for k<T; terminal x_T uses last-applied beta_(T-1)"),
+            "endpoint_completed_steps": frames_completed_steps,
+            "endpoint_smoothing_beta": frames_endpoint_beta,
+            "endpoint_tp_weight_per_row_alpha": frames_endpoint_alpha,
+            "endpoint_summed_tp_weight_lambda": (
+                active_rows.size * frames_endpoint_alpha),
+        },
+    }
     comparison = {
         "protocol": PROTOCOL,
         "methods": list(DIRECT_METHODS),
         "cohort_id": cohort_id,
         "split": split,
+        "selection_provenance": selection_provenance,
         "full_observations_sha256": _array_sha256(all_targets),
-        "shared_objective": metadata["objective"],
-        "shared_penalty": {
-            "normalization": "alpha=lambda/active_row_count; beta=1/(2*alpha)",
-            "tp_weight_per_row_alpha": alpha,
-            "summed_tp_weight_lambda": summed_lambda,
-            "frames_beta": expected_beta,
-        },
+        "comparison_estimand": (
+            "best-vs-best recovery and physical metrics under independently "
+            "calibrated method-native TP penalties"),
+        "method_penalties": method_penalties,
         "budget": budget.as_dict(),
         "initial_metrics": initial_metrics,
+        "initial_native_penalized_objective": initial_native_objectives,
         "endpoint_diagnostics": endpoint_diagnostics,
         "first_gate_passage": {
             method: _first_gate_passage(
@@ -638,23 +848,109 @@ def _validate_sidecar(sidecar, index):
         raise ValueError(f"sidecar {index} has incomplete method endpoints.")
     try:
         active_rows = _positive_integer(sidecar["active_row_count"], "active_row_count")
-        alpha = _finite_positive(configuration["tp_weight_per_row_alpha"], "alpha")
-        summed_lambda = _finite_positive(configuration["tp_weight_lambda"], "lambda")
-        frames_beta = _finite_positive(configuration["frames_beta"], "frames_beta")
+        full_rows = _positive_integer(sidecar["design"]["rows"], "full_design_rows")
+        printed_alpha = _finite_positive(
+            configuration["printed_tp_weight_per_row_alpha"], "printed_alpha")
+        printed_lambda = _finite_positive(
+            configuration["printed_summed_tp_weight_lambda"], "printed_lambda")
+        legacy_tp_weight = _finite_positive(
+            configuration["tp_weight_lambda"], "legacy_tp_weight")
+        frames_alpha0 = _finite_positive(
+            configuration["frames_initial_tp_weight_per_row_alpha"],
+            "frames_initial_alpha")
+        frames_lambda0 = _finite_positive(
+            configuration["frames_initial_tp_weight_lambda"],
+            "frames_initial_lambda")
+        frames_beta0 = _finite_positive(configuration["frames_beta0"], "frames_beta0")
+        smoothing_exponent = _finite_positive(
+            configuration["frames_smoothing_exponent"], "frames_smoothing_exponent")
+        smoothing_schedule = configuration["frames_smoothing_schedule"]
         budget = comparison["budget"]
         expected_accesses = int(budget["nominal_row_accesses"])
     except (KeyError, TypeError, ValueError) as error:
         raise ValueError(f"sidecar {index} has incomplete penalty/budget metadata.") from error
-    if (not math.isclose(summed_lambda, active_rows * alpha, rel_tol=1e-13)
-            or not math.isclose(frames_beta, 1.0 / (2.0 * alpha), rel_tol=1e-13)):
+    if (not math.isclose(printed_lambda, active_rows * printed_alpha, rel_tol=1e-13)
+            or not math.isclose(legacy_tp_weight, printed_lambda, rel_tol=1e-13)
+            or not math.isclose(frames_beta0, 1.0 / (2.0 * frames_alpha0),
+                                rel_tol=1e-13)
+            or not math.isclose(frames_lambda0, active_rows * frames_alpha0,
+                                rel_tol=1e-13)):
         raise ValueError(f"sidecar {index} has inconsistent penalty normalization.")
-    penalty = comparison["shared_penalty"]
-    if (not math.isclose(float(penalty["tp_weight_per_row_alpha"]), alpha, rel_tol=1e-13)
-            or not math.isclose(float(penalty["summed_tp_weight_lambda"]),
-                                summed_lambda, rel_tol=1e-13)
-            or not math.isclose(float(penalty["frames_beta"]),
-                                frames_beta, rel_tol=1e-13)):
-        raise ValueError(f"sidecar {index} has inconsistent shared penalty.")
+    expected_schedule = {
+        "type": "PowerSchedule", "scale": frames_beta0, "offset": 1.0,
+        "exponent": smoothing_exponent, "cap": None,
+    }
+    if smoothing_schedule != expected_schedule:
+        raise ValueError(f"sidecar {index} has an inconsistent FRAMES beta schedule.")
+
+    frames_completed_steps = int(methods["frames"]["completed_steps"])
+    frames_endpoint_beta, frames_endpoint_alpha = _frames_penalty_at_completed_steps(
+        frames_beta0, smoothing_exponent, frames_completed_steps)
+    expected_penalties = {
+        "printed-adafgd": {
+            "type": "fixed_quadratic_tp_penalty",
+            "tp_weight_per_row_alpha": printed_alpha,
+            "summed_tp_weight_lambda": printed_lambda,
+        },
+        "frames": {
+            "type": "increasing_moreau_tp_penalty",
+            "initial_tp_weight_per_row_alpha": frames_alpha0,
+            "initial_summed_tp_weight_lambda": frames_lambda0,
+            "initial_smoothing_beta": frames_beta0,
+            "smoothing_exponent": smoothing_exponent,
+            "smoothing_schedule": expected_schedule,
+            "schedule_index": "zero_based_optimizer_iteration",
+            "checkpoint_alignment": (
+                "x_k uses beta_k for k<T; terminal x_T uses last-applied beta_(T-1)"),
+            "endpoint_completed_steps": frames_completed_steps,
+            "endpoint_smoothing_beta": frames_endpoint_beta,
+            "endpoint_tp_weight_per_row_alpha": frames_endpoint_alpha,
+            "endpoint_summed_tp_weight_lambda": active_rows * frames_endpoint_alpha,
+        },
+    }
+    if comparison.get("method_penalties") != expected_penalties:
+        raise ValueError(f"sidecar {index} has inconsistent method-native penalties.")
+
+    selection = comparison.get("selection_provenance")
+    try:
+        expected_selection = _selection_provenance(
+            comparison["split"],
+            None if selection is None else selection.get("selection_manifest_sha256"),
+            None if selection is None else selection.get("printed_config_id"),
+            None if selection is None else selection.get("frames_config_id"),
+        )
+    except (AttributeError, KeyError, TypeError, ValueError) as error:
+        raise ValueError(f"sidecar {index} has invalid selection provenance.") from error
+    if selection != expected_selection:
+        raise ValueError(f"sidecar {index} has inconsistent selection provenance.")
+
+    printed_values = tuple(_finite_number(methods["printed-adafgd"].get(name))
+                            for name in (
+                                "measurement_loss_sum", "tp_violation",
+                                "native_penalized_objective"))
+    if all(value is not None for value in printed_values):
+        expected_native = (
+            printed_values[0] + printed_lambda * printed_values[1] ** 2)
+        if not math.isclose(
+                printed_values[2], expected_native, rel_tol=1e-12, abs_tol=1e-15):
+            raise ValueError(
+                f"sidecar {index} printed-adafgd has an inconsistent native objective.")
+
+    frames_values = tuple(_finite_number(methods["frames"].get(name))
+                          for name in (
+                              "measurement_loss_mean", "tp_violation",
+                              "native_penalized_objective",
+                              "summed_equivalent_penalized_objective"))
+    if all(value is not None for value in frames_values):
+        expected_native = (
+            frames_values[0] + frames_endpoint_alpha * frames_values[1] ** 2)
+        if (not math.isclose(
+                frames_values[2], expected_native, rel_tol=1e-12, abs_tol=1e-15)
+                or not math.isclose(
+                    frames_values[3], active_rows * expected_native,
+                    rel_tol=1e-12, abs_tol=1e-15)):
+            raise ValueError(
+                f"sidecar {index} frames has an inconsistent native objective.")
     steps = budget["method_steps"]
     if (configuration["n_steps"] != steps["printed-adafgd"]
             or configuration["frames_steps"] != steps["frames"]):
@@ -666,8 +962,56 @@ def _validate_sidecar(sidecar, index):
 
     gate = RecoveryGate.from_dict(comparison["gate"])
     source = "full_design" if sidecar["observation_mode"] == "noiseless" else "active_rows"
+    expected_endpoint_penalties = {
+        "printed-adafgd": (printed_alpha, printed_lambda, None),
+        "frames": (
+            frames_endpoint_alpha, active_rows * frames_endpoint_alpha,
+            frames_endpoint_beta),
+    }
     for method in DIRECT_METHODS:
         diagnostics = comparison["endpoint_diagnostics"][method]
+        expected_alpha, expected_lambda, expected_beta = (
+            expected_endpoint_penalties[method])
+        diagnostic_beta = diagnostics.get("native_smoothing_beta")
+        if (not math.isclose(
+                    float(diagnostics["native_tp_weight_per_row_alpha"]),
+                    expected_alpha, rel_tol=1e-13)
+                or not math.isclose(
+                    float(diagnostics["native_summed_tp_weight_lambda"]),
+                    expected_lambda, rel_tol=1e-13)
+                or ((expected_beta is None and diagnostic_beta is not None)
+                    or (expected_beta is not None and not math.isclose(
+                        float(diagnostic_beta), expected_beta, rel_tol=1e-13)))):
+            raise ValueError(
+                f"sidecar {index} method {method} has inconsistent endpoint penalties.")
+
+        full_metrics = diagnostics["full_design_metrics"]
+        full_tp = _finite_number(full_metrics.get("tp_violation"))
+        full_native = _finite_number(full_metrics.get("native_penalized_objective"))
+        full_measurement_name = (
+            "measurement_loss_mean" if method == "frames" else "measurement_loss_sum")
+        full_measurement = _finite_number(full_metrics.get(full_measurement_name))
+        if None not in (full_tp, full_native, full_measurement):
+            expected_full_native = (
+                full_measurement + expected_alpha * full_tp ** 2
+                if method == "frames"
+                else full_measurement + printed_lambda * full_tp ** 2)
+            if not math.isclose(
+                    full_native, expected_full_native, rel_tol=1e-12, abs_tol=1e-15):
+                raise ValueError(
+                    f"sidecar {index} method {method} has inconsistent "
+                    "full-design native objective.")
+        if method == "frames":
+            full_summed = _finite_number(
+                full_metrics.get("summed_equivalent_penalized_objective"))
+            if (full_summed is not None and full_native is not None
+                    and not math.isclose(
+                        full_summed, full_rows * full_native,
+                        rel_tol=1e-12, abs_tol=1e-15)):
+                raise ValueError(
+                    f"sidecar {index} frames has inconsistent full-design "
+                    "summed-equivalent objective.")
+
         factor_hash = diagnostics.get("final_factor_sha256")
         if (not isinstance(factor_hash, str) or len(factor_hash) != 64
                 or any(character not in "0123456789abcdef" for character in factor_hash)):
@@ -785,7 +1129,7 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
         optimization_gate_rows = []
         for identity, group in sorted(optimization_groups.items()):
             metric_row = {}
-            for metric in _ENDPOINT_METRICS:
+            for metric in _METHOD_ENDPOINT_METRICS:
                 values = [_endpoint_values(record, method).get(metric) for record in group]
                 if method == "printed-adafgd" and metric != "optimizer_seconds":
                     metric_row[metric] = _finite_number(values[0])
@@ -820,7 +1164,7 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
                     optimization_metrics[optimization_id][metric]
                     for optimization_id in optimization_ids
                 ])
-                for metric in _ENDPOINT_METRICS
+                for metric in _METHOD_ENDPOINT_METRICS
             }
             optimization_pass_rates = [
                 optimization_gate_by_id[optimization_id]["sampling_replicate_pass_rate"]
@@ -870,13 +1214,13 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
             },
             "sampling_trial_metrics_descriptive": {
                 metric: _statistics([item.get(metric) for item in endpoints], len(ordered))
-                for metric in _ENDPOINT_METRICS
+                for metric in _METHOD_ENDPOINT_METRICS
             },
             "optimization_instance_mean_metrics": {
                 metric: _statistics(
                     [row[metric] for row in optimization_metrics.values()],
                     len(optimization_groups))
-                for metric in _ENDPOINT_METRICS
+                for metric in _METHOD_ENDPOINT_METRICS
             },
             "optimization_instance_gate": {
                 "primary_estimand": "sampling_replicate_pass_rate",
@@ -890,7 +1234,7 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
             "data_instance_mean_metrics": {
                 metric: _statistics(
                     [row[metric] for row in data_metrics.values()], len(data_groups))
-                for metric in _ENDPOINT_METRICS
+                for metric in _METHOD_ENDPOINT_METRICS
             },
             "data_instance_gate": {
                 "primary_estimand": (
@@ -911,7 +1255,7 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
             },
         }
 
-    sampling_differences = {metric: [] for metric in _ENDPOINT_METRICS}
+    sampling_differences = {metric: [] for metric in _PAIRED_ENDPOINT_METRICS}
     trials = []
     for record in ordered:
         comparison = record["comparison"]
@@ -938,7 +1282,7 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
             metric: _mean_or_none([
                 _endpoint_differences(record)["values"][metric] for record in group
             ])
-            for metric in _ENDPOINT_METRICS
+            for metric in _PAIRED_ENDPOINT_METRICS
         }
     data_differences = {}
     for identity, group in sorted(data_groups.items()):
@@ -950,7 +1294,7 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
                 optimization_differences[optimization_id][metric]
                 for optimization_id in optimization_ids
             ])
-            for metric in _ENDPOINT_METRICS
+            for metric in _PAIRED_ENDPOINT_METRICS
         }
 
     data_instances = []
@@ -1021,12 +1365,12 @@ def aggregate_sidecars(sidecars: Sequence[Mapping]):
                 metric: _statistics(
                     [row[metric] for row in optimization_differences.values()],
                     len(optimization_groups))
-                for metric in _ENDPOINT_METRICS
+                for metric in _PAIRED_ENDPOINT_METRICS
             },
             "data_instance_mean_metrics": {
                 metric: _statistics(
                     [row[metric] for row in data_differences.values()], len(data_groups))
-                for metric in _ENDPOINT_METRICS
+                for metric in _PAIRED_ENDPOINT_METRICS
             },
         },
         "trials": trials,
@@ -1044,8 +1388,12 @@ def _build_parser():
     parser.add_argument("--n-qubits", type=int, default=2)
     parser.add_argument("--row-epochs", type=int, required=True)
     parser.add_argument("--checkpoint-epochs", type=int, required=True)
-    parser.add_argument("--tp-weight-per-row", type=float, required=True,
-                        help="Alpha in the common mean-loss objective.")
+    parser.add_argument("--printed-tp-weight-per-row", type=float, required=True,
+                        help="Fixed alpha_Q=lambda_Q/m for printed adaFGD.")
+    parser.add_argument("--frames-initial-tp-weight-per-row", type=float, required=True,
+                        help="Initial FRAMES alpha_F,0=1/(2*beta0).")
+    parser.add_argument("--frames-penalty-exponent", type=float, default=0.25,
+                        help="Positive p in alpha_F,k=alpha_F,0*(k+1)^p.")
     parser.add_argument("--eta-scale", type=float, required=True)
     parser.add_argument("--rank", type=int, default=1)
     parser.add_argument("--subset-size", type=int, default=0)
@@ -1078,8 +1426,12 @@ def _build_parser():
     parser.add_argument("--gate-normalized-tp-max", type=float, default=1e-3)
     parser.add_argument("--trial-id", default=None)
     parser.add_argument("--cohort-id", default=None)
-    parser.add_argument("--split", choices=("calibration", "heldout", "unspecified"),
-                        default="unspecified")
+    parser.add_argument(
+        "--split", choices=("calibration", "validation", "heldout", "unspecified"),
+        default="unspecified")
+    parser.add_argument("--selection-manifest-sha256", default=None)
+    parser.add_argument("--printed-config-id", default=None)
+    parser.add_argument("--frames-config-id", default=None)
     parser.add_argument("--expected-commit", default=None)
     parser.add_argument("--require-clean", action="store_true")
     parser.add_argument("--save", type=Path, required=True)
@@ -1113,7 +1465,10 @@ def main(argv=None):
         metadata, payload, traces = run_direct_comparison(
             data, rows=rows, row_epochs=args.row_epochs,
             checkpoint_epochs=args.checkpoint_epochs,
-            tp_weight_per_row=args.tp_weight_per_row, eta_scale=args.eta_scale,
+            printed_tp_weight_per_row=args.printed_tp_weight_per_row,
+            frames_initial_tp_weight_per_row=args.frames_initial_tp_weight_per_row,
+            eta_scale=args.eta_scale,
+            frames_smoothing_exponent=args.frames_penalty_exponent,
             rank=args.rank, initialization_seed=args.initialization_seed,
             sampling_seed=args.sampling_seed, tau=args.tau,
             batch_size=args.batch_size, spectral_norm_method=args.spectral_norm_method,
@@ -1122,6 +1477,9 @@ def main(argv=None):
             spectral_norm_maxiter=args.spectral_norm_maxiter,
             rho_schedule=rho, step_size_schedule=step, gate=gate,
             trial_id=args.trial_id, cohort_id=args.cohort_id, split=args.split,
+            selection_manifest_sha256=args.selection_manifest_sha256,
+            printed_config_id=args.printed_config_id,
+            frames_config_id=args.frames_config_id,
             expected_commit=args.expected_commit, require_clean=args.require_clean,
             show_progress=not args.quiet)
     except (FileNotFoundError, RuntimeError, TypeError, ValueError) as error:
@@ -1136,7 +1494,8 @@ def main(argv=None):
         print(json.dumps({
             "trial_id": comparison["trial_id"],
             "paired_instance_sha256": comparison["paired_instance_sha256"],
-            "shared_penalty": comparison["shared_penalty"],
+            "method_penalties": comparison["method_penalties"],
+            "selection_provenance": comparison["selection_provenance"],
             "budget": comparison["budget"],
             "methods": metadata["methods"],
             "method_gate": comparison["method_gate"],

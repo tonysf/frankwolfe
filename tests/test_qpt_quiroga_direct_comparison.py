@@ -18,15 +18,23 @@ from paper.experiments.qpt_quiroga_direct_comparison import (
 from paper.experiments.qpt_quiroga_sensing import generate_quiroga_sensing_data
 
 
+_SELECTION_HASH = "a" * 64
+
+
 def _pair(*, data=None, rows=None, initialization_seed=5, sampling_seed=7,
           trial_id=None, **overrides):
     data = generate_quiroga_sensing_data(1, channel_seed=3) if data is None else data
     arguments = {
         "rows": rows, "row_epochs": 2, "checkpoint_epochs": 1,
-        "tp_weight_per_row": 0.05, "eta_scale": 1e-4,
+        "printed_tp_weight_per_row": 0.05,
+        "frames_initial_tp_weight_per_row": 0.005,
+        "frames_smoothing_exponent": 0.25, "eta_scale": 1e-4,
         "initialization_seed": initialization_seed, "sampling_seed": sampling_seed,
         "batch_size": 4, "spectral_norm_method": "dense", "trial_id": trial_id,
-        "cohort_id": "n1-test", "split": "heldout", "show_progress": False,
+        "cohort_id": "n1-test", "split": "heldout",
+        "selection_manifest_sha256": _SELECTION_HASH,
+        "printed_config_id": "printed-best-v1", "frames_config_id": "frames-best-v1",
+        "show_progress": False,
     }
     arguments.update(overrides)
     return run_direct_comparison(data, **arguments)
@@ -57,28 +65,55 @@ def test_gate_is_inclusive_and_failed_status_cannot_pass():
     assert not gate.evaluate(endpoint)["passed"]
 
 
-def test_direct_pair_shares_objective_budget_and_records_full_metrics_and_norms():
+def test_direct_pair_uses_method_native_penalties_and_shared_physical_budget():
     data = generate_quiroga_sensing_data(1, channel_seed=3)
     rows = data.fixed_row_subset(8, seed=11)
     metadata, payload, traces = _pair(data=data, rows=rows)
-    assert tuple(metadata["configuration"]["methods"]) == DIRECT_METHODS
-    assert metadata["configuration"]["tp_weight_per_row_alpha"] == pytest.approx(0.05)
-    assert metadata["configuration"]["tp_weight_lambda"] == pytest.approx(0.4)
-    assert metadata["configuration"]["frames_beta"] == pytest.approx(10.0)
-    assert metadata["comparison"]["shared_penalty"]["frames_beta"] == pytest.approx(10.0)
-    assert metadata["comparison"]["budget"]["nominal_row_accesses"] == 16
+    configuration = metadata["configuration"]
+    assert tuple(configuration["methods"]) == DIRECT_METHODS
+    assert configuration["printed_tp_weight_per_row_alpha"] == pytest.approx(0.05)
+    assert configuration["tp_weight_lambda"] == pytest.approx(0.4)
+    assert configuration["frames_initial_tp_weight_per_row_alpha"] == pytest.approx(0.005)
+    assert configuration["frames_initial_tp_weight_lambda"] == pytest.approx(0.04)
+    assert configuration["frames_beta0"] == pytest.approx(100.0)
+    assert configuration["frames_smoothing_schedule"] == {
+        "type": "PowerSchedule", "scale": 100.0, "offset": 1.0,
+        "exponent": 0.25, "cap": None,
+    }
+
+    comparison = metadata["comparison"]
+    penalties = comparison["method_penalties"]
+    assert penalties["printed-adafgd"]["summed_tp_weight_lambda"] == pytest.approx(0.4)
+    assert penalties["frames"]["initial_smoothing_beta"] == pytest.approx(100.0)
+    assert penalties["frames"]["endpoint_smoothing_beta"] == pytest.approx(
+        100.0 / traces["frames"].checkpoint_steps[-1] ** 0.25)
+    assert comparison["selection_provenance"]["selection_manifest_sha256"] == _SELECTION_HASH
+    assert comparison["budget"]["nominal_row_accesses"] == 16
+    assert "penalized_objective" not in comparison["endpoint_differences"]["values"]
+    assert "native_penalized_objective" not in comparison[
+        "endpoint_differences"]["values"]
+    assert "optimizer_seconds" not in comparison["endpoint_differences"]["values"]
+    assert "factor_operator_norm" not in comparison[
+        "endpoint_differences"]["values"]
     assert set(traces) == set(DIRECT_METHODS)
-    assert set(payload) >= {"printed_adafgd_final_factor", "frames_final_factor"}
+    assert set(payload) >= {
+        "printed_adafgd_final_factor", "frames_final_factor",
+        "frames_diagnostic_checkpoint_tp_weight_per_row_alpha",
+    }
     for trace in traces.values():
         assert trace.cumulative_data_row_accesses[-1] == 16
     np.testing.assert_array_equal(
         traces["printed-adafgd"].cumulative_data_row_accesses,
         traces["frames"].cumulative_data_row_accesses,
     )
+    betas = traces["frames"].diagnostics["smoothing_parameter"]
+    np.testing.assert_allclose(
+        betas, 100.0 / np.arange(1, betas.size + 1) ** 0.25)
     for metric in ("measurement_loss_sum", "rmse", "tp_violation", "process_fidelity"):
         np.testing.assert_allclose(getattr(traces["printed-adafgd"], metric)[0],
                                    getattr(traces["frames"], metric)[0])
-    comparison = metadata["comparison"]
+    assert comparison["initial_native_penalized_objective"]["printed-adafgd"] != pytest.approx(
+        comparison["initial_native_penalized_objective"]["frames"])
     for method, trace in traces.items():
         diagnostics = comparison["endpoint_diagnostics"][method]
         assert diagnostics["full_design_metrics"]["rmse"] >= 0
@@ -90,6 +125,12 @@ def test_direct_pair_shares_objective_budget_and_records_full_metrics_and_norms(
         assert decision["rmse_source"] == "full_design"
         assert decision["metric_values"]["rmse"] == pytest.approx(
             diagnostics["full_design_metrics"]["rmse"])
+    printed_full = comparison["endpoint_diagnostics"]["printed-adafgd"][
+        "full_design_metrics"]
+    assert printed_full["native_penalized_objective"] == pytest.approx(
+        printed_full["measurement_loss_sum"]
+        + configuration["printed_summed_tp_weight_lambda"]
+        * printed_full["tp_violation"] ** 2)
     assert comparison["paired_instance"]["initial_factor_sha256"]
     assert comparison["data_instance"]["full_observations_sha256"]
     assert comparison["domain_audit"]["truth_inside_frames_domain"]
@@ -111,10 +152,16 @@ def test_cli_writes_one_pickle_free_pair_and_refuses_to_clobber(tmp_path):
     archive = tmp_path / "pair.npz"
     arguments = [
         "--n-qubits", "1", "--row-epochs", "1", "--checkpoint-epochs", "1",
-        "--tp-weight-per-row", "0.05", "--eta-scale", "0.0001",
+        "--printed-tp-weight-per-row", "0.05",
+        "--frames-initial-tp-weight-per-row", "0.005",
+        "--frames-penalty-exponent", "0.25", "--eta-scale", "0.0001",
         "--batch-size", "4", "--spectral-norm-method", "dense",
         "--trial-id", "cli-trial", "--cohort-id", "cli-test",
-        "--split", "heldout", "--save", str(archive), "--quiet"]
+        "--split", "heldout",
+        "--selection-manifest-sha256", _SELECTION_HASH,
+        "--printed-config-id", "printed-best-v1",
+        "--frames-config-id", "frames-best-v1",
+        "--save", str(archive), "--quiet"]
     metadata, _, traces = main(arguments)
     assert archive.exists() and archive.with_suffix(".json").exists()
     assert metadata["format"] == FORMAT and set(traces) == set(DIRECT_METHODS)
@@ -233,3 +280,116 @@ def test_domain_schedule_and_dirty_worktree_preflights(monkeypatch):
     monkeypatch.setattr(module, "collect_source_provenance", lambda: provenance)
     with pytest.raises(ValueError, match="including untracked files"):
         _pair(require_clean=True)
+
+
+def test_native_objectives_are_method_scaled_and_never_paired():
+    metadata, _, _ = _pair(trial_id="native-objective")
+    methods = metadata["methods"]
+    diagnostics = metadata["comparison"]["endpoint_diagnostics"]
+
+    printed = methods["printed-adafgd"]
+    printed_lambda = metadata["configuration"]["printed_summed_tp_weight_lambda"]
+    assert printed["native_penalized_objective"] == pytest.approx(
+        printed["measurement_loss_sum"] + printed_lambda * printed["tp_violation"] ** 2)
+
+    frames = methods["frames"]
+    frames_alpha = diagnostics["frames"]["native_tp_weight_per_row_alpha"]
+    assert frames["native_penalized_objective"] == pytest.approx(
+        frames["measurement_loss_mean"] + frames_alpha * frames["tp_violation"] ** 2)
+    assert frames["summed_equivalent_penalized_objective"] == pytest.approx(
+        metadata["active_row_count"] * frames["native_penalized_objective"])
+
+    summary = aggregate_sidecars([metadata])
+    assert "native_penalized_objective" in summary["methods"]["frames"][
+        "data_instance_mean_metrics"]
+    assert "native_penalized_objective" not in summary["paired_differences"][
+        "data_instance_mean_metrics"]
+
+
+def test_sidecar_rejects_native_objective_penalty_and_schedule_tampering():
+    metadata, _, _ = _pair(trial_id="untampered")
+
+    native = copy.deepcopy(metadata)
+    native["methods"]["frames"]["native_penalized_objective"] += 1.0
+    with pytest.raises(ValueError, match="native objective"):
+        aggregate_sidecars([native])
+
+    diagnostic = copy.deepcopy(metadata)
+    diagnostic["comparison"]["endpoint_diagnostics"]["frames"][
+        "native_tp_weight_per_row_alpha"] *= 2.0
+    with pytest.raises(ValueError, match="endpoint penalties"):
+        aggregate_sidecars([diagnostic])
+
+    schedule = copy.deepcopy(metadata)
+    schedule["configuration"]["frames_smoothing_schedule"]["exponent"] = 0.5
+    with pytest.raises(ValueError, match="beta schedule"):
+        aggregate_sidecars([schedule])
+
+
+def test_selection_provenance_and_finite_penalty_schedule_preflights():
+    missing = {
+        "selection_manifest_sha256": None,
+        "printed_config_id": None,
+        "frames_config_id": None,
+    }
+    with pytest.raises(ValueError, match="validation and heldout"):
+        _pair(split="validation", **missing)
+    with pytest.raises(ValueError, match="lowercase SHA-256"):
+        _pair(selection_manifest_sha256="not-a-sha")
+    with pytest.raises(ValueError, match="underflows or overflows"):
+        _pair(frames_smoothing_exponent=1e308)
+
+    first, _, _ = _pair(trial_id="selected-a")
+    second, _, _ = _pair(
+        trial_id="selected-b", printed_config_id="printed-best-v2")
+    with pytest.raises(ValueError, match="different cohorts"):
+        aggregate_sidecars([first, second])
+
+
+def test_legacy_direct_comparison_schema_and_protocol_are_rejected():
+    metadata, _, _ = _pair(trial_id="current-protocol")
+
+    schema_v1 = copy.deepcopy(metadata)
+    schema_v1["schema_version"] = 1
+    with pytest.raises(ValueError, match="supported direct comparison"):
+        aggregate_sidecars([schema_v1])
+
+    protocol_v1 = copy.deepcopy(metadata)
+    protocol_v1["comparison"]["protocol"] = "matched_nominal_row_accesses_v1"
+    with pytest.raises(ValueError, match="incompatible protocol"):
+        aggregate_sidecars([protocol_v1])
+
+
+def test_failed_frames_replicate_remains_in_completed_replicate_cohort(monkeypatch):
+    from paper.experiments import qpt_quiroga_campaign as campaign
+
+    complete, _, _ = _pair(sampling_seed=7, trial_id="frames-complete")
+
+    def fail_frames(*args, **kwargs):
+        raise FloatingPointError("synthetic FRAMES failure")
+
+    monkeypatch.setattr(
+        campaign, "run_quiroga_sensing_stochastic_frames", fail_frames)
+    failed, _, traces = _pair(sampling_seed=8, trial_id="frames-failed")
+
+    assert traces["frames"].status == "failed"
+    assert not failed["comparison"]["method_gate"]["frames"]["passed"]
+    assert complete["comparison"]["method_penalties"]["frames"][
+        "endpoint_completed_steps"] > 0
+    assert failed["comparison"]["method_penalties"]["frames"][
+        "endpoint_completed_steps"] == 0
+    assert (complete["comparison"]["cohort_fingerprint"]
+            == failed["comparison"]["cohort_fingerprint"])
+    summary = aggregate_sidecars([complete, failed])
+    assert summary["sampling_trial_count"] == 2
+    expected_passes = int(
+        complete["comparison"]["method_gate"]["frames"]["passed"])
+    gate_summary = summary["methods"]["frames"][
+        "sampling_trial_gate_descriptive"]
+    assert gate_summary["pass_count"] == expected_passes
+    assert gate_summary["pass_rate"] == pytest.approx(expected_passes / 2)
+    assert summary["methods"]["frames"][
+        "sampling_trial_status_counts_descriptive"] == {
+            "complete": 1,
+            "failed": 1,
+        }

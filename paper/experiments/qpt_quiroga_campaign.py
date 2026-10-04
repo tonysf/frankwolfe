@@ -476,10 +476,24 @@ def run_frames(
     tp_weight,
     rho_schedule,
     step_size_schedule,
+    beta0=None,
+    smoothing_schedule=None,
     show_progress=False,
 ):
-    """Run FRAMES with the smoothing value exactly matched to ``tp_weight``."""
-    beta = rows.size / (2.0 * tp_weight)
+    """Run FRAMES and retain its legacy summed-equivalent objective trace.
+
+    ``tp_weight`` is retained as the legacy source of a constant smoothing
+    value. Supplying ``beta0`` and ``smoothing_schedule`` opts into an
+    independent FRAMES smoothing schedule. At checkpoint ``k`` the equivalent
+    coefficient in the summed-loss normalization is ``m / (2 * beta_k)``.
+    The returned ``penalized_objective`` is ``m`` times FRAMES's native
+    mean-loss objective for backward compatibility.
+    """
+    if beta0 is None:
+        beta0 = rows.size / (2.0 * tp_weight)
+    beta0 = _finite_positive(beta0, "frames_beta0")
+    if smoothing_schedule is None:
+        smoothing_schedule = beta0
     result = run_quiroga_sensing_stochastic_frames(
         data,
         n_steps=n_steps,
@@ -488,9 +502,9 @@ def run_frames(
         batch_size=batch_size,
         sampling_seed=sampling_seed,
         x0=pack_factor(factor0),
-        beta0=beta,
+        beta0=beta0,
         rho_schedule=rho_schedule,
-        smoothing_schedule=beta,
+        smoothing_schedule=smoothing_schedule,
         step_size_schedule=step_size_schedule,
         metrics_frequency=metrics_frequency,
         show_progress=show_progress,
@@ -502,13 +516,16 @@ def run_frames(
     for index in range(result.checkpoint_steps.size):
         tp = float(result.tp_violation[index])
         mean_loss = float(result.measurement_loss[index])
+        checkpoint_beta = float(result.checkpoint_smoothing_parameters[index])
+        checkpoint_tp_weight = rows.size / (2.0 * checkpoint_beta)
         metrics.append({
             "measurement_loss_sum": float(measurement_sum[index]),
             "measurement_loss_mean": mean_loss,
             "rmse": math.sqrt(2.0 * mean_loss),
             "tp_violation": tp,
             "normalized_tp_violation": tp / math.sqrt(data.d),
-            "penalized_objective": float(measurement_sum[index] + tp_weight * tp**2),
+            "penalized_objective": float(
+                measurement_sum[index] + checkpoint_tp_weight * tp**2),
             "process_fidelity": float(result.process_fidelity[index]),
         })
     work = result.checkpoint_steps.astype(np.int64) * int(batch_size)
@@ -518,9 +535,15 @@ def run_frames(
         diagnostics={
             "exact_smoothed_gap": result.exact_smoothed_gap,
             "checkpoint_smoothing_parameter": result.checkpoint_smoothing_parameters,
+            "checkpoint_tp_weight_per_row_alpha": (
+                1.0 / (2.0 * result.checkpoint_smoothing_parameters)),
+            "checkpoint_tp_weight_lambda": (
+                rows.size / (2.0 * result.checkpoint_smoothing_parameters)),
             "estimated_gap": result.estimated_gaps,
             "momentum_weight": result.momentum_weights,
             "smoothing_parameter": result.smoothing_parameters,
+            "tp_weight_per_row_alpha": 1.0 / (2.0 * result.smoothing_parameters),
+            "tp_weight_lambda": rows.size / (2.0 * result.smoothing_parameters),
             "step_size": result.step_sizes,
         },
     )
@@ -559,6 +582,8 @@ def run_campaign(
     armijo_constant=1e-4,
     armijo_max_backtracks=30,
     rho_schedule=None,
+    frames_beta0=None,
+    frames_smoothing_schedule=None,
     step_size_schedule=None,
     show_progress=False,
 ):
@@ -578,6 +603,12 @@ def run_campaign(
     tp_weight = _finite_positive(tp_weight, "tp_weight")
     batch_size = _positive_integer(batch_size, "batch_size")
     active_rows, targets = _active_rows_and_targets(data, rows)
+    legacy_frames_penalty = frames_beta0 is None and frames_smoothing_schedule is None
+    if frames_beta0 is None:
+        frames_beta0 = active_rows.size / (2.0 * tp_weight)
+    frames_beta0 = _finite_positive(frames_beta0, "frames_beta0")
+    if frames_smoothing_schedule is None:
+        frames_smoothing_schedule = frames_beta0
     x0 = make_factor_initial_point(data, rank=rank, seed=initialization_seed)
     factor0 = unpack_factor(x0, data.process_dimension, rank)
     tau = math.sqrt(data.d) if tau is None else _finite_positive(tau, "tau")
@@ -614,13 +645,15 @@ def run_campaign(
                     data, factor0, active_rows, targets, n_steps=frames_steps,
                     metrics_frequency=frames_metrics_frequency, rank=rank, tau=tau,
                     batch_size=batch_size, sampling_seed=sampling_seed,
-                    tp_weight=tp_weight, rho_schedule=rho_schedule,
-                    step_size_schedule=step_size_schedule,
+                    tp_weight=tp_weight, beta0=frames_beta0,
+                    smoothing_schedule=frames_smoothing_schedule,
+                    rho_schedule=rho_schedule, step_size_schedule=step_size_schedule,
                     show_progress=show_progress,
                 )
             except Exception as error:
+                frames_initial_tp_weight = active_rows.size / (2.0 * frames_beta0)
                 metric = evaluate_common_metrics(
-                    data, factor0, active_rows, targets, tp_weight)
+                    data, factor0, active_rows, targets, frames_initial_tp_weight)
                 trace = _make_trace(
                     "frames", "failed", f"{type(error).__name__}: {error}",
                     factor0, [0], [0.0], [0], [metric], diagnostics={})
@@ -633,7 +666,13 @@ def run_campaign(
         "rank": rank, "initialization_seed": int(initialization_seed),
         "sampling_seed": int(sampling_seed), "eta_scale": eta_scale,
         "tp_weight_lambda": tp_weight,
-        "frames_beta": active_rows.size / (2.0 * tp_weight),
+        "frames_beta": frames_beta0,
+        "frames_beta0": frames_beta0,
+        "frames_initial_tp_weight_per_row_alpha": 1.0 / (2.0 * frames_beta0),
+        "frames_initial_tp_weight_lambda": active_rows.size / (2.0 * frames_beta0),
+        "frames_penalty_mode": (
+            "legacy_constant_matched" if legacy_frames_penalty else "independent_schedule"),
+        "frames_smoothing_schedule": _schedule_metadata(frames_smoothing_schedule),
         "tau": tau, "batch_size": batch_size,
         "spectral_norm_method": spectral_norm_method,
         "dense_max_process_dimension": int(dense_max_process_dimension),
