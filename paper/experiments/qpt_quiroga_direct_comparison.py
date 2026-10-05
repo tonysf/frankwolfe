@@ -198,6 +198,21 @@ def _finite_number(value):
     return value if math.isfinite(value) else None
 
 
+def _endpoint_factor_norm(trace, order, name, errors):
+    """Diagnose the retained factor without losing an already failed run."""
+    try:
+        with np.errstate(over="raise", invalid="raise"):
+            value = float(np.linalg.norm(trace.final_factor, ord=order))
+        if not math.isfinite(value):
+            raise FloatingPointError("The retained factor norm is nonfinite.")
+        return value
+    except (FloatingPointError, OverflowError, np.linalg.LinAlgError) as error:
+        if trace.status != "failed":
+            raise
+        errors[name] = f"{type(error).__name__}: {error}"
+        return None
+
+
 @dataclass(frozen=True)
 class MatchedRowBudget:
     active_row_count: int
@@ -682,27 +697,41 @@ def run_direct_comparison(
         full_lambda = (
             penalty["lambda"] if method == "printed-adafgd"
             else data.m * penalty["alpha"])
-        full_metrics = evaluate_common_metrics(
-            data, trace.final_factor, all_rows, all_targets, full_lambda)
+        diagnostic_errors = {}
+        try:
+            full_metrics = evaluate_common_metrics(
+                data, trace.final_factor, all_rows, all_targets, full_lambda)
+        except (FloatingPointError, OverflowError, np.linalg.LinAlgError) as error:
+            if trace.status != "failed":
+                raise
+            # Retain the actual factor and failure status even when its
+            # quadratic/quartic diagnostics overflow; these are not U0 metrics.
+            full_metrics = {name: None for name in COMMON_METRICS}
+            diagnostic_errors["full_design_metrics"] = (
+                f"{type(error).__name__}: {error}")
         summed_equivalent = full_metrics.pop("penalized_objective")
         if method == "frames":
             full_metrics["summed_equivalent_penalized_objective"] = (
                 summed_equivalent)
             full_metrics["native_penalized_objective"] = (
-                summed_equivalent / data.m)
+                None if summed_equivalent is None else summed_equivalent / data.m)
         else:
             full_metrics["native_penalized_objective"] = summed_equivalent
-        frobenius = float(np.linalg.norm(trace.final_factor, ord="fro"))
-        operator = float(np.linalg.norm(trace.final_factor, ord=2))
+        frobenius = _endpoint_factor_norm(
+            trace, "fro", "factor_frobenius_norm", diagnostic_errors)
+        operator = _endpoint_factor_norm(
+            trace, 2, "factor_operator_norm", diagnostic_errors)
         endpoint_diagnostics[method] = {
             "full_design_metrics": full_metrics,
+            "unavailable_diagnostic_reasons": diagnostic_errors,
             "native_tp_weight_per_row_alpha": penalty["alpha"],
             "native_summed_tp_weight_lambda": penalty["lambda"],
             "native_smoothing_beta": penalty["beta"],
             "final_factor_sha256": _array_sha256(trace.final_factor),
             "factor_frobenius_norm": frobenius,
             "factor_operator_norm": operator,
-            "factor_operator_norm_over_tau": operator / configuration["tau"],
+            "factor_operator_norm_over_tau": (
+                None if operator is None else operator / configuration["tau"]),
         }
 
     metadata["base_format"] = metadata["format"]
@@ -811,9 +840,13 @@ def run_direct_comparison(
     comparison["method_gate"] = {}
     for method in DIRECT_METHODS:
         full_rmse = endpoint_diagnostics[method]["full_design_metrics"]["rmse"]
+        gate_endpoint = dict(endpoints[method])
+        if gate_rmse_source == "full_design":
+            # Explicitly unavailable full-design RMSE must not fall back to an
+            # active-row fit when diagnosing a failed subset trajectory.
+            gate_endpoint["rmse"] = full_rmse
         comparison["method_gate"][method] = gate.evaluate(
-            endpoints[method], rmse=full_rmse if gate_rmse_source == "full_design" else None,
-            rmse_source=gate_rmse_source)
+            gate_endpoint, rmse_source=gate_rmse_source)
     comparison["endpoint_differences"] = _endpoint_differences(metadata)
 
     cohort_spec = _cohort_spec(metadata)
@@ -1017,9 +1050,11 @@ def _validate_sidecar(sidecar, index):
                 or any(character not in "0123456789abcdef" for character in factor_hash)):
             raise ValueError(
                 f"sidecar {index} method {method} has no valid final-factor hash.")
-        rmse = diagnostics["full_design_metrics"]["rmse"] if source == "full_design" else None
+        gate_endpoint = dict(methods[method])
+        if source == "full_design":
+            gate_endpoint["rmse"] = diagnostics["full_design_metrics"]["rmse"]
         if comparison["method_gate"][method] != gate.evaluate(
-                methods[method], rmse=rmse, rmse_source=source):
+                gate_endpoint, rmse_source=source):
             raise ValueError(f"sidecar {index} has inconsistent gate results.")
     data_instance = _data_instance_spec(sidecar)
     if (comparison.get("data_instance") != data_instance
