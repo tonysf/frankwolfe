@@ -92,6 +92,15 @@ def _positive_integer(value, name):
     return int(value)
 
 
+def _finite_nonnegative(value, name):
+    if isinstance(value, (bool, np.bool_)) or not np.isscalar(value):
+        raise ValueError(f"{name} must be a nonnegative finite number.")
+    value = float(value)
+    if not math.isfinite(value) or value < 0:
+        raise ValueError(f"{name} must be a nonnegative finite number.")
+    return value
+
+
 def _canonical_all_rows(data, rows):
     return (rows.size == data.m
             and np.array_equal(rows, np.arange(data.m, dtype=np.int64)))
@@ -171,6 +180,13 @@ class MethodTrace:
         for source, destination, conversion in totals:
             if source in self.diagnostics:
                 result[destination] = conversion(np.sum(self.diagnostics[source]))
+        if "termination_reason" in self.diagnostics:
+            result["termination"] = {
+                "reason": str(self.diagnostics["termination_reason"][0]),
+                "full_gradient_norm": float(self.diagnostics["termination_full_gradient_norm"][0]),
+                "gradient_threshold": float(self.diagnostics["termination_gradient_threshold"][0]),
+                "initial_full_gradient_norm": float(self.diagnostics["initial_full_gradient_norm"][0]),
+            }
         return result
 
 
@@ -361,15 +377,25 @@ def run_armijo_fgd(
     shrink=0.5,
     armijo_constant=1e-4,
     max_backtracks=30,
+    gradient_atol=0.0,
+    gradient_rtol=0.0,
 ):
     """Factor GD with Armijo backtracking on the shared summed objective.
 
     ``direction`` is one half of the real-Frobenius gradient, matching the
     direction in the printed update.  Therefore the exact descent slope in
     the Armijo test is ``-2 * ||direction||_F**2``.
+
+    Positive ``gradient_atol`` or ``gradient_rtol`` opts into pre-line-search
+    stationarity termination: ``||2*direction||_F <= atol + rtol*||grad(U0)||_F``.
+    Zero defaults preserve the original exact-zero stopping rule. Stationarity
+    is not a physical recovery certificate; recovery metrics remain separate.
     """
     n_steps = _positive_integer(n_steps, "n_steps")
     initial_step = _finite_positive(initial_step, "initial_step")
+    gradient_atol = _finite_nonnegative(gradient_atol, "gradient_atol")
+    gradient_rtol = _finite_nonnegative(gradient_rtol, "gradient_rtol")
+    gradient_stopping_enabled = gradient_atol > 0 or gradient_rtol > 0
     if not 0.0 < shrink < 1.0:
         raise ValueError("shrink must lie strictly between zero and one.")
     if not 0.0 < armijo_constant < 1.0:
@@ -388,6 +414,8 @@ def run_armijo_fgd(
             "armijo-fgd", "failed", initial_error, factor,
             steps, times, work_rows, metric_rows, diagnostics={})
     accepted_steps, backtracks, objective_evaluations = [], [], []
+    initial_gradient_norm = None
+    termination_diagnostics = {}
     elapsed = 0.0
     measurement_rows = 0
     status, failure_reason = "complete", ""
@@ -401,6 +429,23 @@ def run_armijo_fgd(
             slope_magnitude = 2.0 * float(np.vdot(direction, direction).real)
             if not math.isfinite(objective) or not math.isfinite(slope_magnitude):
                 raise FloatingPointError("The Armijo objective or slope is nonfinite.")
+            if gradient_stopping_enabled:
+                gradient_norm = 2.0 * float(np.linalg.norm(direction, ord="fro"))
+                if initial_gradient_norm is None:
+                    initial_gradient_norm = gradient_norm
+                threshold = gradient_atol + gradient_rtol * initial_gradient_norm
+                if not math.isfinite(gradient_norm) or not math.isfinite(threshold):
+                    raise FloatingPointError("The Armijo gradient norm or stopping threshold is nonfinite.")
+                if gradient_norm <= threshold:
+                    status = "converged"
+                    termination_diagnostics = {
+                        "termination_reason": np.asarray(["full_gradient_tolerance"]),
+                        "termination_full_gradient_norm": np.asarray([gradient_norm]),
+                        "termination_gradient_threshold": np.asarray([threshold]),
+                        "initial_full_gradient_norm": np.asarray([initial_gradient_norm]),
+                    }
+                    elapsed += perf_counter() - began
+                    break
             if slope_magnitude == 0.0:
                 status = "converged"
                 elapsed += perf_counter() - began
@@ -457,6 +502,7 @@ def run_armijo_fgd(
             "step_size": np.asarray(accepted_steps, dtype=np.float64),
             "backtracks": np.asarray(backtracks, dtype=np.int64),
             "objective_evaluations": np.asarray(objective_evaluations, dtype=np.int64),
+            **termination_diagnostics,
         },
     )
 
@@ -581,6 +627,8 @@ def run_campaign(
     armijo_shrink=0.5,
     armijo_constant=1e-4,
     armijo_max_backtracks=30,
+    armijo_gradient_atol=0.0,
+    armijo_gradient_rtol=0.0,
     rho_schedule=None,
     frames_beta0=None,
     frames_smoothing_schedule=None,
@@ -601,6 +649,8 @@ def run_campaign(
                                 else _positive_integer(frames_metrics_frequency, "frames_metrics_frequency"))
     eta_scale = _finite_positive(eta_scale, "eta_scale")
     tp_weight = _finite_positive(tp_weight, "tp_weight")
+    armijo_gradient_atol = _finite_nonnegative(armijo_gradient_atol, "armijo_gradient_atol")
+    armijo_gradient_rtol = _finite_nonnegative(armijo_gradient_rtol, "armijo_gradient_rtol")
     batch_size = _positive_integer(batch_size, "batch_size")
     active_rows, targets = _active_rows_and_targets(data, rows)
     legacy_frames_penalty = frames_beta0 is None and frames_smoothing_schedule is None
@@ -638,6 +688,8 @@ def run_campaign(
                 initial_step=armijo_initial_step, shrink=armijo_shrink,
                 armijo_constant=armijo_constant,
                 max_backtracks=armijo_max_backtracks,
+                gradient_atol=armijo_gradient_atol,
+                gradient_rtol=armijo_gradient_rtol,
             )
         else:
             try:
@@ -682,6 +734,8 @@ def run_campaign(
         "armijo_shrink": float(armijo_shrink),
         "armijo_constant": float(armijo_constant),
         "armijo_max_backtracks": int(armijo_max_backtracks),
+        "armijo_gradient_atol": armijo_gradient_atol,
+        "armijo_gradient_rtol": armijo_gradient_rtol,
         "rho_schedule": _schedule_metadata(rho_schedule),
         "step_size_schedule": _schedule_metadata(step_size_schedule),
     }
@@ -831,6 +885,10 @@ def _build_parser():
     parser.add_argument("--armijo-shrink", type=float, default=0.5)
     parser.add_argument("--armijo-constant", type=float, default=1e-4)
     parser.add_argument("--armijo-max-backtracks", type=int, default=30)
+    parser.add_argument("--armijo-gradient-atol", type=float, default=0.0,
+                        help="Opt-in absolute full-gradient stopping tolerance; default disabled.")
+    parser.add_argument("--armijo-gradient-rtol", type=float, default=0.0,
+                        help="Opt-in tolerance relative to the initial full-gradient norm; default disabled.")
     parser.add_argument("--rho-scale", type=float, default=2.0)
     parser.add_argument("--rho-offset", type=float, default=4.0)
     parser.add_argument("--rho-exponent", type=float, default=0.6)
@@ -891,6 +949,8 @@ def main(argv=None):
             armijo_shrink=args.armijo_shrink,
             armijo_constant=args.armijo_constant,
             armijo_max_backtracks=args.armijo_max_backtracks,
+            armijo_gradient_atol=args.armijo_gradient_atol,
+            armijo_gradient_rtol=args.armijo_gradient_rtol,
             rho_schedule=rho,
             step_size_schedule=step,
             show_progress=not args.quiet,
