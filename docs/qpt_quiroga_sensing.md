@@ -144,6 +144,56 @@ nor `lam`, so both are required arguments. Pass `observations=` when looping
 so targets are not regenerated at every update. A zero or numerically
 negligible denominator raises because this printed quotient is undefined.
 
+## Explicit initializer-basis diagnostic
+
+The standalone campaign accepts `initialization_basis="choi"` (unchanged
+default) or `initialization_basis="gell-mann"`; the command-line spelling is
+`--initialization-basis gell-mann`. The direct-comparison selection protocol
+continues to use its existing Choi-coordinate initializer. The new option is
+an initialization-sensitivity diagnostic, not a new selected baseline.
+
+Both options draw the same complex coefficient array from independent real
+and imaginary `Uniform(0, 1)` draws with `numpy.random.default_rng(seed)`, then
+normalize its squared Frobenius norm to `d`. In Choi mode this is the original
+initial factor. In Gell-Mann mode those numbers are coefficients `C` and the
+physical factor is `U = W C`, where column `m` of `W` is the input-major Choi
+vectorization of operator `B_m` (`B_m.T.reshape(-1)`, without conjugation).
+The transform is implemented without storing `W` or the full operator basis.
+
+The declared Hilbert--Schmidt-unit basis is, in this exact order:
+
+1. `I / sqrt(d)`;
+2. `(E_kl + E_lk) / sqrt(2)` for lexicographic pairs `k < l`;
+3. `(-i E_kl + i E_lk) / sqrt(2)` for the same pairs;
+4. `(sum_{j<l} E_jj - l E_ll) / sqrt(l(l+1))` for `l = 1, ..., d-1`.
+
+Thus `W^H W = I` and `||U||_F^2 = ||C||_F^2 = d`. This rotates the
+entrywise-uniform initialization distribution. It preserves the physical
+Born-rule model, sensing rows, truth, TP definition, optimizer equations, and
+penalty conventions; predictions at the different initial factors can differ.
+Within a campaign, every method gets exactly the same physical factor.
+Trace normalization is not a TP projection.
+
+The [paper's Results section](https://arxiv.org/html/2312.01311v1#S5)
+describes Gell-Mann coefficient-space sensing and a complex uniform random
+matrix, but does not specify the uniform support, matrix dimensions, factor
+construction, or initializer normalization. The basis above is the
+Hilbert--Schmidt-unit rescaling of the generalized Gell-Mann construction in
+[Siewert, Section 2.1](https://arxiv.org/html/2205.06035v1#S2.SS1).
+Its ordering, signs, support, and trace normalization are explicit choices
+here, not recovered unpublished settings. Archives record these choices,
+the initializer basis, seed, and source hash. Do not describe this option as
+an exact reproduction of the published experiments.
+
+Only the initializer is transformed: optimization still takes place in the
+same Choi coordinates. This distinction matters for the literal printed
+step, which is not covariant under arbitrary basis scaling. For an orthonormal
+basis rotation, corresponding physical iterates agree. If instead all basis
+operators are multiplied by `s`, matching physical printed-rule updates
+requires a Choi step multiplier `s^4` times the coefficient-space multiplier;
+in particular, `s = sqrt(d)` gives a factor of `d^2`. No such multiplier
+rescaling is silently applied by the initializer option.
+
 ## Matrix-free adaptive numerator
 
 The numerator is the spectral norm of the Hermitian operator

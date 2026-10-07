@@ -40,6 +40,11 @@ from .qpt_quiroga_frames import (
     quiroga_adafgd_step,
     run_quiroga_sensing_stochastic_frames,
 )
+from .qpt_quiroga_initialization import (
+    INITIALIZATION_BASES,
+    gell_mann_coefficients_to_choi,
+    initialization_descriptor,
+)
 from .qpt_quiroga_sensing import (
     QuirogaSensingData,
     generate_quiroga_sensing_data,
@@ -610,6 +615,7 @@ def run_campaign(
     rows=None,
     rank=1,
     initialization_seed=0,
+    initialization_basis="choi",
     sampling_seed=0,
     n_steps=400,
     frames_steps=None,
@@ -652,6 +658,7 @@ def run_campaign(
     armijo_gradient_atol = _finite_nonnegative(armijo_gradient_atol, "armijo_gradient_atol")
     armijo_gradient_rtol = _finite_nonnegative(armijo_gradient_rtol, "armijo_gradient_rtol")
     batch_size = _positive_integer(batch_size, "batch_size")
+    initializer = initialization_descriptor(initialization_basis)
     active_rows, targets = _active_rows_and_targets(data, rows)
     legacy_frames_penalty = frames_beta0 is None and frames_smoothing_schedule is None
     if frames_beta0 is None:
@@ -661,6 +668,8 @@ def run_campaign(
         frames_smoothing_schedule = frames_beta0
     x0 = make_factor_initial_point(data, rank=rank, seed=initialization_seed)
     factor0 = unpack_factor(x0, data.process_dimension, rank)
+    if initialization_basis == "gell-mann":
+        factor0 = gell_mann_coefficients_to_choi(factor0)
     tau = math.sqrt(data.d) if tau is None else _finite_positive(tau, "tau")
     if np.linalg.norm(factor0, ord=2) > tau + 1e-10 and "frames" in methods:
         raise ValueError("tau is smaller than the shared initial factor's operator norm.")
@@ -716,6 +725,7 @@ def run_campaign(
         "metrics_frequency": metrics_frequency,
         "frames_metrics_frequency": frames_metrics_frequency,
         "rank": rank, "initialization_seed": int(initialization_seed),
+        "initialization_basis": initialization_basis,
         "sampling_seed": int(sampling_seed), "eta_scale": eta_scale,
         "tp_weight_lambda": tp_weight,
         "frames_beta": frames_beta0,
@@ -750,6 +760,7 @@ def run_campaign(
         "active_rows_sha256": _array_sha256(active_rows),
         "active_observations_sha256": _array_sha256(targets),
         "initial_factor_sha256": _array_sha256(factor0),
+        "initialization": initializer,
         "truth_factor_sha256": None if data.truth_factor is None else _array_sha256(data.truth_factor),
         "configuration": configuration,
         "objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
@@ -769,7 +780,8 @@ def run_campaign(
         "scipy_version": scipy.__version__,
         "source_sha256": {
             name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-            for name in ("qpt_quiroga_campaign.py", "qpt_quiroga_frames.py", "qpt_quiroga_sensing.py")
+            for name in ("qpt_quiroga_campaign.py", "qpt_quiroga_frames.py", "qpt_quiroga_sensing.py",
+                         "qpt_quiroga_initialization.py", "quantum_process_tomography.py")
         },
     }
     payload = {
@@ -865,6 +877,8 @@ def _build_parser():
     parser.add_argument("--subset-seed", type=int, default=0)
     parser.add_argument("--channel-seed", type=int, default=0)
     parser.add_argument("--initialization-seed", type=int, default=0)
+    parser.add_argument("--initialization-basis", choices=INITIALIZATION_BASES, default="choi",
+                        help="Coefficient basis for the shared initializer; Gell-Mann is an opt-in diagnostic.")
     parser.add_argument("--sampling-seed", type=int, default=0)
     parser.add_argument("--observation-mode", choices=("noiseless", "gaussian", "shots"), default="noiseless")
     parser.add_argument("--noise-std", type=float, default=0.0)
@@ -932,6 +946,7 @@ def main(argv=None):
             rows=rows,
             rank=args.rank,
             initialization_seed=args.initialization_seed,
+            initialization_basis=args.initialization_basis,
             sampling_seed=args.sampling_seed,
             n_steps=args.steps,
             frames_steps=args.frames_steps,
