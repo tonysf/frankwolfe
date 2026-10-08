@@ -9,6 +9,10 @@ same rows, observations and initial factor:
   the summed penalized objective; and
 * ``frames`` calls the structured stochastic-FRAMES adapter.
 
+The explicitly requested ``exact-linesearch-fgd`` is an experimental fourth
+choice, not part of these defaults and not Quiroga's published adaptive rule.
+It minimizes the same fixed-penalty objective along each positive factor ray.
+
 The common objective used for reporting is
 
     0.5 * sum_s (A(U U^H)_s - f_s)^2 + lambda * ||Tr_out(U U^H) - I||_F^2.
@@ -63,6 +67,8 @@ from .quantum_process_tomography import (
 SCHEMA_VERSION = 1
 FORMAT = "qpt_quiroga_campaign"
 METHODS = ("printed-adafgd", "armijo-fgd", "frames")
+EXPERIMENTAL_METHODS = ("exact-linesearch-fgd",)
+ALL_METHODS = METHODS + EXPERIMENTAL_METHODS
 COMMON_METRICS = (
     "measurement_loss_sum",
     "measurement_loss_mean",
@@ -635,6 +641,8 @@ def run_campaign(
     armijo_max_backtracks=30,
     armijo_gradient_atol=0.0,
     armijo_gradient_rtol=0.0,
+    linesearch_gradient_atol=1e-12,
+    linesearch_gradient_rtol=1e-10,
     rho_schedule=None,
     frames_beta0=None,
     frames_smoothing_schedule=None,
@@ -645,8 +653,8 @@ def run_campaign(
     if data.truth_factor is None or data.truth_factor.ndim != 2 or data.truth_factor.shape[1] != 1:
         raise ValueError("Quiroga campaigns require a rank-one truth factor for fidelity metrics.")
     methods = tuple(methods)
-    if not methods or len(set(methods)) != len(methods) or any(name not in METHODS for name in methods):
-        raise ValueError(f"methods must be unique names from {METHODS}.")
+    if not methods or len(set(methods)) != len(methods) or any(name not in ALL_METHODS for name in methods):
+        raise ValueError(f"methods must be unique names from {ALL_METHODS}.")
     rank = _positive_integer(rank, "rank")
     n_steps = _positive_integer(n_steps, "n_steps")
     frames_steps = n_steps if frames_steps is None else _positive_integer(frames_steps, "frames_steps")
@@ -657,6 +665,9 @@ def run_campaign(
     tp_weight = _finite_positive(tp_weight, "tp_weight")
     armijo_gradient_atol = _finite_nonnegative(armijo_gradient_atol, "armijo_gradient_atol")
     armijo_gradient_rtol = _finite_nonnegative(armijo_gradient_rtol, "armijo_gradient_rtol")
+    if "exact-linesearch-fgd" in methods:
+        linesearch_gradient_atol = _finite_nonnegative(linesearch_gradient_atol, "linesearch_gradient_atol")
+        linesearch_gradient_rtol = _finite_nonnegative(linesearch_gradient_rtol, "linesearch_gradient_rtol")
     batch_size = _positive_integer(batch_size, "batch_size")
     initializer = initialization_descriptor(initialization_basis)
     active_rows, targets = _active_rows_and_targets(data, rows)
@@ -699,6 +710,14 @@ def run_campaign(
                 max_backtracks=armijo_max_backtracks,
                 gradient_atol=armijo_gradient_atol,
                 gradient_rtol=armijo_gradient_rtol,
+            )
+        elif method == "exact-linesearch-fgd":
+            from .qpt_quiroga_linesearch import run_exact_linesearch_fgd
+            trace = run_exact_linesearch_fgd(
+                data, factor0, active_rows, targets, n_steps=n_steps,
+                metrics_frequency=metrics_frequency, tp_weight=tp_weight,
+                gradient_atol=linesearch_gradient_atol,
+                gradient_rtol=linesearch_gradient_rtol,
             )
         else:
             try:
@@ -784,6 +803,23 @@ def run_campaign(
                          "qpt_quiroga_initialization.py", "quantum_process_tomography.py")
         },
     }
+    if "exact-linesearch-fgd" in methods:
+        configuration.update({
+            "linesearch_gradient_atol": linesearch_gradient_atol,
+            "linesearch_gradient_rtol": linesearch_gradient_rtol,
+            "linesearch_rule": "exact_positive_factor_ray_quartic_v1",
+            "linesearch_root_imaginary_relative_tolerance": 1e-8,
+        })
+        metadata["method_domains"]["exact-linesearch-fgd"] = {
+            "constraint": "none", "projection": "none",
+            "role": "experimental adaptive-step variant; not published Quiroga adaFGD",
+            "step_rule": "direct objective selection among positive real quartic stationary points",
+            "direction": "half real-Frobenius gradient, normalized only to compute ray roots",
+            "fallback": "none",
+            "work": "direction pass + two polynomial forward passes + each direct candidate objective",
+        }
+        name = "qpt_quiroga_linesearch.py"
+        metadata["source_sha256"][name] = hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
     payload = {
         "active_rows": active_rows,
         "active_observations": targets,
@@ -865,9 +901,9 @@ def save_campaign(npz_path, metadata_path, metadata, payload):
 def _build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n-qubits", type=int, default=2)
-    parser.add_argument("--methods", nargs="+", choices=METHODS, default=list(METHODS))
+    parser.add_argument("--methods", nargs="+", choices=ALL_METHODS, default=list(METHODS))
     parser.add_argument("--steps", type=int, default=400,
-                        help="Full-batch steps for printed adaFGD and Armijo FGD.")
+                        help="Full-batch steps for printed adaFGD and both FGD line-search methods.")
     parser.add_argument("--frames-steps", type=int, default=None)
     parser.add_argument("--metrics-every", type=int, default=20)
     parser.add_argument("--frames-metrics-every", type=int, default=None)
@@ -903,6 +939,10 @@ def _build_parser():
                         help="Opt-in absolute full-gradient stopping tolerance; default disabled.")
     parser.add_argument("--armijo-gradient-rtol", type=float, default=0.0,
                         help="Opt-in tolerance relative to the initial full-gradient norm; default disabled.")
+    parser.add_argument("--linesearch-gradient-atol", type=float, default=1e-12,
+                        help="Absolute full-gradient tolerance for experimental exact-linesearch-fgd only.")
+    parser.add_argument("--linesearch-gradient-rtol", type=float, default=1e-10,
+                        help="Initial-gradient-relative tolerance for experimental exact-linesearch-fgd only.")
     parser.add_argument("--rho-scale", type=float, default=2.0)
     parser.add_argument("--rho-offset", type=float, default=4.0)
     parser.add_argument("--rho-exponent", type=float, default=0.6)
@@ -966,6 +1006,8 @@ def main(argv=None):
             armijo_max_backtracks=args.armijo_max_backtracks,
             armijo_gradient_atol=args.armijo_gradient_atol,
             armijo_gradient_rtol=args.armijo_gradient_rtol,
+            linesearch_gradient_atol=args.linesearch_gradient_atol,
+            linesearch_gradient_rtol=args.linesearch_gradient_rtol,
             rho_schedule=rho,
             step_size_schedule=step,
             show_progress=not args.quiet,
