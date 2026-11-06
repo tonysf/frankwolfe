@@ -1,0 +1,148 @@
+{
+  "title": "Initial A100 diagnostic candidate pilot",
+  "scope": "a100-pilot",
+  "scope_statement": "One development instance per size, one optimization seed, and prespecified candidate batches. This is a diagnostic candidate pilot, not a completed tuning exercise, held-out final study, convergence proof, or algorithmic speed comparison.",
+  "status": "incomplete",
+  "generated_utc": "2026-09-27T18:20:31.161973+00:00",
+  "input_root": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input",
+  "command": [
+    "summarize_diagnostics.py",
+    "--root",
+    "reports/summarizer_smoke/missing_input",
+    "--out",
+    "reports/summarizer_smoke/missing_report"
+  ],
+  "expected": {
+    "sizes": [
+      128,
+      512
+    ],
+    "sketch_batches": [
+      8,
+      32,
+      128
+    ],
+    "steps": 200,
+    "oracle_repetitions": 100,
+    "problem_seed": 1000,
+    "stochastic_seed": 0,
+    "m_mu0": 1
+  },
+  "completed_smoothing_runs": 0,
+  "completed_oracle_reports": 0,
+  "smoothing_runs": [
+    {
+      "name": "n128_exact",
+      "n": 128,
+      "method": "exact",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n128_exact",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n128_sketch_q8",
+      "n": 128,
+      "method": "sketch_q8",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n128_sketch_q8",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n128_sketch_q32",
+      "n": 128,
+      "method": "sketch_q32",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n128_sketch_q32",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n128_sketch_q128",
+      "n": 128,
+      "method": "sketch_q128",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n128_sketch_q128",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n512_exact",
+      "n": 512,
+      "method": "exact",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n512_exact",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n512_sketch_q8",
+      "n": 512,
+      "method": "sketch_q8",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n512_sketch_q8",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n512_sketch_q32",
+      "n": 512,
+      "method": "sketch_q32",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n512_sketch_q32",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n512_sketch_q128",
+      "n": 512,
+      "method": "sketch_q128",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/smoothing/n512_sketch_q128",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    }
+  ],
+  "oracle_reports": [
+    {
+      "n": 128,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/reports/oracle_a100_n128_s1000.json",
+      "status": "missing",
+      "issues": [
+        "Expected oracle report is missing."
+      ]
+    },
+    {
+      "n": 512,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/missing_input/reports/oracle_a100_n512_s1000.json",
+      "status": "missing",
+      "issues": [
+        "Expected oracle report is missing."
+      ]
+    }
+  ],
+  "figures": [],
+  "full_study_complete": false,
+  "oracle_frozen": false,
+  "fitted_slopes": null,
+  "speedup_claim": null,
+  "script_sha256": "78decb616373cbb53a116fad800de3813b70efe989853ef0eef46aa033da0cfd",
+  "plot_library": "matplotlib 3.11.2"
+}

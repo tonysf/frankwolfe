@@ -1,0 +1,153 @@
+{
+  "backend": "dense",
+  "purpose": "memory",
+  "status": "success",
+  "pid": 1879979,
+  "hostname": "ruche-gpu09.cluster",
+  "allocator_environment": {
+    "XLA_PYTHON_CLIENT_ALLOCATOR": "default",
+    "XLA_PYTHON_CLIENT_PREALLOCATE": "false",
+    "XLA_PYTHON_CLIENT_MEM_FRACTION": null,
+    "XLA_CLIENT_MEM_FRACTION": null,
+    "TF_GPU_ALLOCATOR": null,
+    "JAX_ENABLE_COMPILATION_CACHE": "false",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "JAX_PLATFORMS": null
+  },
+  "phases": {
+    "python_import_seconds": 0.371116935973987,
+    "device_initialization_seconds": 0.9062074259854853,
+    "data_load_seconds": 0.48821201804094017,
+    "runner_setup_seconds": 0.7376824779203162,
+    "scan_setup_and_warmup_seconds": 0.15826509904582053,
+    "post_optimizer_transfer_and_preparation_seconds": 0.003167420974932611,
+    "metric_seconds": 2.468159071984701,
+    "runner_finalize_seconds": 0.00033577007707208395,
+    "optimizer_seconds": 0.1517988609848544,
+    "optimizer_compile_seconds": 0.4580319239757955,
+    "factor_save_seconds": 0.0008600980509072542
+  },
+  "memory": {
+    "cpu_process_peak_rss_bytes": 4550737920,
+    "jax_allocator": {
+      "status": "available",
+      "stats": {
+        "num_allocs": 25,
+        "bytes_in_use": 0,
+        "peak_bytes_in_use": 917702144,
+        "largest_alloc_size": 905969664,
+        "bytes_limit": 25555894272,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 1073741824,
+        "pool_bytes": 1075838976,
+        "peak_pool_bytes": 1075838976
+      },
+      "omitted_stat_count": 0,
+      "scope": "selected JAX device allocator; not total process driver memory"
+    },
+    "external_sampler": {
+      "pid": 1879979,
+      "cpu": {
+        "status": "sampled",
+        "source": "/proc/PID/status VmRSS and VmHWM (Linux only)",
+        "peak_rss_bytes": 4462899200,
+        "peak_high_water_rss_bytes": 4550737920,
+        "valid_samples": 62,
+        "failed_samples": 1,
+        "reason": null,
+        "last_error": "resident values unavailable (process may have exited)"
+      },
+      "gpu": {
+        "status": "sampled",
+        "reason": "sampled lower bound; brief peaks and unavailable device rows may be missed",
+        "source": "nvidia-smi compute-process memory for the target PID only; MiB converted to bytes",
+        "sampled_peak_process_bytes": 1411383296,
+        "per_gpu_uuid_peak_bytes": {
+          "GPU-6b77c036-6e7a-e07b-9c1a-aaf6fe8cd114": 1411383296
+        },
+        "aggregate_note": "peak of each sample's sum; not sum of per-device peaks",
+        "query_count": 63,
+        "successful_queries": 63,
+        "failed_queries": 0,
+        "matched_samples": 49,
+        "valid_memory_samples": 49,
+        "no_matching_pid_samples": 14,
+        "partial_memory_samples": 0,
+        "unavailable_memory_rows": 0,
+        "malformed_rows": 0,
+        "duplicate_device_rows": 0,
+        "omitted_device_observations": 0,
+        "last_error": null
+      },
+      "sampling": {
+        "requested_interval_seconds": 0.1,
+        "elapsed_seconds": 6.2447264270158485,
+        "sample_count": 63,
+        "actual_start_gap": {
+          "count": 62,
+          "min_seconds": 0.10006681701634079,
+          "max_seconds": 0.11274415405932814,
+          "mean_seconds": 0.10044250066106718,
+          "total_seconds": 6.227435040986165
+        },
+        "gpu_query_latency": {
+          "count": 63,
+          "min_seconds": 0.013355983071960509,
+          "max_seconds": 0.092940145987086,
+          "mean_seconds": 0.025507242817963873,
+          "total_seconds": 1.606956297531724
+        },
+        "gpu_query_timeout_seconds": 2.0,
+        "thread_still_running": false,
+        "limitations": "polling overhead is included in monitored wall time; no sample history is retained; short peaks may be missed"
+      }
+    },
+    "jax_allocator_before_data": {
+      "status": "available",
+      "stats": {
+        "num_allocs": 1,
+        "bytes_in_use": 0,
+        "peak_bytes_in_use": 256,
+        "largest_alloc_size": 256,
+        "bytes_limit": 25555894272,
+        "bytes_reserved": 0,
+        "peak_bytes_reserved": 0,
+        "largest_free_block_bytes": 2097152,
+        "pool_bytes": 2097152,
+        "peak_pool_bytes": 2097152
+      },
+      "omitted_stat_count": 0,
+      "scope": "selected JAX device allocator; not total process driver memory"
+    }
+  },
+  "device_platform": "gpu",
+  "device_kind": "Tesla V100S-PCIE-32GB",
+  "device": "cuda:0",
+  "load_seconds": 0.48821201804094017,
+  "optimizer_seconds": 0.1517988609848544,
+  "optimizer_compile_seconds": 0.4580319239757955,
+  "metric_seconds": 2.468159071984701,
+  "metric_location": "CPU NumPy; full measurements and process-matrix eigendecomposition",
+  "metric_mode": "full",
+  "metric_compile_included": false,
+  "jax_version": "0.11.1",
+  "jaxlib_version": "0.11.1",
+  "batch_indices_sha256": "c7df56baa5c9338e6fac40fcb7b2419329f27c0b482f890d97a3985655627b44",
+  "final_measurement_loss": 0.00631303394183741,
+  "final_smoothed_gap": 0.2059544657057711,
+  "warmup": "native legacy behavior: one complete scan",
+  "sampling_transfer_seconds": null,
+  "runner_wall_seconds": 3.977442884002812,
+  "optimizer_steps_per_second": 6587.664713108579,
+  "final_factor_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_1865327/artifacts/memory_dense_0.npy",
+  "worker_wall_seconds": 5.753714103950188,
+  "worker_unattributed_seconds": 0.00987700093537569,
+  "repeat": 0,
+  "process_wall_seconds": 6.231904307031073,
+  "returncode": 0,
+  "stdout_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_1865327/artifacts/memory_dense_0.stdout.log",
+  "stderr_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_1865327/artifacts/memory_dense_0.stderr.log",
+  "worker_report_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_1865327/artifacts/memory_dense_0.json",
+  "monitor_teardown_and_report_read_seconds": 0.014458051999099553
+}

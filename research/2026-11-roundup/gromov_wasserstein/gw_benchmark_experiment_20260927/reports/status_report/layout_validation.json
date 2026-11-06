@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "pages_per_report": 3,
+  "reference_text_identical": true,
+  "experiment_page_text_unchanged": false,
+  "numerical_tables": "Original 128/1024/2048 summaries preserved; added 8192 row from validated report SHA256 969f9f3b225c832a493c29cea509603a2fea59bd40aca00eded8c0b6c87e1952.",
+  "oracle_review": {
+    "status": "passed",
+    "implementation": "extensions/shareseq_25000_20260930/sharded_gw.py",
+    "implementation_sha256": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "checks": [
+      "Exact implemented two-term gradient sketch",
+      "Conditional unbiasedness for fresh independent Rademacher probes",
+      "Fixed-iterate mean-squared error V(P)/q; RMS error scales as inverse square root of q",
+      "Projection vectors involve all points; no low-rank coupling restriction",
+      "No claim that q>=m makes the sketch exact or cheaper than a full gradient",
+      "Moreau gradient distinguished from nonsmooth indicator; explicit adjoint and chain-rule penalty restored."
+    ]
+  },
+  "layout": "Three pages each, no LaTeX overflow. Updated synthetic page 3 visually inspected. Shared reference pages and entire BMMC text equal the previous PDFs.",
+  "pdfs": [
+    {
+      "file": "reports/status_report/synthetic_probe_count_status.pdf",
+      "sha256": "5a1ed775a7dbe3e3fb5e934af44653589d588506f0b6badba551c0258c0d069a"
+    },
+    {
+      "file": "reports/status_report/bmmc_probe_count_status.pdf",
+      "sha256": "b31d2d038bd5baf6f4fda52d3a56480d8432b0d266a4ea7b51a74eafeb29f4b0"
+    }
+  ],
+  "reference_pages_sha256": {
+    "reports/status_report/gw_problem.tex": "858261e3f05029638fefdb6fc78efb274c3281dcde624d5aa0ccf06084a7edca",
+    "reports/status_report/gw_stochastic_oracle.tex": "49dca2250f85e24dd5c6b2590a7fc362bcd5259d7a823fd70f1ab1171f6be1a1"
+  },
+  "verified_date": "2026-10-11",
+  "bmmc_report_text_unchanged": true,
+  "reference_pages_unchanged_from_previous": true,
+  "source_reports": [
+    {
+      "file": "reports/batch_size_20261008/report.json",
+      "sha256": "6ce0b0198875649d7a524abceef5d8c5e4d904c7711bd8d22949c28534808640"
+    },
+    {
+      "file": "reports/probe8192_20261009/report.json",
+      "sha256": "969f9f3b225c832a493c29cea509603a2fea59bd40aca00eded8c0b6c87e1952"
+    }
+  ],
+  "results_review": {
+    "status": "passed",
+    "reviewer": "independent oracle audit agent",
+    "checks": [
+      "Identical frozen data, seeds, initialization, schedules, prefactors and horizon across compared probe counts",
+      "Three completed and validated 8192-probe runs at 200000 updates",
+      "Final loss, percentage decrease and solver minutes match source medians",
+      "Per-seed first saved 99-percent decrease at 40000, 40000 and 42000 updates; prior 2048 bracket 50000 to 100000",
+      "No inference that changing probes establishes the cause of the smoothing/momentum transition"
+    ]
+  }
+}

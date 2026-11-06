@@ -1,0 +1,1072 @@
+{
+  "binding": {
+    "comparison_source_sha256": "a859c285937c3259d123a6b84c4c2bb1926aba2f2c15a99b1cba655d968f8fb4",
+    "config_sha256": "65a243a1614b8d3e9b6457f71181942492ed3050270cf03c7ad200ad7bf088b1",
+    "reference_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/reference/reference.json",
+    "reference_sha256": "990729dd5cdc982616bad5f39a10846938d203becb25b5d02245792b11a28d8c",
+    "reference_source_sha256": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6"
+  },
+  "caveats": "Finite 1e-7 proximal accuracy is a numerical approximation, not an inexact outer convergence theorem. Empirical last/current losses and independent random theorem outputs are distinct.",
+  "counts": {
+    "completed": 9,
+    "failed": 0,
+    "invalid": 0,
+    "missing": 0,
+    "started_without_result": 0
+  },
+  "objective": "Full squared GW discrepancy without a factor one-half or entropy. Stochastic updates and online diagnostics cast the common reference arrays to float32; independent final validation reloads the original float64 arrays and promotes the saved float32 plans.",
+  "runs": [
+    {
+      "candidate": {
+        "gamma0": 0.3,
+        "id": "fw05",
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1068.549407435581,
+      "last_rounded_loss": 0.02165458083715549,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/fw05/scot1047/smoothing-fw/seed811/output/metadata.json",
+      "metadata_sha256": "fd55e9d8a7c1c8197ffa5242d5ec2bd36fb872d4cf47898ca3124ab03efb33b0",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.04476246703416109
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07042869925498962,
+          "time_to_this_feasible_output": 0.44258106779307127
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07032909989356995,
+          "time_to_this_feasible_output": 0.4965101573616266
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.06973564624786377,
+          "time_to_this_feasible_output": 0.6576153100468218
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.06816819310188293,
+          "time_to_this_feasible_output": 0.9258646280504763
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.06411868333816528,
+          "time_to_this_feasible_output": 1.464729128871113
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.05592221021652222,
+          "time_to_this_feasible_output": 3.0725808409042656
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.04771730303764343,
+          "time_to_this_feasible_output": 5.748783882241696
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.040175795555114746,
+          "time_to_this_feasible_output": 11.083676693495363
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.03502210974693298,
+          "time_to_this_feasible_output": 27.116480129305273
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.032258421182632446,
+          "time_to_this_feasible_output": 53.837302160449326
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.0290394127368927,
+          "time_to_this_feasible_output": 107.3198534375988
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.02379995584487915,
+          "time_to_this_feasible_output": 267.39254094520584
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.022140085697174072,
+          "time_to_this_feasible_output": 534.4273800915107
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.021785110235214233,
+          "time_to_this_feasible_output": 801.5900595160201
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.021654635667800903,
+          "time_to_this_feasible_output": 1068.549407435581
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 811,
+      "selected_index": 3937,
+      "selected_raw_loss": 0.023613424269419758,
+      "solver_seconds": 1068.5467452527955,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1072.1959359659813
+    },
+    {
+      "candidate": {
+        "gamma0": 0.3,
+        "id": "fw05",
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 949.7209674585611,
+      "last_rounded_loss": 0.01850712007884614,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/fw05/scot1047/smoothing-fw/seed812/output/metadata.json",
+      "metadata_sha256": "b6fa9f2053f072e1fcecb26c8827c98a17f36ce07b4ce3ee6f07d9db798e9b65",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.04372722702100873
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07039448618888855,
+          "time_to_this_feasible_output": 0.17283021518960595
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07029053568840027,
+          "time_to_this_feasible_output": 0.22721493430435658
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.06981948018074036,
+          "time_to_this_feasible_output": 0.39054666878655553
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.06855884194374084,
+          "time_to_this_feasible_output": 0.6609348584897816
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.06509244441986084,
+          "time_to_this_feasible_output": 1.2019984084181488
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.056400030851364136,
+          "time_to_this_feasible_output": 2.8281867895275354
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.0466519296169281,
+          "time_to_this_feasible_output": 5.344876630231738
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.03696739673614502,
+          "time_to_this_feasible_output": 10.09982409561053
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.027260631322860718,
+          "time_to_this_feasible_output": 24.315029369667172
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.02336326241493225,
+          "time_to_this_feasible_output": 48.073517381213605
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.021254390478134155,
+          "time_to_this_feasible_output": 95.53122105076909
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.019828975200653076,
+          "time_to_this_feasible_output": 237.849567304831
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.01916298270225525,
+          "time_to_this_feasible_output": 475.16034799581394
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.01875653862953186,
+          "time_to_this_feasible_output": 712.5486125601456
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.01850712299346924,
+          "time_to_this_feasible_output": 949.7209674585611
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 812,
+      "selected_index": 4875,
+      "selected_raw_loss": 0.017048073351562554,
+      "solver_seconds": 949.7187639875337,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 953.1022128397599
+    },
+    {
+      "candidate": {
+        "gamma0": 0.3,
+        "id": "fw05",
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1067.0087602091953,
+      "last_rounded_loss": 0.018220815051436412,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/fw05/scot1047/smoothing-fw/seed813/output/metadata.json",
+      "metadata_sha256": "e0b757c4e942c5d11627ec9df1c4787e82b9f945d56ba19afc627543a3fc5269",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.2533401190303266
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07038375735282898,
+          "time_to_this_feasible_output": 0.5314649511128664
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07033857703208923,
+          "time_to_this_feasible_output": 0.5941729969345033
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.06984531879425049,
+          "time_to_this_feasible_output": 0.7552349979523569
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.06834790110588074,
+          "time_to_this_feasible_output": 1.0225062739336863
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.06539040803909302,
+          "time_to_this_feasible_output": 1.557372439885512
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.05578833818435669,
+          "time_to_this_feasible_output": 3.1587166520766914
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.045622557401657104,
+          "time_to_this_feasible_output": 5.832859818008728
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.0372888445854187,
+          "time_to_this_feasible_output": 11.169800330884755
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.029854506254196167,
+          "time_to_this_feasible_output": 27.19061105349101
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.02494940161705017,
+          "time_to_this_feasible_output": 53.883578270091675
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.02165427803993225,
+          "time_to_this_feasible_output": 107.20189822313841
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.01944059133529663,
+          "time_to_this_feasible_output": 267.1441647494212
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.018649667501449585,
+          "time_to_this_feasible_output": 535.1543470767792
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.018371909856796265,
+          "time_to_this_feasible_output": 802.085482040653
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.018220841884613037,
+          "time_to_this_feasible_output": 1067.0087602091953
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 813,
+      "selected_index": 210,
+      "selected_raw_loss": 0.029973042340686984,
+      "solver_seconds": 1067.0064393652137,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1092.2073382439557
+    },
+    {
+      "candidate": {
+        "id": "smd08",
+        "prefactor_fraction": 1.0
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 1688.4976083589718,
+      "last_rounded_loss": 0.052433997168477964,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/smd08/scot1047/published-smd/seed811/output/metadata.json",
+      "metadata_sha256": "63a725c28dab4a5b58355541bc88780ff174e6057138fa757e9b47daf385e2fe",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.05012416606768966
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07044851779937744,
+          "time_to_this_feasible_output": 0.22345563303679228
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07044088840484619,
+          "time_to_this_feasible_output": 0.3087004395201802
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.07042312622070312,
+          "time_to_this_feasible_output": 0.5632523987442255
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.07040327787399292,
+          "time_to_this_feasible_output": 0.9875791356898844
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.0703740119934082,
+          "time_to_this_feasible_output": 1.837237506173551
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.07031404972076416,
+          "time_to_this_feasible_output": 4.380669692065567
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.07024604082107544,
+          "time_to_this_feasible_output": 8.609699070453644
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.07014936208724976,
+          "time_to_this_feasible_output": 17.064002270810306
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.06995606422424316,
+          "time_to_this_feasible_output": 42.44694413105026
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.06973391771316528,
+          "time_to_this_feasible_output": 84.75575456628576
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.06940954923629761,
+          "time_to_this_feasible_output": 169.2326975199394
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.06863188743591309,
+          "time_to_this_feasible_output": 423.000857477542
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.06639707088470459,
+          "time_to_this_feasible_output": 845.6020423886366
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.060579001903533936,
+          "time_to_this_feasible_output": 1267.9457673169672
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.052433907985687256,
+          "time_to_this_feasible_output": 1688.4976083589718
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 811,
+      "selected_index": 3937,
+      "selected_raw_loss": 0.06890811535839475,
+      "solver_seconds": 1688.4951146598905,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1691.8355245902203
+    },
+    {
+      "candidate": {
+        "id": "smd08",
+        "prefactor_fraction": 1.0
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 1375.7195683154278,
+      "last_rounded_loss": 0.05821779592160736,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/smd08/scot1047/published-smd/seed812/output/metadata.json",
+      "metadata_sha256": "7fcdc5c21f0f8de5d7600b6713c6c10624593eeea07d05b7c10eab696e32b9a7",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.049161863047629595
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07044827938079834,
+          "time_to_this_feasible_output": 0.229704144410789
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07044017314910889,
+          "time_to_this_feasible_output": 0.3082864680327475
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.07042235136032104,
+          "time_to_this_feasible_output": 0.5446103494614363
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.07040131092071533,
+          "time_to_this_feasible_output": 0.9365123445168138
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.07037079334259033,
+          "time_to_this_feasible_output": 1.727446992881596
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.07031095027923584,
+          "time_to_this_feasible_output": 4.013413919601589
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.07024264335632324,
+          "time_to_this_feasible_output": 7.450869480147958
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.07014608383178711,
+          "time_to_this_feasible_output": 14.332030046731234
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.06995177268981934,
+          "time_to_this_feasible_output": 34.989394755102694
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.069732666015625,
+          "time_to_this_feasible_output": 69.37514515500516
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.06941831111907959,
+          "time_to_this_feasible_output": 138.1615580408834
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.06874340772628784,
+          "time_to_this_feasible_output": 344.41227677697316
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.06746214628219604,
+          "time_to_this_feasible_output": 688.2467567273416
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.064400315284729,
+          "time_to_this_feasible_output": 1031.8960644188337
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.05821770429611206,
+          "time_to_this_feasible_output": 1375.7195683154278
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 812,
+      "selected_index": 4875,
+      "selected_raw_loss": 0.06876928301948748,
+      "solver_seconds": 1375.7175270803273,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1378.8629888859577
+    },
+    {
+      "candidate": {
+        "id": "smd08",
+        "prefactor_fraction": 1.0
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 1554.5602011098526,
+      "last_rounded_loss": 0.059913515974460485,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/smd08/scot1047/published-smd/seed813/output/metadata.json",
+      "metadata_sha256": "620853aeee3fb74241293e85da4920ae0a900e7535b5730f843c59b26f0c6dd0",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.05040386039763689
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07044899463653564,
+          "time_to_this_feasible_output": 0.22207424510270357
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07044148445129395,
+          "time_to_this_feasible_output": 0.3006116468459368
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.07042407989501953,
+          "time_to_this_feasible_output": 0.5352009395137429
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.07040548324584961,
+          "time_to_this_feasible_output": 0.9258384136483073
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.07037544250488281,
+          "time_to_this_feasible_output": 1.7142414208501577
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.07031536102294922,
+          "time_to_this_feasible_output": 4.0615104590542614
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.07024669647216797,
+          "time_to_this_feasible_output": 7.967851907014847
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.07015150785446167,
+          "time_to_this_feasible_output": 15.767815429717302
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.06995820999145508,
+          "time_to_this_feasible_output": 39.18562843790278
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.06973850727081299,
+          "time_to_this_feasible_output": 78.16931035602465
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.0694243311882019,
+          "time_to_this_feasible_output": 156.15882655326277
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.06876558065414429,
+          "time_to_this_feasible_output": 390.0624701306224
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.06765502691268921,
+          "time_to_this_feasible_output": 779.0839048130438
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.06521940231323242,
+          "time_to_this_feasible_output": 1166.9104748461396
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.0599135160446167,
+          "time_to_this_feasible_output": 1554.5602011098526
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 813,
+      "selected_index": 210,
+      "selected_raw_loss": 0.07014327454042307,
+      "solver_seconds": 1554.5579018727876,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1558.0929464660585
+    },
+    {
+      "candidate": {
+        "coupling_fraction": 1.0,
+        "id": "msbpg08",
+        "momentum_prefactor": 1.0
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 1882.2803833046928,
+      "last_rounded_loss": 0.07044262759378456,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/msbpg08/scot1047/published-msbpg/seed811/output/metadata.json",
+      "metadata_sha256": "9e2b0a2ff324d0fcaa998ec0b99f3444b424228a25513875d29765605cd57bd1",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with theorem-prescribed coupled schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.040200052317231894
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.4021229725331068
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07045960426330566,
+          "time_to_this_feasible_output": 0.49714986560866237
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.07045948505401611,
+          "time_to_this_feasible_output": 0.7804292230866849
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.07045936584472656,
+          "time_to_this_feasible_output": 1.251806213054806
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.07045924663543701,
+          "time_to_this_feasible_output": 2.1969992076046765
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.07045894861221313,
+          "time_to_this_feasible_output": 5.03510987944901
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.07045853137969971,
+          "time_to_this_feasible_output": 9.745061963330954
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.0704580545425415,
+          "time_to_this_feasible_output": 19.16425317293033
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.0704571008682251,
+          "time_to_this_feasible_output": 47.439018425531685
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.07045590877532959,
+          "time_to_this_feasible_output": 94.57599382707849
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.07045435905456543,
+          "time_to_this_feasible_output": 188.71527398051694
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.07045120000839233,
+          "time_to_this_feasible_output": 471.0711521380581
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.07044756412506104,
+          "time_to_this_feasible_output": 942.3102455893531
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.07044494152069092,
+          "time_to_this_feasible_output": 1413.207711927127
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.0704425573348999,
+          "time_to_this_feasible_output": 1882.2803833046928
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 811,
+      "selected_index": 3937,
+      "selected_raw_loss": 0.0704522181869136,
+      "solver_seconds": 1882.277860563714,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1912.6034522266127
+    },
+    {
+      "candidate": {
+        "coupling_fraction": 1.0,
+        "id": "msbpg08",
+        "momentum_prefactor": 1.0
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 1874.285353520885,
+      "last_rounded_loss": 0.0704425955144477,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/msbpg08/scot1047/published-msbpg/seed812/output/metadata.json",
+      "metadata_sha256": "08c2f6a329abc84c98702959cca64b234db7a176b930aadbbd84e1ea2c03ff8d",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with theorem-prescribed coupled schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.042260242626070976
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07045966386795044,
+          "time_to_this_feasible_output": 0.24527775961905718
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07045960426330566,
+          "time_to_this_feasible_output": 0.3395650340244174
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.07045948505401611,
+          "time_to_this_feasible_output": 0.6217128820717335
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.07045936584472656,
+          "time_to_this_feasible_output": 1.0908956020139158
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.07045924663543701,
+          "time_to_this_feasible_output": 2.0314146014861763
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.07045888900756836,
+          "time_to_this_feasible_output": 4.853044375311583
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.07045859098434448,
+          "time_to_this_feasible_output": 9.54411511681974
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.0704580545425415,
+          "time_to_this_feasible_output": 18.924680817406625
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.07045704126358032,
+          "time_to_this_feasible_output": 47.06363849900663
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.07045590877532959,
+          "time_to_this_feasible_output": 93.93255356932059
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.07045435905456543,
+          "time_to_this_feasible_output": 187.59567966125906
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.07045114040374756,
+          "time_to_this_feasible_output": 468.7921941499226
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.07044756412506104,
+          "time_to_this_feasible_output": 937.2221936732531
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.07044482231140137,
+          "time_to_this_feasible_output": 1405.8092806865461
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.0704425573348999,
+          "time_to_this_feasible_output": 1874.285353520885
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 812,
+      "selected_index": 4875,
+      "selected_raw_loss": 0.07045133459262864,
+      "solver_seconds": 1874.2828307836317,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1877.9775864533149
+    },
+    {
+      "candidate": {
+        "coupling_fraction": 1.0,
+        "id": "msbpg08",
+        "momentum_prefactor": 1.0
+      },
+      "completed_updates": 20000,
+      "dataset": "scot1047",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 1886.377426427789,
+      "last_rounded_loss": 0.0704426164486287,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/confirm/msbpg08/scot1047/published-msbpg/seed813/output/metadata.json",
+      "metadata_sha256": "991034e64b2dd02d2478ad32e66ef278a00906b9dbfb8ce97c9c00bc7ca78183",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with theorem-prescribed coupled schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.0382158225402236
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.07045972347259521,
+          "time_to_this_feasible_output": 0.3429689845070243
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.07045960426330566,
+          "time_to_this_feasible_output": 0.4381387662142515
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.07045948505401611,
+          "time_to_this_feasible_output": 0.7223932542838156
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.07045936584472656,
+          "time_to_this_feasible_output": 1.1948338374495506
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.07045924663543701,
+          "time_to_this_feasible_output": 2.1400517662987113
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.07045894861221313,
+          "time_to_this_feasible_output": 4.98148951632902
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.07045853137969971,
+          "time_to_this_feasible_output": 9.699748405721039
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.0704580545425415,
+          "time_to_this_feasible_output": 19.14760570321232
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.0704571008682251,
+          "time_to_this_feasible_output": 47.49881618004292
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.07045590877532959,
+          "time_to_this_feasible_output": 94.6925072199665
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.07045435905456543,
+          "time_to_this_feasible_output": 188.95718629518524
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.07045114040374756,
+          "time_to_this_feasible_output": 471.9380473815836
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.07044756412506104,
+          "time_to_this_feasible_output": 943.7353883376345
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.07044482231140137,
+          "time_to_this_feasible_output": 1415.5672398633324
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.0704425573348999,
+          "time_to_this_feasible_output": 1886.377426427789
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 813,
+      "selected_index": 210,
+      "selected_raw_loss": 0.070458089571389,
+      "solver_seconds": 1886.3748902478255,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1891.1641915198416
+    }
+  ],
+  "scope": "Nine prefactors per method, one development seed, then three independent confirmation seeds; all runs use 20000 updates and 1024 iid coupling pairs per stochastic gradient.",
+  "selected_prefactors": {
+    "published-msbpg": {
+      "coupling_fraction": 1.0,
+      "id": "msbpg08",
+      "momentum_prefactor": 1.0
+    },
+    "published-smd": {
+      "id": "smd08",
+      "prefactor_fraction": 1.0
+    },
+    "smoothing-fw": {
+      "gamma0": 0.3,
+      "id": "fw05",
+      "mu_scale": 10.0,
+      "rho0": 0.3
+    }
+  },
+  "selection": {
+    "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/comparison/selection.json",
+    "sha256": "8cc5e21691cd7627b1ab45bee75173e3f029a5f6d2c8d5c74015bfbf3c9f91ae"
+  },
+  "status": "completed",
+  "summaries": [
+    {
+      "completed_seeds": [
+        811,
+        812,
+        813
+      ],
+      "medians": {
+        "last_feasible_output_seconds": 1067.0087602091953,
+        "last_rounded_loss": 0.01850712007884614,
+        "solver_seconds": 1067.0064393652137,
+        "total_elapsed_seconds": 1072.1959359659813
+      },
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum"
+    },
+    {
+      "completed_seeds": [
+        811,
+        812,
+        813
+      ],
+      "medians": {
+        "last_feasible_output_seconds": 1554.5602011098526,
+        "last_rounded_loss": 0.05821779592160736,
+        "solver_seconds": 1554.5579018727876,
+        "total_elapsed_seconds": 1558.0929464660585
+      },
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients"
+    },
+    {
+      "completed_seeds": [
+        811,
+        812,
+        813
+      ],
+      "medians": {
+        "last_feasible_output_seconds": 1882.2803833046928,
+        "last_rounded_loss": 0.0704426164486287,
+        "solver_seconds": 1882.277860563714,
+        "total_elapsed_seconds": 1891.1641915198416
+      },
+      "method": "published-msbpg",
+      "method_name": "MSBPG with theorem-prescribed coupled schedules"
+    }
+  ],
+  "timing": "Checkpoint times include solver work and the current feasibility repair, excluding earlier repairs, diagnostics, logging and serialization. Final total_elapsed_seconds is reported separately."
+}

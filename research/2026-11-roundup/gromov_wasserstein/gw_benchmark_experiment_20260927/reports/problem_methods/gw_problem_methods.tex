@@ -1,0 +1,135 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=17mm,top=15mm,bottom=16mm]{geometry}
+\usepackage{amsmath,amssymb,microtype,booktabs,xcolor}
+\usepackage[hidelinks]{hyperref}
+\definecolor{ink}{RGB}{25,48,70}
+\hypersetup{pdftitle={Gromov-Wasserstein matching: composite formulation and the two methods},pdfauthor={}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle_F}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+\begin{document}
+{\color{ink}\fontsize{16}{19}\selectfont\bfseries GW matching: the composite formulation\par}
+{\small Mathematical formulation of the two methods used in the experiment\par}
+\vspace{3pt}
+
+Let $A\in\R^{n\times n}$ and $B\in\R^{m\times m}$ be symmetric distance matrices for two views of a dataset. Let $a\in\R^n_{++}$ and $b\in\R^m_{++}$ sum to one; our experiments use uniform weights. The variable $P\in\R^{n\times m}$ is a transport coupling. Define
+\begin{align*}
+ f(P)&=\sum_{i,k=1}^{n}\sum_{j,\ell=1}^{m}(A_{ik}-B_{j\ell})^2P_{ij}P_{k\ell},\\
+ C&=\{P\geq0:P\one_m=a\},
+ &T(P)&=P^\top\one_n,\\
+ D&=\{b\},
+ &g(y)&=\iota_D(y)=\begin{cases}0,&y=b,\\+\infty,&y\ne b.\end{cases}
+\end{align*}
+Thus $C$ imposes nonnegativity and row masses; $g\circ T$ imposes column masses. The benchmark is exactly
+\[
+ \boxed{\min_{P\in C}\; f(P)+g(TP)}
+ \quad\Longleftrightarrow\quad
+ \min_{P\in U(a,b)}f(P),\qquad
+ U(a,b):=\{P\geq0:P\one_m=a,\ P^\top\one_n=b\}.
+\]
+Here $f$ is smooth and generally nonconvex, $g$ is a convex indicator, $C$ is compact and convex, and $T$ is linear. There is no entropy regularization in this objective. Matrix inner products are Frobenius inner products, so
+\[
+ T^*u=\one_nu^\top,\qquad
+ \ip{P}{T^*u}=\langle TP,u\rangle,\qquad \|T\|=\sqrt n.
+\]
+
+\textbf{Stochastic FraMES: smooth $g$, and keep the simple constraint $C$.}
+For $\mu>0$, the proximal map and Moreau envelope of $g$ are explicit:
+\[
+ \operatorname{prox}_{\mu g}(y)=b,\qquad
+ g_\mu(y)=\min_z\left\{g(z)+\frac{\|z-y\|_2^2}{2\mu}\right\}
+         =\frac{\|y-b\|_2^2}{2\mu}.
+\]
+FraMES therefore takes Frank--Wolfe steps for the changing smooth surrogate
+\[
+ F_\mu(P)=f(P)+\frac{\|P^\top\one_n-b\|_2^2}{2\mu},\qquad
+ \nabla(g_\mu\circ T)(P)=\frac{\one_n(P^\top\one_n-b)^\top}{\mu}.
+\]
+Let $\widehat G_k$ be a fresh unbiased estimate of $\nabla f(P_k)$. Momentum is applied to this estimate, while the column-penalty gradient is evaluated at the current iterate:
+\begin{align*}
+ d_0&=\widehat G_0,\qquad
+ d_k=(1-\rho_k)d_{k-1}+\rho_k\widehat G_k\quad(k\geq1),\\
+ H_k&=d_k+\mu_k^{-1}T^*(TP_k-b),\\
+ S_k&\in\argmin_{S\in C}\ip{H_k}{S},\qquad
+ P_{k+1}=(1-\gamma_k)P_k+\gamma_kS_k.
+\end{align*}
+The linear minimization oracle separates by row: choose
+$j_i\in\argmin_j(H_k)_{ij}$, set $(S_k)_{i j_i}=a_i$, and set the other entries to zero. Each step preserves $P_k\in C$; column masses may differ from $b$ until repaired or approached through decreasing smoothing. The implemented schedules are
+\[
+ \gamma_k=\gamma_0(k+1)^{-3/4},\qquad
+ \rho_k=\rho_0(k+1)^{-1/2},\qquad
+ \mu_k=\frac{s_\mu}{m}(k+1)^{-1/4}.
+\]
+{\small To match the manuscript's $T=\mathrm{Id}$ notation, set
+$\widetilde D=\{P:P^\top\one_n=b\}$. Then
+$\operatorname{dist}_F(P,\widetilde D)^2=\|TP-b\|_2^2/n$;
+its smoothing parameter $\beta=\mu/n$ gives precisely the same penalty. The gradient of the penalty above has Lipschitz constant $n/\mu$.}
+
+\newpage
+{\color{ink}\fontsize{16}{19}\selectfont\bfseries The same problem with entropic mirror descent\par}
+\vspace{4pt}
+
+\textbf{Stochastic entropic mirror descent: enforce $C$ and $TP=b$ in each proximal step.}
+Absorb the composite constraint into $X=U(a,b)=C\cap T^{-1}(D)$. In the notation of Fatkhullin--He (2024), take the smooth expected objective to be $f$, the convex regularizer to be zero, and the distance-generating function to be negative entropy:
+\[
+ \omega(P)=\sum_{ij}P_{ij}(\log P_{ij}-1),\qquad
+ D_\omega(Q,P)=\KL(Q\|P)
+ =\sum_{ij}\left[Q_{ij}\log\frac{Q_{ij}}{P_{ij}}-Q_{ij}+P_{ij}\right].
+\]
+With a positive initial coupling and a fresh gradient estimate $\widehat G_k$, its ideal update is
+\begin{align*}
+ P_{k+1}
+ &=\argmin_{Q\in C}\left\{\ip{\widehat G_k}{Q}+g(TQ)
+                       +\eta_k^{-1}\KL(Q\|P_k)\right\}\\
+ &=\boxed{\argmin_{Q\in U(a,b)}
+          \left\{\ip{\widehat G_k}{Q}+\eta_k^{-1}\KL(Q\|P_k)\right\}.}
+\end{align*}
+Thus $g\circ T$ remains an exact constraint in the mathematical subproblem. There is no Moreau smoothing or momentum in this method. Its entropy term defines the update geometry; the objective being minimized remains the same $f$.
+
+The KL subproblem is solved by matrix scaling. With componentwise operations, let
+\[
+ K_k=P_k\odot\exp(-\eta_k\widehat G_k),\qquad
+ P_{k+1}=\operatorname{diag}(u)K_k\operatorname{diag}(v).
+\]
+Sinkhorn alternates $u\leftarrow a/(K_kv)$ and $v\leftarrow b/(K_k^\top u)$ to enforce both marginals. This is a \emph{KL/Bregman projection} of $K_k$ onto $U(a,b)$, rather than a Euclidean projection. Our implementation uses stable log-domain arithmetic and accepts a numerical step only when both the summed marginal $\ell_1$ residual and normalized guarded primal--dual gap are at most $10^{-7}$.
+
+For $C_{\max}=\max_{i,k,j,\ell}(A_{ik}-B_{j\ell})^2>0$, the implemented admissible family is
+\[
+ \eta_k=\frac{c}{4C_{\max}\sqrt{k+1}},\qquad 0<c\leq1.
+\]
+Indeed, on $U(a,b)$ the quadratic remainder is bounded by
+$C_{\max}\|Q-P\|_1^2\leq2C_{\max}\KL(Q\|P)$, yielding a relative-smoothness constant $2C_{\max}$. The paper's update assumes an exact proximal minimizer; our finite inner tolerance is a numerical choice, with no inexact outer theorem claimed.
+
+\textbf{The common stochastic oracle.}
+Both methods sample the gradient of the full, fixed GW objective. For
+$r=P\one_m$, $c_P=P^\top\one_n$, and entrywise squares $A^{\odot2},B^{\odot2}$,
+\[
+ \nabla f(P)=2(A^{\odot2}r)\one_m^\top
+          +2\one_n(B^{\odot2}c_P)^\top-4APB.
+\]
+The current marginals must be used here: FraMES iterates need not satisfy $c_P=b$.
+For fresh $Z_k\in\{\!-1,1\}^{m\times q}$ with independent entries and $q=128$, the implementation uses
+\[
+ \widehat G_k=2(A^{\odot2}r)\one_m^\top
+ +2\one_n(B^{\odot2}c_P)^\top
+ -\frac{2}{q}\left[(AP_kBZ_k)Z_k^\top+(AP_kZ_k)(BZ_k)^\top\right].
+\]
+Since $\mathbb E[Z_kZ_k^\top/q]=I_m$, this is conditionally unbiased:
+$\mathbb E[\widehat G_k\mid P_k]=\nabla f(P_k)$. FraMES averages these estimates through $d_k$; SMD uses $\widehat G_k$ directly. Both use one oracle call per update; FraMES reuses the first call for $d_0$.
+
+\textbf{The computational distinction.}
+FraMES handles the column constraint through its explicit quadratic penalty and uses only a rowwise linear minimization oracle. SMD solves a KL transport projection imposing both marginals each update. Reported endpoint losses evaluate the same $f$ after a common transport-repair procedure. Those empirical losses are separate from the methods' respective stationarity guarantees and SMD's prescribed randomly selected output.
+
+\vfill
+{\small Sources: the supplied \emph{Nonsmooth\_FW-7.pdf}, Proposition 2.11 and Corollary 2.10; and
+\href{https://proceedings.mlr.press/v238/fatkhullin24a/fatkhullin24a.pdf}{Fatkhullin--He, \emph{Taming Nonconvex Stochastic Mirror Descent with General Bregman Divergence}, AISTATS 2024, Eq.~(2), Thm.~4.3}.
+Formulas checked against campaign source \texttt{38b5ea8}.}
+\end{document}

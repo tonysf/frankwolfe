@@ -1,0 +1,114 @@
+{
+  "baseline": {
+    "full_seed": 810,
+    "iterations": 2000,
+    "pair_seeds": [
+      811,
+      812,
+      813
+    ]
+  },
+  "dtype": "float64",
+  "epsilon": 0.001,
+  "eta": 1000.0,
+  "experiment": "share_resumable_20261018",
+  "frames": {
+    "confirmation_seeds": [
+      811,
+      812,
+      813
+    ],
+    "development_seeds": [
+      810,
+      814
+    ],
+    "early_stopping": false,
+    "exponents": {
+      "gamma": 0.75,
+      "mu": 0.25,
+      "rho": 0.5
+    },
+    "gamma0": [
+      0.3,
+      1.0
+    ],
+    "iterations": 20000,
+    "mu_scale": [
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "rho0": [
+      0.1,
+      0.3,
+      1.0
+    ],
+    "selection": "median_final_feasible_gw_loss"
+  },
+  "initialization": "product",
+  "inner_gap_tol": 1e-07,
+  "inner_max": 100000,
+  "inner_tol": 1e-07,
+  "instances": {
+    "shareseq_full": {
+      "array_files_sha256": {
+        "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+      },
+      "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+      "n": 31890,
+      "old_prefactors": {
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+      "world_size": 4
+    }
+  },
+  "pairs": 1024,
+  "preflight": {
+    "iterations": 2,
+    "max_seconds": 10800
+  },
+  "runner": {
+    "checkpoint_every": 5000,
+    "checkpoint_seconds": 1800,
+    "diagnostic_every": 500,
+    "max_seconds": 79200
+  },
+  "scheduler": {
+    "account": "fwllm",
+    "cpu_partition": "cpu_short",
+    "cpus_per_gpu": 2,
+    "exclude_nodes": [
+      "ruche-gpu13",
+      "ruche-gpu15",
+      "ruche-gpu16",
+      "ruche-gpu19"
+    ],
+    "exclude_nodes_reason": "Prior CUDA busy/unavailable failures; gpu15 failed initialization on 2026-10-18 after an earlier successful gate. Campaign-specific avoidance, not a site policy.",
+    "gpu_partition": "gpua100",
+    "maximum_gpu_reserved_fraction": 0.9,
+    "maximum_no_progress_retries": 2,
+    "memory_gib_per_gpu": 32,
+    "time": "24:00:00"
+  },
+  "schema_version": 1,
+  "storage": {
+    "completed_checkpoint_retention": "frames_confirmation_only",
+    "other_campaign_reserved_bytes": 4294967296,
+    "receipt_max_age_seconds": 86400,
+    "required_quota_available_bytes": 73014444032,
+    "retained_confirmation_state_count": 3,
+    "retention_rationale": "Retain raw P, momentum D, per-rank RNG, iteration and counters for all three final FRAMES confirmation runs; prune completed development/POT checkpoints. Interruption checkpoints are always retained. 64 GiB SHARE reserve includes three final states plus transactional checkpoint overhead; 4 GiB reserved for independent entropy streams.",
+    "share_reserved_bytes": 68719476736
+  },
+  "theory_scope": {
+    "frames": "Theoretical exponents retained; prefactors tuned over complete 20000-update development runs; selected candidate confirmed on fresh seeds.",
+    "pot": "Empirical fixed POT step eta=1/epsilon; no theorem-safe stochastic step claim."
+  }
+}

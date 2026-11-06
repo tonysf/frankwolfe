@@ -1,0 +1,98 @@
+{
+  "as_of": "2026-10-09T09:16:36.493228+02:00",
+  "batch_status": "completed",
+  "batch_counts": {
+    "completed": 18,
+    "failed": 0,
+    "invalid": 0,
+    "missing": 0,
+    "started_without_result": 0
+  },
+  "snapshot": "logs/status_20261009T071635Z",
+  "report_path": "reports/batch_size_20261008/report.json",
+  "report_sha256": "6ce0b0198875649d7a524abceef5d8c5e4d904c7711bd8d22949c28534808640",
+  "source_commit": "8d11e2a739a59d2ede82f4b600033bb001af9434",
+  "config_sha256": "be1df49d5ac03fb15acb4a1241d9412a23b4a25dff058327cf457b571ae99200",
+  "results": [
+    {
+      "dataset": "bmmc6224",
+      "batch": 128,
+      "seeds": 3,
+      "initial_rounded_loss": 0.16103965044021606,
+      "last_rounded_loss": 0.16060800181404544,
+      "loss_reduction_percent": 0.2680387252398229,
+      "solver_seconds": 376.85693820443703,
+      "completed_updates": 20000.0
+    },
+    {
+      "dataset": "bmmc6224",
+      "batch": 1024,
+      "seeds": 3,
+      "initial_rounded_loss": 0.16103965044021606,
+      "last_rounded_loss": 0.1590002553531808,
+      "loss_reduction_percent": 1.2663931407329818,
+      "solver_seconds": 907.8828984471038,
+      "completed_updates": 20000.0
+    },
+    {
+      "dataset": "bmmc6224",
+      "batch": 2048,
+      "seeds": 3,
+      "initial_rounded_loss": 0.16103965044021606,
+      "last_rounded_loss": 0.15867070903613195,
+      "loss_reduction_percent": 1.4710298970523117,
+      "solver_seconds": 1461.7111842841841,
+      "completed_updates": 20000.0
+    },
+    {
+      "dataset": "metric512_s1000",
+      "batch": 128,
+      "seeds": 3,
+      "initial_rounded_loss": 0.043883562088012695,
+      "last_rounded_loss": 0.043856520981646496,
+      "loss_reduction_percent": 0.06162012626041049,
+      "solver_seconds": 728.528925777151,
+      "completed_updates": 200000.0
+    },
+    {
+      "dataset": "metric512_s1000",
+      "batch": 1024,
+      "seeds": 3,
+      "initial_rounded_loss": 0.043883562088012695,
+      "last_rounded_loss": 4.5890026952100094e-05,
+      "loss_reduction_percent": 99.8954277529703,
+      "solver_seconds": 766.7779081554909,
+      "completed_updates": 200000.0
+    },
+    {
+      "dataset": "metric512_s1000",
+      "batch": 2048,
+      "seeds": 3,
+      "initial_rounded_loss": 0.043883562088012695,
+      "last_rounded_loss": 1.5312835494829535e-05,
+      "loss_reduction_percent": 99.96510575995606,
+      "solver_seconds": 757.4108020039275,
+      "completed_updates": 200000.0
+    }
+  ],
+  "long_campaign_counts": {
+    "completed": 44,
+    "not_started": 10
+  },
+  "interpretation": "Increasing batch substantially improves this one clean synthetic development instance at a fixed200000updates and all three seeds. Full BMMC improves modestly at fixed20000updates, with higher solver cost. No general or held-out method ranking.",
+  "active_monitoring": false,
+  "independent_verification": {
+    "status": "passed",
+    "runs": 18,
+    "checks": [
+      "Report and metadata SHA256 hashes",
+      "Frozen source and input hashes",
+      "Identical prefactors and schedule exponents across batches",
+      "Actual horizons and q*T oracle counts",
+      "All final FP64 losses and feasibility",
+      "Independent recomputation of reported medians and quartiles"
+    ],
+    "maximum_final_rounded_marginal_l1": 2.7667893923145025e-07
+  },
+  "figures": "reports/batch_size_20261008/figure_collection.json"
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "suite": {
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytest_summary": "25 passed, 3 subtests passed in 18.48s",
+  "command": ".venv/bin/python -m pytest -q extensions/batch_size_20261008 --junitxml=logs/batch_size_20261008/local_tests.xml",
+  "junit_sha256": "39851c5e4102b7bc06f50290fa87b7a1eca92cb6b5c49743e2b322b8faccb0f9",
+  "original_numerical_files_unchanged_from": "b46eb22",
+  "original_numerical_files_sha256": {
+    "extensions/published_stochastic_20261002/run_published.py": "7f923fda41636545de199f11ab9a832d1b1f79fe3db80b146c409ffeb494714b",
+    "extensions/shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "checks": [
+    "q128 original/adapter trajectory, four output hashes, counters and FP64 losses exactly match",
+    "Actual q1024/q2048 CPU runs have q*T probes and finite feasible FP64 endpoints",
+    "Controller rejects wrong counters, changed source/config, failed/stale gates and missing diagnostics",
+    "Reporter validates receipts, requires all seeds, records incomplete work and produces PDF/PNG",
+    "Slurm script bash syntax and submission/dependency integration reviewed",
+    "Frozen synthetic NPZ arrays exported unchanged with matching file hashes"
+  ],
+  "gpu_preflight": "To be submitted; production arrays require its success. No GPU validation result claimed yet."
+}

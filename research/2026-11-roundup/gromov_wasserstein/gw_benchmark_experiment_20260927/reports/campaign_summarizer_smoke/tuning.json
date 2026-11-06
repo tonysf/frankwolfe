@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "phase": "tuning",
+  "campaign_config_sha256": "67f23219be1c831c71e5692145ee3e678675ee28be7c656b77059400b598b76e",
+  "candidate_catalog": {
+    "smoothing-fw": [
+      {
+        "candidate_id": "c00"
+      }
+    ],
+    "full-kl": [
+      {
+        "candidate_id": "c00"
+      }
+    ],
+    "stochastic-kl": [
+      {
+        "candidate_id": "c00"
+      }
+    ],
+    "fw": [
+      {
+        "candidate_id": "c00"
+      }
+    ]
+  },
+  "runs": [
+    {
+      "run_id": "tuning/smoothing-fw/c00/toy16/s100_i200",
+      "method": "smoothing-fw",
+      "implementation": "smoothing-fw",
+      "candidate_id": "c00",
+      "config_id": "c00",
+      "instance": "toy16.npz",
+      "family": "synthetic",
+      "noise": 0.0,
+      "n": 16,
+      "problem_seed": 1000,
+      "seed": 100,
+      "init_seed": 200,
+      "initialization": "product",
+      "deterministic": false,
+      "budget": 0.03,
+      "checkpoints": [
+        0.01,
+        0.03
+      ],
+      "parameters": {
+        "oracle": "sketch",
+        "batch": 8,
+        "mu_scale": 1.0
+      },
+      "instance_sha256": "2a0d6c10d28c73457c3b2c92e4ba43c87aec7514cbd5c16ab88f9774b5c76a75",
+      "expected_array_sha256": {
+        "A": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+        "B": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5",
+        "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+        "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+      },
+      "product_loss_float64": 0.10070422110463129
+    },
+    {
+      "run_id": "tuning/full-kl/c00/toy16/s100_i200",
+      "method": "full-kl",
+      "implementation": "full-kl",
+      "candidate_id": "c00",
+      "config_id": "c00",
+      "instance": "toy16.npz",
+      "family": "synthetic",
+      "noise": 0.0,
+      "n": 16,
+      "problem_seed": 1000,
+      "seed": 100,
+      "init_seed": 200,
+      "initialization": "product",
+      "deterministic": true,
+      "budget": 0.03,
+      "checkpoints": [
+        0.01,
+        0.03
+      ],
+      "parameters": {
+        "eta": 0.1,
+        "inner_tol": 1e-09,
+        "inner_max": 1000
+      },
+      "instance_sha256": "2a0d6c10d28c73457c3b2c92e4ba43c87aec7514cbd5c16ab88f9774b5c76a75",
+      "expected_array_sha256": {
+        "A": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+        "B": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5",
+        "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+        "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+      },
+      "product_loss_float64": 0.10070422110463129
+    },
+    {
+      "run_id": "tuning/stochastic-kl/c00/toy16/s100_i200",
+      "method": "stochastic-kl",
+      "implementation": "stochastic-kl",
+      "candidate_id": "c00",
+      "config_id": "c00",
+      "instance": "toy16.npz",
+      "family": "synthetic",
+      "noise": 0.0,
+      "n": 16,
+      "problem_seed": 1000,
+      "seed": 100,
+      "init_seed": 200,
+      "initialization": "product",
+      "deterministic": false,
+      "budget": 0.03,
+      "checkpoints": [
+        0.01,
+        0.03
+      ],
+      "parameters": {
+        "oracle": "sketch",
+        "batch": 8,
+        "eta": 0.1,
+        "inner_tol": 1e-09,
+        "inner_max": 1000
+      },
+      "instance_sha256": "2a0d6c10d28c73457c3b2c92e4ba43c87aec7514cbd5c16ab88f9774b5c76a75",
+      "expected_array_sha256": {
+        "A": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+        "B": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5",
+        "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+        "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+      },
+      "product_loss_float64": 0.10070422110463129
+    },
+    {
+      "run_id": "tuning/fw/c00/toy16/s100_i200",
+      "method": "fw",
+      "implementation": "fw",
+      "candidate_id": "c00",
+      "config_id": "c00",
+      "instance": "toy16.npz",
+      "family": "synthetic",
+      "noise": 0.0,
+      "n": 16,
+      "problem_seed": 1000,
+      "seed": 100,
+      "init_seed": 200,
+      "initialization": "product",
+      "deterministic": true,
+      "budget": 0.03,
+      "checkpoints": [
+        0.01,
+        0.03
+      ],
+      "parameters": {},
+      "instance_sha256": "2a0d6c10d28c73457c3b2c92e4ba43c87aec7514cbd5c16ab88f9774b5c76a75",
+      "expected_array_sha256": {
+        "A": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+        "B": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5",
+        "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+        "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+      },
+      "product_loss_float64": 0.10070422110463129
+    }
+  ]
+}

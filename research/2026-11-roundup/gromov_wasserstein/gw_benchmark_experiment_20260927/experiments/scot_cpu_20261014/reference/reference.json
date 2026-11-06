@@ -1,0 +1,932 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "dataset": "SCOT_SNARE1047_human_cell_mixture",
+  "config": {
+    "k": 40,
+    "epsilon": 0.001,
+    "normalization": "row_l2",
+    "graph_mode": "connectivity",
+    "graph_metric": "correlation",
+    "include_self": true,
+    "shortest_path_directed": false,
+    "disconnected_policy": "replace infinities by finite graph diameter",
+    "distance_normalization": "each graph divided by its own finite diameter",
+    "threads": 1,
+    "dtype": "float64",
+    "objective": "full_squared_discrepancy_no_half_no_entropy"
+  },
+  "input_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/inputs",
+  "input_file_sha256": {
+    "SNAREseq_atac_feat.npy": "80d685b6517c100a7fd612846ad38209b64ed9caf095d1630af5a1d7797bd79c",
+    "SNAREseq_rna_feat.npy": "a8a2c2bbfc036dea5b350d01dd2180b93bb3b1c0008bed49493080348da96a9b",
+    "scotv1.py": "a492f39a67ffa62d8d7cc4b5048871d6cf228bf98b53a31d0e3049ab24db8008"
+  },
+  "source_urls": {
+    "scot": "https://github.com/rsinghlab/SCOT/blob/master/src/scotv1.py",
+    "tutorial": "https://ott-jax.readthedocs.io/tutorials/quadratic/200_gromov_wasserstein_multiomics.html"
+  },
+  "published_tutorial": {
+    "POT_loss": 0.016519975128479896,
+    "OTT_loss": 0.01785334522049412,
+    "POT_marginal_l1": 0.0013310870921931293,
+    "warning": "POT Sinkhorn did not converge; values are approximate outputs, not certified optima."
+  },
+  "environment": {
+    "python": "3.10.19",
+    "platform": "Linux-4.18.0-553.144.1.el8_10.x86_64-x86_64-with-glibc2.28",
+    "hostname": "node216",
+    "slurm_job_id": "2069001",
+    "threadpools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "/gpfs/workdir/silvetian/.conda/envs/fineweb/lib/python3.10/site-packages/numpy.libs/libscipy_openblas64_-56d6093b.so",
+        "version": "0.3.29",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/scipy.libs/libscipy_openblas-68440149.so",
+        "version": "0.3.28",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX"
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libgomp",
+        "filepath": "/gpfs/workdir/silvetian/.conda/envs/fineweb/lib/python3.10/site-packages/torch/lib/libgomp-a34b3233.so.1",
+        "version": null
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libgomp",
+        "filepath": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/pot.libs/libgomp-870cb1d0.so.1.0.0",
+        "version": null
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libgomp",
+        "filepath": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/python_deps/scikit_learn.libs/libgomp-a34b3233.so.1.0.0",
+        "version": null
+      }
+    ]
+  },
+  "generated_utc": "2026-10-14T10:36:06.987000+00:00",
+  "timing": {
+    "preparation_seconds": 2.121748479999951,
+    "initial_diagnostics_seconds": 0.21427744399989024,
+    "solver_seconds": 151.28313834201253,
+    "raw_diagnostics_seconds": 0.2981780999980401,
+    "repair_seconds": 0.011930555003345944,
+    "rounded_diagnostics_seconds": 0.21338937401014846,
+    "total_elapsed_seconds": 155.21897957699548
+  },
+  "warnings": [
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/lib/python3.10/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    }
+  ],
+  "source_file_sha256": {
+    "provenance/reference.py": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6",
+    "provenance/pot_entropic_module.py": "9312bcc4627ac58649a97e4db7e733a4a0b82e67645b18696e2ac88fcb0714f6",
+    "provenance/pot_sinkhorn_module.py": "671958232afa87b8908d183c935475746f3d02c34827e78354d7505200e2dab2",
+    "provenance/pot_gw_utils_module.py": "622c91958f38b55c63c7409b6f9c245d6cdd5b2e6ff61d4902634908347ded4b",
+    "provenance/scotv1.py": "a492f39a67ffa62d8d7cc4b5048871d6cf228bf98b53a31d0e3049ab24db8008"
+  },
+  "solver": {
+    "versions": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.5.2",
+      "POT": "0.9.6.post1",
+      "threadpoolctl": "3.5.0"
+    },
+    "entropic_gw_signature": "(C1, C2, p=None, q=None, loss_fun='square_loss', epsilon=0.1, symmetric=None, G0=None, max_iter=1000, tol=1e-09, solver='PGD', warmstart=False, verbose=False, log=False, **kwargs)",
+    "sinkhorn_signature": "(a, b, M, reg, method='sinkhorn', numItermax=1000, stopThr=1e-09, verbose=False, log=False, warn=True, warmstart=None, **kwargs)",
+    "effective_overrides": {
+      "loss_fun": "square_loss",
+      "epsilon": 0.001,
+      "log": true,
+      "verbose": false
+    },
+    "other_solver_parameters": "All omitted exactly as in released SCOT.find_correspondences; installed POT defaults apply.",
+    "initialization": "Uniform product a outer b, POT default G0=None; no randomization or self-tuning."
+  },
+  "prepared_instance": {
+    "directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/reference/prepared/scot1047",
+    "relative_directory": "prepared/scot1047",
+    "manifest_sha256": "9334c5d0b4040e40aabd8e14f1cbf039290ebed1d86cd96a5f4f6b458ec7165c",
+    "array_files_sha256": {
+      "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+      "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+      "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+      "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+    }
+  },
+  "initial": {
+    "loss": 0.07045975745627076,
+    "pot_actual_marginals_loss": 0.07045975745627797,
+    "independent_loss_absolute_difference": 7.216449660063518e-15,
+    "independent_loss_agrees": true,
+    "residuals": {
+      "row_l1": 2.2703193491846463e-16,
+      "col_l1": 2.361132123152032e-14,
+      "row_l2": 7.016388202803306e-18,
+      "col_l2": 7.297043730915438e-16,
+      "both_l1": 2.3838353166438786e-14,
+      "mass": 1.0000000000000024,
+      "mass_error": 2.220446049250313e-15,
+      "min_entry": 9.122348019401409e-07,
+      "max_entry": 9.122348019401409e-07
+    }
+  },
+  "raw_plan_sha256": "362f84c802a2af55f2b3a2ae232550014f693d2ce3e5474bbedb74f176273d34",
+  "raw": {
+    "loss": 0.01653712735217605,
+    "pot_actual_marginals_loss": 0.016537127352175673,
+    "independent_loss_absolute_difference": 3.7816971776294395e-16,
+    "independent_loss_agrees": true,
+    "residuals": {
+      "row_l1": 1.4474099002681484e-16,
+      "col_l1": 0.0013310870921930834,
+      "row_l2": 5.982792239626799e-18,
+      "col_l2": 4.5306401336038705e-05,
+      "both_l1": 0.0013310870921932282,
+      "mass": 0.9999999999999999,
+      "mass_error": 3.3306690738754696e-16,
+      "min_entry": 4.966085422299288e-188,
+      "max_entry": 0.0008904028616766098
+    }
+  },
+  "author_output": {
+    "gw_dist": 0.016519975128479886,
+    "basic_numerical_flag": true,
+    "independent_fixed_marginal_expression": 0.016519975128480247,
+    "fixed_expression_absolute_difference": 3.608224830031759e-16,
+    "actual_full_loss_minus_author_log": 1.7152223696165203e-05
+  },
+  "rounded": {
+    "loss": 0.016667597001530532,
+    "pot_actual_marginals_loss": 0.01666759700153049,
+    "independent_loss_absolute_difference": 4.163336342344337e-17,
+    "independent_loss_agrees": true,
+    "residuals": {
+      "row_l1": 2.306098020876668e-16,
+      "col_l1": 4.124305064134859e-16,
+      "row_l2": 1.0145838570641054e-17,
+      "col_l2": 1.7170832626091436e-17,
+      "both_l1": 6.430403085011527e-16,
+      "mass": 1.0000000000000004,
+      "mass_error": 2.220446049250313e-16,
+      "min_entry": 4.95748342040684e-188,
+      "max_entry": 0.0008904028785952016
+    }
+  },
+  "repair_entrywise_l1": 0.001331087092193155,
+  "rounded_plan_sha256": "87de7062ad0493a7b618be2fcfa224c6c53d4863ba07fbea288d19ee5ca5f6f0",
+  "gate": {
+    "passed": true,
+    "checks": {
+      "losses_finite": true,
+      "initial_product_matches_frozen_preprocessing": true,
+      "independent_full_objectives_agree": true,
+      "author_log_matches_its_fixed_marginal_expression": true,
+      "author_basic_numerical_flag": true,
+      "rounded_feasible": true,
+      "rounded_nonnegative": true,
+      "rounded_loss_below_reproduction_threshold": true,
+      "author_logged_loss_within_published_reference_tolerance": true
+    },
+    "rounded_loss_threshold": 0.025,
+    "published_author_logged_loss_reference": 0.016519975128479896,
+    "published_absolute_tolerance": 0.005,
+    "feasibility_both_l1_tolerance": 1e-12,
+    "interpretation": "Prospective reference reproduction check, not a certified optimum or a stochastic production loss gate. The published POT loss and reproduced author log both use the prescribed-marginal expression; they are compared with an explicit 0.005 tolerance. Actual-marginal raw and repaired full losses are reported separately; the repaired loss must independently be at most 0.025."
+  },
+  "cpu_process_peak_rss_kib": 591028,
+  "interpretation": "Original SCOT/POT settings, installed library defaults recorded; raw and output-only repaired GW costs are independently evaluated in float64. No tightened alternate solve or optimizer selection."
+}

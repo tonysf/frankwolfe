@@ -1,0 +1,154 @@
+{
+  "archive_validation": {
+    "data_instance_sha256": "cb38426c6582f43ca74030d7d3bff6f29eb4a1ca81e5dc1a6d0161f3a4157819",
+    "method_gate": {
+      "frames": {
+        "component_passes": {
+          "normalized_tp_violation": true,
+          "process_fidelity": true,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.00016644266424822144,
+          "process_fidelity": 0.9999999898769049,
+          "rmse": 1.786084389120764e-05
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      },
+      "printed-adafgd": {
+        "component_passes": {
+          "normalized_tp_violation": true,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.00030021790940895784,
+          "process_fidelity": 0.22074689471444153,
+          "rmse": 0.0397744149028876
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      }
+    },
+    "method_statuses": {
+      "frames": "complete",
+      "printed-adafgd": "complete"
+    },
+    "nonfinite_arrays_retained_only_for_failed_methods": [],
+    "paired_instance_sha256": "901fa572880cd8ff7d6b3c891b50d0256d03c7b7a272da1ac4ffd015abb11707"
+  },
+  "artifacts": {
+    "pair.json": {
+      "bytes": 29413,
+      "sha256": "63254bd32c74d2db010f110ee222797c02032d24e2a7fd51f7de6b1284a54f87"
+    },
+    "pair.npz": {
+      "bytes": 1779699,
+      "sha256": "6182cc098e6e1fa603952fed1a1c8ba4c39c75e44c9a86843dee47edeaf1148c"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "command": [
+    "/gpfs/users/silvetian/.conda/envs/qpt/bin/python",
+    "-m",
+    "paper.experiments.qpt_quiroga_direct_comparison",
+    "--n-qubits",
+    "2",
+    "--row-epochs",
+    "10000",
+    "--checkpoint-epochs",
+    "100",
+    "--printed-tp-weight-per-row",
+    "0.5",
+    "--frames-initial-tp-weight-per-row",
+    "5e-05",
+    "--frames-penalty-exponent",
+    "0.25",
+    "--eta-scale",
+    "0.01",
+    "--rank",
+    "1",
+    "--tau",
+    "2",
+    "--batch-size",
+    "32",
+    "--subset-size",
+    "0",
+    "--subset-seed",
+    "400107",
+    "--channel-seed",
+    "107",
+    "--initialization-seed",
+    "201070",
+    "--sampling-seed",
+    "310701",
+    "--observation-mode",
+    "noiseless",
+    "--noise-std",
+    "0",
+    "--noise-seed",
+    "0",
+    "--shot-seed",
+    "0",
+    "--spectral-norm-method",
+    "dense",
+    "--dense-max-process-dimension",
+    "1024",
+    "--spectral-norm-tolerance",
+    "1e-10",
+    "--gate-name",
+    "noiseless_recovery_v1",
+    "--gate-fidelity-min",
+    "0.99",
+    "--gate-rmse-max",
+    "1e-06",
+    "--gate-normalized-tp-max",
+    "0.001",
+    "--selection-manifest-sha256",
+    "fa9b5d5287f260296d7ee8fa292f303b389494fe6413d897bd6c60afa06d4178",
+    "--printed-config-id",
+    "n2f-q-a5em1-e1em2-v1",
+    "--frames-config-id",
+    "n2f-f-a5em5-p025-v1",
+    "--cohort-id",
+    "n2-full-validation-n2f-q-a5em1-e1em2-v1__n2f-f-a5em5-p025-v1-c7a8c97-fa9b5d5287f2",
+    "--trial-id",
+    "qpt-val-n2f-c107-i0-s1-20261005-2136",
+    "--split",
+    "validation",
+    "--expected-commit",
+    "c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+    "--save",
+    "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_c7a8c9789b7814ede1c95e53eef13bfe1dd58c63_20261005_02/validation-2014377/channel-107/qpt-val-n2f-c107-i0-s1-20261005-2136/pair.npz",
+    "--rho-exponent",
+    "0.6",
+    "--rho-offset",
+    "4",
+    "--rho-scale",
+    "2",
+    "--step-exponent",
+    "1",
+    "--step-offset",
+    "2",
+    "--step-scale",
+    "2",
+    "--require-clean",
+    "--quiet",
+    "--fail-on-method-failure"
+  ],
+  "finished_utc": "2026-10-05T20:07:44.343602+00:00",
+  "runner_exit_code": 0,
+  "started_utc": "2026-10-05T20:07:12.805922+00:00",
+  "status": "complete",
+  "trial_id": "qpt-val-n2f-c107-i0-s1-20261005-2136"
+}

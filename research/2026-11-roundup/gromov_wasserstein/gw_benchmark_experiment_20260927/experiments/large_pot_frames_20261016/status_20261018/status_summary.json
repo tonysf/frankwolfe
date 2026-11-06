@@ -1,0 +1,111 @@
+{
+  "checked_utc": "2026-10-18T16:12:43.216183+00:00",
+  "report_generated_utc": "2026-10-18T11:30:14.946863+00:00",
+  "report_sha256": "69ab68d8b0eab0be4c589d4ac95d46c21d8d97d0f1ca7c87f75b25c22f6476e9",
+  "metric": "Feasible unregularized GW loss; stochastic results use median of three confirmation seeds",
+  "datasets": {
+    "bmmc6224": {
+      "status": "completed",
+      "runs": 55,
+      "methods": {
+        "pot-full": {
+          "iterations": 2000,
+          "seeds": 1,
+          "initial_loss": 0.1610398659783734,
+          "median_final_loss": 0.1451625462999262,
+          "loss_reduction_percent": 9.859247945834362
+        },
+        "pot-pair": {
+          "iterations": 2000,
+          "seeds": 3,
+          "initial_loss": 0.1610398659783734,
+          "median_final_loss": 0.1447627677716432,
+          "loss_reduction_percent": 10.107496120815256
+        },
+        "frames": {
+          "iterations": 20000,
+          "seeds": 3,
+          "initial_loss": 0.1610398659783734,
+          "median_final_loss": 0.14556595332899003,
+          "loss_reduction_percent": 9.608746601578398,
+          "loss_reduction_at_2000_percent": 7.836914960331299
+        }
+      },
+      "selected_prefactors": {
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 1.0
+      }
+    },
+    "snare_full": {
+      "status": "completed",
+      "runs": 55,
+      "methods": {
+        "pot-full": {
+          "iterations": 2000,
+          "seeds": 1,
+          "initial_loss": 0.09407247358339316,
+          "median_final_loss": 0.0843443317702176,
+          "loss_reduction_percent": 10.341114082167477
+        },
+        "pot-pair": {
+          "iterations": 2000,
+          "seeds": 3,
+          "initial_loss": 0.09407247358339316,
+          "median_final_loss": 0.08509396353317678,
+          "loss_reduction_percent": 9.544247863597562
+        },
+        "frames": {
+          "iterations": 20000,
+          "seeds": 3,
+          "initial_loss": 0.09407247358339316,
+          "median_final_loss": 0.08368684832898499,
+          "loss_reduction_percent": 11.040025693808875,
+          "loss_reduction_at_2000_percent": 9.101693828959803
+        }
+      },
+      "selected_prefactors": {
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 0.1
+      }
+    }
+  },
+  "shareseq_full": {
+    "status": "requeued_after_initialization_failure",
+    "completed_production_runs": 0,
+    "recovery": {
+      "classification": "CUDA device initialization failure before any numerical work",
+      "command": [
+        "sbatch",
+        "--hold",
+        "--exclude=ruche-gpu13,ruche-gpu15,ruche-gpu16,ruche-gpu19",
+        "--parsable",
+        "--job-name=gwlarge_production_shareseq_full",
+        "--output=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/scheduler/gwlarge_production_shareseq_full-%j.out",
+        "--kill-on-invalid-dep=yes",
+        "--gres=gpu:4",
+        "--cpus-per-task=8",
+        "--mem=128G",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/source/extensions/large_pot_frames_20261016/gpu.sbatch",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/source",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4",
+        "production",
+        "shareseq_full",
+        "4"
+      ],
+      "completed_updates": 0,
+      "dispatcher_job": "2082904",
+      "exclusion_scope": "Avoid gpu15 on this retry only; automatic later allocations retain the original exclusions.",
+      "failed_log_sha256": "ef1a9ff528bedcec6760ce9093f5dba821eadd5cf8537f50096925b953371a67",
+      "numerical_source_unchanged": true,
+      "prior_dispatch": "2074314",
+      "prior_production": "2074313",
+      "production_job": "2082903",
+      "recovery_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/recovery/20261018_cuda_initialization",
+      "released_utc": "2026-10-18T16:11:49.939271+00:00",
+      "status": "released",
+      "time": "2026-10-18T16:11:49.723917+00:00"
+    }
+  }
+}

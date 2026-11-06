@@ -1,0 +1,51 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=17mm,top=15mm,bottom=16mm]{geometry}
+\usepackage{amsmath,amssymb,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Stochastic FraMES for Gromov-Wasserstein matching},
+  pdfsubject={One-page problem description},pdfauthor={}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{3pt}
+\setlength{\belowdisplayshortskip}{4pt}
+\newcommand{\one}{\mathbf{1}}
+\begin{document}
+{\fontsize{15}{18}\selectfont\bfseries Stochastic FraMES for Gromov--Wasserstein matching\par}
+\vspace{2pt}
+{\small A problem description for readers familiar with FraMES\par}
+\vspace{5pt}
+
+We study whether \textbf{stochastic FraMES can efficiently solve large Gromov--Wasserstein (GW) matching problems}. GW matches two datasets using their internal geometry, making it useful when their features cannot be compared directly. For example, one dataset may describe cells through gene expression and another through chromatin accessibility. We seek a correspondence that preserves relationships between cells across these different measurements.
+
+Let $A_{ik}$ denote the distance between objects $i,k$ in the first dataset and $B_{j\ell}$ the distance between objects $j,\ell$ in the second. A nonnegative matrix $P\in\mathbb{R}^{n\times m}$ represents a soft matching: $P_{ij}$ is the mass assigned between objects $i$ and $j$. Given probability weights $a,b$, balanced GW solves
+\[
+  \min_{\substack{P\geq 0\\P\one_m=a,\;P^\top\one_n=b}} f(P),
+  \qquad
+  f(P)=\sum_{i,k=1}^{n}\sum_{j,\ell=1}^{m}
+           (A_{ik}-B_{j\ell})^2P_{ij}P_{k\ell}.
+\]
+The objective penalizes two simultaneous matches whose within-dataset distances disagree. The marginal constraints ensure that every object contributes its prescribed mass. We use uniform weights and fixed distance matrices. This is a \textbf{smooth, generally nonconvex quadratic problem over a convex transport polytope}.
+
+For FraMES, the key construction is the constraint splitting
+\[
+ C=\{P\geq0:P\one_m=a\},\qquad T(P)=P^\top\one_n,\qquad D=\{b\}.
+\]
+The row constraints remain exact, while the column constraints enter through the Moreau envelope of the indicator of $D$. Projection onto $D$ simply returns $b$. If $d_k$ is the momentum estimate of $\nabla f(P_k)$, the smoothed objective and the direction supplied to the linear minimization oracle are
+\[
+ f_\mu(P)=f(P)+\frac{\|P^\top\one_n-b\|_2^2}{2\mu},
+ \qquad
+ H_k=d_k+\frac{\one_n(P_k^\top\one_n-b)^\top}{\mu_k}.
+\]
+The oracle is particularly simple: independently in each row $i$, place all mass $a_i$ in a column minimizing $(H_k)_{ij}$. A Frank--Wolfe convex-combination update preserves nonnegativity and the row masses. Each outer iteration therefore avoids solving a complete transport subproblem. Column feasibility is approached as smoothing decreases; it need not hold at intermediate iterates. The full quadratic $f(P)$ must consequently be evaluated using the actual marginals of $P$.
+
+The two computational challenges are evaluating the GW gradient and enforcing both marginals. We address the first with fresh random sketches using \textbf{128 independent random-sign vectors per iteration}. They give an unbiased gradient estimate of the fixed, full GW objective. The sketch size controls work and variance; it imposes \textbf{no rank restriction on $P$}. Stochastic FraMES combines the estimates through momentum, using the theory's step, momentum and smoothing exponents $3/4$, $1/2$ and $1/4$, respectively, with tunable prefactors.
+
+The largest prepared instance contains \textbf{31,890 cells per view}: approximately \textbf{1.017 billion coupling entries}, distributed across four A100 GPUs. At this scale, the cost of constraint handling is consequential. Our comparator is \textbf{stochastic entropic mirror descent} (\href{https://proceedings.mlr.press/v238/fatkhullin24a.html}{Fatkhullin--He, 2024}), using fresh gradient estimates and a Sinkhorn solve of its KL-proximal subproblem. Both methods optimize the same unregularized GW objective; the KL term belongs to the update, not the objective being compared.
+
+The experimental question is whether FraMES' inexpensive iterations yield better \textbf{feasible GW loss for a given computational budget}. Its raw iterates can violate column constraints, so their loss alone cannot settle this question: outputs must be repaired to satisfy both marginals, and repair time must be counted. Feasibility and stationarity are assessed separately. Neither a low GW loss nor a stationarity guarantee establishes a globally optimal or biologically correct matching.
+\end{document}

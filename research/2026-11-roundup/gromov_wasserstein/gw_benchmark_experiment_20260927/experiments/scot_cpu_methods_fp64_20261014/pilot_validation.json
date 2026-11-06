@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "created_utc": "2026-10-14T12:34:08.178098+00:00",
+  "scope": "Independent validation of completed 200-update FP64 CPU pilots only; no optimization or repair performed.",
+  "validator_sha256": "d17d21b424fda42044933720338ef81d1b8320c8e93f78fe00477d62a74d0eca",
+  "validator_path": "/tmp/scot_pilot_validation_20261014.py",
+  "environment": {
+    "hostname": "elite",
+    "numpy": "2.4.6",
+    "pot": "0.9.7.post1",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "effective_threadpools": null,
+    "effective_threadpool_audit": "Unavailable; all relevant BLAS/OpenMP environment variables set before imports."
+  },
+  "acceptance": {
+    "saved_rounded_combined_marginal_l1": 2.220446049250313e-14,
+    "inner_marginal_l1": 1e-07,
+    "inner_guarded_normalized_gap": 1e-07,
+    "independent_objective_absolute_tolerance": 1e-11
+  },
+  "runs": {
+    "pilot_smd": {
+      "status": "passed",
+      "method": "published-smd",
+      "metadata_sha256": "f0b6c3cf959990890a04a8d1764c9a3708367891d60a17ed7adac64bd0417629",
+      "rank_metadata_sha256": "3576cf4451e1a53e7c9246d96da3332acbcf3090adf5b1fee4fe272636cd4479",
+      "configuration": {
+        "iterations": 200,
+        "seed": 809,
+        "output_seed": 20809,
+        "init_seed": 10809,
+        "dtype": "float64",
+        "device": "cpu",
+        "initialization": "product",
+        "oracle": "pair-sampling",
+        "pairs_per_call": 1024,
+        "inner_tol": 1e-07,
+        "inner_gap_tol": 1e-07,
+        "inner_max": 10000,
+        "check_every": 10
+      },
+      "source_file_sha256": {
+        "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+        "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+        "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+        "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+        "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+        "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+        "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+        "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "counters": {
+        "certificate_checks": 200,
+        "completed_updates": 200,
+        "exact_diagnostic_loss_calls": 16,
+        "initialization_oracle_calls": 0,
+        "inner_iterations_total": 2000,
+        "inner_stopping_failures": 0,
+        "pair_samples": 204800,
+        "sketch_probes": 0,
+        "stochastic_gradient_calls": 200,
+        "underflow_entries_total": 0,
+        "underflow_steps": 0
+      },
+      "accepted_inner_solves": 200,
+      "inner_certificate_maxima": {
+        "marginal_l1": 1.0726012092399095e-15,
+        "normalized_primal_dual_gap": 1.4516166046973922e-14,
+        "normalized_gap_upper_bound": 6.440047845964284e-12,
+        "primal_witness_marginal_l1": 1.2620113287731272e-16
+      },
+      "all_schedule_rows_validated": 200,
+      "output_index": 153,
+      "output_probability": 0.003000168447081375,
+      "theorem_constants": {
+        "cmax": 1.0,
+        "prefactor_fraction": 1.0
+      },
+      "plans": {
+        "selected_raw": {
+          "loss": 0.0701888153634399,
+          "pot_actual_marginal_loss": 0.07018881536343986,
+          "numpy_pot_absolute_difference": 4.163336342344337e-17,
+          "marginal_l1": 1.3297739645534712e-15,
+          "mass": 0.9999999999999999,
+          "minimum_entry": 6.682112772549585e-07,
+          "file_sha256": "34dae86c51a5e077eee26d1303f0065731396f22ff2dfde6d6fc9612edda85f1",
+          "array_sha256": "fb7f856e9e0cc65eee0362654fa9f6b786830abf841e2e7e3c775f6831891ac3",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07018881536343913,
+          "recorded_loss_absolute_difference": 7.771561172376096e-16
+        },
+        "selected_rounded": {
+          "loss": 0.0701888153634398,
+          "pot_actual_marginal_loss": 0.07018881536343986,
+          "numpy_pot_absolute_difference": 6.938893903907228e-17,
+          "marginal_l1": 6.757832141102149e-16,
+          "mass": 0.9999999999999999,
+          "minimum_entry": 6.682112772549607e-07,
+          "file_sha256": "329f3e89083ec11acc773682ee9f9b0cab3b48821a05d80eab063917a0c78900",
+          "array_sha256": "2ece242dba99fbfe7fe8a88c9b030bcac907232a7243ffaa655078f35956409c",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07018881536343896,
+          "recorded_loss_absolute_difference": 8.326672684688674e-16
+        },
+        "last_raw": {
+          "loss": 0.07014736551261225,
+          "pot_actual_marginal_loss": 0.0701473655126123,
+          "numpy_pot_absolute_difference": 5.551115123125783e-17,
+          "marginal_l1": 1.341374927799066e-15,
+          "mass": 0.9999999999999998,
+          "minimum_entry": 6.358645462747055e-07,
+          "file_sha256": "a5a125be20bbb58745576df3a83e6aab68581cbe0887d7f8c58c5954034a9f1e",
+          "array_sha256": "e1ca382592decb24b655e309c7991319ef6829c95ce1af4b3dd17db9dca000b5",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07014736551261147,
+          "recorded_loss_absolute_difference": 7.771561172376096e-16
+        },
+        "last_rounded": {
+          "loss": 0.07014736551261247,
+          "pot_actual_marginal_loss": 0.07014736551261232,
+          "numpy_pot_absolute_difference": 1.5265566588595902e-16,
+          "marginal_l1": 6.783852993241801e-16,
+          "mass": 0.9999999999999999,
+          "minimum_entry": 6.358645462747061e-07,
+          "file_sha256": "6c1e42db0310cd1a59d707abc5564d44c4b3dc1ff9c755637dcab94d81a9f008",
+          "array_sha256": "331f98e3073c54114a39ece3fcd66292d092387dc1e347aeb159d0ce4e5e606f",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07014736551261147,
+          "recorded_loss_absolute_difference": 9.992007221626409e-16
+        }
+      },
+      "terminal_reduction_percent": 0.44336221828633615,
+      "theorem_scope": "Numerical finite-proximal-tolerance implementation; no exact outer convergence or last-iterate guarantee asserted."
+    },
+    "pilot_msbpg": {
+      "status": "passed",
+      "method": "published-msbpg",
+      "metadata_sha256": "7326952c337088cf8be8234df46e0b9abe0b2c178e0d2682ba3753a4e35baab7",
+      "rank_metadata_sha256": "d6f99ec86c0228a7eca05fba4dd11d4ad51e5dce9816b9434a3e4e2b2071ddd4",
+      "configuration": {
+        "iterations": 200,
+        "seed": 809,
+        "output_seed": 20809,
+        "init_seed": 10809,
+        "dtype": "float64",
+        "device": "cpu",
+        "initialization": "product",
+        "oracle": "pair-sampling",
+        "pairs_per_call": 1024,
+        "inner_tol": 1e-07,
+        "inner_gap_tol": 1e-07,
+        "inner_max": 10000,
+        "check_every": 10
+      },
+      "source_file_sha256": {
+        "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+        "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+        "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+        "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+        "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+        "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+        "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+        "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "counters": {
+        "certificate_checks": 200,
+        "completed_updates": 200,
+        "exact_diagnostic_loss_calls": 16,
+        "initialization_oracle_calls": 1,
+        "inner_iterations_total": 2000,
+        "inner_stopping_failures": 0,
+        "pair_samples": 204800,
+        "sketch_probes": 0,
+        "stochastic_gradient_calls": 200,
+        "underflow_entries_total": 0,
+        "underflow_steps": 0
+      },
+      "accepted_inner_solves": 200,
+      "inner_certificate_maxima": {
+        "marginal_l1": 1.0633854907737827e-15,
+        "normalized_primal_dual_gap": 5.551115123125783e-17,
+        "normalized_gap_upper_bound": 1.8550402030013356e-11,
+        "primal_witness_marginal_l1": 1.249000902703301e-16
+      },
+      "all_schedule_rows_validated": 200,
+      "output_index": 153,
+      "output_probability": 0.003000168447081375,
+      "theorem_constants": {
+        "bound_arithmetic_scope": "Conservative FP64 guard, not a formal interval certificate",
+        "coupling_c_max": 1.2706035914181918e-06,
+        "exact_loaded_distance_symmetry_verified": true,
+        "feasible_divergence": "D_phi(Q,P)=M*KL(Q||P)",
+        "hessian_bound": 278256.25000685937,
+        "hessian_bound_input_dtype": "torch.float64",
+        "hessian_bound_method": "2*max_ij(m*sum_k A_ik^2+n*sum_l B_jl^2-2*sum_k A_ik*sum_l B_jl)",
+        "hessian_bound_zero_objective_convention": false,
+        "hessian_fp64_absolute_guard": 6.859316735522502e-06,
+        "hessian_fp64_guard_gamma": 1.866951038213149e-12,
+        "hessian_statistics_dtype": "torch.float64",
+        "kappa": 154853081335.75964,
+        "kernel": "phi=M*sum(psi_M), entropy up to M and quadratic tail with curvature 1/M",
+        "kernel_scale": 0.0009551098376313276,
+        "maximum_feasible_entry": 0.0009551098376313276,
+        "mu": 1.0,
+        "norm": "Frobenius",
+        "parameter_scope": "Constants apply to the distance and marginal values loaded by the optimizer",
+        "raw_hessian_bound": 278256.25,
+        "relative_smoothness": 278256.25000685937
+      },
+      "plans": {
+        "selected_raw": {
+          "loss": 0.07045834761210934,
+          "pot_actual_marginal_loss": 0.07045834761210931,
+          "numpy_pot_absolute_difference": 2.7755575615628914e-17,
+          "marginal_l1": 1.3029941708930792e-15,
+          "mass": 0.9999999999999998,
+          "minimum_entry": 9.107844367492329e-07,
+          "file_sha256": "e1b949d05eb9b1fcac3ace6d826a7e9213411c34e5dfb3490572049ec637ac71",
+          "array_sha256": "5ac42ffdd82b9c09d1bc66bc225f49c59c1badd9731eaba9808217e0384fdaec",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07045834761210856,
+          "recorded_loss_absolute_difference": 7.771561172376096e-16
+        },
+        "selected_rounded": {
+          "loss": 0.07045834761210923,
+          "pot_actual_marginal_loss": 0.07045834761210928,
+          "numpy_pot_absolute_difference": 5.551115123125783e-17,
+          "marginal_l1": 6.805537036691511e-16,
+          "mass": 1.0,
+          "minimum_entry": 9.107844367492336e-07,
+          "file_sha256": "14af35b8a06e1dcf01d8c9b74c1b4af0efc3f23ad24b77027b301a70b5908f9f",
+          "array_sha256": "164715f4eea4dddf810c28db4bb8c859d9b86c2482363fdf55ea191b9ed819b9",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07045834761210845,
+          "recorded_loss_absolute_difference": 7.771561172376096e-16
+        },
+        "last_raw": {
+          "loss": 0.07045812936516138,
+          "pot_actual_marginal_loss": 0.07045812936516135,
+          "numpy_pot_absolute_difference": 2.7755575615628914e-17,
+          "marginal_l1": 1.3881040414331913e-15,
+          "mass": 0.9999999999999999,
+          "minimum_entry": 9.105650035624762e-07,
+          "file_sha256": "937ed6aec8c2a9af6a90ef14c309137accb05ab0062f0ae593fc1aa16995e01b",
+          "array_sha256": "12f7c47929ae47f2ec9d426d43150d21fbad1e19e1ed3011c804263f580cb262",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.0704581293651606,
+          "recorded_loss_absolute_difference": 7.771561172376096e-16
+        },
+        "last_rounded": {
+          "loss": 0.07045812936516127,
+          "pot_actual_marginal_loss": 0.07045812936516135,
+          "numpy_pot_absolute_difference": 8.326672684688674e-17,
+          "marginal_l1": 6.797947621484113e-16,
+          "mass": 1.0,
+          "minimum_entry": 9.105650035624763e-07,
+          "file_sha256": "bc285b6dea63ed25d97b9ccc01a7bcf19ed3e9a271c5ee8a4657ee8852f3fac7",
+          "array_sha256": "45f7e1f118d6026a384a5fedb450e3a34c07df2264e9a654c89510bfb9d86884",
+          "dtype": "float64",
+          "shape": [
+            1047,
+            1047
+          ],
+          "recorded_loss": 0.07045812936516055,
+          "recorded_loss_absolute_difference": 7.216449660063518e-16
+        }
+      },
+      "terminal_reduction_percent": 0.002310668056859644,
+      "theorem_scope": "Numerical finite-proximal-tolerance implementation; no exact outer convergence or last-iterate guarantee asserted."
+    }
+  },
+  "failures": [],
+  "manifest_sha256": "9334c5d0b4040e40aabd8e14f1cbf039290ebed1d86cd96a5f4f6b458ec7165c",
+  "array_files_sha256": {
+    "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+    "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+    "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+    "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+  },
+  "initial": {
+    "loss": 0.07045975745626976,
+    "pot_actual_marginal_loss": 0.07045975745627703,
+    "numpy_pot_absolute_difference": 7.271960811294775e-15,
+    "marginal_l1": 2.3838353166438786e-14,
+    "mass": 1.0,
+    "minimum_entry": 9.122348019401409e-07,
+    "array_sha256": "54b2754b9ead964618c5bba33f44179d7572d0b8ee632de423a07df4b22954e3"
+  },
+  "finished_utc": "2026-10-14T12:34:19.796700+00:00"
+}

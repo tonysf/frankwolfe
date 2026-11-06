@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "campaign_config_sha256": "67f23219be1c831c71e5692145ee3e678675ee28be7c656b77059400b598b76e",
+  "tuning_manifest_sha256": "0cdfc9e488cd5fb8e5fe0c42863b02fa2a3e9e36e94a27e48945def8b1cab226",
+  "selections": {
+    "smoothing-fw": {
+      "status": "selected",
+      "candidate_id": "c00",
+      "score": 0.9969433013920426,
+      "eligible_candidate_count": 1,
+      "rule": "flat median over prescribed normalized final losses; any invalid/missing run disqualifies candidate; exact-score ties use lexicographic candidate ID"
+    },
+    "full-kl": {
+      "status": "selected",
+      "candidate_id": "c00",
+      "score": 0.9991345971604826,
+      "eligible_candidate_count": 1,
+      "rule": "flat median over prescribed normalized final losses; any invalid/missing run disqualifies candidate; exact-score ties use lexicographic candidate ID"
+    },
+    "stochastic-kl": {
+      "status": "selected",
+      "candidate_id": "c00",
+      "score": 0.9986302948142488,
+      "eligible_candidate_count": 1,
+      "rule": "flat median over prescribed normalized final losses; any invalid/missing run disqualifies candidate; exact-score ties use lexicographic candidate ID"
+    },
+    "fw": {
+      "status": "selected",
+      "candidate_id": "c00",
+      "score": 0.0,
+      "eligible_candidate_count": 1,
+      "rule": "flat median over prescribed normalized final losses; any invalid/missing run disqualifies candidate; exact-score ties use lexicographic candidate ID"
+    }
+  },
+  "candidate_scores": [
+    {
+      "method": "full-kl",
+      "candidate_id": "c00",
+      "eligible": true,
+      "score": 0.9991345971604826,
+      "prescribed_runs": 1,
+      "valid_runs": 1,
+      "disqualifying_run_ids": [],
+      "warning_count": 0,
+      "inner_stopping_failures": 0
+    },
+    {
+      "method": "fw",
+      "candidate_id": "c00",
+      "eligible": true,
+      "score": 0.0,
+      "prescribed_runs": 1,
+      "valid_runs": 1,
+      "disqualifying_run_ids": [],
+      "warning_count": 0,
+      "inner_stopping_failures": 0
+    },
+    {
+      "method": "smoothing-fw",
+      "candidate_id": "c00",
+      "eligible": true,
+      "score": 0.9969433013920426,
+      "prescribed_runs": 1,
+      "valid_runs": 1,
+      "disqualifying_run_ids": [],
+      "warning_count": 0,
+      "inner_stopping_failures": 0
+    },
+    {
+      "method": "stochastic-kl",
+      "candidate_id": "c00",
+      "eligible": true,
+      "score": 0.9986302948142488,
+      "prescribed_runs": 1,
+      "valid_runs": 1,
+      "disqualifying_run_ids": [],
+      "warning_count": 0,
+      "inner_stopping_failures": 0
+    }
+  ],
+  "created_utc": "2026-09-27T19:08:43.272057+00:00",
+  "selection_source": "tuning phase only; actual final rounded plans evaluated in float64",
+  "failed_run_penalty": "+inf; whole candidate ineligible",
+  "warnings_policy": "completed_with_inner_failures and completed_with_warnings remain eligible when the final plan is valid",
+  "no_valid_setting_policy": "blocked dependent work; no fallback candidate"
+}

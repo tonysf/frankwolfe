@@ -9,6 +9,10 @@ same rows, observations and initial factor:
   the summed penalized objective; and
 * ``frames`` calls the structured stochastic-FRAMES adapter.
 
+The explicitly requested ``exact-linesearch-fgd`` is an experimental fourth
+choice, not part of these defaults and not Quiroga's published adaptive rule.
+It minimizes the same fixed-penalty objective along each positive factor ray.
+
 The common objective used for reporting is
 
     0.5 * sum_s (A(U U^H)_s - f_s)^2 + lambda * ||Tr_out(U U^H) - I||_F^2.
@@ -40,6 +44,11 @@ from .qpt_quiroga_frames import (
     quiroga_adafgd_step,
     run_quiroga_sensing_stochastic_frames,
 )
+from .qpt_quiroga_initialization import (
+    INITIALIZATION_BASES,
+    gell_mann_coefficients_to_choi,
+    initialization_descriptor,
+)
 from .qpt_quiroga_sensing import (
     QuirogaSensingData,
     generate_quiroga_sensing_data,
@@ -58,6 +67,8 @@ from .quantum_process_tomography import (
 SCHEMA_VERSION = 1
 FORMAT = "qpt_quiroga_campaign"
 METHODS = ("printed-adafgd", "armijo-fgd", "frames")
+EXPERIMENTAL_METHODS = ("exact-linesearch-fgd",)
+ALL_METHODS = METHODS + EXPERIMENTAL_METHODS
 COMMON_METRICS = (
     "measurement_loss_sum",
     "measurement_loss_mean",
@@ -90,6 +101,15 @@ def _positive_integer(value, name):
     if isinstance(value, (bool, np.bool_)) or not isinstance(value, (int, np.integer)) or value <= 0:
         raise ValueError(f"{name} must be a positive integer.")
     return int(value)
+
+
+def _finite_nonnegative(value, name):
+    if isinstance(value, (bool, np.bool_)) or not np.isscalar(value):
+        raise ValueError(f"{name} must be a nonnegative finite number.")
+    value = float(value)
+    if not math.isfinite(value) or value < 0:
+        raise ValueError(f"{name} must be a nonnegative finite number.")
+    return value
 
 
 def _canonical_all_rows(data, rows):
@@ -171,6 +191,13 @@ class MethodTrace:
         for source, destination, conversion in totals:
             if source in self.diagnostics:
                 result[destination] = conversion(np.sum(self.diagnostics[source]))
+        if "termination_reason" in self.diagnostics:
+            result["termination"] = {
+                "reason": str(self.diagnostics["termination_reason"][0]),
+                "full_gradient_norm": float(self.diagnostics["termination_full_gradient_norm"][0]),
+                "gradient_threshold": float(self.diagnostics["termination_gradient_threshold"][0]),
+                "initial_full_gradient_norm": float(self.diagnostics["initial_full_gradient_norm"][0]),
+            }
         return result
 
 
@@ -361,15 +388,25 @@ def run_armijo_fgd(
     shrink=0.5,
     armijo_constant=1e-4,
     max_backtracks=30,
+    gradient_atol=0.0,
+    gradient_rtol=0.0,
 ):
     """Factor GD with Armijo backtracking on the shared summed objective.
 
     ``direction`` is one half of the real-Frobenius gradient, matching the
     direction in the printed update.  Therefore the exact descent slope in
     the Armijo test is ``-2 * ||direction||_F**2``.
+
+    Positive ``gradient_atol`` or ``gradient_rtol`` opts into pre-line-search
+    stationarity termination: ``||2*direction||_F <= atol + rtol*||grad(U0)||_F``.
+    Zero defaults preserve the original exact-zero stopping rule. Stationarity
+    is not a physical recovery certificate; recovery metrics remain separate.
     """
     n_steps = _positive_integer(n_steps, "n_steps")
     initial_step = _finite_positive(initial_step, "initial_step")
+    gradient_atol = _finite_nonnegative(gradient_atol, "gradient_atol")
+    gradient_rtol = _finite_nonnegative(gradient_rtol, "gradient_rtol")
+    gradient_stopping_enabled = gradient_atol > 0 or gradient_rtol > 0
     if not 0.0 < shrink < 1.0:
         raise ValueError("shrink must lie strictly between zero and one.")
     if not 0.0 < armijo_constant < 1.0:
@@ -388,6 +425,8 @@ def run_armijo_fgd(
             "armijo-fgd", "failed", initial_error, factor,
             steps, times, work_rows, metric_rows, diagnostics={})
     accepted_steps, backtracks, objective_evaluations = [], [], []
+    initial_gradient_norm = None
+    termination_diagnostics = {}
     elapsed = 0.0
     measurement_rows = 0
     status, failure_reason = "complete", ""
@@ -401,6 +440,23 @@ def run_armijo_fgd(
             slope_magnitude = 2.0 * float(np.vdot(direction, direction).real)
             if not math.isfinite(objective) or not math.isfinite(slope_magnitude):
                 raise FloatingPointError("The Armijo objective or slope is nonfinite.")
+            if gradient_stopping_enabled:
+                gradient_norm = 2.0 * float(np.linalg.norm(direction, ord="fro"))
+                if initial_gradient_norm is None:
+                    initial_gradient_norm = gradient_norm
+                threshold = gradient_atol + gradient_rtol * initial_gradient_norm
+                if not math.isfinite(gradient_norm) or not math.isfinite(threshold):
+                    raise FloatingPointError("The Armijo gradient norm or stopping threshold is nonfinite.")
+                if gradient_norm <= threshold:
+                    status = "converged"
+                    termination_diagnostics = {
+                        "termination_reason": np.asarray(["full_gradient_tolerance"]),
+                        "termination_full_gradient_norm": np.asarray([gradient_norm]),
+                        "termination_gradient_threshold": np.asarray([threshold]),
+                        "initial_full_gradient_norm": np.asarray([initial_gradient_norm]),
+                    }
+                    elapsed += perf_counter() - began
+                    break
             if slope_magnitude == 0.0:
                 status = "converged"
                 elapsed += perf_counter() - began
@@ -457,6 +513,7 @@ def run_armijo_fgd(
             "step_size": np.asarray(accepted_steps, dtype=np.float64),
             "backtracks": np.asarray(backtracks, dtype=np.int64),
             "objective_evaluations": np.asarray(objective_evaluations, dtype=np.int64),
+            **termination_diagnostics,
         },
     )
 
@@ -476,10 +533,24 @@ def run_frames(
     tp_weight,
     rho_schedule,
     step_size_schedule,
+    beta0=None,
+    smoothing_schedule=None,
     show_progress=False,
 ):
-    """Run FRAMES with the smoothing value exactly matched to ``tp_weight``."""
-    beta = rows.size / (2.0 * tp_weight)
+    """Run FRAMES and retain its legacy summed-equivalent objective trace.
+
+    ``tp_weight`` is retained as the legacy source of a constant smoothing
+    value. Supplying ``beta0`` and ``smoothing_schedule`` opts into an
+    independent FRAMES smoothing schedule. At checkpoint ``k`` the equivalent
+    coefficient in the summed-loss normalization is ``m / (2 * beta_k)``.
+    The returned ``penalized_objective`` is ``m`` times FRAMES's native
+    mean-loss objective for backward compatibility.
+    """
+    if beta0 is None:
+        beta0 = rows.size / (2.0 * tp_weight)
+    beta0 = _finite_positive(beta0, "frames_beta0")
+    if smoothing_schedule is None:
+        smoothing_schedule = beta0
     result = run_quiroga_sensing_stochastic_frames(
         data,
         n_steps=n_steps,
@@ -488,9 +559,9 @@ def run_frames(
         batch_size=batch_size,
         sampling_seed=sampling_seed,
         x0=pack_factor(factor0),
-        beta0=beta,
+        beta0=beta0,
         rho_schedule=rho_schedule,
-        smoothing_schedule=beta,
+        smoothing_schedule=smoothing_schedule,
         step_size_schedule=step_size_schedule,
         metrics_frequency=metrics_frequency,
         show_progress=show_progress,
@@ -502,13 +573,16 @@ def run_frames(
     for index in range(result.checkpoint_steps.size):
         tp = float(result.tp_violation[index])
         mean_loss = float(result.measurement_loss[index])
+        checkpoint_beta = float(result.checkpoint_smoothing_parameters[index])
+        checkpoint_tp_weight = rows.size / (2.0 * checkpoint_beta)
         metrics.append({
             "measurement_loss_sum": float(measurement_sum[index]),
             "measurement_loss_mean": mean_loss,
             "rmse": math.sqrt(2.0 * mean_loss),
             "tp_violation": tp,
             "normalized_tp_violation": tp / math.sqrt(data.d),
-            "penalized_objective": float(measurement_sum[index] + tp_weight * tp**2),
+            "penalized_objective": float(
+                measurement_sum[index] + checkpoint_tp_weight * tp**2),
             "process_fidelity": float(result.process_fidelity[index]),
         })
     work = result.checkpoint_steps.astype(np.int64) * int(batch_size)
@@ -518,9 +592,15 @@ def run_frames(
         diagnostics={
             "exact_smoothed_gap": result.exact_smoothed_gap,
             "checkpoint_smoothing_parameter": result.checkpoint_smoothing_parameters,
+            "checkpoint_tp_weight_per_row_alpha": (
+                1.0 / (2.0 * result.checkpoint_smoothing_parameters)),
+            "checkpoint_tp_weight_lambda": (
+                rows.size / (2.0 * result.checkpoint_smoothing_parameters)),
             "estimated_gap": result.estimated_gaps,
             "momentum_weight": result.momentum_weights,
             "smoothing_parameter": result.smoothing_parameters,
+            "tp_weight_per_row_alpha": 1.0 / (2.0 * result.smoothing_parameters),
+            "tp_weight_lambda": rows.size / (2.0 * result.smoothing_parameters),
             "step_size": result.step_sizes,
         },
     )
@@ -541,6 +621,7 @@ def run_campaign(
     rows=None,
     rank=1,
     initialization_seed=0,
+    initialization_basis="choi",
     sampling_seed=0,
     n_steps=400,
     frames_steps=None,
@@ -558,7 +639,13 @@ def run_campaign(
     armijo_shrink=0.5,
     armijo_constant=1e-4,
     armijo_max_backtracks=30,
+    armijo_gradient_atol=0.0,
+    armijo_gradient_rtol=0.0,
+    linesearch_gradient_atol=1e-12,
+    linesearch_gradient_rtol=1e-10,
     rho_schedule=None,
+    frames_beta0=None,
+    frames_smoothing_schedule=None,
     step_size_schedule=None,
     show_progress=False,
 ):
@@ -566,8 +653,8 @@ def run_campaign(
     if data.truth_factor is None or data.truth_factor.ndim != 2 or data.truth_factor.shape[1] != 1:
         raise ValueError("Quiroga campaigns require a rank-one truth factor for fidelity metrics.")
     methods = tuple(methods)
-    if not methods or len(set(methods)) != len(methods) or any(name not in METHODS for name in methods):
-        raise ValueError(f"methods must be unique names from {METHODS}.")
+    if not methods or len(set(methods)) != len(methods) or any(name not in ALL_METHODS for name in methods):
+        raise ValueError(f"methods must be unique names from {ALL_METHODS}.")
     rank = _positive_integer(rank, "rank")
     n_steps = _positive_integer(n_steps, "n_steps")
     frames_steps = n_steps if frames_steps is None else _positive_integer(frames_steps, "frames_steps")
@@ -576,10 +663,24 @@ def run_campaign(
                                 else _positive_integer(frames_metrics_frequency, "frames_metrics_frequency"))
     eta_scale = _finite_positive(eta_scale, "eta_scale")
     tp_weight = _finite_positive(tp_weight, "tp_weight")
+    armijo_gradient_atol = _finite_nonnegative(armijo_gradient_atol, "armijo_gradient_atol")
+    armijo_gradient_rtol = _finite_nonnegative(armijo_gradient_rtol, "armijo_gradient_rtol")
+    if "exact-linesearch-fgd" in methods:
+        linesearch_gradient_atol = _finite_nonnegative(linesearch_gradient_atol, "linesearch_gradient_atol")
+        linesearch_gradient_rtol = _finite_nonnegative(linesearch_gradient_rtol, "linesearch_gradient_rtol")
     batch_size = _positive_integer(batch_size, "batch_size")
+    initializer = initialization_descriptor(initialization_basis)
     active_rows, targets = _active_rows_and_targets(data, rows)
+    legacy_frames_penalty = frames_beta0 is None and frames_smoothing_schedule is None
+    if frames_beta0 is None:
+        frames_beta0 = active_rows.size / (2.0 * tp_weight)
+    frames_beta0 = _finite_positive(frames_beta0, "frames_beta0")
+    if frames_smoothing_schedule is None:
+        frames_smoothing_schedule = frames_beta0
     x0 = make_factor_initial_point(data, rank=rank, seed=initialization_seed)
     factor0 = unpack_factor(x0, data.process_dimension, rank)
+    if initialization_basis == "gell-mann":
+        factor0 = gell_mann_coefficients_to_choi(factor0)
     tau = math.sqrt(data.d) if tau is None else _finite_positive(tau, "tau")
     if np.linalg.norm(factor0, ord=2) > tau + 1e-10 and "frames" in methods:
         raise ValueError("tau is smaller than the shared initial factor's operator norm.")
@@ -607,6 +708,16 @@ def run_campaign(
                 initial_step=armijo_initial_step, shrink=armijo_shrink,
                 armijo_constant=armijo_constant,
                 max_backtracks=armijo_max_backtracks,
+                gradient_atol=armijo_gradient_atol,
+                gradient_rtol=armijo_gradient_rtol,
+            )
+        elif method == "exact-linesearch-fgd":
+            from .qpt_quiroga_linesearch import run_exact_linesearch_fgd
+            trace = run_exact_linesearch_fgd(
+                data, factor0, active_rows, targets, n_steps=n_steps,
+                metrics_frequency=metrics_frequency, tp_weight=tp_weight,
+                gradient_atol=linesearch_gradient_atol,
+                gradient_rtol=linesearch_gradient_rtol,
             )
         else:
             try:
@@ -614,13 +725,15 @@ def run_campaign(
                     data, factor0, active_rows, targets, n_steps=frames_steps,
                     metrics_frequency=frames_metrics_frequency, rank=rank, tau=tau,
                     batch_size=batch_size, sampling_seed=sampling_seed,
-                    tp_weight=tp_weight, rho_schedule=rho_schedule,
-                    step_size_schedule=step_size_schedule,
+                    tp_weight=tp_weight, beta0=frames_beta0,
+                    smoothing_schedule=frames_smoothing_schedule,
+                    rho_schedule=rho_schedule, step_size_schedule=step_size_schedule,
                     show_progress=show_progress,
                 )
             except Exception as error:
+                frames_initial_tp_weight = active_rows.size / (2.0 * frames_beta0)
                 metric = evaluate_common_metrics(
-                    data, factor0, active_rows, targets, tp_weight)
+                    data, factor0, active_rows, targets, frames_initial_tp_weight)
                 trace = _make_trace(
                     "frames", "failed", f"{type(error).__name__}: {error}",
                     factor0, [0], [0.0], [0], [metric], diagnostics={})
@@ -631,9 +744,16 @@ def run_campaign(
         "metrics_frequency": metrics_frequency,
         "frames_metrics_frequency": frames_metrics_frequency,
         "rank": rank, "initialization_seed": int(initialization_seed),
+        "initialization_basis": initialization_basis,
         "sampling_seed": int(sampling_seed), "eta_scale": eta_scale,
         "tp_weight_lambda": tp_weight,
-        "frames_beta": active_rows.size / (2.0 * tp_weight),
+        "frames_beta": frames_beta0,
+        "frames_beta0": frames_beta0,
+        "frames_initial_tp_weight_per_row_alpha": 1.0 / (2.0 * frames_beta0),
+        "frames_initial_tp_weight_lambda": active_rows.size / (2.0 * frames_beta0),
+        "frames_penalty_mode": (
+            "legacy_constant_matched" if legacy_frames_penalty else "independent_schedule"),
+        "frames_smoothing_schedule": _schedule_metadata(frames_smoothing_schedule),
         "tau": tau, "batch_size": batch_size,
         "spectral_norm_method": spectral_norm_method,
         "dense_max_process_dimension": int(dense_max_process_dimension),
@@ -643,6 +763,8 @@ def run_campaign(
         "armijo_shrink": float(armijo_shrink),
         "armijo_constant": float(armijo_constant),
         "armijo_max_backtracks": int(armijo_max_backtracks),
+        "armijo_gradient_atol": armijo_gradient_atol,
+        "armijo_gradient_rtol": armijo_gradient_rtol,
         "rho_schedule": _schedule_metadata(rho_schedule),
         "step_size_schedule": _schedule_metadata(step_size_schedule),
     }
@@ -657,6 +779,7 @@ def run_campaign(
         "active_rows_sha256": _array_sha256(active_rows),
         "active_observations_sha256": _array_sha256(targets),
         "initial_factor_sha256": _array_sha256(factor0),
+        "initialization": initializer,
         "truth_factor_sha256": None if data.truth_factor is None else _array_sha256(data.truth_factor),
         "configuration": configuration,
         "objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
@@ -676,9 +799,27 @@ def run_campaign(
         "scipy_version": scipy.__version__,
         "source_sha256": {
             name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-            for name in ("qpt_quiroga_campaign.py", "qpt_quiroga_frames.py", "qpt_quiroga_sensing.py")
+            for name in ("qpt_quiroga_campaign.py", "qpt_quiroga_frames.py", "qpt_quiroga_sensing.py",
+                         "qpt_quiroga_initialization.py", "quantum_process_tomography.py")
         },
     }
+    if "exact-linesearch-fgd" in methods:
+        configuration.update({
+            "linesearch_gradient_atol": linesearch_gradient_atol,
+            "linesearch_gradient_rtol": linesearch_gradient_rtol,
+            "linesearch_rule": "exact_positive_factor_ray_quartic_v1",
+            "linesearch_root_imaginary_relative_tolerance": 1e-8,
+        })
+        metadata["method_domains"]["exact-linesearch-fgd"] = {
+            "constraint": "none", "projection": "none",
+            "role": "experimental adaptive-step variant; not published Quiroga adaFGD",
+            "step_rule": "direct objective selection among positive real quartic stationary points",
+            "direction": "half real-Frobenius gradient, normalized only to compute ray roots",
+            "fallback": "none",
+            "work": "direction pass + two polynomial forward passes + each direct candidate objective",
+        }
+        name = "qpt_quiroga_linesearch.py"
+        metadata["source_sha256"][name] = hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
     payload = {
         "active_rows": active_rows,
         "active_observations": targets,
@@ -760,9 +901,9 @@ def save_campaign(npz_path, metadata_path, metadata, payload):
 def _build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n-qubits", type=int, default=2)
-    parser.add_argument("--methods", nargs="+", choices=METHODS, default=list(METHODS))
+    parser.add_argument("--methods", nargs="+", choices=ALL_METHODS, default=list(METHODS))
     parser.add_argument("--steps", type=int, default=400,
-                        help="Full-batch steps for printed adaFGD and Armijo FGD.")
+                        help="Full-batch steps for printed adaFGD and both FGD line-search methods.")
     parser.add_argument("--frames-steps", type=int, default=None)
     parser.add_argument("--metrics-every", type=int, default=20)
     parser.add_argument("--frames-metrics-every", type=int, default=None)
@@ -772,6 +913,8 @@ def _build_parser():
     parser.add_argument("--subset-seed", type=int, default=0)
     parser.add_argument("--channel-seed", type=int, default=0)
     parser.add_argument("--initialization-seed", type=int, default=0)
+    parser.add_argument("--initialization-basis", choices=INITIALIZATION_BASES, default="choi",
+                        help="Coefficient basis for the shared initializer; Gell-Mann is an opt-in diagnostic.")
     parser.add_argument("--sampling-seed", type=int, default=0)
     parser.add_argument("--observation-mode", choices=("noiseless", "gaussian", "shots"), default="noiseless")
     parser.add_argument("--noise-std", type=float, default=0.0)
@@ -792,6 +935,14 @@ def _build_parser():
     parser.add_argument("--armijo-shrink", type=float, default=0.5)
     parser.add_argument("--armijo-constant", type=float, default=1e-4)
     parser.add_argument("--armijo-max-backtracks", type=int, default=30)
+    parser.add_argument("--armijo-gradient-atol", type=float, default=0.0,
+                        help="Opt-in absolute full-gradient stopping tolerance; default disabled.")
+    parser.add_argument("--armijo-gradient-rtol", type=float, default=0.0,
+                        help="Opt-in tolerance relative to the initial full-gradient norm; default disabled.")
+    parser.add_argument("--linesearch-gradient-atol", type=float, default=1e-12,
+                        help="Absolute full-gradient tolerance for experimental exact-linesearch-fgd only.")
+    parser.add_argument("--linesearch-gradient-rtol", type=float, default=1e-10,
+                        help="Initial-gradient-relative tolerance for experimental exact-linesearch-fgd only.")
     parser.add_argument("--rho-scale", type=float, default=2.0)
     parser.add_argument("--rho-offset", type=float, default=4.0)
     parser.add_argument("--rho-exponent", type=float, default=0.6)
@@ -835,6 +986,7 @@ def main(argv=None):
             rows=rows,
             rank=args.rank,
             initialization_seed=args.initialization_seed,
+            initialization_basis=args.initialization_basis,
             sampling_seed=args.sampling_seed,
             n_steps=args.steps,
             frames_steps=args.frames_steps,
@@ -852,6 +1004,10 @@ def main(argv=None):
             armijo_shrink=args.armijo_shrink,
             armijo_constant=args.armijo_constant,
             armijo_max_backtracks=args.armijo_max_backtracks,
+            armijo_gradient_atol=args.armijo_gradient_atol,
+            armijo_gradient_rtol=args.armijo_gradient_rtol,
+            linesearch_gradient_atol=args.linesearch_gradient_atol,
+            linesearch_gradient_rtol=args.linesearch_gradient_rtol,
             rho_schedule=rho,
             step_size_schedule=step,
             show_progress=not args.quiet,

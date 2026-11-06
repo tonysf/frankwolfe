@@ -1,0 +1,657 @@
+{
+  "dimension": 1024,
+  "steps": 32768,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "problem": "min_{||x||_1<=1} .25*(||x-a-b||^2+||x-a+b||^2) - (5/8)*(u^T x)^2 + indicator_R_+^1024(x)",
+  "u": "Alternating +1/8,-1/8 on first64 entries, zero elsewhere",
+  "nonconvexity": "Hessian I-(5/4)uu^T has eigenvalues -1/4 and 1; feasible negative curvature at the uniform first64 stationary point",
+  "source_manuscript": "/home/tony/gw_benchmark_experiment_20260927/provenance/manuscript.txt",
+  "source_sha256": "f9637a3627ece8b29a851be28eae5bdadfa39f143bbab6b9c7912c0dc2afea5b",
+  "source_theorem": "Proposition 2.11 and pointwise Lemma 2.2 transfer bounds",
+  "schedules": {
+    "gamma": "(k+1)^(-3/4)",
+    "beta": "(k+1)^(-1/4)",
+    "alpha": "(k+1)^(-1/2)"
+  },
+  "prefactors": "All one; no tuning, no warm start, no schedule shift",
+  "initialization": {
+    "distribution": "x0=-e_J, J uniform on all1024 coordinates; m0=first sampled gradient",
+    "initialization_rng": "default_rng(SeedSequence([20261014, seed, 1024]))",
+    "oracle_rng": "default_rng(seed), unchanged from the zero-start experiment",
+    "independence": "Initialization and subsequent oracle sampling use separate random streams",
+    "initial_coordinates_zero_based": [
+      889,
+      774,
+      280,
+      566,
+      11,
+      564,
+      682,
+      2
+    ],
+    "feasibility": "||x0||_1=1, so x0 is in C; dist_D(x0)=1 is allowed",
+    "theorem_application": "Condition on the realized x0. The same uniform constants also bound averages over initialization randomness."
+  },
+  "oracle": "IID uniform component sampling; grad f(x) plus independent Rademacher times b; covariance bb^T",
+  "constants": {
+    "global_gradient_lipschitz": 1.0,
+    "oracle_variance": 0.25,
+    "gradient_bound_on_C": 1.1021995055342748,
+    "oracle_second_moment_bound": 1.46484375,
+    "diameter_C": 2.0,
+    "operator_norm_T": 1.0,
+    "regularity_kappa": 1.0,
+    "objective_lower_bound_on_C": 0.115234375,
+    "objective_upper_bound_on_C": 0.732421875
+  },
+  "gap_definition": "True gradient of f + ||x_-||^2/(2beta), LMO over l1ball; never use noisy momentum as the reporting gradient",
+  "original_gap_definition": "H=<grad f(x),x>+max(0,-min grad f(x)); signed off D; plot average absolute magnitude",
+  "averaging": "Every pre-update x_0 through x_(N-1), separately per seed, then average seeds",
+  "log_plot_zero_handling": "Exactly zero entries, if any, are omitted, never replaced by positive data",
+  "guarantees": {
+    "literal_equation65": "N^-1 sum E G_k=O(N^-1/4)",
+    "output_rule": "Conditional on each fixed x0, k_n(x0) in argmin_{ceil(n/2)<=k<=n} E[G_k|x0]; expectation over oracle draws, not a pathwise argmin",
+    "cumulative_original_diagnostics": "Derived from pathwise transfers: avg_delta<=M avg_beta+sqrt(avg_beta avg_G), avg_abs_H<=avg_G+M avg_delta; hence expectation O(N^-1/4)",
+    "long_horizon_output": "Only cumulative certificates reported; no claim of computing exact long-horizon expectation-selected output",
+    "random_initialization_output": "Short-horizon selection is conditional on x0, not a claimed unconditional common index over all1024 possible initial vertices",
+    "limitations": "No monotonicity or last-iterate rate claimed. Empirical finite-seed trends do not prove the theorem."
+  },
+  "exact_output_demonstration": [
+    {
+      "seed": 0,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 9,
+      "initial_coordinate_zero_based": 889,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.015625,
+        1.984375,
+        0.5304222660872445,
+        0.43262578510334626,
+        0.4027431217808249,
+        0.23328540505673376,
+        0.3345436696786792,
+        0.1592564765278038,
+        0.29017634342652343,
+        0.12269499656694167,
+        0.2338776142012167
+      ],
+      "expected_signed_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_abs_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.09363030856544527,
+        0.0007725792515916182,
+        0.0570327733908697
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 1,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 9,
+      "initial_coordinate_zero_based": 774,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.015625,
+        1.984375,
+        0.5304222660872445,
+        0.43262578510334626,
+        0.4027431217808249,
+        0.23328540505673376,
+        0.3345436696786792,
+        0.1592564765278038,
+        0.29017634342652343,
+        0.12269499656694167,
+        0.2338776142012167
+      ],
+      "expected_signed_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_abs_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.09363030856544527,
+        0.0007725792515916182,
+        0.0570327733908697
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 2,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 9,
+      "initial_coordinate_zero_based": 280,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.015625,
+        1.984375,
+        0.5304222660872445,
+        0.43262578510334626,
+        0.4027431217808249,
+        0.23328540505673376,
+        0.3345436696786792,
+        0.1592564765278038,
+        0.29017634342652343,
+        0.12269499656694167,
+        0.2338776142012167
+      ],
+      "expected_signed_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_abs_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.09363030856544527,
+        0.0007725792515916182,
+        0.0570327733908697
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 3,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 9,
+      "initial_coordinate_zero_based": 566,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.015625,
+        1.984375,
+        0.5304222660872445,
+        0.43262578510334626,
+        0.4027431217808249,
+        0.23328540505673376,
+        0.3345436696786792,
+        0.1592564765278038,
+        0.29017634342652343,
+        0.12269499656694167,
+        0.2338776142012167
+      ],
+      "expected_signed_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_abs_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.09363030856544527,
+        0.0007725792515916182,
+        0.0570327733908697
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 4,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 7,
+      "initial_coordinate_zero_based": 11,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.0234375,
+        1.8984375,
+        0.5538996506699182,
+        0.3927425597198037,
+        0.4263468066314631,
+        0.20037592617633362,
+        0.35817385116937717,
+        0.12909535147671458,
+        0.275176940840972,
+        0.17887656117341988,
+        0.16150014247456812
+      ],
+      "expected_signed_original_gap": [
+        2.0234375,
+        1.0,
+        0.25777451253900635,
+        0.13574261723800618,
+        0.19033185036450012,
+        0.06885463332232516,
+        0.15637695021526996,
+        0.05063017030711778,
+        0.11413237199248707,
+        0.0831948063024045,
+        0.0683152046403183
+      ],
+      "expected_abs_original_gap": [
+        2.0234375,
+        1.0,
+        0.25777451253900635,
+        0.13574261723800618,
+        0.19033185036450012,
+        0.06885463332232516,
+        0.15637695021526996,
+        0.05063017030711778,
+        0.11413237199248707,
+        0.0831948063024045,
+        0.0683152046403183
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.056030735834439696,
+        0.0254951153025234,
+        0.005341651072735664
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 5,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 9,
+      "initial_coordinate_zero_based": 564,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.015625,
+        1.984375,
+        0.5304222660872445,
+        0.43262578510334626,
+        0.4027431217808249,
+        0.23328540505673376,
+        0.3345436696786792,
+        0.1592564765278038,
+        0.29017634342652343,
+        0.12269499656694167,
+        0.2338776142012167
+      ],
+      "expected_signed_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_abs_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.09363030856544527,
+        0.0007725792515916182,
+        0.0570327733908697
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 6,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 9,
+      "initial_coordinate_zero_based": 682,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.015625,
+        1.984375,
+        0.5304222660872445,
+        0.43262578510334626,
+        0.4027431217808249,
+        0.23328540505673376,
+        0.3345436696786792,
+        0.1592564765278038,
+        0.29017634342652343,
+        0.12269499656694167,
+        0.2338776142012167
+      ],
+      "expected_signed_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_abs_original_gap": [
+        2.015625,
+        1.0234375,
+        0.23429712795633267,
+        0.13920054008163824,
+        0.16672816551386188,
+        0.07043956777776561,
+        0.13274676872457192,
+        0.05162350344074373,
+        0.1116101348499467,
+        0.04460717149757401,
+        0.08852121264423309
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.09363030856544527,
+        0.0007725792515916182,
+        0.0570327733908697
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    },
+    {
+      "seed": 7,
+      "horizon": 10,
+      "last_half_inclusive": [
+        5,
+        10
+      ],
+      "selected_index": 7,
+      "initial_coordinate_zero_based": 2,
+      "conditioning": "Hold x0 fixed; expectation is over independent component draws",
+      "histories_at_horizon": 1024,
+      "expected_true_gap": [
+        4.0234375,
+        1.8984375,
+        0.5538996506699182,
+        0.3927425597198037,
+        0.4263468066314631,
+        0.20037592617633362,
+        0.35817385116937717,
+        0.12909535147671458,
+        0.275176940840972,
+        0.17887656117341988,
+        0.16150014247456812
+      ],
+      "expected_signed_original_gap": [
+        2.0234375,
+        1.0,
+        0.25777451253900635,
+        0.13574261723800618,
+        0.19033185036450012,
+        0.06885463332232516,
+        0.15637695021526996,
+        0.05063017030711778,
+        0.11413237199248707,
+        0.0831948063024045,
+        0.0683152046403183
+      ],
+      "expected_abs_original_gap": [
+        2.0234375,
+        1.0,
+        0.25777451253900635,
+        0.13574261723800618,
+        0.19033185036450012,
+        0.06885463332232516,
+        0.15637695021526996,
+        0.05063017030711778,
+        0.11413237199248707,
+        0.0831948063024045,
+        0.0683152046403183
+      ],
+      "expected_feasibility": [
+        1.0,
+        0.0,
+        0.18920711500272103,
+        0.0,
+        0.1386178151547025,
+        0.0,
+        0.11160636361050467,
+        0.0,
+        0.056030735834439696,
+        0.0254951153025234,
+        0.005341651072735664
+      ],
+      "method": "Full binary-tree enumeration, exact expectation up to floating point arithmetic"
+    }
+  ],
+  "checks": [
+    "Feasible negative curvature and analytic stationary-point KKT checks",
+    "Orthant changes the stationary points relative to the l1 ball alone",
+    "Directional finite-difference gradient check",
+    "Uniform two-component oracle mean and constant variance identities",
+    "Exact smoothed stationary branch: zero gap, nonzero feasibility, signed original gap",
+    "Exact l1 LMO and orthant projection; pointwise transfer inequalities",
+    "All iterates remain in C and all true smoothed gaps are nonnegative",
+    "Pointwise and cumulative transfer inequalities hold for all recorded iterates",
+    "Random starts are in C and have orthant violation exactly one",
+    "Conditional theorem output index computed by full oracle expectation at horizon 10 for each initial point"
+  ],
+  "summary": [
+    {
+      "updates": 64,
+      "mean_cumulative_true_gap": 0.1876395277605022,
+      "seed_standard_error_true_gap": 0.000740193285245012,
+      "mean_cumulative_abs_original_gap": 0.10215977832059474,
+      "mean_cumulative_feasibility": 0.027793507295123126
+    },
+    {
+      "updates": 256,
+      "mean_cumulative_true_gap": 0.06487322461687545,
+      "seed_standard_error_true_gap": 0.0007324677775141003,
+      "mean_cumulative_abs_original_gap": 0.03862970767446694,
+      "mean_cumulative_feasibility": 0.00920457526490871
+    },
+    {
+      "updates": 1024,
+      "mean_cumulative_true_gap": 0.02511550233870711,
+      "seed_standard_error_true_gap": 0.0003922984761061745,
+      "mean_cumulative_abs_original_gap": 0.015697089240351167,
+      "mean_cumulative_feasibility": 0.018186255561237673
+    },
+    {
+      "updates": 4096,
+      "mean_cumulative_true_gap": 0.009189378941588819,
+      "seed_standard_error_true_gap": 0.00010203117599172102,
+      "mean_cumulative_abs_original_gap": 0.005771235756729626,
+      "mean_cumulative_feasibility": 0.014983464427042226
+    },
+    {
+      "updates": 16384,
+      "mean_cumulative_true_gap": 0.0034832703970179716,
+      "seed_standard_error_true_gap": 2.3313375224998413e-05,
+      "mean_cumulative_abs_original_gap": 0.0022539132110951125,
+      "mean_cumulative_feasibility": 0.009001420818646327
+    },
+    {
+      "updates": 32768,
+      "mean_cumulative_true_gap": 0.0021835341216722886,
+      "seed_standard_error_true_gap": 1.1970793036184295e-05,
+      "mean_cumulative_abs_original_gap": 0.0014379366249252857,
+      "mean_cumulative_feasibility": 0.0067722009744587185
+    }
+  ],
+  "optimizer_seconds_including_certificates": 6.523588304175064,
+  "python_executable": "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+  "numpy_version": "2.4.6",
+  "matplotlib_version": "3.11.2",
+  "draft_caveats": [
+    "Use positive penalty gradient (x-proj_D(x))/beta; Algorithm1 printed sign is opposite",
+    "Use fixed-schedule Proposition2.11, not adaptive Algorithm1",
+    "Raw oracle unbiasedness and bounded variance are explicit here; draft leaves hypotheses incomplete",
+    "Common Lf=5/4 safely bounds both smoothness and gradient magnitude in the draft's notation"
+  ],
+  "total_seconds": 11.805329175200313
+}

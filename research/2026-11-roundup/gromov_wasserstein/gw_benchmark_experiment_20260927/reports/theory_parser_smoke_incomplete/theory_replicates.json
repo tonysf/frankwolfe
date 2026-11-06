@@ -1,0 +1,966 @@
+{
+  "status": "incomplete",
+  "scope": "CPU PARSER SMOKE \u2014 no A100 outcomes",
+  "a100_outcomes": false,
+  "created_utc": "2026-09-27T18:33:46.340683+00:00",
+  "input_root": "/home/tony/gw_benchmark_experiment_20260927/runs/theory_parser_smoke",
+  "prospective_specification": {
+    "scope": "small-instance theory-statistic diagnostic; fixed prospectively before these runs",
+    "instance": "metric128_s1000.npz",
+    "problem_seed": 1000,
+    "stochastic_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "number_of_replicates": 10,
+    "outer_steps": 1000,
+    "oracle": "sketch",
+    "batch": 128,
+    "m_mu0": 1,
+    "schedules": "configs/theory_config.json",
+    "initialization": "product",
+    "evaluation": "every pre-update iterate, all exact diagnostics, separate terminal output",
+    "primary_statistic": "mean over runs of each full-trajectory arithmetic mean of true smoothed gap",
+    "uncertainty": "show individual runs or IQR; expectation is estimated from ten stochastic runs of one fixed dataset",
+    "slope_fitting": "none",
+    "replication_rule": "Ten stochastic repeats prespecified here, following protocol section12; no extra problem seeds or outcome-triggered repeats."
+  },
+  "effective_parser_specification": {
+    "scope": "small-instance theory-statistic diagnostic; fixed prospectively before these runs",
+    "instance": "metric128_s1000.npz",
+    "problem_seed": 1000,
+    "stochastic_seeds": [
+      0,
+      1,
+      2
+    ],
+    "number_of_replicates": 3,
+    "outer_steps": 5,
+    "oracle": "sketch",
+    "batch": 128,
+    "m_mu0": 1,
+    "schedules": "configs/theory_config.json",
+    "initialization": "product",
+    "evaluation": "every pre-update iterate, all exact diagnostics, separate terminal output",
+    "primary_statistic": "mean over runs of each full-trajectory arithmetic mean of true smoothed gap",
+    "uncertainty": "show individual runs or IQR; expectation is estimated from ten stochastic runs of one fixed dataset",
+    "slope_fitting": "none",
+    "replication_rule": "Ten stochastic repeats prespecified here, following protocol section12; no extra problem seeds or outcome-triggered repeats."
+  },
+  "spec_sha256": "0501cf3b665bfc06815bd658e7063d96d9fc014d8187293a9ea6e86d1cb50a1c",
+  "schedule_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+  "summarizer_sha256": "92887c5b3dd2546eced17daaba5574ab72f4b18dc0b5ba9e4712af4c9f877682",
+  "expected_instance_hashes": {
+    "A_sha256": "941adedc0f18ba5b49613efd4e330324352cd2eb50ed20e267be5184467594a8",
+    "B_sha256": "b94cb8c2e17bae50834fe5e3bc8a1fcce8d2b4ba5e7b8b45f5da4da1ff668812",
+    "instance_sha256": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640"
+  },
+  "expected_runs": 3,
+  "valid_runs": 2,
+  "issues": [],
+  "runs": [
+    {
+      "stochastic_seed": 0,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/runs/theory_parser_smoke/seed0",
+      "status": "completed",
+      "issues": [],
+      "input_sha256": {
+        "config.json": "f2edaee7ece2c28b9f87849c6bcd0fb4c07e2e138928769f471fbd07012670d0",
+        "summary.json": "877293a3daabc04f1e7d6cad2b8246d88cf8fd807d0d0b99de6d08ec81cc4893",
+        "trace.csv": "bb27c7d7428582986c70cd5eb6cfe857e3e48a5e7fc326d6841ee5aa0b9a298d",
+        "final.npz": "e46381aa94c6f18424c48a5c2499f0678e8ce0e0f0200b75ec429d87bc69ae78",
+        "final_float64_evaluation.json": "92e2e6b46d35640ba68d8f146db0311e28b0e033a7e26c7c25f24c9f2184186d"
+      },
+      "device": "cpu",
+      "gpu": null,
+      "dtype": "float64",
+      "problem_seed": 1000,
+      "shape": [
+        128,
+        128
+      ],
+      "source_revision": "e6a6e179db08ea64a17e5474005ef1677095146d",
+      "source_sha256": {
+        "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+        "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+        "run_smoothing.py": "e74a36b8ac4c8c93bdfb246bfa068b88c16bfe228b2f1ac2403a7ef8ad3b4e7d",
+        "PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+      },
+      "instance_hashes": {
+        "A_sha256": "941adedc0f18ba5b49613efd4e330324352cd2eb50ed20e267be5184467594a8",
+        "B_sha256": "b94cb8c2e17bae50834fe5e3bc8a1fcce8d2b4ba5e7b8b45f5da4da1ff668812",
+        "instance_sha256": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640"
+      },
+      "completed_updates": 5,
+      "trajectory_average_points": 5,
+      "trajectory_means": {
+        "true_smoothed_gap": 71.72940156876278,
+        "row_l1": 0.0,
+        "col_l1": 1.56875,
+        "col_l2": 0.5631205921826888,
+        "col_l2_squared": 0.4231771342701715,
+        "momentum_error_l2": 136.40850352989926,
+        "oracle_error_l2": 188.13335969478254
+      },
+      "final_float64_actual_output": {
+        "raw_smooth_loss": 0.16058099890891975,
+        "rounded_feasible_loss": 0.050005292660551426,
+        "raw_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 1.9125290701173676,
+          "col_l2": 0.4618501470842194,
+          "both_l1": 1.9125290701173676,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 3.469446951953614e-18,
+          "col_l1": 2.177077962350893e-16,
+          "col_l2": 1.953008978358307e-17,
+          "both_l1": 2.211772431870429e-16,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "repair_entrywise_l1": 1.9125290701173678,
+        "true_smoothed_gap": 44.562877706842414,
+        "mu_at_terminal_point": 0.004991743001924003,
+        "original_fw_gap_at_rounded": 0.0007385216722247214,
+        "rounded_source": "Actual solver-dtype rounded output saved as P_rounded, promoted to float64 without further repair",
+        "rounded_source_dtype": "float64",
+        "rounded_feasibility_tolerance": 1e-12,
+        "recomputed_float64_repair": {
+          "rounded_feasible_loss": 0.050005292660551426,
+          "rounded_residuals": {
+            "row_l1": 3.469446951953614e-18,
+            "col_l1": 2.177077962350893e-16,
+            "col_l2": 1.953008978358307e-17,
+            "both_l1": 2.211772431870429e-16,
+            "mass_error": 0.0,
+            "min_entry": 0.0
+          },
+          "repair_entrywise_l1": 1.9125290701173678,
+          "difference_from_actual_rounded_entrywise_l1": 0.0,
+          "original_fw_gap_at_rounded": 0.0007385216722247214,
+          "note": "Separate numerical audit: reapply rounding to the promoted raw iterate; saved as P_rounded_float64"
+        },
+        "note": "CPU float64 evaluation of the saved raw and actual rounded iterates and frozen stored costs; no solver refinement"
+      },
+      "independent_final_audit": {
+        "raw_smooth_loss": 0.16058099890891941,
+        "rounded_feasible_loss": 0.0500052926605532,
+        "original_fw_gap_at_rounded": 0.0007385216722247123,
+        "true_smoothed_gap": 44.56287770684237,
+        "repair_entrywise_l1": 1.9125290701173678,
+        "raw_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 1.9125290701173665,
+          "col_l2": 0.4618501470842189,
+          "both_l1": 1.9125290701173665,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 2.203098814490545e-16,
+          "col_l1": 1.300175245244617e-15,
+          "col_l2": 1.170488516757332e-16,
+          "both_l1": 1.5204851266936714e-15,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_source_dtype": "float64",
+        "scope": "Independent CPU float64 evaluation of actual saved P_rounded and P_raw, without rerounding"
+      },
+      "timing": {
+        "preparation_cache_seconds": 0.9753998391097412,
+        "solver_seconds": 0.012395202065818012,
+        "repair_seconds": 0.001701459987089038,
+        "diagnostic_seconds": 0.2575135591905564,
+        "serialization_seconds": 0.0023231630912050605,
+        "final_float64_validation_seconds": 0.011012849980033934
+      },
+      "memory": {
+        "process_peak_rss_bytes": 363188224,
+        "memory_scope": "process high-water RSS and GPU allocated/reserved peaks include diagnostics and final validation"
+      },
+      "total_instrumented_seconds": 1.2607440740102902,
+      "solver_counts": {
+        "oracle_evaluations": 5,
+        "exact_gradient_calls": 0,
+        "stochastic_gradient_calls": 5,
+        "sketch_probes": 640,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 5,
+        "row_projection_calls": 0
+      },
+      "diagnostic_counts": {
+        "exact_gradient_calls": 12,
+        "full_loss_calls": 12,
+        "assignment_lmo_calls": 6,
+        "row_gap_evaluations": 6,
+        "rounding_calls": 6
+      },
+      "max_row_l1": 0.0,
+      "max_certificate_excess": -0.005853705044721799
+    },
+    {
+      "stochastic_seed": 1,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/runs/theory_parser_smoke/seed1",
+      "status": "completed",
+      "issues": [],
+      "input_sha256": {
+        "config.json": "0ac611e3b05b253e2035531f9e344e09f2abcd854e8bb08b06c807f5b22e61c7",
+        "summary.json": "dc2ac2e0518c0a2bd76952b68d331570e1f6e68a47105f4d3b4beead4f947e7c",
+        "trace.csv": "40bc1e2ecdbf119cbd1cf4e621894fc77ec144edff22253554b93f88b7a19fcf",
+        "final.npz": "aeb4eaa621c0b47bca6e578db3fb81c7f0331cc469daadc5d56d5d7c8835a89a",
+        "final_float64_evaluation.json": "eeb766243f3d70a0fa643ede6d1bfb2715560cf4a4b47455f6c1e235eda5c376"
+      },
+      "device": "cpu",
+      "gpu": null,
+      "dtype": "float64",
+      "problem_seed": 1000,
+      "shape": [
+        128,
+        128
+      ],
+      "source_revision": "e6a6e179db08ea64a17e5474005ef1677095146d",
+      "source_sha256": {
+        "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+        "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+        "run_smoothing.py": "e74a36b8ac4c8c93bdfb246bfa068b88c16bfe228b2f1ac2403a7ef8ad3b4e7d",
+        "PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+      },
+      "instance_hashes": {
+        "A_sha256": "941adedc0f18ba5b49613efd4e330324352cd2eb50ed20e267be5184467594a8",
+        "B_sha256": "b94cb8c2e17bae50834fe5e3bc8a1fcce8d2b4ba5e7b8b45f5da4da1ff668812",
+        "instance_sha256": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640"
+      },
+      "completed_updates": 5,
+      "trajectory_average_points": 5,
+      "trajectory_means": {
+        "true_smoothed_gap": 71.73589173966644,
+        "row_l1": 0.0,
+        "col_l1": 1.56875,
+        "col_l2": 0.5631205921826888,
+        "col_l2_squared": 0.4231771342701715,
+        "momentum_error_l2": 124.7815612449984,
+        "oracle_error_l2": 166.97359663382363
+      },
+      "final_float64_actual_output": {
+        "raw_smooth_loss": 0.16571708316015366,
+        "rounded_feasible_loss": 0.050015142011717195,
+        "raw_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 1.9218750000000002,
+          "col_l2": 0.4648192876063818,
+          "both_l1": 1.9218750000000002,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 2.6020852139652106e-18,
+          "col_l2": 1.5023145987371592e-18,
+          "both_l1": 2.6020852139652106e-18,
+          "mass_error": 0.0,
+          "min_entry": 6.103515624999997e-05
+        },
+        "repair_entrywise_l1": 1.921875,
+        "true_smoothed_gap": 45.12605423255986,
+        "mu_at_terminal_point": 0.004991743001924003,
+        "original_fw_gap_at_rounded": 0.0005065985386985248,
+        "rounded_source": "Actual solver-dtype rounded output saved as P_rounded, promoted to float64 without further repair",
+        "rounded_source_dtype": "float64",
+        "rounded_feasibility_tolerance": 1e-12,
+        "recomputed_float64_repair": {
+          "rounded_feasible_loss": 0.050015142011717195,
+          "rounded_residuals": {
+            "row_l1": 0.0,
+            "col_l1": 2.6020852139652106e-18,
+            "col_l2": 1.5023145987371592e-18,
+            "both_l1": 2.6020852139652106e-18,
+            "mass_error": 0.0,
+            "min_entry": 6.103515624999997e-05
+          },
+          "repair_entrywise_l1": 1.921875,
+          "difference_from_actual_rounded_entrywise_l1": 0.0,
+          "original_fw_gap_at_rounded": 0.0005065985386985248,
+          "note": "Separate numerical audit: reapply rounding to the promoted raw iterate; saved as P_rounded_float64"
+        },
+        "note": "CPU float64 evaluation of the saved raw and actual rounded iterates and frozen stored costs; no solver refinement"
+      },
+      "independent_final_audit": {
+        "raw_smooth_loss": 0.16571708316015332,
+        "rounded_feasible_loss": 0.05001514201171764,
+        "original_fw_gap_at_rounded": 0.0005065985386985411,
+        "true_smoothed_gap": 45.1260542325598,
+        "repair_entrywise_l1": 1.9218750000000002,
+        "raw_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 1.9218749999999991,
+          "col_l2": 0.4648192876063813,
+          "both_l1": 1.9218749999999991,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 2.6020852139652106e-18,
+          "col_l2": 1.5023145987371592e-18,
+          "both_l1": 2.6020852139652106e-18,
+          "mass_error": 0.0,
+          "min_entry": 6.103515624999997e-05
+        },
+        "rounded_source_dtype": "float64",
+        "scope": "Independent CPU float64 evaluation of actual saved P_rounded and P_raw, without rerounding"
+      },
+      "timing": {
+        "preparation_cache_seconds": 0.9823040129849687,
+        "solver_seconds": 0.01254409330431372,
+        "repair_seconds": 0.0016811740351840854,
+        "diagnostic_seconds": 0.25874641514383256,
+        "serialization_seconds": 0.0022600932279601693,
+        "final_float64_validation_seconds": 0.011116300011053681
+      },
+      "memory": {
+        "process_peak_rss_bytes": 363069440,
+        "memory_scope": "process high-water RSS and GPU allocated/reserved peaks include diagnostics and final validation"
+      },
+      "total_instrumented_seconds": 1.269072768976912,
+      "solver_counts": {
+        "oracle_evaluations": 5,
+        "exact_gradient_calls": 0,
+        "stochastic_gradient_calls": 5,
+        "sketch_probes": 640,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 5,
+        "row_projection_calls": 0
+      },
+      "diagnostic_counts": {
+        "exact_gradient_calls": 12,
+        "full_loss_calls": 12,
+        "assignment_lmo_calls": 6,
+        "row_gap_evaluations": 6,
+        "rounding_calls": 6
+      },
+      "max_row_l1": 0.0,
+      "max_certificate_excess": -0.005853705044721799
+    },
+    {
+      "stochastic_seed": 2,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/runs/theory_parser_smoke/seed2",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv, final.npz, final_float64_evaluation.json"
+      ],
+      "input_sha256": {}
+    }
+  ],
+  "figures": [
+    "theory_prefix_gap_mean.png",
+    "theory_prefix_gap_mean.pdf",
+    "theory_raw_feasibility_estimator_errors.png",
+    "theory_raw_feasibility_estimator_errors.pdf",
+    "theory_current_rounded_outputs.png",
+    "theory_current_rounded_outputs.pdf"
+  ],
+  "timing_across_completed_runs": {
+    "preparation_cache_seconds": {
+      "mean": 0.9788519260473549,
+      "median": 0.9788519260473549,
+      "q25": 0.977125882578548,
+      "q75": 0.9805779695161618,
+      "minimum": 0.9753998391097412,
+      "maximum": 0.9823040129849687
+    },
+    "solver_seconds": {
+      "mean": 0.012469647685065866,
+      "median": 0.012469647685065866,
+      "q25": 0.012432424875441939,
+      "q75": 0.012506870494689792,
+      "minimum": 0.012395202065818012,
+      "maximum": 0.01254409330431372
+    },
+    "repair_seconds": {
+      "mean": 0.0016913170111365616,
+      "median": 0.0016913170111365616,
+      "q25": 0.0016862455231603235,
+      "q75": 0.0016963884991127998,
+      "minimum": 0.0016811740351840854,
+      "maximum": 0.001701459987089038
+    },
+    "diagnostic_seconds": {
+      "mean": 0.2581299871671945,
+      "median": 0.2581299871671945,
+      "q25": 0.25782177317887545,
+      "q75": 0.2584382011555135,
+      "minimum": 0.2575135591905564,
+      "maximum": 0.25874641514383256
+    },
+    "serialization_seconds": {
+      "mean": 0.002291628159582615,
+      "median": 0.002291628159582615,
+      "q25": 0.002275860693771392,
+      "q75": 0.0023073956253938377,
+      "minimum": 0.0022600932279601693,
+      "maximum": 0.0023231630912050605
+    },
+    "final_float64_validation_seconds": {
+      "mean": 0.011064574995543808,
+      "median": 0.011064574995543808,
+      "q25": 0.011038712487788871,
+      "q75": 0.011090437503298745,
+      "minimum": 0.011012849980033934,
+      "maximum": 0.011116300011053681
+    }
+  },
+  "primary_statistic": {
+    "definition": "For each t, mean over stochastic seeds of (1/t)*sum_{k=0}^{t-1} true_smoothed_gap(seed,k)",
+    "complete_prespecified_replication_set": false,
+    "prefix_lengths": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "per_seed_prefix_means": {
+      "0": [
+        0.006360303583420324,
+        76.66576071443762,
+        80.38289710295426,
+        76.48808020256197,
+        71.72940156876278
+      ],
+      "1": [
+        0.006360303583420324,
+        76.6657636081382,
+        80.38876036071527,
+        76.4925993206971,
+        71.73589173966644
+      ]
+    },
+    "ensemble": {
+      "mean": [
+        0.006360303583420324,
+        76.66576216128792,
+        80.38582873183476,
+        76.49033976162954,
+        71.73264665421462
+      ],
+      "median": [
+        0.006360303583420324,
+        76.66576216128792,
+        80.38582873183476,
+        76.49033976162954,
+        71.73264665421462
+      ],
+      "q25": [
+        0.006360303583420324,
+        76.66576143786277,
+        80.38436291739451,
+        76.48920998209576,
+        71.7310241114887
+      ],
+      "q75": [
+        0.006360303583420324,
+        76.66576288471306,
+        80.38729454627502,
+        76.49146954116331,
+        71.73426919694053
+      ],
+      "minimum": [
+        0.006360303583420324,
+        76.66576071443762,
+        80.38289710295426,
+        76.48808020256197,
+        71.72940156876278
+      ],
+      "maximum": [
+        0.006360303583420324,
+        76.6657636081382,
+        80.38876036071527,
+        76.4925993206971,
+        71.73589173966644
+      ]
+    }
+  },
+  "pointwise_ensembles": {
+    "true_smoothed_gap": {
+      "mean": [
+        0.006360303583420324,
+        153.3251640189924,
+        87.82596187292847,
+        64.80387285101382,
+        52.70187422455494
+      ],
+      "median": [
+        0.006360303583420324,
+        153.3251640189924,
+        87.82596187292847,
+        64.80387285101382,
+        52.70187422455494
+      ],
+      "q25": [
+        0.006360303583420324,
+        153.32516257214212,
+        87.82156587645801,
+        64.80375117619946,
+        52.69828062906049
+      ],
+      "q75": [
+        0.006360303583420324,
+        153.3251654658427,
+        87.83035786939894,
+        64.80399452582819,
+        52.70546782004939
+      ],
+      "minimum": [
+        0.006360303583420324,
+        153.32516112529183,
+        87.81716987998755,
+        64.80362950138507,
+        52.694687033566034
+      ],
+      "maximum": [
+        0.006360303583420324,
+        153.325166912693,
+        87.8347538658694,
+        64.80411620064257,
+        52.70906141554385
+      ]
+    },
+    "row_l1": {
+      "mean": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "median": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q25": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q75": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "minimum": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "col_l1": {
+      "mean": [
+        0.0,
+        1.984375,
+        1.9687499999999998,
+        1.9531250000000004,
+        1.9375000000000002
+      ],
+      "median": [
+        0.0,
+        1.984375,
+        1.9687499999999998,
+        1.9531250000000004,
+        1.9375000000000002
+      ],
+      "q25": [
+        0.0,
+        1.984375,
+        1.9687499999999998,
+        1.9531250000000004,
+        1.9375000000000002
+      ],
+      "q75": [
+        0.0,
+        1.984375,
+        1.9687499999999998,
+        1.9531250000000004,
+        1.9375000000000002
+      ],
+      "minimum": [
+        0.0,
+        1.984375,
+        1.9687499999999998,
+        1.9531250000000004,
+        1.9375000000000002
+      ],
+      "maximum": [
+        0.0,
+        1.984375,
+        1.9687499999999998,
+        1.9531250000000004,
+        1.9375000000000002
+      ]
+    },
+    "col_l2": {
+      "mean": [
+        0.0,
+        0.9960860906568267,
+        0.714203868782455,
+        0.5897549478280353,
+        0.5155580536461268
+      ],
+      "median": [
+        0.0,
+        0.9960860906568267,
+        0.714203868782455,
+        0.5897549478280353,
+        0.5155580536461268
+      ],
+      "q25": [
+        0.0,
+        0.9960860906568267,
+        0.714203868782455,
+        0.5897549478280353,
+        0.5155580536461268
+      ],
+      "q75": [
+        0.0,
+        0.9960860906568267,
+        0.714203868782455,
+        0.5897549478280353,
+        0.5155580536461268
+      ],
+      "minimum": [
+        0.0,
+        0.9960860906568267,
+        0.714203868782455,
+        0.5897549478280353,
+        0.5155580536461268
+      ],
+      "maximum": [
+        0.0,
+        0.9960860906568267,
+        0.714203868782455,
+        0.5897549478280353,
+        0.5155580536461268
+      ]
+    },
+    "col_l2_squared": {
+      "mean": [
+        0.0,
+        0.9921875000000001,
+        0.5100871661838262,
+        0.3478108984876486,
+        0.2658001066793826
+      ],
+      "median": [
+        0.0,
+        0.9921875000000001,
+        0.5100871661838262,
+        0.3478108984876486,
+        0.2658001066793826
+      ],
+      "q25": [
+        0.0,
+        0.9921875000000001,
+        0.5100871661838262,
+        0.3478108984876486,
+        0.2658001066793826
+      ],
+      "q75": [
+        0.0,
+        0.9921875000000001,
+        0.5100871661838262,
+        0.3478108984876486,
+        0.2658001066793826
+      ],
+      "minimum": [
+        0.0,
+        0.9921875000000001,
+        0.5100871661838262,
+        0.3478108984876486,
+        0.2658001066793826
+      ],
+      "maximum": [
+        0.0,
+        0.9921875000000001,
+        0.5100871661838262,
+        0.3478108984876486,
+        0.2658001066793826
+      ]
+    },
+    "momentum_error_l2": {
+      "mean": [
+        157.27644145301875,
+        129.5393573808131,
+        129.87132260845152,
+        130.12735076555825,
+        106.16068972940263
+      ],
+      "median": [
+        157.27644145301875,
+        129.5393573808131,
+        129.87132260845152,
+        130.12735076555825,
+        106.16068972940263
+      ],
+      "q25": [
+        149.88986190486918,
+        126.50348223703685,
+        116.8047258507917,
+        128.35794963519913,
+        90.7522709379017
+      ],
+      "q75": [
+        164.66302100116832,
+        132.57523252458932,
+        142.93791936611132,
+        131.89675189591736,
+        121.56910852090357
+      ],
+      "minimum": [
+        142.5032823567196,
+        123.4676070932606,
+        103.7381290931319,
+        126.58854850483999,
+        75.34385214640076
+      ],
+      "maximum": [
+        172.0496005493179,
+        135.61110766836558,
+        156.0045161237711,
+        133.6661530262765,
+        136.9775273124045
+      ]
+    },
+    "oracle_error_l2": {
+      "mean": [
+        157.27644145301875,
+        170.74984142614622,
+        202.87759842554544,
+        199.36109680059022,
+        157.50241271621476
+      ],
+      "median": [
+        157.27644145301875,
+        170.74984142614622,
+        202.87759842554544,
+        199.36109680059022,
+        157.50241271621476
+      ],
+      "q25": [
+        149.88986190486918,
+        166.17760141809958,
+        179.704864644271,
+        178.7594131272025,
+        140.4404783383256
+      ],
+      "q75": [
+        164.66302100116832,
+        175.32208143419285,
+        226.05033220681992,
+        219.96278047397794,
+        174.56434709410394
+      ],
+      "minimum": [
+        142.5032823567196,
+        161.60536141005292,
+        156.53213086299652,
+        158.15772945381477,
+        123.37854396043642
+      ],
+      "maximum": [
+        172.0496005493179,
+        179.89432144223952,
+        249.2230659880944,
+        240.56446414736567,
+        191.6262814719931
+      ]
+    },
+    "rounded_feasible_loss": {
+      "mean": [
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.05001021733613431
+      ],
+      "median": [
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.05001021733613431
+      ],
+      "q25": [
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.05000775499834287
+      ],
+      "q75": [
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.05001267967392575
+      ],
+      "minimum": [
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050005292660551426
+      ],
+      "maximum": [
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195,
+        0.050015142011717195
+      ]
+    },
+    "original_fw_gap_at_rounded": {
+      "mean": [
+        0.0005065985386985246,
+        0.0005065985386985246,
+        0.0005065985386985262,
+        0.0005065985386985266,
+        0.0005065985386985261,
+        0.0006225601054616231
+      ],
+      "median": [
+        0.0005065985386985246,
+        0.0005065985386985246,
+        0.0005065985386985262,
+        0.0005065985386985266,
+        0.0005065985386985261,
+        0.0006225601054616231
+      ],
+      "q25": [
+        0.0005065985386985246,
+        0.0005065985386985246,
+        0.0005065985386985244,
+        0.0005065985386985247,
+        0.000506598538698525,
+        0.0005645793220800739
+      ],
+      "q75": [
+        0.0005065985386985246,
+        0.0005065985386985246,
+        0.0005065985386985281,
+        0.0005065985386985285,
+        0.0005065985386985272,
+        0.0006805408888431723
+      ],
+      "minimum": [
+        0.0005065985386985246,
+        0.0005065985386985246,
+        0.0005065985386985227,
+        0.0005065985386985228,
+        0.0005065985386985239,
+        0.0005065985386985248
+      ],
+      "maximum": [
+        0.0005065985386985246,
+        0.0005065985386985246,
+        0.0005065985386985298,
+        0.0005065985386985305,
+        0.0005065985386985283,
+        0.0007385216722247214
+      ]
+    },
+    "time_to_this_feasible_output": {
+      "mean": [
+        0.0035395430750213563,
+        0.006207751459442079,
+        0.00842530356021598,
+        0.010595995583571494,
+        0.012724807718768716,
+        0.01277756318449974
+      ],
+      "median": [
+        0.0035395430750213563,
+        0.006207751459442079,
+        0.00842530356021598,
+        0.010595995583571494,
+        0.012724807718768716,
+        0.01277756318449974
+      ],
+      "q25": [
+        0.0035044730466324836,
+        0.006199239287525415,
+        0.008422006358159706,
+        0.010545272787567228,
+        0.012688034912571311,
+        0.01274160761386156
+      ],
+      "q75": [
+        0.003574613103410229,
+        0.006216263631358743,
+        0.008428600762272254,
+        0.01064671837957576,
+        0.01276158052496612,
+        0.01281351875513792
+      ],
+      "minimum": [
+        0.003469403018243611,
+        0.006190727115608752,
+        0.008418709156103432,
+        0.010494549991562963,
+        0.012651262106373906,
+        0.012705652043223381
+      ],
+      "maximum": [
+        0.003609683131799102,
+        0.006224775803275406,
+        0.008431897964328527,
+        0.010697441175580025,
+        0.012798353331163526,
+        0.0128494743257761
+      ]
+    }
+  },
+  "interpretation": {
+    "randomness": "Stochastic repetitions on one fixed n128 problem, not independent datasets.",
+    "uncertainty": "IQR is empirical run-to-run dispersion, not a confidence interval for the expectation.",
+    "expectation": "The mean across the prespecified stochastic repetitions estimates the theorem's expected full-trajectory mean; incomplete subsets remain explicitly incomplete.",
+    "terminal": "Terminal PT is excluded from every prefix/theory mean. Its actual saved rounded output is independently audited in CPU float64 and reported separately.",
+    "secondary_curves": "Raw feasibility, estimator errors, and current rounded output metrics are descriptive pointwise statistics; no last-iterate theorem guarantee is claimed.",
+    "slope_fitting": "None. No fitted exponent, guide slope, or finite-range rate claim.",
+    "timing_memory": "Per-run solver, repair, diagnostics, serialization, total instrumented time, and peak process/GPU memory are reported; peaks include diagnostics."
+  }
+}

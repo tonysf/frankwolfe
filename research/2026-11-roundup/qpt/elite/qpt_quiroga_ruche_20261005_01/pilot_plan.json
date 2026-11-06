@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "created_local_date": "2026-10-05",
+  "campaign_id": "qpt_quiroga_ruche_20261005_01",
+  "phase": "n2_full_calibration_budget_anchor_pilot",
+  "scientific_role": "Representative anchor for measuring full-calibration-horizon execution and resource use; not a selected, best-for-best, validation, or held-out result.",
+  "git_commit": "0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+  "source_repo": "/gpfs/workdir/silvetian/frankwolfe-quiroga-0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+  "require_clean_source": true,
+  "upstream_plan": "/home/tony/qpt_quiroga_best_for_best_20261004_02/plan.json",
+  "launcher": "pilot.sbatch",
+  "status_when_prepared": "not_submitted",
+  "remote_output_root": "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_0586c15a8c4eccf644b67d3bae97dc3b017e6e69_20261004_02",
+  "run_directory_template": "calibration-pilot-${SLURM_JOB_ID}",
+  "slurm_log_templates": ["pilot-%j.out", "pilot-%j.err"],
+  "resources": {
+    "partition": "cpu_short",
+    "account": "fwllm",
+    "nodes": 1,
+    "tasks": 1,
+    "cpus_per_task": 2,
+    "memory": "1G",
+    "walltime": "00:20:00",
+    "export": "NONE",
+    "propagate": "NONE"
+  },
+  "environment": {
+    "module": "anaconda3/2023.09-0/none-none",
+    "conda_environment": "qpt",
+    "blas_openmp_threads": 2,
+    "python_bytecode_writes": false
+  },
+  "comparison": {
+    "protocol_id": "method_tuned_dynamic_frames_matched_nominal_row_accesses_v2",
+    "split": "calibration",
+    "n_qubits": 2,
+    "active_rows": 128,
+    "subset_size": 0,
+    "rank": 1,
+    "observation_mode": "noiseless",
+    "row_epochs": 2000,
+    "checkpoint_epochs": 100,
+    "logical_row_accesses_per_method": 256000,
+    "printed_updates": 2000,
+    "frames_updates": 8000,
+    "printed_config_id": "n2_full_128-printed-aq-0p05-eta-0p0001-v1",
+    "frames_config_id": "n2_full_128-frames-af0-0p005-p-0p25-v1",
+    "candidate_id_scope": "Anchor candidate IDs only; no frozen selection-manifest identity is asserted.",
+    "printed": {
+      "alpha_Q": 0.05,
+      "fixed_lambda_Q": 6.4,
+      "eta_scale": 0.0001,
+      "spectral_norm_method": "dense",
+      "spectral_norm_tolerance": 1e-10,
+      "dense_max_process_dimension": 1024
+    },
+    "frames": {
+      "alpha_F0": 0.005,
+      "beta0": 100.0,
+      "penalty_exponent": 0.25,
+      "penalty_schedule": "alpha_F(k)=0.005*(k+1)^0.25",
+      "batch_size": 32,
+      "tau": 2.0,
+      "rho_schedule": {"scale": 2.0, "offset": 4.0, "exponent": 0.6, "cap": 1.0},
+      "step_schedule": {"scale": 2.0, "offset": 2.0, "exponent": 1.0, "cap": 1.0}
+    },
+    "seeds": {
+      "channel": 0,
+      "initialization": 200000,
+      "sampling": 300000,
+      "subset": 400000,
+      "noise": 0,
+      "shot": 0
+    },
+    "gate": {
+      "name": "noiseless_recovery_v1",
+      "process_fidelity_min": 0.99,
+      "full_design_rmse_max": 1e-6,
+      "normalized_tp_violation_max": 0.001
+    },
+    "cohort_id": "n2-full-calibration-pilot-q005-e00001-f0005-0586c15",
+    "trial_id_template": "n2-full-calibration-pilot-c0-i0-s0-20261005-${SLURM_JOB_ID}"
+  },
+  "execution_policy": {
+    "submit_only_after": "Inspect successful Ruche smoke status, stderr, archive, provenance and accounting, and check for duplicate campaign jobs.",
+    "outputs": ["pair.json", "pair.npz", "execution_status.json"],
+    "failure_handling": "Capture the runner exit status, checksum any nonempty pair artifacts, save execution_status.json, and then exit with the runner's nonzero status. A method-failure exit 2 is not masked. A zero runner exit with missing artifacts becomes a nonzero scheduler exit.",
+    "timeout_qualification": "Scheduler termination can interrupt the runner before it writes archives or the execution record; preserve Slurm logs/accounting and mark such a run incomplete.",
+    "success_does_not_mean_recovery": true,
+    "no_overwrite": true,
+    "prior_artifacts_preserved": true,
+    "next_step": "Inspect complete endpoint and gate metrics, JSON/NPZ consistency, checksums and Slurm resource usage before deciding on a bounded calibration grid. Freeze missing replicate counts and candidate inventory before launching that grid."
+  }
+}

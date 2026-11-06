@@ -1,0 +1,341 @@
+{
+  "source_commit": "72f5366a4d28ad5a585acb850fff6ebe06e3addf",
+  "cpu_suite": {
+    "passed": 47,
+    "elapsed_seconds": 18.72
+  },
+  "runner_after_metadata_update": {
+    "passed": 7,
+    "elapsed_seconds": 15.17
+  },
+  "gpu_status": "COMPLETED",
+  "gpu_job_id": 1986380,
+  "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_stochastic_20261002/source_72f5366",
+  "remote_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_stochastic_20261002/validation_72f5366_retry1",
+  "prepared_instance": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+  "source_checksums_verified": true,
+  "local_distributed": {
+    "status": "passed",
+    "check_count": 40,
+    "world_size": 4,
+    "device": "cpu",
+    "torch": "2.14.0+cpu",
+    "elapsed_seconds": 0.525383151951246
+  },
+  "method": "Fatkhullin-He (2024), Eq. (2): fresh-gradient stochastic entropic mirror descent",
+  "tolerances": {
+    "summed_marginal_l1": 1e-07,
+    "normalized_primal_dual_gap": 1e-07
+  },
+  "gpu_allocation": {
+    "site": "Ruche",
+    "account": "fwllm",
+    "partition": "gpua100",
+    "gpus": 4,
+    "time_limit": "00:30:00"
+  },
+  "gpu_plan": [
+    "47 CPU tests within allocation",
+    "40 four-GPU numerical checks",
+    "Three SMD updates on full SHARE-seq, n=31890",
+    "Three FW updates on the same full data"
+  ],
+  "scientific_results": "Validation only; no replacement-baseline performance ranking yet.",
+  "theory": "Finite tolerance is a numerical implementation choice, not a proved inexact outer convergence guarantee.",
+  "scheduler_reason": null,
+  "failed_attempts": [
+    {
+      "job_id": 1986270,
+      "state": "FAILED",
+      "elapsed": "00:01:39",
+      "exit_code": "1:0",
+      "node": "ruche-gpu19",
+      "cpu_tests": {
+        "passed": 47,
+        "elapsed_seconds": 37.83
+      },
+      "failure_stage": "CUDA device initialization before distributed numerical tests",
+      "failure": "CUDA-capable device(s) is/are busy or unavailable at local_rank=2",
+      "interpretation": "Device/allocation availability; no launch mapping defect found. Permanent hardware fault not established.",
+      "full_data_runs_started": false,
+      "evidence_directory": "logs/published_smd_validation_1986270",
+      "local_evidence_sha256": {
+        "SHA256SUMS": "86ecd0bff434262d8aa0d266e51ca244bb23c1fac59aed01fc952caa321e65e4",
+        "cpu_tests.txt": "e9de4cfd70efa1ec3c9612ab514f4f2103f9e1fa3502119a0bbc5cd26bfb2485",
+        "environment.lock.txt": "86aea8dbd36ea3bcd52c7ef61610280d6c8ccf14922b30926d629cedb96b8a3a",
+        "exit_code.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "gpus.csv": "5ec33debedd9827b33b88446d372bc419ec9488f2e1a98468f674a65e559e125",
+        "published-smd-validation-1986270.out": "f9c5e3da6c1cb0d18fe2a8f05569c8a96c9377bb847d0524f61f13915aeead8a"
+      }
+    }
+  ],
+  "retry": {
+    "same_source": true,
+    "same_tolerances": true,
+    "sbatch_exclude": [
+      "ruche-gpu16",
+      "ruche-gpu19"
+    ]
+  },
+  "latest_status_check": {
+    "checked_at": "2026-10-04T20:47:19+02:00",
+    "state": "COMPLETED",
+    "live_user_jobs": [],
+    "gpu_validation_completed": true,
+    "full_data_validation_completed": true,
+    "full_scientific_comparison_submitted": false
+  },
+  "completion": {
+    "job_id": 1986380,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "start": "2026-10-02T20:54:09+02:00",
+    "end": "2026-10-02T20:57:51+02:00",
+    "elapsed": "00:03:42",
+    "node": "ruche-gpu15",
+    "cpu_tests": {
+      "passed": 47,
+      "elapsed_seconds": 27.46
+    },
+    "distributed_gpu": {
+      "status": "passed",
+      "check_count": 40,
+      "world_size": 4,
+      "device": "cuda:0",
+      "torch": "2.5.1+cu121",
+      "cuda": "12.1",
+      "job_id": "1986380",
+      "elapsed_seconds": 3.281240751966834,
+      "scope": "Small kernel/integration checks; not scientific performance results."
+    },
+    "full_data_validation": {
+      "smd": {
+        "method": "Stochastic entropic mirror descent (fresh sketch gradient; no momentum)",
+        "dimensions": {
+          "source": 31890,
+          "target": 31890
+        },
+        "counters": {
+          "certificate_checks": 3,
+          "completed_updates": 3,
+          "exact_diagnostic_loss_calls": 6,
+          "initialization_oracle_calls": 0,
+          "inner_iterations_total": 30,
+          "inner_stopping_failures": 0,
+          "sketch_probes": 384,
+          "stochastic_gradient_calls": 3,
+          "underflow_entries_total": 0,
+          "underflow_steps": 0
+        },
+        "inner_acceptance_maxima": {
+          "marginal_l1": 8.96756497035492e-10,
+          "normalized_gap_upper_bound": 1.927418939092459e-12,
+          "normalized_primal_dual_gap": 3.774758283725532e-15,
+          "primal_witness_marginal_l1": 1.3412936126361297e-16
+        },
+        "timing": {
+          "exact_diagnostic_seconds": 11.345069588162005,
+          "final_float64_validation_seconds": 19.50080633116886,
+          "preparation_seconds": 24.041174462996423,
+          "repair_seconds": 0.24101603706367314,
+          "serialization_seconds": 12.86687329900451,
+          "solver_device_seconds": 12.955030059441924,
+          "solver_seconds": 3.238757514860481,
+          "total_elapsed_seconds": 74.29008050309494
+        },
+        "output_selection": {
+          "candidates": "P_0,...,P_(T-1); snapshot before its update",
+          "distribution": "eta_k/sum_j eta_j = (k+1)^(-1/2)/sum_j (j+1)^(-1/2)",
+          "horizon": 3,
+          "independent_rng": true,
+          "index": 0,
+          "last_iterate_index": 3,
+          "output_seed": 910,
+          "probability": 0.4377407751375031,
+          "rounded_selected_is_diagnostic": true,
+          "scope": "Paper-specified SMD output",
+          "selected_raw_is_the_algorithm_output": true
+        },
+        "final_saved_plan_validation": {
+          "dtype": "float64",
+          "exact_objective": true,
+          "optimizer_state_released": true,
+          "plan_values": "Promoted saved values; no additional re-rounding",
+          "plans": {
+            "last_raw": {
+              "loss": 0.11721021193475534,
+              "marginal_residuals": {
+                "both_l1": 7.991969433866785e-08,
+                "col_l1": 3.995984716936781e-08,
+                "col_l2": 2.237691324942659e-10,
+                "mass_error": 3.995984720894796e-08,
+                "min_entry": 4.86315496336584e-16,
+                "row_l1": 3.9959847169300045e-08
+              }
+            },
+            "last_rounded": {
+              "loss": 0.11721021210150478,
+              "marginal_residuals": {
+                "both_l1": 8.304130067952984e-08,
+                "col_l1": 4.0929557995626525e-08,
+                "col_l2": 2.3080980805232948e-10,
+                "mass_error": 3.922181868176722e-08,
+                "min_entry": 4.86315496336584e-16,
+                "row_l1": 4.211174268390331e-08
+              }
+            },
+            "selected_raw": {
+              "loss": 0.11722385585443607,
+              "marginal_residuals": {
+                "both_l1": 9.296232480785166e-08,
+                "col_l1": 4.648116240392583e-08,
+                "col_l2": 2.6028534757899616e-10,
+                "mass_error": 4.648116247452094e-08,
+                "min_entry": 9.833110992119032e-10,
+                "row_l1": 4.648116240392583e-08
+              }
+            },
+            "selected_rounded": {
+              "loss": 0.11722385585443607,
+              "marginal_residuals": {
+                "both_l1": 9.296232480785166e-08,
+                "col_l1": 4.648116240392583e-08,
+                "col_l2": 2.6028534757899616e-10,
+                "mass_error": 4.648116247452094e-08,
+                "min_entry": 9.833110992119032e-10,
+                "row_l1": 4.648116240392583e-08
+              }
+            }
+          }
+        },
+        "peak_gpu_allocated_GiB_optimization": 18.740225315093994,
+        "peak_gpu_allocated_GiB_fp64_validation": 26.55375337600708,
+        "sinkhorn_iterations_per_update": [
+          10,
+          10,
+          10
+        ]
+      },
+      "fw": {
+        "method": "Smoothed row Frank-Wolfe with gradient momentum (sketch gradient)",
+        "dimensions": {
+          "source": 31890,
+          "target": 31890
+        },
+        "counters": {
+          "certificate_checks": 0,
+          "completed_updates": 3,
+          "exact_diagnostic_loss_calls": 6,
+          "initialization_oracle_calls": 1,
+          "inner_iterations_total": 0,
+          "inner_stopping_failures": 0,
+          "sketch_probes": 384,
+          "stochastic_gradient_calls": 3,
+          "underflow_entries_total": 0,
+          "underflow_steps": 0
+        },
+        "inner_acceptance_maxima": {
+          "marginal_l1": 0.0,
+          "normalized_gap_upper_bound": 0.0,
+          "normalized_primal_dual_gap": 0.0,
+          "primal_witness_marginal_l1": 0.0
+        },
+        "timing": {
+          "exact_diagnostic_seconds": 10.78723066416569,
+          "final_float64_validation_seconds": 18.712147823069245,
+          "preparation_seconds": 12.497333282837644,
+          "repair_seconds": 0.14573248499073088,
+          "serialization_seconds": 12.94463195395656,
+          "solver_device_seconds": 4.059817051514983,
+          "solver_seconds": 1.0149542628787458,
+          "total_elapsed_seconds": 59.04207195295021
+        },
+        "output_selection": {
+          "candidates": "P_0,...,P_(T-1); snapshot before its update",
+          "distribution": "eta_k/sum_j eta_j = (k+1)^(-1/2)/sum_j (j+1)^(-1/2)",
+          "horizon": 3,
+          "independent_rng": true,
+          "index": 0,
+          "last_iterate_index": 3,
+          "output_seed": 910,
+          "probability": 0.4377407751375031,
+          "rounded_selected_is_diagnostic": true,
+          "scope": "Diagnostic only; no FW theorem-output claim",
+          "selected_raw_is_the_algorithm_output": true
+        },
+        "final_saved_plan_validation": {
+          "dtype": "float64",
+          "exact_objective": true,
+          "optimizer_state_released": true,
+          "plan_values": "Promoted saved values; no additional re-rounding",
+          "plans": {
+            "last_raw": {
+              "loss": 0.11865493067802502,
+              "marginal_residuals": {
+                "both_l1": 0.3812619539832973,
+                "col_l1": 0.3812619526641527,
+                "col_l2": 0.11507616742625837,
+                "mass_error": 1.3191445713545136e-09,
+                "min_entry": 7.958439462996125e-10,
+                "row_l1": 1.3191446419496275e-09
+              }
+            },
+            "last_rounded": {
+              "loss": 0.1172239353223149,
+              "marginal_residuals": {
+                "both_l1": 5.844630194564414e-07,
+                "col_l1": 2.922315097282207e-07,
+                "col_l2": 1.6364445980869045e-09,
+                "mass_error": 2.9223150965762557e-07,
+                "min_entry": 9.833113212565081e-10,
+                "row_l1": 2.922315097282207e-07
+              }
+            },
+            "selected_raw": {
+              "loss": 0.11722385585443607,
+              "marginal_residuals": {
+                "both_l1": 9.296232480785166e-08,
+                "col_l1": 4.648116240392583e-08,
+                "col_l2": 2.6028534757899616e-10,
+                "mass_error": 4.648116247452094e-08,
+                "min_entry": 9.833110992119032e-10,
+                "row_l1": 4.648116240392583e-08
+              }
+            },
+            "selected_rounded": {
+              "loss": 0.11722385585443607,
+              "marginal_residuals": {
+                "both_l1": 9.296232480785166e-08,
+                "col_l1": 4.648116240392583e-08,
+                "col_l2": 2.6028534757899616e-10,
+                "mass_error": 4.648116247452094e-08,
+                "min_entry": 9.833110992119032e-10,
+                "row_l1": 4.648116240392583e-08
+              }
+            }
+          }
+        },
+        "peak_gpu_allocated_GiB_optimization": 15.188126564025879,
+        "peak_gpu_allocated_GiB_fp64_validation": 26.55375337600708,
+        "sinkhorn_iterations_per_update": []
+      }
+    },
+    "small_artifacts_verified": 17,
+    "local_artifacts": "logs/published_smd_validation_1986380",
+    "small_artifact_checksum_manifest_sha256": "e684b43751c00c65a86944b7d31edf7a7cf601fb2be1b782039b2f4302b66788",
+    "dense_couplings": "Preserved remotely; small metadata/logs copied and checksum verified locally.",
+    "timing_scope": "Three-update validation includes initialization/warm-up; no steady-state speed or quality ranking.",
+    "independent_audit": {
+      "passed": true,
+      "four_rank_metadata_consistent": true,
+      "shared_input_and_source_hashes_consistent": true,
+      "all_final_fp64_metrics_finite": true,
+      "scope": "GPU correctness, full-size memory and three-update integration only.",
+      "notes": [
+        "Both independently selected snapshots happened to be P_0 in this three-update validation.",
+        "FW final rounded marginal residual is 5.84e-7 and passes its FP32 rounding threshold; 1e-7 is the SMD inner-solve tolerance, not a claim about every diagnostic plan."
+      ]
+    }
+  },
+  "next_stage": "Prespecify tuning/final runs and perform sustained comparisons of FraMES with published stochastic entropic mirror descent; GPU precision and full-size memory validation passed."
+}

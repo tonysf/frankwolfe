@@ -1,0 +1,273 @@
+{
+  "checkpoint_seconds": [],
+  "experiment": "pair_sampling_20261011",
+  "final_marginal_l1_tolerance": 1.1920928955078125e-05,
+  "initializations": [
+    "product"
+  ],
+  "instances": {
+    "bmmc6224": {
+      "array_files_sha256": {
+        "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+        "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+        "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+        "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+      },
+      "final_checkpoint_iterations": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "final_iterations": 20000,
+      "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+      "n": 6224,
+      "prefactors": {
+        "published-msbpg": {
+          "coupling_fraction": 1.0,
+          "id": "msbpg00",
+          "momentum_prefactor": 1.0
+        },
+        "published-smd": {
+          "id": "smd11",
+          "prefactor_fraction": 1.0
+        },
+        "smoothing-fw": {
+          "gamma0": 1.0,
+          "id": "fw08",
+          "mu_scale": 0.1,
+          "rho0": 0.3
+        }
+      },
+      "preflight_iterations": 200,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.json",
+        "metadata_sha256": "48820164157773734f12a6d83d9cd64ad6a9ca47e28055ee683393304c506014",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.npz"
+      },
+      "world_size": 1
+    },
+    "metric512_s1000": {
+      "array_files_sha256": {
+        "A.npy": "558422c91f0885eb35995d07e5f8e6935f90c1e4be855bd8205f2a12833caf4b",
+        "B.npy": "1e8fb1a3b9c743735b9fa4118aba8434d24595b60e2c4ab804b460c6582d1cfe",
+        "a.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588",
+        "b.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588"
+      },
+      "final_checkpoint_iterations": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        20000,
+        50000,
+        100000,
+        150000,
+        200000
+      ],
+      "final_iterations": 200000,
+      "instance_manifest_sha256": "e9929dc6c02f0b9680b55c7ea99a30ea80c0304140077d87e8dc0646aa3b73e0",
+      "n": 512,
+      "prefactors": {
+        "published-msbpg": {
+          "coupling_fraction": 1.0,
+          "id": "synthetic_msbpg_fixed",
+          "momentum_prefactor": 1.0
+        },
+        "published-smd": {
+          "id": "synthetic_smd_fixed",
+          "prefactor_fraction": 1.0
+        },
+        "smoothing-fw": {
+          "gamma0": 1.0,
+          "id": "synthetic_fw_fixed",
+          "mu_scale": 10.0,
+          "rho0": 0.3
+        }
+      },
+      "preflight_iterations": 2000,
+      "world_size": 1
+    },
+    "shareseq_full": {
+      "array_files_sha256": {
+        "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+      },
+      "final_checkpoint_iterations": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "final_iterations": 20000,
+      "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+      "n": 31890,
+      "prefactors": {
+        "published-msbpg": {
+          "coupling_fraction": 1.0,
+          "id": "msbpg00",
+          "momentum_prefactor": 1.0
+        },
+        "published-smd": {
+          "id": "smd11",
+          "prefactor_fraction": 1.0
+        },
+        "smoothing-fw": {
+          "gamma0": 0.3,
+          "id": "fw06",
+          "mu_scale": 10.0,
+          "rho0": 0.3
+        }
+      },
+      "preflight_iterations": 200,
+      "source_input": {
+        "directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+        "kind": "canonical",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full/manifest.json",
+        "metadata_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b"
+      },
+      "world_size": 4
+    },
+    "snare_full": {
+      "array_files_sha256": {
+        "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+        "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+        "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+        "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+      },
+      "final_checkpoint_iterations": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "final_iterations": 20000,
+      "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+      "n": 10000,
+      "prefactors": {
+        "published-msbpg": {
+          "coupling_fraction": 1.0,
+          "id": "msbpg00",
+          "momentum_prefactor": 1.0
+        },
+        "published-smd": {
+          "id": "smd11",
+          "prefactor_fraction": 1.0
+        },
+        "smoothing-fw": {
+          "gamma0": 0.3,
+          "id": "fw04",
+          "mu_scale": 0.1,
+          "rho0": 0.3
+        }
+      },
+      "preflight_iterations": 200,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.json",
+        "metadata_sha256": "99c24af82ee8abcc966e956ea0204a4b9c40428bddb98b31cda658bd6f47acb8",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.npz",
+        "sha256": "924f0a95feb5389758b29cfc2156fac09c6796b5f5c2e85718f72afbb0ac60d3"
+      },
+      "world_size": 1
+    }
+  },
+  "methods": [
+    "smoothing-fw",
+    "published-smd",
+    "published-msbpg"
+  ],
+  "oracle": "pair-sampling",
+  "output_scope": "Feasible current/last GW losses and each published baseline independently sampled theorem output are reported separately. Finite inner tolerances are numerical choices, not an inexact outer convergence theorem.",
+  "pairs_per_call": 1024,
+  "plan_storage": "none",
+  "prefactor_provenance": {
+    "real": {
+      "file": "extensions/long_horizon_20261007/frozen_selections.json",
+      "sha256": "de152feefd32bf6d18eeb1039af7a4c94c40bce412bef314a21bbe78e867771f"
+    },
+    "synthetic": {
+      "file": "extensions/probe8192_20261009/campaign.json",
+      "sha256": "cc71b945493b1355233e9c2f59f2310115ced824351009e9949c423c187ac7d3"
+    }
+  },
+  "preflight": {
+    "maximum_gpu_reserved_fraction": 0.9,
+    "run_timeout_seconds": 7200,
+    "runtime_safety_factor": 2.0,
+    "seed": 710
+  },
+  "run_counts": {
+    "preflight": 12,
+    "production": 36
+  },
+  "run_timeout_seconds": 82800,
+  "runner": {
+    "certificate_block_rows": 256,
+    "check_every": 10,
+    "dtype": "float32",
+    "exact_block_rows": 256,
+    "inner_gap_tol": 1e-07,
+    "inner_max": 10000,
+    "inner_tol": 1e-07,
+    "progress_every": 1000
+  },
+  "schema_version": 1,
+  "scope": "Change only the common stochastic gradient oracle to independent pair sampling, with 1024 sampled index pairs per call; all three published-method schedules and frozen prefactors retained. No tuning, loss-based gates or horizon adaptation.",
+  "seeds": [
+    710,
+    711,
+    712
+  ],
+  "stopping": "Production always targets the full fixed horizon. Timing and memory may prevent launch; loss values never determine continuation.",
+  "synthetic_baselines": "SMD fraction=1 and MSBPG coupling=1,momentum=1 are prespecified theorem-safe defaults, not selected synthetic hyperparameters.",
+  "theory_audit": {
+    "file": "theory_audit.json",
+    "sha256": "4eec1c4cfd502772ddc3591cb18231a45ca2875df905b2da589df4aa82f93cab"
+  }
+}

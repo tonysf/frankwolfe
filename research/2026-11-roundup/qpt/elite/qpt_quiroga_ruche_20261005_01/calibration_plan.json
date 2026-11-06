@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "kind": "calibration_execution_plan_not_selection_manifest",
+  "campaign_id": "qpt_quiroga_n2_full_calibration_20261005_01",
+  "created_local_date": "2026-10-05",
+  "source": {
+    "commit": "0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+    "repo": "/gpfs/workdir/silvetian/frankwolfe-quiroga-0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+    "require_clean": true
+  },
+  "parent_plan": "/home/tony/qpt_quiroga_best_for_best_20261004_02/plan.json",
+  "extension_note": "Explicitly fixes previously unspecified calibration replication: eight channels, one initialization per channel, three FRAMES sampling streams per native candidate. Original alpha5/eta6 grids, gate and horizon are unchanged. The smoke and anchor pilot remain separate and are not extra calibration replicates.",
+  "scientific_role": "Independent method-native hyperparameter calibration only. No winner selected, no selection manifest created, no validation/held-out configurations frozen, no primary comparison claim.",
+  "candidate_grid_id": "alpha5_independent_printed_eta6_frames_p025_v1",
+  "selection_rule_id": "gate_first_common_physical_metrics_v1",
+  "selection_rule": "Later rank each method separately by highest nested recovery-gate pass rate, mean number of gate components passed, median fidelity, lowest median full-design RMSE, lowest median normalized TP violation, then canonical config ID. Do not rank now and never use penalized objectives.",
+  "output_root": "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_0586c15a8c4eccf644b67d3bae97dc3b017e6e69_20261004_02",
+  "staged_files_directory": "execution-20261005-01",
+  "resources": {
+    "account": "fwllm",
+    "partition": "cpu_short",
+    "nodes": 1,
+    "tasks": 1,
+    "cpus_per_task": 2,
+    "memory": "1G",
+    "walltime_seconds": 1800,
+    "array": "0-7%4",
+    "minimum_seconds_before_new_trial": 60
+  },
+  "environment": {
+    "module": "anaconda3/2023.09-0/none-none",
+    "conda_environment": "qpt",
+    "threads": 2
+  },
+  "shared": {
+    "n_qubits": 2,
+    "active_rows": 128,
+    "rank": 1,
+    "subset_size": 0,
+    "observation_mode": "noiseless",
+    "noise_std": 0,
+    "noise_seed": 0,
+    "shot_seed": 0,
+    "row_epochs": 2000,
+    "checkpoint_epochs": 100,
+    "batch_size": 32,
+    "tau": 2,
+    "frames_penalty_exponent": 0.25,
+    "spectral_norm_method": "dense",
+    "dense_max_process_dimension": 1024,
+    "spectral_norm_tolerance": 1e-10,
+    "rho_schedule": {
+      "scale": 2,
+      "offset": 4,
+      "exponent": 0.6
+    },
+    "step_schedule": {
+      "scale": 2,
+      "offset": 2,
+      "exponent": 1
+    },
+    "gate": {
+      "name": "noiseless_recovery_v1",
+      "fidelity_min": 0.99,
+      "rmse_max": 0.000001,
+      "normalized_tp_max": 0.001
+    }
+  },
+  "channels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "initialization_indices": [
+    0
+  ],
+  "sampling_indices": [
+    0,
+    1,
+    2
+  ],
+  "seed_formulas": {
+    "initialization": "200000+10*channel_id+initialization_index",
+    "sampling": "300000+100*channel_id+10*initialization_index+sampling_index",
+    "subset": "400000+channel_id"
+  },
+  "printed_candidates": [
+    {
+      "id": "n2f-q-a5em1-e1em4-v1",
+      "alpha": 0.5,
+      "eta_scale": 0.0001
+    },
+    {
+      "id": "n2f-q-a5em1-e3em4-v1",
+      "alpha": 0.5,
+      "eta_scale": 0.0003
+    },
+    {
+      "id": "n2f-q-a5em1-e1em3-v1",
+      "alpha": 0.5,
+      "eta_scale": 0.001
+    },
+    {
+      "id": "n2f-q-a5em1-e3em3-v1",
+      "alpha": 0.5,
+      "eta_scale": 0.003
+    },
+    {
+      "id": "n2f-q-a5em1-e1em2-v1",
+      "alpha": 0.5,
+      "eta_scale": 0.01
+    },
+    {
+      "id": "n2f-q-a5em1-e3em2-v1",
+      "alpha": 0.5,
+      "eta_scale": 0.03
+    },
+    {
+      "id": "n2f-q-a5em2-e1em4-v1",
+      "alpha": 0.05,
+      "eta_scale": 0.0001
+    },
+    {
+      "id": "n2f-q-a5em2-e3em4-v1",
+      "alpha": 0.05,
+      "eta_scale": 0.0003
+    },
+    {
+      "id": "n2f-q-a5em2-e1em3-v1",
+      "alpha": 0.05,
+      "eta_scale": 0.001
+    },
+    {
+      "id": "n2f-q-a5em2-e3em3-v1",
+      "alpha": 0.05,
+      "eta_scale": 0.003
+    },
+    {
+      "id": "n2f-q-a5em2-e1em2-v1",
+      "alpha": 0.05,
+      "eta_scale": 0.01
+    },
+    {
+      "id": "n2f-q-a5em2-e3em2-v1",
+      "alpha": 0.05,
+      "eta_scale": 0.03
+    },
+    {
+      "id": "n2f-q-a5em3-e1em4-v1",
+      "alpha": 0.005,
+      "eta_scale": 0.0001
+    },
+    {
+      "id": "n2f-q-a5em3-e3em4-v1",
+      "alpha": 0.005,
+      "eta_scale": 0.0003
+    },
+    {
+      "id": "n2f-q-a5em3-e1em3-v1",
+      "alpha": 0.005,
+      "eta_scale": 0.001
+    },
+    {
+      "id": "n2f-q-a5em3-e3em3-v1",
+      "alpha": 0.005,
+      "eta_scale": 0.003
+    },
+    {
+      "id": "n2f-q-a5em3-e1em2-v1",
+      "alpha": 0.005,
+      "eta_scale": 0.01
+    },
+    {
+      "id": "n2f-q-a5em3-e3em2-v1",
+      "alpha": 0.005,
+      "eta_scale": 0.03
+    },
+    {
+      "id": "n2f-q-a5em4-e1em4-v1",
+      "alpha": 0.0005,
+      "eta_scale": 0.0001
+    },
+    {
+      "id": "n2f-q-a5em4-e3em4-v1",
+      "alpha": 0.0005,
+      "eta_scale": 0.0003
+    },
+    {
+      "id": "n2f-q-a5em4-e1em3-v1",
+      "alpha": 0.0005,
+      "eta_scale": 0.001
+    },
+    {
+      "id": "n2f-q-a5em4-e3em3-v1",
+      "alpha": 0.0005,
+      "eta_scale": 0.003
+    },
+    {
+      "id": "n2f-q-a5em4-e1em2-v1",
+      "alpha": 0.0005,
+      "eta_scale": 0.01
+    },
+    {
+      "id": "n2f-q-a5em4-e3em2-v1",
+      "alpha": 0.0005,
+      "eta_scale": 0.03
+    },
+    {
+      "id": "n2f-q-a5em5-e1em4-v1",
+      "alpha": 0.00005,
+      "eta_scale": 0.0001
+    },
+    {
+      "id": "n2f-q-a5em5-e3em4-v1",
+      "alpha": 0.00005,
+      "eta_scale": 0.0003
+    },
+    {
+      "id": "n2f-q-a5em5-e1em3-v1",
+      "alpha": 0.00005,
+      "eta_scale": 0.001
+    },
+    {
+      "id": "n2f-q-a5em5-e3em3-v1",
+      "alpha": 0.00005,
+      "eta_scale": 0.003
+    },
+    {
+      "id": "n2f-q-a5em5-e1em2-v1",
+      "alpha": 0.00005,
+      "eta_scale": 0.01
+    },
+    {
+      "id": "n2f-q-a5em5-e3em2-v1",
+      "alpha": 0.00005,
+      "eta_scale": 0.03
+    }
+  ],
+  "frames_candidates": [
+    {
+      "id": "n2f-f-a5em1-p025-v1",
+      "alpha0": 0.5
+    },
+    {
+      "id": "n2f-f-a5em2-p025-v1",
+      "alpha0": 0.05
+    },
+    {
+      "id": "n2f-f-a5em3-p025-v1",
+      "alpha0": 0.005
+    },
+    {
+      "id": "n2f-f-a5em4-p025-v1",
+      "alpha0": 0.0005
+    },
+    {
+      "id": "n2f-f-a5em5-p025-v1",
+      "alpha0": 0.00005
+    }
+  ],
+  "anchors": {
+    "printed_config_id": "n2f-q-a5em2-e1em4-v1",
+    "frames_config_id": "n2f-f-a5em3-p025-v1"
+  },
+  "pair_definitions": [
+    {
+      "pair_id": "p00",
+      "printed_config_id": "n2f-q-a5em1-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p01",
+      "printed_config_id": "n2f-q-a5em1-e3em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p02",
+      "printed_config_id": "n2f-q-a5em1-e1em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p03",
+      "printed_config_id": "n2f-q-a5em1-e3em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p04",
+      "printed_config_id": "n2f-q-a5em1-e1em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p05",
+      "printed_config_id": "n2f-q-a5em1-e3em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p06",
+      "printed_config_id": "n2f-q-a5em2-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "pair_id": "p07",
+      "printed_config_id": "n2f-q-a5em2-e3em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p08",
+      "printed_config_id": "n2f-q-a5em2-e1em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p09",
+      "printed_config_id": "n2f-q-a5em2-e3em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p10",
+      "printed_config_id": "n2f-q-a5em2-e1em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p11",
+      "printed_config_id": "n2f-q-a5em2-e3em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p12",
+      "printed_config_id": "n2f-q-a5em3-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p13",
+      "printed_config_id": "n2f-q-a5em3-e3em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p14",
+      "printed_config_id": "n2f-q-a5em3-e1em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p15",
+      "printed_config_id": "n2f-q-a5em3-e3em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p16",
+      "printed_config_id": "n2f-q-a5em3-e1em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p17",
+      "printed_config_id": "n2f-q-a5em3-e3em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p18",
+      "printed_config_id": "n2f-q-a5em4-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p19",
+      "printed_config_id": "n2f-q-a5em4-e3em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p20",
+      "printed_config_id": "n2f-q-a5em4-e1em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p21",
+      "printed_config_id": "n2f-q-a5em4-e3em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p22",
+      "printed_config_id": "n2f-q-a5em4-e1em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p23",
+      "printed_config_id": "n2f-q-a5em4-e3em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p24",
+      "printed_config_id": "n2f-q-a5em5-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p25",
+      "printed_config_id": "n2f-q-a5em5-e3em4-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p26",
+      "printed_config_id": "n2f-q-a5em5-e1em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p27",
+      "printed_config_id": "n2f-q-a5em5-e3em3-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p28",
+      "printed_config_id": "n2f-q-a5em5-e1em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p29",
+      "printed_config_id": "n2f-q-a5em5-e3em2-v1",
+      "frames_config_id": "n2f-f-a5em3-p025-v1",
+      "sampling_indices": [
+        0
+      ]
+    },
+    {
+      "pair_id": "p30",
+      "printed_config_id": "n2f-q-a5em2-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em1-p025-v1",
+      "sampling_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "pair_id": "p31",
+      "printed_config_id": "n2f-q-a5em2-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em2-p025-v1",
+      "sampling_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "pair_id": "p32",
+      "printed_config_id": "n2f-q-a5em2-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em4-p025-v1",
+      "sampling_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "pair_id": "p33",
+      "printed_config_id": "n2f-q-a5em2-e1em4-v1",
+      "frames_config_id": "n2f-f-a5em5-p025-v1",
+      "sampling_indices": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "inventory_generation": "For each channel, initialization index0, and sampling index in ascending order0,1,2, traverse pair_definitions in order and emit a trial iff sampling_index belongs to that pair's sampling_indices. Resolve values by candidate IDs. Cohort ID includes both candidate IDs and is identical across channel/sampling streams for that pair; trial ID additionally includes channel/init/sampling/pair ID.",
+  "expected_counts": {
+    "pair_definitions": 34,
+    "paired_trials_per_channel": 44,
+    "total_paired_trials": 352,
+    "unique_printed_outcomes": 240,
+    "unique_frames_outcomes": 120,
+    "printed_executions": 352,
+    "frames_executions": 352
+  },
+  "identity": {
+    "cohort_template": "n2-full-calibration-{printed_config_id}__{frames_config_id}-0586c15",
+    "trial_template": "qpt-cal-n2f-c{channel}-i{initialization_index}-s{sampling_index}-{pair_id}-20261005"
+  },
+  "deduplication": {
+    "printed_key": [
+      "channel",
+      "initialization_index",
+      "printed_config_id"
+    ],
+    "frames_key": [
+      "channel",
+      "initialization_index",
+      "sampling_index",
+      "frames_config_id"
+    ],
+    "rule": "Verify repeated native-candidate endpoints and statuses agree, then count them once. Opposite-method hyperparameters do not create a new native-method outcome. Keep all execution costs and failure evidence. Do not pool tuning pairs through aggregate_sidecars; its cohort includes both method configurations."
+  },
+  "failure_policy": {
+    "valid_exit_codes": [
+      0,
+      2
+    ],
+    "exit2": "Continue only if JSON/NPZ artifacts validate and at least one method is marked failed; count that native outcome as gate failure.",
+    "infrastructure_or_invalid_archive": "Stop this channel after preserving trial status, logs, any artifacts and the full inventory with remaining trials incomplete.",
+    "time_guard": "Do not start a new trial with 60 seconds or less remaining; preserve incomplete inventory and exit nonzero.",
+    "array_final_exit": "Return2 if all trials archived but any method failed,0 if all completed without method failure,3 for infrastructure/archive failure,75 for time-guard stop.",
+    "no_overwrite": true
+  },
+  "limitations": [
+    "Native candidate counts differ:30 printed and5 FRAMES configurations; do not claim equal search cost.",
+    "Deterministic printed trajectories and anchor FRAMES streams are redundantly rerun by the paired runner; mandatory downstream deduplication prevents inflated sample counts.",
+    "FRAMES failures may preserve only the shared initial factor.",
+    "Penalty objectives are method-native diagnostics, not paired scores.",
+    "No validation or held-out seeds are used."
+  ]
+}

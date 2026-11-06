@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "scope": "Real five-step CPU runs only; no A100 outcomes",
+  "summarizer_sha256": "d9ab79d28d184ff1e9cc3b841f0612e4469c1abc61287f139c34c29d2ce92fa7",
+  "valid_runs": 2,
+  "primary_prefix_mean_independently_recomputed": true,
+  "missing_replicate_reports_incomplete": true,
+  "rejected_mutation_tests": {
+    "wrong_seed": [
+      "Seed, oracle, batch, or update does not match the prospective configuration."
+    ],
+    "wrong_instance_hash": [
+      "Frozen instance A_sha256 differs from the prospective data."
+    ],
+    "wrong_schedule": [
+      "schedule alpha differs from the prospectively required or independently recomputed value."
+    ],
+    "wrong_trajectory_mean": [
+      "summary full-trajectory mean true_smoothed_gap differs from the prospectively required or independently recomputed value."
+    ],
+    "terminal_inclusion": [
+      "Terminal/pre-update trajectory inclusion flags are incorrect."
+    ]
+  }
+}

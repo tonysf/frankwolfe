@@ -1,0 +1,130 @@
+{
+  "status": "submitted",
+  "requested_utc": "2026-09-27T22:55:18.063488+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "ruche",
+    "sbatch",
+    "--parsable",
+    "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/slurm/a100_momentum_replay_preflight.sbatch",
+    "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+    "b5851980646be55a148b083a89cfbf6153dac77e",
+    "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/pilot.json",
+    "45f0f398469190481b1c2b267715b0a4efeb15ad41ab98ebeae7da26d1a17fd9"
+  ],
+  "source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+  "source_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+  "pilot_manifest_sha256": "45f0f398469190481b1c2b267715b0a4efeb15ad41ab98ebeae7da26d1a17fd9",
+  "gpus": 1,
+  "wall_time_limit_seconds": 1800,
+  "expected_verified_replays": 18,
+  "expected_new_toy_smokes": 6,
+  "production_pilot_replays_included": 6,
+  "remaining_replay_submissions": [],
+  "incremental_bundle_sha256": "41d61a3afedbab285fd67c0dc9d5bed3446ef6e7c460806b8992b138fe33be12",
+  "full_history_transfer": "automatically rejected; replaced with audited incremental update, subsequently approved and SHA-verified",
+  "returncode": 0,
+  "stdout": "1961687\n",
+  "stderr": "",
+  "returned_utc": "2026-09-27T22:55:18.695369+00:00",
+  "job_id": 1961687,
+  "final_array_temporary_throttle": {
+    "array_job_id": 1961580,
+    "before": 4,
+    "requested": 3,
+    "reason": "The required one-A100 replay preflight1961687 is pending QOSMaxGRESPerUser while four own final tasks run. Let the next free GPU validate reconstruction early without cancelling or changing an active scientific run.",
+    "restore_to": 4,
+    "restore_when": "Immediately after preflight1961687 becomes terminal",
+    "requested_utc": "2026-09-27T22:56:36.567770+00:00",
+    "command": [
+      "ssh",
+      "-o",
+      "BatchMode=yes",
+      "ruche",
+      "scontrol",
+      "update",
+      "JobId=1961580",
+      "ArrayTaskThrottle=3"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "restore": {
+      "command": [
+        "scontrol",
+        "update",
+        "JobId=1961580",
+        "ArrayTaskThrottle=4"
+      ],
+      "requested_utc": "2026-09-27T23:17:52.319131+00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "verification_command": [
+        "scontrol",
+        "show",
+        "job",
+        "1961580"
+      ],
+      "verification_returncode": 0,
+      "observed_throttles": [
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "verification_stdout": "JobId=1961580 ArrayJobId=1961580 ArrayTaskId=11-55%4 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=PENDING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=Unknown\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=Unknown EndTime=Unknown Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:40 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=\n   NumNodes=1-1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=(null)\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_4294967294.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_4294967294.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\nJobId=1961679 ArrayJobId=1961580 ArrayTaskId=10 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:33:12 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=2026-09-28T00:44:40\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=2026-09-28T00:44:40 EndTime=2026-09-28T02:14:40 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:40 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=ruche-gpu18\n   BatchHost=ruche-gpu18\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_10.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_10.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\nJobId=1961678 ArrayJobId=1961580 ArrayTaskId=9 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:33:22 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=2026-09-28T00:44:30\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=2026-09-28T00:44:30 EndTime=2026-09-28T02:14:30 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:30 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=ruche-gpu17\n   BatchHost=ruche-gpu17\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_9.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_9.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\nJobId=1961677 ArrayJobId=1961580 ArrayTaskId=8 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:33:25 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=2026-09-28T00:44:27\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=2026-09-28T00:44:27 EndTime=2026-09-28T02:14:27 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:27 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=ruche-gpu17\n   BatchHost=ruche-gpu17\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_8.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_8.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\n",
+      "verification_stderr": ""
+    }
+  },
+  "preflight_terminal_observation": {
+    "utc": "2026-09-27T23:17:52.122847+00:00",
+    "job_id": 1961687,
+    "state": "COMPLETED",
+    "accounting_command": [
+      "sacct",
+      "-n",
+      "-P",
+      "-j",
+      "1961687",
+      "--format=JobIDRaw,JobID,State,ExitCode,Elapsed,Start,End,NodeList"
+    ],
+    "accounting_returncode": 0,
+    "accounting_stdout": "1961687|1961687|COMPLETED|0:0|00:11:06|2026-09-28T01:06:29|2026-09-28T01:17:35|ruche-gpu17\n1961687.batch|1961687.batch|COMPLETED|0:0|00:11:06|2026-09-28T01:06:29|2026-09-28T01:17:35|ruche-gpu17\n1961687.extern|1961687.extern|COMPLETED|0:0|00:11:07|2026-09-28T01:06:29|2026-09-28T01:17:36|ruche-gpu17\n",
+    "accounting_stderr": "",
+    "validation_status": "passed",
+    "verified_check_count": 18,
+    "command_count": 20,
+    "error": null,
+    "throttle_restore": {
+      "command": [
+        "scontrol",
+        "update",
+        "JobId=1961580",
+        "ArrayTaskThrottle=4"
+      ],
+      "requested_utc": "2026-09-27T23:17:52.319131+00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "verification_command": [
+        "scontrol",
+        "show",
+        "job",
+        "1961580"
+      ],
+      "verification_returncode": 0,
+      "observed_throttles": [
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "verification_stdout": "JobId=1961580 ArrayJobId=1961580 ArrayTaskId=11-55%4 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=PENDING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=Unknown\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=Unknown EndTime=Unknown Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:40 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=\n   NumNodes=1-1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=(null)\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_4294967294.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_4294967294.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\nJobId=1961679 ArrayJobId=1961580 ArrayTaskId=10 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:33:12 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=2026-09-28T00:44:40\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=2026-09-28T00:44:40 EndTime=2026-09-28T02:14:40 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:40 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=ruche-gpu18\n   BatchHost=ruche-gpu18\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_10.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_10.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\nJobId=1961678 ArrayJobId=1961580 ArrayTaskId=9 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:33:22 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=2026-09-28T00:44:30\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=2026-09-28T00:44:30 EndTime=2026-09-28T02:14:30 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:30 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=ruche-gpu17\n   BatchHost=ruche-gpu17\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_9.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_9.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\nJobId=1961677 ArrayJobId=1961580 ArrayTaskId=8 ArrayTaskThrottle=4 JobName=gw_final_panels\n   UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A\n   Priority=6093 Nice=0 Account=fwllm QOS=normal\n   JobState=RUNNING Reason=None Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:33:25 TimeLimit=01:30:00 TimeMin=N/A\n   SubmitTime=2026-09-27T23:14:09 EligibleTime=2026-09-28T00:44:27\n   AccrueTime=2026-09-27T23:14:09\n   StartTime=2026-09-28T00:44:27 EndTime=2026-09-28T02:14:27 Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-28T00:44:27 Scheduler=Main\n   Partition=gpua100 AllocNode:Sid=ruche02:1963987\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=ruche-gpu17\n   BatchHost=ruche-gpu17\n   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*\n   ReqTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   AllocTRES=cpu=2,mem=12G,node=1,billing=2,gres/gpu=1\n   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*\n   MinCPUsNode=2 MinMemoryNode=12G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/af7b7c5/slurm/a100_panel_array.sbatch\n   WorkDir=/gpfs/users/silvetian\n   StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_8.out\n   StdIn=/dev/null\n   StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/logs/final-panels-1961580_8.out\n   TresPerNode=gres/gpu:1\n   TresPerTask=cpu=2\n   \n\n",
+      "verification_stderr": ""
+    },
+    "terminal": true
+  }
+}

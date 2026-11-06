@@ -1,0 +1,965 @@
+{
+  "status": "completed",
+  "recorded_utc": "2026-10-05T20:18:01.583227+00:00",
+  "submission_completed_at": "2026-10-05T22:15:11+02:00",
+  "scheduler_checked_at": "2026-10-07T14:37:27+02:00",
+  "source_commit": "4137d5348fc5e39d0a73be454f8527211f196770",
+  "source_manifest_sha256": "d570d2aafeb21990752ef38f6026386ca213dcc23164c5691f0fd322b9e7790d",
+  "source_archive_sha256": "12a5f16c718627eb3358f3324e6e7565bfea78e51618d12d3c2bb97a3067ac2c",
+  "config_sha256": "7fa2cc2edf51454db9f1070aa1ef25a0778112a9e157f2492e569dca848f2fc7",
+  "site": "Ruche",
+  "account": "fwllm",
+  "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/msbpg_campaign_20261005_4137d53",
+  "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/msbpg_campaign_20261005_4137d53/source_4137d53",
+  "prepared_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared",
+  "remote_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/msbpg_campaign_20261005_4137d53/results",
+  "remote_validation": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/msbpg_campaign_20261005_4137d53/validation",
+  "local_evidence_directory": "logs/msbpg_campaign_20261005_4137d53",
+  "source_transfer_checksums_verified": true,
+  "scheduler_resources_and_dependencies_verified": true,
+  "new_method": "Ding-Li-Toh (JMLR2025) MSBPG, Theorem24 plus Remark25 diminishing schedule",
+  "parameters": {
+    "kernel": "phi=M*sum(psi_M), entropy/quadratic extension; M=min(max a,max b)",
+    "kernel_strong_convexity_mu": 1,
+    "hessian_bound": "L=2*maximum row sum of W, W_(ij,kl)=(A_ik-B_jl)^2, evaluated using blocked row statistics with recorded FP64 guard",
+    "relative_smoothness": "L_F=L",
+    "gradient_difference": "kappa=2L^2",
+    "coupling": "alpha_k=c*mu*beta_(k+1), c=lambda/(2*sqrt(2)*L)",
+    "momentum": "v0=first fresh gradient; beta_k=theta/sqrt(k) for k>=1",
+    "effective_kl_step": "eta_k=alpha_k/M",
+    "free_prefactors": "lambda in {1,.5,.25,.125}; theta in {1,.3,.1}; all other schedule choices fixed",
+    "output": "Independent alpha-weighted index; theoretical-alpha normalized displacement, separate from endpoint loss"
+  },
+  "runs": {
+    "new_tuning": 216,
+    "new_final": 18,
+    "new_total": 234,
+    "frozen_prior_final_results_reused": 36
+  },
+  "datasets": {
+    "bmmc6224": {
+      "cells": 6224,
+      "a100_per_run": 1
+    },
+    "shareseq_full": {
+      "cells": 31890,
+      "a100_per_run": 4
+    },
+    "snare_full": {
+      "cells": 10000,
+      "a100_per_run": 1
+    }
+  },
+  "iterations": {
+    "tuning": 200,
+    "final": 2000
+  },
+  "development_seeds": [
+    710,
+    711,
+    712
+  ],
+  "final_seeds": [
+    810,
+    811,
+    812
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "sketch_probes_per_update": 128,
+  "inner_tolerances": {
+    "summed_marginal_l1": 1e-07,
+    "normalized_guarded_primal_dual_gap": 1e-07
+  },
+  "certificate_arithmetic": "Stable evaluation of the same unscaled primal-dual objective; tolerance and FP32-derived feasible witness unchanged. Old plain-SMD certificate source untouched.",
+  "validation": {
+    "cpu_tests": {
+      "passed": 58,
+      "seconds": 22.76,
+      "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m pytest -q extensions/msbpg_20261005",
+      "log_sha256": "2ecd4f59d3d293e7c1d9f44d1db6a4c052eef48b3c94c557ef9392d820d773d2"
+    },
+    "distributed_cpu": {
+      "checks": 144,
+      "world_size": 4,
+      "backend": "gloo",
+      "receipt_sha256": "01220a3d9344858ac3c34eac8e710d15f111c7a7f9853b14a236d71054b7ecd9"
+    },
+    "a100_gate_job": "2014398",
+    "gpu_gate_status": "COMPLETED exit0, all gates passed",
+    "gpu_gate_scope": "Four-rank numerical checks; actual-size 1/1/4-A100 three-update smokes and minimum-grid k1999 proxy steps, each at both starts; all must pass before production"
+  },
+  "baseline": {
+    "file": "frozen_baselines.json",
+    "methods": [
+      "smoothing-fw",
+      "published-smd"
+    ],
+    "sha256": "b0b2379b758fb544597c641de1c62fe34fcc0097c47016c1898af647c5106f8a",
+    "source_commit": "38b5ea80e63cbaee2166ddff671edc3ac9f9a794",
+    "source_config_sha256": "63593d4c24903a02606f0b04e7c2980387f36216f57ff2b612e5622cc77b071f",
+    "source_report_sha256": "0ec392782fa31c99a560a31fe483f490392a271da659139aeeb8592d20050736"
+  },
+  "comparison_scope": "Same frozen inputs, starts, seeds, horizons, q128 oracle budget; prior completed FraMES and SMD results preserved and reused. Timings recorded in separate jobs on the same hardware class.",
+  "storage_policy": "No dense tuning files. All final MSBPG snapshots retained for BMMC/SNARE; SHARE snapshots retained for first final seed 810 and both initializations. Other SHARE finals retain hashes and FP64 validated metrics. Approximately46GB new dense outputs; no previous data deleted.",
+  "theory_scope": "The schedule and ideal update satisfy the stated theorem specialization. Finite inner tolerances and floating-point arithmetic do not establish the paper exact-proximal theorem for the numerical run.",
+  "jobs": [
+    {
+      "stage": "validation",
+      "instance": "all",
+      "job_id": "2014398",
+      "JobState": "PENDING",
+      "Reason": "Resources",
+      "Dependency": "(null)",
+      "Partition": "gpua100",
+      "NumCPUs": "8",
+      "ReqTRES": "cpu=8,mem=128G,node=1,billing=8,gres/gpu=4",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "tuning",
+      "instance": "bmmc6224",
+      "job_id": "2014399",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014398(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "02:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "select",
+      "instance": "bmmc6224",
+      "job_id": "2014400",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014399_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "final",
+      "instance": "bmmc6224",
+      "job_id": "2014401",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014400(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "02:15:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "tuning",
+      "instance": "snare_full",
+      "job_id": "2014402",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014398(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "02:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "select",
+      "instance": "snare_full",
+      "job_id": "2014403",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014402_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "final",
+      "instance": "snare_full",
+      "job_id": "2014404",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014403(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "02:15:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "tuning",
+      "instance": "shareseq_full",
+      "job_id": "2014405",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014398(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "8",
+      "ReqTRES": "cpu=8,mem=128G,node=1,billing=8,gres/gpu=4",
+      "TimeLimit": "02:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "select",
+      "instance": "shareseq_full",
+      "job_id": "2014406",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014405_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "final",
+      "instance": "shareseq_full",
+      "job_id": "2014407",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:2014406(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "8",
+      "ReqTRES": "cpu=8,mem=128G,node=1,billing=8,gres/gpu=4",
+      "TimeLimit": "02:15:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "report",
+      "instance": "all",
+      "job_id": "2014408",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterany:2014398(unfulfilled),afterany:2014399_*(unfulfilled),afterany:2014400(unfulfilled),afterany:2014401_*(unfulfilled),afterany:2014402_*(unfulfilled),afterany:2014403(unfulfilled),afterany:2014404_*(unfulfilled),afterany:2014405_*(unfulfilled),afterany:2014406(unfulfilled),afterany:2014407_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    }
+  ],
+  "next_action": "Campaign complete; do not resubmit. Final report and selections collected locally and checksum-verified. Use the six final comparisons with fixed-update timing and numerical-prox qualifications.",
+  "last_status": {
+    "checked_at_paris": "2026-10-07T14:37:27+02:00",
+    "status": "completed",
+    "validation": "passed;144 four-A100 checks, six full-size smokes, late-step gates for all datasets/both starts",
+    "counts": {
+      "bmmc6224": {
+        "completed_tuning_tasks": 12,
+        "total_tuning_tasks": 12,
+        "completed_final_runs": 6,
+        "total_final_runs": 6
+      },
+      "shareseq_full": {
+        "completed_tuning_tasks": 12,
+        "total_tuning_tasks": 12,
+        "completed_final_runs": 6,
+        "total_final_runs": 6
+      },
+      "snare_full": {
+        "completed_tuning_tasks": 12,
+        "total_tuning_tasks": 12,
+        "completed_final_runs": 6,
+        "total_final_runs": 6
+      }
+    },
+    "report_counts": {
+      "completed": 234,
+      "failed": 0,
+      "invalid": 0,
+      "missing": 0,
+      "started_without_result": 0
+    },
+    "scheduler_failures": [],
+    "running_jobs": [],
+    "running_gpus": 0,
+    "scheduler_records": [
+      {
+        "job_id": "2014398",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:07:04",
+        "started_at_paris": "2026-10-06T08:01:28",
+        "ended_at_paris": "2026-10-06T08:08:32",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014400",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:00:24",
+        "started_at_paris": "2026-10-06T08:48:01",
+        "ended_at_paris": "2026-10-06T08:48:25",
+        "node": "node160"
+      },
+      {
+        "job_id": "2014403",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:00:29",
+        "started_at_paris": "2026-10-06T09:56:12",
+        "ended_at_paris": "2026-10-06T09:56:41",
+        "node": "node160"
+      },
+      {
+        "job_id": "2014406",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:00:31",
+        "started_at_paris": "2026-10-06T20:12:03",
+        "ended_at_paris": "2026-10-06T20:12:34",
+        "node": "node079"
+      },
+      {
+        "job_id": "2014408",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:01:18",
+        "started_at_paris": "2026-10-07T01:55:56",
+        "ended_at_paris": "2026-10-07T01:57:14",
+        "node": "node001"
+      },
+      {
+        "job_id": "2014399_0",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:07:18",
+        "started_at_paris": "2026-10-06T08:08:33",
+        "ended_at_paris": "2026-10-06T08:15:51",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_1",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:07:16",
+        "started_at_paris": "2026-10-06T08:08:33",
+        "ended_at_paris": "2026-10-06T08:15:49",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_2",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:23",
+        "started_at_paris": "2026-10-06T08:15:49",
+        "ended_at_paris": "2026-10-06T08:22:12",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_3",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:22",
+        "started_at_paris": "2026-10-06T08:15:51",
+        "ended_at_paris": "2026-10-06T08:22:13",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_4",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:21",
+        "started_at_paris": "2026-10-06T08:22:12",
+        "ended_at_paris": "2026-10-06T08:28:33",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_5",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:20",
+        "started_at_paris": "2026-10-06T08:22:14",
+        "ended_at_paris": "2026-10-06T08:28:34",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_6",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:28",
+        "started_at_paris": "2026-10-06T08:28:33",
+        "ended_at_paris": "2026-10-06T08:35:01",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_7",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:29",
+        "started_at_paris": "2026-10-06T08:28:34",
+        "ended_at_paris": "2026-10-06T08:35:03",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_8",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:32",
+        "started_at_paris": "2026-10-06T08:35:01",
+        "ended_at_paris": "2026-10-06T08:41:33",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_9",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:30",
+        "started_at_paris": "2026-10-06T08:35:03",
+        "ended_at_paris": "2026-10-06T08:41:33",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_10",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:27",
+        "started_at_paris": "2026-10-06T08:41:33",
+        "ended_at_paris": "2026-10-06T08:48:00",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014399_11",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:06:25",
+        "started_at_paris": "2026-10-06T08:41:34",
+        "ended_at_paris": "2026-10-06T08:47:59",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014401_0",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:10:29",
+        "started_at_paris": "2026-10-06T08:48:25",
+        "ended_at_paris": "2026-10-06T08:58:54",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014401_1",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:10:28",
+        "started_at_paris": "2026-10-06T08:48:25",
+        "ended_at_paris": "2026-10-06T08:58:53",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014401_2",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:08:43",
+        "started_at_paris": "2026-10-06T08:58:54",
+        "ended_at_paris": "2026-10-06T09:07:37",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014401_3",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:08:39",
+        "started_at_paris": "2026-10-06T08:58:54",
+        "ended_at_paris": "2026-10-06T09:07:33",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014401_4",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:08:40",
+        "started_at_paris": "2026-10-06T09:07:37",
+        "ended_at_paris": "2026-10-06T09:16:17",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014401_5",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:08:48",
+        "started_at_paris": "2026-10-06T09:16:18",
+        "ended_at_paris": "2026-10-06T09:25:06",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_0",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:16:01",
+        "started_at_paris": "2026-10-06T08:08:33",
+        "ended_at_paris": "2026-10-06T08:24:34",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_1",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:16:02",
+        "started_at_paris": "2026-10-06T08:08:33",
+        "ended_at_paris": "2026-10-06T08:24:35",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_2",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:44",
+        "started_at_paris": "2026-10-06T08:24:35",
+        "ended_at_paris": "2026-10-06T08:39:19",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_3",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:45",
+        "started_at_paris": "2026-10-06T08:24:35",
+        "ended_at_paris": "2026-10-06T08:39:20",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_4",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:20",
+        "started_at_paris": "2026-10-06T08:39:20",
+        "ended_at_paris": "2026-10-06T08:53:40",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_5",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:20",
+        "started_at_paris": "2026-10-06T08:39:20",
+        "ended_at_paris": "2026-10-06T08:53:40",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_6",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:15:06",
+        "started_at_paris": "2026-10-06T08:53:41",
+        "ended_at_paris": "2026-10-06T09:08:47",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_7",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:12",
+        "started_at_paris": "2026-10-06T09:07:33",
+        "ended_at_paris": "2026-10-06T09:21:45",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_8",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:22",
+        "started_at_paris": "2026-10-06T09:08:47",
+        "ended_at_paris": "2026-10-06T09:23:09",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_9",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:14:56",
+        "started_at_paris": "2026-10-06T09:21:45",
+        "ended_at_paris": "2026-10-06T09:36:41",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_10",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:15:17",
+        "started_at_paris": "2026-10-06T09:23:09",
+        "ended_at_paris": "2026-10-06T09:38:26",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014402_11",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:17:20",
+        "started_at_paris": "2026-10-06T09:38:51",
+        "ended_at_paris": "2026-10-06T09:56:11",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014404_0",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:22:33",
+        "started_at_paris": "2026-10-06T09:56:53",
+        "ended_at_paris": "2026-10-06T10:19:26",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014404_1",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:21:24",
+        "started_at_paris": "2026-10-06T09:58:02",
+        "ended_at_paris": "2026-10-06T10:19:26",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014404_2",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:22:54",
+        "started_at_paris": "2026-10-06T10:19:30",
+        "ended_at_paris": "2026-10-06T10:42:24",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014404_3",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:23:21",
+        "started_at_paris": "2026-10-06T10:19:30",
+        "ended_at_paris": "2026-10-06T10:42:51",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014404_4",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:23:08",
+        "started_at_paris": "2026-10-06T10:42:25",
+        "ended_at_paris": "2026-10-06T11:05:33",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014404_5",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:22:42",
+        "started_at_paris": "2026-10-06T10:42:51",
+        "ended_at_paris": "2026-10-06T11:05:33",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_0",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:45:07",
+        "started_at_paris": "2026-10-06T11:23:51",
+        "ended_at_paris": "2026-10-06T12:08:58",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_1",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:25",
+        "started_at_paris": "2026-10-06T12:08:59",
+        "ended_at_paris": "2026-10-06T12:52:24",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_2",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:44:01",
+        "started_at_paris": "2026-10-06T12:52:25",
+        "ended_at_paris": "2026-10-06T13:36:26",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_3",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:44:45",
+        "started_at_paris": "2026-10-06T13:36:27",
+        "ended_at_paris": "2026-10-06T14:21:12",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_4",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:48",
+        "started_at_paris": "2026-10-06T14:21:12",
+        "ended_at_paris": "2026-10-06T15:05:00",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_5",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:37",
+        "started_at_paris": "2026-10-06T15:05:00",
+        "ended_at_paris": "2026-10-06T15:48:37",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_6",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:44:05",
+        "started_at_paris": "2026-10-06T15:48:38",
+        "ended_at_paris": "2026-10-06T16:32:43",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_7",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:44:16",
+        "started_at_paris": "2026-10-06T16:32:43",
+        "ended_at_paris": "2026-10-06T17:16:59",
+        "node": "ruche-gpu18"
+      },
+      {
+        "job_id": "2014405_8",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:55",
+        "started_at_paris": "2026-10-06T17:16:59",
+        "ended_at_paris": "2026-10-06T18:00:54",
+        "node": "ruche-gpu12"
+      },
+      {
+        "job_id": "2014405_9",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:43",
+        "started_at_paris": "2026-10-06T18:00:54",
+        "ended_at_paris": "2026-10-06T18:44:37",
+        "node": "ruche-gpu18"
+      },
+      {
+        "job_id": "2014405_10",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:50",
+        "started_at_paris": "2026-10-06T18:44:38",
+        "ended_at_paris": "2026-10-06T19:28:28",
+        "node": "ruche-gpu18"
+      },
+      {
+        "job_id": "2014405_11",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:43:33",
+        "started_at_paris": "2026-10-06T19:28:29",
+        "ended_at_paris": "2026-10-06T20:12:02",
+        "node": "ruche-gpu18"
+      },
+      {
+        "job_id": "2014407_0",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:58:15",
+        "started_at_paris": "2026-10-06T20:12:34",
+        "ended_at_paris": "2026-10-06T21:10:49",
+        "node": "ruche-gpu18"
+      },
+      {
+        "job_id": "2014407_1",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:57:44",
+        "started_at_paris": "2026-10-06T21:10:50",
+        "ended_at_paris": "2026-10-06T22:08:34",
+        "node": "ruche-gpu13"
+      },
+      {
+        "job_id": "2014407_2",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:56:46",
+        "started_at_paris": "2026-10-06T22:08:35",
+        "ended_at_paris": "2026-10-06T23:05:21",
+        "node": "ruche-gpu13"
+      },
+      {
+        "job_id": "2014407_3",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:57:14",
+        "started_at_paris": "2026-10-06T23:05:21",
+        "ended_at_paris": "2026-10-07T00:02:35",
+        "node": "ruche-gpu13"
+      },
+      {
+        "job_id": "2014407_4",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:56:33",
+        "started_at_paris": "2026-10-07T00:02:35",
+        "ended_at_paris": "2026-10-07T00:59:08",
+        "node": "ruche-gpu13"
+      },
+      {
+        "job_id": "2014407_5",
+        "state": "COMPLETED",
+        "exit_code": "0:0",
+        "elapsed": "00:56:46",
+        "started_at_paris": "2026-10-07T00:59:09",
+        "ended_at_paris": "2026-10-07T01:55:55",
+        "node": "ruche-gpu13"
+      }
+    ],
+    "evidence": "logs/msbpg_campaign_20261005_4137d53/status_20261007T123725Z/remote_snapshot.txt",
+    "note": "All 234 new MSBPG runs and final report completed. No failed, invalid or missing results. Prior 36 frozen FraMES/SMD final records reused."
+  },
+  "completed_at_paris": "2026-10-07T01:57:14+02:00",
+  "jobs_snapshot_scope": "The jobs list preserves the initial submission snapshot; last_status records final scheduler accounting.",
+  "collected_report": {
+    "directory": "logs/msbpg_campaign_20261005_4137d53/status_20261007T123725Z/report_artifacts",
+    "verified_sha256": {
+      "report.json": "20805d51a53128017859dd55f007f8915b9f315f19ab3cc0c9df6a0a7e3b1317",
+      "report.csv": "9b20ca8781c17278c6ffc0459d396dc0f8d33bf28d42bd479917b16a7e52c318",
+      "bmmc6224/selection.json": "bf9da147318beeb1af0f575a6c864a179bc10aeecf3ab52b371702b9453fbc83",
+      "snare_full/selection.json": "f6ba2dbdc4cbad3d82602bb478649c433a06b73b87b6f81fa3ef508f12b84db0",
+      "shareseq_full/selection.json": "eb861492df5578544e86c798d3e4135a9713ae7f1fa29287815a5a6494c455bc"
+    },
+    "report_status": "completed",
+    "counts": {
+      "completed": 234,
+      "failed": 0,
+      "invalid": 0,
+      "missing": 0,
+      "started_without_result": 0
+    },
+    "final_comparisons": [
+      {
+        "dataset": "bmmc6224",
+        "frames_median_loss": 0.1597556191930975,
+        "initialization": "product",
+        "msbpg_median_loss": 0.16103966804376169,
+        "msbpg_minus_frames_median_loss": 0.0012840488506641878,
+        "msbpg_sampled_normalized_displacement_squared": {
+          "median": 0.01440339002109765,
+          "n": 3,
+          "q25": 0.01350164014682327,
+          "q75": 0.03601274566313459
+        },
+        "ratio_msbpg_to_frames_feasible_output_time": 13.568908795872666,
+        "ratio_msbpg_to_frames_solver_time": 13.571917176284284,
+        "reference_smd_median_loss": 0.16067466923818935,
+        "status": "completed",
+        "timing_scope": "Ratio at the same update count, not time to equal accuracy; frozen baseline measured in earlier jobs."
+      },
+      {
+        "dataset": "bmmc6224",
+        "frames_median_loss": 0.15978511297130937,
+        "initialization": "randomized",
+        "msbpg_median_loss": 0.16103397354485594,
+        "msbpg_minus_frames_median_loss": 0.0012488605735465619,
+        "msbpg_sampled_normalized_displacement_squared": {
+          "median": 0.5739220730743826,
+          "n": 3,
+          "q25": 0.5625918326315379,
+          "q75": 1.411681743302114
+        },
+        "ratio_msbpg_to_frames_feasible_output_time": 13.477871123988567,
+        "ratio_msbpg_to_frames_solver_time": 13.480783927436335,
+        "reference_smd_median_loss": 0.16067265875145698,
+        "status": "completed",
+        "timing_scope": "Ratio at the same update count, not time to equal accuracy; frozen baseline measured in earlier jobs."
+      },
+      {
+        "dataset": "shareseq_full",
+        "frames_median_loss": 0.11694595287129322,
+        "initialization": "product",
+        "msbpg_median_loss": 0.11722380097264817,
+        "msbpg_minus_frames_median_loss": 0.0002778481013549494,
+        "msbpg_sampled_normalized_displacement_squared": {
+          "median": 0.01805947727035823,
+          "n": 3,
+          "q25": 0.016521243156290666,
+          "q75": 0.04207527676321808
+        },
+        "ratio_msbpg_to_frames_feasible_output_time": 15.999394727481784,
+        "ratio_msbpg_to_frames_solver_time": 16.001922997579307,
+        "reference_smd_median_loss": 0.11678934552972203,
+        "status": "completed",
+        "timing_scope": "Ratio at the same update count, not time to equal accuracy; frozen baseline measured in earlier jobs."
+      },
+      {
+        "dataset": "shareseq_full",
+        "frames_median_loss": 0.11694838774231431,
+        "initialization": "randomized",
+        "msbpg_median_loss": 0.11722499036524836,
+        "msbpg_minus_frames_median_loss": 0.00027660262293405236,
+        "msbpg_sampled_normalized_displacement_squared": {
+          "median": 3.8462168477920926,
+          "n": 3,
+          "q25": 3.531744934056116,
+          "q75": 8.990870968195246
+        },
+        "ratio_msbpg_to_frames_feasible_output_time": 15.881496937732754,
+        "ratio_msbpg_to_frames_solver_time": 15.883985765351339,
+        "reference_smd_median_loss": 0.11678730438691232,
+        "status": "completed",
+        "timing_scope": "Ratio at the same update count, not time to equal accuracy; frozen baseline measured in earlier jobs."
+      },
+      {
+        "dataset": "snare_full",
+        "frames_median_loss": 0.09380960171761554,
+        "initialization": "product",
+        "msbpg_median_loss": 0.09407236493222976,
+        "msbpg_minus_frames_median_loss": 0.0002627632146142145,
+        "msbpg_sampled_normalized_displacement_squared": {
+          "median": 0.007104208547214434,
+          "n": 3,
+          "q25": 0.006574272308530214,
+          "q75": 0.016992050056753017
+        },
+        "ratio_msbpg_to_frames_feasible_output_time": 16.672359439994846,
+        "ratio_msbpg_to_frames_solver_time": 16.67564422447546,
+        "reference_smd_median_loss": 0.09385536948193718,
+        "status": "completed",
+        "timing_scope": "Ratio at the same update count, not time to equal accuracy; frozen baseline measured in earlier jobs."
+      },
+      {
+        "dataset": "snare_full",
+        "frames_median_loss": 0.09380961233727436,
+        "initialization": "randomized",
+        "msbpg_median_loss": 0.09407273636152141,
+        "msbpg_minus_frames_median_loss": 0.0002631240242470523,
+        "msbpg_sampled_normalized_displacement_squared": {
+          "median": 0.46354773220638684,
+          "n": 3,
+          "q25": 0.439272100419944,
+          "q75": 1.1818724816856527
+        },
+        "ratio_msbpg_to_frames_feasible_output_time": 16.81638998624824,
+        "ratio_msbpg_to_frames_solver_time": 16.81965397833076,
+        "reference_smd_median_loss": 0.09385240997319472,
+        "status": "completed",
+        "timing_scope": "Ratio at the same update count, not time to equal accuracy; frozen baseline measured in earlier jobs."
+      }
+    ],
+    "selected_candidates": {
+      "bmmc6224": {
+        "published-msbpg": "msbpg00"
+      },
+      "shareseq_full": {
+        "published-msbpg": "msbpg00"
+      },
+      "snare_full": {
+        "published-msbpg": "msbpg00"
+      }
+    }
+  }
+}

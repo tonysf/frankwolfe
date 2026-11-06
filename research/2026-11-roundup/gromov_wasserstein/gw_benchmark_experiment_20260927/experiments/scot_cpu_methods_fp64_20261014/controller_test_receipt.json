@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "tests": 6,
+  "source_sha256": "8d452bb2c0b67e9ade1b1acdfc90bdeb4a9a45574556d4114dd6da33fee97450",
+  "test_log_sha256": "d7a3667e30b67f910080606f66eb16c469b951a3ec5f023bd7bcd2a056c2c080",
+  "log": "experiments/scot_cpu_methods_fp64_20261014/controller_tests.log",
+  "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 .venv/bin/python -m unittest discover -s extensions/scot_cpu_methods_fp64_20261014 -p test_run_comparison.py -v"
+}

@@ -1,0 +1,418 @@
+{
+  "started_utc": "2026-09-27T18:05:20.897310+00:00",
+  "stage": "A, baseline portion only",
+  "scope": "CPU n=16, five outer steps; settings prespecified, not selected winners; no performance conclusion",
+  "common": {
+    "source_revision": "a8e120e511a3990e3d80d4b9f8f93b87762560e7",
+    "source_tree_status_at_start": [
+      " M make_instances.py",
+      "?? capture_environment.py",
+      "?? configs/",
+      "?? environment.lock.txt",
+      "?? oracle_diagnostics.py",
+      "?? prepare_development_data.py",
+      "?? provenance/Nonsmooth_FW-7.pdf",
+      "?? provenance/bmmc_downloads.json",
+      "?? provenance/manuscript.txt",
+      "?? reports/",
+      "?? smoothing_fw.py",
+      "?? test_protocol_checks.py",
+      "?? validate_baselines.py"
+    ],
+    "instance": "data/toy16_s1000.npz",
+    "instance_sha256": "95e1f31771f459ddee5b1518ba77d42aaf2d2386c1742fe6c8c1b90122a63a1b",
+    "A_sha256": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+    "B_sha256": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5",
+    "problem_seed": 1000,
+    "stochastic_seed": 0,
+    "initialization": "product outer(a,b)",
+    "initialization_seed": null,
+    "device": "cpu",
+    "dtype": "float64",
+    "threads": 1,
+    "batch": 32,
+    "objective": "full_squared_discrepancy_no_half_no_entropy",
+    "peak_memory": "not measured in correctness-only smoke checks",
+    "performance_claim": false
+  },
+  "versions": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.14.0+cpu",
+    "POT": "0.9.7.post1"
+  },
+  "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+  "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+  "pot_api": {
+    "pot_version": "0.9.7.post1",
+    "signatures": {
+      "entropic_gromov_wasserstein": "(C1, C2, p=None, q=None, loss_fun='square_loss', epsilon=0.1, symmetric=None, G0=None, max_iter=1000, tol=1e-09, solver='PGD', warmstart=False, verbose=False, log=False, **kwargs)",
+      "sampled_gromov_wasserstein": "(C1, C2, p, q, loss_fun, nb_samples_grad=100, epsilon=1, max_iter=500, log=False, verbose=False, random_state=None)",
+      "gromov_wasserstein": "(C1, C2, p=None, q=None, loss_fun='square_loss', symmetric=None, log=False, armijo=False, G0=None, max_iter=10000.0, tol_rel=1e-09, tol_abs=1e-09, **kwargs)",
+      "init_matrix": "(C1, C2, p, q, loss_fun='square_loss', nx=None)",
+      "gwloss": "(constC, hC1, hC2, T, nx=None)",
+      "gwggrad": "(constC, hC1, hC2, T, nx=None)",
+      "sinkhorn": "(a, b, M, reg, method='sinkhorn', numItermax=1000, stopThr=1e-09, verbose=False, log=False, warn=True, warmstart=None, **kwargs)"
+    },
+    "source_modules": {
+      "ot.gromov._bregman": {
+        "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_bregman.py",
+        "archived_path": "provenance/pot_ot_gromov__bregman.py",
+        "sha256": "075b5284dbde58d5f25aa3209dbecb80281b0250d37913507931ff3ea8063b5f"
+      },
+      "ot.gromov._estimators": {
+        "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_estimators.py",
+        "archived_path": "provenance/pot_ot_gromov__estimators.py",
+        "sha256": "c9462eb8a9b98eb2c5bbf73a87a43886f2043ad6c374d5ea91ee5160407922b4"
+      },
+      "ot.gromov._gw": {
+        "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_gw.py",
+        "archived_path": "provenance/pot_ot_gromov__gw.py",
+        "sha256": "d7f07fc7de6e1d837dde738bd55aa2735c6a8442cc08cbefe1a66c5aeedebd20"
+      },
+      "ot.gromov._utils": {
+        "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_utils.py",
+        "archived_path": "provenance/pot_ot_gromov__utils.py",
+        "sha256": "622c91958f38b55c63c7409b6f9c245d6cdd5b2e6ff61d4902634908347ded4b"
+      },
+      "ot.bregman._sinkhorn": {
+        "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/bregman/_sinkhorn.py",
+        "archived_path": "provenance/pot_ot_bregman__sinkhorn.py",
+        "sha256": "671958232afa87b8908d183c935475746f3d02c34827e78354d7505200e2dab2"
+      }
+    }
+  },
+  "source_sha256": {
+    "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+    "run_reference.py": "d6f54a62850072f0b3f11b56f74a1c11277f8f683d38054e3213d81b6a320926",
+    "validate_baselines.py": "e0485e31c0b1287cfa763a4f514728a85a75c05ddc7c4e5cf8b3f3c0789fc565",
+    "PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+  },
+  "limits": [
+    "Own-method and theorem-specific checks are outside this baseline-only script.",
+    "Native POT solvers use their own stopping rules and may stop before the cap of five steps.",
+    "POT Sampled GW uses its native conditional estimator; its sample count and epsilon differ from stochastic KL.",
+    "Complete per-oracle accounting, peak memory, synchronized GPU timing and target-device validation await the benchmark harness."
+  ],
+  "methods": [
+    {
+      "method": "reference_fw",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.0,
+        "rounded_feasible_loss": 0.0,
+        "raw_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "repair_entrywise_l1": 0.0,
+        "original_fw_gap_at_rounded": 0.0,
+        "zero_entries_raw": 240,
+        "repair_seconds": 0.00038963998667895794,
+        "diagnostic_seconds": 0.0010553699685260653,
+        "inner_stopping_failures": 0,
+        "total_logged_inner_iterations": 0,
+        "stderr_nonempty": false,
+        "underflow_entries_reported": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "warnings": [],
+      "output": "runs/stage_a/reference_fw"
+    },
+    {
+      "method": "reference_kl",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.09855867903035331,
+        "rounded_feasible_loss": 0.09855867903022553,
+        "raw_residuals": {
+          "row_l1": 1.3556461508912321e-11,
+          "col_l1": 1.6653345369377348e-16,
+          "col_l2": 6.206335383118183e-17,
+          "both_l1": 1.3556628042366015e-11,
+          "mass_error": 0.0,
+          "min_entry": 0.0014624918526431705
+        },
+        "rounded_residuals": {
+          "row_l1": 1.0408340855860843e-16,
+          "col_l1": 5.551115123125783e-17,
+          "col_l2": 2.4037033579794548e-17,
+          "both_l1": 1.5959455978986625e-16,
+          "mass_error": 0.0,
+          "min_entry": 0.001462491852708494
+        },
+        "repair_entrywise_l1": 1.355636696648288e-11,
+        "original_fw_gap_at_rounded": 0.00754950154123084,
+        "zero_entries_raw": 0,
+        "repair_seconds": 0.00039206002838909626,
+        "diagnostic_seconds": 0.0012414200464263558,
+        "inner_stopping_failures": 0,
+        "total_logged_inner_iterations": 50,
+        "stderr_nonempty": false,
+        "underflow_entries_reported": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "warnings": [],
+      "output": "runs/stage_a/reference_kl"
+    },
+    {
+      "method": "reference_stochastic_kl",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.10037195331944737,
+        "rounded_feasible_loss": 0.10037195331944748,
+        "raw_residuals": {
+          "row_l1": 2.42861286636753e-16,
+          "col_l1": 1.6653345369377348e-16,
+          "col_l2": 6.206335383118183e-17,
+          "both_l1": 4.0939474033052647e-16,
+          "mass_error": 0.0,
+          "min_entry": 0.0027589281794346563
+        },
+        "rounded_residuals": {
+          "row_l1": 4.85722573273506e-17,
+          "col_l1": 3.469446951953614e-17,
+          "col_l2": 1.8358587643600646e-17,
+          "both_l1": 8.326672684688674e-17,
+          "mass_error": 0.0,
+          "min_entry": 0.0027589281794346615
+        },
+        "repair_entrywise_l1": 2.5370330836160804e-16,
+        "original_fw_gap_at_rounded": 0.006077392519579496,
+        "zero_entries_raw": 0,
+        "repair_seconds": 0.0004006200470030308,
+        "diagnostic_seconds": 0.0017709999810904264,
+        "inner_stopping_failures": 0,
+        "total_logged_inner_iterations": 50,
+        "stderr_nonempty": false,
+        "underflow_entries_reported": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "warnings": [],
+      "output": "runs/stage_a/reference_stochastic_kl"
+    },
+    {
+      "method": "reference_pg",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.10027629246756709,
+        "rounded_feasible_loss": 0.10027629246756709,
+        "raw_residuals": {
+          "row_l1": 4.163336342344337e-17,
+          "col_l1": 6.245004513516506e-17,
+          "col_l2": 2.6874220530932865e-17,
+          "both_l1": 1.0408340855860843e-16,
+          "mass_error": 0.0,
+          "min_entry": 0.003269531866876033
+        },
+        "rounded_residuals": {
+          "row_l1": 2.7755575615628914e-17,
+          "col_l1": 2.7755575615628914e-17,
+          "col_l2": 1.6996749443881478e-17,
+          "both_l1": 5.551115123125783e-17,
+          "mass_error": 0.0,
+          "min_entry": 0.0032695318668760323
+        },
+        "repair_entrywise_l1": 9.280770596475918e-17,
+        "original_fw_gap_at_rounded": 0.005892944241693092,
+        "zero_entries_raw": 0,
+        "repair_seconds": 0.00036424002610147,
+        "diagnostic_seconds": 0.0012861109571531415,
+        "inner_stopping_failures": 0,
+        "total_logged_inner_iterations": 50,
+        "stderr_nonempty": false,
+        "underflow_entries_reported": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "warnings": [],
+      "output": "runs/stage_a/reference_pg"
+    },
+    {
+      "method": "pot_ppa",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.09855867903019244,
+        "rounded_feasible_loss": 0.09855867903018056,
+        "raw_residuals": {
+          "row_l1": 8.326672684688674e-17,
+          "col_l1": 1.268450622315953e-12,
+          "col_l2": 3.764163771899503e-13,
+          "both_l1": 1.2685338890428e-12,
+          "mass_error": 0.0,
+          "min_entry": 0.0014624918526884502
+        },
+        "rounded_residuals": {
+          "row_l1": 4.163336342344337e-17,
+          "col_l1": 3.469446951953614e-17,
+          "col_l2": 1.8358587643600646e-17,
+          "both_l1": 7.632783294297951e-17,
+          "mass_error": 0.0,
+          "min_entry": 0.0014624918526945675
+        },
+        "repair_entrywise_l1": 1.2684350098046693e-12,
+        "original_fw_gap_at_rounded": 0.007549501541240103,
+        "zero_entries_raw": 0,
+        "repair_seconds": 0.00045463000424206257,
+        "diagnostic_seconds": 0.001677480060607195,
+        "solver_call_seconds": 0.005901972064748406,
+        "native_log_warning": "Native loss estimates and prescribed-marginal losses are not independent evaluation."
+      },
+      "warnings": [],
+      "output": "runs/stage_a/pot_ppa"
+    },
+    {
+      "method": "pot_sampled",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.050723186229196804,
+        "rounded_feasible_loss": 0.05072318638146189,
+        "raw_residuals": {
+          "row_l1": 1.1102230246251565e-16,
+          "col_l1": 2.5618675028593607e-09,
+          "col_l2": 8.143669502213946e-10,
+          "both_l1": 2.561867613881663e-09,
+          "mass_error": 0.0,
+          "min_entry": 2.9703054475764203e-14
+        },
+        "rounded_residuals": {
+          "row_l1": 2.0816681711721685e-17,
+          "col_l1": 4.163336342344337e-17,
+          "col_l2": 3.1031676915590914e-17,
+          "both_l1": 6.245004513516506e-17,
+          "mass_error": 0.0,
+          "min_entry": 2.9703054420162e-14
+        },
+        "repair_entrywise_l1": 2.5618675083119934e-09,
+        "original_fw_gap_at_rounded": 0.012901667795356304,
+        "zero_entries_raw": 0,
+        "repair_seconds": 0.00018755998462438583,
+        "diagnostic_seconds": 0.0005628099897876382,
+        "solver_call_seconds": 0.06336234207265079,
+        "native_log_warning": "Native loss estimates and prescribed-marginal losses are not independent evaluation."
+      },
+      "warnings": [],
+      "output": "runs/stage_a/pot_sampled"
+    },
+    {
+      "method": "pot_unregularized",
+      "status": "passed",
+      "metrics": {
+        "raw_smooth_loss": 0.0,
+        "rounded_feasible_loss": 0.0,
+        "raw_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "repair_entrywise_l1": 0.0,
+        "original_fw_gap_at_rounded": 0.0,
+        "zero_entries_raw": 240,
+        "repair_seconds": 0.00015984103083610535,
+        "diagnostic_seconds": 0.0005680699832737446,
+        "solver_call_seconds": 0.0008014600025489926,
+        "native_log_warning": "Native loss estimates and prescribed-marginal losses are not independent evaluation."
+      },
+      "warnings": [],
+      "output": "runs/stage_a/pot_unregularized"
+    }
+  ],
+  "pot_conventions": {
+    "passed": true,
+    "convention": "full squared-loss GW; no half, root, entropy, or scale adjustment",
+    "note": "POT feasible-marginal shortcuts are checked only at feasible plans; all solver outputs use GWProblem.",
+    "plans": [
+      {
+        "plan": "product",
+        "full_loss": 0.10070422110463129,
+        "pot_square_loss": 0.10070422110463126,
+        "loss_absolute_difference": 2.7755575615628914e-17,
+        "gradient_max_absolute_difference": 0.0,
+        "residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.00390625
+        }
+      },
+      {
+        "plan": "independent_mixed_permutation",
+        "full_loss": 0.09997320730911319,
+        "pot_square_loss": 0.09997320730911305,
+        "loss_absolute_difference": 1.3877787807814457e-16,
+        "gradient_max_absolute_difference": 8.881784197001252e-16,
+        "residuals": {
+          "row_l1": 0.0,
+          "col_l1": 2.220446049250313e-16,
+          "col_l2": 5.551115123125783e-17,
+          "both_l1": 2.220446049250313e-16,
+          "mass_error": 2.220446049250313e-16,
+          "min_entry": 0.003515625
+        }
+      },
+      {
+        "plan": "independent_concentrated_permutation",
+        "full_loss": 0.03196560756039091,
+        "pot_square_loss": 0.03196560756039102,
+        "loss_absolute_difference": 1.1102230246251565e-16,
+        "gradient_max_absolute_difference": 0.0,
+        "residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        }
+      }
+    ]
+  },
+  "all_baseline_checks_passed": true,
+  "elapsed_seconds_including_diagnostics_and_io": 7.379545774892904,
+  "executed_driver_archive": "runs/stage_a/validate_baselines.executed.py",
+  "annotation": "Manuscript arrived during execution; descriptive limitation wording corrected without altering computations."
+}

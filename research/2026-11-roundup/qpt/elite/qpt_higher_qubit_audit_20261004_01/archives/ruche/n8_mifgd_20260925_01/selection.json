@@ -1,0 +1,62 @@
+{
+  "status": "selected",
+  "selection_seed": 0,
+  "steps": 20000,
+  "mu": 0.75,
+  "tp_weight": 1.0,
+  "objective": "measurement_loss + 1.0 * 0.5*TP_residual_squared",
+  "candidates": [
+    1e-06,
+    1e-05,
+    0.0001,
+    0.001
+  ],
+  "admissibility": "finite and terminal TP violation <= 1.0",
+  "selection": "maximum terminal fidelity; ties by TP then eta",
+  "selected_eta": 0.001,
+  "best_tp_candidate": 0.0001,
+  "initial_factor_sha256": "f798178177e171e5175a9caba5f9092f611547a8cbed994714234ea58647dfa6",
+  "batch_symbols_sha256": "76b308c4c70f5f2420406590f4832cc21b4c960f118c967a5603fdc1eb8f0e17",
+  "runs": [
+    {
+      "eta": 1e-06,
+      "status": "finite",
+      "final_fidelity": 8.751307087759498e-06,
+      "final_measurement_loss": 0.0011504646351912873,
+      "final_tp_violation": 12.385270906065397,
+      "final_factor_norm": 8.814790026944154,
+      "optimizer_seconds": 159.86125238158274,
+      "path": "tuning/eta_1em06/final.npz"
+    },
+    {
+      "eta": 1e-05,
+      "status": "finite",
+      "final_fidelity": 9.450768238119827e-06,
+      "final_measurement_loss": 0.0011576289761426233,
+      "final_tp_violation": 6.973724924835791,
+      "final_factor_norm": 13.327522828859394,
+      "optimizer_seconds": 159.91445559228305,
+      "path": "tuning/eta_1em05/final.npz"
+    },
+    {
+      "eta": 0.0001,
+      "status": "finite",
+      "final_fidelity": 7.477826336460323e-06,
+      "final_measurement_loss": 0.0011638508528759473,
+      "final_tp_violation": 1.5392340029155066e-06,
+      "final_factor_norm": 15.999999526442883,
+      "optimizer_seconds": 159.8515269641066,
+      "path": "tuning/eta_1em04/final.npz"
+    },
+    {
+      "eta": 0.001,
+      "status": "finite",
+      "final_fidelity": 7.583838416136494e-06,
+      "final_measurement_loss": 0.0011648477848331365,
+      "final_tp_violation": 1.7032430873467558e-06,
+      "final_factor_norm": 15.999999527128374,
+      "optimizer_seconds": 160.06351779738907,
+      "path": "tuning/eta_1em03/final.npz"
+    }
+  ]
+}

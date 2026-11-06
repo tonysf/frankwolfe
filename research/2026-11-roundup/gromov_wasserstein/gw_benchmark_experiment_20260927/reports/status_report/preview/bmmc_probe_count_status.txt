@@ -1,0 +1,135 @@
+The Gromov–Wasserstein problem
+Reference page / the optimization problem
+
+Match relationships when features cannot be compared directly. Suppose two datasets describe
+diﬀerent collections of objects, or two diﬀerent measurements of the same objects. Their feature spaces
+may be incompatible. Gromov–Wasserstein (GW) matching uses the distances within each dataset: a
+good correspondence pairs objects so that their relationships are preserved. It does not require a distance
+between an object in one feature space and an object in the other.
+Data and unknown. Let A ∈ Rn×n and B ∈ Rm×m be the two symmetric distance matrices. Positive
+probability vectors a and b specify the mass of each object; uniform weights give ai = 1/n and bj = 1/m.
+The unknown is a soft matching P ∈ Rn×m : Pij is the mass assigned between source object i and target
+object j. Balanced matching requires
+
+                                    U (a, b) = {P ≥ 0 : P 1m = a, P ⊤ 1n = b}.
+
+The row and column sums prescribe how much each object contributes. They do not force a one-to-one
+matching.
+Objective: preserve pairwise distances. The unregularized squared GW problem used here is
+                                                              X
+                                                              n X
+                                                                m
+                            min f (P ) ,           f (P ) =             (Aik − Bjℓ )2 Pij Pkℓ .
+                          P ∈U (a,b)
+                                                              i,k=1 j,ℓ=1
+
+Two simultaneous matches, i ↔ j and k ↔ ℓ, incur a cost when Aik and Bjℓ disagree. Equivalently,
+f (P ) is the expected squared distance discrepancy from two independent draws from P . This convention
+includes neither a factor 1/2 nor entropy regularization. The objective is smooth and generally nonconvex;
+the feasible transport polytope is convex. A small loss alone does not certify a global optimum or a
+scientiﬁcally correct correspondence.
+Composite form for FraMES. Separate the inexpensive row constraints from the column constraint:
+
+                             C = {P ≥ 0 : P 1m = a},                  T (P ) = P ⊤ 1n ,
+                                               (
+                                                 0,  y = b,
+                          g(y) = ι{b} (y) =                            min f (P ) + g(T P ).
+                                                       ̸ b,
+                                                 +∞, y =               P ∈C
+
+
+The Moreau envelope of g is explicit, so its smoothed contribution is
+
+                                    ∥P ⊤ 1n − b∥22                             1n (P ⊤ 1n − b)⊤
+                      gµ (T P ) =                  ,      ∇(gµ ◦ T )(P ) =                      .
+                                          2µ                                           µ
+
+FraMES combines a momentum estimate of ∇f (P ) with this current penalty gradient. Its linear mini-
+mization oracle places each row’s mass in a minimizing column. Convex-combination updates preserve
+nonnegativity and row masses; column masses can be violated during optimization.
+What a results page measures. Random probes estimate the gradient of the same ﬁxed GW objective;
+they do not subsample the dataset or impose a rank restriction on P . Reported feasible loss is f evaluated
+after repairing an output to satisfy both marginals to numerical tolerance. The repair is a diagnostic, not
+an optimization step. Raw loss, feasibility error, and any smoothed penalty are distinct quantities. Loss
+magnitudes depend on distance scaling, so reductions are interpreted within a ﬁxed dataset and objective
+convention. Timing deﬁnitions and the reported output statistic belong on the experiment page.
+
+
+
+
+Shared background for the status reports. Experiment-speciﬁc dimensions, parameters and results appear on the
+next page.
+
+
+                                                              1
+
+BMMC data: increasing the probe count
+Experiment results / veriﬁed 9 October 2026                                                                                     9 of 9 runs completed
+
+Data. Bone-marrow mononuclear cells (BMMC): all 6,224 cells in each of the downloaded processed
+moscot RNA and ATAC ﬁles, with no additional cell subsampling (38,738,176 coupling variables). RNA
+uses 50 provided PCA coordinates; ATAC uses 38 provided LSI coordinates, normalized rowwise to unit
+Euclidean norm. Within-view Euclidean distances are divided by each matrix’s own maximum. The views
+are independently reordered; masses are uniform and labels are unused.
+Design. Stochastic FraMES with 128, 1,024 or 2,048 random-sign probes per gradient; three development
+seeds (710–712), 20,000 updates each, product start P0 = ab⊤ , and one Ruche A100 per run. One gradient
+estimate is formed per update, with d0 = Gb 0 . All other settings are ﬁxed across probe counts:
+
+                                                                                                                      0.1
+                               γk = (k + 1)−3/4 ,         ρk = 0.3(k + 1)−1/2 (k ≥ 1),                        µk =        (k + 1)−1/4 .
+                                                                                                                     6224
+
+
+                                    Probes     Final feasible loss ↓      Decrease from P0                       Solver minutes
+                                       128                 0.16060800                               0.2680%                  6.28
+                                     1,024                 0.15900026                               1.2664%                 15.13
+                                     2,048                 0.15867071                               1.4710%                 24.36
+
+Medians across three seeds; initial feasible loss f (P0 ) = 0.16103965. Percentage decreases are computed per seed
+before taking the median.
+
+                                                     128 probes               1,024 probes                           2,048 probes
+
+
+                   0.161                                                                         0.161
+Feasible GW loss
+
+
+
+
+                                                                              Feasible GW loss
+
+
+
+
+                   0.160                                                                         0.160
+
+
+                   0.159                                                                         0.159
+
+
+                           0           6k           12k         18k                                      0             8            16           24
+                                       Completed updates                                                      Solver wall-clock time (minutes)
+
+
+Markers are saved checkpoints; lines are visual guides. Shading shows the three-seed IQR. The time plot places
+each common-iteration median loss at its median solver time; it does not interpolate to a common time grid.
+Assessment. Increasing the probe count improves the ﬁnal feasible loss at 20,000 updates, but the
+decrease remains modest and solver cost rises. The 2,048-probe median reduction is 1.471%, versus
+0.268% with 128 probes. These are three random seeds on one ﬁxed processed dataset, not independent
+biological replicates. The result does not establish that gradient noise is the only remaining limitation;
+biological matching accuracy was not evaluated.
+Scope. This comparison changes only the probe count within the stated conﬁguration. It is not a
+comparison against another optimization method, nor a claim that these prefactors are the best ones for
+BMMC. The processed ﬁles used here are not the entire larger original BMMC collection.
+
+
+Measurement. Final-iterate loss after transport repair, evaluated in FP64; initial and intermediate losses use
+FP32. This is neither a best-checkpoint loss nor a theorem-selected output. Solver time includes initialization and
+updates; it excludes preparation, repairs, loss diagnostics, logging, snapshots and ﬁnal FP64 validation. It is not
+end-to-end elapsed time.
+Provenance. Frozen instance bmmc6224; run source 8d11e2a; completed probe-study report SHA256 preﬁx
+6ce0b0198875649d7.
+
+                                                                          2
+

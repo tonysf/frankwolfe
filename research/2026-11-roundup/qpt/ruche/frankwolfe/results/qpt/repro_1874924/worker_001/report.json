@@ -1,0 +1,2591 @@
+{
+  "status": "complete",
+  "worker": 1,
+  "pid": 2972829,
+  "hostname": "ruche-gpu02.cluster",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "JAX_PLATFORMS": null,
+    "JAX_ENABLE_X64": null,
+    "XLA_FLAGS": null,
+    "CUBLAS_WORKSPACE_CONFIG": null,
+    "NVIDIA_TF32_OVERRIDE": null,
+    "XLA_PYTHON_CLIENT_ALLOCATOR": "default",
+    "XLA_PYTHON_CLIENT_PREALLOCATE": "false",
+    "XLA_PYTHON_CLIENT_MEM_FRACTION": null,
+    "XLA_CLIENT_MEM_FRACTION": null,
+    "JAX_ENABLE_COMPILATION_CACHE": "false",
+    "JAX_COMPILATION_CACHE_DIR": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "replays_completed": 3,
+  "scan_compilation_count": 1,
+  "phases": {
+    "imports_and_input_load_seconds": 3.6212761640781537,
+    "device_initialization_and_frozen_transfer_seconds": 2.6683254400268197,
+    "scan_compile_seconds": 0.5419459659606218,
+    "discarded_first_chunk_warmup_seconds": 0.021392564056441188,
+    "post_replay_operator_probes_seconds": 0.7519006950315088
+  },
+  "manifest_sha256": "1a7918be68d053906279064d53504dc88fca48e77093609cc263ef22d11c4e44",
+  "numerical_source_sha256": {
+    "scripts/diagnose_qpt_reproducibility.py": "6f52fdc33ce5905f8d3fef10a1f1e5bed4f1cccec38c1275526fed639c1e6d6b",
+    "paper/experiments/quantum_process_tomography_structured_jax.py": "8c6cde6891c466d87d1b5395817feafd2be9341529fb3db556cf72abfbcc7775",
+    "paper/experiments/qpt_structured_operators.py": "f0d955d900f2c3ed77b0a8e5bea06acf03dbadfa272abb9e708c357e219c715d",
+    "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652",
+    "paper/experiments/quantum_process_tomography_jax.py": "31b7746d52282096536d9e061b37a040b2bfc1cbd769d45537278ca2c093f619",
+    "paper/experiments/qpt_reproducibility_probes.py": "4399940d5a44edf6eabbf2144aefd5b31e5f50227917c439c4a9b4a51751178f"
+  },
+  "input_sha256": "7b0c28a486301f5d8ade1d8ab28b53a9df488f8b5c91bd059b2f03b5701540a1",
+  "device": "cuda:0",
+  "device_kind": "Tesla V100-PCIE-32GB",
+  "device_platform": "gpu",
+  "jax_version": "0.11.1",
+  "jaxlib_version": "0.11.1",
+  "numpy_version": "2.5.3",
+  "measurement_backend": "tensor",
+  "executable": {
+    "status": "available",
+    "text_sha256": "0fb8aec525100cdf72fd8c1a60b79686ac8c33cffb50b49afe33234a5c161312",
+    "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/repro_1874924/worker_001/compiled_scan.txt",
+    "note": "Unnormalized executable IR text, not a GPU-binary hash; metadata differences can change it."
+  },
+  "trajectory_path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/repro_1874924/worker_001/trajectories.npz",
+  "replay_seconds": [
+    0.16267180698923767,
+    0.15064923302270472,
+    0.14906178100500256
+  ],
+  "initial_device_state_unchanged": true,
+  "same_executable_comparisons": [
+    {
+      "replay": 1,
+      "comparisons": {
+        "factors": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        },
+        "momentum": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        },
+        "gaps": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        }
+      },
+      "boundaries": [
+        {
+          "step": 0,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 100,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 200,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 300,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 400,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 500,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 600,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 700,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 800,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 900,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 1000,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        }
+      ],
+      "exact": true,
+      "allclose": true,
+      "first_different_boundary": null,
+      "first_gap_difference_iteration": null
+    },
+    {
+      "replay": 2,
+      "comparisons": {
+        "factors": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        },
+        "momentum": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        },
+        "gaps": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        }
+      },
+      "boundaries": [
+        {
+          "step": 0,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 100,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 200,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 300,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 400,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 500,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 600,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 700,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 800,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 900,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        },
+        {
+          "step": 1000,
+          "factors": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "momentum": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          }
+        }
+      ],
+      "exact": true,
+      "allclose": true,
+      "first_different_boundary": null,
+      "first_gap_difference_iteration": null
+    }
+  ],
+  "warmup_vs_first_chunk": {
+    "factor": {
+      "same_shape": true,
+      "finite": true,
+      "exact": true,
+      "allclose": true,
+      "max_abs_difference": 0.0,
+      "relative_l2_difference": 0.0
+    },
+    "momentum": {
+      "same_shape": true,
+      "finite": true,
+      "exact": true,
+      "allclose": true,
+      "max_abs_difference": 0.0,
+      "relative_l2_difference": 0.0
+    },
+    "gaps": {
+      "same_shape": true,
+      "finite": true,
+      "exact": true,
+      "allclose": true,
+      "max_abs_difference": 0.0,
+      "relative_l2_difference": 0.0
+    }
+  },
+  "operator_probes": [
+    {
+      "measurement_backend": "tensor",
+      "iteration": 0,
+      "rho": 0.8705505632961242,
+      "beta": 10.0,
+      "gamma": 1.0,
+      "tau": 10.0,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "compile_seconds": 0.38828263303730637,
+      "compiled_executables": 1,
+      "inputs": {
+        "factor": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "f4934586d9f3ceebb7eba8889f4a282b7ea7a235ec555d7e7c57234bec8ba597",
+          "finite": true
+        },
+        "previous": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+          "finite": true
+        },
+        "symbols": {
+          "shape": [
+            32,
+            3
+          ],
+          "dtype": "int32",
+          "sha256": "5317fb5fa479108921ebd48baaba4ac19b0fa861f8835f6f635fe5e396be55ee",
+          "finite": true
+        },
+        "observations": {
+          "shape": [
+            32
+          ],
+          "dtype": "float64",
+          "sha256": "f86538948ffbeb223c154eec533a136aec95d74869a5c4a3ae9a7a79015833b6",
+          "finite": true
+        },
+        "selected_bank": {
+          "shape": [
+            24,
+            4,
+            4
+          ],
+          "dtype": "complex128",
+          "sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea",
+          "finite": true
+        },
+        "local_basis": {
+          "shape": [
+            4,
+            2,
+            2
+          ],
+          "dtype": "complex128",
+          "sha256": "6d17ffd5fe17793afa08a7a28a6a6aa6a91e82cbe32e0d4ecc8ce4d2efb3263a",
+          "finite": true
+        },
+        "schedules": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64",
+          "sha256": "8dace40e06d3b2edffe518ce9077c55996d7cddc3c000b41858b1e7e56cccb60",
+          "finite": true
+        }
+      },
+      "local_measurements_sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea",
+      "derived_rank_one_bank_sha256": null,
+      "selected_bank_sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea",
+      "selected_bank_source": "supplied by caller",
+      "cpu_reference": {
+        "status": "validated",
+        "validated": true,
+        "estimated_allocation_bytes": 27410432,
+        "max_reference_bytes": 134217728,
+        "reason": null,
+        "source": "Explicit minibatch Kronecker matrices and global Pauli/B tensors; NumPy QPTMeasurementObjective",
+        "scope": "Selected minibatch only; not an independent revalidation of HDF5 row decoding/conversion",
+        "seconds": 0.02295948809478432,
+        "outputs": {
+          "measurement_loss": {
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "c6737b232148dad4cf44a5e99e12d14ced4ed6379d5721a25214a497ae7c7513",
+            "finite": true,
+            "value": 0.06626124553812882
+          },
+          "measurement_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "1d59605001565cd0994ff30d9f6655f570994277b4ddc8e4f97108fde318aa7d",
+            "finite": true
+          },
+          "tp_loss": {
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "2cb062d77e6383273aa6643e7cdfa1766d6a65fbf82aebcadc863451da3a41a3",
+            "finite": true,
+            "value": 17.49769643995078
+          },
+          "tp_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "e74c9dbd170ec3edef05552183c615b1487937ce29cde72355c053fb2264ead6",
+            "finite": true
+          },
+          "moreau_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "913628b52b5c8f07db1d4a3ef6a8c6a0eb2fdf6ba9a314929cd7703169676591",
+            "finite": true
+          },
+          "momentum_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "1d59605001565cd0994ff30d9f6655f570994277b4ddc8e4f97108fde318aa7d",
+            "finite": true
+          },
+          "combined_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "01a2ee2faebfe9433c49072cd0b8be85f8a1fd38e713258c216ceffe19c40b28",
+            "finite": true
+          },
+          "lmo_atom": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "f0d2316960ae03ee01fcb9cae9bd8c72ce43aab3434a92a8fc5a2b7efa9f51fb",
+            "finite": true
+          },
+          "next_factor": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "f0d2316960ae03ee01fcb9cae9bd8c72ce43aab3434a92a8fc5a2b7efa9f51fb",
+            "finite": true
+          },
+          "estimated_gap": {
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "32736f94331797b22d6cd0d94417ca4bea05254d2bde2020e6cb4836508fd927",
+            "finite": true,
+            "value": 36.434058626088685
+          }
+        }
+      },
+      "runs": [
+        {
+          "repeat": 0,
+          "synchronized_execution_seconds": 0.00508460495620966,
+          "outputs": {
+            "combined_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "814a6c911c5d158e2c4635b6f67d08d34c9c87b7622dda83bcfee745c1daf728",
+              "finite": true
+            },
+            "estimated_gap": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "3eae6f25b2784f28eb3a0ed1e7df3a49e2b5ddd614e5fd0f6be19fe33c274a95",
+              "finite": true,
+              "value": 36.43405862608868
+            },
+            "lmo_atom": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "8323c3f24cbd1afb0fed8bc94cc927b19432ecaab9451aad177541a093eaaecc",
+              "finite": true
+            },
+            "measurement_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "5ba7389c0002ce34178d39836a33d4f0d0e6ae337afc05a30a9d242e77e99595",
+              "finite": true
+            },
+            "measurement_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c6737b232148dad4cf44a5e99e12d14ced4ed6379d5721a25214a497ae7c7513",
+              "finite": true,
+              "value": 0.06626124553812882
+            },
+            "momentum_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "5ba7389c0002ce34178d39836a33d4f0d0e6ae337afc05a30a9d242e77e99595",
+              "finite": true
+            },
+            "moreau_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "fedf662d7993fafec1817df69f332527f90a89ea83838f6d8f2a61a2ab2007d8",
+              "finite": true
+            },
+            "next_factor": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "8323c3f24cbd1afb0fed8bc94cc927b19432ecaab9451aad177541a093eaaecc",
+              "finite": true
+            },
+            "tp_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "3d2613053146dd45ec925fe4fafb6798a5df9d712bbd26bbdf46a486510f7633",
+              "finite": true
+            },
+            "tp_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "2540505d1ab6075b139b6bf1113f8421dc9d929b39cd11cef231469d7a9e7173",
+              "finite": true,
+              "value": 17.497696439950772
+            }
+          },
+          "versus_first": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.918669985154783,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 36.43405862608868,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.06626124553812882,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.8191945530011497,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 28.191945530011495,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 17.497696439950772,
+              "reference_is_zero": false
+            }
+          },
+          "versus_cpu": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.7755575615628914e-16,
+              "relative_l2_difference": 3.2677153908965333e-16,
+              "reference_l2_norm": 2.9186699851547835,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 7.105427357601002e-15,
+              "relative_l2_difference": 1.950215711766228e-16,
+              "reference_l2_norm": 36.434058626088685,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 8.082545620880531e-16,
+              "relative_l2_difference": 2.7257049278064207e-16,
+              "reference_l2_norm": 9.999999999999998,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2509268882771005e-17,
+              "relative_l2_difference": 2.2933441926980157e-16,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.06626124553812882,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2509268882771005e-17,
+              "relative_l2_difference": 2.2933441926980157e-16,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.7755575615628914e-16,
+              "relative_l2_difference": 3.348096827791235e-16,
+              "reference_l2_norm": 2.81919455300115,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 8.082545620880531e-16,
+              "relative_l2_difference": 2.7257049278064207e-16,
+              "reference_l2_norm": 9.999999999999998,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.220446049250313e-15,
+              "relative_l2_difference": 2.8293989126060534e-16,
+              "reference_l2_norm": 28.191945530011502,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 7.105427357601002e-15,
+              "relative_l2_difference": 4.0607787327810047e-16,
+              "reference_l2_norm": 17.49769643995078,
+              "reference_is_zero": false
+            }
+          }
+        },
+        {
+          "repeat": 1,
+          "synchronized_execution_seconds": 0.0005841410020366311,
+          "outputs": {
+            "combined_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "814a6c911c5d158e2c4635b6f67d08d34c9c87b7622dda83bcfee745c1daf728",
+              "finite": true
+            },
+            "estimated_gap": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "3eae6f25b2784f28eb3a0ed1e7df3a49e2b5ddd614e5fd0f6be19fe33c274a95",
+              "finite": true,
+              "value": 36.43405862608868
+            },
+            "lmo_atom": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "8323c3f24cbd1afb0fed8bc94cc927b19432ecaab9451aad177541a093eaaecc",
+              "finite": true
+            },
+            "measurement_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "5ba7389c0002ce34178d39836a33d4f0d0e6ae337afc05a30a9d242e77e99595",
+              "finite": true
+            },
+            "measurement_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c6737b232148dad4cf44a5e99e12d14ced4ed6379d5721a25214a497ae7c7513",
+              "finite": true,
+              "value": 0.06626124553812882
+            },
+            "momentum_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "5ba7389c0002ce34178d39836a33d4f0d0e6ae337afc05a30a9d242e77e99595",
+              "finite": true
+            },
+            "moreau_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "fedf662d7993fafec1817df69f332527f90a89ea83838f6d8f2a61a2ab2007d8",
+              "finite": true
+            },
+            "next_factor": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "8323c3f24cbd1afb0fed8bc94cc927b19432ecaab9451aad177541a093eaaecc",
+              "finite": true
+            },
+            "tp_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "3d2613053146dd45ec925fe4fafb6798a5df9d712bbd26bbdf46a486510f7633",
+              "finite": true
+            },
+            "tp_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "2540505d1ab6075b139b6bf1113f8421dc9d929b39cd11cef231469d7a9e7173",
+              "finite": true,
+              "value": 17.497696439950772
+            }
+          },
+          "versus_first": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.918669985154783,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 36.43405862608868,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.06626124553812882,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.8191945530011497,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 28.191945530011495,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 17.497696439950772,
+              "reference_is_zero": false
+            }
+          },
+          "versus_cpu": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.7755575615628914e-16,
+              "relative_l2_difference": 3.2677153908965333e-16,
+              "reference_l2_norm": 2.9186699851547835,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 7.105427357601002e-15,
+              "relative_l2_difference": 1.950215711766228e-16,
+              "reference_l2_norm": 36.434058626088685,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 8.082545620880531e-16,
+              "relative_l2_difference": 2.7257049278064207e-16,
+              "reference_l2_norm": 9.999999999999998,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2509268882771005e-17,
+              "relative_l2_difference": 2.2933441926980157e-16,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.06626124553812882,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2509268882771005e-17,
+              "relative_l2_difference": 2.2933441926980157e-16,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.7755575615628914e-16,
+              "relative_l2_difference": 3.348096827791235e-16,
+              "reference_l2_norm": 2.81919455300115,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 8.082545620880531e-16,
+              "relative_l2_difference": 2.7257049278064207e-16,
+              "reference_l2_norm": 9.999999999999998,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.220446049250313e-15,
+              "relative_l2_difference": 2.8293989126060534e-16,
+              "reference_l2_norm": 28.191945530011502,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 7.105427357601002e-15,
+              "relative_l2_difference": 4.0607787327810047e-16,
+              "reference_l2_norm": 17.49769643995078,
+              "reference_is_zero": false
+            }
+          }
+        },
+        {
+          "repeat": 2,
+          "synchronized_execution_seconds": 0.00040413893293589354,
+          "outputs": {
+            "combined_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "814a6c911c5d158e2c4635b6f67d08d34c9c87b7622dda83bcfee745c1daf728",
+              "finite": true
+            },
+            "estimated_gap": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "3eae6f25b2784f28eb3a0ed1e7df3a49e2b5ddd614e5fd0f6be19fe33c274a95",
+              "finite": true,
+              "value": 36.43405862608868
+            },
+            "lmo_atom": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "8323c3f24cbd1afb0fed8bc94cc927b19432ecaab9451aad177541a093eaaecc",
+              "finite": true
+            },
+            "measurement_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "5ba7389c0002ce34178d39836a33d4f0d0e6ae337afc05a30a9d242e77e99595",
+              "finite": true
+            },
+            "measurement_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c6737b232148dad4cf44a5e99e12d14ced4ed6379d5721a25214a497ae7c7513",
+              "finite": true,
+              "value": 0.06626124553812882
+            },
+            "momentum_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "5ba7389c0002ce34178d39836a33d4f0d0e6ae337afc05a30a9d242e77e99595",
+              "finite": true
+            },
+            "moreau_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "fedf662d7993fafec1817df69f332527f90a89ea83838f6d8f2a61a2ab2007d8",
+              "finite": true
+            },
+            "next_factor": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "8323c3f24cbd1afb0fed8bc94cc927b19432ecaab9451aad177541a093eaaecc",
+              "finite": true
+            },
+            "tp_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "3d2613053146dd45ec925fe4fafb6798a5df9d712bbd26bbdf46a486510f7633",
+              "finite": true
+            },
+            "tp_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "2540505d1ab6075b139b6bf1113f8421dc9d929b39cd11cef231469d7a9e7173",
+              "finite": true,
+              "value": 17.497696439950772
+            }
+          },
+          "versus_first": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.918669985154783,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 36.43405862608868,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.06626124553812882,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.8191945530011497,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 28.191945530011495,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 17.497696439950772,
+              "reference_is_zero": false
+            }
+          },
+          "versus_cpu": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.7755575615628914e-16,
+              "relative_l2_difference": 3.2677153908965333e-16,
+              "reference_l2_norm": 2.9186699851547835,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 7.105427357601002e-15,
+              "relative_l2_difference": 1.950215711766228e-16,
+              "reference_l2_norm": 36.434058626088685,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 8.082545620880531e-16,
+              "relative_l2_difference": 2.7257049278064207e-16,
+              "reference_l2_norm": 9.999999999999998,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2509268882771005e-17,
+              "relative_l2_difference": 2.2933441926980157e-16,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.06626124553812882,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2509268882771005e-17,
+              "relative_l2_difference": 2.2933441926980157e-16,
+              "reference_l2_norm": 0.15572699653769648,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.7755575615628914e-16,
+              "relative_l2_difference": 3.348096827791235e-16,
+              "reference_l2_norm": 2.81919455300115,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 8.082545620880531e-16,
+              "relative_l2_difference": 2.7257049278064207e-16,
+              "reference_l2_norm": 9.999999999999998,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.220446049250313e-15,
+              "relative_l2_difference": 2.8293989126060534e-16,
+              "reference_l2_norm": 28.191945530011502,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 7.105427357601002e-15,
+              "relative_l2_difference": 4.0607787327810047e-16,
+              "reference_l2_norm": 17.49769643995078,
+              "reference_is_zero": false
+            }
+          }
+        }
+      ],
+      "replay_exact": true,
+      "replay_allclose": true,
+      "all_outputs_finite": true,
+      "interpretation": "Fixed-factor probe uses the production operator helpers but is a separately compiled graph, not the optimizer scan. Agreement does not establish long-trajectory equality; raw factors/atoms are never phase-aligned."
+    },
+    {
+      "measurement_backend": "tensor",
+      "iteration": 500,
+      "rho": 0.04781582724958223,
+      "beta": 2.113686475352412,
+      "gamma": 0.00398406374501992,
+      "tau": 10.0,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "compile_seconds": 0.2781203130725771,
+      "compiled_executables": 1,
+      "inputs": {
+        "factor": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "0583f9de599dc8b3380683edb9032b1dc1681060be751b19c0d6e69f733f8dd0",
+          "finite": true
+        },
+        "previous": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "18b182ad80a782044fe31c86a6d4904938bc491d8f1871cf5a8b7e85cab08e55",
+          "finite": true
+        },
+        "symbols": {
+          "shape": [
+            32,
+            3
+          ],
+          "dtype": "int32",
+          "sha256": "5935d21e923d7c00c49028d95558b07568bbdddeed5845c797242610a845fdb9",
+          "finite": true
+        },
+        "observations": {
+          "shape": [
+            32
+          ],
+          "dtype": "float64",
+          "sha256": "8c86ae8789dbb801180ecbe1d5a0f2ffde7b4e0ffa3c1093f4609586310cc0c8",
+          "finite": true
+        },
+        "selected_bank": {
+          "shape": [
+            24,
+            4,
+            4
+          ],
+          "dtype": "complex128",
+          "sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea",
+          "finite": true
+        },
+        "local_basis": {
+          "shape": [
+            4,
+            2,
+            2
+          ],
+          "dtype": "complex128",
+          "sha256": "6d17ffd5fe17793afa08a7a28a6a6aa6a91e82cbe32e0d4ecc8ce4d2efb3263a",
+          "finite": true
+        },
+        "schedules": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64",
+          "sha256": "30a8f9d36e2f31ea1d7122aa71c21221341e0b2e74664c3614e60cd011c3108a",
+          "finite": true
+        }
+      },
+      "local_measurements_sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea",
+      "derived_rank_one_bank_sha256": null,
+      "selected_bank_sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea",
+      "selected_bank_source": "supplied by caller",
+      "cpu_reference": {
+        "status": "validated",
+        "validated": true,
+        "estimated_allocation_bytes": 27410432,
+        "max_reference_bytes": 134217728,
+        "reason": null,
+        "source": "Explicit minibatch Kronecker matrices and global Pauli/B tensors; NumPy QPTMeasurementObjective",
+        "scope": "Selected minibatch only; not an independent revalidation of HDF5 row decoding/conversion",
+        "seconds": 0.018456583027727902,
+        "outputs": {
+          "measurement_loss": {
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "c9f239fc407faadc286b26b076671ef51502c15a1966439cc790e3d9e8822bd0",
+            "finite": true,
+            "value": 0.008026543408090708
+          },
+          "measurement_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "a710a0ab821b3bde724f452a28204c4616bf908726a5a7f0f02f6a226a3f81ba",
+            "finite": true
+          },
+          "tp_loss": {
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "26a3bd97c0e36db656f835da634e83e08dd55e6fb7a37d719358f781ab6118e5",
+            "finite": true,
+            "value": 0.00033423352898173696
+          },
+          "tp_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "febc2f6efa07de80f02c1a6339d7cb189c888db68f5d98833286dcc7f914e82a",
+            "finite": true
+          },
+          "moreau_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "a192cf46e0e0618c832fe0ecb3e127bba72cf2c82b388ad595eb47ced835dd96",
+            "finite": true
+          },
+          "momentum_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "6a38f46e161c3c5e240955c7f122d692b935b14dc58a220b55b8fc5ec750da9a",
+            "finite": true
+          },
+          "combined_gradient": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "b7b6c74bdf5a72987c5dbc4dc682df4b943b94b3bae01e8e8d6f81ea8d4b260b",
+            "finite": true
+          },
+          "lmo_atom": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "8730b815da2127e85854f3500a6177e7f25d04a82b0ed69c8917aed3babcf3f7",
+            "finite": true
+          },
+          "next_factor": {
+            "shape": [
+              64,
+              1
+            ],
+            "dtype": "complex128",
+            "sha256": "7a9f67d5d368b6b9d4d80030628d208ad85d37f1a5b6b8f0566e03599a725cfc",
+            "finite": true
+          },
+          "estimated_gap": {
+            "shape": [],
+            "dtype": "float64",
+            "sha256": "d763e0d9634e3d147261c81da25d1240a26899ff7c80058406f2716a55149021",
+            "finite": true,
+            "value": 0.2664657642279848
+          }
+        }
+      },
+      "runs": [
+        {
+          "repeat": 0,
+          "synchronized_execution_seconds": 0.002419346012175083,
+          "outputs": {
+            "combined_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "401f2c561c06a400d68f49004adea84639eb1cc1fa515ef37d32f8beb34ab07f",
+              "finite": true
+            },
+            "estimated_gap": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "78d940e51b750deefac7a3b2a4ea14a50a84ec32970267ec907fbc480a15aaad",
+              "finite": true,
+              "value": 0.2664657642279823
+            },
+            "lmo_atom": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "063aa81e06d97a42bce6dd2471d1330401edbe689395c52d6810532d21a715f6",
+              "finite": true
+            },
+            "measurement_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "aee189b6a4c831908b44db224ee392b1e6369857e42d47ea2d4b7ea7ee43209a",
+              "finite": true
+            },
+            "measurement_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c9f239fc407faadc286b26b076671ef51502c15a1966439cc790e3d9e8822bd0",
+              "finite": true,
+              "value": 0.008026543408090708
+            },
+            "momentum_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "cf42c94c1591148238b803a6c1d8bf00ad91d403aa661289fe5d8507ca05c388",
+              "finite": true
+            },
+            "moreau_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "87a93047a5520b663ad34660cb50866d333ba0a0ff5623aeccb0b4dffdc7f6fb",
+              "finite": true
+            },
+            "next_factor": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "a3d524041439a1bb73fa0426995f846d29e73dd38b65ef776b62366e4fd59ee8",
+              "finite": true
+            },
+            "tp_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "9d0efe1d3360dbf1e4b93247db6285f769f837e856402b4becc68e20c65c16de",
+              "finite": true
+            },
+            "tp_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "307ac36ed3329153f78c0d7d4265e3289c5d22b0a4c12cd9bc73beafc03a1054",
+              "finite": true,
+              "value": 0.00033423352898173664
+            }
+          },
+          "versus_first": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.025027878073484562,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.2664657642279823,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.019401505861794642,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.008026543408090708,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.007464394803216571,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.024504682190305115,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.8084250616965467,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.051795215328457045,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.00033423352898173664,
+              "reference_is_zero": false
+            }
+          },
+          "versus_cpu": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.1117125558481903e-16,
+              "relative_l2_difference": 3.814291034535553e-14,
+              "reference_l2_norm": 0.025027878073484684,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.4980018054066022e-15,
+              "relative_l2_difference": 9.374569422244214e-15,
+              "reference_l2_norm": 0.2664657642279848,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2427032606637742e-13,
+              "relative_l2_difference": 3.780502649523425e-14,
+              "reference_l2_norm": 10.000000000000002,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.742838647325548e-18,
+              "relative_l2_difference": 4.4995070650443655e-16,
+              "reference_l2_norm": 0.019401505861794646,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.008026543408090708,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.2351400383409363e-19,
+              "relative_l2_difference": 7.405761447842636e-17,
+              "reference_l2_norm": 0.007464394803216571,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.110980173293481e-16,
+              "relative_l2_difference": 3.8953923494032454e-14,
+              "reference_l2_norm": 0.024504682190305136,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 4.710277376051326e-16,
+              "relative_l2_difference": 5.390714959715612e-16,
+              "reference_l2_norm": 2.8084250616965463,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 6.574950969082617e-16,
+              "relative_l2_difference": 3.894990921676636e-14,
+              "reference_l2_norm": 0.051795215328457093,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.2526065174565133e-19,
+              "relative_l2_difference": 9.731538686037213e-16,
+              "reference_l2_norm": 0.00033423352898173696,
+              "reference_is_zero": false
+            }
+          }
+        },
+        {
+          "repeat": 1,
+          "synchronized_execution_seconds": 0.0005339269991964102,
+          "outputs": {
+            "combined_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "401f2c561c06a400d68f49004adea84639eb1cc1fa515ef37d32f8beb34ab07f",
+              "finite": true
+            },
+            "estimated_gap": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "78d940e51b750deefac7a3b2a4ea14a50a84ec32970267ec907fbc480a15aaad",
+              "finite": true,
+              "value": 0.2664657642279823
+            },
+            "lmo_atom": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "063aa81e06d97a42bce6dd2471d1330401edbe689395c52d6810532d21a715f6",
+              "finite": true
+            },
+            "measurement_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "aee189b6a4c831908b44db224ee392b1e6369857e42d47ea2d4b7ea7ee43209a",
+              "finite": true
+            },
+            "measurement_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c9f239fc407faadc286b26b076671ef51502c15a1966439cc790e3d9e8822bd0",
+              "finite": true,
+              "value": 0.008026543408090708
+            },
+            "momentum_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "cf42c94c1591148238b803a6c1d8bf00ad91d403aa661289fe5d8507ca05c388",
+              "finite": true
+            },
+            "moreau_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "87a93047a5520b663ad34660cb50866d333ba0a0ff5623aeccb0b4dffdc7f6fb",
+              "finite": true
+            },
+            "next_factor": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "a3d524041439a1bb73fa0426995f846d29e73dd38b65ef776b62366e4fd59ee8",
+              "finite": true
+            },
+            "tp_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "9d0efe1d3360dbf1e4b93247db6285f769f837e856402b4becc68e20c65c16de",
+              "finite": true
+            },
+            "tp_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "307ac36ed3329153f78c0d7d4265e3289c5d22b0a4c12cd9bc73beafc03a1054",
+              "finite": true,
+              "value": 0.00033423352898173664
+            }
+          },
+          "versus_first": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.025027878073484562,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.2664657642279823,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.019401505861794642,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.008026543408090708,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.007464394803216571,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.024504682190305115,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.8084250616965467,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.051795215328457045,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.00033423352898173664,
+              "reference_is_zero": false
+            }
+          },
+          "versus_cpu": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.1117125558481903e-16,
+              "relative_l2_difference": 3.814291034535553e-14,
+              "reference_l2_norm": 0.025027878073484684,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.4980018054066022e-15,
+              "relative_l2_difference": 9.374569422244214e-15,
+              "reference_l2_norm": 0.2664657642279848,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2427032606637742e-13,
+              "relative_l2_difference": 3.780502649523425e-14,
+              "reference_l2_norm": 10.000000000000002,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.742838647325548e-18,
+              "relative_l2_difference": 4.4995070650443655e-16,
+              "reference_l2_norm": 0.019401505861794646,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.008026543408090708,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.2351400383409363e-19,
+              "relative_l2_difference": 7.405761447842636e-17,
+              "reference_l2_norm": 0.007464394803216571,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.110980173293481e-16,
+              "relative_l2_difference": 3.8953923494032454e-14,
+              "reference_l2_norm": 0.024504682190305136,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 4.710277376051326e-16,
+              "relative_l2_difference": 5.390714959715612e-16,
+              "reference_l2_norm": 2.8084250616965463,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 6.574950969082617e-16,
+              "relative_l2_difference": 3.894990921676636e-14,
+              "reference_l2_norm": 0.051795215328457093,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.2526065174565133e-19,
+              "relative_l2_difference": 9.731538686037213e-16,
+              "reference_l2_norm": 0.00033423352898173696,
+              "reference_is_zero": false
+            }
+          }
+        },
+        {
+          "repeat": 2,
+          "synchronized_execution_seconds": 0.00039127503987401724,
+          "outputs": {
+            "combined_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "401f2c561c06a400d68f49004adea84639eb1cc1fa515ef37d32f8beb34ab07f",
+              "finite": true
+            },
+            "estimated_gap": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "78d940e51b750deefac7a3b2a4ea14a50a84ec32970267ec907fbc480a15aaad",
+              "finite": true,
+              "value": 0.2664657642279823
+            },
+            "lmo_atom": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "063aa81e06d97a42bce6dd2471d1330401edbe689395c52d6810532d21a715f6",
+              "finite": true
+            },
+            "measurement_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "aee189b6a4c831908b44db224ee392b1e6369857e42d47ea2d4b7ea7ee43209a",
+              "finite": true
+            },
+            "measurement_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "c9f239fc407faadc286b26b076671ef51502c15a1966439cc790e3d9e8822bd0",
+              "finite": true,
+              "value": 0.008026543408090708
+            },
+            "momentum_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "cf42c94c1591148238b803a6c1d8bf00ad91d403aa661289fe5d8507ca05c388",
+              "finite": true
+            },
+            "moreau_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "87a93047a5520b663ad34660cb50866d333ba0a0ff5623aeccb0b4dffdc7f6fb",
+              "finite": true
+            },
+            "next_factor": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "a3d524041439a1bb73fa0426995f846d29e73dd38b65ef776b62366e4fd59ee8",
+              "finite": true
+            },
+            "tp_gradient": {
+              "shape": [
+                64,
+                1
+              ],
+              "dtype": "complex128",
+              "sha256": "9d0efe1d3360dbf1e4b93247db6285f769f837e856402b4becc68e20c65c16de",
+              "finite": true
+            },
+            "tp_loss": {
+              "shape": [],
+              "dtype": "float64",
+              "sha256": "307ac36ed3329153f78c0d7d4265e3289c5d22b0a4c12cd9bc73beafc03a1054",
+              "finite": true,
+              "value": 0.00033423352898173664
+            }
+          },
+          "versus_first": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.025027878073484562,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.2664657642279823,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 10.0,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.019401505861794642,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.008026543408090708,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.007464394803216571,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.024504682190305115,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 2.8084250616965467,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.051795215328457045,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.00033423352898173664,
+              "reference_is_zero": false
+            }
+          },
+          "versus_cpu": {
+            "combined_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.1117125558481903e-16,
+              "relative_l2_difference": 3.814291034535553e-14,
+              "reference_l2_norm": 0.025027878073484684,
+              "reference_is_zero": false
+            },
+            "estimated_gap": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.4980018054066022e-15,
+              "relative_l2_difference": 9.374569422244214e-15,
+              "reference_l2_norm": 0.2664657642279848,
+              "reference_is_zero": false
+            },
+            "lmo_atom": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 1.2427032606637742e-13,
+              "relative_l2_difference": 3.780502649523425e-14,
+              "reference_l2_norm": 10.000000000000002,
+              "reference_is_zero": false
+            },
+            "measurement_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.742838647325548e-18,
+              "relative_l2_difference": 4.4995070650443655e-16,
+              "reference_l2_norm": 0.019401505861794646,
+              "reference_is_zero": false
+            },
+            "measurement_loss": {
+              "finite": true,
+              "exact": true,
+              "allclose": true,
+              "max_abs_difference": 0.0,
+              "relative_l2_difference": 0.0,
+              "reference_l2_norm": 0.008026543408090708,
+              "reference_is_zero": false
+            },
+            "momentum_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 2.2351400383409363e-19,
+              "relative_l2_difference": 7.405761447842636e-17,
+              "reference_l2_norm": 0.007464394803216571,
+              "reference_is_zero": false
+            },
+            "moreau_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.110980173293481e-16,
+              "relative_l2_difference": 3.8953923494032454e-14,
+              "reference_l2_norm": 0.024504682190305136,
+              "reference_is_zero": false
+            },
+            "next_factor": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 4.710277376051326e-16,
+              "relative_l2_difference": 5.390714959715612e-16,
+              "reference_l2_norm": 2.8084250616965463,
+              "reference_is_zero": false
+            },
+            "tp_gradient": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 6.574950969082617e-16,
+              "relative_l2_difference": 3.894990921676636e-14,
+              "reference_l2_norm": 0.051795215328457093,
+              "reference_is_zero": false
+            },
+            "tp_loss": {
+              "finite": true,
+              "exact": false,
+              "allclose": true,
+              "max_abs_difference": 3.2526065174565133e-19,
+              "relative_l2_difference": 9.731538686037213e-16,
+              "reference_l2_norm": 0.00033423352898173696,
+              "reference_is_zero": false
+            }
+          }
+        }
+      ],
+      "replay_exact": true,
+      "replay_allclose": true,
+      "all_outputs_finite": true,
+      "interpretation": "Fixed-factor probe uses the production operator helpers but is a separately compiled graph, not the optimizer scan. Agreement does not establish long-trajectory equality; raw factors/atoms are never phase-aligned."
+    }
+  ],
+  "worker_seconds": 8.103629893041216
+}

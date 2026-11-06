@@ -1,0 +1,174 @@
+{
+  "config": {
+    "batch": 128,
+    "expected_n": 31890,
+    "final": {
+      "budget_seconds": 300,
+      "checkpoints": [
+        10,
+        30,
+        100,
+        300
+      ],
+      "seeds": [
+        500,
+        501,
+        502
+      ]
+    },
+    "fw": {
+      "gamma0": 0.1,
+      "mu_scale": 0.1,
+      "smoothing_exponent": 0.25,
+      "step_exponent": 0.75
+    },
+    "hardware": {
+      "account": "fwllm",
+      "cluster": "Ruche",
+      "gpu": "A100 40GB",
+      "gpus": 4,
+      "host_memory_gib": 128,
+      "nodes": 1,
+      "partition": "gpua100"
+    },
+    "initialization": "product a*b^T",
+    "initialization_seed": 100,
+    "instance_id": "shareseq_full",
+    "interpretation": "Three stochastic repetitions of one fixed paired dataset; no biological alignment or asymptotic speedup claim implied",
+    "kl": {
+      "check_every": 10,
+      "eta": 0.1,
+      "inner_max": 1000,
+      "inner_tol": 0.0001
+    },
+    "loss": "Original full unregularized squared-loss GW with no half factor; exact distributed diagnostics and float64 final validation",
+    "methods": [
+      "smoothing-fw",
+      "stochastic-kl-momentum"
+    ],
+    "momentum_exponent": 0.5,
+    "order": "FW then KL for even seed-list index; KL then FW for odd index",
+    "output": "Current iterate rounded at recorded checkpoints; no incumbent selection",
+    "pilot": {
+      "budget_seconds": 30,
+      "checkpoints": [
+        10,
+        30
+      ],
+      "seeds": [
+        450
+      ]
+    },
+    "population": "All 31890 paired cells passing the unchanged joint QC, with no subsampling",
+    "resource_gate": "All pilot rank/phase reserved-memory peaks below 80% of device memory and summed rank process RSS peaks below 80% of 128GiB",
+    "rho0": 0.3,
+    "schema_version": 1,
+    "scope": "Exploratory SHARE-seq full QC-passing population (31890 paired cells), with constants transferred unchanged from selected SNARE-10000 configurations; not tuned or selected on SHARE-seq",
+    "storage": "Save raw and rounded final coupling shards for six final runs, approximately48.8GB total; pilot plans validated and hashed without persistence",
+    "timing": "Same four GPUs sequentially for each paired method; communication counts toward solver time; also report four times solver time and total allocated GPU-hours"
+  },
+  "correspondence_sha256": "deb85ca693c6f1f0568ac19a93bc92945871891f6fcc70ea4911dd292e91cb7c",
+  "instance_manifest": {
+    "A_scale": 50.00077231389644,
+    "B_scale": 1.891221765723182,
+    "array_files_sha256": {
+      "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+      "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+      "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+      "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+    },
+    "arrays": {
+      "A": {
+        "bytes": 4067888528,
+        "dtype": "float32",
+        "file": "A.npy",
+        "sha256": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "shape": [
+          31890,
+          31890
+        ]
+      },
+      "B": {
+        "bytes": 4067888528,
+        "dtype": "float32",
+        "file": "B.npy",
+        "sha256": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "shape": [
+          31890,
+          31890
+        ]
+      },
+      "a": {
+        "bytes": 255248,
+        "dtype": "float64",
+        "file": "a.npy",
+        "sha256": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "shape": [
+          31890
+        ]
+      },
+      "b": {
+        "bytes": 255248,
+        "dtype": "float64",
+        "file": "b.npy",
+        "sha256": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "shape": [
+          31890
+        ]
+      }
+    },
+    "binding": {
+      "metric_helper_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "preparation_script_sha256": "f005b7373804a4b7ed13c1a70f1d3291516ac6985270dbbfbaf4ff141771991e",
+      "previous_preparation_file": "previous_preparation.json",
+      "previous_preparation_manifest_sha256": "1ab52cc35fbbb0492a8aa88c666bab73c36168f305000cd0f32b481f02f64bb7",
+      "previous_preparation_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "previous_recipe_sha256": "f1bf91a02891e75f77a6466004ef77cc0f0d4c73d0f7af1b0da9af31c986381b",
+      "raw_files": {
+        "Ma-2020-ATAC.h5ad": {
+          "bytes": 274596957,
+          "sha256": "fb94f9d3c9ee42c07aca5ce3769f77b754084bce7737999ddbb63c6c7f8f7c17",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-ATAC.h5ad"
+        },
+        "Ma-2020-RNA.h5ad": {
+          "bytes": 50822146,
+          "sha256": "d38865f573e345b62f2d5a3714bd880ae8f298789d794bd635366599db182cee",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-RNA.h5ad"
+        }
+      },
+      "recipe_sha256": "35e89087889b14f48339b4ad0b8c20a52ef9f482c5319ac44ec9e461dc1fc653",
+      "representations_file": "representations.npz",
+      "representations_sha256": "fbbfa56b5e03cc6713cc072e60a1541be5fd7da9ae213e4ac09885135e628db3",
+      "source_manifest_sha256": "e041e79fa43e04e80f02a0a97ee43882ce748e53a9c1067be6cd109ffaae1350"
+    },
+    "correspondence_file": "correspondence.npz",
+    "correspondence_sha256": "deb85ca693c6f1f0568ac19a93bc92945871891f6fcc70ea4911dd292e91cb7c",
+    "cost_storage_dtype": "float32",
+    "family": "shareseq_mouse_skin",
+    "id": "shareseq_full",
+    "known_optimum": null,
+    "m": 31890,
+    "metric": "ordinary Euclidean distance, not squared Euclidean",
+    "n": 31890,
+    "objective": "full_squared_discrepancy_no_half_no_entropy",
+    "representation_shapes": [
+      [
+        31890,
+        50
+      ],
+      [
+        31890,
+        49
+      ]
+    ],
+    "scale": "each_matrix_divided_by_its_own_maximum",
+    "schema_version": 1,
+    "source_representation": "log_library10000_top2000_variance_centered_pca50",
+    "storage": "standalone_npy_arrays",
+    "target_representation": "binary_log1p_tfidf_lsi50_discard_first_row_l2"
+  },
+  "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data",
+  "slurm_job_id": "1983902",
+  "source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_runtime_8f3b092",
+  "source_manifest_sha256": "dc20a285e3d1f54bd26647789b94b69d5949cab5bc4fff99ecf410580a58a293"
+}

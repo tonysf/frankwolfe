@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "recorded_utc": "2026-10-14T14:19:42.816164+00:00",
+  "tests": 9,
+  "test_seconds": 0.058,
+  "test_command": ".venv/bin/python -m unittest extensions/scot_cpu_methods_fp64_20261014/test_resume_campaign.py -v",
+  "exit_code": 0,
+  "source_sha256": {
+    "resume_campaign.py": "9d060cd41e79f75f3ff424c716c9627701e491d8a23309a8e8b99026279d159c",
+    "test_resume_campaign.py": "14226a7dbac76585f6ed4d993aaea055c0f5b1d6a5fa2696b4ddacddb8d8ab77",
+    "run_comparison.py": "8d452bb2c0b67e9ade1b1acdfc90bdeb4a9a45574556d4114dd6da33fee97450"
+  },
+  "checks": [
+    "host namespace and exact process identity",
+    "process stat parsing and PID reuse",
+    "descendant tracking and bounded wait",
+    "exclusive recovery lock",
+    "no later-stage overwrite",
+    "all eight audited outputs required",
+    "failed evidence preservation and standard stage order"
+  ],
+  "scope": "Focused mocked/read-only tests; no numerical runs launched by tests."
+}

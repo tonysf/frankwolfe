@@ -1,0 +1,38 @@
+{
+  "checked_utc": "2026-10-05T20:13:50.034889+00:00",
+  "cpu_pytest": {
+    "passed": 58,
+    "seconds": 22.76,
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m pytest -q extensions/msbpg_20261005",
+    "log_sha256": "2ecd4f59d3d293e7c1d9f44d1db6a4c052eef48b3c94c557ef9392d820d773d2"
+  },
+  "distributed_cpu": {
+    "checks": 144,
+    "world_size": 4,
+    "backend": "gloo",
+    "receipt_sha256": "01220a3d9344858ac3c34eac8e710d15f111c7a7f9853b14a236d71054b7ecd9"
+  },
+  "source_py_sha256": {
+    "campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+    "msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+    "report_campaign.py": "ec3eb356dd8af9a45288f3d6926628f9dd97aebdadf71b44d3fb2bd185b996ca",
+    "run_msbpg.py": "86f2728f2bbbaf032a026d3cf31ac4294bdee4879d7666de5ee59f2abe1b4b06",
+    "stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+    "stage_source.py": "35d8ad910b7d3b52008d689154ea43ac37fcbc4449e2b1acf0d7dd49e9cb76aa",
+    "test_campaign.py": "cd390c95f26f5d61baf438404b7529c75d39cddf2594ffaa0d89c06bb25f0488",
+    "test_msbpg.py": "82a6241ca8e62215af2a1d7cdd7bc40d92504cac0d75f0b20ee196c2653cda58",
+    "test_report_campaign.py": "a0957b86ff28f9f4c5806ec64d84ea80fc7421914a7afee775a4b086abd0e6bc",
+    "test_run_msbpg.py": "d3af53096b1a61ad211a789c29adb1a0acc86435873a41548507fa8385497ddc",
+    "test_stable_prox.py": "224b5d0dfe7795fc56654a6a4e6799406369fb19efa2f1ad9316efae86c493f5",
+    "validate_distributed.py": "64d98dc286d349f42bbb83c53653f1b2b593efbb66a27cbf2f2d5adcf8f2a6e1",
+    "validate_late_steps.py": "5e5c985a0d13257f981196a7f580a9823da6429f5bd494f7c827ce0d5ba7eb27"
+  },
+  "gpu_validation": "Required on new frozen source before any production task; dependency-gated in submit_campaign.sh",
+  "paper_scope": "Theorem24/Remark25 coupled diminishing schedule; finite inner solves not proved exact-proximal runs",
+  "review": [
+    "Independent mathematical specialization and scalar restrictions",
+    "High-precision stable-certificate check",
+    "Independent controller and report integration",
+    "Source packaging and Slurm dependency graph review"
+  ]
+}

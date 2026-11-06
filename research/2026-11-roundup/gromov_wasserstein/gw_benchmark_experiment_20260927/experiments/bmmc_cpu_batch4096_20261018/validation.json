@@ -1,0 +1,115 @@
+{
+  "checkpoint_counters": {
+    "completed_updates": 4,
+    "full_gradient_calls": 0,
+    "pair_samples": 24576,
+    "stochastic_gradient_calls": 6,
+    "total_inner_iterations": 0,
+    "updates_with_underflow": 0
+  },
+  "checkpoint_iteration": 6,
+  "checks": {
+    "checkpoint_counters_equal": true,
+    "checkpoint_iterations_equal_six": true,
+    "checkpoint_trace_equal_excluding_elapsed_seconds": true,
+    "checkpoint_work_counters_match_receipt": true,
+    "counter_values_equal": true,
+    "cuda_rng_state_both_none": true,
+    "final_loss_bitwise_equal": true,
+    "first_chunk_checkpointed_three": true,
+    "generator_state_bitwise_equal": true,
+    "immutable_identity_equal": true,
+    "momentum_bitwise_equal": true,
+    "one_thread_each_launch": true,
+    "pair_count_24576": true,
+    "plan_bitwise_equal": true,
+    "profile_launch_update_counts_6_3_3": true,
+    "resume_uses_durable_post_checkpoint_clock": true,
+    "resumed_completed_six": true,
+    "six_fresh_oracle_calls": true,
+    "torch_rng_state_bitwise_equal": true,
+    "trace_equal_excluding_elapsed_seconds": true,
+    "uninterrupted_completed_six": true
+  },
+  "configuration": {
+    "gamma0": 0.3,
+    "iterations": 6,
+    "method": "frames",
+    "mu_scale": 10.0,
+    "num_threads": 1,
+    "pairs": 4096,
+    "rho0": 1.0,
+    "seed": 811
+  },
+  "counters": {
+    "completed_updates": 6,
+    "full_gradient_calls": 0,
+    "pair_samples": 24576,
+    "stochastic_gradient_calls": 6,
+    "total_inner_iterations": 0,
+    "updates_with_underflow": 0
+  },
+  "elapsed_seconds": 6.04899268457666,
+  "final_loss": 0.0026955998659890287,
+  "finished_at": "2026-10-18T20:02:50.259189+00:00",
+  "fixture_array_files_sha256": {
+    "A.npy": "7058d07d92a3ac57a8b45e280b0cc9e30d778b1daefc2451756eb966b22dd62e",
+    "B.npy": "1562645555b22fcefaa0f429b66d6fd562c235e2aa5c536525f8493ac3f15115",
+    "a.npy": "08bdc5efd8fd0b7d2c7166ba89c69eb73575626ae2f1e4f2847fa01164dee4a1",
+    "b.npy": "49b375d2957547a9ad68e3073cdfa36a0a3bfca5a6ed701243bbad7c49053ac2"
+  },
+  "fixture_sha256": "65844265d9488da32a03e2c1b09d79580f443d7065c632fc1cb21142e46a2815",
+  "host": "elite",
+  "limitations": "Checks checkpoint continuity and wrapper parity on a small fixture; does not establish full-size memory fit or final BMMC loss.",
+  "numpy_version": "2.4.6",
+  "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+  "scope": "3-by-3 fixture, CPU FP64, q4096; six uninterrupted updates versus two chunks of three",
+  "source_file_sha256": {
+    "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+    "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/wallclock_replay_20261018/runner.py": "b02a14ba28ee48d21d556195f8e223952aeb50c27479db2ac7f141c6776d0ff9"
+  },
+  "started_at": "2026-10-18T20:02:45.265974+00:00",
+  "status": "passed",
+  "tensor_state_hashes": {
+    "cuda_rng_state": null,
+    "generator_state": {
+      "dtype": "torch.uint8",
+      "sha256": "fc681686027684c55e6ca4105667b9c5933aae2059718def654ff403149711fa",
+      "shape": [
+        5056
+      ]
+    },
+    "momentum": {
+      "dtype": "torch.float64",
+      "sha256": "1d02af6774bd8d43ea2293dd304f8a069ee941f3f90b562934574c19d3e8cd1e",
+      "shape": [
+        3,
+        3
+      ]
+    },
+    "plan": {
+      "dtype": "torch.float64",
+      "sha256": "8700afc3e5b3d0de826ae15e65ed128e96927964d316848b75f2d03875be98d5",
+      "shape": [
+        3,
+        3
+      ]
+    },
+    "torch_rng_state": {
+      "dtype": "torch.uint8",
+      "sha256": "a4964a11caa4ee86702bc37b085919f8d659de9b804a927b7469e33aa2ccc3ce",
+      "shape": [
+        5056
+      ]
+    }
+  },
+  "test_sha256": "0bf8faade2b9d987460f3c59fc4387aabe501f373035b10d59b73959e067ca64",
+  "torch_version": "2.14.0+cpu",
+  "trace_without_timing_sha256": "4ed87853095e5f2a60803bb67ae8d7b68bff15b69ce8d818062e3749e4608cfd",
+  "wrapper_sha256": "819c28ed866f3cc1347f285f7c2595cba31928ff577b6c442f3b7ed7a4bac3ec"
+}

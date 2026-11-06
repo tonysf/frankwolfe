@@ -1,0 +1,18 @@
+{
+  "scope": "small-instance theory-statistic diagnostic; fixed prospectively before these runs",
+  "instance": "metric128_s1000.npz",
+  "problem_seed": 1000,
+  "stochastic_seeds": [0,1,2,3,4,5,6,7,8,9],
+  "number_of_replicates": 10,
+  "outer_steps": 1000,
+  "oracle": "sketch",
+  "batch": 128,
+  "m_mu0": 1,
+  "schedules": "configs/theory_config.json",
+  "initialization": "product",
+  "evaluation": "every pre-update iterate, all exact diagnostics, separate terminal output",
+  "primary_statistic": "mean over runs of each full-trajectory arithmetic mean of true smoothed gap",
+  "uncertainty": "show individual runs or IQR; expectation is estimated from ten stochastic runs of one fixed dataset",
+  "slope_fitting": "none",
+  "replication_rule": "Ten stochastic repeats prespecified here, following protocol section12; no extra problem seeds or outcome-triggered repeats."
+}

@@ -1,0 +1,137 @@
+{
+  "status": "completed_validated_and_visually_inspected",
+  "checked_utc": "2026-10-15T11:42:56.643698+00:00",
+  "campaign_completed_utc": "2026-10-14T16:04:48.729489+00:00",
+  "new_tuning_runs": 8,
+  "new_confirmation_runs": 6,
+  "reused_frames_confirmation_runs": 3,
+  "updates_per_run": 2000,
+  "pairs_per_update": 1024,
+  "dtype": "float64",
+  "independent_artifact_audit": {
+    "checks": 243,
+    "errors": 0,
+    "scope": "Read-only metadata/plan hashes, source/input bindings, all28000recordedproximal certificates, seed populations, all30median/range curve rows and CSV; no optimization or new objective recomputation."
+  },
+  "plots_visually_inspected": [
+    "report/scientific_plot.png",
+    "report/msbpg_detail.png"
+  ],
+  "artifacts_sha256": {
+    "report/curve_data.csv": "12add6c9523753544c7a20c6244f7190563a51e866924e05944682f289e500ed",
+    "report/endpoints.csv": "49de65cefa8b6bc9eb8ace6aa7b85055c0f8e5a047e581abf63a2061329d168f",
+    "report/msbpg_detail.pdf": "68f9465029540ad8d7315bc0a8b987538a76f7419b264aded471c478e2ea0e57",
+    "report/msbpg_detail.png": "25cc1db8d101d17868946e005f1f6303dc73cffc2177aebde4afa2b86f61cab9",
+    "report/report.json": "b8e0a59e10970dc42ba1f6fff28a2ed7f976559e6d688f636d70bc790e2424b0",
+    "report/scientific_plot.pdf": "fde63da8763452c0f17d002e451e8242e5696309c3db39acdd031920a477a447",
+    "report/scientific_plot.png": "049d4bfe4efdd9da1408724b289164fe3be4407f82b7259f886606958edddd73",
+    "report/selection_audit.json": "391120fc15e4cf9d1342dc0f688be733f86c3e2f39397ef40f78cbb4793d9891",
+    "report/summary.txt": "a61ba26ef06783577f294100993e4bab3d324307677638b325c17baf5a88f273",
+    "report/theory_outputs.csv": "af40df926de1a9a1430b0936b2a7e713481da942b306369020c86002898aa3a8"
+  },
+  "confirmation_summary": {
+    "smoothing-fw": {
+      "expected_seed_count": 3,
+      "observed_seed_count": 3,
+      "loss": {
+        "n": 3,
+        "median": 0.025428056057700155,
+        "minimum": 0.02097958505572539,
+        "maximum": 0.025555842884900426
+      },
+      "reduction_percent": {
+        "n": 3,
+        "median": 63.91123532680074,
+        "minimum": 63.729873891829044,
+        "maximum": 70.2247271164023
+      },
+      "loss_minus_reference": {
+        "n": 3,
+        "median": 0.008760459056169623,
+        "minimum": 0.00431198805419486,
+        "maximum": 0.008888245883369894
+      },
+      "raw_marginal_l1": {
+        "n": 3,
+        "median": 0.03303139861353206,
+        "minimum": 0.03139883607559898,
+        "maximum": 0.048675372109010996
+      },
+      "rounded_marginal_l1": {
+        "n": 3,
+        "median": 6.704706234650359e-16,
+        "minimum": 6.140921104957897e-16,
+        "maximum": 6.733979693307468e-16
+      }
+    },
+    "published-smd": {
+      "expected_seed_count": 3,
+      "observed_seed_count": 3,
+      "loss": {
+        "n": 3,
+        "median": 0.0694126153155532,
+        "minimum": 0.06938715291984765,
+        "maximum": 0.069419295550189
+      },
+      "reduction_percent": {
+        "n": 3,
+        "median": 1.4861563231557406,
+        "minimum": 1.476675401169969,
+        "maximum": 1.5222938243689033
+      },
+      "loss_minus_reference": {
+        "n": 3,
+        "median": 0.052745018314022674,
+        "minimum": 0.05271955591831712,
+        "maximum": 0.052751698548658466
+      },
+      "raw_marginal_l1": {
+        "n": 3,
+        "median": 1.346470678009748e-15,
+        "minimum": 1.3332434115054248e-15,
+        "maximum": 1.3467959386614936e-15
+      },
+      "rounded_marginal_l1": {
+        "n": 3,
+        "median": 6.879262784420526e-16,
+        "minimum": 6.871673369213127e-16,
+        "maximum": 6.970335766909308e-16
+      }
+    },
+    "published-msbpg": {
+      "expected_seed_count": 3,
+      "observed_seed_count": 3,
+      "loss": {
+        "n": 3,
+        "median": 0.07045438515067703,
+        "minimum": 0.07045438448749586,
+        "maximum": 0.07045439059206848
+      },
+      "reduction_percent": {
+        "n": 3,
+        "median": 0.00762464389131301,
+        "minimum": 0.007616921197328708,
+        "maximum": 0.007625585111092903
+      },
+      "loss_minus_reference": {
+        "n": 3,
+        "median": 0.0537867881491465,
+        "minimum": 0.053786787485965326,
+        "maximum": 0.05378679359053795
+      },
+      "raw_marginal_l1": {
+        "n": 3,
+        "median": 1.3355202360676444e-15,
+        "minimum": 1.3093909637107437e-15,
+        "maximum": 1.3489643430064646e-15
+      },
+      "rounded_marginal_l1": {
+        "n": 3,
+        "median": 6.809873845381453e-16,
+        "minimum": 6.655917136888512e-16,
+        "maximum": 6.98443039515162e-16
+      }
+    }
+  },
+  "interpretation_scope": "One fixedSCOT1047 dataset, three freshseeds per method, published updates with theorem-admissible prefactors; conservativeMSBPG problem constants. No timing comparison or exact-proximal convergence claim."
+}

@@ -1,0 +1,291 @@
+{
+  "title": "Practical-run parser smoke using preserved CPU test outputs",
+  "scope": "parser-smoke",
+  "scope_statement": "This is an output-parser/plotting test using preserved small CPU runs and a separate fixture plan. These records are not A100 Stage C results.",
+  "status": "partial",
+  "generated_utc": "2026-09-27T18:33:14.217533+00:00",
+  "input_root": "/home/tony/gw_benchmark_experiment_20260927/reports/practical_summarizer_smoke/native_early_input",
+  "command": [
+    "summarize_practical.py",
+    "--root",
+    "reports/practical_summarizer_smoke/native_early_input",
+    "--out",
+    "reports/practical_summarizer_smoke/native_early_parser_report",
+    "--plan",
+    "reports/practical_summarizer_smoke/native_early_fixture_plan.json",
+    "--scope",
+    "parser-smoke"
+  ],
+  "plan": {
+    "scope": "native early-return parser fixture from a preserved real CPU test run",
+    "budget_solver_seconds": 0.1,
+    "checkpoints_seconds": [
+      0.1
+    ],
+    "instances": [
+      "toy16.npz"
+    ],
+    "stochastic_seed": 100,
+    "initialization": "product",
+    "initialization_seed": 200,
+    "dtype": "float64",
+    "device": "CPU parser fixture",
+    "threads": 1,
+    "methods": {
+      "native-sampled-gw": {
+        "native_samples": 8,
+        "epsilon": 0.1
+      }
+    }
+  },
+  "plan_sha256": "ae0c1c41153b35886313082e2feb6c931c720039cd9444c5d156138d69a2ac37",
+  "runs": [
+    {
+      "instance": "toy16",
+      "method": "native-sampled-gw",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/practical_summarizer_smoke/native_early_input/toy16/native-sampled-gw",
+      "status": "completed",
+      "issues": [],
+      "failure_events": [],
+      "plot_eligible": true,
+      "recorded_status": "completed",
+      "n": 16,
+      "m": 16,
+      "recorded_device": "cpu",
+      "recorded_gpu": null,
+      "dtype": "float64",
+      "environment": {
+        "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+        "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+        "hostname": "elite",
+        "cpu_model": "AMD Ryzen 5 PRO 3400G with Radeon Vega Graphics",
+        "torch_num_threads": 1,
+        "torch_num_interop_threads": 8,
+        "thread_environment": {
+          "OMP_NUM_THREADS": null,
+          "MKL_NUM_THREADS": null,
+          "OPENBLAS_NUM_THREADS": null
+        },
+        "packages": {
+          "numpy": "2.4.6",
+          "scipy": "1.17.1",
+          "torch": "2.14.0+cpu",
+          "POT": "0.9.7.post1"
+        },
+        "cuda_runtime": null,
+        "deterministic_algorithms": true,
+        "float32_matmul_precision": "highest",
+        "cuda_matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "amp": false,
+        "device": "cpu",
+        "cublas_workspace_config": ":4096:8"
+      },
+      "config": {
+        "instance": "/tmp/pytest-of-tony/pytest-46/test_native_iteration_limit_pr0/toy16.npz",
+        "out": "/tmp/pytest-of-tony/pytest-46/test_native_iteration_limit_pr0/run",
+        "device": "cpu",
+        "dtype": "float64",
+        "threads": 1,
+        "batch": 8,
+        "epsilon": 0.1,
+        "budget": 0.1,
+        "checkpoints": null,
+        "seed": 100,
+        "init_seed": 200,
+        "max_iter": 1,
+        "gap_max_n": 512
+      },
+      "parameters": {
+        "native_samples": 8,
+        "epsilon": 0.1,
+        "max_iter": 1,
+        "sample_semantics": "native conditional samples; not comparable to trace-sketch probes",
+        "native_inner_settings_unchanged": true
+      },
+      "counters": {
+        "completed_iterations": 1,
+        "completed_updates": 1,
+        "inner_iterations": null,
+        "inner_stopping_failures": null
+      },
+      "timing": {
+        "preparation_seconds": 0.016623567906208336,
+        "solver_seconds": 0.005409026984125376,
+        "repair_seconds": 0.0005981499562039971,
+        "exact_diagnostic_seconds": 0.0017334420699626207,
+        "final_float64_validation_seconds": 0.0007584909908473492,
+        "native_instrumentation_preparation_seconds": 0.02290576498489827,
+        "native_callback_seconds_overlapping_repair_and_diagnostics": 0.00021363003179430962,
+        "serialization_seconds": 0.0014689420349895954,
+        "total_elapsed_seconds_before_final_metadata_write": 0.05034712597262114,
+        "unclassified_instrumentation_and_python_seconds": 0.0008497410453855991
+      },
+      "memory": {
+        "cpu_process_peak_rss_kib": 413592,
+        "cpu_peak_scope": "process lifetime including input preparation and validation",
+        "cuda_peak_allocated_bytes": null,
+        "cuda_peak_reserved_bytes": null
+      },
+      "array_sha256": {
+        "A": "13e84ea4912fbd0835235c166a58c70e46cf1c22077ddd04365fc31a516727e1",
+        "B": "67ee236a63a95917246d61a9657d49ceff1fe33beaec4ccc172bed2e6d295866",
+        "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+        "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+      },
+      "diagnostic_counts": {
+        "loss_calls": 4,
+        "full_gradient_calls": 2,
+        "assignment_lmo_calls": 2
+      },
+      "final_float64_validation": {
+        "dtype": "float64",
+        "device": "cpu",
+        "raw_loss": 0.0798203244725858,
+        "rounded_loss": 0.0798203244731116,
+        "raw": {
+          "row_l1": 6.245004513516506e-17,
+          "col_l1": 1.33470456908924e-11,
+          "col_l2": 4.966565247677321e-12,
+          "both_l1": 1.3347108140937536e-11,
+          "mass_error": 0.0,
+          "min_entry": 6.1994473323529456e-06
+        },
+        "rounded": {
+          "row_l1": 4.85722573273506e-17,
+          "col_l1": 9.71445146547012e-17,
+          "col_l2": 3.254629732262919e-17,
+          "both_l1": 1.457167719820518e-16,
+          "mass_error": 0.0,
+          "min_entry": 6.199447331993477e-06
+        },
+        "plan": "actual native returned plan and saved rounded output promoted without re-rounding",
+        "loss_calls": 2
+      },
+      "stop_reason": "native maximum iterations",
+      "source_commit": "0b329bcd0847442b0d76223cf5101996a3c45219",
+      "source_file_sha256": {
+        "run_native_sampled.py": "4ccb955027702dfc44ed875e9476a54ade34d7d9b69563a55d62e33b3782c1ac",
+        "native_sampled_gw.py": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a",
+        "run_benchmark.py": "cf0e3c70d7bbe1cb53a85179cd6260f86c0742863649261d34226369699545ba",
+        "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+      },
+      "source_artifact_sha256": {
+        "metadata.json": "188c956dfa1cef9d10201b446260105fd8976025ee6c48a37c130cfc53a6fc28",
+        "trace.csv": "29eaef91dcf4f9117435755393b1376964df99579d362c5dc8b0d8d51c821384",
+        "failures.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "final.npz": "4990cf6a396454962441a927f8fe043db6d54c4c4de3e7e723e7867e4626af1b"
+      },
+      "numerical_policy": "raw negatives in loss retained; negative/nonfinite plans rejected; native warnings and checkpoint support zeros preserved",
+      "checkpoint_policy": "first completed native iteration crossing earliest target; other crossed windows missed",
+      "native_instrumentation": {
+        "solver_seconds": 0.005409026984125376,
+        "callback_seconds": 0.00021363003179430962,
+        "callback_calls": 1,
+        "completed_iterations": 1,
+        "completed_updates": 1,
+        "time_budget_seconds": 0.1,
+        "time_budget_reached": false,
+        "max_iter_exhausted": true,
+        "native_early_stop": false,
+        "initial_rng_state_sha256": "e017d6f5aaaa1daad6d70bfe40fdc7b4b769b54894f9efecedf66b7f9cdf57ce",
+        "final_rng_state_sha256": "16385a99762e67028a79cb11dcf026ea0798090ef69fcdbe849a356af1d352d7",
+        "inner_sinkhorn_iterations": null,
+        "inner_sinkhorn_stopping_failures": null,
+        "inner_counts_note": "Native default Sinkhorn calls are unchanged and do not expose these counts.",
+        "iteration_note": "completed_iterations counts native outer-loop attempts, including zero-cost skips; completed_updates counts native T=copy(new_T) assignments.",
+        "timing_note": "Synchronized native setup/initialization, sampling, CPU/GPU transfers, cost normalization, inner solves, and post-loop native work are included. Snapshot copying and callback evaluation are excluded and reported separately. Budget checks occur only after native outer-loop attempts; no restart or backdating.",
+        "status": "completed",
+        "provenance": {
+          "pot_version": "0.9.7.post1",
+          "native_function": "ot.gromov._estimators.sampled_gromov_wasserstein",
+          "native_signature": "(C1, C2, p, q, loss_fun, nb_samples_grad=100, epsilon=1, max_iter=500, log=False, verbose=False, random_state=None)",
+          "native_module_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_estimators.py",
+          "native_semantic_ast_sha256": "2522a083804d9676f51a5ceb6fdace47ec29646becc8dfb46c3541e846134d43",
+          "archive_sha256": {
+            "native_function.py": "0618919182389b33003914aed64094fa858d8df8bc6693ff7332f1c9c22201a3",
+            "native_module.py": "c9462eb8a9b98eb2c5bbf73a87a43886f2043ad6c374d5ea91ee5160407922b4",
+            "instrumented_function.py": "3fb66d016b7ef90a7cac9ca14ce0c0c890d43477afa83029cd63c3c1862bfa2e",
+            "instrumentation_module.py": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a"
+          },
+          "created_utc": "2026-09-27T18:27:32.968010+00:00",
+          "transformation": "Insert monitor before native cpt loop; wrap the original loop body in try/finally with a read-only monitor and optional post-iteration budget break. Reversing these insertions recovers the reviewed AST exactly.",
+          "unchanged": [
+            "product initialization",
+            "native NumPy RandomState sampling",
+            "conditional row sampling",
+            "native sample-count interpretation",
+            "native cost normalization",
+            "inner Sinkhorn defaults",
+            "native convergence and warning breaks",
+            "native final log estimator"
+          ],
+          "backend_note": "Native POT backend dispatch is retained. Torch costs/Sinkhorn use the tensor device, but native RandomState sampling uses explicit to_numpy CPU transfers. This is a hybrid implementation, not an all-GPU port."
+        },
+        "archive_dir": "/tmp/pytest-of-tony/pytest-46/test_native_iteration_limit_pr0/run/native_source",
+        "instrumentation_preparation_seconds": 0.02290576498489827,
+        "total_native_call_instrumented_seconds": 0.005809057038277388,
+        "cuda_execution": false
+      },
+      "native_warnings": [],
+      "timing_scope": "module solver time excludes its copies and callbacks; callback times contain runner repair/diagnostics, so do not add them twice",
+      "observed_checkpoints": {},
+      "missed_checkpoints": {
+        "0.1": {
+          "reason": "native_stopped_before_checkpoint_or_no_new_completed_iteration",
+          "actual_solver_seconds": 0.005409026984125376,
+          "iteration": 1
+        }
+      },
+      "last_observed_point": {
+        "kind": "final",
+        "target_solver_seconds": "",
+        "actual_solver_seconds": "0.005409026984125376",
+        "iteration": "1",
+        "native_completed_updates": "1",
+        "native_updated_transport": "True",
+        "raw_loss": "0.0798203244725858",
+        "rounded_loss": "0.0798203244731116",
+        "raw_zero_entries": "0",
+        "repair_l1": "1.3347008135145585e-11",
+        "repair_seconds_current": "0.00025415001437067986",
+        "repair_seconds_cumulative": "0.0005981499562039971",
+        "time_to_this_feasible_output": "0.005663176998496056",
+        "row_l1": "6.245004513516506e-17",
+        "col_l1": "1.33470456908924e-11",
+        "col_l2": "4.966565247677321e-12",
+        "both_l1": "1.3347108140937536e-11",
+        "mass_error": "0.0",
+        "min_entry": "6.1994473323529456e-06",
+        "rounded_row_l1": "4.85722573273506e-17",
+        "rounded_col_l1": "9.71445146547012e-17",
+        "rounded_col_l2": "3.254629732262919e-17",
+        "rounded_both_l1": "1.457167719820518e-16",
+        "rounded_mass_error": "0.0",
+        "rounded_min_entry": "6.199447331993477e-06",
+        "original_fw_gap": "0.02133246143966263",
+        "diagnostic_seconds_cumulative": "0.0017334420699626207",
+        "reason": ""
+      },
+      "terminal_solver_seconds": 0.005409026984125376,
+      "ended_before_budget": true
+    }
+  ],
+  "successful_runs": 1,
+  "all_run_records_successful": true,
+  "missing_checkpoint_observations": 1,
+  "full_study_complete": false,
+  "winner_selected": null,
+  "fitted_slopes": null,
+  "speedup_claim": null,
+  "figures": [
+    "current_rounded_objective.png",
+    "current_rounded_objective.pdf",
+    "rounded_original_fw_gap.png",
+    "rounded_original_fw_gap.pdf",
+    "raw_feasibility.png",
+    "raw_feasibility.pdf"
+  ],
+  "script_sha256": "6f4f2b39fe769d9322a6b4cfb90a6173651a8fcdf55b33b22744144c5c00e676",
+  "plot_library": "matplotlib 3.11.2"
+}

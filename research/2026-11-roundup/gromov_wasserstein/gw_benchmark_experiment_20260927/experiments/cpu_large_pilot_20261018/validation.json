@@ -1,0 +1,36 @@
+{
+  "assertions": [
+    "Full diagnostic traces excluding timestamps match unwrapped CPU runner",
+    "Inner certificates, counters, identity and final loss match",
+    "Plan, momentum and RNG tensors match bitwise",
+    "Six completed-update events and positive timing/RSS per method",
+    "POT event inner counts match runner inner trace"
+  ],
+  "command": ".venv/bin/python -m unittest discover -s extensions/cpu_large_pilot_20261018 -p 'test_profile_runner.py' -v",
+  "exit_code": 0,
+  "note": "Receipt transcribed from the completed unittest invocation; tests were not rerun to create this receipt. These tested sources were unchanged afterward. The report generator and launcher are outside this parity test.",
+  "num_threads": 1,
+  "recorded_at": "2026-10-18T19:28:57.358164+00:00",
+  "reported_test_runtime_seconds": 9.363,
+  "result": "OK",
+  "source_file_sha256": {
+    "extensions/cpu_large_pilot_20261018/profile_runner.py": "819c28ed866f3cc1347f285f7c2595cba31928ff577b6c442f3b7ed7a4bac3ec",
+    "extensions/cpu_large_pilot_20261018/test_profile_runner.py": "8308bc1c28ef366f8a63d74d8277afc61d56ef1786b72fb949e58711eb16b92d",
+    "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+    "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/wallclock_replay_20261018/runner.py": "b02a14ba28ee48d21d556195f8e223952aeb50c27479db2ac7f141c6776d0ff9",
+    "extensions/wallclock_replay_20261018/test_runner.py": "65844265d9488da32a03e2c1b09d79580f443d7065c632fc1cb21142e46a2815"
+  },
+  "subtest_methods": [
+    "frames",
+    "pot-full",
+    "pot-pair"
+  ],
+  "tests_run": 1,
+  "updates_per_method": 6,
+  "working_directory": "/home/tony/gw_benchmark_experiment_20260927"
+}

@@ -1,0 +1,207 @@
+{
+  "method": "native-sampled-gw",
+  "config": {
+    "instance": "/tmp/pytest-of-tony/pytest-46/test_native_single_trajectory_1/toy16.npz",
+    "out": "/tmp/pytest-of-tony/pytest-46/test_native_single_trajectory_1/run",
+    "device": "cpu",
+    "dtype": "float32",
+    "threads": 1,
+    "batch": 8,
+    "epsilon": 0.1,
+    "budget": 0.1,
+    "checkpoints": null,
+    "seed": 100,
+    "init_seed": 200,
+    "max_iter": 1000000,
+    "gap_max_n": 512
+  },
+  "instance": "/tmp/pytest-of-tony/pytest-46/test_native_single_trajectory_1/toy16.npz",
+  "instance_sha256": "83d92b2d9d1a3db7895b50fc523166742c164a1930e9046048e61d4491879cf1",
+  "array_sha256": {
+    "A": "13e84ea4912fbd0835235c166a58c70e46cf1c22077ddd04365fc31a516727e1",
+    "B": "67ee236a63a95917246d61a9657d49ceff1fe33beaec4ccc172bed2e6d295866",
+    "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+    "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+  },
+  "instance_manifest": {
+    "family": "native_runner_test_only",
+    "seed": 1001,
+    "n": 16,
+    "m": 16,
+    "objective": "full_squared_discrepancy_no_half_no_entropy",
+    "cost_storage_dtype": "float32",
+    "A_sha256": "13e84ea4912fbd0835235c166a58c70e46cf1c22077ddd04365fc31a516727e1",
+    "B_sha256": "67ee236a63a95917246d61a9657d49ceff1fe33beaec4ccc172bed2e6d295866"
+  },
+  "environment": {
+    "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+    "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+    "hostname": "elite",
+    "cpu_model": "AMD Ryzen 5 PRO 3400G with Radeon Vega Graphics",
+    "torch_num_threads": 1,
+    "torch_num_interop_threads": 8,
+    "thread_environment": {
+      "OMP_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null
+    },
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "torch": "2.14.0+cpu",
+      "POT": "0.9.7.post1"
+    },
+    "cuda_runtime": null,
+    "deterministic_algorithms": true,
+    "float32_matmul_precision": "highest",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "amp": false,
+    "device": "cpu",
+    "cublas_workspace_config": ":4096:8"
+  },
+  "pot_version": "0.9.7.post1",
+  "source_commit": "0b329bcd0847442b0d76223cf5101996a3c45219",
+  "source_dirty": true,
+  "source_file_sha256": {
+    "run_native_sampled.py": "4ccb955027702dfc44ed875e9476a54ade34d7d9b69563a55d62e33b3782c1ac",
+    "native_sampled_gw.py": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a",
+    "run_benchmark.py": "cf0e3c70d7bbe1cb53a85179cd6260f86c0742863649261d34226369699545ba",
+    "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+  },
+  "stochastic_seed": 100,
+  "initialization_seed": 200,
+  "initialization": "native product a*b^T; initialization seed is recorded but consumes no randomness",
+  "backend_description": "installed POT hybrid native solver with torch backend; native NumPy sampling and to_numpy transfers preserved",
+  "solver_semantics": "one uninterrupted native trajectory; no restart per checkpoint",
+  "sample_semantics": "native nb_samples_grad; not equated with sketch probes or scalar-anchor samples",
+  "output_selection": "current feasible rounded output; no best-so-far selection",
+  "checkpoint_policy": "first completed native iteration crossing earliest target; other crossed windows missed",
+  "inner_iterations": null,
+  "inner_stopping_failures": null,
+  "unknown_inner_counts_reason": "native sinkhorn call supplies no inner log; counts are not inferred from feasibility or warnings",
+  "preparation_policy": "shared input loading/device placement and objective square caches are outside solver; all native preparation and native transfers use module solver timing",
+  "native_source_archive": "/tmp/pytest-of-tony/pytest-46/test_native_single_trajectory_1/run/native_source",
+  "status": "completed_with_warnings",
+  "error": null,
+  "instrumentation": {
+    "solver_seconds": 0.162032576976344,
+    "callback_seconds": 0.0013644408900290728,
+    "callback_calls": 2,
+    "completed_iterations": 2,
+    "completed_updates": 2,
+    "time_budget_seconds": 0.1,
+    "time_budget_reached": true,
+    "max_iter_exhausted": false,
+    "native_early_stop": false,
+    "initial_rng_state_sha256": "e017d6f5aaaa1daad6d70bfe40fdc7b4b769b54894f9efecedf66b7f9cdf57ce",
+    "final_rng_state_sha256": "9a91dc560c1ba915b31b2b5d1cbb30d1e71f4677498092049f2eb0ddb42b2212",
+    "inner_sinkhorn_iterations": null,
+    "inner_sinkhorn_stopping_failures": null,
+    "inner_counts_note": "Native default Sinkhorn calls are unchanged and do not expose these counts.",
+    "iteration_note": "completed_iterations counts native outer-loop attempts, including zero-cost skips; completed_updates counts native T=copy(new_T) assignments.",
+    "timing_note": "Synchronized native setup/initialization, sampling, CPU/GPU transfers, cost normalization, inner solves, and post-loop native work are included. Snapshot copying and callback evaluation are excluded and reported separately. Budget checks occur only after native outer-loop attempts; no restart or backdating.",
+    "status": "completed",
+    "provenance": {
+      "pot_version": "0.9.7.post1",
+      "native_function": "ot.gromov._estimators.sampled_gromov_wasserstein",
+      "native_signature": "(C1, C2, p, q, loss_fun, nb_samples_grad=100, epsilon=1, max_iter=500, log=False, verbose=False, random_state=None)",
+      "native_module_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_estimators.py",
+      "native_semantic_ast_sha256": "2522a083804d9676f51a5ceb6fdace47ec29646becc8dfb46c3541e846134d43",
+      "archive_sha256": {
+        "native_function.py": "0618919182389b33003914aed64094fa858d8df8bc6693ff7332f1c9c22201a3",
+        "native_module.py": "c9462eb8a9b98eb2c5bbf73a87a43886f2043ad6c374d5ea91ee5160407922b4",
+        "instrumented_function.py": "3fb66d016b7ef90a7cac9ca14ce0c0c890d43477afa83029cd63c3c1862bfa2e",
+        "instrumentation_module.py": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a"
+      },
+      "created_utc": "2026-09-27T18:27:32.755386+00:00",
+      "transformation": "Insert monitor before native cpt loop; wrap the original loop body in try/finally with a read-only monitor and optional post-iteration budget break. Reversing these insertions recovers the reviewed AST exactly.",
+      "unchanged": [
+        "product initialization",
+        "native NumPy RandomState sampling",
+        "conditional row sampling",
+        "native sample-count interpretation",
+        "native cost normalization",
+        "inner Sinkhorn defaults",
+        "native convergence and warning breaks",
+        "native final log estimator"
+      ],
+      "backend_note": "Native POT backend dispatch is retained. Torch costs/Sinkhorn use the tensor device, but native RandomState sampling uses explicit to_numpy CPU transfers. This is a hybrid implementation, not an all-GPU port."
+    },
+    "archive_dir": "/tmp/pytest-of-tony/pytest-46/test_native_single_trajectory_1/run/native_source",
+    "instrumentation_preparation_seconds": 0.024403007002547383,
+    "total_native_call_instrumented_seconds": 0.16357445891480893,
+    "cuda_execution": false
+  },
+  "counters": {
+    "completed_iterations": 2,
+    "completed_updates": 2,
+    "inner_iterations": null,
+    "inner_stopping_failures": null
+  },
+  "diagnostic_counts": {
+    "loss_calls": 4,
+    "full_gradient_calls": 2,
+    "assignment_lmo_calls": 2
+  },
+  "final_float64_validation": {
+    "dtype": "float64",
+    "device": "cpu",
+    "raw_loss": 0.07177567115682637,
+    "rounded_loss": 0.07177567595010503,
+    "raw": {
+      "row_l1": 5.6699320793995867e-08,
+      "col_l1": 5.540215397559223e-08,
+      "col_l2": 1.7970545866773927e-08,
+      "both_l1": 1.121014747695881e-07,
+      "mass_error": 1.611073230378679e-08,
+      "min_entry": 3.348308155182167e-07
+    },
+    "rounded": {
+      "row_l1": 2.3134873572416836e-08,
+      "col_l1": 3.001690629389486e-08,
+      "col_l2": 8.795818193023712e-09,
+      "both_l1": 5.31517798663117e-08,
+      "mass_error": 6.051152467989596e-09,
+      "min_entry": 3.348308155182167e-07
+    },
+    "plan": "actual native returned plan and saved rounded output promoted without re-rounding",
+    "loss_calls": 2
+  },
+  "warnings": [
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    },
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "filename": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/bregman/_sinkhorn.py",
+      "lineno": 666
+    }
+  ],
+  "memory": {
+    "cpu_process_peak_rss_kib": 413432,
+    "cpu_peak_scope": "process lifetime including input preparation and validation",
+    "cuda_peak_allocated_bytes": null,
+    "cuda_peak_reserved_bytes": null
+  },
+  "timing": {
+    "preparation_seconds": 0.016915798070840538,
+    "solver_seconds": 0.162032576976344,
+    "repair_seconds": 0.0005829710280522704,
+    "exact_diagnostic_seconds": 0.0015639509074389935,
+    "final_float64_validation_seconds": 0.0006789410253986716,
+    "native_instrumentation_preparation_seconds": 0.024403007002547383,
+    "native_callback_seconds_overlapping_repair_and_diagnostics": 0.0013644408900290728,
+    "serialization_seconds": 0.001475851982831955,
+    "total_elapsed_seconds_before_final_metadata_write": 0.20868924807291478,
+    "unclassified_instrumentation_and_python_seconds": 0.0010361510794609785
+  },
+  "timing_scope": "module solver time excludes its copies and callbacks; callback times contain runner repair/diagnostics, so do not add them twice",
+  "numerical_policy": "raw negatives in loss retained; negative/nonfinite plans rejected; native warnings and checkpoint support zeros preserved",
+  "failure_timing_complete": true,
+  "failure_timing_note": "on failure solver_seconds is the last completed callback clock; total elapsed still includes rejected work"
+}

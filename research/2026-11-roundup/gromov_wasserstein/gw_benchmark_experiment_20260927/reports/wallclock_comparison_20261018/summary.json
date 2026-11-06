@@ -1,0 +1,214 @@
+{
+  "datasets": {
+    "bmmc6224": {
+      "methods": {
+        "pot-full": {
+          "runs": 1,
+          "updates_per_run": 2000,
+          "median_elapsed_seconds": 1699.2572148018517,
+          "median_elapsed_minutes": 28.32095358003086,
+          "elapsed_minutes_range": [
+            28.32095358003086,
+            28.32095358003086
+          ],
+          "median_final_loss": 0.1451625462999262,
+          "final_loss_range": [
+            0.1451625462999262,
+            0.1451625462999262
+          ],
+          "initial_loss": 0.1610398659783734,
+          "median_loss_decrease_percent": 9.85924794583436
+        },
+        "frames": {
+          "runs": 3,
+          "updates_per_run": 20000,
+          "median_elapsed_seconds": 1345.9489930942655,
+          "median_elapsed_minutes": 22.432483218237756,
+          "elapsed_minutes_range": [
+            22.401914796085716,
+            22.861406094247165
+          ],
+          "median_final_loss": 0.14556595332899003,
+          "final_loss_range": [
+            0.14459074037370678,
+            0.14564951306206764
+          ],
+          "initial_loss": 0.1610398659783734,
+          "median_loss_decrease_percent": 9.6087466015784
+        }
+      },
+      "frames_over_pot_runtime_ratio": 0.7920807876347401,
+      "frames_minus_pot_median_final_loss": 0.0004034070290638292
+    },
+    "snare_full": {
+      "methods": {
+        "pot-full": {
+          "runs": 1,
+          "updates_per_run": 2000,
+          "median_elapsed_seconds": 1676.1894909427501,
+          "median_elapsed_minutes": 27.9364915157125,
+          "elapsed_minutes_range": [
+            27.9364915157125,
+            27.9364915157125
+          ],
+          "median_final_loss": 0.0843443317702176,
+          "final_loss_range": [
+            0.0843443317702176,
+            0.0843443317702176
+          ],
+          "initial_loss": 0.09407247358339316,
+          "median_loss_decrease_percent": 10.34111408216748
+        },
+        "frames": {
+          "runs": 3,
+          "updates_per_run": 20000,
+          "median_elapsed_seconds": 2031.06787917763,
+          "median_elapsed_minutes": 33.851131319627164,
+          "elapsed_minutes_range": [
+            33.723783570768624,
+            34.31183702816876
+          ],
+          "median_final_loss": 0.08368684832898499,
+          "final_loss_range": [
+            0.08364291618110364,
+            0.08373538591781449
+          ],
+          "initial_loss": 0.09407247358339316,
+          "median_loss_decrease_percent": 11.040025693808875
+        }
+      },
+      "frames_over_pot_runtime_ratio": 1.211717344699067,
+      "frames_minus_pot_median_final_loss": -0.0006574834412326203
+    }
+  },
+  "artifacts": {
+    "bmmc6224": [
+      "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/bmmc6224_runtime_endpoints_and_iterations.png",
+      "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/bmmc6224_runtime_endpoints_and_iterations.pdf"
+    ],
+    "snare_full": [
+      "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/snare_full_runtime_endpoints_and_iterations.png",
+      "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/snare_full_runtime_endpoints_and_iterations.pdf"
+    ]
+  },
+  "input_sha256": "0bea49e8e241d55171f819c83d8d8dbbf604450cab7d9b5a04845781bcda7b7f",
+  "archived_report_sha256": "69ab68d8b0eab0be4c589d4ac95d46c21d8d97d0f1ca7c87f75b25c22f6476e9",
+  "timing_scope": "Recorded endpoint elapsed_seconds: data load, optimizer work, diagnostics and checkpoints; excludes queue wait, initialization before runner timer, final receipt publication/checkpoint cleanup and prefactor tuning.",
+  "timing_limitations": "No per-diagnostic timestamps; no loss-versus-time trajectories are inferred. A resumed run's cumulative clock omits serialization of the checkpoint used for resumption and the following shutdown tail.",
+  "median_definition": "FRAMES summary point pairs the median run duration with the median final loss; these coordinates need not come from the same seed.",
+  "comparison_scope": "One A100-SXM4-40GB per run, FP64; full-gradient POT epsilon=0.001 for 2,000 updates, pair-sampled FRAMES batch=1024 for 20,000 updates; selected FRAMES prefactors, development/tuning cost excluded.",
+  "runs": [
+    {
+      "dataset": "bmmc6224",
+      "task": "baseline/pot-full_seed810",
+      "method": "pot-full",
+      "seed": 810,
+      "updates": 2000,
+      "elapsed_seconds": 1699.2572148018517,
+      "elapsed_minutes": 28.32095358003086,
+      "final_loss": 0.1451625462999262,
+      "initial_loss": 0.1610398659783734,
+      "metadata_sha256": "d1db3b038fd458a0d536b3f9d53ab6ca69045f29aad5118be5e84cf03531ffd0",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/bmmc6224/baseline/pot-full_seed810/metadata.json",
+      "slurm_job_id": "2074307"
+    },
+    {
+      "dataset": "bmmc6224",
+      "task": "confirmation/c08_seed811",
+      "method": "frames",
+      "seed": 811,
+      "updates": 20000,
+      "elapsed_seconds": 1345.9489930942655,
+      "elapsed_minutes": 22.432483218237756,
+      "final_loss": 0.14564951306206764,
+      "initial_loss": 0.1610398659783734,
+      "metadata_sha256": "fa2ff4d45a4c80b94148a092380990f20bdf99c1f6e29b4d7a65dec02c291b8e",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/bmmc6224/confirmation/c08_seed811/metadata.json",
+      "slurm_job_id": "2074307"
+    },
+    {
+      "dataset": "bmmc6224",
+      "task": "confirmation/c08_seed812",
+      "method": "frames",
+      "seed": 812,
+      "updates": 20000,
+      "elapsed_seconds": 1344.114887765143,
+      "elapsed_minutes": 22.401914796085716,
+      "final_loss": 0.14556595332899003,
+      "initial_loss": 0.1610398659783734,
+      "metadata_sha256": "509d08c94dff8bfb06a22a24687312aaf22c9fe74b00c83f9f7b2327db718b9e",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/bmmc6224/confirmation/c08_seed812/metadata.json",
+      "slurm_job_id": "2074307"
+    },
+    {
+      "dataset": "bmmc6224",
+      "task": "confirmation/c08_seed813",
+      "method": "frames",
+      "seed": 813,
+      "updates": 20000,
+      "elapsed_seconds": 1371.68436565483,
+      "elapsed_minutes": 22.861406094247165,
+      "final_loss": 0.14459074037370678,
+      "initial_loss": 0.1610398659783734,
+      "metadata_sha256": "60501f4b960f8cdc6fbbe3ef46341357827451426893e48cc9fcbcd9da2d72b9",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/bmmc6224/confirmation/c08_seed813/metadata.json",
+      "slurm_job_id": "2074307"
+    },
+    {
+      "dataset": "snare_full",
+      "task": "baseline/pot-full_seed810",
+      "method": "pot-full",
+      "seed": 810,
+      "updates": 2000,
+      "elapsed_seconds": 1676.1894909427501,
+      "elapsed_minutes": 27.9364915157125,
+      "final_loss": 0.0843443317702176,
+      "initial_loss": 0.09407247358339316,
+      "metadata_sha256": "96fc249a56b74ff4122b9ded33a24ce4b38516689cfcb637dfea1164ce29c201",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/snare_full/baseline/pot-full_seed810/metadata.json",
+      "slurm_job_id": "2074310"
+    },
+    {
+      "dataset": "snare_full",
+      "task": "confirmation/c06_seed811",
+      "method": "frames",
+      "seed": 811,
+      "updates": 20000,
+      "elapsed_seconds": 2023.4270142461173,
+      "elapsed_minutes": 33.723783570768624,
+      "final_loss": 0.08368684832898499,
+      "initial_loss": 0.09407247358339316,
+      "metadata_sha256": "863bf50bebaa4733b781716e0f4843317f50047c41f007db0f262dfdd22dfc16",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/snare_full/confirmation/c06_seed811/metadata.json",
+      "slurm_job_id": "2081494"
+    },
+    {
+      "dataset": "snare_full",
+      "task": "confirmation/c06_seed812",
+      "method": "frames",
+      "seed": 812,
+      "updates": 20000,
+      "elapsed_seconds": 2031.06787917763,
+      "elapsed_minutes": 33.851131319627164,
+      "final_loss": 0.08364291618110364,
+      "initial_loss": 0.09407247358339316,
+      "metadata_sha256": "04b7a1b72eb0c238c5465745b3bb0fb43cced4ced77dac7b08869e5e5f673743",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/snare_full/confirmation/c06_seed812/metadata.json",
+      "slurm_job_id": "2081494"
+    },
+    {
+      "dataset": "snare_full",
+      "task": "confirmation/c06_seed813",
+      "method": "frames",
+      "seed": 813,
+      "updates": 20000,
+      "elapsed_seconds": 2058.7102216901258,
+      "elapsed_minutes": 34.31183702816876,
+      "final_loss": 0.08373538591781449,
+      "initial_loss": 0.09407247358339316,
+      "metadata_sha256": "7bee3c6cf15d7664986bdca6a29506c532c9dfd831f60ac36cb5a9dcf1bca3ab",
+      "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/results/snare_full/confirmation/c06_seed813/metadata.json",
+      "slurm_job_id": "2081494"
+    }
+  ]
+}

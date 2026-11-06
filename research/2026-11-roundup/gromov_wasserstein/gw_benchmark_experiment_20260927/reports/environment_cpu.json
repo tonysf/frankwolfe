@@ -1,0 +1,60 @@
+{
+  "hostname": "elite",
+  "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+  "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+  "python_executable": "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+  "cpu": {
+    "returncode": 0,
+    "stdout": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           43 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  8\nOn-line CPU(s) list:                     0-7\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 5 PRO 3400G with Radeon Vega Graphics\nCPU family:                              23\nModel:                                   24\nThread(s) per core:                      2\nCore(s) per socket:                      4\nSocket(s):                               1\nStepping:                                1\nFrequency boost:                         enabled\nCPU(s) scaling MHz:                      58%\nCPU max MHz:                             3700.0000\nCPU min MHz:                             1400.0000\nBogoMIPS:                                7399.50\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb hw_pstate ssbd ibpb vmmcall fsgsbase bmi1 avx2 smep bmi2 rdseed adx smap clflushopt sha_ni xsaveopt xsavec xgetbv1 clzero irperf xsaveerptr arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif overflow_recov succor smca sev sev_es ibpb_exit_to_user\nVirtualization:                          AMD-V\nL1d cache:                               128 KiB (4 instances)\nL1i cache:                               256 KiB (4 instances)\nL2 cache:                                2 MiB (4 instances)\nL3 cache:                                4 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-7\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Mitigation; untrained return thunk; SMT vulnerable\nVulnerability Spec rstack overflow:      Mitigation; safe RET\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace\n",
+    "stderr": ""
+  },
+  "device": "cpu",
+  "gpu": null,
+  "torch_cuda_runtime": null,
+  "torch_version": "2.14.0+cpu",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "torch": "2.14.0+cpu",
+    "pytest": "9.1.1",
+    "POT": "0.9.7.post1"
+  },
+  "threads": 1,
+  "interop_threads": 1,
+  "deterministic_algorithms": true,
+  "matmul_precision": "highest",
+  "allow_tf32": false,
+  "AMP": false,
+  "cpu_validation_dtype": "float64",
+  "gpu_experiment_dtype": "float32",
+  "git": {
+    "returncode": 0,
+    "stdout": "a8e120e511a3990e3d80d4b9f8f93b87762560e7\n",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": " M make_instances.py\n?? capture_environment.py\n?? configs/\n?? environment.lock.txt\n?? oracle_diagnostics.py\n?? prepare_development_data.py\n?? provenance/bmmc_downloads.json\n?? reports/\n?? smoothing_fw.py\n?? test_protocol_checks.py\n?? validate_baselines.py\n",
+    "stderr": ""
+  },
+  "source_sha256": {
+    "capture_environment.py": "1d18f419dca0f910a9cf5b54761ba08294b5d782d9c4d70950594f41e27d0544",
+    "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+    "make_instances.py": "ecf425940b3c6ac5f77fe37b93a12c75ec052cddc5c03ab352c889f06c4f3903",
+    "oracle_diagnostics.py": "9e6b44c8779feb94401ee43274e54887b99bee7c42551474db50caeacbf32adf",
+    "prepare_development_data.py": "e083d64021ae53653ff1019c185d342b4350f3faa7b76a9668b7d7831d5c322c",
+    "run_reference.py": "d6f54a62850072f0b3f11b56f74a1c11277f8f683d38054e3213d81b6a320926",
+    "smoothing_fw.py": "f6a72ccfce9a9793a9d6ea4bd7f052910d90e75b2e875e6537c6c5507ff854b7",
+    "test_gw_core.py": "b0ce961c335b698e657b478235dc6367e866efeef8ee686246b24dbf2f71502e",
+    "test_protocol_checks.py": "e4947898b7ff1715b66722fe95f30f27299fd317bcb332f6f1c077f251e42efd",
+    "validate_baselines.py": "e0485e31c0b1287cfa763a4f514728a85a75c05ddc7c4e5cf8b3f3c0789fc565"
+  },
+  "job_id": null,
+  "cuda_visible_devices": null,
+  "CUBLAS_WORKSPACE_CONFIG": null,
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  }
+}

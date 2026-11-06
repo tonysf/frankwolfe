@@ -215,3 +215,13 @@ python -m paper.generate_main_figures
 The scripts write generated figures back to `paper/`. Some experiments are
 long-running and may require a TeX installation if Matplotlib is configured to
 render labels with TeX.
+
+## Research experiment records
+
+The [6 November 2026 experiment roundup](research/2026-11-roundup/README.md)
+collects the later stochastic-FRAMES, Gromov–Wasserstein and QPT campaigns from
+Elite and Ruche. It includes source/configuration snapshots, authored reports,
+scalar evidence, source histories and checksums, with restoration helpers for
+deduplicated campaign layouts. Its inventories describe raw artifacts kept
+outside Git and ongoing GW work. These historical experiments have additional
+data/environment requirements and are separate from the supported package APIs.

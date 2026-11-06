@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "recorded_local_date": "2026-10-05",
+  "supersedes_snapshot": "run_record.json (19:10 CEST snapshot)",
+  "array_job_id": 2014199,
+  "status": "stopped_after_failed_endpoint_archive_bug",
+  "failed_tasks": [0, 1, 2, 3, 4, 5],
+  "cancelled_tasks": [6, 7],
+  "reason": "At Quiroga alpha_Q=0.5 and eta_scale=0.03, numerical overflow is followed by an uncaught nonfinite full-design endpoint evaluation in run_direct_comparison. The pair archive is not written; the orchestration wrapper correctly stops the channel as incomplete.",
+  "preservation": "All completed trial artifacts, inventories, and error logs remain on Ruche and are copied to failed_array_2014199/calibration-2014199 on Elite. Nothing was deleted.",
+  "scientific_policy": "Do not remove the aggressive candidate, relax the gate, change the optimizer, or treat missing archives as success. Fix failed-endpoint recording and rerun the unchanged grid with a new pinned revision in a separate execution directory.",
+  "next_execution_bundle": "/home/tony/qpt_quiroga_ruche_20261005_02"
+}

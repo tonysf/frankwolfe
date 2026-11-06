@@ -1,0 +1,37 @@
+{
+  "scope": "parser fixture from preserved real n16 CPU test runs",
+  "budget_solver_seconds": 0.03,
+  "checkpoints_seconds": [
+    0.01,
+    0.03
+  ],
+  "instances": [
+    "toy16.npz"
+  ],
+  "stochastic_seed": 100,
+  "initialization": "product",
+  "initialization_seed": 200,
+  "dtype": "float64",
+  "device": "CPU parser fixture",
+  "threads": 1,
+  "methods": {
+    "smoothing-fw": {
+      "oracle": "sketch",
+      "batch": 8,
+      "m_mu0": 1
+    },
+    "full-kl": {
+      "eta": 0.1,
+      "tolerance_marginal_l1": 1e-09,
+      "inner_max": 1000
+    },
+    "stochastic-kl": {
+      "oracle": "sketch",
+      "batch": 8,
+      "eta": 0.1,
+      "tolerance_marginal_l1": 1e-09,
+      "inner_max": 1000
+    },
+    "fw": {}
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "checked_utc": "2026-10-14T14:15:40.918534+00:00",
+  "scope": "Status audit of four completed SMD tuning runs only. Original controller validates source, input, configuration, oracle budget, certificates and all saved-plan hashes; independent NumPy and POT evaluate each actual saved FP64 last-rounded plan. No optimization or re-repair performed.",
+  "validator_path": "/tmp/scot_smd_status_validation_20261014.py",
+  "validator_sha256": "943c5ce67a3001fd84fa00069330335ab28635e8c3fea7f69f2bf8433a5f398f",
+  "controller_sha256": "8d452bb2c0b67e9ade1b1acdfc90bdeb4a9a45574556d4114dd6da33fee97450",
+  "config_sha256": "6ddbf54d2d25fa270d4b962270f766f6bafc8cbdb8748513b674db63e7d2aaf7",
+  "source_file_sha256": {
+    "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+    "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+    "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+    "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+    "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+    "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+    "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+    "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0"
+  },
+  "input_binding": {
+    "reference_sha256": "990729dd5cdc982616bad5f39a10846938d203becb25b5d02245792b11a28d8c",
+    "baseline_sha256": "2f84abcf08da9368f349ab035ecf6c106a75250600b35133bbae55d21e01cf86",
+    "instance_manifest_sha256": "9334c5d0b4040e40aabd8e14f1cbf039290ebed1d86cd96a5f4f6b458ec7165c",
+    "array_files_sha256": {
+      "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+      "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+      "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+      "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+    },
+    "frames_completed_sha256": "22bd51292b17a2cbd0ebc9d61bb6b4917c3e095b26c72499c267fcde0ecac01a",
+    "frames_config_sha256": "546830830d836f407088b54f282bfcb1d95ada9a7694ea82b80e075f152104e0"
+  },
+  "environment": {
+    "hostname": "elite",
+    "numpy": "2.4.6",
+    "pot": "0.9.7.post1",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "acceptance": {
+    "saved_rounded_combined_marginal_l1": 2.220446049250313e-14,
+    "independent_objective_absolute_difference": 1e-11
+  },
+  "runs": [
+    {
+      "name": "tune_smd00_seed810",
+      "candidate": {
+        "id": "smd00",
+        "prefactor_fraction": 0.1
+      },
+      "seed": 810,
+      "status": "passed",
+      "metadata_sha256": "45e61051da56506f4c7f23eae56c0476bfaea2fee05eb541a362c3d886f6abf9",
+      "receipt_sha256": "c5b0346a5ece0f4fb77e4227f7f36d21114e9f9eea3d01d187c559fa8b7b6016",
+      "last_rounded_plan_sha256": "c484ed4ea23c2eb9c4a5a8262daf2347d4d14cbde89ed9c1fbff23f54970b45a",
+      "dtype": "float64",
+      "shape": [
+        1047,
+        1047
+      ],
+      "completed_updates": 2000,
+      "oracle_pairs": 2048000,
+      "inner_stopping_failures": 0,
+      "inner_acceptance_maxima": {
+        "marginal_l1": 1.072492789022661e-15,
+        "normalized_gap_upper_bound": 2.0348404395063193e-10,
+        "normalized_primal_dual_gap": 5.029310301551959e-13,
+        "primal_witness_marginal_l1": 1.2880321809127793e-16
+      },
+      "controller_audit_passed": true,
+      "runner_loss": 0.07035853957969013,
+      "numpy_runner_absolute_difference": 7.216449660063518e-16,
+      "independent_numpy_pot": {
+        "loss": 0.07035853957969085,
+        "pot_actual_marginals_loss": 0.07035853957969083,
+        "independent_loss_absolute_difference": 1.3877787807814457e-17,
+        "independent_loss_agrees": true,
+        "residuals": {
+          "row_l1": 4.575333167888829e-17,
+          "col_l1": 6.377277178559737e-16,
+          "row_l2": 2.5748374975205136e-18,
+          "col_l2": 2.4515918534198052e-17,
+          "both_l1": 6.83481049534862e-16,
+          "mass": 1.0,
+          "mass_error": 2.220446049250313e-16,
+          "min_entry": 8.12465431383218e-07,
+          "max_entry": 1.0212232598553496e-06
+        }
+      }
+    },
+    {
+      "name": "tune_smd01_seed810",
+      "candidate": {
+        "id": "smd01",
+        "prefactor_fraction": 0.3
+      },
+      "seed": 810,
+      "status": "passed",
+      "metadata_sha256": "0bfa4f1c45c8a0498b6fc1a6547b67110cf188def055f93dbf7f7ca5b6fc3068",
+      "receipt_sha256": "990cd298d8c35cdfb380a2d49286c43a6934ee0fe663c8c81c851e395e3a3873",
+      "last_rounded_plan_sha256": "851c2b0c6f182367dbd8bb2b9156190dd18760214624df45afca20a5783f0e79",
+      "dtype": "float64",
+      "shape": [
+        1047,
+        1047
+      ],
+      "completed_updates": 2000,
+      "oracle_pairs": 2048000,
+      "inner_stopping_failures": 0,
+      "inner_acceptance_maxima": {
+        "marginal_l1": 1.0771548583643487e-15,
+        "normalized_gap_upper_bound": 6.782269510290212e-11,
+        "normalized_primal_dual_gap": 1.6228685062458226e-13,
+        "primal_witness_marginal_l1": 1.3248950547772864e-16
+      },
+      "controller_audit_passed": true,
+      "runner_loss": 0.07015351145388898,
+      "numpy_runner_absolute_difference": 9.43689570931383e-16,
+      "independent_numpy_pot": {
+        "loss": 0.07015351145388993,
+        "pot_actual_marginals_loss": 0.07015351145388973,
+        "independent_loss_absolute_difference": 1.942890293094024e-16,
+        "independent_loss_agrees": true,
+        "residuals": {
+          "row_l1": 3.935653886122381e-17,
+          "col_l1": 6.0509323246416e-16,
+          "row_l2": 2.3479924415032787e-18,
+          "col_l2": 2.3691492092608562e-17,
+          "both_l1": 6.444497713253838e-16,
+          "mass": 1.0,
+          "mass_error": 2.220446049250313e-16,
+          "min_entry": 6.388027131991618e-07,
+          "max_entry": 1.2661774154710214e-06
+        }
+      }
+    },
+    {
+      "name": "tune_smd02_seed810",
+      "candidate": {
+        "id": "smd02",
+        "prefactor_fraction": 0.6
+      },
+      "seed": 810,
+      "status": "passed",
+      "metadata_sha256": "699b36c2efed749d4a3deba8fa0d697cecc954d78cbd2a8cbd64fc8bfd750ad8",
+      "receipt_sha256": "19acf177fb29455525758410cae07fdae187fb06c5c4c6fe4950f9ae49315147",
+      "last_rounded_plan_sha256": "2ac1ee405a5d96026bdae394471eb35375c54395673e3db5da2777a7f05f7402",
+      "dtype": "float64",
+      "shape": [
+        1047,
+        1047
+      ],
+      "completed_updates": 2000,
+      "oracle_pairs": 2048000,
+      "inner_stopping_failures": 0,
+      "inner_acceptance_maxima": {
+        "marginal_l1": 1.0747696135848805e-15,
+        "normalized_gap_upper_bound": 3.392071991850161e-11,
+        "normalized_primal_dual_gap": 9.534040223968532e-14,
+        "primal_witness_marginal_l1": 1.32164244825983e-16
+      },
+      "controller_audit_passed": true,
+      "runner_loss": 0.06984033081502217,
+      "numpy_runner_absolute_difference": 6.661338147750939e-16,
+      "independent_numpy_pot": {
+        "loss": 0.06984033081502283,
+        "pot_actual_marginals_loss": 0.06984033081502289,
+        "independent_loss_absolute_difference": 5.551115123125783e-17,
+        "independent_loss_agrees": true,
+        "residuals": {
+          "row_l1": 4.607859233063394e-17,
+          "col_l1": 6.513886652292911e-16,
+          "row_l2": 2.5998254782250583e-18,
+          "col_l2": 2.490835037420189e-17,
+          "both_l1": 6.97467257559925e-16,
+          "mass": 1.0,
+          "mass_error": 2.220446049250313e-16,
+          "min_entry": 4.326229549634136e-07,
+          "max_entry": 1.7141308973703679e-06
+        }
+      }
+    },
+    {
+      "name": "tune_smd03_seed810",
+      "candidate": {
+        "id": "smd03",
+        "prefactor_fraction": 1.0
+      },
+      "seed": 810,
+      "status": "passed",
+      "metadata_sha256": "839ec70bd41ac78705bc31dbfb50f3a668b45b9ff1e18ab14a8c239610844b62",
+      "receipt_sha256": "94788ecd5b03cb6f29b90b6d92d7b68b15cb03b0269eb2f00e13408deeb3d9c7",
+      "last_rounded_plan_sha256": "37b1b09817c44e7715908265bdeb77097781d16b02b1790c10a306ff54b1d778",
+      "dtype": "float64",
+      "shape": [
+        1047,
+        1047
+      ],
+      "completed_updates": 2000,
+      "oracle_pairs": 2048000,
+      "inner_stopping_failures": 0,
+      "inner_acceptance_maxima": {
+        "marginal_l1": 1.075636975322869e-15,
+        "normalized_gap_upper_bound": 2.0348126496964803e-11,
+        "normalized_primal_dual_gap": 4.679590048795035e-14,
+        "primal_witness_marginal_l1": 1.2815269678778662e-16
+      },
+      "controller_audit_passed": true,
+      "runner_loss": 0.069411305356962,
+      "numpy_runner_absolute_difference": 9.43689570931383e-16,
+      "independent_numpy_pot": {
+        "loss": 0.06941130535696294,
+        "pot_actual_marginals_loss": 0.0694113053569629,
+        "independent_loss_absolute_difference": 4.163336342344337e-17,
+        "independent_loss_agrees": true,
+        "residuals": {
+          "row_l1": 4.954803928258755e-17,
+          "col_l1": 6.443413511081353e-16,
+          "row_l2": 2.6402048216712592e-18,
+          "col_l2": 2.4918494756603115e-17,
+          "both_l1": 6.938893903907228e-16,
+          "mass": 1.0,
+          "mass_error": 2.220446049250313e-16,
+          "min_entry": 2.462810483726799e-07,
+          "max_entry": 2.447124906125727e-06
+        }
+      }
+    }
+  ]
+}

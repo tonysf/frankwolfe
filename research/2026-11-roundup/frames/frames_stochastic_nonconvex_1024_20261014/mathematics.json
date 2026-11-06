@@ -1,0 +1,92 @@
+{
+  "dimension": 1024,
+  "perturbation": {
+    "rho": "5/4",
+    "definition": "psi(x)=-(rho/2)*(u^T x)^2=-(5/8)*(u^T x)^2",
+    "u": "u_j=+1/8 for odd one-based j<=64, -1/8 for even one-based j<=64, and 0 otherwise"
+  },
+  "identities": {
+    "norm_u_squared": "1",
+    "u_dot_a": "0",
+    "u_dot_b": "1/8",
+    "hessian": "Q=I-(5/4)u u^T",
+    "hessian_spectrum": "-1/4 (multiplicity1), +1 (multiplicity1023)",
+    "Q_a": "a"
+  },
+  "constants": {
+    "global_gradient_Lipschitz_constant": 1,
+    "gradient_bound_on_C": "sqrt(311)/16; valid since ||Q(x-a)||<=||x-a||",
+    "conditional_oracle_variance": "1/4 exactly",
+    "conditional_oracle_second_moment_bound": "375/256",
+    "objective_lower_bound_on_C": "59/512",
+    "objective_upper_bound_on_C": "375/512",
+    "diameter_C": 2,
+    "linear_regularity_kappa": 1,
+    "source_lower_bound_requirement": "Global boundedness below on R^1024 is not assumed in manuscript Section1.1; boundedness on compact C suffices."
+  },
+  "nonconvex_feasible_line": {
+    "saddle": "x_s has first64 entries1/64, others0",
+    "line": "x(t)=x_s+t*u, -1/8<=t<=1/8; all points are nonnegative with l1 norm1",
+    "objective": "F(x(t))=91/512-t^2/8",
+    "curvature": "second derivative -1/4 <0"
+  },
+  "complete_stationary_set": {
+    "points": [
+      {
+        "name": "x_s",
+        "description": "first64 entries1/64, others0",
+        "classification": "strict saddle on feasible face",
+        "objective": "91/512",
+        "KKT_multiplier": "1/64"
+      },
+      {
+        "name": "x_plus",
+        "description": "32 positive-u coordinates1/32, all others0",
+        "classification": "strict local and global minimizer",
+        "objective": "45/256",
+        "KKT_multiplier": "5/256"
+      },
+      {
+        "name": "x_minus",
+        "description": "32 negative-u coordinates1/32, all others0",
+        "classification": "strict local and global minimizer",
+        "objective": "45/256",
+        "KKT_multiplier": "5/256"
+      }
+    ],
+    "proof": [
+      "For t=u^T x and multiplier lambda>=0 of sum x<=1, KKT is x_j=max(a_j+rho*t*u_j-lambda,0), with lambda(sum x-1)=0.",
+      "Each of the four coordinate groups P(32 positive-u), M(32 negative-u), B(64 negative-a), R(896 remaining) therefore has equal entries, either all positive or all zero.",
+      "B is zero because its right-hand response is -3/128-lambda<0.",
+      "If P and M are both positive, their coefficient difference is rho*t/4 and t=4 times that difference, so t=rho*t. Since rho=5/4, t=0. If lambda<1/128, the first64 alone have mass>3/2, infeasible. Thus R is zero; lambda cannot be0, so sum constraint is active and coefficients=1/64,lambda=1/64.",
+      "If P alone is positive with common coefficient z, t=4z and stationarity gives lambda=1/32-(3/8)z. If lambda<1/128, z>1/16, infeasible because32z>2. Thus R is zero; lambda>0 and mass constraint gives z=1/32,lambda=5/256. Inactive M has response (1-rho)z<0. The M-only case is symmetric.",
+      "If neither P nor M is positive, t=0 and their inactive conditions give lambda>=1/32. Then R is also zero, leaving x=0 while lambda>0, violating complementarity.",
+      "These exhaust the KKT points. A global minimizer exists by compactness and is stationary. x_s is not a local minimizer by the displayed feasible negative-curvature line. x_plus and x_minus have equal objective, hence both are global minimizers. Strict positive inactive KKT margins and positive Hessian on each active face imply strict local minima."
+    ]
+  },
+  "orthant_constraint_role": {
+    "feasible_direction_on_C_alone": "d=-e_j-x_plus for any j=65,...,128 (and analogously for x_minus)",
+    "directional_derivative": "<grad f(x_plus),d>=-1/256<0",
+    "consequence": "x_plus and x_minus are not stationary on C alone, so the orthant indicator changes the optimization problem and remains meaningful."
+  },
+  "exact_smoothed_stationary_branches": {
+    "beta": "any beta>0",
+    "w": "beta/[256*(1+7*beta/4)]",
+    "z": "1/32-2*w",
+    "branch_plus": "x_P=z, x_M=0, x_B=-w, x_R=0",
+    "branch_minus": "swap P and M",
+    "LMO_gradient_magnitude": "lambda_beta=5/256+3*w/4",
+    "smoothed_gap": "0 exactly",
+    "feasibility": "8*w=beta/[32*(1+7*beta/4)]",
+    "signed_original_gap": "-64*w^2/beta=-beta/[1024*(1+7*beta/4)^2]",
+    "classification": "Strict local minima on their support faces with strict inactive LMO margins; no global smoothed-minimum claim made."
+  },
+  "oracle": {
+    "sample": "q(x,epsilon)=Q*x-a+epsilon*b, epsilon independent uniform{-1,+1}",
+    "mean": "E[q|history]=Q*x-a",
+    "variance": "E[||q-grad f||^2|history]=||b||^2=1/4",
+    "nonconvex_direction_noise": "u^T b=1/8, so random gradients directly excite the unstable direction.",
+    "noise_covariance": "b*b^T rank1"
+  },
+  "validation_method": "Independent symbolic algebra and groupwise KKT case split; all constants exact unless expressed by a square root."
+}

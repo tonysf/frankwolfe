@@ -1,0 +1,24 @@
+{
+  "timestamp_utc": "2026-10-18T17:13:57.145727+00:00",
+  "superseded_jobs": [
+    "2082904",
+    "2082903"
+  ],
+  "prior_scheduler_state": {
+    "2082904": "JobId=2082904 JobName=gwlarge_dispatch_shareseq_full UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A Priority=5127 Nice=0 Account=fwllm QOS=normal JobState=PENDING Reason=Dependency Dependency=afterany:2082903(unfulfilled) Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=01:00:00 TimeMin=N/A SubmitTime=2026-10-18T18:11:49 EligibleTime=Unknown AccrueTime=Unknown StartTime=Unknown EndTime=Unknown Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-18T18:11:49 Scheduler=Main Partition=cpu_short AllocNode:Sid=ruche02:905821 ReqNodeList=(null) ExcNodeList=(null) NodeList= NumNodes=1-1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=2,mem=16G,node=1,billing=2 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=* MinCPUsNode=2 MinMemoryNode=16G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/source/extensions/large_pot_frames_20261016/cpu.sbatch WorkDir=/gpfs/users/silvetian StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/scheduler/gwlarge_dispatch_shareseq_full-2082904.out StdIn=/dev/null StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/scheduler/gwlarge_dispatch_shareseq_full-2082904.out KillOInInvalidDependent=Yes TresPerTask=cpu=2",
+    "2082903": "JobId=2082903 JobName=gwlarge_production_shareseq_full UserId=silvetian(3359) GroupId=cvn(1006) MCS_label=N/A Priority=0 Nice=0 Account=fwllm QOS=normal JobState=PENDING Reason=JobHeldUser Dependency=(null) Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0 RunTime=00:00:00 TimeLimit=1-00:00:00 TimeMin=N/A SubmitTime=2026-10-18T18:11:49 EligibleTime=Unknown AccrueTime=Unknown StartTime=Unknown EndTime=Unknown Deadline=N/A SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-18T18:57:03 Scheduler=Main Partition=gpua100 AllocNode:Sid=ruche02:905821 ReqNodeList=(null) ExcNodeList=ruche-gpu[13,15-16,19] NodeList= NumNodes=1-1 NumCPUs=8 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:* ReqTRES=cpu=8,mem=128G,node=1,billing=8,gres/gpu=4 AllocTRES=(null) Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=* MinCPUsNode=8 MinMemoryNode=128G MinTmpDiskNode=0 Features=(null) DelayBoot=00:00:00 OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null) Command=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/source/extensions/large_pot_frames_20261016/gpu.sbatch WorkDir=/gpfs/users/silvetian StdErr=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/scheduler/gwlarge_production_shareseq_full-2082903.out StdIn=/dev/null StdOut=/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4/scheduler/gwlarge_production_shareseq_full-2082903.out KillOInInvalidDependent=Yes TresPerNode=gres/gpu:4 TresPerTask=cpu=8"
+  },
+  "replacement_submission": {
+    "initial_report": "2082937",
+    "jobs": [
+      "2082932",
+      "2082933",
+      "2082934",
+      "2082935",
+      "2082936"
+    ],
+    "status": "queued",
+    "time": "2026-10-18T17:13:31.602382+00:00"
+  },
+  "reason": "User-requested SHARE campaign with retained final FRAMES checkpoints and explicit anytime horizon extension; old production had no completed updates."
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-11",
+  "scope": "Mathematical noise-condition audit of the proposed pair oracle; not a certification of numerical implementation or all outer convergence hypotheses.",
+  "status": "valid_noise_conditions",
+  "valid_noise_conditions": true,
+  "verdict": "Fresh iid pairs from the actual current nonnegative coupling, sampled with replacement and scaled by twice its actual mass, give a conditionally unbiased full GW gradient with bounded conditional variance. These are sufficient noise conditions for the ordinary momentum recurrence used by FraMES and the explicit oracle assumptions of SMD and MSBPG.",
+  "oracle": {
+    "objective": "f(P)=sum_{i,j,k,l} (A[i,k]-B[j,l])^2 P[i,j] P[k,l], with no factor 1/2.",
+    "hypotheses": [
+      "A and B are finite symmetric matrices.",
+      "P is nonnegative, with finite positive mass s=sum(P); on the exact row-feasible or transport domains s=1.",
+      "For each call, q>=1 pairs are conditionally independent given the current P and all previous algorithm history.",
+      "Each pair has conditional law Pr[(K,L)=(k,l)]=P[k,l]/s; sampling allows replacement.",
+      "There is a deterministic mass upper bound S_max on the algorithm domain; S_max=1 on the exact domains."
+    ],
+    "sample": "C^{kl}[i,j]=(A[i,k]-B[j,l])^2",
+    "estimator": "Ghat(P)=(2*s/q)*sum_{t=1}^q C^{K_t,L_t}",
+    "gradient": "grad f(P)=2*sum_{k,l} P[k,l]*C^{kl}",
+    "conditional_mean": "E[Ghat(P_k)|F_k]=(2*s/q)*q*sum_{k,l}(P[k,l]/s)*C^{kl}=grad f(P_k).",
+    "off_marginal_validity": "The derivation uses neither row nor column marginal equalities. Sample the raw current P, not a rounded, projected, clipped or otherwise changed plan. If hierarchical sampling is used, K follows actual row masses divided by actual s, and L conditional on K follows that actual row divided by its mass.",
+    "actual_mass": "Replacing 2*s by 2 when s differs from 1 estimates grad f(P)/s. Normalizing probabilities is necessary; normalizing the returned gradient by its sampled maximum is not allowed.",
+    "conditional_variance_exact": "E[||Ghat-grad f(P)||_F^2|P]=(4*s^2/q)*(sum_{kl}(P[kl]/s)*||C^{kl}||_F^2-||sum_{kl}(P[kl]/s)*C^{kl}||_F^2).",
+    "uniform_variance_bound": "With C_max=max_{i,j,k,l}(A[i,k]-B[j,l])^2, E[||Ghat-grad f(P)||_F^2|F_k] <= sigma_pair^2/q, sigma_pair^2=4*S_max^2*n*m*C_max^2. This conservative bound is finite; it does not predict practical error or runtime.",
+    "other_norm": "The same bound also upper-bounds squared entrywise infinity-norm error, max_ij |X_ij|^2, because that norm is at most ||X||_F. A dimension-free 1/q infinity-norm bound is not asserted.",
+    "zero_mass": "At P=0 the mathematical gradient is zero, but P/s is undefined. Rejecting zero mass is compatible with the positive-mass solver domains.",
+    "asymmetry": "For nonsymmetric A or B the derivative requires forward and transposed loss slices; twice a single slice is not generally correct.",
+    "finite_precision": "Claims are in exact arithmetic. Probability construction, reduction and accumulation errors in floating point must be covered by implementation tests; nonnegative bounded-mass input remains required."
+  },
+  "published_sampling_provenance": {
+    "source": "sagrow_2021",
+    "locations": [
+      "Section 4.1, printed pp2156-2157 (PDF pp6-7), Eqs8-10 and Algorithm1",
+      "Appendix A.1, printed p2174 (PDF p24), Eqs55-64"
+    ],
+    "finding": "Section 4.1 samples cost slices using the current unit-mass coupling as the categorical law. Appendix A.1 explicitly treats centered sampled slices as independent with mean zero. Thus independent categorical draws with replacement match the oracle used by the proof.",
+    "factor_convention": "Algorithm1 averages cost slices to estimate the alternating linear cost Lambda. Appendix A.1 compares the full quadratic gradient with 2*Lambda_hat. Our no-1/2 objective therefore requires factor 2, and nonunit mass requires 2*s.",
+    "algorithm_scope": "The experiment borrows the SaGroW sampling oracle; it is not an implementation or theorem reproduction of the complete SaGroW Sinkhorn/partial-update algorithm. Extending the oracle to nonunit and off-marginal plans is our derivation above."
+  },
+  "pot_distinction": {
+    "source": "pot_archived_source",
+    "locations": [
+      "provenance/pot_ot_gromov__estimators.py:404-419",
+      "provenance/pot_ot_gromov__estimators.py:440-445"
+    ],
+    "finding": "The archived implementation draws weighted source and conditional-target indices with replace=False, then divides the sampled cost by its sample-dependent maximum. This is not a drop-in unbiased full-gradient oracle.",
+    "counterexample": "If two outcomes have probabilities 0.9 and 0.1 and both are drawn without replacement, their unweighted sample mean is (C1+C2)/2, not 0.9*C1+0.1*C2.",
+    "qualification": "Without replacement is not universally biased: uniformly weighted distinct source rows with one conditionally sampled target each give an unbiased mean before gradient scaling. The general weighted rule and sampled-maximum normalization still cannot be copied under an unconditional unbiasedness claim."
+  },
+  "method_checks": {
+    "frames": {
+      "noise_conditions": "valid_noise_conditions",
+      "locations": [
+        "User manuscript Eq1 and Algorithm1, PDF pp1 and4",
+        "Corollary2.10, Eqs61-63, PDF p14"
+      ],
+      "ordinary_momentum_derivation": "Let d_k=(1-rho_k)d_{k-1}+rho_k Ghat(P_k), e_k=d_k-grad f(P_k), and Delta_k=grad f(P_{k-1})-grad f(P_k). Conditional on F_k, E||e_k||^2=(1-rho_k)^2||e_{k-1}+Delta_k||^2+rho_k^2 E||Ghat-grad f(P_k)||^2. Mean-gradient L-smoothness and Young inequality give E||e_k||^2 <= (1-rho_k/2)E||e_{k-1}||^2+(2*L^2/rho_k)E||P_k-P_{k-1}||^2+rho_k^2*sigma_pair^2/q. On the compact row domain the movement term is at most (2*L^2/rho_k)*gamma_{k-1}^2*diam(C)^2.",
+      "conclusion": "The pair oracle supplies the conditional mean-zero and variance terms sufficient for this recurrence. The deterministic Moreau gradient adds no oracle noise; the momentum itself need not be unbiased.",
+      "manuscript_qualification": "The draft presents E_theta f(x,theta) and samples grad_x f(x,theta) from a fixed law, but does not explicitly state conditional unbiasedness/bounded variance; sigma^2 appears in Corollary2.10 without a definition located in the document. The present claim is proof-level noise compatibility, not literal satisfaction of a fully specified samplewise-function assumption or certification of the complete draft.",
+      "fixed_law_nuance": "Fresh iid base uniforms U give a fixed-law measurable vector oracle G(P,U) even though the pair distribution depends on P. This does not establish that G(P,U) is the gradient of a differentiable scalar sample loss for every U. No such stronger assertion is needed for the ordinary momentum recurrence."
+    },
+    "published_smd": {
+      "noise_conditions": "valid_noise_conditions",
+      "source": "smd_2024",
+      "locations": [
+        "Assumption3.2, PDF p3",
+        "Assumption3.1 and Theorem4.3"
+      ],
+      "finding": "Assumption3.2 explicitly allows a stochastic oracle returning a random vector with the correct mean and bounded squared dual-norm error. Fresh base randomness and the bound above meet this oracle requirement. Assumption3.1 concerns relative smoothness of the mean objective; it does not require samplewise smoothness.",
+      "remaining_requirements": "The selected step bound, entropy geometry/domain, prescribed random output and exact proximal subproblem remain separate theorem conditions. This audit does not replace their prior verification."
+    },
+    "published_msbpg": {
+      "noise_conditions": "valid_noise_conditions",
+      "source": "msbpg_2025",
+      "locations": [
+        "Assumption2, PDF p10",
+        "Section3.2, Lemma23 and Theorem24, PDF pp15-17"
+      ],
+      "finding": "Assumption2 states conditional unbiasedness and centered conditional second moment <=sigma^2/m_k. Use m_k=q and the bound above. Lemma23 uses these conditions for ordinary momentum. No finite-sum structure or samplewise-gradient construction is necessary for that noise condition.",
+      "remaining_requirements": "Assumptions1 and3, strong-convexity/Legendre kernel conditions, coupled step/momentum schedule including its index shift, prescribed random output and exact proximal subproblem remain separate. The existing explicit entropy extension and GW smoothness bounds can be reused; changing the oracle does not establish them afresh.",
+      "text_nuance": "The paragraph after Eq8 displays an uncentered second-moment expression, whereas Assumption2, Lemma23 and Theorem24 use centered noise. This audit follows the stated noise assumption and proof, not that isolated display."
+    }
+  },
+  "numerical_theorem_qualification": "SMD/MSBPG theorem statements assume exact proximal minimizers. The retained 1e-7 inner feasibility/gap tolerances are numerical implementation choices, not an inexact outer convergence theorem. Valid oracle noise conditions do not certify monotone loss decrease, last-iterate rates, or global optimality.",
+  "implementation_requirements": [
+    "Fresh independent pairs with replacement at every call; all workers evaluate the same global batch.",
+    "Use actual raw nonnegative P and actual mass s, including off-column-feasible FraMES iterates.",
+    "Return the unnormalized full gradient estimate with factor 2*s/q.",
+    "Retain deterministic smoothing penalty and existing method schedules independently of the oracle.",
+    "Validate the weighted exact expectation against the full gradient on small symmetric, nonuniform, nonunit and off-marginal plans.",
+    "Do not label pair count as equivalent runtime/work to the old Rademacher-probe count."
+  ],
+  "sources": {
+    "sagrow_2021": {
+      "title": "Kerdoncuff, Emonet and Sebban, Sampled Gromov Wasserstein, Machine Learning110:2151-2186 (2021)",
+      "url": "https://link.springer.com/content/pdf/10.1007/s10994-021-06035-1.pdf",
+      "doi": "10.1007/s10994-021-06035-1",
+      "access": "Primary publisher PDF read through web tool on 2026-10-11; no local PDF hash available."
+    },
+    "frames_manuscript": {
+      "path": "/home/tony/.codex/attachments/5ba80a71-7591-4b26-a740-9eb2ec7ed6a1/Nonsmooth_FW-7.pdf",
+      "sha256": "f657c025816f1928c3809eec866118c91b63f2cb32fdd04fe61951d2f8335b66"
+    },
+    "smd_2024": {
+      "title": "Fatkhullin and He, Taming Nonconvex Stochastic Mirror Descent with General Bregman Divergence, AISTATS2024",
+      "url": "https://proceedings.mlr.press/v238/fatkhullin24a/fatkhullin24a.pdf"
+    },
+    "msbpg_2025": {
+      "title": "Ding, Li and Toh, Nonconvex Stochastic Bregman Proximal Gradient Method with Application to Deep Learning, JMLR26(39),2025",
+      "url": "https://jmlr.org/papers/volume26/23-0657/23-0657.pdf",
+      "local_path": "logs/msbpg_assumptions_20261005/ding_li_toh_2025.pdf",
+      "sha256": "86aab45a641b988922cfcec9237d0d520850cac204f121cf66bf3a6e1b1e527d"
+    },
+    "pot_archived_source": {
+      "path": "provenance/pot_ot_gromov__estimators.py",
+      "sha256": "c9462eb8a9b98eb2c5bbf73a87a43886f2043ad6c374d5ea91ee5160407922b4"
+    },
+    "prior_msbpg_gw_specialization": {
+      "path": "reports/msbpg_assumptions/msbpg_gw_assumptions.tex",
+      "sha256": "a677ef98a4b9e0b708dcdfeba8ae88f365da4565ccaada927d6780e3564fa497"
+    }
+  }
+}

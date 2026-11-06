@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source_commit": "c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+  "failed_preflight_job": "2014218_0",
+  "state": "FAILED",
+  "exit_code": "1:0",
+  "elapsed_seconds": 9,
+  "experiment_started": false,
+  "cause": "The copied shell output_root retained the old 20261004_02 suffix while the plan and Slurm paths used 20261005_02.",
+  "correction": "Changed the single runtime output_root suffix to match the plan; shell interpolation and syntax independently reviewed.",
+  "failed_launcher_sha256": "1b3f0478156a7ec8806ca993f0ab0f501b18e602758ff6acf5ac64cace34a8b9",
+  "fixed_launcher_sha256": "ad6d7f1a510cb75b61350cc62cf17017b53883cdc9635182957afcbe54912aff",
+  "failed_launcher_preserved_remotely_as": "execution-20261005-02/calibration.sbatch.preflight_failed_2014218",
+  "single_channel_retry_job": "2014220_0",
+  "scientific_changes": "none"
+}

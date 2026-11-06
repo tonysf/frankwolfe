@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "experiment": "long_horizon_share_20261007",
+  "instances": {
+    "shareseq_full": {
+      "array_files_sha256": {
+        "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+      },
+      "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+      "n": 31890,
+      "source_input": {
+        "directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+        "kind": "canonical",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full/manifest.json",
+        "metadata_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b"
+      },
+      "world_size": 4
+    }
+  },
+  "methods": {
+    "smoothing-fw": [
+      {
+        "id": "fw00",
+        "gamma0": 0.1,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw01",
+        "gamma0": 0.1,
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw02",
+        "gamma0": 0.1,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw03",
+        "gamma0": 0.1,
+        "mu_scale": 100.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw04",
+        "gamma0": 0.3,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw05",
+        "gamma0": 0.3,
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw06",
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw07",
+        "gamma0": 0.3,
+        "mu_scale": 100.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw08",
+        "gamma0": 1.0,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw09",
+        "gamma0": 1.0,
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw10",
+        "gamma0": 1.0,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw11",
+        "gamma0": 1.0,
+        "mu_scale": 100.0,
+        "rho0": 0.3
+      }
+    ],
+    "published-smd": [
+      {
+        "id": "smd00",
+        "prefactor_fraction": 0.01
+      },
+      {
+        "id": "smd01",
+        "prefactor_fraction": 0.01519911083
+      },
+      {
+        "id": "smd02",
+        "prefactor_fraction": 0.023101297001
+      },
+      {
+        "id": "smd03",
+        "prefactor_fraction": 0.035111917342
+      },
+      {
+        "id": "smd04",
+        "prefactor_fraction": 0.053366992312
+      },
+      {
+        "id": "smd05",
+        "prefactor_fraction": 0.081113083079
+      },
+      {
+        "id": "smd06",
+        "prefactor_fraction": 0.123284673944
+      },
+      {
+        "id": "smd07",
+        "prefactor_fraction": 0.187381742286
+      },
+      {
+        "id": "smd08",
+        "prefactor_fraction": 0.284803586844
+      },
+      {
+        "id": "smd09",
+        "prefactor_fraction": 0.432876128108
+      },
+      {
+        "id": "smd10",
+        "prefactor_fraction": 0.657933224658
+      },
+      {
+        "id": "smd11",
+        "prefactor_fraction": 1.0
+      }
+    ],
+    "published-msbpg": [
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg00",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg01",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg02",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.5,
+        "id": "msbpg03",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.5,
+        "id": "msbpg04",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.5,
+        "id": "msbpg05",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.25,
+        "id": "msbpg06",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.25,
+        "id": "msbpg07",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.25,
+        "id": "msbpg08",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.125,
+        "id": "msbpg09",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.125,
+        "id": "msbpg10",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.125,
+        "id": "msbpg11",
+        "momentum_prefactor": 0.1
+      }
+    ]
+  },
+  "selected_candidates": {
+    "shareseq_full": {
+      "smoothing-fw": {
+        "id": "fw06",
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "published-smd": {
+        "id": "smd11",
+        "prefactor_fraction": 1.0
+      },
+      "published-msbpg": {
+        "coupling_fraction": 1.0,
+        "id": "msbpg00",
+        "momentum_prefactor": 1.0
+      }
+    }
+  },
+  "final_iterations": 20000,
+  "final_checkpoint_iterations": [
+    100,
+    300,
+    1000,
+    2000,
+    3000,
+    5000,
+    7500,
+    10000,
+    12500,
+    15000,
+    17500,
+    20000
+  ],
+  "checkpoint_seconds": [],
+  "final_seeds": [
+    810,
+    811,
+    812
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "runner": {
+    "batch": 128,
+    "certificate_block_rows": 256,
+    "check_every": 10,
+    "dtype": "float32",
+    "exact_block_rows": 256,
+    "inner_gap_tol": 1e-07,
+    "inner_max": 10000,
+    "inner_tol": 1e-07,
+    "progress_every": 1000
+  },
+  "run_timeout_seconds_by_method": {
+    "smoothing-fw": 7200,
+    "published-smd": 43200,
+    "published-msbpg": 64800
+  },
+  "final_marginal_l1_tolerance": 1.1920928955078125e-05,
+  "plan_storage": "none",
+  "selections_provenance": {
+    "file": "frozen_selections.json",
+    "sha256": "de152feefd32bf6d18eeb1039af7a4c94c40bce412bef314a21bbe78e867771f"
+  },
+  "comparison_scope": "Extend the same stochastic methods with their frozen selected prefactors to 20000 updates, no retuning, same input hashes and final seeds/starts. Restart original seeds because optimizer resume state was not saved. Horizon changes independent output sampling, not the update schedules.",
+  "storage_policy": "No dense output persistence. All four selected/last raw/rounded output hashes and independent FP64 validations remain mandatory.",
+  "submission_policy": "One product-start seed810 sentinel per method follows a fresh successful long-horizon GPU integration gate; remaining five cells are afterok its complete 20000-update validation. No loss-based gate. All runs use four A100s, with per-method walltime and no concurrent SHARE array tasks.",
+  "deferred_instances": [],
+  "scope_decision": "User explicitly requested all datasets on 2026-10-07. This supplement adds all 18 SHARE runs while preserving existing BMMC and SNARE submissions.",
+  "walltime_policy": "Ruche gpua100 maximum 24 hours; subprocess budgets 2/12/18 hours and Slurm requests 2:15/12:15/18:15 leave cleanup headroom. Current loss checkpoints are diagnostics, not resumable optimizer state."
+}

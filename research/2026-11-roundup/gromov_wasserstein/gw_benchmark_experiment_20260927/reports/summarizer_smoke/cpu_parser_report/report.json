@@ -1,0 +1,382 @@
+{
+  "title": "Parser smoke using existing local outputs",
+  "scope": "parser-smoke",
+  "scope_statement": "Parser/plotting smoke test using existing recorded local outputs. Directory layout is only a test fixture; these are not A100 measurements or experiment results beyond the original CPU checks.",
+  "status": "incomplete",
+  "generated_utc": "2026-09-27T18:20:16.875896+00:00",
+  "input_root": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input",
+  "command": [
+    "summarize_diagnostics.py",
+    "--root",
+    "reports/summarizer_smoke/input",
+    "--out",
+    "reports/summarizer_smoke/cpu_parser_report",
+    "--scope",
+    "parser-smoke",
+    "--expected-sizes",
+    "16",
+    "--sketch-batches",
+    "32",
+    "--expected-steps",
+    "5"
+  ],
+  "expected": {
+    "sizes": [
+      16
+    ],
+    "sketch_batches": [
+      32
+    ],
+    "steps": 5,
+    "oracle_repetitions": 100,
+    "problem_seed": 1000,
+    "stochastic_seed": 0,
+    "m_mu0": 1
+  },
+  "completed_smoothing_runs": 2,
+  "completed_oracle_reports": 0,
+  "smoothing_runs": [
+    {
+      "name": "n16_exact",
+      "n": 16,
+      "method": "exact",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_exact",
+      "status": "completed",
+      "issues": [
+        "Legacy final_float64 fields describe fresh float64 repair, not verified actual saved rounded output."
+      ],
+      "source_sha256": {
+        "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_exact/config.json": "875833699979daaaece2675f85cf4eeff51613d4de9e0bc99c1e05a6fb1e0e14",
+        "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_exact/summary.json": "d580804560ec50cbb9dab68694892e8caab51001da8bb583409b0f3e5c266991",
+        "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_exact/trace.csv": "6b2c1a18358a8ae4099519efedb6e445d68f27fe54a650e441f2bb613479774c"
+      },
+      "recorded_device": "cpu",
+      "recorded_gpu": null,
+      "dtype": "float64",
+      "stochastic_seed": 0,
+      "problem_seed": 1000,
+      "batch": null,
+      "instance_hashes": {
+        "A_sha256": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+        "B_sha256": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5"
+      },
+      "source_revision": "a8e120e511a3990e3d80d4b9f8f93b87762560e7",
+      "code_sha256": {
+        "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+        "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+        "run_smoothing.py": "22e96fd89697ce44717573da418eec6be8a11c748c2656c6f511abe626f0bd40",
+        "PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+      },
+      "completed_updates": 5,
+      "final_float64_actual_output_available": false,
+      "final_float64": {
+        "raw_smooth_loss": 0.12937371317587565,
+        "rounded_feasible_loss": 0.0935804667181358,
+        "raw_residuals": {
+          "row_l1": 2.0816681711721685e-17,
+          "col_l1": 0.7260979122093092,
+          "col_l2": 0.27983078508854003,
+          "both_l1": 0.7260979122093092,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 9.020562075079397e-17,
+          "col_l2": 3.3277766121280743e-17,
+          "both_l1": 9.020562075079397e-17,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "repair_entrywise_l1": 0.726097912209309,
+        "true_smoothed_gap": 3.341946487308178,
+        "mu_at_terminal_point": 0.03993394401539203,
+        "original_fw_gap_at_rounded": 0.01370901188624097,
+        "note": "CPU float64 promotion of saved raw iterate and frozen stored costs; no solver refinement"
+      },
+      "timing": {
+        "preparation_cache_seconds": 1.0509451410034671,
+        "solver_seconds": 0.0027535101398825645,
+        "repair_seconds": 0.0012251310981810093,
+        "diagnostic_seconds": 0.2824404368875548,
+        "serialization_seconds": 0.001826845109462738,
+        "final_float64_validation_seconds": 0.0013666249578818679
+      },
+      "memory": {
+        "process_peak_rss_bytes": 356954112,
+        "memory_scope": "process high-water RSS and GPU allocated/reserved peaks include diagnostics and final validation"
+      },
+      "solver_counts": {
+        "oracle_evaluations": 5,
+        "exact_gradient_calls": 5,
+        "stochastic_gradient_calls": 0,
+        "sketch_probes": 0,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 5,
+        "row_projection_calls": 0
+      },
+      "diagnostic_counts": {
+        "exact_gradient_calls": 12,
+        "full_loss_calls": 12,
+        "assignment_lmo_calls": 6,
+        "row_gap_evaluations": 6,
+        "rounding_calls": 6
+      },
+      "terminal_checkpoint": {
+        "point_iteration": 5,
+        "completed_updates_at_checkpoint": 5,
+        "checkpoint": "terminal",
+        "trajectory_average_included": false,
+        "mu": 0.03993394401539203,
+        "m_mu": 0.6389431042462724,
+        "beta_theorem": 0.0024958715009620017,
+        "gamma": null,
+        "rho": null,
+        "eta": null,
+        "solver_seconds_cumulative": 0.0027535101398825645,
+        "repair_seconds_current": 0.00018709106370806694,
+        "repair_seconds_cumulative": 0.0012251310981810093,
+        "time_to_this_feasible_output": 0.0029406012035906315,
+        "raw_smooth_loss": 0.12937371317587565,
+        "rounded_feasible_loss": 0.0935804667181358,
+        "row_l1": 2.0816681711721685e-17,
+        "col_l1": 0.7260979122093092,
+        "col_l2": 0.27983078508854003,
+        "both_l1": 0.7260979122093092,
+        "mass_error": 0.0,
+        "min_entry": 0.0,
+        "col_l2_squared": 0.07830526828326868,
+        "rounded_both_l1": 9.020562075079397e-17,
+        "rounded_min_entry": 0.0,
+        "repair_entrywise_l1": 0.726097912209309,
+        "true_smoothed_gap": 3.341946487308178,
+        "original_fw_gap_at_rounded": 0.01370901188624097,
+        "certificate_rhs": 7.648179136221326,
+        "certificate_excess": -7.634470124335085,
+        "momentum_error_l2": null,
+        "oracle_error_l2": null,
+        "gradient_l2": 3.4363531208449354,
+        "raw_zero_entries": 176,
+        "solver_oracle_evaluations": 5,
+        "solver_exact_gradient_calls": 5,
+        "solver_stochastic_gradient_calls": 0,
+        "solver_sketch_probes": 0,
+        "solver_anchor_samples": 0,
+        "solver_initialization_oracle_calls": 1,
+        "solver_row_lmo_calls": 5,
+        "solver_row_projection_calls": 0,
+        "trajectory_average_points": 5,
+        "mean_true_smoothed_gap": 3.254463798520766,
+        "mean_row_l1": 0.0,
+        "mean_col_l1": 0.819391142604894,
+        "mean_col_l2": 0.2606713800440926,
+        "mean_col_l2_squared": 0.10282511271704423,
+        "mean_momentum_error_l2": 0.5011842501678456,
+        "mean_oracle_error_l2": 0.0,
+        "diagnostic_seconds_cumulative": 0.2824404368875548,
+        "serialization_seconds_before_checkpoint": 0.000952643109485507,
+        "instrumented_seconds_at_checkpoint": 1.338578392053023
+      },
+      "trajectory_means": {
+        "true_smoothed_gap": 3.254463798520766,
+        "row_l1": 0.0,
+        "col_l1": 0.819391142604894,
+        "col_l2": 0.2606713800440926,
+        "col_l2_squared": 0.10282511271704423,
+        "momentum_error_l2": 0.5011842501678456,
+        "oracle_error_l2": 0.0
+      },
+      "total_instrumented_seconds": 1.3408831200795248,
+      "initialization_solver_seconds": 0.0006535020656883717,
+      "max_row_l1": 0.0,
+      "max_certificate_excess": -0.00907259274015686
+    },
+    {
+      "name": "n16_sketch_q32",
+      "n": 16,
+      "method": "sketch_q32",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_sketch_q32",
+      "status": "completed",
+      "issues": [
+        "Legacy final_float64 fields describe fresh float64 repair, not verified actual saved rounded output."
+      ],
+      "source_sha256": {
+        "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_sketch_q32/config.json": "8213a163c295c535b2717bc2eaea460be1ac86243f74882c707ca51b71ab0835",
+        "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_sketch_q32/summary.json": "469c930911bd85305a9304408c85fa02650724e43e1bc850f3104c1855d1f98f",
+        "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/smoothing/n16_sketch_q32/trace.csv": "59c7a6cd73c5d749eaa522d18444650604d620237505112337d78291606a2992"
+      },
+      "recorded_device": "cpu",
+      "recorded_gpu": null,
+      "dtype": "float64",
+      "stochastic_seed": 0,
+      "problem_seed": 1000,
+      "batch": 32,
+      "instance_hashes": {
+        "A_sha256": "20e6a8721395326c0f8e8c47463b446155065f3c194b93ea4c627c6f32411595",
+        "B_sha256": "92fa201411c91ce8a929479d2112fa38cdd6ff5e28994d195769dcd6a57407b5"
+      },
+      "source_revision": "a8e120e511a3990e3d80d4b9f8f93b87762560e7",
+      "code_sha256": {
+        "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+        "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+        "run_smoothing.py": "22e96fd89697ce44717573da418eec6be8a11c748c2656c6f511abe626f0bd40",
+        "PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+      },
+      "completed_updates": 5,
+      "final_float64_actual_output_available": false,
+      "final_float64": {
+        "raw_smooth_loss": 0.1758714037436221,
+        "rounded_feasible_loss": 0.10070422110463129,
+        "raw_residuals": {
+          "row_l1": 1.1102230246251565e-16,
+          "col_l1": 1.3750000000000002,
+          "col_l2": 0.40170819027112736,
+          "both_l1": 1.3750000000000004,
+          "mass_error": 2.220446049250313e-16,
+          "min_entry": 0.0
+        },
+        "rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 2.0816681711721685e-17,
+          "col_l2": 1.2018516789897274e-17,
+          "both_l1": 2.0816681711721685e-17,
+          "mass_error": 0.0,
+          "min_entry": 0.003906249999999999
+        },
+        "repair_entrywise_l1": 1.3750000000000002,
+        "true_smoothed_gap": 5.845872279618829,
+        "mu_at_terminal_point": 0.03993394401539203,
+        "original_fw_gap_at_rounded": 0.005519788355161693,
+        "note": "CPU float64 promotion of saved raw iterate and frozen stored costs; no solver refinement"
+      },
+      "timing": {
+        "preparation_cache_seconds": 0.978282717987895,
+        "solver_seconds": 0.00252606812864542,
+        "repair_seconds": 0.0008985850727185607,
+        "diagnostic_seconds": 0.22611718496773392,
+        "serialization_seconds": 0.0013991439482197165,
+        "final_float64_validation_seconds": 0.0009785330621525645
+      },
+      "memory": {
+        "process_peak_rss_bytes": 357416960,
+        "memory_scope": "process high-water RSS and GPU allocated/reserved peaks include diagnostics and final validation"
+      },
+      "solver_counts": {
+        "oracle_evaluations": 5,
+        "exact_gradient_calls": 0,
+        "stochastic_gradient_calls": 5,
+        "sketch_probes": 160,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 5,
+        "row_projection_calls": 0
+      },
+      "diagnostic_counts": {
+        "exact_gradient_calls": 12,
+        "full_loss_calls": 12,
+        "assignment_lmo_calls": 6,
+        "row_gap_evaluations": 6,
+        "rounding_calls": 6
+      },
+      "terminal_checkpoint": {
+        "point_iteration": 5,
+        "completed_updates_at_checkpoint": 5,
+        "checkpoint": "terminal",
+        "trajectory_average_included": false,
+        "mu": 0.03993394401539203,
+        "m_mu": 0.6389431042462724,
+        "beta_theorem": 0.0024958715009620017,
+        "gamma": null,
+        "rho": null,
+        "eta": null,
+        "solver_seconds_cumulative": 0.00252606812864542,
+        "repair_seconds_current": 0.00013352103997021914,
+        "repair_seconds_cumulative": 0.0008985850727185607,
+        "time_to_this_feasible_output": 0.002659589168615639,
+        "raw_smooth_loss": 0.1758714037436221,
+        "rounded_feasible_loss": 0.10070422110463129,
+        "row_l1": 1.1102230246251565e-16,
+        "col_l1": 1.3750000000000002,
+        "col_l2": 0.40170819027112736,
+        "both_l1": 1.3750000000000004,
+        "mass_error": 2.220446049250313e-16,
+        "min_entry": 0.0,
+        "col_l2_squared": 0.16136947013090427,
+        "rounded_both_l1": 2.0816681711721685e-17,
+        "rounded_min_entry": 0.003906249999999999,
+        "repair_entrywise_l1": 1.3750000000000002,
+        "true_smoothed_gap": 5.845872279618829,
+        "original_fw_gap_at_rounded": 0.005519788355161693,
+        "certificate_rhs": 14.000516154353917,
+        "certificate_excess": -13.994996365998755,
+        "momentum_error_l2": null,
+        "oracle_error_l2": null,
+        "gradient_l2": 3.618766039376997,
+        "raw_zero_entries": 176,
+        "solver_oracle_evaluations": 5,
+        "solver_exact_gradient_calls": 0,
+        "solver_stochastic_gradient_calls": 5,
+        "solver_sketch_probes": 160,
+        "solver_anchor_samples": 0,
+        "solver_initialization_oracle_calls": 1,
+        "solver_row_lmo_calls": 5,
+        "solver_row_projection_calls": 0,
+        "trajectory_average_points": 5,
+        "mean_true_smoothed_gap": 9.34603587434653,
+        "mean_row_l1": 0.0,
+        "mean_col_l1": 1.35,
+        "mean_col_l2": 0.5287915075750494,
+        "mean_col_l2_squared": 0.3794271342701715,
+        "mean_momentum_error_l2": 10.763002429721746,
+        "mean_oracle_error_l2": 14.472081620600965,
+        "diagnostic_seconds_cumulative": 0.22611718496773392,
+        "serialization_seconds_before_checkpoint": 0.0006891710218042135,
+        "instrumented_seconds_at_checkpoint": 1.2087358169956133
+      },
+      "trajectory_means": {
+        "true_smoothed_gap": 9.34603587434653,
+        "row_l1": 0.0,
+        "col_l1": 1.35,
+        "col_l2": 0.5287915075750494,
+        "col_l2_squared": 0.3794271342701715,
+        "momentum_error_l2": 10.763002429721746,
+        "oracle_error_l2": 14.472081620600965
+      },
+      "total_instrumented_seconds": 1.2104754030006006,
+      "initialization_solver_seconds": 0.0007751930970698595,
+      "max_row_l1": 0.0,
+      "max_certificate_excess": -0.00907259274015686
+    }
+  ],
+  "oracle_reports": [
+    {
+      "n": 16,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/input/reports/oracle_a100_n16_s1000.json",
+      "status": "missing",
+      "issues": [
+        "Expected oracle report is missing."
+      ]
+    }
+  ],
+  "figures": [
+    "current_rounded_objective_vs_output_time.png",
+    "current_rounded_objective_vs_output_time.pdf",
+    "true_smoothed_gap_vs_iteration.png",
+    "true_smoothed_gap_vs_iteration.pdf",
+    "true_smoothed_gap_vs_probes.png",
+    "true_smoothed_gap_vs_probes.pdf",
+    "full_trajectory_mean_gap.png",
+    "full_trajectory_mean_gap.pdf",
+    "rounded_original_gap_vs_output_time.png",
+    "rounded_original_gap_vs_output_time.pdf",
+    "raw_feasibility_vs_solver_time.png",
+    "raw_feasibility_vs_solver_time.pdf"
+  ],
+  "full_study_complete": false,
+  "oracle_frozen": false,
+  "fitted_slopes": null,
+  "speedup_claim": null,
+  "script_sha256": "78decb616373cbb53a116fad800de3813b70efe989853ef0eef46aa033da0cfd",
+  "plot_library": "matplotlib 3.11.2"
+}
