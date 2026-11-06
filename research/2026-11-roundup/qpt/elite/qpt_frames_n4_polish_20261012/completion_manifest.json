@@ -1,0 +1,90 @@
+{
+  "all_confirmation_gates_pass": null,
+  "all_previous_results_preserved": true,
+  "archived_control_added_compute_this_round": 0,
+  "best_for_best_complete": false,
+  "campaign_git_commit": "37180f34ba7b7fa8867c928e5a956117eef87ad6",
+  "confirmation_status": "skipped_no_joint_gate_eligible_configuration",
+  "evidence_sha256": {
+    "audit_calibration.json": "85fd0a79b74f1e9af8eb300cf9d7f653934ec0954bd85620c49ae37a05973d24",
+    "inventory_calibration.json": "252d31fe80fd620f0ed3786cae650ded092c3814d775b1aee558a9a08d9f8125",
+    "plan_calibration.json": "658b138ee7f5bfd7835a917a5921c7284a3fdd6a10ad2b6d623d0d94822b9827",
+    "selection_calibration.json": "5856c25c73480a07c8db3b70c632a955be085cf1f3903af667075f91d2c069ec",
+    "validation_tests.json": "594ed8aa9acdff8b30c48a0161caaa54fc9128dbdaab30cc5b97e7fa087238e6",
+    "validation_tests.log": "dbcf2b6b747822e9cc5528b468bd8c143803660b85fdff52478911989286f6f7"
+  },
+  "final_heldout_used": false,
+  "finished_utc": "2026-10-12T18:45:06.714180+00:00",
+  "parent_pins": {
+    "/home/tony/qpt_frames_n4_tuning_20261012/audit_long.json": "61d52e3d953ff6b3950de468442c5fe0aa6f976e162a0522a98ba295c1527923",
+    "/home/tony/qpt_frames_n4_tuning_20261012/completion_manifest.json": "c08a071acd2186e7896c0dfa17e2d8bab20e01e6fe6b8fadc84d86bb3bd17cf4",
+    "/home/tony/qpt_frames_n4_tuning_20261012/selection_long.json": "9879838047b7ae27baba95bf5a36f1f338fd6d38529464cca1a100b3c3119e71"
+  },
+  "qualifications": [
+    "This single arm is adaptively motivated by calibration outcomes, not part of the earlier frozen twelve-arm sweep.",
+    "Fresh starts; all 400k updates and repeated 48k/400k work are charged. Same 12.8M sampled-row budget as the paired prior-best control.",
+    "Exact initial factor and first 48k physical checkpoint/schedule agreement are audited on calibration channels only.",
+    "The complete piecewise schedule is recorded explicitly; native callable metadata alone is not sufficient provenance.",
+    "No optimizer update, momentum reset, TP projection, sensing design, initialization distribution or observation change.",
+    "Noiseless rank-one nonconvex factorized FRAMES experiment only; no convergence-theorem, noise or higher-rank claim.",
+    "Fresh confirmation channels are not the final held-out set. Channels 1000\u20131019 remain unused.",
+    "No published-Quiroga or completed best-for-best claim. Realized native sampling batches are not archived."
+  ],
+  "quiroga_run": false,
+  "recorded_work_is_lower_bound": false,
+  "recovery_winner_found": false,
+  "repeated_prefixes_charged": true,
+  "reserved_final_channels": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019
+  ],
+  "ruche_used": false,
+  "schema": "qpt_frames_n4_polish_completion_v1",
+  "script_sha256": {
+    "audit_polish.py": "2eabf1470be8e733dd2e9b2cd30efbd29ab156801a53e22b03926c62c277a099",
+    "build_report.py": "39f93b62b7c235db94ff206d478d1b9951c29c58802c7646580d07cd9c4ee129",
+    "finalize_polish.py": "b8dc5c719ee93a9f6b21421b5172facf4db6c450ff161d6a1f766cd4cb8eaed0",
+    "prepare_polish.py": "a80f3446c218aae3b811eda360afc468476a7da35986e2827d075a6127510c2b",
+    "run_batch.py": "5861f81ae48db8dd6abe9097f44fa15377719b81e2e188e87e875f83e80c00fc",
+    "run_polish.py": "3d0af213b51ae565e399d6a1cf9bf5691c9a2b46fb8e59f9ba2fa9e9f5211c37",
+    "run_validation.py": "8ed2b9cfa8d42244716d2a925ca060bd114848979f704c06f33a8f44fb846ea4",
+    "test_audit.py": "6ef0699ea2b88a8761d765bb86f73ba3e10b8c01b5ac03a2c0e42a4d7d155501",
+    "test_runner.py": "d9b09a79dce166bada23578933f9ee1034fa478cb8d09e5cec33795c09bc6781"
+  },
+  "selected_config_ids": [],
+  "source_commit": "4ce1108a0692edc43b47ef465dbc74a42397765e",
+  "source_repository_modified": false,
+  "stages": {
+    "calibration": {
+      "charged_rows": 25600000,
+      "gate_passes": 0,
+      "numerical_failure_trial_ids": [],
+      "numerical_failures": 0,
+      "planned_trials": 2,
+      "updates": 800000,
+      "valid_archives": 2
+    }
+  },
+  "status": "complete",
+  "total_charged_rows_including_pilots": 25600000,
+  "total_updates_including_pilots": 800000,
+  "unrecorded_partial_work_unknown": false
+}

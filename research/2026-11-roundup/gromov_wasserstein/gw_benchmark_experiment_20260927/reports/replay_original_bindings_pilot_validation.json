@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "scope": "Six real pilot helper-level cross-archive checks only. This validation fixture is not a complete 796-record audit or final campaign report.",
+  "generated_utc": "2026-09-27T23:26:25.412942+00:00",
+  "expected_pilot_records": 6,
+  "matched_pilot_records": 6,
+  "auditor_sha256": "eac877376e9b0c6ed72d42b69bcfd6667a42b44c6192e500b06025285d42ca55",
+  "reporter_sha256": "8972f375c610cfa3bd5d6653523379a2f1a1dfaae706404c0e4c7683af19a79b",
+  "manifest_sha256": "45f0f398469190481b1c2b267715b0a4efeb15ad41ab98ebeae7da26d1a17fd9",
+  "manifest_pair": {
+    "phase": "pilot",
+    "path": "/home/tony/gw_benchmark_experiment_20260927/configs/momentum_diagnostic_replays/pilot.json",
+    "sha256": "45f0f398469190481b1c2b267715b0a4efeb15ad41ab98ebeae7da26d1a17fd9",
+    "local_root": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/momentum_diagnostic_replay_pilot",
+    "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_momentum_diagnostics/replay_20260928/pilot",
+    "controller_source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+    "prescribed_runs": 6,
+    "errors": []
+  },
+  "original_local_root": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459",
+  "canonical_data_root": "/home/tony/gw_benchmark_experiment_20260927/data",
+  "source_report_policy": "Rows obtained from summarize_momentum_replays.inspect_phase; no synthetic proof or report records substituted.",
+  "original_files_unchanged": true,
+  "records": [
+    {
+      "run_id": "pilot/metric512_s1001/smoothing-fw",
+      "original_phase": "pilot",
+      "companion_status": "verified",
+      "matched": true,
+      "issues": [],
+      "expected_bindings": {
+        "final_sha256": "a1826f3cf20de261a0119ef83fd89fbe947e710414a0829c2f4caa9af5f459d6",
+        "instance_sha256": "ce7e6f6b7de474cd09ae69a48d9776cdad94b1f4072ad4654d06842cc27b1d0c",
+        "metadata_sha256": "5ab87ecd442cfde1a155051e833c6469580480c5d099310583ea31281ebc0fe0",
+        "source_file_sha256": {
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "trace_sha256": "95d884b6b300a7dc0f1901a365160e51f69e144eb51200f762f42e2226c94334"
+      },
+      "actual_bindings": {
+        "metadata_sha256": "5ab87ecd442cfde1a155051e833c6469580480c5d099310583ea31281ebc0fe0",
+        "trace_sha256": "95d884b6b300a7dc0f1901a365160e51f69e144eb51200f762f42e2226c94334",
+        "final_sha256": "a1826f3cf20de261a0119ef83fd89fbe947e710414a0829c2f4caa9af5f459d6",
+        "instance_sha256": "ce7e6f6b7de474cd09ae69a48d9776cdad94b1f4072ad4654d06842cc27b1d0c",
+        "source_file_sha256": {
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484"
+      },
+      "original_local_dir": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459/metric512_s1001/smoothing-fw",
+      "original_remote_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459/metric512_s1001/smoothing-fw",
+      "original_remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459",
+      "original_relative_path": "metric512_s1001/smoothing-fw",
+      "original_status": "completed",
+      "verification_sha256": "ee79abc4ab0d3963472ba8e7a7ec73dfa3384df26f68aed7ee664dc2b7f7dc79",
+      "receipt_sha256": "0e77c873a4258f31161e58dd8ed047217d7e9b3ba57c3c460c739b6aecef1806"
+    },
+    {
+      "run_id": "pilot/metric512_s1001/smoothing-fw-exact",
+      "original_phase": "pilot",
+      "companion_status": "verified",
+      "matched": true,
+      "issues": [],
+      "expected_bindings": {
+        "final_sha256": "726c276c84976a1c502a5b98dc41d10e4dcd40ff4bfff643e3fbbe4e99888562",
+        "instance_sha256": "ce7e6f6b7de474cd09ae69a48d9776cdad94b1f4072ad4654d06842cc27b1d0c",
+        "metadata_sha256": "51293f60ae486ea0ade6f715e875d64201806a5f7a8c3685246182b2dcb8b94f",
+        "source_file_sha256": {
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "trace_sha256": "273d81ab7692cadf661295e5bec0c70cdaef8cf83a3a4f3c0ccf2819f1c31658"
+      },
+      "actual_bindings": {
+        "metadata_sha256": "51293f60ae486ea0ade6f715e875d64201806a5f7a8c3685246182b2dcb8b94f",
+        "trace_sha256": "273d81ab7692cadf661295e5bec0c70cdaef8cf83a3a4f3c0ccf2819f1c31658",
+        "final_sha256": "726c276c84976a1c502a5b98dc41d10e4dcd40ff4bfff643e3fbbe4e99888562",
+        "instance_sha256": "ce7e6f6b7de474cd09ae69a48d9776cdad94b1f4072ad4654d06842cc27b1d0c",
+        "source_file_sha256": {
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484"
+      },
+      "original_local_dir": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459/metric512_s1001/smoothing-fw-exact",
+      "original_remote_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459/metric512_s1001/smoothing-fw-exact",
+      "original_remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459",
+      "original_relative_path": "metric512_s1001/smoothing-fw-exact",
+      "original_status": "completed",
+      "verification_sha256": "6cc4c6da18bc57b74fe8b6accc596f45f96feeacce74593395173ae25bb823a2",
+      "receipt_sha256": "5e2f2e416d5a5fbe39be2a70d0a99c8682e331cab000a755b5f12b888d60759d"
+    },
+    {
+      "run_id": "pilot/metric512_noisy_s1001/smoothing-fw",
+      "original_phase": "pilot",
+      "companion_status": "verified",
+      "matched": true,
+      "issues": [],
+      "expected_bindings": {
+        "final_sha256": "a3b382b7e2fde034479fec47741b450fcfe4aafbbc501032e463f5712c964679",
+        "instance_sha256": "66263e749d316ca87b6aabb55673833649ea2c4d59cb67fd0f284f614d6f53d4",
+        "metadata_sha256": "975d72efe9025ea922d3339f50a81ee33be445afd8c03cf4406ee1251e4be90f",
+        "source_file_sha256": {
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "trace_sha256": "0398ffa6d9eca0b5091acfa3e10055715fd231f9d837a0a74f11bd04934a4a95"
+      },
+      "actual_bindings": {
+        "metadata_sha256": "975d72efe9025ea922d3339f50a81ee33be445afd8c03cf4406ee1251e4be90f",
+        "trace_sha256": "0398ffa6d9eca0b5091acfa3e10055715fd231f9d837a0a74f11bd04934a4a95",
+        "final_sha256": "a3b382b7e2fde034479fec47741b450fcfe4aafbbc501032e463f5712c964679",
+        "instance_sha256": "66263e749d316ca87b6aabb55673833649ea2c4d59cb67fd0f284f614d6f53d4",
+        "source_file_sha256": {
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484"
+      },
+      "original_local_dir": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459/metric512_noisy_s1001/smoothing-fw",
+      "original_remote_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459/metric512_noisy_s1001/smoothing-fw",
+      "original_remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459",
+      "original_relative_path": "metric512_noisy_s1001/smoothing-fw",
+      "original_status": "completed",
+      "verification_sha256": "949a5c22af65fde4bda91e50daba7416e28f0e8bd44408a1d6f176fbd7d556e1",
+      "receipt_sha256": "72e7cd8bbc102e8df1601068860a1ece7d5f46e96c8e57c577c2bc597a1e69d4"
+    },
+    {
+      "run_id": "pilot/metric512_noisy_s1001/smoothing-fw-exact",
+      "original_phase": "pilot",
+      "companion_status": "verified",
+      "matched": true,
+      "issues": [],
+      "expected_bindings": {
+        "final_sha256": "caf4908a69c489ea714e3f1f16e047a766be61246a539f68ef83d69b7ffd834a",
+        "instance_sha256": "66263e749d316ca87b6aabb55673833649ea2c4d59cb67fd0f284f614d6f53d4",
+        "metadata_sha256": "21173d1d9ebb089cc46ce6592b4d35c0221fcc6795c97c84b51d9a71a217cae8",
+        "source_file_sha256": {
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "trace_sha256": "bf210afd7ae6b3bb6f4a90ce61a15c1c0c3a30554047aed84383a3447b4d2351"
+      },
+      "actual_bindings": {
+        "metadata_sha256": "21173d1d9ebb089cc46ce6592b4d35c0221fcc6795c97c84b51d9a71a217cae8",
+        "trace_sha256": "bf210afd7ae6b3bb6f4a90ce61a15c1c0c3a30554047aed84383a3447b4d2351",
+        "final_sha256": "caf4908a69c489ea714e3f1f16e047a766be61246a539f68ef83d69b7ffd834a",
+        "instance_sha256": "66263e749d316ca87b6aabb55673833649ea2c4d59cb67fd0f284f614d6f53d4",
+        "source_file_sha256": {
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484"
+      },
+      "original_local_dir": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459/metric512_noisy_s1001/smoothing-fw-exact",
+      "original_remote_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459/metric512_noisy_s1001/smoothing-fw-exact",
+      "original_remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459",
+      "original_relative_path": "metric512_noisy_s1001/smoothing-fw-exact",
+      "original_status": "completed",
+      "verification_sha256": "82963d9d22638e55e34b50055286a0b42ce7407a24a85d527d7c1b08a4820e45",
+      "receipt_sha256": "aff09587c47de99c34763d90f88d05767a79869b0b6e37ef77b11232b9a29880"
+    },
+    {
+      "run_id": "pilot/bmmc1000/smoothing-fw",
+      "original_phase": "pilot",
+      "companion_status": "verified",
+      "matched": true,
+      "issues": [],
+      "expected_bindings": {
+        "final_sha256": "8ae1ff78fa0da29eab96d841ab75944c259d3cf13af42d1eac540e3e33456d6b",
+        "instance_sha256": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+        "metadata_sha256": "a2223231c6da74717bbb7cc37d80b0870fc2c7156a85a47e59473b48ba5dd22e",
+        "source_file_sha256": {
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "trace_sha256": "c3897750db3c48eeb62a74e25c198afcfcd8cda0e53b07e59dd693c236408d9e"
+      },
+      "actual_bindings": {
+        "metadata_sha256": "a2223231c6da74717bbb7cc37d80b0870fc2c7156a85a47e59473b48ba5dd22e",
+        "trace_sha256": "c3897750db3c48eeb62a74e25c198afcfcd8cda0e53b07e59dd693c236408d9e",
+        "final_sha256": "8ae1ff78fa0da29eab96d841ab75944c259d3cf13af42d1eac540e3e33456d6b",
+        "instance_sha256": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+        "source_file_sha256": {
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484"
+      },
+      "original_local_dir": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459/bmmc1000/smoothing-fw",
+      "original_remote_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459/bmmc1000/smoothing-fw",
+      "original_remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459",
+      "original_relative_path": "bmmc1000/smoothing-fw",
+      "original_status": "completed",
+      "verification_sha256": "2b73a36611194d9b054e408f865c8d10bdb1ac63993113ddc826c134d4a91d5a",
+      "receipt_sha256": "0b6c4a2f4c67bd8025a322164a8cbb1dbbec00530d1112e65ca3a12330d1b160"
+    },
+    {
+      "run_id": "pilot/bmmc1000/smoothing-fw-exact",
+      "original_phase": "pilot",
+      "companion_status": "verified",
+      "matched": true,
+      "issues": [],
+      "expected_bindings": {
+        "final_sha256": "17da0efe56e2317637cc7e08fafd0204a3b47776e98154ef0be3be4b7a7524c1",
+        "instance_sha256": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+        "metadata_sha256": "3ee907ac6c2fff126891c2834c18cdbcd6b8333c8da23d48598d2ffc5a458abf",
+        "source_file_sha256": {
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "trace_sha256": "2573a627460f08070f319956706031253b18a766a0a462259e038fa6f9675bd9"
+      },
+      "actual_bindings": {
+        "metadata_sha256": "3ee907ac6c2fff126891c2834c18cdbcd6b8333c8da23d48598d2ffc5a458abf",
+        "trace_sha256": "2573a627460f08070f319956706031253b18a766a0a462259e038fa6f9675bd9",
+        "final_sha256": "17da0efe56e2317637cc7e08fafd0204a3b47776e98154ef0be3be4b7a7524c1",
+        "instance_sha256": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+        "source_file_sha256": {
+          "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+          "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+        },
+        "theory_config_sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484"
+      },
+      "original_local_dir": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/1961459/bmmc1000/smoothing-fw-exact",
+      "original_remote_dir": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459/bmmc1000/smoothing-fw-exact",
+      "original_remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_practical/1961459",
+      "original_relative_path": "bmmc1000/smoothing-fw-exact",
+      "original_status": "completed",
+      "verification_sha256": "7a56e5b63ffa70ae6f78e34668bae7127fba5d9e45194de7690dce107bd3011b",
+      "receipt_sha256": "c65a8c87768967d41afe7df681b92d7e8f05fce0fd7db59388c4225bb262804a"
+    }
+  ],
+  "hash_accounting": {
+    "unique_canonical_paths": 57,
+    "cache_hits": 51,
+    "bytes_hashed": 37154279
+  },
+  "elapsed_seconds": 0.061916208011098206
+}

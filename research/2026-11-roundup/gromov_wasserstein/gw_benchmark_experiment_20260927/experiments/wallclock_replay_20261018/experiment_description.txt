@@ -1,0 +1,38 @@
+Measured wall-clock replay of the fixed BMMC/SNARE comparison, 2026-10-18
+
+The completed large_pot_frames_20261016 experiment recorded exact loss traces
+by iteration and total elapsed seconds, but no per-diagnostic timestamps.
+Its existing loss trajectories cannot be reconstructed against actual time.
+The accompanying immediate figures therefore show measured final endpoints
+against total elapsed time and separately show the measured iteration curves.
+No interpolation of iteration into estimated time is used.
+
+Replay the eight reported runs only, without any prefactor selection:
+BMMC6224: full-gradient entropic GW POT step, seed810,2000updates; pair-sampled
+FRAMES gamma0=.3,rho0=1,mu_scale=10,seeds811/812/813,20000updates each.
+SNARE10000: the same POT control; FRAMES gamma0=.3,rho0=.1,mu_scale=10,
+seeds811/812/813,20000updates each. All use archived matrices and marginals,
+FP64, product initialization, epsilon=.001, inner criteria1e-7, and1024pairs
+per stochastic update. FRAMES exponents remain3/4,1/2,1/4. Diagnostics retain
+the original iteration schedule. Source-specific CPU and actual-size A100
+gates precede production; the latter checks the first two loss measurements
+against frozen original metadata. Original campaigns and outputs are unchanged.
+
+One serial stream of eight runs uses1A100,2CPUs,32GiB,fwllm/gpua100.6-hour
+allocations have5-hour soft stops and checkpoint-driven continuations.
+Only unfinished task tensor checkpoints persist; all loss/timing metadata and
+terminal receipts persist. The historical run totals suggest roughly four
+GPU-hours for the eight replays, before gates/setup; this is not a guarantee.
+There is no active monitoring or repeated scheduler polling.
+
+Storage: reserve two replay checkpoint generations (2.981GiB), including
+an interrupted transaction. SHARE needs all four allowed A100s, so at its
+60.616GiB checkpoint peak the replay is paused. Adding2.067GiB for entropy
+and2.981GiB for replay gives65.664GiB; verify66GiB quota headroom before
+submission. While replay runs, SHARE can retain at most three states,
+45.462GiB. Finished replay states are pruned idempotently.
+
+Timing counts elapsed execution, including load/validation, diagnostics and
+checkpoint overhead. Queue delays and the48-run development sweep are excluded.
+Comparisons of final fixed-horizon times are not time-to-equal-loss comparisons;
+POT may reach its final plateau before the prescribed2000updates finish.

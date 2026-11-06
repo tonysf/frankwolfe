@@ -1,0 +1,82 @@
+% Shared problem page; stochastic oracle on page 2, experiment results on page 3.
+{\color{ink}\fontsize{19}{22}\selectfont\bfseries The Gromov--Wasserstein problem\par}
+{\small\color{muted}Reference page \enspace / \enspace the optimization problem\par}
+\vspace{8pt}
+
+\textbf{Match relationships when features cannot be compared directly.}
+Suppose two datasets describe different collections of objects, or two different
+measurements of the same objects. Their feature spaces may be incompatible.
+Gromov--Wasserstein (GW) matching uses the distances \emph{within} each dataset:
+a good correspondence pairs objects so that their relationships are preserved.
+It does not require a distance between an object in one feature space and an
+object in the other.
+
+\textbf{Data and unknown.}
+Let $A\in\mathbb R^{n\times n}$ and $B\in\mathbb R^{m\times m}$ be the two
+symmetric distance matrices. Positive probability vectors $a$ and $b$ specify
+the mass of each object; uniform weights give $a_i=1/n$ and $b_j=1/m$.
+The unknown is a \textbf{soft matching} $P\in\mathbb R^{n\times m}$:
+$P_{ij}$ is the mass assigned between source object $i$ and target object $j$.
+Balanced matching requires
+\[
+ U(a,b)=\{P\geq0:\ P\one_m=a,\ P^\top\one_n=b\}.
+\]
+The row and column sums prescribe how much each object contributes. They do not
+force a one-to-one matching.
+
+\textbf{Objective: preserve pairwise distances.}
+The unregularized squared GW problem used here is
+\[
+ \boxed{\min_{P\in U(a,b)} f(P)},\qquad
+ f(P)=\sum_{i,k=1}^{n}\sum_{j,\ell=1}^{m}
+       (A_{ik}-B_{j\ell})^2 P_{ij}P_{k\ell}.
+\]
+Two simultaneous matches, $i\leftrightarrow j$ and $k\leftrightarrow\ell$,
+incur a cost when $A_{ik}$ and $B_{j\ell}$ disagree. Equivalently, $f(P)$ is the
+expected squared distance discrepancy from two independent draws from $P$.
+This convention includes neither a factor $1/2$ nor entropy regularization.
+The objective is smooth and generally nonconvex; the feasible transport
+polytope is convex. A small loss alone does not certify a global optimum or a
+scientifically correct correspondence.
+
+\textbf{Composite form for FraMES.}
+Separate the inexpensive row constraints from the column constraint:
+\[
+ \begin{aligned}
+ C&=\{P\geq0:P\one_m=a\}, & T(P)&=P^\top\one_n,\\
+ g(y)&=\iota_{\{b\}}(y)
+ =\begin{cases}0,&y=b,\\+\infty,&y\ne b,\end{cases}
+ &\min_{P\in C}\;&f(P)+g(TP).
+ \end{aligned}
+\]
+\textbf{Smoothing the column constraint and its gradient.}
+The indicator $g$ is not differentiable; the smooth quantity is its Moreau
+envelope. Projection onto the singleton $\{b\}$ gives
+\[
+ \operatorname{prox}_{\mu g}(y)=b,\qquad
+ g_\mu(y)=\frac{\|y-b\|_2^2}{2\mu},\qquad
+ \nabla g_\mu(y)=\frac{y-b}{\mu}.
+\]
+Under Frobenius and Euclidean inner products, $T^*u=\one_nu^\top$.
+The chain rule therefore gives the explicit penalty gradient
+\[
+ \boxed{\nabla(g_\mu\circ T)(P)
+ =\frac{T^*(TP-b)}{\mu}
+ =\frac{\one_n(P^\top\one_n-b)^\top}{\mu}.}
+\]
+This term is computed directly from the current column residual, without random
+probes. A smaller $\mu$ strengthens the penalty for a fixed residual.
+
+FraMES combines a momentum estimate of $\nabla f(P)$ with this current penalty
+gradient. Its linear minimization oracle places each row's mass in a minimizing
+column. Convex-combination updates preserve nonnegativity and row masses;
+column masses can be violated during optimization.
+
+\textbf{What a results page measures.}
+Feasible loss is the full $f$ evaluated after output-only transport repair to
+numerical tolerance. Raw loss, feasibility error and the smoothed penalty are
+separate quantities. Loss magnitudes depend on distance scaling, so reductions
+are interpreted within a fixed dataset. The next page explains the stochastic
+oracle for $\nabla f$.
+\vfill
+{\footnotesize\color{muted}Shared background. Page 2 explains the stochastic oracle; page 3 describes the experiment's data, settings and results.}

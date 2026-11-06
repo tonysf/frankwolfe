@@ -1,0 +1,784 @@
+{
+  "status": "completed",
+  "updated_utc": "2026-10-01T18:11:53.212600+00:00",
+  "dataset": "SHARE-seq mouse skin",
+  "instance_id": "shareseq_full",
+  "expected_n": 31890,
+  "expected_m": 31890,
+  "population": "All31890paired cells passing unchanged joint QC from32231public curated pairs; no subsampling",
+  "representation_refit": false,
+  "previous_preparation_manifest_sha256": "1ab52cc35fbbb0492a8aa88c666bab73c36168f305000cd0f32b481f02f64bb7",
+  "supersession": {
+    "requested_change": "Use full QC-passing paired population if the 25000-cell jobs have not started",
+    "observed_before_cancellation": {
+      "1981933": {
+        "state": "PENDING",
+        "reason": "Resources",
+        "elapsed": "00:00:00"
+      },
+      "1981934": {
+        "state": "PENDING",
+        "reason": "Dependency",
+        "elapsed": "00:00:00"
+      }
+    },
+    "cancellation": {
+      "command": "scancel --user=silvetian --state=PENDING 1981933 1981934",
+      "verified": {
+        "1981933": {
+          "state": "CANCELLED by 3359",
+          "elapsed": "00:00:00",
+          "start": "None",
+          "end": "2026-09-30T20:58:10"
+        },
+        "1981934": {
+          "state": "CANCELLED by 3359",
+          "elapsed": "00:00:00",
+          "start": "None",
+          "end": "2026-09-30T20:58:10"
+        }
+      }
+    },
+    "new_population": 31890,
+    "qc_unchanged": true,
+    "source_population_before_qc": 32231,
+    "gpu_count": 4,
+    "updated_utc": "2026-09-30T19:01:39.080308+00:00"
+  },
+  "campaign_config": {
+    "schema_version": 1,
+    "scope": "Exploratory SHARE-seq full QC-passing population (31890 paired cells), with constants transferred unchanged from selected SNARE-10000 configurations; not tuned or selected on SHARE-seq",
+    "methods": [
+      "smoothing-fw",
+      "stochastic-kl-momentum"
+    ],
+    "hardware": {
+      "cluster": "Ruche",
+      "partition": "gpua100",
+      "account": "fwllm",
+      "nodes": 1,
+      "gpus": 4,
+      "gpu": "A100 40GB",
+      "host_memory_gib": 128
+    },
+    "initialization": "product a*b^T",
+    "initialization_seed": 100,
+    "batch": 128,
+    "rho0": 0.3,
+    "momentum_exponent": 0.5,
+    "fw": {
+      "gamma0": 0.1,
+      "mu_scale": 0.1,
+      "step_exponent": 0.75,
+      "smoothing_exponent": 0.25
+    },
+    "kl": {
+      "eta": 0.1,
+      "inner_tol": 0.0001,
+      "inner_max": 1000,
+      "check_every": 10
+    },
+    "pilot": {
+      "seeds": [
+        450
+      ],
+      "budget_seconds": 30,
+      "checkpoints": [
+        10,
+        30
+      ]
+    },
+    "final": {
+      "seeds": [
+        500,
+        501,
+        502
+      ],
+      "budget_seconds": 300,
+      "checkpoints": [
+        10,
+        30,
+        100,
+        300
+      ]
+    },
+    "order": "FW then KL for even seed-list index; KL then FW for odd index",
+    "resource_gate": "All pilot rank/phase reserved-memory peaks below 80% of device memory and summed rank process RSS peaks below 80% of 128GiB",
+    "storage": "Save raw and rounded final coupling shards for six final runs, approximately48.8GB total; pilot plans validated and hashed without persistence",
+    "loss": "Original full unregularized squared-loss GW with no half factor; exact distributed diagnostics and float64 final validation",
+    "output": "Current iterate rounded at recorded checkpoints; no incumbent selection",
+    "timing": "Same four GPUs sequentially for each paired method; communication counts toward solver time; also report four times solver time and total allocated GPU-hours",
+    "interpretation": "Three stochastic repetitions of one fixed paired dataset; no biological alignment or asymptotic speedup claim implied",
+    "instance_id": "shareseq_full",
+    "expected_n": 31890,
+    "population": "All 31890 paired cells passing the unchanged joint QC, with no subsampling"
+  },
+  "jobs": {
+    "preparation": {
+      "id": 1981990,
+      "last_observed_state": "COMPLETED",
+      "elapsed": "00:05:28",
+      "exit_code": "0:0",
+      "peak_process_rss_kib": 3801876
+    },
+    "gpu": {
+      "id": 1983902,
+      "last_observed_state": "COMPLETED",
+      "node": "ruche-gpu19",
+      "excluded_nodes": [
+        "ruche-gpu16"
+      ],
+      "elapsed": "00:41:58",
+      "exit_code": "0:0"
+    },
+    "report": {
+      "id": 1983903,
+      "last_observed_state": "COMPLETED",
+      "reason": null,
+      "dependency": "afterok:1983902",
+      "elapsed": "00:00:45",
+      "exit_code": "0:0"
+    }
+  },
+  "submissions": {
+    "preparation": {
+      "job_id": "1981990",
+      "source_revision": "78b146153a0ee87d7de6394782c764c178ce3a84",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_prep_78b1461",
+      "previous_preparation": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/preparation_8c98135/data",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461",
+      "submission_output": "SOURCE_REVISION: OK\nprepare_full.py: OK\nprepare_full.sbatch: OK\nprepare_shareseq.py: OK\n1981990\n"
+    },
+    "gpu": {
+      "job_id": "1983902",
+      "source_revision": "8f3b092777285e625041894d406b018b95f899cf",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_runtime_8f3b092",
+      "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092_retry_20261001",
+      "excluded_nodes": [
+        "ruche-gpu16"
+      ],
+      "retry_of_job": 1981992,
+      "reason": "GPU1 device handle unavailable in nvidia-smi; NVML/CUDA initialization failed before distributed correctness or benchmarks",
+      "submission_output": "README.md: OK\nSOURCE_REVISION: OK\ncampaign.json: OK\ncampaign.py: OK\ngpu.sbatch: OK\ngpu_correctness.py: OK\nreference/gw_core.py: OK\nreport.py: OK\nreport.sbatch: OK\nrun_sharded.py: OK\nsharded_gw.py: OK\ntheory_config.json: OK\n1983902\n"
+    },
+    "report": {
+      "job_id": "1983903",
+      "dependency": "afterok:1983902",
+      "source_revision": "8f3b092777285e625041894d406b018b95f899cf",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_runtime_8f3b092",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092_retry_20261001",
+      "replacement_for": 1981993,
+      "submission_output": "1983903\n"
+    }
+  },
+  "local_validation": {
+    "status": "passed",
+    "backend": "four-rank CPU/Gloo",
+    "checks": 352,
+    "failed_checks": 0,
+    "source_sha256_at_test": {
+      "gpu_correctness.py": "a23edcbba82370cb4490125301e07fa94234282fe6673d3c8ceeefb9916b77cc",
+      "sharded_gw.py": "d942837ab8749d397253acb29a9a49f9ebfd982af684c10c05d636173e7e1b4b",
+      "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444"
+    },
+    "note": "Core constructor metadata agreement subsequently strengthened; allocated four-GPU correctness gate tests frozen production payload.",
+    "preparation_tests": {
+      "passed": 7,
+      "scope": "tiny H5AD reader, pairing/QC, deterministic representations/order, exact blocked distances and manifest"
+    },
+    "kernel_tests": {
+      "passed": 3,
+      "scope": "single-process and three-rank CPU/Gloo, both precisions, uneven and empty partitions, exact/sketch/KL/FW parity"
+    },
+    "runner_integration": {
+      "passed": 6,
+      "scope": "two-rank saved-output and independent loss/metrics parity; float32 state release before validation"
+    },
+    "resource_gate_tests": {
+      "passed": 11,
+      "scope": "fail closed for missing/invalid/nonfinite results and resource thresholds"
+    },
+    "runner_and_campaign_tests": {
+      "passed": 45,
+      "seconds": 16.06,
+      "scope": "two-rank integration, direct loss and metrics, solver state release, memory gates, source/config/data/rank binding and pair matching"
+    },
+    "frozen_local_source_sha256": {
+      "run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+      "sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+      "campaign.py": "9310be8dc5360760471eb6bfb47aeb656f0c0de20a4fee12bd30f179252e3cf9",
+      "gpu_correctness.py": "a23edcbba82370cb4490125301e07fa94234282fe6673d3c8ceeefb9916b77cc",
+      "prepare_full.py": "f005b7373804a4b7ed13c1a70f1d3291516ac6985270dbbfbaf4ff141771991e",
+      "report.py": "fb2b898da95615b7270b721bcc97e14b5810c1d8a2c1c83896d46d981c4944c8"
+    },
+    "full_population_replacement": {
+      "expected_n": 31890,
+      "preparation_tests_passed": 3,
+      "preparation_binding_tests_passed": 1,
+      "report_dimension_tests_passed": 10,
+      "unchanged_runtime": [
+        "run_sharded.py",
+        "sharded_gw.py",
+        "gpu_correctness.py"
+      ],
+      "scope": "All QC-passing pairs reused without refit; unchanged GPU kernels retain their prior local validation and will be validated in the new allocation."
+    }
+  },
+  "report_destination": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092_retry_20261001",
+  "monitoring": "Completed; no further scheduler checks or submissions required.",
+  "instance_manifest": {
+    "A_scale": 50.00077231389644,
+    "B_scale": 1.891221765723182,
+    "array_files_sha256": {
+      "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+      "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+      "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+      "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+    },
+    "arrays": {
+      "A": {
+        "bytes": 4067888528,
+        "dtype": "float32",
+        "file": "A.npy",
+        "sha256": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "shape": [
+          31890,
+          31890
+        ]
+      },
+      "B": {
+        "bytes": 4067888528,
+        "dtype": "float32",
+        "file": "B.npy",
+        "sha256": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "shape": [
+          31890,
+          31890
+        ]
+      },
+      "a": {
+        "bytes": 255248,
+        "dtype": "float64",
+        "file": "a.npy",
+        "sha256": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "shape": [
+          31890
+        ]
+      },
+      "b": {
+        "bytes": 255248,
+        "dtype": "float64",
+        "file": "b.npy",
+        "sha256": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "shape": [
+          31890
+        ]
+      }
+    },
+    "binding": {
+      "metric_helper_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "preparation_script_sha256": "f005b7373804a4b7ed13c1a70f1d3291516ac6985270dbbfbaf4ff141771991e",
+      "previous_preparation_file": "previous_preparation.json",
+      "previous_preparation_manifest_sha256": "1ab52cc35fbbb0492a8aa88c666bab73c36168f305000cd0f32b481f02f64bb7",
+      "previous_preparation_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "previous_recipe_sha256": "f1bf91a02891e75f77a6466004ef77cc0f0d4c73d0f7af1b0da9af31c986381b",
+      "raw_files": {
+        "Ma-2020-ATAC.h5ad": {
+          "bytes": 274596957,
+          "sha256": "fb94f9d3c9ee42c07aca5ce3769f77b754084bce7737999ddbb63c6c7f8f7c17",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-ATAC.h5ad"
+        },
+        "Ma-2020-RNA.h5ad": {
+          "bytes": 50822146,
+          "sha256": "d38865f573e345b62f2d5a3714bd880ae8f298789d794bd635366599db182cee",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-RNA.h5ad"
+        }
+      },
+      "recipe_sha256": "35e89087889b14f48339b4ad0b8c20a52ef9f482c5319ac44ec9e461dc1fc653",
+      "representations_file": "representations.npz",
+      "representations_sha256": "fbbfa56b5e03cc6713cc072e60a1541be5fd7da9ae213e4ac09885135e628db3",
+      "source_manifest_sha256": "e041e79fa43e04e80f02a0a97ee43882ce748e53a9c1067be6cd109ffaae1350"
+    },
+    "correspondence_file": "correspondence.npz",
+    "correspondence_sha256": "deb85ca693c6f1f0568ac19a93bc92945871891f6fcc70ea4911dd292e91cb7c",
+    "cost_storage_dtype": "float32",
+    "family": "shareseq_mouse_skin",
+    "id": "shareseq_full",
+    "known_optimum": null,
+    "m": 31890,
+    "metric": "ordinary Euclidean distance, not squared Euclidean",
+    "n": 31890,
+    "objective": "full_squared_discrepancy_no_half_no_entropy",
+    "representation_shapes": [
+      [
+        31890,
+        50
+      ],
+      [
+        31890,
+        49
+      ]
+    ],
+    "scale": "each_matrix_divided_by_its_own_maximum",
+    "schema_version": 1,
+    "source_representation": "log_library10000_top2000_variance_centered_pca50",
+    "storage": "standalone_npy_arrays",
+    "target_representation": "binary_log1p_tfidf_lsi50_discard_first_row_l2"
+  },
+  "completed_preparation": {
+    "binding": {
+      "metric_helper_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "preparation_script_sha256": "f005b7373804a4b7ed13c1a70f1d3291516ac6985270dbbfbaf4ff141771991e",
+      "previous_preparation_file": "previous_preparation.json",
+      "previous_preparation_manifest_sha256": "1ab52cc35fbbb0492a8aa88c666bab73c36168f305000cd0f32b481f02f64bb7",
+      "previous_preparation_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "previous_recipe_sha256": "f1bf91a02891e75f77a6466004ef77cc0f0d4c73d0f7af1b0da9af31c986381b",
+      "raw_files": {
+        "Ma-2020-ATAC.h5ad": {
+          "bytes": 274596957,
+          "sha256": "fb94f9d3c9ee42c07aca5ce3769f77b754084bce7737999ddbb63c6c7f8f7c17",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-ATAC.h5ad"
+        },
+        "Ma-2020-RNA.h5ad": {
+          "bytes": 50822146,
+          "sha256": "d38865f573e345b62f2d5a3714bd880ae8f298789d794bd635366599db182cee",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-RNA.h5ad"
+        }
+      },
+      "recipe_sha256": "35e89087889b14f48339b4ad0b8c20a52ef9f482c5319ac44ec9e461dc1fc653",
+      "representations_file": "representations.npz",
+      "representations_sha256": "fbbfa56b5e03cc6713cc072e60a1541be5fd7da9ae213e4ac09885135e628db3",
+      "source_manifest_sha256": "e041e79fa43e04e80f02a0a97ee43882ce748e53a9c1067be6cd109ffaae1350"
+    },
+    "dataset": "SHARE-seq mouse skin, scGLUE Ma-2020 raw-count export",
+    "distance_block_rows": 512,
+    "instances": {
+      "shareseq_full": {
+        "A_scale": 50.00077231389644,
+        "B_scale": 1.891221765723182,
+        "array_files_sha256": {
+          "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+          "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+          "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+          "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+        },
+        "arrays": {
+          "A": {
+            "bytes": 4067888528,
+            "dtype": "float32",
+            "file": "A.npy",
+            "sha256": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+            "shape": [
+              31890,
+              31890
+            ]
+          },
+          "B": {
+            "bytes": 4067888528,
+            "dtype": "float32",
+            "file": "B.npy",
+            "sha256": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+            "shape": [
+              31890,
+              31890
+            ]
+          },
+          "a": {
+            "bytes": 255248,
+            "dtype": "float64",
+            "file": "a.npy",
+            "sha256": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+            "shape": [
+              31890
+            ]
+          },
+          "b": {
+            "bytes": 255248,
+            "dtype": "float64",
+            "file": "b.npy",
+            "sha256": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+            "shape": [
+              31890
+            ]
+          }
+        },
+        "binding": {
+          "metric_helper_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+          "preparation_script_sha256": "f005b7373804a4b7ed13c1a70f1d3291516ac6985270dbbfbaf4ff141771991e",
+          "previous_preparation_file": "previous_preparation.json",
+          "previous_preparation_manifest_sha256": "1ab52cc35fbbb0492a8aa88c666bab73c36168f305000cd0f32b481f02f64bb7",
+          "previous_preparation_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+          "previous_recipe_sha256": "f1bf91a02891e75f77a6466004ef77cc0f0d4c73d0f7af1b0da9af31c986381b",
+          "raw_files": {
+            "Ma-2020-ATAC.h5ad": {
+              "bytes": 274596957,
+              "sha256": "fb94f9d3c9ee42c07aca5ce3769f77b754084bce7737999ddbb63c6c7f8f7c17",
+              "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-ATAC.h5ad"
+            },
+            "Ma-2020-RNA.h5ad": {
+              "bytes": 50822146,
+              "sha256": "d38865f573e345b62f2d5a3714bd880ae8f298789d794bd635366599db182cee",
+              "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-RNA.h5ad"
+            }
+          },
+          "recipe_sha256": "35e89087889b14f48339b4ad0b8c20a52ef9f482c5319ac44ec9e461dc1fc653",
+          "representations_file": "representations.npz",
+          "representations_sha256": "fbbfa56b5e03cc6713cc072e60a1541be5fd7da9ae213e4ac09885135e628db3",
+          "source_manifest_sha256": "e041e79fa43e04e80f02a0a97ee43882ce748e53a9c1067be6cd109ffaae1350"
+        },
+        "correspondence_file": "correspondence.npz",
+        "correspondence_sha256": "deb85ca693c6f1f0568ac19a93bc92945871891f6fcc70ea4911dd292e91cb7c",
+        "cost_storage_dtype": "float32",
+        "directory": "shareseq_full",
+        "family": "shareseq_mouse_skin",
+        "id": "shareseq_full",
+        "known_optimum": null,
+        "m": 31890,
+        "metadata_file": "shareseq_full/manifest.json",
+        "metadata_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+        "metric": "ordinary Euclidean distance, not squared Euclidean",
+        "n": 31890,
+        "objective": "full_squared_discrepancy_no_half_no_entropy",
+        "representation_shapes": [
+          [
+            31890,
+            50
+          ],
+          [
+            31890,
+            49
+          ]
+        ],
+        "scale": "each_matrix_divided_by_its_own_maximum",
+        "schema_version": 1,
+        "source_representation": "log_library10000_top2000_variance_centered_pca50",
+        "storage": "standalone_npy_arrays",
+        "target_representation": "binary_log1p_tfidf_lsi50_discard_first_row_l2"
+      }
+    },
+    "population": "every cell retained by the unchanged original joint QC",
+    "previous_preparation_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/preparation_8c98135/data",
+    "python": "3.10.19",
+    "qc": {
+      "atac_raw_cells": 32231,
+      "paired_before_qc": 32231,
+      "paired_failing_atac": 0,
+      "paired_failing_either": 341,
+      "paired_failing_rna": 341,
+      "retained_paired_cells": 31890,
+      "rna_raw_cells": 32231
+    },
+    "recipe": {
+      "atac": {
+        "binarize": true,
+        "discard_components": [
+          0
+        ],
+        "idf": "number of retained cells / number of retained cells accessing peak",
+        "row_l2_normalize_after_discard": true,
+        "svd_algorithm": "randomized",
+        "svd_components": 50,
+        "svd_n_iter": 7,
+        "svd_n_oversamples": 10,
+        "svd_seed": 20260930,
+        "tf": "binary count / nonzero peaks in cell",
+        "tfidf": "natural log1p(10000 * TF * IDF)",
+        "zero_prevalence_peaks": "discard"
+      },
+      "cell_selection": "all previously jointly QC-retained paired cells; no subsampling",
+      "cell_selection_seed": 20260931,
+      "correspondence": "separate evaluation-only NPZ; absent from optimizer instance arrays",
+      "cost_storage": "uncompressed standalone NPY arrays; float64 tiled distances normalized before float32 storage",
+      "cost_storage_dtype": "float32",
+      "distance_normalization": "each modality divided by its own maximum, separately for each size",
+      "instance_sizes": {
+        "shareseq_full": 31890
+      },
+      "joint_qc": {
+        "atac_detected_peaks_min": 500,
+        "rna_detected_genes_min": 200
+      },
+      "marginals": "uniform float64",
+      "metric": "ordinary Euclidean distance, not squared Euclidean",
+      "numerical_degeneracy": "reject ATAC retained row norm <=64*eps*max(1,full row norm); distance maximum <=64*eps*max(1,max abs coordinate)*sqrt(dim)",
+      "objective": "full_squared_discrepancy_no_half_no_entropy",
+      "paired_cells": "exact barcode intersection in lexicographic order; reject duplicate barcodes",
+      "representation_fit_population": "all jointly retained paired cells, before subsampling",
+      "representation_reuse": "exact previous representation bytes; no normalization, PCA or LSI refit",
+      "rna": {
+        "library_size": 10000.0,
+        "pca_center": true,
+        "pca_components": 50,
+        "pca_iterated_power": 7,
+        "pca_n_oversamples": 10,
+        "pca_scale_features": false,
+        "pca_seed": 20260929,
+        "pca_solver": "randomized",
+        "selected_genes": 2000,
+        "selection": "descending population variance after log1p; ties by original feature index",
+        "transform": "natural log1p"
+      },
+      "schema_version": 1,
+      "source_order_seed": 20260932,
+      "target_order_seed": 20260933,
+      "upstream_population": "scGLUE Ma-2020 raw-count H5ADs: 32231 paired cells, after author Mix-cell exclusion and upstream feature filters",
+      "view_order": "independent full-population permutations filtered to selected cells"
+    },
+    "representation_fit_python": "3.10.19",
+    "representation_fit_versions": {
+      "h5py": "3.14.0",
+      "joblib": "1.5.2",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.7.2",
+      "scipy": "1.15.3",
+      "threadpoolctl": "3.6.0"
+    },
+    "representation_refit": false,
+    "representations": {
+      "atac_components": 49,
+      "atac_nonzero_peak_count": 340341,
+      "atac_representation_sha256": "b541465d176b4b6fd54a535f4042512e015a40f50f4fa9aa3c8fca1df98d9e50",
+      "atac_svd_explained_variance_ratio_before_drop": [
+        0.006482314780976193,
+        0.0017326770081316151,
+        0.001044377682972249,
+        0.0007244715418197986,
+        0.0007032468438590553,
+        0.0005156086610983937,
+        0.000408059694498373,
+        0.0003707451247429081,
+        0.0003186501757797863,
+        0.0002714596373155097,
+        0.00024954587858848885,
+        0.0002332404733099699,
+        0.00019129087119692048,
+        0.0001565031324436528,
+        0.00014661646398330072,
+        0.00013589953574863288,
+        0.0001296118174853834,
+        0.0001272854449628093,
+        0.0001195361220117935,
+        0.00011750384620355196,
+        0.00011658571382108939,
+        0.00011579766014636345,
+        0.00011458491884421687,
+        0.0001132799759952789,
+        0.00011136614511195823,
+        0.00011011424205625234,
+        0.00010738880620728402,
+        0.00010580874932057046,
+        0.00010566868797597902,
+        0.00010520363768097428,
+        0.0001031722598888408,
+        0.00010259088986433983,
+        0.00010205259344709294,
+        0.0001013667319425241,
+        0.00010068735777844009,
+        0.0001001032641245749,
+        9.922453125087208e-05,
+        9.806679145562294e-05,
+        9.708151016540229e-05,
+        9.67314208888381e-05,
+        9.6360427692405e-05,
+        9.549909417592898e-05,
+        9.515980376580427e-05,
+        9.481363759386044e-05,
+        9.406613859770736e-05,
+        9.382744541009918e-05,
+        9.25728521392317e-05,
+        9.216687166126583e-05,
+        9.193105417216027e-05,
+        9.173860115127867e-05
+      ],
+      "rna_components": 50,
+      "rna_pca_explained_variance_ratio": [
+        0.033753044093062776,
+        0.014237695852673322,
+        0.00870213310969414,
+        0.006959376949154949,
+        0.005241549140481196,
+        0.004535706433104287,
+        0.0031840711214579133,
+        0.0027119944914535763,
+        0.002552663156344151,
+        0.002370448610641124,
+        0.0021965738145339614,
+        0.0021746454043108715,
+        0.0019449504007637518,
+        0.001895436240607944,
+        0.0017584233146039953,
+        0.0016546399589823537,
+        0.0015843169453352893,
+        0.0015215676752088683,
+        0.0014778773717548479,
+        0.0013454701769889713,
+        0.0013233629760793337,
+        0.001274199992297575,
+        0.0012556933217488318,
+        0.001184382467671899,
+        0.001164801752580884,
+        0.0011621729416263302,
+        0.0011458569039600585,
+        0.0011381229068631673,
+        0.0011138530735981852,
+        0.00111021481026823,
+        0.0011013417151975432,
+        0.0010962527369726318,
+        0.0010890743601556106,
+        0.0010820607155347444,
+        0.0010777927204605074,
+        0.0010711115386853659,
+        0.0010670217091560783,
+        0.0010601971874666227,
+        0.0010527680078940627,
+        0.0010499223107128075,
+        0.0010433521970369662,
+        0.0010379798936524201,
+        0.0010319433896818775,
+        0.001027050724457084,
+        0.0010224125584980762,
+        0.0010190537382252075,
+        0.001011489747831284,
+        0.0010054413946737738,
+        0.0009954905919218422,
+        0.000993471441271209
+      ],
+      "rna_representation_sha256": "c76dd9499ff39b30c5cc709e3c7ccdc60c6ff6356ec53be33b9c34d29f1d5a50",
+      "rna_selected_feature_count": 2000
+    },
+    "requested_threads": 8,
+    "schema_version": 1,
+    "status": "completed",
+    "versions": {
+      "h5py": "3.14.0",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "attempt_history": [
+    {
+      "gpu_job": 1981992,
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "elapsed": "00:02:21",
+      "node": "ruche-gpu16",
+      "stage": "CUDA initialization before distributed correctness tests",
+      "benchmark_runs_started": 0,
+      "reason": "GPU1 device handle unavailable in nvidia-smi; NVML/CUDA initialization failed before distributed correctness or benchmarks",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092",
+      "dependent_report_job": 1981993,
+      "dependent_report_state": "CANCELLED; dependency could never be satisfied",
+      "preserved_logs": "logs/shareseq_20260930/full_replacement/failed_1981992"
+    }
+  ],
+  "original_submissions": {
+    "preparation": {
+      "job_id": "1981990",
+      "source_revision": "78b146153a0ee87d7de6394782c764c178ce3a84",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_prep_78b1461",
+      "previous_preparation": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/preparation_8c98135/data",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461",
+      "submission_output": "SOURCE_REVISION: OK\nprepare_full.py: OK\nprepare_full.sbatch: OK\nprepare_shareseq.py: OK\n1981990\n"
+    },
+    "gpu": {
+      "job_id": "1981992",
+      "dependency": "afterok:1981990",
+      "source_revision": "8f3b092777285e625041894d406b018b95f899cf",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_runtime_8f3b092",
+      "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092",
+      "submission_output": "README.md: OK\nSOURCE_REVISION: OK\ncampaign.json: OK\ncampaign.py: OK\ngpu.sbatch: OK\ngpu_correctness.py: OK\nreference/gw_core.py: OK\nreport.py: OK\nreport.sbatch: OK\nrun_sharded.py: OK\nsharded_gw.py: OK\ntheory_config.json: OK\n1981992\n"
+    },
+    "report": {
+      "job_id": "1981993",
+      "dependency": "afterok:1981992",
+      "source_revision": "8f3b092777285e625041894d406b018b95f899cf",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_full_runtime_8f3b092",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092",
+      "submission_output": "1981993\n"
+    }
+  },
+  "independent_audit": {
+    "dimension": [
+      31890,
+      31890
+    ],
+    "previous_and_new_manifest_bindings_verified": true,
+    "qc_and_representation_hashes_unchanged": true,
+    "failure_before_benchmark_confirmed": true,
+    "oom_evidence": false
+  },
+  "completion": {
+    "status": "completed",
+    "n": 31890,
+    "valid_final_runs": 6,
+    "paired_seeds": 3,
+    "correctness_checks_passed": 352,
+    "inner_stopping_failures_total": 0,
+    "underflow": {
+      "smoothing-fw": {
+        "affected_updates": 0,
+        "cumulative_zero_entries": 0,
+        "policy": "retain log-state; these are update-wise counts, not distinct final entries"
+      },
+      "stochastic-kl-momentum": {
+        "affected_updates": 2049,
+        "cumulative_zero_entries": 7685560,
+        "policy": "retain log-state; these are update-wise counts, not distinct final entries"
+      }
+    },
+    "fw_median_loss": 0.11689965558310311,
+    "kl_median_loss": 0.1165520114105415,
+    "kl_relative_median_loss_reduction_percent": 0.29738682362025803,
+    "fw_median_updates": 3412.0,
+    "kl_median_updates": 874.0,
+    "kl_lower_loss_pairs": 3,
+    "max_reserved_gib_any_gpu": 27.4140625,
+    "max_final_rounded_marginal_l1": 1.8702423050511125e-07,
+    "successful_gpu_job": {
+      "id": 1983902,
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed_seconds": 2518,
+      "elapsed": "00:41:58",
+      "node": "ruche-gpu19",
+      "gpus": 4,
+      "allocation_gpu_hours": 2.7977777777777777
+    },
+    "report_job": {
+      "id": 1983903,
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:45"
+    },
+    "failed_gpu_attempt": {
+      "id": 1981992,
+      "elapsed_seconds": 141,
+      "gpus": 4,
+      "allocation_gpu_hours": 0.15666666666666668,
+      "reason": "CUDA/device initialization failure before benchmarking"
+    },
+    "total_gpu_allocation_hours_including_failed_attempt": 2.9544444444444444,
+    "final_solver_gpu_hours": 2.000709496335282,
+    "collection": {
+      "remote": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092_retry_20261001",
+      "files": {
+        "report.json": "051662db50c228f4fe5b9f65b6354b270a87494d9b2eecb3cf53bed97061769c",
+        "report.md": "8cb5ef4ba70e10afd6b37521abf11a804df4e7685f1ba8719bcb19b9e9fc0ab1",
+        "completion.json": "ba9ee2d767603317c24436457d180c608525be44e0e7b03a8b9451f631448852",
+        "correctness.json": "44d945df38ec9d33f0686cf4ad982ad4cf3f77c0876c20513c27dc9afc8c71ca",
+        "pilot_gate.json": "8def8aa22842172d7f9f2e17a81646e48557673feb54ece82b40b47e2a0e7113",
+        "frozen_campaign.json": "a598f91ae9aba6e619dbc0113f82623a5ea0c46669b2b8116cb9a3a8ef98eef1",
+        "current_rounded_loss_vs_feasible_time.png": "0fabd89dbfd424a74c37c4b1f2516b2d1ddee31eca5b7f51dae4897be47677fc",
+        "current_rounded_loss_vs_feasible_time.pdf": "53fe207342bdf587c58c525957209b2f106bb11db2cab929a04d618873d27e97",
+        "current_rounded_loss_vs_outer_updates.png": "1e001995b7108e117ea0489808d38766df06d2aa0460222b6341b3afb4a8ea6a",
+        "current_rounded_loss_vs_outer_updates.pdf": "505a0277c94bae23cb43a0ae81b82c5398420f42796705c24365a5c3a12f5e2a"
+      },
+      "all_sha256_verified": true
+    },
+    "interpretation": "Three product-start stochastic seeds, transferred SNARE constants, no SHARE-seq tuning; objective ranking does not demonstrate useful biological alignment."
+  },
+  "local_report": "reports/shareseq_full_final/report.md"
+}

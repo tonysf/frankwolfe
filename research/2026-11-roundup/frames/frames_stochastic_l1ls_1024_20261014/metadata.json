@@ -1,0 +1,209 @@
+{
+  "dimension": 1024,
+  "steps": 32768,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "source_manuscript": "/home/tony/gw_benchmark_experiment_20260927/provenance/manuscript.txt",
+  "source_sha256": "f9637a3627ece8b29a851be28eae5bdadfa39f143bbab6b9c7912c0dc2afea5b",
+  "source_theorem": "Proposition 2.11 (stochastic fixed-schedule result)",
+  "problem": "min_{||x||_1<=1} .25*(||x-a-b||_2^2+||x-a+b||_2^2) + indicator_R_+^1024(x)",
+  "a_groups": [
+    [
+      0,
+      64,
+      0.03125
+    ],
+    [
+      64,
+      128,
+      -0.0234375
+    ],
+    [
+      128,
+      1024,
+      0.0078125
+    ]
+  ],
+  "b": "b_j=(-1)^j/64, zero-based j; ||b||_2^2=1/4",
+  "oracle": "One independent uniform draw of the two full least-squares-block gradients per iteration; noise covariance bb^T has rank one. Not individual scalar-row sampling.",
+  "x0": "Zero vector",
+  "dtype": "float64; vector checkpoints stored as float32",
+  "schedules": {
+    "gamma": "(k+1)^(-3/4)",
+    "alpha": "(k+1)^(-1/2)",
+    "beta": "(k+1)^(-1/4)"
+  },
+  "tie_rule": "First maximum-absolute-gradient coordinate, with zero vertex if the full LMO input is zero",
+  "exact_solution": "First64 entries1/64, remaining960 zero",
+  "f_star": 0.177734375,
+  "constants": {
+    "smoothness": 1.0,
+    "diameter_C": 2.0,
+    "operator_norm_T": 1.0,
+    "regularity_kappa": 1.0,
+    "gradient_bound_on_C": 1.1021995055342748,
+    "oracle_variance": 0.25,
+    "oracle_second_moment_bound": 1.46484375,
+    "common_draft_safe_Lf": 1.25
+  },
+  "optimizer_seconds_including_diagnostics": 7.300067598931491,
+  "total_seconds_before_plotting": 8.039324583020061,
+  "empirical_cumulative_gap_slope_1024_to_32768": -0.5532723016448227,
+  "slope_note": "Descriptive fixed-range fit; not a theorem validation or a guaranteed pointwise slope",
+  "exact_output_demonstration": {
+    "horizon": 10,
+    "last_half_inclusive": [
+      5,
+      10
+    ],
+    "selected_index": 7,
+    "histories_at_horizon": 1024,
+    "expected_true_gap": [
+      0.03125,
+      1.9375,
+      0.5582943078451208,
+      0.40139560357939996,
+      0.42942947682351323,
+      0.20511567840175796,
+      0.3605969438258004,
+      0.13238080137732583,
+      0.3001835945971393,
+      0.13923297457799336,
+      0.17087715227645703
+    ],
+    "expected_feasibility": [
+      0.0,
+      0.0,
+      0.18920711500272103,
+      0.0,
+      0.1386178151547025,
+      0.0,
+      0.11160636361050467,
+      0.0,
+      0.07741088503442325,
+      0.015451585031832363,
+      0.0008965008793402514
+    ],
+    "expected_abs_original_gap": [
+      0.03125,
+      1.0,
+      0.26216916971420895,
+      0.13140785855769194,
+      0.19341452055655023,
+      0.06570734112278981,
+      0.1588000428716931,
+      0.04818532829026575,
+      0.12690707104223015,
+      0.06190627633496154,
+      0.06253375977421013
+    ],
+    "expected_signed_original_gap": [
+      0.03125,
+      1.0,
+      0.26216916971420895,
+      0.13140785855769194,
+      0.19341452055655023,
+      0.06570734112278981,
+      0.1588000428716931,
+      0.04818532829026575,
+      0.12690707104223015,
+      0.06190627633496154,
+      0.06253375977421013
+    ],
+    "method": "All equally weighted binary histories; exact expectation up to floating point arithmetic."
+  },
+  "long_horizon_output": "No last-iterate or empirical-minimum substitute for the expectation-defined theorem index; report cumulative Eq65 and diagnostic trajectories",
+  "projected_objective_note": "f(max(x,0))-f_star is a diagnostic at a feasible projected point; projection does not change the algorithm's iterates",
+  "checks": [
+    "Two-component mean and conditional variance identities",
+    "Exact l1-ball LMO support-function identity",
+    "Orthant projection remains in the l1 ball (regularity constant 1)",
+    "Unique original solution verified by positive-simplex KKT",
+    "Exact smoothed minimizer, zero gap, feasibility, original gap and objective",
+    "Pointwise gap and feasibility transfer inequalities",
+    "Every iterate remains in the l1 ball",
+    "Every true smoothed gap and projected feasible objective gap is nonnegative",
+    "Pointwise and cumulative transfer inequalities on every saved metric",
+    "Full expectation-based output selector at horizon 10 (1024 histories)"
+  ],
+  "summary": [
+    {
+      "updates": 64,
+      "mean_cumulative_true_gap": 0.12527795960552437,
+      "seed_standard_error": 0.00043872543996845685,
+      "mean_cumulative_feasibility": 0.011257636239417643,
+      "mean_cumulative_abs_original_gap": 0.07051745070770851,
+      "mean_last_projected_objective_gap": 0.006669663047570582,
+      "mean_last_distance_to_solution": 0.10959501687261142,
+      "mean_last_momentum_error": 0.14618019568555884
+    },
+    {
+      "updates": 256,
+      "mean_cumulative_true_gap": 0.047924405364778995,
+      "seed_standard_error": 0.0004730200660452958,
+      "mean_cumulative_feasibility": 0.004615654171559957,
+      "mean_cumulative_abs_original_gap": 0.03008726203812073,
+      "mean_last_projected_objective_gap": 0.006134867793845464,
+      "mean_last_distance_to_solution": 0.05376750014676657,
+      "mean_last_momentum_error": 0.10504997574024436
+    },
+    {
+      "updates": 1024,
+      "mean_cumulative_true_gap": 0.021905178790264036,
+      "seed_standard_error": 0.00017861671064276857,
+      "mean_cumulative_feasibility": 0.01845949723999172,
+      "mean_cumulative_abs_original_gap": 0.013719933847086438,
+      "mean_last_projected_objective_gap": 0.003176882170077895,
+      "mean_last_distance_to_solution": 0.03923853717318546,
+      "mean_last_momentum_error": 0.062356048405239034
+    },
+    {
+      "updates": 4096,
+      "mean_cumulative_true_gap": 0.009263828447225328,
+      "seed_standard_error": 4.356567186842143e-05,
+      "mean_cumulative_feasibility": 0.016146857879391307,
+      "mean_cumulative_abs_original_gap": 0.0059488859562,
+      "mean_last_projected_objective_gap": 0.0015924237655622515,
+      "mean_last_distance_to_solution": 0.02147617904700772,
+      "mean_last_momentum_error": 0.039203319245218644
+    },
+    {
+      "updates": 16384,
+      "mean_cumulative_true_gap": 0.004394736148922024,
+      "seed_standard_error": 2.0566863729967234e-05,
+      "mean_cumulative_feasibility": 0.010358461005300981,
+      "mean_cumulative_abs_original_gap": 0.003032239755503662,
+      "mean_last_projected_objective_gap": 0.0008980216420592206,
+      "mean_last_distance_to_solution": 0.015782133951491164,
+      "mean_last_momentum_error": 0.041089361909717834
+    },
+    {
+      "updates": 32768,
+      "mean_cumulative_true_gap": 0.0032485691992832507,
+      "seed_standard_error": 1.4880199143724189e-05,
+      "mean_cumulative_feasibility": 0.008113782578171682,
+      "mean_cumulative_abs_original_gap": 0.0023510878411291897,
+      "mean_last_projected_objective_gap": 0.0007057184808173314,
+      "mean_last_distance_to_solution": 0.011491755934442363,
+      "mean_last_momentum_error": 0.029100205338049787
+    }
+  ],
+  "python_executable": "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+  "numpy_version": "2.4.6",
+  "matplotlib_version": "3.11.2",
+  "draft_caveats": [
+    "Use +(x-proj_D(x))/beta, consistent with the smoothed objective; printed Algorithm1 has the opposite penalty sign",
+    "Raw oracle conditional unbiasedness and bounded variance are supplied explicitly; momentum is not conditionally unbiased",
+    "Use Proposition2.11 fixed schedules, not adaptive-penalty Algorithm1"
+  ],
+  "exact_selected_seed_outputs": "results.npz: exact_selected_seed_outputs (float64), all8 seeds at the same exact expectation-selected index",
+  "summary_table_indexing": "Cumulative statistics average x_0 through x_(N-1); every mean_last_* column is evaluated at the pre-update x_(N-1), not final_x=x_N"
+}

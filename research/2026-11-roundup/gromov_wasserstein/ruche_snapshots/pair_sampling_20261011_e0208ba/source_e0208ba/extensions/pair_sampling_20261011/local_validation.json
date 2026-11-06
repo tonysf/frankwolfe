@@ -1,0 +1,102 @@
+{
+  "a100_validation": "Not claimed locally; scheduled one- and four-GPU correctness jobs and full-size method/dataset preflights gate production.",
+  "combined_utc": "2026-10-11T20:15:33.330196+00:00",
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "extensions/pair_sampling_20261011/test_pair_oracle.py",
+    "extensions/pair_sampling_20261011/test_run_pair.py",
+    "extensions/published_stochastic_20261002/test_run_published.py",
+    "extensions/msbpg_20261005/test_run_msbpg.py",
+    "extensions/batch_size_20261008/test_run_batch.py",
+    "extensions/probe8192_20261009/test_run_diagnostic.py",
+    "--junitxml=/tmp/pair_sampling_final_focused_tests.xml"
+  ],
+  "controller_tests": {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "extensions/pair_sampling_20261011/test_campaign.py"
+    ],
+    "junit_sha256": "d425c9d5a70d07fac2446951d034798607f55bd9d1708564fc7a74afd136587a",
+    "source_sha256": {
+      "extensions/pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+      "extensions/pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+      "extensions/pair_sampling_20261011/test_campaign.py": "afa315f070e12c991c3265e3e3b8a0c9d3790416259da9cb13cd9f927025d004",
+      "extensions/pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f"
+    },
+    "tests": {
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "tests": 5
+    }
+  },
+  "coverage": [
+    "weighted exact enumeration for actual nonunit masses1.875/.21875",
+    "rectangular,sparse,nonuniform andzero rows",
+    "fourGloo ranks including empty shards",
+    "independent dense updates for all3methods",
+    "rank-zero RNG andfreshcalls",
+    "invalid-plan collective rejection",
+    "three unifiedrunner independent trajectories/counters",
+    "output-RNG independence",
+    "legacy sketch exported releases withoutpairdirectory",
+    "historical default trajectory andfailure regressions",
+    "batch-size andq8192 adapters zero-arg provenance callbacks andnumericalparity"
+  ],
+  "environment": {
+    "GLOO_SOCKET_IFNAME": "lo",
+    "OMP_NUM_THREADS": "1"
+  },
+  "generated_utc": "2026-10-11T20:15:06.563227+00:00",
+  "independent_review": "Oracle derivation/implementation and campaign integration separately reviewed; no blocking findings.",
+  "junit_path": "/home/tony/gw_benchmark_experiment_20260927/logs/pair_sampling_20261011/final_focused_tests.xml",
+  "junit_sha256": "ce82c1ad8306a207df69f61d14433de110fe8398457f43fdbaf8b97a83b74ce3",
+  "scope": "bounded local CPU correctness and legacy regression; no campaign numerical experiment",
+  "single_rank_command": [
+    ".venv/bin/python",
+    "extensions/pair_sampling_20261011/validate_distributed.py",
+    "--device",
+    "cpu",
+    "--out",
+    "/tmp/pair_sampling_final_single_proof.json"
+  ],
+  "single_rank_proof_path": "/home/tony/gw_benchmark_experiment_20260927/logs/pair_sampling_20261011/final_single_rank_cpu_proof.json",
+  "single_rank_proof_sha256": "f610275807ee9d4df5db4c78a76266034d5e479fb071d0c3f06a6ee6697b08b7",
+  "source_file_sha256": {
+    "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+    "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+    "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+    "pair_sampling_20261011/oracle.py": "fe34472180915a69f2c260e6296aa4b02dfb661a2ba80dfd73d714c9e2087cde",
+    "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+    "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+    "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+    "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+    "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "status": "passed",
+  "summary": "36 passed in89.16s",
+  "test_source_sha256": {
+    "extensions/batch_size_20261008/test_run_batch.py": "f5a206a87dd25e1307a89e379f135098ae24718d7b8d291e28739f5c680257a7",
+    "extensions/msbpg_20261005/test_run_msbpg.py": "d3af53096b1a61ad211a789c29adb1a0acc86435873a41548507fa8385497ddc",
+    "extensions/pair_sampling_20261011/test_pair_oracle.py": "7c8360246b4ebf4b61470f406f623e6f073ca881582c3547dd1de83f18b6406c",
+    "extensions/pair_sampling_20261011/test_run_pair.py": "9e31d6297aba51902f16f919f3e49f0ae9171ff3423ff094a81c4326dbc3f4cb",
+    "extensions/probe8192_20261009/test_run_diagnostic.py": "071d05a94bafd92f4b127df954f4d8f3e529c3ca3088952b51416f0743470500",
+    "extensions/published_stochastic_20261002/test_run_published.py": "44df44209605ff1ad644099d59b899bcc0a747981e3bebbc7b2ebf8b052a1f6b"
+  },
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 36
+  },
+  "total_passing_tests": 41,
+  "validation_source_sha256": "cf3f7558d37d557ff866deb3b92a76c686919287cf2cb78b0310024fcaba3efb"
+}

@@ -1,0 +1,260 @@
+{
+  "observed_utc": "2026-09-29T10:40:30.235810+00:00",
+  "report_generated_utc": "2026-09-28T21:22:35.578315+00:00",
+  "execution_complete": true,
+  "counts": {
+    "valid": 40,
+    "scientific_failure": 0,
+    "missing": 0,
+    "infrastructure_or_provenance_failure": 0
+  },
+  "tuning_runs": 288,
+  "tuning_run_statuses": {
+    "completed": 193,
+    "completed_with_inner_failures": 95
+  },
+  "final_run_statuses": {
+    "completed": 30,
+    "completed_with_inner_failures": 10
+  },
+  "all_20_paired_losses_favor_kl": true,
+  "paired_comparisons": [
+    {
+      "n": 3000,
+      "initialization": "product",
+      "seed": 200,
+      "fw_minus_kl_loss": 0.0029421529225657217
+    },
+    {
+      "n": 3000,
+      "initialization": "product",
+      "seed": 201,
+      "fw_minus_kl_loss": 0.0037559693295081686
+    },
+    {
+      "n": 3000,
+      "initialization": "product",
+      "seed": 202,
+      "fw_minus_kl_loss": 0.0048836747934082325
+    },
+    {
+      "n": 3000,
+      "initialization": "product",
+      "seed": 203,
+      "fw_minus_kl_loss": 0.003961886270529735
+    },
+    {
+      "n": 3000,
+      "initialization": "product",
+      "seed": 204,
+      "fw_minus_kl_loss": 0.0035593249055194676
+    },
+    {
+      "n": 3000,
+      "initialization": "randomized",
+      "seed": 200,
+      "fw_minus_kl_loss": 0.003312095057200315
+    },
+    {
+      "n": 3000,
+      "initialization": "randomized",
+      "seed": 201,
+      "fw_minus_kl_loss": 0.0039914110984715645
+    },
+    {
+      "n": 3000,
+      "initialization": "randomized",
+      "seed": 202,
+      "fw_minus_kl_loss": 0.003570814181337867
+    },
+    {
+      "n": 3000,
+      "initialization": "randomized",
+      "seed": 203,
+      "fw_minus_kl_loss": 0.004105548743744136
+    },
+    {
+      "n": 3000,
+      "initialization": "randomized",
+      "seed": 204,
+      "fw_minus_kl_loss": 0.0035476603200378376
+    },
+    {
+      "n": 6224,
+      "initialization": "product",
+      "seed": 200,
+      "fw_minus_kl_loss": 0.001454229903601223
+    },
+    {
+      "n": 6224,
+      "initialization": "product",
+      "seed": 201,
+      "fw_minus_kl_loss": 0.004968005115649876
+    },
+    {
+      "n": 6224,
+      "initialization": "product",
+      "seed": 202,
+      "fw_minus_kl_loss": 0.004241019545453528
+    },
+    {
+      "n": 6224,
+      "initialization": "product",
+      "seed": 203,
+      "fw_minus_kl_loss": 0.004587811524431773
+    },
+    {
+      "n": 6224,
+      "initialization": "product",
+      "seed": 204,
+      "fw_minus_kl_loss": 0.0040981108717866865
+    },
+    {
+      "n": 6224,
+      "initialization": "randomized",
+      "seed": 200,
+      "fw_minus_kl_loss": 0.0016948672120925545
+    },
+    {
+      "n": 6224,
+      "initialization": "randomized",
+      "seed": 201,
+      "fw_minus_kl_loss": 0.0025980516815894417
+    },
+    {
+      "n": 6224,
+      "initialization": "randomized",
+      "seed": 202,
+      "fw_minus_kl_loss": 0.004111993883333609
+    },
+    {
+      "n": 6224,
+      "initialization": "randomized",
+      "seed": 203,
+      "fw_minus_kl_loss": 0.004799552989037781
+    },
+    {
+      "n": 6224,
+      "initialization": "randomized",
+      "seed": 204,
+      "fw_minus_kl_loss": 0.0045647703494512415
+    }
+  ],
+  "group_summary": [
+    {
+      "n": 3000,
+      "initialization": "product",
+      "fw_median": 0.14961893270680848,
+      "kl_median": 0.14584269171626452,
+      "kl_loss_reduction_percent": 2.523905846824776,
+      "fw_updates_median": 96721.0,
+      "kl_updates_median": 28814.0
+    },
+    {
+      "n": 3000,
+      "initialization": "randomized",
+      "fw_median": 0.14958918101611407,
+      "kl_median": 0.14585863533856958,
+      "kl_loss_reduction_percent": 2.4938606202694777,
+      "fw_updates_median": 96491.0,
+      "kl_updates_median": 27914.0
+    },
+    {
+      "n": 6224,
+      "initialization": "product",
+      "fw_median": 0.15672914793487236,
+      "kl_median": 0.15248812838941883,
+      "kl_loss_reduction_percent": 2.7059545727996,
+      "fw_updates_median": 28317.0,
+      "kl_updates_median": 8233.0
+    },
+    {
+      "n": 6224,
+      "initialization": "randomized",
+      "fw_median": 0.15696796370239385,
+      "kl_median": 0.15244230101182143,
+      "kl_loss_reduction_percent": 2.8831760212886035,
+      "fw_updates_median": 28022.0,
+      "kl_updates_median": 8177.0
+    }
+  ],
+  "selected": {
+    "3000": {
+      "smoothing-fw": {
+        "candidate_id": "c10",
+        "score": 0.15333796869771898,
+        "parameters": {
+          "gamma0": 1.0,
+          "mu_scale": 10.0
+        }
+      },
+      "stochastic-kl-momentum": {
+        "candidate_id": "c00",
+        "score": 0.1536826838339782,
+        "parameters": {
+          "eta": 0.1,
+          "eta_power": 0.0,
+          "inner_tol": 0.0001
+        }
+      }
+    },
+    "6224": {
+      "smoothing-fw": {
+        "candidate_id": "c10",
+        "score": 0.15881085155352836,
+        "parameters": {
+          "gamma0": 1.0,
+          "mu_scale": 10.0
+        }
+      },
+      "stochastic-kl-momentum": {
+        "candidate_id": "c00",
+        "score": 0.160032797594521,
+        "parameters": {
+          "eta": 0.1,
+          "eta_power": 0.0,
+          "inner_tol": 0.0001
+        }
+      }
+    }
+  },
+  "max_rounded_both_l1": 1.0741585942272117e-07,
+  "files": [
+    {
+      "path": "reports/bmmc_scaling_final/product_quality.pdf",
+      "sha256": "b338f1553dec31a1275e7c49d693b667c0b566b38d2064b872b59c1110c32168",
+      "bytes": 30428
+    },
+    {
+      "path": "reports/bmmc_scaling_final/product_quality.png",
+      "sha256": "c41292eafc0c5c13b593a2009bb1ca358353e0b24887b78063a59de678fed225",
+      "bytes": 173014
+    },
+    {
+      "path": "reports/bmmc_scaling_final/randomized_quality.pdf",
+      "sha256": "15ac4ae037d61119a29ffdcc7d2aa68d8644695cfbb6490a719aecd157c0f820",
+      "bytes": 30470
+    },
+    {
+      "path": "reports/bmmc_scaling_final/randomized_quality.png",
+      "sha256": "44774d46a473e2414109802f1ddff8fcf0b83d582949bc52052169447f1da5df",
+      "bytes": 172456
+    },
+    {
+      "path": "reports/bmmc_scaling_final/report.json",
+      "sha256": "5e50adde4eb9343060e74d9efb5a6f242563424ed9bda18ea373f7521e732878",
+      "bytes": 92700856
+    },
+    {
+      "path": "reports/bmmc_scaling_final/report.md",
+      "sha256": "4e8f2af83aa75929bbf63de9eb7be4fe2bff282d8513169a5243bafcc53e483b",
+      "bytes": 10483
+    },
+    {
+      "path": "reports/bmmc_scaling_final/selection.json",
+      "sha256": "5c957787ff4fa7fcdf9c1b5ac77fc83fa566ad8b3211652809be5f7b961eaa71",
+      "bytes": 1915166
+    }
+  ],
+  "dense_couplings": "Retained in the frozen remote campaign output; not downloaded during this report collection."
+}

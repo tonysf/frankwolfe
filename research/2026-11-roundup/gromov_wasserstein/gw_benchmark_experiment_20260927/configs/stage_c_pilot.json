@@ -1,0 +1,22 @@
+{
+  "scope": "prespecified initial development comparison, not selected winners or final replicated study",
+  "budget_solver_seconds": 30,
+  "checkpoints_seconds": [1,3,10,30],
+  "instances": ["metric512_s1001.npz","metric512_noisy_s1001.npz","bmmc1000.npz"],
+  "stochastic_seed": 0,
+  "initialization": "product",
+  "initialization_seed": 2026,
+  "dtype": "float32",
+  "device": "one Ruche A100",
+  "threads": 1,
+  "methods": {
+    "smoothing-fw": {"oracle":"sketch","batch":128,"m_mu0":1,"gamma0":1,"rho0":1,"step_exponent":0.75,"momentum_exponent":0.5,"smoothing_exponent":0.25},
+    "smoothing-fw-exact": {"oracle":"exact","m_mu0":1,"same_stochastic_track_momentum_schedule":true},
+    "full-kl": {"eta":10,"tolerance_marginal_l1":1e-6,"inner_max":1000},
+    "stochastic-kl": {"oracle":"sketch","batch":128,"eta":1,"tolerance_marginal_l1":1e-6,"inner_max":1000},
+    "native-sampled-gw": {"native_samples":128,"epsilon":0.1,"native_inner_settings_unchanged":true},
+    "fw": {"exact_assignment_lmo":true,"exact_quadratic_line_search":true}
+  },
+  "parameter_selection": "Use the protocol's smoke/development values without choosing a winner on these instances. Only oracle/batch choice follows the previous seed1000 diagnostic.",
+  "large_stage_gate": "Do not scale unless useful oracle tradeoff and competitive feasible outputs emerge. No Stage D submission is included."
+}

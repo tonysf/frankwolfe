@@ -1,0 +1,86 @@
+{
+  "checks": [
+    {
+      "epsilon": 0.001,
+      "initialization": "product",
+      "max_plan_error": 4.435687928072696e-14,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 0.001,
+      "initialization": "permutation-mixture",
+      "max_plan_error": 3.565550632522729e-14,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 0.0003,
+      "initialization": "product",
+      "max_plan_error": 2.498001805406602e-16,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 0.0003,
+      "initialization": "permutation-mixture",
+      "max_plan_error": 2.88935542158697e-14,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 0.0001,
+      "initialization": "product",
+      "max_plan_error": 5.5028898104936275e-14,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 0.0001,
+      "initialization": "permutation-mixture",
+      "max_plan_error": 9.978129433818594e-15,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 3e-05,
+      "initialization": "product",
+      "max_plan_error": 7.566863802210833e-14,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 3e-05,
+      "initialization": "permutation-mixture",
+      "max_plan_error": 9.850453785986701e-14,
+      "name": "independent_full_gradient_transport"
+    },
+    {
+      "epsilon": 3e-05,
+      "marginal_l1": 4.235500838944972e-13,
+      "name": "low_entropy_underflow_log_fallback",
+      "normalized_gap_upper_bound": 5.684341886080803e-14
+    },
+    {
+      "dimensions": {
+        "m": 8,
+        "n": 8
+      },
+      "epsilon": 3e-05,
+      "final_loss": 4.8535626757609864e-05,
+      "iterations": 4,
+      "max_memory_reserved_fraction": 0,
+      "name": "exact_tiny_restart"
+    }
+  ],
+  "device": "cpu",
+  "dtype": "float64",
+  "gpu": null,
+  "slurm_job_id": null,
+  "source_file_sha256": {
+    "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+    "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+    "extensions/large_pot_frames_20261016/runner.py": "3452c64f878cd0e276e56508ad91eda11356ae8f3b8a5cccbffef7eb4b65a7cf",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/pot_entropy_init_20261018/runner.py": "e16afdbc67a792d16105e5884b210409fa1c6058d535246fc1fdfec37fd3cca1",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "status": "passed",
+  "validation_sha256": "570ee2f130ea70577bbb74b73c97e2d99dc1188f406acddb25c0dd27d19e0a96",
+  "world_size": 1
+}

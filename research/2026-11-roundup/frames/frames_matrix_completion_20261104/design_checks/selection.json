@@ -1,0 +1,33 @@
+{
+  "criterion": "Choose the smallest radius from20,40,60 whose independent convex reference has an active nuclear-norm bound and at least one active box entry with positive box multiplier. No FRAMES/SHCGM outcome used.",
+  "candidates_evaluated": [
+    {
+      "tau": 20.0,
+      "initial_loss": 0.191074530765759,
+      "certified_lower_bound": 0.11320155610176676,
+      "certified_upper_bound": 0.11320155651657647,
+      "certificate_gap": 4.148097143552576e-10,
+      "raw_nuclear_norm": 20.000000008401802,
+      "active_box_entries_at_1e6": 0,
+      "raw_max_abs": 0.6440462379520334,
+      "largest_box_dual": 5.312988918021794e-25
+    },
+    {
+      "tau": 40.0,
+      "initial_loss": 0.191074530765759,
+      "certified_lower_bound": 0.06123345550000733,
+      "certified_upper_bound": 0.06123345577772121,
+      "certificate_gap": 2.7771387967057137e-10,
+      "raw_nuclear_norm": 40.000000002243745,
+      "active_box_entries_at_1e6": 2,
+      "raw_max_abs": 1.0000000001855402,
+      "largest_box_dual": 0.00010070356851049442
+    }
+  ],
+  "selected_radius": 40,
+  "unneeded_candidate": 60,
+  "same_data_except_radius": true,
+  "selected_data_sha256": "9e7f073ce457545ac371d1672d96720d36d7202d95ca7953eb102b9f38a8cfde",
+  "archived_initial_design": "design_checks/tau20",
+  "scope": "Explicit pre-campaign design amendment authorized by parent; final data.npz is immutable thereafter."
+}

@@ -1,0 +1,143 @@
+{
+  "baseline": {
+    "full_seed": 810,
+    "iterations": 2000,
+    "pair_seeds": [
+      811,
+      812,
+      813
+    ]
+  },
+  "dtype": "float64",
+  "epsilon": 0.001,
+  "eta": 1000.0,
+  "experiment": "large_pot_frames_20261016",
+  "frames": {
+    "confirmation_seeds": [
+      811,
+      812,
+      813
+    ],
+    "development_seeds": [
+      810,
+      814
+    ],
+    "early_stopping": false,
+    "exponents": {
+      "gamma": 0.75,
+      "mu": 0.25,
+      "rho": 0.5
+    },
+    "gamma0": [
+      0.3,
+      1.0
+    ],
+    "iterations": 20000,
+    "mu_scale": [
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "rho0": [
+      0.1,
+      0.3,
+      1.0
+    ],
+    "selection": "median_final_feasible_gw_loss"
+  },
+  "initialization": "product",
+  "inner_gap_tol": 1e-07,
+  "inner_max": 100000,
+  "inner_tol": 1e-07,
+  "instances": {
+    "bmmc6224": {
+      "array_files_sha256": {
+        "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+        "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+        "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+        "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+      },
+      "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+      "n": 6224,
+      "old_prefactors": {
+        "gamma0": 1.0,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared/bmmc6224",
+      "world_size": 1
+    },
+    "shareseq_full": {
+      "array_files_sha256": {
+        "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+      },
+      "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+      "n": 31890,
+      "old_prefactors": {
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+      "world_size": 4
+    },
+    "snare_full": {
+      "array_files_sha256": {
+        "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+        "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+        "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+        "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+      },
+      "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+      "n": 10000,
+      "old_prefactors": {
+        "gamma0": 0.3,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared/snare_full",
+      "world_size": 1
+    }
+  },
+  "pairs": 1024,
+  "preflight": {
+    "iterations": 2,
+    "max_seconds": 10800
+  },
+  "runner": {
+    "checkpoint_every": 5000,
+    "checkpoint_seconds": 1800,
+    "diagnostic_every": 500,
+    "max_seconds": 79200
+  },
+  "scheduler": {
+    "account": "fwllm",
+    "cpu_partition": "cpu_short",
+    "cpus_per_gpu": 2,
+    "exclude_nodes": [
+      "ruche-gpu13",
+      "ruche-gpu16",
+      "ruche-gpu19"
+    ],
+    "exclude_nodes_reason": "Historical CUDA busy/unavailable failure workaround retained from reports/LONG_HORIZON_ALL_CAMPAIGN.json and pair-sampling retry; not a site policy; no repaired-node validation recorded.",
+    "gpu_partition": "gpua100",
+    "maximum_gpu_reserved_fraction": 0.9,
+    "maximum_no_progress_retries": 2,
+    "memory_gib_per_gpu": 32,
+    "time": "24:00:00"
+  },
+  "schema_version": 1,
+  "storage": {
+    "completed_checkpoint_retention": false,
+    "receipt_max_age_seconds": 86400,
+    "required_quota_available_bytes": 64424509440
+  },
+  "theory_scope": {
+    "frames": "Theoretical exponents retained; prefactors tuned over complete 20000-update development runs; selected candidate confirmed on fresh seeds.",
+    "pot": "Empirical fixed POT step eta=1/epsilon; no theorem-safe stochastic step claim."
+  }
+}

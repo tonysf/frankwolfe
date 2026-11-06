@@ -1,0 +1,998 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-28T07:47:43.309313+00:00",
+  "source_report": "/home/tony/gw_benchmark_experiment_20260927/reports/stage_c_final/report.json",
+  "input_report_sha256": "39730329a43e14f0ce3af063f8263bb5b6b45e6acc45696ccbff164813d9086c",
+  "source_scope": "campaign",
+  "source_status": "execution_complete_with_failed_or_invalid_outputs",
+  "source_manifest_hashes": [
+    "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+    "8769cf1a1566c9ede153353b0336b0424a06abae14e13ac2c13e042b559f3c9b",
+    "23a6d48d5f3b30fafbddbb9be819a1e8c56009aeb428b3fe2ed4f7ba6ef7c600",
+    "b4014f38cb34ea24e56b965fd24af3746e836d592ad2dd1c83579536a21eab82",
+    "92fb4d65669ba6a6762b5e651fdfd28ad53e5f88f74b4773d8c7cc5f4a0818b8"
+  ],
+  "scope": "Descriptive final-output references only; no recomputation, repair, checkpoint search, parameter tuning or optimizer selection.",
+  "timing_policy": "Recorded output availability may precede final total solver time when a native epilogue returns the same previously repaired plan; both clocks are retained.",
+  "mixed_budget_policy": "The minimum spans the explicitly listed included budgets and phases; it is not a matched-budget algorithm comparison.",
+  "update_policy": "A lower independently evaluated feasible output requires a newly archived reference report; negative differences are never clipped.",
+  "tie_policy": "Exact loss ties use lexicographic run_id only to identify a reproducible source.",
+  "script_sha256": "028d4f5cee7498cd419b9a539a33233e40d3beea41fe93453a903c1adb390951",
+  "command": [
+    "summarize_feasible_references.py",
+    "--report",
+    "reports/stage_c_final/report.json",
+    "--out",
+    "reports/stage_c_final/feasible_references"
+  ],
+  "instances": [
+    {
+      "instance": "bmmc1000.npz",
+      "instance_sha256": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+      "family": "bmmc",
+      "n": 1000,
+      "noise": null,
+      "problem_seed": null,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.14992996986905682,
+      "reference_value": 0.14992996986905682,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.14992996986905682,
+      "best_observed_source": {
+        "run_id": "final_randomized/full-kl/c06/bmmc1000/s102_i900102",
+        "phase": "final_randomized",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.023742658202536,
+        "final_time_to_output": 30.024406377226114,
+        "final_rounded_residuals": {
+          "row_l1": 6.244214397258495e-08,
+          "col_l1": 6.221070581336613e-08,
+          "col_l2": 2.360374054962332e-09,
+          "both_l1": 1.2465284978595108e-07,
+          "mass_error": 5.50151979528124e-08,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "1e9892d99d0705898cc338db7db34c3bc527d43dcbcdb866a713d26a7e3bb2e2",
+        "rounded_loss_float64": 0.14992996986905682
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 59,
+      "ineligible_final_runs": 4,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 59
+    },
+    {
+      "instance": "metric128_noisy_s2000.npz",
+      "instance_sha256": "d67d8eea63a12ea37497948b29d080d31da5055f8f5f4fab1827e645a13fe7d1",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.1,
+      "problem_seed": 2000,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.0004103991820691988,
+      "reference_value": 0.0004103991820691988,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.0004103991820691988,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_noisy_s2000/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.002788945683278,
+        "final_time_to_output": 30.00340056361165,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "a59b5272a173e4e11e87eb1d88c254e91eb95f81992d587e4c30394681c5c0af",
+        "rounded_loss_float64": 0.0004103991820691988
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_noisy_s2001.npz",
+      "instance_sha256": "8096776d922da9af8d80069615b1d7af149419d52f2a2bbb9378eebf81206d94",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.1,
+      "problem_seed": 2001,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.00041641767967504073,
+      "reference_value": 0.00041641767967504073,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.00041641767967504073,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_noisy_s2001/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.002486045472324,
+        "final_time_to_output": 30.003097997396253,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "ad223ab254f0e9faf61cdbe30a31d0fd9848fbadd764854f4b9531367af47043",
+        "rounded_loss_float64": 0.00041641767967504073
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_noisy_s2002.npz",
+      "instance_sha256": "d348ba88e706d4a74621dac3fe7059af69d0db1e0736b4932a9d0d01f5a3b2df",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.1,
+      "problem_seed": 2002,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.00042104325500758044,
+      "reference_value": 0.00042104325500758044,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.00042104325500758044,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_noisy_s2002/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.00033581047319,
+        "final_time_to_output": 30.000938078504987,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "6542272facc3a6e507b69830fdc6c8b62be94e5d31b9367721454d9fbf824ce1",
+        "rounded_loss_float64": 0.00042104325500758044
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_noisy_s2003.npz",
+      "instance_sha256": "396483e8c7b9ddd75536087308b3e3cbc354b005f48484f25c4394c7637bee39",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.1,
+      "problem_seed": 2003,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.00041783665828409866,
+      "reference_value": 0.00041783665828409866,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.00041783665828409866,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_noisy_s2003/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.000281044398434,
+        "final_time_to_output": 30.00089047034271,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "4ed1ec7d593f8895c339c23d485af86736371970717c5a36f47a2eba2e5a2bf7",
+        "rounded_loss_float64": 0.00041783665828409866
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_noisy_s2004.npz",
+      "instance_sha256": "9c208eff63c23abd021547a00d6ab2196b42c17cb07158d5af3eb6457c815b28",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.1,
+      "problem_seed": 2004,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.0004190341703460554,
+      "reference_value": 0.0004190341703460554,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.0004190341703460554,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_noisy_s2004/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.00378979439847,
+        "final_time_to_output": 30.00444659939967,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "2f6085403d0929ba00a0d02a9d45b52c3c9326985d556e75a7c149b5512c787c",
+        "rounded_loss_float64": 0.0004190341703460554
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_s2000.npz",
+      "instance_sha256": "da6f793fc2c80a65493c1fd9b0905574f1d0b0e8f488ceca50543d71e601feb9",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.0,
+      "problem_seed": 2000,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 2.220446049250313e-15,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_s2000/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.003735326696187,
+        "final_time_to_output": 30.00439427071251,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "a59b5272a173e4e11e87eb1d88c254e91eb95f81992d587e4c30394681c5c0af",
+        "rounded_loss_float64": 2.220446049250313e-15
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_s2001.npz",
+      "instance_sha256": "6bd4f6a18ae0f061b24511067b4d0781c1aed2719b32be48947868a6b8a34137",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.0,
+      "problem_seed": 2001,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 1.9984014443252818e-15,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_s2001/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.002900094608776,
+        "final_time_to_output": 30.003516910597682,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "ad223ab254f0e9faf61cdbe30a31d0fd9848fbadd764854f4b9531367af47043",
+        "rounded_loss_float64": 1.9984014443252818e-15
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_s2002.npz",
+      "instance_sha256": "bc7b04f0883e2f8dbbc2ec7680c475ce9659b123f53b8cfc8a7cf27e38035231",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.0,
+      "problem_seed": 2002,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 1.9984014443252818e-15,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_s2002/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.00096252874937,
+        "final_time_to_output": 30.00157833774574,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "6542272facc3a6e507b69830fdc6c8b62be94e5d31b9367721454d9fbf824ce1",
+        "rounded_loss_float64": 1.9984014443252818e-15
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_s2003.npz",
+      "instance_sha256": "92885783777830251f3b3ecc6ca86d2523eb45c9d451d928e3418850b4638b2e",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.0,
+      "problem_seed": 2003,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 1.7763568394002505e-15,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_s2003/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.00130152143538,
+        "final_time_to_output": 30.001888889470138,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "4ed1ec7d593f8895c339c23d485af86736371970717c5a36f47a2eba2e5a2bf7",
+        "rounded_loss_float64": 1.7763568394002505e-15
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric128_s2004.npz",
+      "instance_sha256": "5199a884029d518e46494bc7076f024536152f46e77505ea261e58a333287094",
+      "family": "synthetic",
+      "n": 128,
+      "noise": 0.0,
+      "problem_seed": 2004,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 1.9984014443252818e-15,
+      "best_observed_source": {
+        "run_id": "small_pg/full-kl/c06/metric128_s2004/s100_i100",
+        "phase": "small_pg",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 30.0,
+        "actual_solver_seconds": 30.00284774217289,
+        "final_time_to_output": 30.003472673124634,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "2f6085403d0929ba00a0d02a9d45b52c3c9326985d556e75a7c149b5512c787c",
+        "rounded_loss_float64": 1.9984014443252818e-15
+      },
+      "expected_runs": 3,
+      "eligible_final_runs": 3,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "small_pg": 3
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 3
+    },
+    {
+      "instance": "metric512_noisy_s2000.npz",
+      "instance_sha256": "33009f382973532aba7a2d0df97dc38c053886938719e01255fe706b738ff11f",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.1,
+      "problem_seed": 2000,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.0004170625071502343,
+      "reference_value": 0.0004170625071502343,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.0004170625071502343,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_noisy_s2000/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.0015405183658,
+        "final_time_to_output": 300.0021851042984,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "471b1f1eb79a7c9d250ed20d83fb78c876e3f0c82b4b0d1dcfc1a2faa20e9db3",
+        "rounded_loss_float64": 0.0004170625071502343
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 62,
+      "ineligible_final_runs": 1,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 62
+    },
+    {
+      "instance": "metric512_noisy_s2001.npz",
+      "instance_sha256": "3226e557ae1993686bdbfd4c02f18c520509c3e084313deaa04745a01162ee52",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.1,
+      "problem_seed": 2001,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.0004142492777701179,
+      "reference_value": 0.0004142492777701179,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.0004142492777701179,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_noisy_s2001/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.00018411909696,
+        "final_time_to_output": 300.00083992711734,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "8d1e6ee113823cc6c895fb3a1b8d2972998dca7c910165ce929e9a7f5c21d5d8",
+        "rounded_loss_float64": 0.0004142492777701179
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    },
+    {
+      "instance": "metric512_noisy_s2002.npz",
+      "instance_sha256": "8a6c7f0b5b9a6598d34c5d5f5f7d0ce62c1421e0b11021cf07dfc4931fe29b7f",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.1,
+      "problem_seed": 2002,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.00041676930219392005,
+      "reference_value": 0.00041676930219392005,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.00041676930219392005,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_noisy_s2002/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.0026384247467,
+        "final_time_to_output": 300.0033221037593,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "d004609cb2a987d4ef9cb12a60d33a953b4702aa7e05f7483885f6671a7a785d",
+        "rounded_loss_float64": 0.00041676930219392005
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    },
+    {
+      "instance": "metric512_noisy_s2003.npz",
+      "instance_sha256": "c02965f675b967e99270edf70286fe0995df6bf03aa8506080b76f3e32ea9024",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.1,
+      "problem_seed": 2003,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.0004156349382462565,
+      "reference_value": 0.0004156349382462565,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.0004156349382462565,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_noisy_s2003/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.00026087334845,
+        "final_time_to_output": 300.0009495943086,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "85d4c7b2be8587ad0515651bba22d79c2cd97d6a6fe60d4a3eb2cd58dcf0b9a8",
+        "rounded_loss_float64": 0.0004156349382462565
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    },
+    {
+      "instance": "metric512_noisy_s2004.npz",
+      "instance_sha256": "f475de3eb4460a8e1701ef9c39c7465970d13833a0c8e22c5e43237e60888347",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.1,
+      "problem_seed": 2004,
+      "known_f_star": null,
+      "descriptive_f_ref": 0.00041601614987962776,
+      "reference_value": 0.00041601614987962776,
+      "reference_kind": "descriptive_observed_feasible_reference_not_certified_optimum",
+      "best_observed_rounded_loss_float64": 0.00041601614987962776,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_noisy_s2004/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.0008089641342,
+        "final_time_to_output": 300.0026146491291,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "4a3964f8ce2cadf00ca3031a6559f40a068e30201352ccc609c0d45d1fd8fc5e",
+        "rounded_loss_float64": 0.00041601614987962776
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    },
+    {
+      "instance": "metric512_s2000.npz",
+      "instance_sha256": "23fa57b33a11e7cb54df1f0b4c688067f6d2d3372300cce9b460277536b1190b",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.0,
+      "problem_seed": 2000,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 3.1086244689504383e-15,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_s2000/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.0023355971789,
+        "final_time_to_output": 300.00298089010175,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "471b1f1eb79a7c9d250ed20d83fb78c876e3f0c82b4b0d1dcfc1a2faa20e9db3",
+        "rounded_loss_float64": 3.1086244689504383e-15
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 1,
+      "valid_final_runs_meeting_budget": 62
+    },
+    {
+      "instance": "metric512_s2001.npz",
+      "instance_sha256": "d78628b9a0c2b2eca92ccf5bcb6fdcfeaf3d719b8e12c2f2f2a251674a346d51",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.0,
+      "problem_seed": 2001,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 3.1086244689504383e-15,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_s2001/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.00150589854456,
+        "final_time_to_output": 300.0022628054721,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "8d1e6ee113823cc6c895fb3a1b8d2972998dca7c910165ce929e9a7f5c21d5d8",
+        "rounded_loss_float64": 3.1086244689504383e-15
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    },
+    {
+      "instance": "metric512_s2002.npz",
+      "instance_sha256": "5c6f1b429d96f4200ce7d56dc4c12163dcd71e9924e280a7bf5d0cca26296789",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.0,
+      "problem_seed": 2002,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 3.1086244689504383e-15,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_s2002/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.00124614161905,
+        "final_time_to_output": 300.0019268565811,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "d004609cb2a987d4ef9cb12a60d33a953b4702aa7e05f7483885f6671a7a785d",
+        "rounded_loss_float64": 3.1086244689504383e-15
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 1,
+      "valid_final_runs_meeting_budget": 62
+    },
+    {
+      "instance": "metric512_s2003.npz",
+      "instance_sha256": "15a871e9eb6b31070ae286eb1081a3cf4236eed80047b037dafdffc0af563e05",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.0,
+      "problem_seed": 2003,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 3.1086244689504383e-15,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_s2003/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.0025392752141,
+        "final_time_to_output": 300.00323426828254,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "85d4c7b2be8587ad0515651bba22d79c2cd97d6a6fe60d4a3eb2cd58dcf0b9a8",
+        "rounded_loss_float64": 3.1086244689504383e-15
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    },
+    {
+      "instance": "metric512_s2004.npz",
+      "instance_sha256": "40c9da696723ae6cc81352fb94a3b572f099f1919d76c0417d45bebcb0e92ea8",
+      "family": "synthetic",
+      "n": 512,
+      "noise": 0.0,
+      "problem_seed": 2004,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 3.1086244689504383e-15,
+      "best_observed_source": {
+        "run_id": "final_product/full-kl/c06/metric512_s2004/s100_i100",
+        "phase": "final_product",
+        "method": "full-kl",
+        "candidate_id": "c06",
+        "budget": 300.0,
+        "actual_solver_seconds": 300.0010482951766,
+        "final_time_to_output": 300.0017338671023,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "4a3964f8ce2cadf00ca3031a6559f40a068e30201352ccc609c0d45d1fd8fc5e",
+        "rounded_loss_float64": 3.1086244689504383e-15
+      },
+      "expected_runs": 63,
+      "eligible_final_runs": 63,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        30.0,
+        300.0
+      ],
+      "mixed_budgets": true,
+      "phase_counts": {
+        "final_product": 23,
+        "final_randomized": 30,
+        "momentum_product": 5,
+        "momentum_randomized": 5
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 63
+    }
+  ]
+}

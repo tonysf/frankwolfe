@@ -1,0 +1,136 @@
+The Gromov–Wasserstein problem
+Reference page / the optimization problem
+
+Match relationships when features cannot be compared directly. Suppose two datasets describe
+diﬀerent collections of objects, or two diﬀerent measurements of the same objects. Their feature spaces
+may be incompatible. Gromov–Wasserstein (GW) matching uses the distances within each dataset: a
+good correspondence pairs objects so that their relationships are preserved. It does not require a distance
+between an object in one feature space and an object in the other.
+Data and unknown. Let A ∈ Rn×n and B ∈ Rm×m be the two symmetric distance matrices. Positive
+probability vectors a and b specify the mass of each object; uniform weights give ai = 1/n and bj = 1/m.
+The unknown is a soft matching P ∈ Rn×m : Pij is the mass assigned between source object i and target
+object j. Balanced matching requires
+
+                                    U (a, b) = {P ≥ 0 : P 1m = a, P ⊤ 1n = b}.
+
+The row and column sums prescribe how much each object contributes. They do not force a one-to-one
+matching.
+Objective: preserve pairwise distances. The unregularized squared GW problem used here is
+                                                              X
+                                                              n X
+                                                                m
+                            min f (P ) ,           f (P ) =             (Aik − Bjℓ )2 Pij Pkℓ .
+                          P ∈U (a,b)
+                                                              i,k=1 j,ℓ=1
+
+Two simultaneous matches, i ↔ j and k ↔ ℓ, incur a cost when Aik and Bjℓ disagree. Equivalently,
+f (P ) is the expected squared distance discrepancy from two independent draws from P . This convention
+includes neither a factor 1/2 nor entropy regularization. The objective is smooth and generally nonconvex;
+the feasible transport polytope is convex. A small loss alone does not certify a global optimum or a
+scientiﬁcally correct correspondence.
+Composite form for FraMES. Separate the inexpensive row constraints from the column constraint:
+
+                             C = {P ≥ 0 : P 1m = a},                  T (P ) = P ⊤ 1n ,
+                                               (
+                                                 0,  y = b,
+                          g(y) = ι{b} (y) =                            min f (P ) + g(T P ).
+                                                       ̸ b,
+                                                 +∞, y =               P ∈C
+
+
+The Moreau envelope of g is explicit, so its smoothed contribution is
+
+                                    ∥P ⊤ 1n − b∥22                             1n (P ⊤ 1n − b)⊤
+                      gµ (T P ) =                  ,      ∇(gµ ◦ T )(P ) =                      .
+                                          2µ                                           µ
+
+FraMES combines a momentum estimate of ∇f (P ) with this current penalty gradient. Its linear mini-
+mization oracle places each row’s mass in a minimizing column. Convex-combination updates preserve
+nonnegativity and row masses; column masses can be violated during optimization.
+What a results page measures. Random probes estimate the gradient of the same ﬁxed GW objective;
+they do not subsample the dataset or impose a rank restriction on P . Reported feasible loss is f evaluated
+after repairing an output to satisfy both marginals to numerical tolerance. The repair is a diagnostic, not
+an optimization step. Raw loss, feasibility error, and any smoothed penalty are distinct quantities. Loss
+magnitudes depend on distance scaling, so reductions are interpreted within a ﬁxed dataset and objective
+convention. Timing deﬁnitions and the reported output statistic belong on the experiment page.
+
+
+
+
+Shared background for the status reports. Experiment-speciﬁc dimensions, parameters and results appear on the
+next page.
+
+
+                                                              1
+
+Synthetic data: increasing the probe count
+Experiment results / veriﬁed 9 October 2026                                                                                 9 of 9 runs completed
+
+Data. Two 512 × 512 distance matrices, giving 262,144 coupling variables. The source is a symmetric
+random metric with oﬀ-diagonal distances uniform in [0.5, 1) and zero diagonal; the target is an exact
+permutation of it (seed 1000, no noise or rescaling). Uniform masses are used. The planted matching has
+GW loss zero, but the optimizer is not given that matching.
+Design. Stochastic FraMES with 128, 1,024 or 2,048 random-sign probes per gradient; three development
+seeds (710–712), 200,000 updates each, product start P0 = ab⊤ , and one Ruche A100 per run. One gradient
+estimate is formed per update, with d0 = Gb 0 . All other settings are ﬁxed across probe counts:
+
+                                                                                                                  10
+                               γk = (k + 1)−3/4 ,      ρk = 0.3(k + 1)−1/2 (k ≥ 1),                        µk =       (k + 1)−1/4 .
+                                                                                                                  512
+
+
+                                   Probes      Final feasible loss ↓   Decrease from P0                       Solver minutes
+                                       128              0.04385652                               0.0616%                12.14
+                                     1,024              0.00004589                              99.8954%                12.78
+                                     2,048              0.00001531                              99.9651%                12.62
+
+Medians across three seeds; initial feasible loss f (P0 ) = 0.04388356. Percentage decreases are computed per seed
+before taking the median.
+
+                                                    128 probes             1,024 probes                           2,048 probes
+
+
+                    0.04                                                                       0.04
+ Feasible GW loss
+
+
+
+
+                                                                            Feasible GW loss
+
+
+
+
+                    0.03                                                                       0.03
+
+                    0.02                                                                       0.02
+
+                    0.01                                                                       0.01
+
+                    0.00                                                                       0.00
+                           0          60k       120k         180k                                     0           4             8             12
+                                      Completed updates                                                    Solver wall-clock time (minutes)
+
+
+Markers are saved checkpoints; lines are visual guides. Shading shows the three-seed IQR. The time plot places
+each common-iteration median loss at its median solver time; it does not interpolate to a common time grid.
+Assessment. At 200,000 updates, 1,024 and 2,048 probes yield a large loss reduction in all three seeds; 128
+probes remains close to initialization. The observed 2,048-probe transition lies between 50,000 and 100,000
+saved updates: the sparse checkpoints do not reveal its exact shape or cause. This clean permutation
+instance establishes that the method can optimize this problem; it does not establish general performance
+on real data.
+Follow-up. Three synthetic runs with 8,192 probes, unchanged smoothing, and diagnostics every 1,000
+updates were submitted on 9 October. This report uses the completed runs above; no follow-up results
+have been retrieved.
+
+
+
+Measurement. Final-iterate loss after transport repair, evaluated in FP64; initial and intermediate losses use
+FP32. This is neither a best-checkpoint loss nor a theorem-selected output. Solver time includes initialization and
+updates; it excludes preparation, repairs, loss diagnostics, logging, snapshots and ﬁnal FP64 validation. It is not
+end-to-end elapsed time.
+Provenance. Frozen instance metric512_s1000; run source 8d11e2a; completed probe-study report SHA256
+preﬁx 6ce0b0198875649d7.
+
+                                                                       2
+

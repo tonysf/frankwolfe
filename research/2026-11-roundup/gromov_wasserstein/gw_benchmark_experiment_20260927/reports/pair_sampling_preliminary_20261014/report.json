@@ -1,0 +1,4558 @@
+{
+  "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+  "counts": {
+    "completed": 30,
+    "failed": 0,
+    "invalid": 0,
+    "missing": 5,
+    "started_without_result": 1
+  },
+  "gates": [
+    {
+      "dataset": "bmmc6224",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/bmmc6224/smoothing-fw/gate.json",
+      "method": "smoothing-fw",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.15969969412650176,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/bmmc6224/smoothing-fw/runs/bmmc6224/smoothing-fw/seed710/output/metadata.json",
+          "metadata_sha256": "415b5d748876c5136ff94270d30275fc683e40538e0deb929676a841c152c1fa",
+          "process_elapsed_seconds": 64.80109081999399,
+          "request_sha256": "c4d4d708d3b1750c56095d7f347abffa3a509d3a061380f3d823076be6ab80dd",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "bmmc6224",
+        "method": "smoothing-fw",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+            "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+            "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+            "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 1566.5246917724144,
+          "forecast_with_margin_seconds": 3133.0493835448287,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.06602312664014615,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "bmmc6224",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/bmmc6224/published-smd/gate.json",
+      "method": "published-smd",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.16088670747765976,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/bmmc6224/published-smd/runs/bmmc6224/published-smd/seed710/output/metadata.json",
+          "metadata_sha256": "66b0a8070a8c2a0fdf139bed638ca576fc62a56edd5ac990478c8523f719ef05",
+          "process_elapsed_seconds": 215.2766645309748,
+          "request_sha256": "20eb88fb67dce2624b81c8003590adbdfaee10518e8ed4114a89007bedbb9971",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "bmmc6224",
+        "method": "published-smd",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+            "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+            "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+            "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 11765.020295664784,
+          "forecast_with_margin_seconds": 23530.04059132957,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.06602149407630181,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "bmmc6224",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/bmmc6224/published-msbpg/gate.json",
+      "method": "published-msbpg",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.16103980462879997,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/bmmc6224/published-msbpg/runs/bmmc6224/published-msbpg/seed710/output/metadata.json",
+          "metadata_sha256": "6c3b85f049e61e7d04c7c1048f52ec3ef8685376ca6bc8d8fc3843432d982887",
+          "process_elapsed_seconds": 85.8759476399282,
+          "request_sha256": "3cb450165588af02daa461db739768bb345cd880382972f97a7e09c1a51ce817",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "bmmc6224",
+        "method": "published-msbpg",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+            "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+            "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+            "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 6137.842633829918,
+          "forecast_with_margin_seconds": 12275.685267659836,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.06903991370010787,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "metric512_s1000",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/metric512_s1000/smoothing-fw/gate.json",
+      "method": "smoothing-fw",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.04208336321366957,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/metric512_s1000/smoothing-fw/runs/metric512_s1000/smoothing-fw/seed710/output/metadata.json",
+          "metadata_sha256": "239ca10fddd812c36b6e93a2f4fe0265e019311960608e689892355ec7c4afa2",
+          "process_elapsed_seconds": 113.63196876225993,
+          "request_sha256": "906bb310ea6b0744681ba8d6c548efbb1dfe079fb070b1b4ba5951b5842fdf53",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "metric512_s1000",
+        "method": "smoothing-fw",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "558422c91f0885eb35995d07e5f8e6935f90c1e4be855bd8205f2a12833caf4b",
+            "B.npy": "1e8fb1a3b9c743735b9fa4118aba8434d24595b60e2c4ab804b460c6582d1cfe",
+            "a.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588",
+            "b.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "e9929dc6c02f0b9680b55c7ea99a30ea80c0304140077d87e8dc0646aa3b73e0",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 9154.549721290241,
+          "forecast_with_margin_seconds": 18309.099442580482,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.0015825768183405817,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "metric512_s1000",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/metric512_s1000/published-smd/gate.json",
+      "method": "published-smd",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.043882956258023964,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/metric512_s1000/published-smd/runs/metric512_s1000/published-smd/seed710/output/metadata.json",
+          "metadata_sha256": "e171b5e63a6000135efbdcf7856f81b348dcc9c8e75963e30f7bcd8d14bbf2eb",
+          "process_elapsed_seconds": 151.13637529406697,
+          "request_sha256": "ed6eb5dfc4bc84093b4e544011fca7ed9174f23e04bb2b7d5d446c398bcae6c4",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "metric512_s1000",
+        "method": "published-smd",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "558422c91f0885eb35995d07e5f8e6935f90c1e4be855bd8205f2a12833caf4b",
+            "B.npy": "1e8fb1a3b9c743735b9fa4118aba8434d24595b60e2c4ab804b460c6582d1cfe",
+            "a.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588",
+            "b.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "e9929dc6c02f0b9680b55c7ea99a30ea80c0304140077d87e8dc0646aa3b73e0",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 13756.427273600304,
+          "forecast_with_margin_seconds": 27512.854547200608,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.0019287178044762325,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "metric512_s1000",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/metric512_s1000/published-msbpg/gate.json",
+      "method": "published-msbpg",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.04388362923926481,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/metric512_s1000/published-msbpg/runs/metric512_s1000/published-msbpg/seed710/output/metadata.json",
+          "metadata_sha256": "2ef66dce40f84f4f28bc22faae33f6e5eb741dbfdfa14355dfc9d47815c79c79",
+          "process_elapsed_seconds": 149.58399715996347,
+          "request_sha256": "7fa2a83d61ec84dd9cfbeea32e97b135a121e11522ab71ceb3452f128a5b4d0e",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "metric512_s1000",
+        "method": "published-msbpg",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "558422c91f0885eb35995d07e5f8e6935f90c1e4be855bd8205f2a12833caf4b",
+            "B.npy": "1e8fb1a3b9c743735b9fa4118aba8434d24595b60e2c4ab804b460c6582d1cfe",
+            "a.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588",
+            "b.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "e9929dc6c02f0b9680b55c7ea99a30ea80c0304140077d87e8dc0646aa3b73e0",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 12723.226110457152,
+          "forecast_with_margin_seconds": 25446.452220914303,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.002571687329803445,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "shareseq_full",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/shareseq_full/smoothing-fw/gate.json",
+      "method": "smoothing-fw",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.11679335350526199,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/shareseq_full/smoothing-fw/runs/shareseq_full/smoothing-fw/seed710/output/metadata.json",
+          "metadata_sha256": "25827a54f889cd48cc114163088ddd56c4abee409fee8c062d6eb959fbb0601e",
+          "process_elapsed_seconds": 153.3436559450347,
+          "request_sha256": "ee43644dc8cec918290f9721ff89db285eac5e0438222e83d4b599cd39187573",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu4/checks.json",
+          "sha256": "e08294385219b75b7bcaf789b22bfbdab73094682dd46d5b85c8408780b24188"
+        },
+        "instance": "shareseq_full",
+        "method": "smoothing-fw",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+            "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+            "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+            "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 2471.5494987758575,
+          "forecast_with_margin_seconds": 4943.098997551715,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.6781668526354507,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "shareseq_full",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/shareseq_full/published-smd/gate.json",
+      "method": "published-smd",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.11703811806789921,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/shareseq_full/published-smd/runs/shareseq_full/published-smd/seed710/output/metadata.json",
+          "metadata_sha256": "8f9afdb2b57430df5f1048e8f595359c00d30a85ee100a5fdfa0404805f53420",
+          "process_elapsed_seconds": 296.54955336800776,
+          "request_sha256": "b1f67e5a20e8a2febe66f2f1b7874534aa378130e2b3319572e534cd1259b2d4",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu4/checks.json",
+          "sha256": "e08294385219b75b7bcaf789b22bfbdab73094682dd46d5b85c8408780b24188"
+        },
+        "instance": "shareseq_full",
+        "method": "published-smd",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+            "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+            "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+            "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 20542.38447148184,
+          "forecast_with_margin_seconds": 41084.76894296368,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.6781668526354507,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "shareseq_full",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/shareseq_full/published-msbpg/gate.json",
+      "method": "published-msbpg",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.11722384529382912,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/shareseq_full/published-msbpg/runs/shareseq_full/published-msbpg/seed710/output/metadata.json",
+          "metadata_sha256": "c4acb9583bcc44c7c68ba1d57b1d9281dfceecdbb81e2d29815cde38752e6d95",
+          "process_elapsed_seconds": 455.6871285850648,
+          "request_sha256": "76ea7f12a8c5907b4f5371bc49759e159333f255098779059658042db9a000d5",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu4/checks.json",
+          "sha256": "e08294385219b75b7bcaf789b22bfbdab73094682dd46d5b85c8408780b24188"
+        },
+        "instance": "shareseq_full",
+        "method": "published-msbpg",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+            "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+            "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+            "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 34370.01538835594,
+          "forecast_with_margin_seconds": 68740.03077671188,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.6781668526354507,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "snare_full",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/snare_full/smoothing-fw/gate.json",
+      "method": "smoothing-fw",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.0938849555017236,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/snare_full/smoothing-fw/runs/snare_full/smoothing-fw/seed710/output/metadata.json",
+          "metadata_sha256": "376731e5461531f76c838af8c34dd3fe435aaebc66c3cf19cc0469a68bf8718d",
+          "process_elapsed_seconds": 90.81122187199071,
+          "request_sha256": "dc5e66cf667ca51a405356b611ccf2c897f3a1d2c89b3b0f60fa40eed9953c3b",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "snare_full",
+        "method": "smoothing-fw",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+            "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+            "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+            "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 3918.944793225033,
+          "forecast_with_margin_seconds": 7837.889586450066,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.15939121753402302,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "snare_full",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/snare_full/published-smd/gate.json",
+      "method": "published-smd",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.09399641718096996,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/snare_full/published-smd/runs/snare_full/published-smd/seed710/output/metadata.json",
+          "metadata_sha256": "90fd8ec62f30c4bf9260b9fb95d8d124264dea778b04290f6c542a6d8e361ae4",
+          "process_elapsed_seconds": 126.3329030489549,
+          "request_sha256": "b87f519d8302d45eb93c51d7da9745793d59558d26da16de90d4226e5786ff14",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "snare_full",
+        "method": "published-smd",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+            "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+            "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+            "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 8716.884771420097,
+          "forecast_with_margin_seconds": 17433.769542840193,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.15939515892224046,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    },
+    {
+      "dataset": "snare_full",
+      "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/snare_full/published-msbpg/gate.json",
+      "method": "published-msbpg",
+      "result": {
+        "calibration": {
+          "last_rounded_loss": 0.09407243709767171,
+          "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/preflight/snare_full/published-msbpg/runs/snare_full/published-msbpg/seed710/output/metadata.json",
+          "metadata_sha256": "d502bf7e3c4b40781d02800f8de64f283b1dc73fcba0bb07a3107227cd128eaf",
+          "process_elapsed_seconds": 416.7855803860584,
+          "request_sha256": "1f26f076eeb8fb081ce2428769185868f90429c014d55cb99d6654901dc44256",
+          "returncode": 0,
+          "status": "completed"
+        },
+        "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+        "cpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+          "sha256": "bcd8f1c41d944ad48d00f4f91008992fef24a2d04873b22c36f154d0dd2a487c"
+        },
+        "gpu_checks": {
+          "file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json",
+          "sha256": "c30c24335577bfd3e605214062794d9887294d407dffa7f08e678535756e444d"
+        },
+        "instance": "snare_full",
+        "method": "published-msbpg",
+        "provenance": {
+          "array_files_sha256": {
+            "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+            "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+            "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+            "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+          },
+          "config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+          "controller_source_sha256": {
+            "msbpg_20261005/campaign.py": "9c9b69407fdd9179272413a65040f878ab694e2c1cd6c0cea116c2ce17244e50",
+            "pair_sampling_20261011/campaign.py": "61f5218674130c63b7feb5b883b8fa71e0a8e26b3e1f7a8aeae0a77d75a55cee",
+            "pair_sampling_20261011/report_campaign.py": "78d6d615d98c8c7d8b0d0662f3a7636d6698955fb80d575b4ff06e53a736150b",
+            "pair_sampling_20261011/validate_distributed.py": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c",
+            "pair_sampling_20261011/verify_checks.py": "cdb56f72edd920949ec56d03f92fce74a13819a0c249359daa2c1e32db00bf0f",
+            "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+          },
+          "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+          "source_file_sha256": {
+            "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+            "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+            "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+            "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+            "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+            "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+            "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+            "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+            "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+            "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+            "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+          }
+        },
+        "resource_checks": {
+          "allowed_seconds": 82800,
+          "estimated_total_seconds": 37290.764849971805,
+          "forecast_with_margin_seconds": 74581.52969994361,
+          "includes": "Solver, exact diagnostics, repairs, logging, initialization, validation, subprocess startup and serialization; no loss test.",
+          "maximum_gpu_reserved_fraction": 0.16769954038407447,
+          "passed": true
+        },
+        "status": "passed"
+      }
+    }
+  ],
+  "interpretation": "Independent sampled baseline output and last-rounded GW loss are separate. Neither loss establishes global optimality or stationarity. Fixed 1e-7 proximal accuracy has no claimed inexact-outer theorem.",
+  "runs": [
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1552.2263289607363,
+      "last_rounded_loss": 0.15845191372080736,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/smoothing-fw/seed710/output/metadata.json",
+      "metadata_sha256": "d0f444a084fbf168390fcf46402a36f73e626da9175bf4d3ba0d763f7ad30bd0",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.052182676969096065
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.1610293984413147,
+          "time_to_this_feasible_output": 0.22472015407402068
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.1609954833984375,
+          "time_to_this_feasible_output": 0.3025922200176865
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.16089707612991333,
+          "time_to_this_feasible_output": 0.5365613617468625
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16074275970458984,
+          "time_to_this_feasible_output": 0.9271253476617858
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16044890880584717,
+          "time_to_this_feasible_output": 1.705304950592108
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16082125902175903,
+          "time_to_this_feasible_output": 4.039289724663831
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16111695766448975,
+          "time_to_this_feasible_output": 7.925858745584264
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.1596996784210205,
+          "time_to_this_feasible_output": 15.682739127893
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.15879327058792114,
+          "time_to_this_feasible_output": 38.981076426571235
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.15774738788604736,
+          "time_to_this_feasible_output": 77.83012452849653
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.15744519233703613,
+          "time_to_this_feasible_output": 155.46943585167173
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.15767717361450195,
+          "time_to_this_feasible_output": 388.16257133183535
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.15791308879852295,
+          "time_to_this_feasible_output": 776.1321601407835
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.15827178955078125,
+          "time_to_this_feasible_output": 1164.0670782611705
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.15845191478729248,
+          "time_to_this_feasible_output": 1552.2261510248063
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.15845191478729248,
+          "time_to_this_feasible_output": 1552.2263289607363
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": null,
+      "solver_seconds": 1552.2169472128153,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1561.4674792629667
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1477.9329193473095,
+      "last_rounded_loss": 0.1584079873828957,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/smoothing-fw/seed711/output/metadata.json",
+      "metadata_sha256": "6d06efe1ea6d5990c12804a836219f63af51b2f80224f935c7d1b50ed92105a8",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.05218493507709354
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.1610158085823059,
+          "time_to_this_feasible_output": 0.1764906510943547
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.16099101305007935,
+          "time_to_this_feasible_output": 0.2507091350853443
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.1608726978302002,
+          "time_to_this_feasible_output": 0.47345140401739627
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16074466705322266,
+          "time_to_this_feasible_output": 0.8425943390466273
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.1607035994529724,
+          "time_to_this_feasible_output": 1.5827545176725835
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16036111116409302,
+          "time_to_this_feasible_output": 3.804763450403698
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.1610933542251587,
+          "time_to_this_feasible_output": 7.508343258406967
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.16022169589996338,
+          "time_to_this_feasible_output": 14.894020192325115
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.1595093011856079,
+          "time_to_this_feasible_output": 37.09850558149628
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.1590253710746765,
+          "time_to_this_feasible_output": 74.03414255776443
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.15893185138702393,
+          "time_to_this_feasible_output": 147.97981719428208
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.15838313102722168,
+          "time_to_this_feasible_output": 369.71939684147947
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.1581020951271057,
+          "time_to_this_feasible_output": 739.1427694598678
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.15832358598709106,
+          "time_to_this_feasible_output": 1108.6384740257636
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1584080457687378,
+          "time_to_this_feasible_output": 1477.9328650361858
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1584080457687378,
+          "time_to_this_feasible_output": 1477.9329193473095
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": null,
+      "solver_seconds": 1477.9243057742715,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1487.5127140050754
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1489.178049116861,
+      "last_rounded_loss": 0.1583285973842234,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/smoothing-fw/seed712/output/metadata.json",
+      "metadata_sha256": "c4cd336f6d131f5084d02aea0cbb55d6e440190184fb78d04d5eaf7a54a4274a",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.19583499582950026
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.16102582216262817,
+          "time_to_this_feasible_output": 0.47132304194383323
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.16101044416427612,
+          "time_to_this_feasible_output": 0.5460495469160378
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.1609250009059906,
+          "time_to_this_feasible_output": 0.7701933588832617
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.1607556939125061,
+          "time_to_this_feasible_output": 1.1432345039211214
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16068488359451294,
+          "time_to_this_feasible_output": 1.8888165151001886
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.1602955460548401,
+          "time_to_this_feasible_output": 4.130860061268322
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16085755825042725,
+          "time_to_this_feasible_output": 7.854458683752455
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.16039198637008667,
+          "time_to_this_feasible_output": 15.369217383908108
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.15875506401062012,
+          "time_to_this_feasible_output": 37.69403837993741
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.15806734561920166,
+          "time_to_this_feasible_output": 74.95502296776976
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.1574617624282837,
+          "time_to_this_feasible_output": 149.34746121731587
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.15769195556640625,
+          "time_to_this_feasible_output": 372.54209914815146
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.15787065029144287,
+          "time_to_this_feasible_output": 744.7665588600794
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.1581539511680603,
+          "time_to_this_feasible_output": 1116.9206518377177
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1583285927772522,
+          "time_to_this_feasible_output": 1489.177580816904
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1583285927772522,
+          "time_to_this_feasible_output": 1489.178049116861
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": null,
+      "solver_seconds": 1489.168964838842,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1501.2681632899912
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 4329.1876538500655,
+      "last_rounded_loss": 0.15781390107066673,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/published-smd/seed710/output/metadata.json",
+      "metadata_sha256": "c995b852f9357123f5c52990f1f1152a2aff753de1364a5df804884eacfd5f04",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.05784616991877556
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.16103482246398926,
+          "time_to_this_feasible_output": 0.34761675889603794
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.16103190183639526,
+          "time_to_this_feasible_output": 0.5630965618183836
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.16102415323257446,
+          "time_to_this_feasible_output": 1.209078638930805
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16101408004760742,
+          "time_to_this_feasible_output": 2.2849602000787854
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.1610007882118225,
+          "time_to_this_feasible_output": 4.440893790917471
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16097241640090942,
+          "time_to_this_feasible_output": 10.89705461577978
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16093730926513672,
+          "time_to_this_feasible_output": 21.66001355345361
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.1608867645263672,
+          "time_to_this_feasible_output": 43.17651275510434
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.1607789397239685,
+          "time_to_this_feasible_output": 107.70993830740917
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.16064512729644775,
+          "time_to_this_feasible_output": 215.28477398317773
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.16042834520339966,
+          "time_to_this_feasible_output": 430.44401154620573
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.1598946452140808,
+          "time_to_this_feasible_output": 1076.032663037884
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.15912872552871704,
+          "time_to_this_feasible_output": 2152.1204042346217
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.1584385633468628,
+          "time_to_this_feasible_output": 3240.601630025194
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.15781396627426147,
+          "time_to_this_feasible_output": 4329.187954630004
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.15781396627426147,
+          "time_to_this_feasible_output": 4329.1876538500655
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": 0.1601753280517496,
+      "solver_seconds": 4329.178725249018,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 4339.487292992999
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 4341.028696230962,
+      "last_rounded_loss": 0.15781044047453274,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/published-smd/seed711/output/metadata.json",
+      "metadata_sha256": "77125464e1185e85537ea501a3ead95feebc812d11fc816d76471918aec2fa1f",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.24857850302942097
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.1610347032546997,
+          "time_to_this_feasible_output": 0.7831130711128935
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.16102975606918335,
+          "time_to_this_feasible_output": 1.0003425171598792
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.16102242469787598,
+          "time_to_this_feasible_output": 1.6518987771123648
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.1610116958618164,
+          "time_to_this_feasible_output": 2.737496008281596
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16099780797958374,
+          "time_to_this_feasible_output": 4.909075483912602
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16096872091293335,
+          "time_to_this_feasible_output": 11.425140822073445
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.1609354019165039,
+          "time_to_this_feasible_output": 22.28397273423616
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.160885751247406,
+          "time_to_this_feasible_output": 44.03273511864245
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.1607787013053894,
+          "time_to_this_feasible_output": 109.26665880298242
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.16064423322677612,
+          "time_to_this_feasible_output": 217.87546019570436
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.16042739152908325,
+          "time_to_this_feasible_output": 435.0698574287817
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.15989434719085693,
+          "time_to_this_feasible_output": 1086.6155097328592
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.15912729501724243,
+          "time_to_this_feasible_output": 2171.6266273433575
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.15843617916107178,
+          "time_to_this_feasible_output": 3256.406028394471
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1578105092048645,
+          "time_to_this_feasible_output": 4341.0287803650135
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1578105092048645,
+          "time_to_this_feasible_output": 4341.028696230962
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": 0.15952341568536854,
+      "solver_seconds": 4341.019820572925,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 4353.117623913917
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 4399.708067437634,
+      "last_rounded_loss": 0.15781055780407988,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/published-smd/seed712/output/metadata.json",
+      "metadata_sha256": "722639f8c68b20c6d878563b47dc87b73db160f9904b48e33efdb7b7c72eb412",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.9096264294348657
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.16103380918502808,
+          "time_to_this_feasible_output": 1.1558166551403701
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.16102999448776245,
+          "time_to_this_feasible_output": 1.3759418581612408
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.16102105379104614,
+          "time_to_this_feasible_output": 2.035322112031281
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16101163625717163,
+          "time_to_this_feasible_output": 3.1348541313782334
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16099709272384644,
+          "time_to_this_feasible_output": 5.334163510240614
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.1609676480293274,
+          "time_to_this_feasible_output": 11.931675938889384
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16093361377716064,
+          "time_to_this_feasible_output": 22.919040188658983
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.1608831286430359,
+          "time_to_this_feasible_output": 44.89335727505386
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.16077589988708496,
+          "time_to_this_feasible_output": 110.86137584969401
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.1606404185295105,
+          "time_to_this_feasible_output": 220.9619346219115
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.16042178869247437,
+          "time_to_this_feasible_output": 440.8305382831022
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.15989035367965698,
+          "time_to_this_feasible_output": 1100.6917384085245
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.1591234803199768,
+          "time_to_this_feasible_output": 2200.336562368553
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.15843355655670166,
+          "time_to_this_feasible_output": 3300.1002759984694
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.15781062841415405,
+          "time_to_this_feasible_output": 4399.70811883267
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.15781062841415405,
+          "time_to_this_feasible_output": 4399.708067437634
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": 0.15861289325025224,
+      "solver_seconds": 4399.699123394676,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 4414.203278623987
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 5993.937217207509,
+      "last_rounded_loss": 0.16103920304580022,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/published-msbpg/seed710/output/metadata.json",
+      "metadata_sha256": "227d92087d2b4f14c78a050c546304487cbfec1553ccdb95d0dfaa31e48e6a84",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.13325482595246285
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.161039799451828,
+          "time_to_this_feasible_output": 0.695031292969361
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 1.0015702219679952
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 1.9190464919665828
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16103985905647278,
+          "time_to_this_feasible_output": 3.44895287102554
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 6.484722487977706
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 15.490002706064843
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 30.472573947859928
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 60.43553288874682
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 150.298665246577
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 300.1128060219344
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 599.8244239880005
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.1610395908355713,
+          "time_to_this_feasible_output": 1498.9999760499923
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.16103941202163696,
+          "time_to_this_feasible_output": 2997.325661020004
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.1610393524169922,
+          "time_to_this_feasible_output": 4495.5461928853765
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.16103923320770264,
+          "time_to_this_feasible_output": 5993.937100098585
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.16103923320770264,
+          "time_to_this_feasible_output": 5993.937217207509
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": 0.1610395941879481,
+      "solver_seconds": 5993.928789598518,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 6006.0116314070765
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 6013.62894031615,
+      "last_rounded_loss": 0.16103920281426598,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/published-msbpg/seed711/output/metadata.json",
+      "metadata_sha256": "8188e48b34553d2d6b86dd61a6009894328f4c65a61e001c4d52fdb508ecb6a6",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.0991915421327576
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.161039799451828,
+          "time_to_this_feasible_output": 0.4379745500627905
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 0.7434219520073384
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 1.6593473348766565
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 3.1842669799225405
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 6.2393916649743915
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 15.395153218647465
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 30.648177918046713
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 61.1674532443285
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 152.73645268229302
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 305.317652576603
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 610.4875797413988
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.1610395908355713,
+          "time_to_this_feasible_output": 1525.1126900111558
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.16103941202163696,
+          "time_to_this_feasible_output": 3028.1734650173457
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.1610393524169922,
+          "time_to_this_feasible_output": 4521.378562610596
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.16103923320770264,
+          "time_to_this_feasible_output": 6013.628909313236
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.16103923320770264,
+          "time_to_this_feasible_output": 6013.62894031615
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": 0.1610394625269233,
+      "solver_seconds": 6013.620553234126,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 6023.865271665971
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 5912.842827479821,
+      "last_rounded_loss": 0.16103920263238203,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/bmmc6224/published-msbpg/seed712/output/metadata.json",
+      "metadata_sha256": "38d9fbeffa7e84c6bc7b1bbe6791e2e49021c52e5fcc1388f70f946bd900d47f",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.4103417838923633
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.161039799451828,
+          "time_to_this_feasible_output": 1.207301755901426
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 1.5117181460373104
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.1610398292541504,
+          "time_to_this_feasible_output": 2.4235117826610804
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 3.944272903725505
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 6.949533230625093
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 15.819649138953537
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.16103988885879517,
+          "time_to_this_feasible_output": 30.6051794285886
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 60.15508229332045
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 148.91013755835593
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.16103976964950562,
+          "time_to_this_feasible_output": 296.8296059258282
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 592.6108806082048
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.1610395908355713,
+          "time_to_this_feasible_output": 1479.8995450101793
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.16103941202163696,
+          "time_to_this_feasible_output": 2958.418577933684
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.1610393524169922,
+          "time_to_this_feasible_output": 4436.7674660081975
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.16103923320770264,
+          "time_to_this_feasible_output": 5912.8428285676055
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.16103923320770264,
+          "time_to_this_feasible_output": 5912.842827479821
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": 0.16103931412349431,
+      "solver_seconds": 5912.834531923756,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 5924.243636511732
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 8794.947706960607,
+      "last_rounded_loss": 0.03511363054550898,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/smoothing-fw/seed710/output/metadata.json",
+      "metadata_sha256": "88fa046d07e410ce4086242c3c1f441ce416748989f35d307e452f021db75ce7",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.1176295280456543
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.043512046337127686,
+          "time_to_this_feasible_output": 0.5639013149775565
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04333895444869995,
+          "time_to_this_feasible_output": 0.6117944326251745
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04336512088775635,
+          "time_to_this_feasible_output": 0.7619708525016904
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04353147745132446,
+          "time_to_this_feasible_output": 1.0131942126899958
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.043537795543670654,
+          "time_to_this_feasible_output": 1.519292480777949
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.043610572814941406,
+          "time_to_this_feasible_output": 3.0533837862312794
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.04362046718597412,
+          "time_to_this_feasible_output": 5.570413328241557
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04363173246383667,
+          "time_to_this_feasible_output": 10.054528994951397
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04352051019668579,
+          "time_to_this_feasible_output": 23.494590781629086
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04319947957992554,
+          "time_to_this_feasible_output": 45.63684983039275
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.04208344221115112,
+          "time_to_this_feasible_output": 90.51268982607871
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.035778582096099854,
+          "time_to_this_feasible_output": 223.94635737268254
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.03514212369918823,
+          "time_to_this_feasible_output": 447.03838240355253
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.035115063190460205,
+          "time_to_this_feasible_output": 892.0610984582454
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.035114407539367676,
+          "time_to_this_feasible_output": 2224.5574787985533
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.03511393070220947,
+          "time_to_this_feasible_output": 4417.641223554965
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.03511369228363037,
+          "time_to_this_feasible_output": 6606.426206528675
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.03511369228363037,
+          "time_to_this_feasible_output": 8794.946646454278
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.03511369228363037,
+          "time_to_this_feasible_output": 8794.947706960607
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": null,
+      "solver_seconds": 8794.945101808291,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 8826.277624160983
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 9290.684329319512,
+      "last_rounded_loss": 2.43285373180413e-06,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/smoothing-fw/seed711/output/metadata.json",
+      "metadata_sha256": "a0d9a051e6f2070508c495616db681fe032e3b5aff6f4fc0098ee05d35c64f0e",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.16653259203303605
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.043517351150512695,
+          "time_to_this_feasible_output": 0.43818259600084275
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04339069128036499,
+          "time_to_this_feasible_output": 0.4833216860424727
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04328423738479614,
+          "time_to_this_feasible_output": 0.6248174589127302
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.043525874614715576,
+          "time_to_this_feasible_output": 0.8597162149380893
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.04355764389038086,
+          "time_to_this_feasible_output": 1.333790297852829
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.04358375072479248,
+          "time_to_this_feasible_output": 2.744831232004799
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.043610334396362305,
+          "time_to_this_feasible_output": 5.091006253147498
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04362910985946655,
+          "time_to_this_feasible_output": 9.771019087987952
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.043537676334381104,
+          "time_to_this_feasible_output": 23.82584057166241
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04320746660232544,
+          "time_to_this_feasible_output": 47.29251553292852
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.041991353034973145,
+          "time_to_this_feasible_output": 94.06707332993392
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.000680387020111084,
+          "time_to_this_feasible_output": 234.41494613641407
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 2.7418136596679688e-06,
+          "time_to_this_feasible_output": 468.3019513927866
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 1.9669532775878906e-06,
+          "time_to_this_feasible_output": 936.1996083221165
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 1.9669532775878906e-06,
+          "time_to_this_feasible_output": 2335.852131444728
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 1.9669532775878906e-06,
+          "time_to_this_feasible_output": 4655.082460234291
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 1.9669532775878906e-06,
+          "time_to_this_feasible_output": 6973.410842885962
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 1.9669532775878906e-06,
+          "time_to_this_feasible_output": 9290.68431435246
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 1.9669532775878906e-06,
+          "time_to_this_feasible_output": 9290.684329319512
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 123763,
+      "selected_raw_loss": null,
+      "solver_seconds": 9290.682672819472,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 9319.445743303979
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 10092.038058622391,
+      "last_rounded_loss": 0.035093099235492975,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/smoothing-fw/seed712/output/metadata.json",
+      "metadata_sha256": "7c97548f290fcbcfc9d407a70a01d84757d678fff736d289646542000559a980",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.33568031701724976
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.043525516986846924,
+          "time_to_this_feasible_output": 1.3652188902487978
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04336947202682495,
+          "time_to_this_feasible_output": 1.414044649223797
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.043340325355529785,
+          "time_to_this_feasible_output": 1.5667192972032353
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04354417324066162,
+          "time_to_this_feasible_output": 1.821373539045453
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.04355514049530029,
+          "time_to_this_feasible_output": 2.3313495711190626
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.043604135513305664,
+          "time_to_this_feasible_output": 3.8521478790789843
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.043616533279418945,
+          "time_to_this_feasible_output": 6.391408243216574
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.0436328649520874,
+          "time_to_this_feasible_output": 11.505017450544983
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.043555378913879395,
+          "time_to_this_feasible_output": 26.750759519985877
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.043261706829071045,
+          "time_to_this_feasible_output": 52.23688310012221
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.04227268695831299,
+          "time_to_this_feasible_output": 103.20735050237272
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.035788536071777344,
+          "time_to_this_feasible_output": 255.18988697149325
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.035113394260406494,
+          "time_to_this_feasible_output": 508.5795441180235
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.03509432077407837,
+          "time_to_this_feasible_output": 1015.5677405134775
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.03509366512298584,
+          "time_to_this_feasible_output": 2535.4667028875556
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.03509342670440674,
+          "time_to_this_feasible_output": 5066.761333211791
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.03509330749511719,
+          "time_to_this_feasible_output": 7594.487687741988
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.03509318828582764,
+          "time_to_this_feasible_output": 10092.03803733841
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.03509318828582764,
+          "time_to_this_feasible_output": 10092.038058622391
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 191482,
+      "selected_raw_loss": null,
+      "solver_seconds": 10092.036303447443,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 10130.339010820026
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 2000000,
+      "last_feasible_output_seconds": 12561.731304620742,
+      "last_rounded_loss": 0.043876616158433746,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/published-smd/seed710/output/metadata.json",
+      "metadata_sha256": "a5e4764d336f483a864078ea009d5ccd47a426a692d33bbbe6626e93f427ccb7",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.0997365319635719
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.5916856529656798
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 0.651179361040704
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 0.8394783738767728
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.1563755250535905
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 1.794801652780734
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 3.697184478281997
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 6.873054348048754
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 13.19625030667521
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04388338327407837,
+          "time_to_this_feasible_output": 32.125837109284475
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04388314485549927,
+          "time_to_this_feasible_output": 63.68704137287568
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.04388302564620972,
+          "time_to_this_feasible_output": 126.76230923784897
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.043882548809051514,
+          "time_to_this_feasible_output": 316.0148534148466
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.04388207197189331,
+          "time_to_this_feasible_output": 631.4569066247204
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.043881356716156006,
+          "time_to_this_feasible_output": 1262.3799477816792
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.0438801646232605,
+          "time_to_this_feasible_output": 3149.697961469181
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.04387873411178589,
+          "time_to_this_feasible_output": 6288.0499592009
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.04387754201889038,
+          "time_to_this_feasible_output": 9424.632837165263
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.043876588344573975,
+          "time_to_this_feasible_output": 12561.731281702756
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.043876588344573975,
+          "time_to_this_feasible_output": 12561.731304620742
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": 0.04388274876659204,
+      "solver_seconds": 12561.729600802762,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 12584.989448917913
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 2000000,
+      "last_feasible_output_seconds": 10542.008912552148,
+      "last_rounded_loss": 0.043876613679386,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/published-smd/seed711/output/metadata.json",
+      "metadata_sha256": "d728edddc171167e35c48d82a902a115992589f104289b1c2be995ef1f8bbcb8",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.3918472989462316
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 1.0973328636027873
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 1.1557651469483972
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.3367467266507447
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.637062372174114
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 2.2421001973561943
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 4.051001343410462
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 6.889507842250168
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 12.190511343535036
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04388326406478882,
+          "time_to_this_feasible_output": 28.119332731235772
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04388326406478882,
+          "time_to_this_feasible_output": 54.64880815567449
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.04388302564620972,
+          "time_to_this_feasible_output": 107.63093995209783
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.04388260841369629,
+          "time_to_this_feasible_output": 266.4723694087006
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.04388207197189331,
+          "time_to_this_feasible_output": 531.3651498630643
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.04388147592544556,
+          "time_to_this_feasible_output": 1060.9750408558175
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.0438801646232605,
+          "time_to_this_feasible_output": 2650.64384326851
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.04387867450714111,
+          "time_to_this_feasible_output": 5283.0124004012905
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.04387754201889038,
+          "time_to_this_feasible_output": 7913.179951801896
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.043876707553863525,
+          "time_to_this_feasible_output": 10542.00891749328
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.043876707553863525,
+          "time_to_this_feasible_output": 10542.008912552148
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 123763,
+      "selected_raw_loss": 0.04387811664727692,
+      "solver_seconds": 10542.007487247232,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 10583.010878672823
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 2000000,
+      "last_feasible_output_seconds": 11928.94631930627,
+      "last_rounded_loss": 0.043876614615622755,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/published-smd/seed712/output/metadata.json",
+      "metadata_sha256": "39fb5e6264c4b9e17f8da72c8bfbbb3ac6b59c6e7af03b00a21574c9fb5b7837",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.03378763690125197
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.2512214749585837
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 0.3096408959245309
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 0.49032495997380465
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.7900923849083483
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.043883681297302246,
+          "time_to_this_feasible_output": 1.3914545249426737
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 3.237112874398008
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 6.257457528845407
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 12.26495301281102
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04388338327407837,
+          "time_to_this_feasible_output": 30.238565433770418
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04388314485549927,
+          "time_to_this_feasible_output": 60.19126760610379
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.04388302564620972,
+          "time_to_this_feasible_output": 119.96591790160164
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.043882548809051514,
+          "time_to_this_feasible_output": 299.32761830324307
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.04388207197189331,
+          "time_to_this_feasible_output": 598.3345109268557
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.04388153553009033,
+          "time_to_this_feasible_output": 1196.4759441516362
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.04388010501861572,
+          "time_to_this_feasible_output": 2991.315744430991
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.04387873411178589,
+          "time_to_this_feasible_output": 5979.491774325143
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.04387754201889038,
+          "time_to_this_feasible_output": 8953.960273746517
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.043876588344573975,
+          "time_to_this_feasible_output": 11928.946288736304
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.043876588344573975,
+          "time_to_this_feasible_output": 11928.94631930627
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 191482,
+      "selected_raw_loss": 0.04387676568631227,
+      "solver_seconds": 11928.944684813265,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 11952.385220809025
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 2000000,
+      "last_feasible_output_seconds": 13682.688950802549,
+      "last_rounded_loss": 0.04388345117389336,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/published-msbpg/seed710/output/metadata.json",
+      "metadata_sha256": "7ee2555605613fdbc188bfb856bcbdbcc208c41eb7b7ed5cd592ce8a7dd2245c",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.09596580197103322
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 1.0778211099095643
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.1440833078231663
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 1.34802987286821
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.6874984067399055
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 2.367338979616761
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 4.400067089824006
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 7.788389867986552
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 14.551737433066592
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 34.89710807916708
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 68.82478629262187
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.043883681297302246,
+          "time_to_this_feasible_output": 136.50588495004922
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 339.66077897755895
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 677.6801049006172
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 1354.9660261070821
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 3476.3105780774495
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 6876.970804346725
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 10325.441964896629
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 13682.68892515148
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 13682.688950802549
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": 0.04388362280599767,
+      "solver_seconds": 13682.68719882355,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 13713.07244052901
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 2000000,
+      "last_feasible_output_seconds": 12321.645155501901,
+      "last_rounded_loss": 0.043883451063547296,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/published-msbpg/seed711/output/metadata.json",
+      "metadata_sha256": "2a758bee09cbac5261a148d30806d31c1375d8be6fbf1033f73112362f068b49",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.02369280392304063
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.25364359898958355
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.3147446248913184
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.5020766309462488
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.8125719650415704
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.4361662711016834
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 3.304335057036951
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 6.409605531487614
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 12.610085685621016
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 31.206720738322474
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 62.18983210937586
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.043883681297302246,
+          "time_to_this_feasible_output": 124.11323018313851
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 309.80720221507363
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 619.3682733930182
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1238.1907277874416
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 3089.8729030288523
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 6167.78025982168
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 9244.915889118565
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 12321.645116571919
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 12321.645155501901
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 123763,
+      "selected_raw_loss": 0.04388349268862346,
+      "solver_seconds": 12321.643530748901,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 12346.293813477969
+    },
+    {
+      "completed_updates": 200000,
+      "dataset": "metric512_s1000",
+      "initialization": "product",
+      "inner_iterations": 2000000,
+      "last_feasible_output_seconds": 12019.109333300032,
+      "last_rounded_loss": 0.04388345119208459,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/metric512_s1000/published-msbpg/seed712/output/metadata.json",
+      "metadata_sha256": "76e63372ab113db96f48017a9bde7a34850342fb6689ee2f46d029d3836de239",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 0.10474856290966272
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 0.8015902037732303
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 0.8683208101429045
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.043883681297302246,
+          "time_to_this_feasible_output": 1.0749553968198597
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1.418803031090647
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 2.101472790353
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 4.147081830538809
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.043883681297302246,
+          "time_to_this_feasible_output": 7.55844845296815
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 13.618599040433764
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 31.821944278664887
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 62.07802928937599
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.04388374090194702,
+          "time_to_this_feasible_output": 122.62554770288989
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 304.18210915802047
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 606.3809853359126
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.04388362169265747,
+          "time_to_this_feasible_output": 1210.6652097068727
+        },
+        {
+          "iteration": 50000,
+          "rounded_loss": 0.043883562088012695,
+          "time_to_this_feasible_output": 3024.6129472013563
+        },
+        {
+          "iteration": 100000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 6028.021709033754
+        },
+        {
+          "iteration": 150000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 9024.422336892225
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 12019.109304532874
+        },
+        {
+          "iteration": 200000,
+          "rounded_loss": 0.04388350248336792,
+          "time_to_this_feasible_output": 12019.109333300032
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 204800000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 191482,
+      "selected_raw_loss": 0.04388345476257893,
+      "solver_seconds": 12019.10778332781,
+      "status": "completed",
+      "stochastic_gradient_calls": 200000,
+      "total_elapsed_seconds": 12046.137229551096
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 2257.178763004369,
+      "last_rounded_loss": 0.10261039902293473,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/shareseq_full/smoothing-fw/seed710/output/metadata.json",
+      "metadata_sha256": "55baaf6407b61b6ec6217728f4abe701cb3d88276a9a72b3a3e30183c2af2f62",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.11722314357757568,
+          "time_to_this_feasible_output": 0.3864008510718122
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.11722439527511597,
+          "time_to_this_feasible_output": 0.6093848800519481
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.11722540855407715,
+          "time_to_this_feasible_output": 0.7218909979565069
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.11723154783248901,
+          "time_to_this_feasible_output": 1.0597906128969043
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.11724293231964111,
+          "time_to_this_feasible_output": 1.621647396706976
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.11735302209854126,
+          "time_to_this_feasible_output": 2.7424991148291156
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.11772197484970093,
+          "time_to_this_feasible_output": 6.10999475652352
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.11765715479850769,
+          "time_to_this_feasible_output": 11.731669552391395
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.11679339408874512,
+          "time_to_this_feasible_output": 23.00217754067853
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.11513856053352356,
+          "time_to_this_feasible_output": 56.852855281787924
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.11191385984420776,
+          "time_to_this_feasible_output": 113.26677053398453
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.10752654075622559,
+          "time_to_this_feasible_output": 226.0995355611667
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.10440754890441895,
+          "time_to_this_feasible_output": 564.6923501999117
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.10329842567443848,
+          "time_to_this_feasible_output": 1128.9315455512842
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.10286527872085571,
+          "time_to_this_feasible_output": 1693.0742285990855
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1026105284690857,
+          "time_to_this_feasible_output": 2257.1787295633694
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.1026105284690857,
+          "time_to_this_feasible_output": 2257.178763004369
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": null,
+      "solver_seconds": 2257.1444084573304,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 2396.338907475001
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 2251.102046570042,
+      "last_rounded_loss": 0.10240564547057318,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/shareseq_full/smoothing-fw/seed711/output/metadata.json",
+      "metadata_sha256": "d2234c158c37ab066aca3bd71c470cc192ba60ed3ace8ef374463df85cd158d5",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.11722314357757568,
+          "time_to_this_feasible_output": 0.46567097504157573
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.1172264814376831,
+          "time_to_this_feasible_output": 0.7332216531503946
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.11722469329833984,
+          "time_to_this_feasible_output": 0.8448084000265226
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.11722898483276367,
+          "time_to_this_feasible_output": 1.1816257260506973
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.1172342598438263,
+          "time_to_this_feasible_output": 1.7391463570529595
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.1173190176486969,
+          "time_to_this_feasible_output": 2.8583582281135023
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.1177264153957367,
+          "time_to_this_feasible_output": 6.215385071001947
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.11771395802497864,
+          "time_to_this_feasible_output": 11.811772488174029
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.11732476949691772,
+          "time_to_this_feasible_output": 23.02504093083553
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.11573097109794617,
+          "time_to_this_feasible_output": 56.74563794396818
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.11213713884353638,
+          "time_to_this_feasible_output": 112.98976261040661
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.10751330852508545,
+          "time_to_this_feasible_output": 225.4912387112854
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.10423004627227783,
+          "time_to_this_feasible_output": 562.9539936990477
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.10302159190177917,
+          "time_to_this_feasible_output": 1125.4974849101854
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.1026136577129364,
+          "time_to_this_feasible_output": 1688.2763027532492
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.10240578651428223,
+          "time_to_this_feasible_output": 2251.1020405311137
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.10240578651428223,
+          "time_to_this_feasible_output": 2251.102046570042
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": null,
+      "solver_seconds": 2251.0677304901183,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 2409.5443165870383
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 2240.452193200239,
+      "last_rounded_loss": 0.1021146205892049,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/shareseq_full/smoothing-fw/seed712/output/metadata.json",
+      "metadata_sha256": "01d24a2f337c242d42f23f90c14a2b6822cad300f6a76892594251753f8898a9",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.11722314357757568,
+          "time_to_this_feasible_output": 0.4982859060401097
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.11722433567047119,
+          "time_to_this_feasible_output": 0.8942000641254708
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.11722487211227417,
+          "time_to_this_feasible_output": 1.0064907281193882
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.11722856760025024,
+          "time_to_this_feasible_output": 1.3424351260764524
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.1172322928905487,
+          "time_to_this_feasible_output": 1.897840727120638
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.11732074618339539,
+          "time_to_this_feasible_output": 3.008401110302657
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.11763551831245422,
+          "time_to_this_feasible_output": 6.347370193339884
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.11783373355865479,
+          "time_to_this_feasible_output": 11.92097926326096
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.11741280555725098,
+          "time_to_this_feasible_output": 23.086473817937076
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.11567604541778564,
+          "time_to_this_feasible_output": 56.63105959864333
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.11200174689292908,
+          "time_to_this_feasible_output": 112.59352074807975
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.10714274644851685,
+          "time_to_this_feasible_output": 224.52050690329634
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.1037893295288086,
+          "time_to_this_feasible_output": 560.4300606780453
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.10267537832260132,
+          "time_to_this_feasible_output": 1120.276857648627
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.10230737924575806,
+          "time_to_this_feasible_output": 1680.3785005348036
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.10211476683616638,
+          "time_to_this_feasible_output": 2240.452195175225
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.10211476683616638,
+          "time_to_this_feasible_output": 2240.452193200239
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": null,
+      "solver_seconds": 2240.417925543152,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 2389.2902596829226
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "oracle": "pair-sampling",
+      "pairs_per_call": 1024,
+      "progress": {
+        "config": {
+          "batch": 128,
+          "certificate_block_rows": 256,
+          "check_every": 10,
+          "checkpoint_iterations": "1,2,5,10,20,50,100,200,500,1000,2000,5000,10000,15000,20000",
+          "checkpoints": "",
+          "coupling_fraction": 1.0,
+          "device": "cuda",
+          "dtype": "float32",
+          "exact_block_rows": 256,
+          "gamma0": 0.1,
+          "init_seed": 10710,
+          "initialization": "product",
+          "inner_gap_tol": 1e-07,
+          "inner_max": 10000,
+          "inner_tol": 1e-07,
+          "instance": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+          "iterations": 20000,
+          "method": "published-smd",
+          "momentum_prefactor": 1.0,
+          "mu_scale": 0.1,
+          "oracle": "pair-sampling",
+          "out": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/shareseq_full/published-smd/seed710/output",
+          "output_seed": 20710,
+          "pairs_per_call": 1024,
+          "prefactor_fraction": 1.0,
+          "progress_every": 1000,
+          "rho0": 0.3,
+          "save_plans": "none",
+          "seed": 710
+        },
+        "counters": {
+          "certificate_checks": 200,
+          "completed_updates": 200,
+          "exact_diagnostic_loss_calls": 18,
+          "initialization_oracle_calls": 0,
+          "inner_iterations_total": 2000,
+          "inner_stopping_failures": 0,
+          "pair_samples": 204800,
+          "sketch_probes": 0,
+          "stochastic_gradient_calls": 200,
+          "underflow_entries_total": 0,
+          "underflow_steps": 0
+        },
+        "fixed_horizon": 20000,
+        "last_inner": {
+          "arithmetic_certificate": "FP64 arithmetic; not interval-certified",
+          "certificate_checks": 1,
+          "certificate_primal": "FP64 rounded feasible witness of returned plan",
+          "certificate_valid": true,
+          "converged": true,
+          "dual_candidate_mass": 0.999999960040441,
+          "dual_objective": 0.23249109038709062,
+          "eta": 0.017677669529663688,
+          "gap_arithmetic_crosscheck_error": 1.9360201766677784e-15,
+          "gap_normalizer": 1.0,
+          "gap_roundoff_tolerance": 6.4457043307219455e-12,
+          "inner_iterations": 10,
+          "inner_tolerance": 1e-07,
+          "iteration": 199,
+          "marginal_l1": 2.8492386228151645e-10,
+          "marginal_tolerance": 1e-07,
+          "normalized_gap_tolerance": 1e-07,
+          "normalized_gap_upper_bound": 6.4746742815482355e-12,
+          "normalized_primal_dual_gap": 2.7033930649622562e-14,
+          "plan_dtype": "torch.float32",
+          "prefactor_fraction": 1.0,
+          "primal_dual_gap": 2.7033930649622562e-14,
+          "primal_objective": 0.23249109038711765,
+          "primal_witness_feasibility_tolerance": 1.1368683772161603e-13,
+          "primal_witness_marginal_l1": 1.2563192673675783e-16,
+          "primal_witness_plan_l1_difference": 1.921571657902876e-10,
+          "proximal_optimality_certified": true,
+          "reference_mass": 0.999999960040441,
+          "retained_log_dtype": "torch.float64",
+          "sinkhorn_arithmetic": "FP64 bounded blocks and vector reductions",
+          "stable_primal_dual_gap": 2.896995082629034e-14,
+          "underflow_entries": 0
+        },
+        "selected_index": 3349,
+        "solver_seconds": 205.41855379508343,
+        "status": "running"
+      },
+      "seed": 710,
+      "status": "started_without_result"
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "oracle": "pair-sampling",
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "oracle": "pair-sampling",
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "oracle": "pair-sampling",
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "oracle": "pair-sampling",
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "oracle": "pair-sampling",
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "status": "missing"
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1997.854782262817,
+      "last_rounded_loss": 0.09218825628063598,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/smoothing-fw/seed710/output/metadata.json",
+      "metadata_sha256": "1356c4c3e750045d049163b0bcd62013f37de3d0d6b43e84f1afc615cae8d374",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.18719142256304622
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09407678246498108,
+          "time_to_this_feasible_output": 0.4372451021336019
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09408000111579895,
+          "time_to_this_feasible_output": 0.5401876834221184
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09410524368286133,
+          "time_to_this_feasible_output": 0.8504932927899063
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09416553378105164,
+          "time_to_this_feasible_output": 1.3648532419465482
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.0943235456943512,
+          "time_to_this_feasible_output": 2.3840936487540603
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09450286626815796,
+          "time_to_this_feasible_output": 5.375457293819636
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09436547756195068,
+          "time_to_this_feasible_output": 10.360485639888793
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09388497471809387,
+          "time_to_this_feasible_output": 20.329530847258866
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09371212124824524,
+          "time_to_this_feasible_output": 50.51545489998534
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09313571453094482,
+          "time_to_this_feasible_output": 100.35620873235166
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09242743253707886,
+          "time_to_this_feasible_output": 200.15852786879987
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09212499856948853,
+          "time_to_this_feasible_output": 500.0089543480426
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.0921892523765564,
+          "time_to_this_feasible_output": 999.4620655039325
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09221416711807251,
+          "time_to_this_feasible_output": 1498.6388671984896
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09218829870223999,
+          "time_to_this_feasible_output": 1997.8543311194517
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09218829870223999,
+          "time_to_this_feasible_output": 1997.854782262817
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": null,
+      "solver_seconds": 1997.8389251637273,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 2021.9125240342692
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1988.6233582511777,
+      "last_rounded_loss": 0.09221623352202862,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/smoothing-fw/seed711/output/metadata.json",
+      "metadata_sha256": "8643a72ab4a7afae6f8531db059b52fc3d302f3767accb63f4f11b1817a0c66e",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.060965887969359756
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09407427906990051,
+          "time_to_this_feasible_output": 0.20762156008277088
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.0940772294998169,
+          "time_to_this_feasible_output": 0.3074637841200456
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09410116076469421,
+          "time_to_this_feasible_output": 0.6072675900068134
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09417170286178589,
+          "time_to_this_feasible_output": 1.106413119006902
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09429705142974854,
+          "time_to_this_feasible_output": 2.1036739284172654
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09438562393188477,
+          "time_to_this_feasible_output": 5.0968366207089275
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09410396218299866,
+          "time_to_this_feasible_output": 10.080231734435074
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09387212991714478,
+          "time_to_this_feasible_output": 20.085835703997873
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09385907649993896,
+          "time_to_this_feasible_output": 50.07044820371084
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09331190586090088,
+          "time_to_this_feasible_output": 99.99053067166824
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09291356801986694,
+          "time_to_this_feasible_output": 199.784138583811
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09240418672561646,
+          "time_to_this_feasible_output": 499.239140481106
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.09233814477920532,
+          "time_to_this_feasible_output": 998.5487560251495
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09230780601501465,
+          "time_to_this_feasible_output": 1498.4040446185973
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09221631288528442,
+          "time_to_this_feasible_output": 1988.6233935621567
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09221631288528442,
+          "time_to_this_feasible_output": 1988.6233582511777
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": null,
+      "solver_seconds": 1988.6088703181595,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 2009.600356584997
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 1892.2973565342836,
+      "last_rounded_loss": 0.09199649227967488,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/smoothing-fw/seed712/output/metadata.json",
+      "metadata_sha256": "c273d9a9eee752c3661157ab67d2722835879d5bbcb3cc8a55ce62ce2df2f0d4",
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.7375067258253694
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09407618641853333,
+          "time_to_this_feasible_output": 0.7996668191626668
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09408092498779297,
+          "time_to_this_feasible_output": 0.8944605700671673
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09410801529884338,
+          "time_to_this_feasible_output": 1.1784852780401707
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09417396783828735,
+          "time_to_this_feasible_output": 1.6513833799399436
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09432333707809448,
+          "time_to_this_feasible_output": 2.5957276970148087
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09435537457466125,
+          "time_to_this_feasible_output": 5.422909913118929
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.0940820574760437,
+          "time_to_this_feasible_output": 10.15287556918338
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.0941561758518219,
+          "time_to_this_feasible_output": 19.641513760667294
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09335893392562866,
+          "time_to_this_feasible_output": 48.05653533432633
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09252968430519104,
+          "time_to_this_feasible_output": 95.34083295287564
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09199726581573486,
+          "time_to_this_feasible_output": 189.924714573659
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09187108278274536,
+          "time_to_this_feasible_output": 473.49730933783576
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.09197300672531128,
+          "time_to_this_feasible_output": 946.4824270927347
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09202837944030762,
+          "time_to_this_feasible_output": 1419.2784562269226
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09199655055999756,
+          "time_to_this_feasible_output": 1892.2970990017056
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09199655055999756,
+          "time_to_this_feasible_output": 1892.2973565342836
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": null,
+      "solver_seconds": 1892.2826116355136,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 1917.3048477880657
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 8727.129023704561,
+      "last_rounded_loss": 0.09313208341405343,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/published-smd/seed710/output/metadata.json",
+      "metadata_sha256": "3fd1550867f1494649f70900045dbc36e9de1c8c56f685065e3e4d0d5f47674d",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.06805236893706024
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09406942129135132,
+          "time_to_this_feasible_output": 0.6298080930719152
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09406745433807373,
+          "time_to_this_feasible_output": 1.0680079581215978
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.0940636396408081,
+          "time_to_this_feasible_output": 2.378615210065618
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09405875205993652,
+          "time_to_this_feasible_output": 4.5685321991331875
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09405142068862915,
+          "time_to_this_feasible_output": 8.937226825160906
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.0940367579460144,
+          "time_to_this_feasible_output": 22.045281085418537
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.0940205454826355,
+          "time_to_this_feasible_output": 43.90590915910434
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09399640560150146,
+          "time_to_this_feasible_output": 87.58593536505941
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.0939483642578125,
+          "time_to_this_feasible_output": 218.64577451068908
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09389227628707886,
+          "time_to_this_feasible_output": 437.040849654004
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09381049871444702,
+          "time_to_this_feasible_output": 873.8349938825704
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09363871812820435,
+          "time_to_this_feasible_output": 2184.1674899542704
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.0934343934059143,
+          "time_to_this_feasible_output": 4365.61445051129
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09327161312103271,
+          "time_to_this_feasible_output": 6546.481383634033
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09313207864761353,
+          "time_to_this_feasible_output": 8727.128973150626
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09313207864761353,
+          "time_to_this_feasible_output": 8727.129023704561
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": 0.09372521728217625,
+      "solver_seconds": 8727.113816151628,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 8748.650835626991
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 8605.737174266833,
+      "last_rounded_loss": 0.0931300004895032,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/published-smd/seed711/output/metadata.json",
+      "metadata_sha256": "b9251ed5324e30179a50f0158b18042877194a1dadf544d6a7ca197f49f7ea19",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.06789777299854904
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09406965970993042,
+          "time_to_this_feasible_output": 0.5644018789753318
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09406775236129761,
+          "time_to_this_feasible_output": 0.994997143978253
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09406369924545288,
+          "time_to_this_feasible_output": 2.2889653558377177
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09405869245529175,
+          "time_to_this_feasible_output": 4.44627884181682
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.0940513014793396,
+          "time_to_this_feasible_output": 8.751960154040717
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.0940367579460144,
+          "time_to_this_feasible_output": 21.66106038133148
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09402024745941162,
+          "time_to_this_feasible_output": 43.18782297032885
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09399628639221191,
+          "time_to_this_feasible_output": 86.22427185252309
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09394794702529907,
+          "time_to_this_feasible_output": 215.33708651037887
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.0938919186592102,
+          "time_to_this_feasible_output": 430.54045660200063
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09381002187728882,
+          "time_to_this_feasible_output": 860.9211725258501
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09363788366317749,
+          "time_to_this_feasible_output": 2151.986981832306
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.0934332013130188,
+          "time_to_this_feasible_output": 4304.390156641719
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09326988458633423,
+          "time_to_this_feasible_output": 6455.198200112791
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09312999248504639,
+          "time_to_this_feasible_output": 8605.73712323478
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09312999248504639,
+          "time_to_this_feasible_output": 8605.737174266833
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": 0.09353457280685129,
+      "solver_seconds": 8605.722712260787,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 8628.00064930797
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 8622.381374165881,
+      "last_rounded_loss": 0.09312952036568323,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/published-smd/seed712/output/metadata.json",
+      "metadata_sha256": "acfb38a19f2014b62eda4f1d9180dd02c88746be5c7281f14a2771f61f527f77",
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.7375470669940114
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09406954050064087,
+          "time_to_this_feasible_output": 1.3058642032556236
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.0940675139427185,
+          "time_to_this_feasible_output": 1.7368398257531226
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09406322240829468,
+          "time_to_this_feasible_output": 3.029471728950739
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09405875205993652,
+          "time_to_this_feasible_output": 5.184849892742932
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09405159950256348,
+          "time_to_this_feasible_output": 9.50125340046361
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09403687715530396,
+          "time_to_this_feasible_output": 22.426980535965413
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09402012825012207,
+          "time_to_this_feasible_output": 43.974141222424805
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09399586915969849,
+          "time_to_this_feasible_output": 87.07497020158917
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09394735097885132,
+          "time_to_this_feasible_output": 216.36825794819742
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09389102458953857,
+          "time_to_this_feasible_output": 431.84457293106243
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09380894899368286,
+          "time_to_this_feasible_output": 862.9797857077792
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09363704919815063,
+          "time_to_this_feasible_output": 2156.2302350159734
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.0934324860572815,
+          "time_to_this_feasible_output": 4311.613837169949
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09326952695846558,
+          "time_to_this_feasible_output": 6466.906296379399
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09312951564788818,
+          "time_to_this_feasible_output": 8622.381431253627
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09312951564788818,
+          "time_to_this_feasible_output": 8622.381374165881
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": 0.09331067712338675,
+      "solver_seconds": 8622.366771738045,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 8647.265636213124
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 13314.77253982611,
+      "last_rounded_loss": 0.0940721506859441,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/published-msbpg/seed710/output/metadata.json",
+      "metadata_sha256": "ca051498f6526138b3e0de4c004af45a55c438527bc7196b9d9d3c0272922655",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.298766084946692
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 1.4197110407985747
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 2.0951366857625544
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 4.120999848935753
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 7.44887647498399
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 14.105738696176559
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 34.07468516146764
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09407246112823486,
+          "time_to_this_feasible_output": 67.35190990753472
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 133.9129045768641
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 333.5879620499909
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 666.4005139083602
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 1332.2515386114828
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 3330.002528502606
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 6659.590441705193
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 9988.08021578705
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 13314.772536152042
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 13314.77253982611
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 710,
+      "selected_index": 3349,
+      "selected_raw_loss": 0.09407233865012365,
+      "solver_seconds": 13314.758264427073,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 13337.023363723885
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 13376.19774417393,
+      "last_rounded_loss": 0.09407215089518811,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/published-msbpg/seed711/output/metadata.json",
+      "metadata_sha256": "14b2b60ef4f5d3180a0067213553a71117bf520456a3f0f79984b593afb25e70",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.059675767086446285
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 1.4963495382107794
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 2.1668029440334067
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 4.173212602967396
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 7.518850227934308
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 14.216625100234523
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 34.30013061570935
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 67.76699286699295
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 134.69673794775736
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 335.45768199150916
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 670.0355884901946
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 1339.2103975957725
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 3346.1641402541427
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 6689.612858269829
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 10033.125124838902
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 13376.197753158864
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 13376.19774417393
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 711,
+      "selected_index": 7346,
+      "selected_raw_loss": 0.09407227564962228,
+      "solver_seconds": 13376.183420881862,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 13401.065456424956
+    },
+    {
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 13516.616316725616,
+      "last_rounded_loss": 0.09407215015306475,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/results/snare_full/published-msbpg/seed712/output/metadata.json",
+      "metadata_sha256": "c9a70f5b161cc473d89abc2b8ae19a644bf06512c301dde76ff0c78588b313b4",
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "observed_current_trajectory": [
+        {
+          "iteration": 0,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.058367382967844605
+        },
+        {
+          "iteration": 1,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.7996366119477898
+        },
+        {
+          "iteration": 2,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 1.4759233490331098
+        },
+        {
+          "iteration": 5,
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 3.5043292429763824
+        },
+        {
+          "iteration": 10,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 6.884748347103596
+        },
+        {
+          "iteration": 20,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 13.648885842063464
+        },
+        {
+          "iteration": 50,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 33.92787039873656
+        },
+        {
+          "iteration": 100,
+          "rounded_loss": 0.09407252073287964,
+          "time_to_this_feasible_output": 67.7331454277737
+        },
+        {
+          "iteration": 200,
+          "rounded_loss": 0.09407246112823486,
+          "time_to_this_feasible_output": 135.33594851894304
+        },
+        {
+          "iteration": 500,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 338.149449476623
+        },
+        {
+          "iteration": 1000,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 676.1546471131733
+        },
+        {
+          "iteration": 2000,
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 1352.203614523285
+        },
+        {
+          "iteration": 5000,
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 3379.9773820141563
+        },
+        {
+          "iteration": 10000,
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 6759.482549523003
+        },
+        {
+          "iteration": 15000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 10138.475829706178
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 13516.616950593656
+        },
+        {
+          "iteration": 20000,
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 13516.616316725616
+        }
+      ],
+      "oracle": "pair-sampling",
+      "pair_samples": 20480000,
+      "pairs_per_call": 1024,
+      "seed": 712,
+      "selected_index": 13654,
+      "selected_raw_loss": 0.0940722042188179,
+      "solver_seconds": 13516.60192486865,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "total_elapsed_seconds": 13545.513349303976
+    }
+  ],
+  "scope": "Fixed-prefactor comparison: three stochastic methods use the same pair-sampling oracle and pair budget. Real-data prefactors were previously selected using Rademacher sketches; no retuning or loss-based stopping. This is not a ranking of independently retuned best configurations.",
+  "status": "incomplete",
+  "summaries": [
+    {
+      "dataset": "bmmc6224",
+      "medians": {
+        "last_feasible_output_seconds": 1489.178049116861,
+        "last_rounded_loss": 0.1584079873828957,
+        "solver_seconds": 1489.168964838842,
+        "total_elapsed_seconds": 1501.2681632899912
+      },
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "bmmc6224",
+      "medians": {
+        "last_feasible_output_seconds": 4341.028696230962,
+        "last_rounded_loss": 0.15781055780407988,
+        "solver_seconds": 4341.019820572925,
+        "total_elapsed_seconds": 4353.117623913917
+      },
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "bmmc6224",
+      "medians": {
+        "last_feasible_output_seconds": 5993.937217207509,
+        "last_rounded_loss": 0.16103920281426598,
+        "solver_seconds": 5993.928789598518,
+        "total_elapsed_seconds": 6006.0116314070765
+      },
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "metric512_s1000",
+      "medians": {
+        "last_feasible_output_seconds": 9290.684329319512,
+        "last_rounded_loss": 0.035093099235492975,
+        "solver_seconds": 9290.682672819472,
+        "total_elapsed_seconds": 9319.445743303979
+      },
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "metric512_s1000",
+      "medians": {
+        "last_feasible_output_seconds": 11928.94631930627,
+        "last_rounded_loss": 0.043876614615622755,
+        "solver_seconds": 11928.944684813265,
+        "total_elapsed_seconds": 11952.385220809025
+      },
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "metric512_s1000",
+      "medians": {
+        "last_feasible_output_seconds": 12321.645155501901,
+        "last_rounded_loss": 0.04388345117389336,
+        "solver_seconds": 12321.643530748901,
+        "total_elapsed_seconds": 12346.293813477969
+      },
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "shareseq_full",
+      "medians": {
+        "last_feasible_output_seconds": 2251.102046570042,
+        "last_rounded_loss": 0.10240564547057318,
+        "solver_seconds": 2251.0677304901183,
+        "total_elapsed_seconds": 2396.338907475001
+      },
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "shareseq_full",
+      "medians": null,
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "seeds": [],
+      "status": "incomplete"
+    },
+    {
+      "dataset": "shareseq_full",
+      "medians": null,
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "seeds": [],
+      "status": "incomplete"
+    },
+    {
+      "dataset": "snare_full",
+      "medians": {
+        "last_feasible_output_seconds": 1988.6233582511777,
+        "last_rounded_loss": 0.09218825628063598,
+        "solver_seconds": 1988.6088703181595,
+        "total_elapsed_seconds": 2009.600356584997
+      },
+      "method": "smoothing-fw",
+      "method_name": "FraMES with gradient momentum",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "snare_full",
+      "medians": {
+        "last_feasible_output_seconds": 8622.381374165881,
+        "last_rounded_loss": 0.0931300004895032,
+        "solver_seconds": 8622.366771738045,
+        "total_elapsed_seconds": 8647.265636213124
+      },
+      "method": "published-smd",
+      "method_name": "Stochastic entropic mirror descent with fresh gradients",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    },
+    {
+      "dataset": "snare_full",
+      "medians": {
+        "last_feasible_output_seconds": 13376.19774417393,
+        "last_rounded_loss": 0.0940721506859441,
+        "solver_seconds": 13376.183420881862,
+        "total_elapsed_seconds": 13401.065456424956
+      },
+      "method": "published-msbpg",
+      "method_name": "MSBPG with the published coupled step and momentum schedules",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "status": "completed"
+    }
+  ]
+}

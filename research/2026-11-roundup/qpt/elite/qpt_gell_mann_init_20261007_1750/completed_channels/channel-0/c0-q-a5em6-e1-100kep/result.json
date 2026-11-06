@@ -1,0 +1,312 @@
+{
+  "active_observations_sha256": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+  "active_row_count": 128,
+  "active_rows_sha256": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+  "armijo_slope": "-2*||half_gradient_direction||_F^2",
+  "configuration": {
+    "armijo_constant": 0.0001,
+    "armijo_gradient_atol": 0.0,
+    "armijo_gradient_rtol": 0.0,
+    "armijo_initial_step": 1.0,
+    "armijo_max_backtracks": 30,
+    "armijo_shrink": 0.5,
+    "batch_size": 32,
+    "dense_max_process_dimension": 1024,
+    "eta_scale": 1.0,
+    "frames_beta": 99999.99999999999,
+    "frames_beta0": 99999.99999999999,
+    "frames_initial_tp_weight_lambda": 0.00064,
+    "frames_initial_tp_weight_per_row_alpha": 5e-06,
+    "frames_metrics_frequency": 4000,
+    "frames_penalty_mode": "independent_schedule",
+    "frames_smoothing_schedule": {
+      "cap": null,
+      "exponent": 0.25,
+      "offset": 1.0,
+      "scale": 99999.99999999999,
+      "type": "PowerSchedule"
+    },
+    "frames_steps": 400000,
+    "initialization_basis": "gell-mann",
+    "initialization_seed": 200000,
+    "methods": [
+      "printed-adafgd"
+    ],
+    "metrics_frequency": 1000,
+    "n_steps": 100000,
+    "rank": 1,
+    "rho_schedule": {
+      "cap": 1,
+      "exponent": 0.6,
+      "offset": 4,
+      "scale": 2,
+      "type": "PowerSchedule"
+    },
+    "sampling_seed": 300000,
+    "spectral_norm_maxiter": null,
+    "spectral_norm_method": "dense",
+    "spectral_norm_tolerance": 1e-10,
+    "step_size_schedule": {
+      "cap": 1,
+      "exponent": 1,
+      "offset": 2,
+      "scale": 2,
+      "type": "PowerSchedule"
+    },
+    "tau": 2.0,
+    "tp_weight_lambda": 0.00064
+  },
+  "created_utc": "2026-10-07T17:55:41.356771+00:00",
+  "data_metadata": {
+    "channel_model": "haar_unitary",
+    "channel_rng": "Generator(PCG64(SeedSequence(channel_seed, spawn_key=(0,))))",
+    "channel_seed": 0,
+    "design": {
+      "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+      "convention": "quiroga_global_probes_2d_povm_choi_v1",
+      "d": 4,
+      "n_qubits": 2,
+      "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+      "outcomes": 8,
+      "povm_a": 0.1,
+      "povm_b": 0.1,
+      "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+      "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+      "probes": 16,
+      "row_index": "s = 2*d*probe + outcome",
+      "rows": 128,
+      "throwaway_min_eigenvalue": 0.09999999999999992
+    },
+    "generator": "qpt_quiroga_sensing_v1",
+    "noise_generator": null,
+    "numpy_version": "2.5.3",
+    "python_version": "3.12.14",
+    "shot_generator": null,
+    "truth_factor_sha256": "df22ca51f4aee15a813d31516f6df2858f8bd519b26eb898758bd050e3d8d9e3",
+    "truth_rank": 1,
+    "truth_tp_violation": 6.974882823045959e-16,
+    "truth_trace": 3.9999999999999996
+  },
+  "design": {
+    "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+    "convention": "quiroga_global_probes_2d_povm_choi_v1",
+    "d": 4,
+    "n_qubits": 2,
+    "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+    "outcomes": 8,
+    "povm_a": 0.1,
+    "povm_b": 0.1,
+    "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+    "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+    "probes": 16,
+    "row_index": "s = 2*d*probe + outcome",
+    "rows": 128,
+    "throwaway_min_eigenvalue": 0.09999999999999992
+  },
+  "diagnostic": {
+    "budget": {
+      "actual_optimizer_row_accesses": 12800000,
+      "actual_optimizer_row_epochs": 100000.0,
+      "primary_equal_work_comparison": false,
+      "qualification": "Printed 100000 updates and FRAMES 400000 batch32 updates charge 12800000 nominal optimizer rows when complete; spectral work and checkpoints are excluded. Armijo has 10000 maximum iterations with actual line-search and terminal-gradient row charges, not equal work. Converged Armijo endpoints must independently pass the physical gate.",
+      "requested_iterations": 100000,
+      "requested_nominal_row_accesses": 12800000
+    },
+    "campaign_id": "qpt_gell_mann_init_20261007",
+    "endpoint_metric_errors": {},
+    "failure_archival_qualification": null,
+    "full_design_endpoint": {
+      "factor_frobenius_norm": 1.9990732413871148,
+      "factor_operator_norm": 1.999073241387115,
+      "measurement_loss_mean": 1.4702727991615176e-06,
+      "measurement_loss_sum": 0.00018819491829267425,
+      "normalized_tp_violation": 0.008672929630548944,
+      "process_fidelity": 0.9959649208644281,
+      "rmse": 0.0017148019122694713,
+      "tp_violation": 0.017345859261097888
+    },
+    "gate": {
+      "components": {
+        "fidelity": true,
+        "full_design_rmse": false,
+        "normalized_tp": false
+      },
+      "method_status": "complete",
+      "pass": false,
+      "thresholds": {
+        "fidelity_min": 0.99,
+        "normalized_tp_max": 0.001,
+        "rmse_max": 1e-06
+      }
+    },
+    "hostname": "node213",
+    "initialization": "trace_normalized_uniform_gell_mann_coefficients",
+    "plan_builder_sha256": "242b2798440c1a888765b3b27639fd84d1a05cdd5fe757168ec8adb6e494fe0d",
+    "plan_sha256": "cc34b86834f9a6a26a798f8a3d2b39e2de8b850b6564017f87dfbc56d2f016bb",
+    "requested_configuration": {
+      "armijo_constant": 0.0001,
+      "armijo_gradient_atol": 0.0,
+      "armijo_gradient_rtol": 0.0,
+      "armijo_initial_step": 1.0,
+      "armijo_max_backtracks": 30,
+      "armijo_shrink": 0.5,
+      "batch_size": 32,
+      "dense_max_process_dimension": 1024,
+      "eta_scale": 1.0,
+      "frames_beta0": 99999.99999999999,
+      "frames_metrics_frequency": 4000,
+      "frames_smoothing_schedule": {
+        "cap": null,
+        "exponent": 0.25,
+        "offset": 1.0,
+        "scale": 99999.99999999999
+      },
+      "frames_steps": 400000,
+      "initialization_basis": "gell-mann",
+      "initialization_seed": 200000,
+      "methods": [
+        "printed-adafgd"
+      ],
+      "metrics_frequency": 1000,
+      "n_steps": 100000,
+      "rank": 1,
+      "rho_schedule": {
+        "cap": 1,
+        "exponent": 0.6,
+        "offset": 4,
+        "scale": 2
+      },
+      "sampling_seed": 300000,
+      "show_progress": false,
+      "spectral_norm_maxiter": null,
+      "spectral_norm_method": "dense",
+      "spectral_norm_tolerance": 1e-10,
+      "step_size_schedule": {
+        "cap": 1,
+        "exponent": 1,
+        "offset": 2,
+        "scale": 2
+      },
+      "tau": 2.0,
+      "tp_weight": 0.00064
+    },
+    "role": "Calibration initializer-sensitivity diagnostic; not paper-exact reproduction, selection, or unseen validation.",
+    "runner_sha256": "cc577b317992f224e139454b7fd9beb19a152c2caf008e05a813ae2f4449697c",
+    "slurm_array_job_id": "2038514",
+    "slurm_array_task_id": "0",
+    "slurm_job_id": "2038515",
+    "source_commit": "966ef74f57a3e4d9fcd1378df99df3e4641a7d31",
+    "source_sha256": {
+      "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+      "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+      "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+      "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+      "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+      "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+      "paper/experiments/qpt_quiroga_campaign.py": "fceb93c00b278aef58b44971223ea1ac9db5c770bee9f164aea1a364f5da84d6",
+      "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+      "paper/experiments/qpt_quiroga_initialization.py": "7f171780eb939e57cf32d0dc6205c7673473255aea551b736c3087a47a6caf31",
+      "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+      "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652",
+      "scripts/qpt_gell_mann_diagnostic/audit_results.py": "dfc9c59f4f5d61edfeef1c47f71ef6139e9f01824c27bd995229535ec2b9e100",
+      "scripts/qpt_gell_mann_diagnostic/diagnostic.sbatch": "3a87069dc85d5b760c1be789d78b19e48bba14ab25940b939fe465a22f0909ad",
+      "scripts/qpt_gell_mann_diagnostic/freeze_plan.py": "242b2798440c1a888765b3b27639fd84d1a05cdd5fe757168ec8adb6e494fe0d",
+      "scripts/qpt_gell_mann_diagnostic/paired_reference.py": "5aca1b009a4657d3f559db17d23a0b1b9619d69c3eae8097d96580d22bec1541",
+      "scripts/qpt_gell_mann_diagnostic/run_diagnostic.py": "cc577b317992f224e139454b7fd9beb19a152c2caf008e05a813ae2f4449697c",
+      "scripts/qpt_gell_mann_diagnostic/support.py": "cb2690059046ed47ac06c9d4f1bb13fae88599ba2dd9746e0115465e93c7d863",
+      "scripts/qpt_gell_mann_diagnostic/test_harness.py": "25ba61c78b3725835e8d7e4a23399427acd10c8a8a48772aeb5cfcd2bd4ec557",
+      "scripts/qpt_gell_mann_diagnostic/work_accounting.py": "2cc6b4f916bbc2ac7afa9d41015d6b691713031b371e6ee8e3a982a09d854638"
+    },
+    "split": "calibration",
+    "trial": {
+      "alpha": 5e-06,
+      "armijo_gradient_atol": 0.0,
+      "armijo_gradient_rtol": 0.0,
+      "channel": 0,
+      "checkpoint_epochs": 1000,
+      "eta_scale": 1.0,
+      "id": "c0-q-a5em6-e1-100kep",
+      "method": "printed-adafgd",
+      "row_epochs": 100000,
+      "tau": 2.0
+    },
+    "trial_id": "c0-q-a5em6-e1-100kep"
+  },
+  "format": "qpt_quiroga_campaign",
+  "initial_factor_sha256": "1991631fccbb666771362122dc6fff28ea36d0fa0708853f8ae4e020f8380d1b",
+  "initialization": {
+    "basis": "gell-mann",
+    "coefficient_draw": {
+      "distribution": "independent real and imaginary uniform[0,1)",
+      "draw_order": "all real coefficients, then all imaginary coefficients; C order",
+      "generator": "numpy.random.default_rng (PCG64)",
+      "seed_configuration_key": "initialization_seed",
+      "shape": "(d**2, rank)"
+    },
+    "convention": "quiroga_campaign_initializer_coordinates_v1",
+    "normalization": {
+      "rule": "C *= sqrt(d)/||C||_F; ||U0||_F**2 = d up to roundoff",
+      "stage": "coefficient factor before mapping; no second normalization"
+    },
+    "operator_basis": {
+      "antisymmetric": "(-i|j><k|+i|k><j|)/sqrt(2)",
+      "convention": "hs_unit_gell_mann_identity_sym_antisym_diag_v1",
+      "diagonal": "diag(1 repeated l times,-l,0,...,0)/sqrt(l*(l+1))",
+      "identity": "I/sqrt(d)",
+      "implementation": "O(d**2*rank) synthesis; no dense basis or basis-change matrix",
+      "mapping": "K_a=sum_b C[b,a]*E_b; U0[i*d+o,a]=K_a[o,i]",
+      "ordering": "identity; symmetric pairs j<k in lexicographic order; antisymmetric pairs j<k in lexicographic order; diagonals l=1,...,d-1",
+      "symmetric": "(|j><k|+|k><j|)/sqrt(2)"
+    },
+    "operator_basis_hilbert_schmidt_norm": 1.0,
+    "physical_coordinates": "U0[i*d+o,a] = K_a[o,i] (input-major Choi)"
+  },
+  "method_domains": {
+    "armijo-fgd": {
+      "constraint": "none",
+      "projection": "none"
+    },
+    "frames": {
+      "constraint": "operator_norm_ball",
+      "tau": 2.0
+    },
+    "printed-adafgd": {
+      "constraint": "none",
+      "projection": "none"
+    }
+  },
+  "methods": {
+    "printed-adafgd": {
+      "completed_steps": 100000,
+      "cumulative_data_row_accesses": 12800000,
+      "failure_reason": null,
+      "measurement_loss_mean": 1.4702727991615176e-06,
+      "measurement_loss_sum": 0.00018819491829267425,
+      "normalized_tp_violation": 0.008672929630548944,
+      "optimizer_seconds": 69.0412116034422,
+      "penalized_objective": 0.00018838748074611797,
+      "process_fidelity": 0.9959649208644281,
+      "rmse": 0.0017148019122694713,
+      "spectral_norm_adjoint_column_equivalent_total": 1600000,
+      "spectral_norm_operator_calls_total": 100000,
+      "spectral_norm_seconds_total": 26.192484067985788,
+      "status": "complete",
+      "tp_violation": 0.017345859261097888
+    }
+  },
+  "numpy_version": "2.5.3",
+  "objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
+  "observation_mode": "noiseless",
+  "python_version": "3.12.14",
+  "schema_version": 1,
+  "scipy_version": "1.18.1",
+  "source_sha256": {
+    "qpt_quiroga_campaign.py": "fceb93c00b278aef58b44971223ea1ac9db5c770bee9f164aea1a364f5da84d6",
+    "qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+    "qpt_quiroga_initialization.py": "7f171780eb939e57cf32d0dc6205c7673473255aea551b736c3087a47a6caf31",
+    "qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+    "quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+  },
+  "truth_factor_sha256": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9",
+  "work_counter": "nominal optimizer active-row accesses; not a total compute/work-equivalent; excludes checkpoint passes, TP work, full structured forward/adjoint overhead, and separately reported adaFGD spectral-norm operations"
+}

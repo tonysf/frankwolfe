@@ -1,0 +1,81 @@
+"""Generate the one-page results summary from the verified campaign report."""
+from pathlib import Path
+import hashlib
+import json
+
+ROOT = Path(__file__).resolve().parents[2]
+OUT = Path(__file__).resolve().parent
+receipt = json.loads((ROOT / 'reports/PUBLISHED_STOCHASTIC_CAMPAIGN.json').read_text())
+report_path = ROOT / receipt['completion']['local_report']
+assert hashlib.sha256(report_path.read_bytes()).hexdigest() == receipt['completion']['report_sha256']
+report = json.loads(report_path.read_text())
+assert report['task_counts'] == dict(completed=468, failed=0, invalid=0, missing=0, started_without_result=0)
+rows = []
+labels = dict(bmmc6224='BMMC', snare_full='SNARE-seq', shareseq_full='SHARE-seq')
+for dataset in labels:
+    for initialization in ('product', 'randomized'):
+        stats = {r['method']: r['statistics'] for r in report['final_summaries']
+                 if r['dataset'] == dataset and r['initialization'] == initialization}
+        fw, smd = stats['smoothing-fw'], stats['published-smd']
+        f_loss, s_loss = (s['last_rounded_loss']['median'] for s in (fw, smd))
+        f_time, s_time = (s['last_feasible_output_seconds']['median'] for s in (fw, smd))
+        rows.append(f"{labels[dataset]} & {initialization.capitalize()} & {f_loss:.6f} & {s_loss:.6f} & {f_time:.1f} & {s_time:.1f} & {s_time/f_time:.1f}$\\times$ \\\\")
+    if dataset != 'shareseq_full':
+        rows.append(r'\addlinespace[3pt]')
+tex = r'''\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=16mm,top=15mm,bottom=15mm]{geometry}
+\usepackage{amsmath,microtype,booktabs,xcolor}
+\usepackage[hidelinks]{hyperref}
+\definecolor{ink}{RGB}{25,48,70}
+\hypersetup{pdftitle={Stochastic FraMES: completed Gromov-Wasserstein benchmark},pdfsubject={Results summary, 5 October 2026},pdfauthor={}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\begin{document}
+{\color{ink}\fontsize{17}{20}\selectfont\bfseries Stochastic FraMES on real cell-matching problems\par}
+{\small Completed Gromov--Wasserstein benchmark \hfill 5 October 2026\par}
+\vspace{3pt}
+
+\textbf{All 468 runs completed and passed the automated campaign checks: 432 tuning runs and 36 final runs, with no failed, invalid or missing results.} Completing 2,000 updates takes stochastic entropic mirror descent \textbf{8.8--10.3 times as long as FraMES}, including final transport repair. FraMES has lower median final loss on BMMC and SNARE-seq; mirror descent has slightly lower loss on SHARE-seq.
+
+We minimize the same \textbf{unregularized squared Gromov--Wasserstein (GW) loss}, matching two cell views through their within-view distances under uniform transport marginals. BMMC has 6,224 cells per view, SNARE-seq 10,000, and full SHARE-seq 31,890. Ruche allocations use one A100 for each smaller instance and four A100s for SHARE-seq; paired methods use the same allocation.
+
+\textbf{Stochastic FraMES} uses a momentum gradient estimator and the prescribed step, momentum and smoothing exponents $3/4$, $1/2$ and $1/4$, with tuned prefactors. \textbf{Stochastic entropic mirror descent (SMD)} uses the fresh-gradient update of Fatkhullin--He (2024), specialized to GW, with no momentum. Its KL-proximal subproblem is solved by Sinkhorn; both summed marginal $\ell_1$ residual and normalized guarded primal--dual gap must be at most $10^{-7}$. The KL term belongs to the update, not the reported GW objective. Every final SMD update passed at the first check, after ten Sinkhorn iterations; checks occurred every ten iterations.
+
+Each method receives 12 tuning candidates, 200 updates per tuning run, three development seeds and both product and randomized starts. Selection minimizes median final rounded GW loss across those six development cases. Final evaluation uses \textbf{three fresh seeds and 2,000 updates}. Both methods use exactly one unbiased gradient estimate per update, constructed from 128 random-sign probes: 2,000 gradient calls and 256,000 probes per final run. FraMES reuses its first gradient to initialize momentum.
+
+\vspace{1pt}
+\begin{center}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.14}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+& & \multicolumn{2}{c}{Rounded GW loss $\downarrow$} & \multicolumn{2}{c}{Time (seconds) $\downarrow$} & Time ratio\\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Dataset & Start & FraMES & SMD & FraMES & SMD & SMD/FraMES\\
+\midrule
+TABLE_ROWS
+\bottomrule
+\end{tabular}
+\end{center}
+\vspace{-4pt}
+{\small All entries are medians across three final seeds at 2,000 updates; time ratios divide the two medians. Losses are evaluated in FP64 after transport repair. Compare losses within a dataset, whose distance scaling is fixed.}
+
+\textbf{What the timing measures.} Time includes solver initialization, all stochastic updates, Sinkhorn iterations and numerical acceptance checks, plus the final transport repair. It excludes data preparation, diagnostic loss evaluations, earlier diagnostic repairs, logging, serialization and final FP64 validation. This is a \textbf{fixed-update comparison}; these ratios do not measure time to reach an identical loss.
+
+\textbf{What the results establish.} FraMES substantially reduces measured computation per update while giving similar endpoint losses. The small loss differences are descriptive results from three random seeds, not independent biological replications. SMD's theorem uses an independently sampled, step-weighted iterate and a stationarity measure; the table instead compares empirical final-iterate losses. Both outputs are retained separately. Finite inner tolerances do not establish an inexact outer convergence theorem, and these losses do not certify global optimality or biological matching accuracy.
+
+\vfill
+{\fontsize{10}{11}\selectfont
+Numerical scope: the $10^{-7}$ thresholds apply to SMD inner solves. Repaired endpoints use a separate common marginal-feasibility threshold of $100\epsilon_{\mathrm{FP32}}\approx1.19\times10^{-5}$.\\
+Method reference: \href{https://proceedings.mlr.press/v238/fatkhullin24a.html}{I.~Fatkhullin and N.~He, \emph{Taming Nonconvex Stochastic Mirror Descent with General Bregman Divergence}, AISTATS 2024.}\\
+Provenance: source \texttt{38b5ea8}; Ruche jobs 1993990--1994000; report completed 5 October, 11:03 Paris time.\\
+Verified source report SHA-256 prefix: \texttt{0ec392782fa31c99a}.
+}
+\end{document}
+'''
+(OUT / 'gw_benchmark_summary.tex').write_text(tex.replace('TABLE_ROWS', '\n'.join(rows)))
+print(OUT / 'gw_benchmark_summary.tex')

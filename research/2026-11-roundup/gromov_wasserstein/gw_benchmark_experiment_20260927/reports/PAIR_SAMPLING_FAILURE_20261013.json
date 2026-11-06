@@ -1,0 +1,136 @@
+{
+  "checks": [
+    {
+      "path": "checks/cpu/checks.json",
+      "receipt": {
+        "command": [
+          "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011",
+          "--junitxml",
+          "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/checks/cpu/pytest.xml"
+        ],
+        "junit_sha256": "20b0e1b41a2a40138dcbaba2e2833fe35cc1117b95baa527892c57e5aa6b3f54",
+        "mode": "cpu",
+        "slurm_job_id": "2056642",
+        "source_file_sha256": {
+          "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+          "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+          "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+          "pair_sampling_20261011/oracle.py": "fe34472180915a69f2c260e6296aa4b02dfb661a2ba80dfd73d714c9e2087cde",
+          "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+          "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+          "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+          "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+          "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+          "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+          "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+        },
+        "status": "passed",
+        "tests": {
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0,
+          "tests": 12
+        },
+        "world_size": 0
+      }
+    },
+    {
+      "path": "checks/gpu1/checks.json",
+      "receipt": {
+        "error": "ValueError('Scheduled distributed GPU checks failed.')",
+        "mode": "gpu",
+        "slurm_job_id": "2056643",
+        "status": "failed",
+        "traceback": "Traceback (most recent call last):\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/verify_checks.py\", line 36, in main\n    require(execute(command,args.out/'checks.log',3300)==0,'Scheduled distributed GPU checks failed.')\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/campaign.py\", line 41, in require\n    if not condition:raise ValueError(message)\nValueError: Scheduled distributed GPU checks failed.\n",
+        "world_size": 1
+      }
+    },
+    {
+      "path": "checks/gpu4/checks.json",
+      "receipt": {
+        "error": "ValueError('Scheduled distributed GPU checks failed.')",
+        "mode": "gpu",
+        "slurm_job_id": "2056644",
+        "status": "failed",
+        "traceback": "Traceback (most recent call last):\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/verify_checks.py\", line 36, in main\n    require(execute(command,args.out/'checks.log',3300)==0,'Scheduled distributed GPU checks failed.')\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/campaign.py\", line 41, in require\n    if not condition:raise ValueError(message)\nValueError: Scheduled distributed GPU checks failed.\n",
+        "world_size": 4
+      }
+    }
+  ],
+  "cpu_tests_passed": 12,
+  "failed_gpu_checks": [
+    2056643,
+    2056644
+  ],
+  "failed_validation_environment": {
+    "gpu1": {
+      "backend": "nccl",
+      "device": "cuda:0",
+      "error": "RuntimeError(\"cumsum_cuda_kernel does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.\")",
+      "scope": "tiny correctness proof; no performance or campaign results",
+      "source_file_sha256": {
+        "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+        "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+        "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+        "pair_sampling_20261011/oracle.py": "fe34472180915a69f2c260e6296aa4b02dfb661a2ba80dfd73d714c9e2087cde",
+        "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+        "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+        "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+        "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+        "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "status": "failed",
+      "torch": "2.5.1+cu121",
+      "traceback": "Traceback (most recent call last):\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/validate_distributed.py\", line 204, in main\n    evidence['oracle_checks'] = [check_oracle(device, torch.float64), check_oracle(device, torch.float32),\n  File \"/gpfs/workdir/silvetian/.conda/envs/fineweb/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/validate_distributed.py\", line 99, in check_oracle\n    sample = sample_pairs(problem, P[lo:hi], 37, generator=rng, conditional_block_rows=2)\n  File \"/gpfs/workdir/silvetian/.conda/envs/fineweb/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/oracle.py\", line 79, in sample_pairs\n    row_cdf = row_mass.cumsum(0)\nRuntimeError: cumsum_cuda_kernel does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.\n",
+      "validation_source_sha256": "cf3f7558d37d557ff866deb3b92a76c686919287cf2cb78b0310024fcaba3efb",
+      "world_size": 1
+    },
+    "gpu4": {
+      "backend": "nccl",
+      "device": "cuda:0",
+      "error": "RuntimeError(\"cumsum_cuda_kernel does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.\")",
+      "scope": "tiny correctness proof; no performance or campaign results",
+      "source_file_sha256": {
+        "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+        "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+        "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+        "pair_sampling_20261011/oracle.py": "fe34472180915a69f2c260e6296aa4b02dfb661a2ba80dfd73d714c9e2087cde",
+        "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+        "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+        "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+        "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+        "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "status": "failed",
+      "torch": "2.5.1+cu121",
+      "traceback": "Traceback (most recent call last):\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/validate_distributed.py\", line 204, in main\n    evidence['oracle_checks'] = [check_oracle(device, torch.float64), check_oracle(device, torch.float32),\n  File \"/gpfs/workdir/silvetian/.conda/envs/fineweb/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/validate_distributed.py\", line 99, in check_oracle\n    sample = sample_pairs(problem, P[lo:hi], 37, generator=rng, conditional_block_rows=2)\n  File \"/gpfs/workdir/silvetian/.conda/envs/fineweb/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n  File \"/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba/source_e0208ba/extensions/pair_sampling_20261011/oracle.py\", line 79, in sample_pairs\n    row_cdf = row_mass.cumsum(0)\nRuntimeError: cumsum_cuda_kernel does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.\n",
+      "validation_source_sha256": "cf3f7558d37d557ff866deb3b92a76c686919287cf2cb78b0310024fcaba3efb",
+      "world_size": 4
+    },
+    "quota": {
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "Disk usage on\u001b[1m home\u001b[0m :\n  quota:  12G    / 50G     (23%)\n  files:  45357  / 200000  (22%)\nDisk usage on\u001b[1m workdir\u001b[0m :\n  quota:  470G    / 500G    (93%)\n  files:  231626  / 400000  (57%)\n"
+    }
+  },
+  "failure": "Floating-point torch.cumsum on CUDA is rejected under strict torch.use_deterministic_algorithms(True). Both row and conditional CDF implementations need a deterministic replacement.",
+  "loss_results": "None: failure occurred before dataset preflights or production.",
+  "observed_utc": "2026-10-13T12:07:28.375876+00:00",
+  "production_cells_cancelled_by_dependency": 36,
+  "production_completed": 0,
+  "production_started": 0,
+  "recovery": "Retain strict determinism, actual coupling-pair sampling law, all method schedules, inner tolerances, datasets and horizons. Stage a fresh source revision and re-run all launch gates in a new directory.",
+  "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_20261011_e0208ba",
+  "scheduler_accounting": "2056642|gwpair_e0208ba_cpu|COMPLETED|0:0|00:02:48|2026-10-11T22:16:32|2026-10-11T22:19:20|node001|None\n2056643|gwpair_e0208ba_check1|FAILED|1:0|00:02:02|2026-10-12T15:57:14|2026-10-12T15:59:16|ruche-gpu18|QOSMaxGRESPerUser\n2056644|gwpair_e0208ba_check4|FAILED|1:0|00:01:14|2026-10-12T16:00:14|2026-10-12T16:01:28|ruche-gpu15|QOSMaxGRESPerUser\n2056645|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056647|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056646|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056649|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056651|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056653|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056655|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056657|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056659|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056661|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056663|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T16:01:28|None assigned|None\n2056665|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T16:01:28|None assigned|None\n2056667|gwpair_e0208ba_gate|CANCELLED|0:0|00:00:00|None|2026-10-12T16:01:28|None assigned|None\n2056669|gwpair_e0208ba_report|COMPLETED|0:0|00:01:16|2026-10-12T16:01:28|2026-10-12T16:02:44|node025|Dependency\n2056648|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056650|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056652|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056654|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056656|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056658|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056660|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056662|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T15:59:16|None assigned|None\n2056664|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T16:01:28|None assigned|None\n2056666|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T16:01:28|None assigned|None\n2056668|gwpair_e0208ba_run|CANCELLED|0:0|00:00:00|None|2026-10-12T16:01:28|None assigned|None\n",
+  "source_commit": "e0208ba2f3460ee47686a242a6fd6fbf2c90cdaf",
+  "status": "gpu_correctness_checks_failed_before_production",
+  "torch": "2.5.1+cu121"
+}

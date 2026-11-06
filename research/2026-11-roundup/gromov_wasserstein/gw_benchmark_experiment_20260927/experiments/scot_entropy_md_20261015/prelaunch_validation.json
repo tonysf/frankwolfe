@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-15T13:06:16.327833+00:00",
+  "source_commit": "7152c9c8909a9f91405ec0ba04f54a9fcef3a631",
+  "config_sha256": "a3ce8a3fae0e47c9b9b3bf18efad7c69f8c2140f2cf5e0501170d360b808a125",
+  "source_file_sha256": {
+    "extensions/scot_entropy_md_20261015/run.py": "840989365c1eeeae90ad06ddddbe8c46886f6cfa28d8d0596c572d85d9ee47f5",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/scot_entropy_md_20261015/campaign.py": "0a7bc5fda31cbe80f3f4db35d5eb9394f9273d86dcec186c9871b60fa8e6beea",
+    "extensions/scot_entropy_md_20261015/summarize.py": "e600e56daa15ad7c7e956284cc90110d59853e72d949d0c4b6ee544822be41c2",
+    "extensions/scot_reproduction_20261014/reference.py": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6"
+  },
+  "unit_tests": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 .venv/bin/python -m unittest discover -s extensions/scot_entropy_md_20261015 -p 'test_*.py' -v",
+    "passed": 26,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "integration": {
+    "directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_entropy_md_validation_v2_20261015",
+    "config_sha256": "814bf66ed35700fd6a70af7d9e07866d45febb28149007f7c2e8f9e875fd900a",
+    "report_sha256": "feb37022632b166b82d0e92b8fd7f53500a9e84a54e00ae6115ec2aae1d260d3",
+    "completed_runs": 4,
+    "updates_per_run": 3,
+    "accepted_solves": 12,
+    "independently_validated_plans": 28,
+    "maximum_inner_marginal_l1": 1.0474477188382458e-15,
+    "maximum_inner_normalized_gap": 7.979057953592327e-13,
+    "plot_visually_inspected": true
+  },
+  "previous_smoke_failure": {
+    "directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_entropy_md_validation_20261015",
+    "reason": "Naive strided NumPy column summation falsely failed strict initial-plan feasibility; reporting accumulation fixed, tolerance and optimizer unchanged."
+  },
+  "interpretation": "Prelaunch numerical and artifact validation, not an assessment of convergence or method performance."
+}

@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "n128 and n512 CPU preliminary oracle diagnostics",
+  "checks": [
+    "18 configurations per instance",
+    "100 evaluations per configuration",
+    "1800 unique sample seeds per instance",
+    "300 exact-gradient timings per instance",
+    "MSE = (R-1)/R * unbiased_sample_variance + squared_empirical_mean_error",
+    "nonnegative FW decision regret to 1e-12",
+    "smoke saved-seed replay of three evaluations",
+    "float32 CPU smoke after CUDA timing code revision"
+  ],
+  "cuda_execution_validated": false
+}

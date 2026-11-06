@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-10-15T13:07:29.058892+00:00",
+  "service": {
+    "MainPID": "2896386",
+    "ActiveState": "active",
+    "SubState": "running"
+  },
+  "host_pid_namespace": "pid:[4026531836]",
+  "child_processes": [
+    "2896397 /home/tony/gw_benchmark_experiment_20260927/.venv/bin/python /home/tony/gw_benchmark_experiment_20260927/extensions/scot_entropy_md_20261015/run.py --instance /home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference/prepared/scot1047 --out /home/tony/gw_benchmark_experiment_20260927/experiments/scot_entropy_md_20261015/runs/full_gradient --oracle full --seed 811 --iterations 2000 --epsilon 0.001 --pairs 1024 --checkpoints 0,1,10,25,50,100,200,400,600,800,1000,1250,1500,1750,2000 --progress-every 100",
+    "2896399 /home/tony/gw_benchmark_experiment_20260927/.venv/bin/python /home/tony/gw_benchmark_experiment_20260927/extensions/scot_entropy_md_20261015/run.py --instance /home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference/prepared/scot1047 --out /home/tony/gw_benchmark_experiment_20260927/experiments/scot_entropy_md_20261015/runs/pair_seed811 --oracle pair --seed 811 --iterations 2000 --epsilon 0.001 --pairs 1024 --checkpoints 0,1,10,25,50,100,200,400,600,800,1000,1250,1500,1750,2000 --progress-every 100",
+    "2896400 /home/tony/gw_benchmark_experiment_20260927/.venv/bin/python /home/tony/gw_benchmark_experiment_20260927/extensions/scot_entropy_md_20261015/run.py --instance /home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference/prepared/scot1047 --out /home/tony/gw_benchmark_experiment_20260927/experiments/scot_entropy_md_20261015/runs/pair_seed813 --oracle pair --seed 813 --iterations 2000 --epsilon 0.001 --pairs 1024 --checkpoints 0,1,10,25,50,100,200,400,600,800,1000,1250,1500,1750,2000 --progress-every 100",
+    "2896401 /home/tony/gw_benchmark_experiment_20260927/.venv/bin/python /home/tony/gw_benchmark_experiment_20260927/extensions/scot_entropy_md_20261015/run.py --instance /home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference/prepared/scot1047 --out /home/tony/gw_benchmark_experiment_20260927/experiments/scot_entropy_md_20261015/runs/pair_seed812 --oracle pair --seed 812 --iterations 2000 --epsilon 0.001 --pairs 1024 --checkpoints 0,1,10,25,50,100,200,400,600,800,1000,1250,1500,1750,2000 --progress-every 100"
+  ],
+  "runs": [
+    {
+      "id": "full_gradient",
+      "cpu": 0,
+      "status": "running",
+      "completed_updates": 25
+    },
+    {
+      "id": "pair_seed811",
+      "cpu": 2,
+      "status": "running",
+      "completed_updates": 25
+    },
+    {
+      "id": "pair_seed812",
+      "cpu": 4,
+      "status": "running",
+      "completed_updates": 25
+    },
+    {
+      "id": "pair_seed813",
+      "cpu": 6,
+      "status": "running",
+      "completed_updates": 25
+    }
+  ],
+  "all_four_started": true
+}

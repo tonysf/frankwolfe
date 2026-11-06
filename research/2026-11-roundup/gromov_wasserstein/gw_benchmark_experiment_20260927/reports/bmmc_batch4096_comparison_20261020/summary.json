@@ -1,0 +1,206 @@
+{
+  "notes": [
+    "All FRAMES runs: product initialization; identical prefactors and theoretical exponents. The 4,096-pair run is a single CPU replicate.",
+    "POT: best of 12 completed entropy/initialization trials; permutation-mixture start, seed 903. Each optimizer update has a different computational cost.",
+    "Dots are measured diagnostics; connecting lines are unsmoothed. The dashed POT line is its final-loss reference, not additional iterations.",
+    "CPU and CUDA random streams differ, including when the numerical seed is the same; this comparison does not isolate the effect of batch size."
+  ],
+  "plotted_metric": "rounded_loss: full feasible unregularized squared-distance GW loss",
+  "pot_selection": {
+    "candidate_finals": [
+      {
+        "completed_updates": 100,
+        "final_loss": 0.14446621842807006,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-04/permutation-mixture_seed902/metadata.json"
+      },
+      {
+        "completed_updates": 187,
+        "final_loss": 0.14343099158013262,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-04/permutation-mixture_seed903/metadata.json"
+      },
+      {
+        "completed_updates": 105,
+        "final_loss": 0.14418736718433145,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-04/permutation-mixture_seed901/metadata.json"
+      },
+      {
+        "completed_updates": 123,
+        "final_loss": 0.1444707056265937,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-04/product_seed810/metadata.json"
+      },
+      {
+        "completed_updates": 66,
+        "final_loss": 0.14476336780983357,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_3e-04/permutation-mixture_seed902/metadata.json"
+      },
+      {
+        "completed_updates": 166,
+        "final_loss": 0.14374820734945704,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_3e-04/permutation-mixture_seed903/metadata.json"
+      },
+      {
+        "completed_updates": 114,
+        "final_loss": 0.1448219656242391,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_3e-04/permutation-mixture_seed901/metadata.json"
+      },
+      {
+        "completed_updates": 100,
+        "final_loss": 0.14442762891348293,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_3e-04/product_seed810/metadata.json"
+      },
+      {
+        "completed_updates": 199,
+        "final_loss": 0.1455212848706584,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-03/permutation-mixture_seed902/metadata.json"
+      },
+      {
+        "completed_updates": 99,
+        "final_loss": 0.14502008058896676,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-03/permutation-mixture_seed903/metadata.json"
+      },
+      {
+        "completed_updates": 111,
+        "final_loss": 0.14552785367578203,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-03/permutation-mixture_seed901/metadata.json"
+      },
+      {
+        "completed_updates": 65,
+        "final_loss": 0.1451625462947923,
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-03/product_seed810/metadata.json"
+      }
+    ],
+    "completed_candidates": 12,
+    "raw_metadata_sha256": "9e5e3565e67b90c61342d120c14e6451d29d97c3a5267f71b07284a0ab299a2a",
+    "remote_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/results/bmmc6224/epsilon_1e-04/permutation-mixture_seed903/metadata.json",
+    "selected_at_utc": "2026-10-20T10:34:23.966286+00:00",
+    "selection": "Lowest feasible unregularized final_loss among completed accepted BMMC POT entropy/initialization grid trials at selection time"
+  },
+  "runs": [
+    {
+      "best_recorded_loss": 0.14573005274357265,
+      "config": {
+        "device": "cpu",
+        "diagnostic_every": 500,
+        "dtype": "float64",
+        "epsilon": 0.001,
+        "exact_block_rows": 128,
+        "gamma0": 0.3,
+        "inner_max": 100000,
+        "iterations": 20000,
+        "method": "frames",
+        "mu_scale": 10.0,
+        "pairs": 4096,
+        "rho0": 1.0,
+        "seed": 811
+      },
+      "diagnostics": 49,
+      "final_loss": 0.14573005274357265,
+      "initial_loss": 0.1610398659783735,
+      "iterations": 20000,
+      "label": "FRAMES, 4,096 pairs, CPU, seed 811",
+      "sha256": "e84a7aaa3cb49268324de1d0ed75659bb4b407ce22ad658104bbe3ce0f06a538",
+      "source": "/home/tony/gw_benchmark_experiment_20260927/experiments/bmmc_cpu_batch4096_20261018/runs/frames_q4096_seed811/metadata.json"
+    },
+    {
+      "best_recorded_loss": 0.14564951306206764,
+      "config": {
+        "device": "cuda",
+        "diagnostic_every": 500,
+        "dtype": "float64",
+        "epsilon": 0.001,
+        "exact_block_rows": 128,
+        "gamma0": 0.3,
+        "inner_max": 100000,
+        "iterations": 20000,
+        "method": "frames",
+        "mu_scale": 10.0,
+        "pairs": 1024,
+        "rho0": 1.0,
+        "seed": 811
+      },
+      "diagnostics": 49,
+      "final_loss": 0.14564951306206764,
+      "initial_loss": 0.1610398659783734,
+      "iterations": 20000,
+      "label": "FRAMES, 1,024 pairs, A100, seed 811",
+      "sha256": "fa2ff4d45a4c80b94148a092380990f20bdf99c1f6e29b4d7a65dec02c291b8e",
+      "source": "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/input/bmmc6224/confirmation/c08_seed811/metadata.json"
+    },
+    {
+      "best_recorded_loss": 0.14556595332899003,
+      "config": {
+        "device": "cuda",
+        "diagnostic_every": 500,
+        "dtype": "float64",
+        "epsilon": 0.001,
+        "exact_block_rows": 128,
+        "gamma0": 0.3,
+        "inner_max": 100000,
+        "iterations": 20000,
+        "method": "frames",
+        "mu_scale": 10.0,
+        "pairs": 1024,
+        "rho0": 1.0,
+        "seed": 812
+      },
+      "diagnostics": 49,
+      "final_loss": 0.14556595332899003,
+      "initial_loss": 0.1610398659783734,
+      "iterations": 20000,
+      "label": "FRAMES, 1,024 pairs, A100, seed 812",
+      "sha256": "509d08c94dff8bfb06a22a24687312aaf22c9fe74b00c83f9f7b2327db718b9e",
+      "source": "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/input/bmmc6224/confirmation/c08_seed812/metadata.json"
+    },
+    {
+      "best_recorded_loss": 0.14459074037370678,
+      "config": {
+        "device": "cuda",
+        "diagnostic_every": 500,
+        "dtype": "float64",
+        "epsilon": 0.001,
+        "exact_block_rows": 128,
+        "gamma0": 0.3,
+        "inner_max": 100000,
+        "iterations": 20000,
+        "method": "frames",
+        "mu_scale": 10.0,
+        "pairs": 1024,
+        "rho0": 1.0,
+        "seed": 813
+      },
+      "diagnostics": 49,
+      "final_loss": 0.14459074037370678,
+      "initial_loss": 0.1610398659783734,
+      "iterations": 20000,
+      "label": "FRAMES, 1,024 pairs, A100, seed 813",
+      "sha256": "60501f4b960f8cdc6fbbe3ef46341357827451426893e48cc9fcbcd9da2d72b9",
+      "source": "/home/tony/gw_benchmark_experiment_20260927/reports/wallclock_comparison_20261018/input/bmmc6224/confirmation/c08_seed813/metadata.json"
+    },
+    {
+      "best_recorded_loss": 0.14343099158013262,
+      "config": {
+        "device": "cuda",
+        "diagnostic_every": 25,
+        "dtype": "float64",
+        "epsilon": 0.0001,
+        "exact_block_rows": 128,
+        "init_mixture_weight": 0.9,
+        "initialization": "permutation-mixture",
+        "inner_max": 100000,
+        "iterations": 2000,
+        "method": "pot-full",
+        "outer_min_iterations": 50,
+        "outer_stable_updates": 10,
+        "outer_tolerance": 1e-06,
+        "seed": 903
+      },
+      "diagnostics": 21,
+      "final_loss": 0.14343099158013262,
+      "initial_loss": 0.16091998017500508,
+      "iterations": 187,
+      "label": "POT update, full gradient, $\\epsilon=10^{-4}$, best start",
+      "sha256": "9e5e3565e67b90c61342d120c14e6451d29d97c3a5267f71b07284a0ab299a2a",
+      "source": "/home/tony/gw_benchmark_experiment_20260927/reports/bmmc_batch4096_comparison_20261020/input/best_pot_metadata.json"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "n": 1047,
+  "m": 1047,
+  "dataset": "SCOT_SNARE1047_human_cell_mixture",
+  "objective": "full_squared_discrepancy_no_half_no_entropy",
+  "cost_storage_dtype": "float64",
+  "marginal_storage_dtype": "float64",
+  "array_files_sha256": {
+    "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+    "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+    "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+    "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+  },
+  "input_file_sha256": {
+    "SNAREseq_atac_feat.npy": "80d685b6517c100a7fd612846ad38209b64ed9caf095d1630af5a1d7797bd79c",
+    "SNAREseq_rna_feat.npy": "a8a2c2bbfc036dea5b350d01dd2180b93bb3b1c0008bed49493080348da96a9b",
+    "scotv1.py": "a492f39a67ffa62d8d7cc4b5048871d6cf228bf98b53a31d0e3049ab24db8008"
+  },
+  "preprocessing": {
+    "k": 40,
+    "epsilon": 0.001,
+    "normalization": "row_l2",
+    "graph_mode": "connectivity",
+    "graph_metric": "correlation",
+    "include_self": true,
+    "shortest_path_directed": false,
+    "disconnected_policy": "replace infinities by finite graph diameter",
+    "distance_normalization": "each graph divided by its own finite diameter",
+    "threads": 1,
+    "dtype": "float64",
+    "objective": "full_squared_discrepancy_no_half_no_entropy"
+  },
+  "reference_status": "passed"
+}

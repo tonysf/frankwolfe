@@ -1,0 +1,149 @@
+{
+  "archive_validation": {
+    "data_instance_sha256": "7572215ceca04170116876f624cd70f8d588660bf6499b0f4c809d44d6737a6a",
+    "method_gate": {
+      "frames": {
+        "component_passes": {
+          "normalized_tp_violation": false,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.011818267461521821,
+          "process_fidelity": 0.7126231045397335,
+          "rmse": 0.023273566825582754
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      },
+      "printed-adafgd": {
+        "component_passes": {
+          "normalized_tp_violation": true,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.0007515579086345445,
+          "process_fidelity": 0.049534093157524585,
+          "rmse": 0.06039045131070676
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      }
+    },
+    "method_statuses": {
+      "frames": "complete",
+      "printed-adafgd": "complete"
+    },
+    "nonfinite_arrays_retained_only_for_failed_methods": [],
+    "paired_instance_sha256": "fdf9e726a966d737ea6cbb0cd1ed4af7cb981f228d7cbbd4f4dd8e91686915fc",
+    "validation": "metadata coherence, candidate identity, embedded metadata, shapes/dtypes, array hashes, finite successful trajectories and endpoint/row accounting"
+  },
+  "artifacts": {
+    "pair.json": {
+      "bytes": 28526,
+      "sha256": "5aa25ab0dd6b66aaa1f4ef08f930e6e7f4e7c7a8827099f85ccf097ba1656ff5"
+    },
+    "pair.npz": {
+      "bytes": 383737,
+      "sha256": "874fe2d469c7cf15203f4a32e8969b2176f5c12023664d77a5791f3ebd1a2a34"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "command": [
+    "/gpfs/users/silvetian/.conda/envs/qpt/bin/python",
+    "-m",
+    "paper.experiments.qpt_quiroga_direct_comparison",
+    "--n-qubits",
+    "2",
+    "--row-epochs",
+    "2000",
+    "--checkpoint-epochs",
+    "100",
+    "--printed-tp-weight-per-row",
+    "0.5",
+    "--frames-initial-tp-weight-per-row",
+    "0.005",
+    "--frames-penalty-exponent",
+    "0.25",
+    "--eta-scale",
+    "0.001",
+    "--rank",
+    "1",
+    "--tau",
+    "2",
+    "--batch-size",
+    "32",
+    "--subset-size",
+    "0",
+    "--subset-seed",
+    "400004",
+    "--channel-seed",
+    "4",
+    "--initialization-seed",
+    "200040",
+    "--sampling-seed",
+    "300400",
+    "--observation-mode",
+    "noiseless",
+    "--noise-std",
+    "0",
+    "--noise-seed",
+    "0",
+    "--shot-seed",
+    "0",
+    "--spectral-norm-method",
+    "dense",
+    "--dense-max-process-dimension",
+    "1024",
+    "--spectral-norm-tolerance",
+    "1e-10",
+    "--gate-name",
+    "noiseless_recovery_v1",
+    "--gate-fidelity-min",
+    "0.99",
+    "--gate-rmse-max",
+    "1e-06",
+    "--gate-normalized-tp-max",
+    "0.001",
+    "--cohort-id",
+    "n2-full-calibration-n2f-q-a5em1-e1em3-v1__n2f-f-a5em3-p025-v1-0586c15",
+    "--trial-id",
+    "qpt-cal-n2f-c4-i0-s0-p02-20261005",
+    "--split",
+    "calibration",
+    "--expected-commit",
+    "0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+    "--save",
+    "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_0586c15a8c4eccf644b67d3bae97dc3b017e6e69_20261004_02/calibration-2014199/channel-4/qpt-cal-n2f-c4-i0-s0-p02-20261005/pair.npz",
+    "--rho-scale",
+    "2",
+    "--rho-offset",
+    "4",
+    "--rho-exponent",
+    "0.6",
+    "--step-scale",
+    "2",
+    "--step-offset",
+    "2",
+    "--step-exponent",
+    "1",
+    "--require-clean",
+    "--quiet",
+    "--fail-on-method-failure"
+  ],
+  "finished_utc": "2026-10-05T17:13:20.846038+00:00",
+  "runner_exit_code": 0,
+  "started_utc": "2026-10-05T17:13:13.893121+00:00",
+  "status": "complete",
+  "trial_id": "qpt-cal-n2f-c4-i0-s0-p02-20261005"
+}

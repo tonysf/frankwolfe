@@ -1,0 +1,198 @@
+{
+  "status": "descriptive_verified_artifact_comparison",
+  "float32_report_path": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/report/report.json",
+  "float32_report_sha256": "ecc5dd3dd8a5026891ee60d12d2cba9a36e2a01fd24c81c1f67034ec37aea367",
+  "expected_seed_count": 3,
+  "observed_seed_count": 3,
+  "float32_selected_candidate": {
+    "id": "fw05",
+    "gamma0": 0.3,
+    "rho0": 0.3,
+    "mu_scale": 10.0
+  },
+  "float64_selected_candidate": {
+    "id": "fw08",
+    "gamma0": 1.0,
+    "rho0": 0.3,
+    "mu_scale": 10.0
+  },
+  "selected_candidate_changed": true,
+  "selection_policy": "Each precision independently selects the best final saved-rounded objective from the same four candidates at development seed810; no confirmation-based choice.",
+  "float32_confirmation": {
+    "saved_rounded": {
+      "loss": {
+        "median": 0.02782128606409573,
+        "minimum": 0.019951439358093848,
+        "maximum": 0.029201276796948394,
+        "n": 3
+      },
+      "reduction_percent": {
+        "median": 60.51464400603028,
+        "minimum": 58.55609236936146,
+        "maximum": 71.68392274061327,
+        "n": 3
+      },
+      "loss_minus_local_reference": {
+        "median": 0.011153689062565197,
+        "minimum": 0.0032838423565633157,
+        "maximum": 0.012533679795417862,
+        "n": 3
+      },
+      "relative_excess_over_local_reference_percent": {
+        "median": 66.91839898421463,
+        "minimum": 19.701954374477438,
+        "maximum": 75.19788121987192,
+        "n": 3
+      },
+      "rounded_both_l1": {
+        "median": 1.4622849859625975e-07,
+        "minimum": 1.4103053488923045e-07,
+        "maximum": 1.5490731890537707e-07,
+        "n": 3
+      }
+    },
+    "auxiliary_float64_repair": {
+      "loss": {
+        "median": 0.027821282136067382,
+        "minimum": 0.019951437943992012,
+        "maximum": 0.029201273445503606,
+        "n": 3
+      },
+      "reduction_percent": {
+        "median": 60.514649580883926,
+        "minimum": 58.55609712589895,
+        "maximum": 71.68392474757708,
+        "n": 3
+      },
+      "loss_minus_local_reference": {
+        "median": 0.01115368513453685,
+        "minimum": 0.00328384094246148,
+        "maximum": 0.012533676443973074,
+        "n": 3
+      },
+      "relative_excess_over_local_reference_percent": {
+        "median": 66.91837541736005,
+        "minimum": 19.70194589034002,
+        "maximum": 75.19786111232558,
+        "n": 3
+      },
+      "rounded_both_l1": {
+        "median": 1.7059921184059412e-15,
+        "minimum": 8.90888925131339e-16,
+        "maximum": 2.361067071021683e-15,
+        "n": 3
+      }
+    }
+  },
+  "float64_confirmation": {
+    "saved_rounded": {
+      "loss": {
+        "median": 0.025428056057700155,
+        "minimum": 0.02097958505572539,
+        "maximum": 0.025555842884900426,
+        "n": 3
+      },
+      "reduction_percent": {
+        "median": 63.91123532680074,
+        "minimum": 63.729873891829044,
+        "maximum": 70.2247271164023,
+        "n": 3
+      },
+      "loss_minus_local_reference": {
+        "median": 0.008760459056169623,
+        "minimum": 0.00431198805419486,
+        "maximum": 0.008888245883369894,
+        "n": 3
+      },
+      "relative_excess_over_local_reference_percent": {
+        "median": 52.55982044301395,
+        "minimum": 25.870484232363577,
+        "maximum": 53.32649861016987,
+        "n": 3
+      },
+      "rounded_both_l1": {
+        "median": 6.704706234650359e-16,
+        "minimum": 6.140921104957897e-16,
+        "maximum": 6.733979693307468e-16,
+        "n": 3
+      }
+    },
+    "auxiliary_float64_repair": {
+      "loss": {
+        "median": 0.025428056057700155,
+        "minimum": 0.020979585055725503,
+        "maximum": 0.025555842884900204,
+        "n": 3
+      },
+      "reduction_percent": {
+        "median": 63.91123532680074,
+        "minimum": 63.72987389182936,
+        "maximum": 70.22472711640215,
+        "n": 3
+      },
+      "loss_minus_local_reference": {
+        "median": 0.008760459056169623,
+        "minimum": 0.004311988054194971,
+        "maximum": 0.008888245883369672,
+        "n": 3
+      },
+      "relative_excess_over_local_reference_percent": {
+        "median": 52.55982044301395,
+        "minimum": 25.870484232364245,
+        "maximum": 53.326498610168535,
+        "n": 3
+      },
+      "rounded_both_l1": {
+        "median": 8.470871573629246e-16,
+        "minimum": 7.9732227764584e-16,
+        "maximum": 9.128982292327947e-16,
+        "n": 3
+      }
+    }
+  },
+  "seed_matched_endpoints": [
+    {
+      "seed": 811,
+      "float32_candidate": "fw05",
+      "float64_candidate": "fw08",
+      "same_selected_candidate": false,
+      "float32_saved_rounded_loss_evaluated_float64": 0.02782128606409573,
+      "float64_saved_rounded_loss": 0.025428056057700155,
+      "saved_loss_float64_minus_float32": -0.0023932300063955747,
+      "float32_additional_float64_repair_loss": 0.027821282136067382,
+      "float64_additional_float64_repair_loss": 0.025428056057700155,
+      "auxiliary_repaired_loss_float64_minus_float32": -0.0023932260783672277,
+      "float32_run_metadata_sha256": "31253aa0475e12aa8a559691d18412d3be9919e84e3e69a336c844476069712f",
+      "float64_run_metadata_sha256": "febc81407fb5b52372219d94efc17aae756c23f92c6a4b0836c1cfc5ace79c4f"
+    },
+    {
+      "seed": 812,
+      "float32_candidate": "fw05",
+      "float64_candidate": "fw08",
+      "same_selected_candidate": false,
+      "float32_saved_rounded_loss_evaluated_float64": 0.019951439358093848,
+      "float64_saved_rounded_loss": 0.02097958505572539,
+      "saved_loss_float64_minus_float32": 0.001028145697631544,
+      "float32_additional_float64_repair_loss": 0.019951437943992012,
+      "float64_additional_float64_repair_loss": 0.020979585055725503,
+      "auxiliary_repaired_loss_float64_minus_float32": 0.0010281471117334906,
+      "float32_run_metadata_sha256": "2468f15e82e7ccbea29385fc2de03b360d123569c4f28aec2d56cb4a83dafd92",
+      "float64_run_metadata_sha256": "b0e3dd1dc56dcf70e47448577a09a6f003179429ef8a9a94b88aad46210b5ca8"
+    },
+    {
+      "seed": 813,
+      "float32_candidate": "fw05",
+      "float64_candidate": "fw08",
+      "same_selected_candidate": false,
+      "float32_saved_rounded_loss_evaluated_float64": 0.029201276796948394,
+      "float64_saved_rounded_loss": 0.025555842884900426,
+      "saved_loss_float64_minus_float32": -0.0036454339120479684,
+      "float32_additional_float64_repair_loss": 0.029201273445503606,
+      "float64_additional_float64_repair_loss": 0.025555842884900204,
+      "auxiliary_repaired_loss_float64_minus_float32": -0.003645430560603402,
+      "float32_run_metadata_sha256": "57ba1e9114ffe2e0fa0a7bdb2c7cabf8825e1d9a4b19e26701dc4374d620d499",
+      "float64_run_metadata_sha256": "f9bed9ae76b37ee304a3ca65b124986859940ffc85416f7dd362cd88307215ab"
+    }
+  ],
+  "caveat": "Matching seed numbers are descriptive bookkeeping, not identical sampled-pair paths. The sampling law depends on each evolving coupling, so precision and independently selected prefactors can change later samples. No precision-isolated causal or paired-path equivalence claim."
+}

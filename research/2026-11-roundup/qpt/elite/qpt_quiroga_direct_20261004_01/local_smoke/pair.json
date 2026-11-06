@@ -1,0 +1,606 @@
+{
+  "active_observations_sha256": "d1d67dd55342ad22c3904a66221c8ccf72d76f6b66a60630bf5b2229a5c349a8",
+  "active_row_count": 128,
+  "active_rows_sha256": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+  "armijo_slope": "-2*||half_gradient_direction||_F^2",
+  "base_format": "qpt_quiroga_campaign",
+  "comparison": {
+    "baseline_qualification": "printed-adafgd is the literal printed adaptive rule with explicitly calibrated constants; the paper omits constants needed for an exact reproduction.",
+    "budget": {
+      "active_row_count": 128,
+      "batch_size": 32,
+      "checkpoint_epochs": 1,
+      "compute_equivalent": false,
+      "method_steps": {
+        "frames": 8,
+        "printed-adafgd": 2
+      },
+      "metrics_frequency_steps": {
+        "frames": 4,
+        "printed-adafgd": 1
+      },
+      "nominal_row_accesses": 256,
+      "qualification": "FRAMES samples active rows with replacement; printed adaFGD uses full active-row passes and additional spectral-norm work. Checkpoint passes and TP/LMO work are excluded.",
+      "row_epochs": 2,
+      "unit": "nominal_active_row_accesses"
+    },
+    "cohort_fingerprint": "087e2449ead5df42e9d28f4d86bfc9694cd0a584108f715e9d4a38827a3e00b7",
+    "cohort_id": "n2-full-smoke-v1",
+    "cohort_spec": {
+      "active_row_count": 128,
+      "budget": {
+        "active_row_count": 128,
+        "batch_size": 32,
+        "checkpoint_epochs": 1,
+        "compute_equivalent": false,
+        "method_steps": {
+          "frames": 8,
+          "printed-adafgd": 2
+        },
+        "metrics_frequency_steps": {
+          "frames": 4,
+          "printed-adafgd": 1
+        },
+        "nominal_row_accesses": 256,
+        "qualification": "FRAMES samples active rows with replacement; printed adaFGD uses full active-row passes and additional spectral-norm work. Checkpoint passes and TP/LMO work are excluded.",
+        "row_epochs": 2,
+        "unit": "nominal_active_row_accesses"
+      },
+      "cohort_id": "n2-full-smoke-v1",
+      "configuration": {
+        "batch_size": 32,
+        "dense_max_process_dimension": 1024,
+        "eta_scale": 0.003,
+        "frames_beta": 100.0,
+        "frames_metrics_frequency": 4,
+        "frames_steps": 8,
+        "methods": [
+          "printed-adafgd",
+          "frames"
+        ],
+        "metrics_frequency": 1,
+        "n_steps": 2,
+        "noise_std": 0.0,
+        "observation_mode": "noiseless",
+        "rank": 1,
+        "rho_schedule": {
+          "cap": 1.0,
+          "exponent": 0.6,
+          "offset": 4.0,
+          "scale": 2.0,
+          "type": "PowerSchedule"
+        },
+        "shots": null,
+        "spectral_norm_maxiter": null,
+        "spectral_norm_method": "dense",
+        "spectral_norm_tolerance": 1e-10,
+        "step_size_schedule": {
+          "cap": 1.0,
+          "exponent": 1.0,
+          "offset": 2.0,
+          "scale": 2.0,
+          "type": "PowerSchedule"
+        },
+        "tau": 2.0,
+        "tp_weight_lambda": 0.64,
+        "tp_weight_per_row_alpha": 0.005
+      },
+      "design": {
+        "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+        "convention": "quiroga_global_probes_2d_povm_choi_v1",
+        "d": 4,
+        "n_qubits": 2,
+        "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+        "outcomes": 8,
+        "povm_a": 0.1,
+        "povm_b": 0.1,
+        "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+        "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+        "probes": 16,
+        "row_index": "s = 2*d*probe + outcome",
+        "rows": 128,
+        "throwaway_min_eigenvalue": 0.09999999999999992
+      },
+      "gate": {
+        "name": "noiseless_recovery_v1",
+        "thresholds": {
+          "normalized_tp_violation": {
+            "operator": "<=",
+            "value": 0.001
+          },
+          "process_fidelity": {
+            "operator": ">=",
+            "value": 0.99
+          },
+          "rmse": {
+            "operator": "<=",
+            "value": 1e-06
+          }
+        }
+      },
+      "method_domains": {
+        "armijo-fgd": {
+          "constraint": "none",
+          "projection": "none"
+        },
+        "frames": {
+          "constraint": "operator_norm_ball",
+          "tau": 2.0
+        },
+        "printed-adafgd": {
+          "constraint": "none",
+          "projection": "none"
+        }
+      },
+      "objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
+      "observation": {
+        "channel_model": "haar_unitary",
+        "mode": "noiseless",
+        "noise_generator": null,
+        "noise_std": 0.0,
+        "shot_generator": null,
+        "shots": null,
+        "truth_rank": 1
+      },
+      "protocol": "shared_objective_matched_nominal_row_accesses_v1",
+      "shared_penalty": {
+        "frames_beta": 100.0,
+        "normalization": "alpha=lambda/active_row_count; beta=1/(2*alpha)",
+        "summed_tp_weight_lambda": 0.64,
+        "tp_weight_per_row_alpha": 0.005
+      },
+      "software": {
+        "numpy_version": "2.4.6",
+        "python_version": "3.11.2",
+        "scipy_version": "1.17.1"
+      },
+      "source": {
+        "git_commit": "3bf36c4f47ac2c637df9fe3e1d9db0d8173484e2",
+        "git_tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_sha256": {
+          "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+          "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+          "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+          "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+          "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+          "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+          "paper/experiments/qpt_quiroga_campaign.py": "420d3f9fee7997629d45a2a468e6e82db4b189c8628580c22011007a7948e59b",
+          "paper/experiments/qpt_quiroga_direct_comparison.py": "182d76a7fd94df708c22380841458092800cad988351bf26c8a16edb7cf13833",
+          "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+          "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+          "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+        }
+      },
+      "split": "calibration"
+    },
+    "data_instance": {
+      "active_observations_sha256": "d1d67dd55342ad22c3904a66221c8ccf72d76f6b66a60630bf5b2229a5c349a8",
+      "active_row_count": 128,
+      "active_rows_sha256": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+      "design": {
+        "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+        "convention": "quiroga_global_probes_2d_povm_choi_v1",
+        "d": 4,
+        "n_qubits": 2,
+        "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+        "outcomes": 8,
+        "povm_a": 0.1,
+        "povm_b": 0.1,
+        "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+        "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+        "probes": 16,
+        "row_index": "s = 2*d*probe + outcome",
+        "rows": 128,
+        "throwaway_min_eigenvalue": 0.09999999999999992
+      },
+      "full_observations_sha256": "d1d67dd55342ad22c3904a66221c8ccf72d76f6b66a60630bf5b2229a5c349a8",
+      "truth_factor_sha256": "fbead577f8fb04b55cc5161bae55c8070f5c0156441bb554a01fadce837f4af9"
+    },
+    "data_instance_sha256": "2d854e04d7178a0a7278ee86534b0b2cb3a92d4d450c08bd24cf17c12284246e",
+    "deterministic_baseline_reuse": {
+      "aggregation": "collapse scientific endpoints per paired data/initialization instance; reject disagreement; summarize repeated timings descriptively",
+      "execution": "rerun_once_per_pair_sidecar"
+    },
+    "domain_audit": {
+      "frames_tau": 2.0,
+      "initial_factor_operator_norm": 1.9999999999999998,
+      "truth_factor_operator_norm": 1.9999999999999998,
+      "truth_inside_frames_domain": true
+    },
+    "endpoint_diagnostics": {
+      "frames": {
+        "factor_frobenius_norm": 1.5123529077952487,
+        "factor_operator_norm": 1.5123529077952487,
+        "factor_operator_norm_over_tau": 0.7561764538976243,
+        "final_factor_sha256": "82d36d4dd4f71f6e3d83c76ac90f1e6626c6b8d70b6b5fd651700eec1fd8a2d4",
+        "full_design_metrics": {
+          "measurement_loss_mean": 0.002728601728594129,
+          "measurement_loss_sum": 0.3492610212600485,
+          "normalized_tp_violation": 0.5068630180043309,
+          "penalized_objective": 1.0069509259524225,
+          "process_fidelity": 0.013218420513465211,
+          "rmse": 0.07387288715887756,
+          "tp_violation": 1.0137260360086617
+        }
+      },
+      "printed-adafgd": {
+        "factor_frobenius_norm": 1.9925427265289426,
+        "factor_operator_norm": 1.9925427265289426,
+        "factor_operator_norm_over_tau": 0.9962713632644713,
+        "final_factor_sha256": "d4b2f82842f841da41ce5ddc327ec99ca2311ce8010cb17aa7945dc6bd448d07",
+        "full_design_metrics": {
+          "measurement_loss_mean": 0.0041476158741466235,
+          "measurement_loss_sum": 0.5308948318907678,
+          "normalized_tp_violation": 1.4681213159928908,
+          "penalized_objective": 6.048668139980873,
+          "process_fidelity": 0.2495469797040465,
+          "rmse": 0.09107816285089004,
+          "tp_violation": 2.9362426319857815
+        }
+      }
+    },
+    "endpoint_differences": {
+      "orientation": "frames_minus_printed_adafgd",
+      "values": {
+        "cumulative_data_row_accesses": 0.0,
+        "factor_frobenius_norm": -0.48018981873369393,
+        "factor_operator_norm": -0.48018981873369393,
+        "full_design_rmse": -0.01720527569201248,
+        "measurement_loss_mean": -0.0014190141455524947,
+        "measurement_loss_sum": -0.18163381063071932,
+        "normalized_tp_violation": -0.9612582979885599,
+        "optimizer_seconds": 0.005454916972666979,
+        "penalized_objective": -5.04171721402845,
+        "process_fidelity": -0.23632855919058127,
+        "rmse": -0.01720527569201248,
+        "tp_violation": -1.9225165959771198
+      }
+    },
+    "first_gate_passage": {
+      "frames": {
+        "available": true,
+        "first_pass": null,
+        "reason": null
+      },
+      "printed-adafgd": {
+        "available": true,
+        "first_pass": null,
+        "reason": null
+      }
+    },
+    "full_observations_sha256": "d1d67dd55342ad22c3904a66221c8ccf72d76f6b66a60630bf5b2229a5c349a8",
+    "gate": {
+      "name": "noiseless_recovery_v1",
+      "thresholds": {
+        "normalized_tp_violation": {
+          "operator": "<=",
+          "value": 0.001
+        },
+        "process_fidelity": {
+          "operator": ">=",
+          "value": 0.99
+        },
+        "rmse": {
+          "operator": "<=",
+          "value": 1e-06
+        }
+      }
+    },
+    "initial_metrics": {
+      "measurement_loss_mean": 0.004235868090779672,
+      "measurement_loss_sum": 0.542191115619798,
+      "normalized_tp_violation": 1.4815205812038486,
+      "penalized_objective": 6.161143390898106,
+      "process_fidelity": 0.24947007028618542,
+      "rmse": 0.092042034862118,
+      "tp_violation": 2.963041162407697
+    },
+    "known_limitations": [
+      "If FRAMES raises during optimization, the core campaign records only its shared initial point; partial FRAMES iterates are not retained.",
+      "Each one-pair sidecar reruns deterministic printed-adaFGD when only the FRAMES sampling seed changes. Aggregation collapses those baseline endpoints per data/initialization instance and rejects disagreement; its repeated optimizer timings remain descriptive measurements."
+    ],
+    "method_execution_order": [
+      "printed-adafgd",
+      "frames"
+    ],
+    "method_gate": {
+      "frames": {
+        "component_passes": {
+          "normalized_tp_violation": false,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.5068630180043309,
+          "process_fidelity": 0.013218420513465211,
+          "rmse": 0.07387288715887756
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      },
+      "printed-adafgd": {
+        "component_passes": {
+          "normalized_tp_violation": false,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 1.4681213159928908,
+          "process_fidelity": 0.2495469797040465,
+          "rmse": 0.09107816285089004
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      }
+    },
+    "methods": [
+      "printed-adafgd",
+      "frames"
+    ],
+    "optimizer_timing_interpretation": "descriptive fixed-order timings, not a causal speed comparison",
+    "paired_instance": {
+      "data_instance_sha256": "2d854e04d7178a0a7278ee86534b0b2cb3a92d4d450c08bd24cf17c12284246e",
+      "initial_factor_sha256": "8c39c5c432746087dddaad4dee10fd3468e5f0b4ab9bbd7b0a0ea47874a16e5e",
+      "rank": 1
+    },
+    "paired_instance_sha256": "aaf687874e770a92468ba335ec17a8d92d85382b4d223409adbce6d5382a9315",
+    "protocol": "shared_objective_matched_nominal_row_accesses_v1",
+    "shared_objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
+    "shared_penalty": {
+      "frames_beta": 100.0,
+      "normalization": "alpha=lambda/active_row_count; beta=1/(2*alpha)",
+      "summed_tp_weight_lambda": 0.64,
+      "tp_weight_per_row_alpha": 0.005
+    },
+    "split": "calibration",
+    "trial_fingerprint": "e120509ad05000765e9e5d693140d600a8e792055393d0f39d86a0353c44f251",
+    "trial_id": "n2-full-c0-i0-s0-smoke-3bf36c4-elite"
+  },
+  "configuration": {
+    "armijo_constant": 0.0001,
+    "armijo_initial_step": 1.0,
+    "armijo_max_backtracks": 30,
+    "armijo_shrink": 0.5,
+    "batch_size": 32,
+    "channel_seed": 0,
+    "dense_max_process_dimension": 1024,
+    "eta_scale": 0.003,
+    "frames_beta": 100.0,
+    "frames_metrics_frequency": 4,
+    "frames_steps": 8,
+    "initialization_seed": 0,
+    "methods": [
+      "printed-adafgd",
+      "frames"
+    ],
+    "metrics_frequency": 1,
+    "n_steps": 2,
+    "noise_seed": 0,
+    "noise_std": 0.0,
+    "observation_mode": "noiseless",
+    "rank": 1,
+    "rho_schedule": {
+      "cap": 1.0,
+      "exponent": 0.6,
+      "offset": 4.0,
+      "scale": 2.0,
+      "type": "PowerSchedule"
+    },
+    "sampling_seed": 0,
+    "shot_seed": 0,
+    "shots": null,
+    "spectral_norm_maxiter": null,
+    "spectral_norm_method": "dense",
+    "spectral_norm_tolerance": 1e-10,
+    "step_size_schedule": {
+      "cap": 1.0,
+      "exponent": 1.0,
+      "offset": 2.0,
+      "scale": 2.0,
+      "type": "PowerSchedule"
+    },
+    "subset_seed": 0,
+    "subset_size": 0,
+    "tau": 2.0,
+    "tp_weight_lambda": 0.64,
+    "tp_weight_per_row_alpha": 0.005
+  },
+  "created_utc": "2026-10-04T20:13:18.019422+00:00",
+  "data_metadata": {
+    "channel_model": "haar_unitary",
+    "channel_rng": "Generator(PCG64(SeedSequence(channel_seed, spawn_key=(0,))))",
+    "channel_seed": 0,
+    "design": {
+      "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+      "convention": "quiroga_global_probes_2d_povm_choi_v1",
+      "d": 4,
+      "n_qubits": 2,
+      "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+      "outcomes": 8,
+      "povm_a": 0.1,
+      "povm_b": 0.1,
+      "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+      "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+      "probes": 16,
+      "row_index": "s = 2*d*probe + outcome",
+      "rows": 128,
+      "throwaway_min_eigenvalue": 0.09999999999999992
+    },
+    "generator": "qpt_quiroga_sensing_v1",
+    "noise_generator": null,
+    "numpy_version": "2.4.6",
+    "python_version": "3.11.2",
+    "shot_generator": null,
+    "truth_factor_sha256": "92fb39fd43a485740604c9c227671b67d1dbbb626393818297ce0e5fc8dcb264",
+    "truth_rank": 1,
+    "truth_tp_violation": 3.5868108437031825e-16,
+    "truth_trace": 3.9999999999999996
+  },
+  "design": {
+    "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+    "convention": "quiroga_global_probes_2d_povm_choi_v1",
+    "d": 4,
+    "n_qubits": 2,
+    "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+    "outcomes": 8,
+    "povm_a": 0.1,
+    "povm_b": 0.1,
+    "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+    "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+    "probes": 16,
+    "row_index": "s = 2*d*probe + outcome",
+    "rows": 128,
+    "throwaway_min_eigenvalue": 0.09999999999999992
+  },
+  "format": "qpt_quiroga_direct_comparison",
+  "initial_factor_sha256": "8c39c5c432746087dddaad4dee10fd3468e5f0b4ab9bbd7b0a0ea47874a16e5e",
+  "method_domains": {
+    "armijo-fgd": {
+      "constraint": "none",
+      "projection": "none"
+    },
+    "frames": {
+      "constraint": "operator_norm_ball",
+      "tau": 2.0
+    },
+    "printed-adafgd": {
+      "constraint": "none",
+      "projection": "none"
+    }
+  },
+  "methods": {
+    "frames": {
+      "completed_steps": 8,
+      "cumulative_data_row_accesses": 256,
+      "failure_reason": null,
+      "measurement_loss_mean": 0.002728601728594129,
+      "measurement_loss_sum": 0.3492610212600485,
+      "normalized_tp_violation": 0.5068630180043309,
+      "optimizer_seconds": 0.006836176849901676,
+      "penalized_objective": 1.0069509259524225,
+      "process_fidelity": 0.013218420513465211,
+      "rmse": 0.07387288715887756,
+      "status": "complete",
+      "tp_violation": 1.0137260360086617
+    },
+    "printed-adafgd": {
+      "completed_steps": 2,
+      "cumulative_data_row_accesses": 256,
+      "failure_reason": null,
+      "measurement_loss_mean": 0.0041476158741466235,
+      "measurement_loss_sum": 0.5308948318907678,
+      "normalized_tp_violation": 1.4681213159928908,
+      "optimizer_seconds": 0.0013812598772346973,
+      "penalized_objective": 6.048668139980873,
+      "process_fidelity": 0.2495469797040465,
+      "rmse": 0.09107816285089004,
+      "spectral_norm_adjoint_column_equivalent_total": 32,
+      "spectral_norm_operator_calls_total": 2,
+      "spectral_norm_seconds_total": 0.0005139301065355539,
+      "status": "complete",
+      "tp_violation": 2.9362426319857815
+    }
+  },
+  "numpy_version": "2.4.6",
+  "objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
+  "observation_mode": "noiseless",
+  "provenance": {
+    "git": {
+      "available": true,
+      "branch": "stochastic-frames",
+      "commit": "3bf36c4f47ac2c637df9fe3e1d9db0d8173484e2",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "worktree_dirty": false
+    },
+    "repository_root": "/home/tony/frankwolfe",
+    "runtime": {
+      "command": [
+        "/home/tony/frankwolfe/paper/experiments/qpt_quiroga_direct_comparison.py",
+        "--n-qubits",
+        "2",
+        "--row-epochs",
+        "2",
+        "--checkpoint-epochs",
+        "1",
+        "--tp-weight-per-row",
+        "0.005",
+        "--eta-scale",
+        "0.003",
+        "--rank",
+        "1",
+        "--tau",
+        "2.0",
+        "--subset-size",
+        "0",
+        "--subset-seed",
+        "0",
+        "--channel-seed",
+        "0",
+        "--initialization-seed",
+        "0",
+        "--sampling-seed",
+        "0",
+        "--observation-mode",
+        "noiseless",
+        "--noise-seed",
+        "0",
+        "--shot-seed",
+        "0",
+        "--batch-size",
+        "32",
+        "--spectral-norm-method",
+        "dense",
+        "--cohort-id",
+        "n2-full-smoke-v1",
+        "--trial-id",
+        "n2-full-c0-i0-s0-smoke-3bf36c4-elite",
+        "--split",
+        "calibration",
+        "--expected-commit",
+        "3bf36c4f47ac2c637df9fe3e1d9db0d8173484e2",
+        "--require-clean",
+        "--save",
+        "/home/tony/qpt_quiroga_direct_20261004_01/local_smoke/pair.npz",
+        "--quiet",
+        "--fail-on-method-failure"
+      ],
+      "hostname": "elite",
+      "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+      "python_executable": "/home/tony/DiffMin/.venv-continuation/bin/python",
+      "slurm": {}
+    },
+    "source_sha256": {
+      "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+      "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+      "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+      "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+      "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+      "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+      "paper/experiments/qpt_quiroga_campaign.py": "420d3f9fee7997629d45a2a468e6e82db4b189c8628580c22011007a7948e59b",
+      "paper/experiments/qpt_quiroga_direct_comparison.py": "182d76a7fd94df708c22380841458092800cad988351bf26c8a16edb7cf13833",
+      "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+      "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+      "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+    }
+  },
+  "python_version": "3.11.2",
+  "schema_version": 1,
+  "scipy_version": "1.17.1",
+  "source_sha256": {
+    "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+    "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+    "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+    "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+    "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+    "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+    "paper/experiments/qpt_quiroga_campaign.py": "420d3f9fee7997629d45a2a468e6e82db4b189c8628580c22011007a7948e59b",
+    "paper/experiments/qpt_quiroga_direct_comparison.py": "182d76a7fd94df708c22380841458092800cad988351bf26c8a16edb7cf13833",
+    "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+    "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+    "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+  },
+  "truth_factor_sha256": "fbead577f8fb04b55cc5161bae55c8070f5c0156441bb554a01fadce837f4af9",
+  "work_counter": "nominal optimizer active-row accesses; not a total compute/work-equivalent; excludes checkpoint passes, TP work, full structured forward/adjoint overhead, and separately reported adaFGD spectral-norm operations"
+}

@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "backend": "four-rank CPU/Gloo",
+  "checks": 352,
+  "failed_checks": 0,
+  "source_sha256_at_test": {
+    "gpu_correctness.py": "a23edcbba82370cb4490125301e07fa94234282fe6673d3c8ceeefb9916b77cc",
+    "sharded_gw.py": "d942837ab8749d397253acb29a9a49f9ebfd982af684c10c05d636173e7e1b4b",
+    "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444"
+  },
+  "note": "Core constructor metadata agreement subsequently strengthened; allocated four-GPU correctness gate tests frozen production payload.",
+  "preparation_tests": {
+    "passed": 7,
+    "scope": "tiny H5AD reader, pairing/QC, deterministic representations/order, exact blocked distances and manifest"
+  },
+  "kernel_tests": {
+    "passed": 3,
+    "scope": "single-process and three-rank CPU/Gloo, both precisions, uneven and empty partitions, exact/sketch/KL/FW parity"
+  },
+  "runner_integration": {
+    "passed": 6,
+    "scope": "two-rank saved-output and independent loss/metrics parity; float32 state release before validation"
+  },
+  "resource_gate_tests": {
+    "passed": 11,
+    "scope": "fail closed for missing/invalid/nonfinite results and resource thresholds"
+  },
+  "runner_and_campaign_tests": {
+    "passed": 45,
+    "seconds": 16.06,
+    "scope": "two-rank integration, direct loss and metrics, solver state release, memory gates, source/config/data/rank binding and pair matching"
+  },
+  "frozen_local_source_sha256": {
+    "run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+    "sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "campaign.py": "9310be8dc5360760471eb6bfb47aeb656f0c0de20a4fee12bd30f179252e3cf9",
+    "gpu_correctness.py": "a23edcbba82370cb4490125301e07fa94234282fe6673d3c8ceeefb9916b77cc",
+    "prepare_full.py": "f005b7373804a4b7ed13c1a70f1d3291516ac6985270dbbfbaf4ff141771991e",
+    "report.py": "fb2b898da95615b7270b721bcc97e14b5810c1d8a2c1c83896d46d981c4944c8"
+  },
+  "full_population_replacement": {
+    "expected_n": 31890,
+    "preparation_tests_passed": 3,
+    "preparation_binding_tests_passed": 1,
+    "report_dimension_tests_passed": 10,
+    "unchanged_runtime": [
+      "run_sharded.py",
+      "sharded_gw.py",
+      "gpu_correctness.py"
+    ],
+    "scope": "All QC-passing pairs reused without refit; unchanged GPU kernels retain their prior local validation and will be validated in the new allocation."
+  }
+}

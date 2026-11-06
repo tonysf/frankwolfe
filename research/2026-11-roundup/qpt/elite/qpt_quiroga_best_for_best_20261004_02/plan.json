@@ -1,0 +1,372 @@
+{
+  "schema_version": 2,
+  "campaign_id": "qpt_quiroga_best_for_best_20261004_02",
+  "created_local_date": "2026-10-04",
+  "status": "local_setup_complete_remote_smoke_not_submitted",
+  "objective": "Best-for-best comparison of printed Quiroga adaFGD and stochastic FRAMES on the Quiroga-style global-probe/2d-outcome-POVM sensing design, with independently calibrated method-native TP penalties and shared physical evaluation conditions.",
+  "source": {
+    "repository": "/home/tony/frankwolfe",
+    "branch": "stochastic-frames",
+    "git_commit": "0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+    "git_commit_short": "0586c15",
+    "remote_repo_target": "/gpfs/workdir/silvetian/frankwolfe-quiroga-0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+    "acceptance_before_transfer": [
+      "use exact clean commit 0586c15a8c4eccf644b67d3bae97dc3b017e6e69",
+      "retain the completed focused/full validation and independent audit record",
+      "obtain explicit authorization for transfer and submission",
+      "stage the exact committed tree and verify its revision on Ruche before any smoke submission"
+    ],
+    "setup_note": "The repository was not modified while finalizing this bundle. Remote transfer and submission remain separate, unauthorized actions."
+  },
+  "preservation": {
+    "prior_bundle_modified": false,
+    "prior_bundle": "/home/tony/qpt_quiroga_direct_20261004_01",
+    "prior_corrected_campaign": "/home/tony/qpt_quiroga_n4_d62fcf1_20261002_01",
+    "prior_corrected_campaign_role": "exploratory or ablation evidence only; it was not selected and frozen under this best-for-best protocol",
+    "legacy_high_qubit_role": "retain as local-Pauli/QPT_BFW sensing evidence, not as Quiroga-style sensing evidence",
+    "superseded_common_penalty_role": "The old shared-penalty bundle is preserved unchanged, but is superseded for primary claims and may be used only as a matched-penalty ablation.",
+    "destructive_actions": false
+  },
+  "scientific_contract": {
+    "protocol_id": "method_tuned_dynamic_frames_matched_nominal_row_accesses_v2",
+    "methods": [
+      "printed-adafgd",
+      "frames"
+    ],
+    "sensing": "Quiroga-style d^2 global probes with one generalized 2d-outcome POVM",
+    "truth_rank": 1,
+    "observation_mode": "noiseless",
+    "printed_adafgd": {
+      "objective": "Q_printed(U)=0.5*||A_S(UU^H)-y_S||_2^2+lambda_Q*H(U)",
+      "portable_penalty_coordinate": "alpha_Q=lambda_Q/m",
+      "applied_penalty": "lambda_Q=m*alpha_Q, fixed for the complete trajectory",
+      "independently_selected_controls": [
+        "alpha_Q",
+        "eta_scale"
+      ],
+      "alpha_grid": [
+        0.5,
+        0.05,
+        0.005,
+        0.0005,
+        0.00005
+      ],
+      "eta_scale_grid": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03
+      ],
+      "constraint": "none",
+      "projection": "none"
+    },
+    "frames": {
+      "objective_at_update_k": "Q_frames,k(U)=(1/(2m))*||A_S(UU^H)-y_S||_2^2+alpha_F,k*H(U)",
+      "initial_penalty_coordinate": "alpha_F0=1/(2*beta0)",
+      "penalty_schedule": "alpha_F,k=alpha_F0*(k+1)^p and beta_k=1/(2*alpha_F,k)",
+      "penalty_exponent_p": 0.25,
+      "penalty_direction": "alpha_F,k strictly increases and beta_k decreases with zero-based update k",
+      "independently_selected_controls": [
+        "alpha_F0"
+      ],
+      "alpha_grid": [
+        0.5,
+        0.05,
+        0.005,
+        0.0005,
+        0.00005
+      ],
+      "alpha_grid_independence_note": "This is a separate FRAMES candidate grid. Equal numeric entries do not pair, constrain, or share alpha with printed adaFGD.",
+      "batch_size": 32,
+      "rho_schedule": {
+        "scale": 2.0,
+        "offset": 4.0,
+        "exponent": 0.6,
+        "cap": 1.0
+      },
+      "step_schedule": {
+        "scale": 2.0,
+        "offset": 2.0,
+        "exponent": 1.0,
+        "cap": 1.0
+      },
+      "constraint": "operator_norm_ball",
+      "tau_n2": 2.0,
+      "tau_n4": 4.0
+    },
+    "shared_across_methods": [
+      "data/channel instance",
+      "active row indices",
+      "observations",
+      "serialized initial factor U0",
+      "rank",
+      "logical active-row budget",
+      "logical-row checkpoint grid",
+      "floating-point precision",
+      "common physical metrics",
+      "recovery gate"
+    ],
+    "objective_comparison_rule": "Penalized objectives are method-native diagnostics. They are never subtracted, differenced, pooled, or used as a cross-method selection or ranking score.",
+    "paired_differences_allowed_only_for": [
+      "measurement_loss_mean or measurement_loss_sum",
+      "rmse",
+      "process_fidelity",
+      "full_design_rmse",
+      "tp_violation",
+      "normalized_tp_violation",
+      "gate indicator"
+    ],
+    "method_diagnostics_not_paired_differences": [
+      "factor norms",
+      "optimizer or end-to-end timing",
+      "logical or implementation work counters",
+      "LMO and stochastic-oracle counts",
+      "spectral-norm timing and operator-call counts",
+      "method-native penalized objectives"
+    ],
+    "budget_unit": "logical active-row epochs",
+    "budget_caveat": "Equal logical row epochs do not imply equal computation. Record wall time, FRAMES LMO/oracle work, and printed adaFGD spectral-norm work separately.",
+    "recovery_gate": {
+      "gate_id": "noiseless_recovery_v1",
+      "process_fidelity_min": 0.99,
+      "full_design_rmse_max": 0.000001,
+      "normalized_tp_violation_max": 0.001,
+      "numerical_failure_passes": false
+    }
+  },
+  "candidate_identity": {
+    "candidate_grid_id": "alpha5_independent_printed_eta6_frames_p025_v1",
+    "selection_rule_id": "gate_first_common_physical_metrics_v1",
+    "printed_config_id_template": "{regime}-printed-aq-{alpha_Q}-eta-{eta_scale}-v1",
+    "frames_config_id_template": "{regime}-frames-af0-{alpha_F0}-p-0p25-v1",
+    "note": "Config IDs identify method-native candidates; there is no shared-alpha config ID."
+  },
+  "selection_protocol": {
+    "calibration": [
+      "Evaluate every predeclared candidate at the same regime-specific calibration row budget and checkpoints.",
+      "Treat every numerical exception or incomplete trajectory as a gate failure and preserve it.",
+      "Rank candidates separately within each method: highest nested recovery-gate pass rate; then highest mean number of gate components passed; then highest median fidelity; then lowest median full-design RMSE; then lowest median normalized TP violation; then lexicographically smallest canonical config ID.",
+      "Do not use either method-native penalized objective in selection or cross-method differences.",
+      "Write one immutable selection manifest per regime containing the source commit, grid and rule IDs, data/row/U0 hashes, all candidate outcomes, and the selected printed and FRAMES config IDs."
+    ],
+    "validation": [
+      "Run only the two already selected configurations on validation instances.",
+      "Require the selection-manifest SHA-256 and both selected config IDs in every record.",
+      "Validation is confirmatory and cannot rerank candidates; a protocol change requires a new campaign and new IDs."
+    ],
+    "heldout": [
+      "Freeze source commit, complete method configurations, selection manifest, data regime, row budget, checkpoints, gate, and analysis before exposing held-out outcomes.",
+      "Require identical selection-manifest SHA-256 and config IDs across every record in one cohort.",
+      "Never reuse exposed seeds 1-3 as unseen held-out instances."
+    ],
+    "aggregation": "FRAMES sampling streams are nested within initializations, which are nested within independent channel/data instances. Deterministic printed adaFGD is counted once per paired initialization."
+  },
+  "regimes_in_order": [
+    {
+      "regime_id": "n2_full_128",
+      "n_qubits": 2,
+      "active_rows": 128,
+      "subset_size": 0,
+      "calibration_row_epochs": 2000,
+      "validation_row_epochs": 10000,
+      "heldout_row_epochs": 10000,
+      "checkpoint_epochs": 100,
+      "tau": 2.0,
+      "spectral_norm_method": "dense"
+    },
+    {
+      "regime_id": "n2_subset_96",
+      "n_qubits": 2,
+      "active_rows": 96,
+      "subset_size": 96,
+      "calibration_row_epochs": 2000,
+      "validation_row_epochs": 10000,
+      "heldout_row_epochs": 10000,
+      "checkpoint_epochs": 100,
+      "tau": 2.0,
+      "spectral_norm_method": "dense",
+      "gate_rmse_source": "all 128 full-design rows, not only the 96 training rows"
+    },
+    {
+      "regime_id": "n4_full_8192",
+      "n_qubits": 4,
+      "active_rows": 8192,
+      "subset_size": 0,
+      "calibration_row_epochs": 2000,
+      "validation_row_epochs": 20000,
+      "heldout_row_epochs": 20000,
+      "checkpoint_epochs": 100,
+      "tau": 4.0,
+      "spectral_norm_method": "dense",
+      "start_condition": "Run only after both n=2 regimes pass launcher, archive, accounting, selection-manifest, and aggregation checks."
+    }
+  ],
+  "seed_plan": {
+    "calibration_channel_ids_n2": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "validation_channel_ids_n2": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107
+    ],
+    "heldout_channel_ids_n2": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019
+    ],
+    "calibration_channel_ids_n4": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "validation_channel_ids_n4": [
+      100,
+      101,
+      102,
+      103
+    ],
+    "heldout_channel_ids_n4": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009
+    ],
+    "initialization_seed_rule": "200000+10*channel_id+initialization_index",
+    "frames_sampling_seed_rule": "300000+100*channel_id+10*initialization_index+sampling_index",
+    "subset_seed_rule": "400000+channel_id",
+    "heldout_frames_sampling_replicates_per_initialization": 3
+  },
+  "phases": [
+    {
+      "name": "post_test_local_smoke",
+      "status": "completed",
+      "artifact_root": "/home/tony/qpt_quiroga_best_for_best_20261004_02/local_smoke",
+      "n_qubits": 2,
+      "active_rows": 128,
+      "row_epochs": 2,
+      "both_methods_complete": true,
+      "schema_version": 2,
+      "protocol": "method_tuned_dynamic_frames_matched_nominal_row_accesses_v2",
+      "printed_alpha_Q": 0.05,
+      "printed_lambda_Q": 6.4,
+      "frames_alpha_F0": 0.005,
+      "frames_beta0": 100.0,
+      "frames_endpoint_alpha_F": 0.008408964152537144,
+      "frames_endpoint_beta": 59.46035575013606,
+      "json_sha256": "3f68231ff64c0cff1bb7b725c30940d20f8b4a58ea121bc863861e30fc888301",
+      "npz_sha256": "5f1f593cb27b8439fc48990bccad56ff06b3e271284c46a85d614813c8de40bc",
+      "scientific_role": "launcher and provenance plumbing only; two row epochs are not a recovery experiment"
+    },
+    {
+      "name": "ruche_cpu_short_smoke",
+      "status": "staged_locally_not_transferred_not_submitted"
+    },
+    {
+      "name": "n2_full_128_calibration_validation_heldout",
+      "status": "not_started"
+    },
+    {
+      "name": "n2_subset_96_calibration_validation_heldout",
+      "status": "not_started"
+    },
+    {
+      "name": "n4_full_8192_calibration_validation_heldout",
+      "status": "blocked_on_n2_pipeline_checks"
+    }
+  ],
+  "validation": {
+    "focused_tests": {
+      "passed": 27,
+      "failed": 0
+    },
+    "full_repository_suite": {
+      "passed": 532,
+      "skipped": 55,
+      "failed": 0
+    },
+    "independent_audit": "approved",
+    "local_n2_full_smoke": "completed_with_both_methods_complete",
+    "validated_commit": "0586c15a8c4eccf644b67d3bae97dc3b017e6e69"
+  },
+  "ruche": {
+    "target": "Ruche",
+    "remote_output_root": "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_0586c15a8c4eccf644b67d3bae97dc3b017e6e69_20261004_02",
+    "environment": {
+      "module": "anaconda3/2023.09-0/none-none",
+      "conda_environment": "qpt",
+      "pythonpath": "/gpfs/workdir/silvetian/frankwolfe-quiroga-0586c15a8c4eccf644b67d3bae97dc3b017e6e69"
+    },
+    "smoke_resources": {
+      "partition": "cpu_short",
+      "nodes": 1,
+      "tasks": 1,
+      "cpus_per_task": 2,
+      "memory": "1G",
+      "walltime": "00:20:00",
+      "export": "NONE",
+      "propagate": "NONE"
+    },
+    "pre_submission_requirements": [
+      "obtain explicit authorization for transfer and submission",
+      "create the unique remote output root before sbatch so Slurm can open its log",
+      "verify the exact clean commit and staged source on Ruche",
+      "inspect the user-scoped queue for duplicate campaign jobs"
+    ],
+    "jobs_submitted_by_this_setup": []
+  },
+  "setup_artifacts": {
+    "created": [
+      "plan.json",
+      "smoke.sbatch",
+      "SETUP_SUMMARY.html",
+      "SETUP_SUMMARY.pdf",
+      "local_smoke/pair.json",
+      "local_smoke/pair.npz",
+      "manifest.sha256"
+    ],
+    "not_yet_created": [
+      "selection manifest",
+      "scientific calibration, validation, or held-out results",
+      "Ruche Slurm logs"
+    ]
+  }
+}

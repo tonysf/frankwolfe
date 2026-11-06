@@ -1,0 +1,122 @@
+{
+  "source_sha256": {
+    "campaign.py": "ac36c98c3a3b9d7c83f3032b277a34f781794ff0e683c2723f50ca152c5c3d8f",
+    "run.py": "2c25cbd46119cd34b4630f26cb6b250fe9dc8e4615efed510df1abeb1773ef60",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "e0392c36cfdca8df919cab42224e6c40ff0ae87c27fe081773bc288b58c7c4dc"
+  },
+  "original_manifest_sha256": "298f531253246e9b9a6fe84e907616b789794d2a77d2a2f0818482d0607db737",
+  "design": "Original SFRAMES settings and calibration; change only the initial factors.",
+  "direction_rng": "Separate NumPy Generator with seed=original config seed+200000.",
+  "rate_selection": "Reuse both development rates and the frozen evaluation rate.",
+  "runs": [
+    {
+      "config": {
+        "run_id": "development_slice04300_360_sframes_0.1",
+        "method": "sframes",
+        "rate": 0.1,
+        "phase": "development",
+        "slice_id": "slice04300",
+        "n_train": 360,
+        "grid": 512,
+        "rank": 64,
+        "batch": 64,
+        "seed": 110,
+        "view_budget": 5760,
+        "probe_every": 720
+      },
+      "cpu": 2,
+      "original_data_sha256": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907"
+    },
+    {
+      "config": {
+        "run_id": "development_slice04300_360_sframes_0.25",
+        "method": "sframes",
+        "rate": 0.25,
+        "phase": "development",
+        "slice_id": "slice04300",
+        "n_train": 360,
+        "grid": 512,
+        "rank": 64,
+        "batch": 64,
+        "seed": 110,
+        "view_budget": 5760,
+        "probe_every": 720
+      },
+      "cpu": 4,
+      "original_data_sha256": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907"
+    },
+    {
+      "config": {
+        "run_id": "evaluation_slice04531_1080_sframes_0.25",
+        "method": "sframes",
+        "rate": 0.25,
+        "phase": "evaluation",
+        "slice_id": "slice04531",
+        "n_train": 1080,
+        "grid": 512,
+        "rank": 64,
+        "batch": 64,
+        "seed": 201,
+        "view_budget": 21600,
+        "probe_every": 2160
+      },
+      "cpu": 2,
+      "original_data_sha256": "e4ca9924bea7059e3dd43308f48c9bd84f32cfabfcc249074466147d589e090b"
+    },
+    {
+      "config": {
+        "run_id": "evaluation_slice04531_360_sframes_0.25",
+        "method": "sframes",
+        "rate": 0.25,
+        "phase": "evaluation",
+        "slice_id": "slice04531",
+        "n_train": 360,
+        "grid": 512,
+        "rank": 64,
+        "batch": 64,
+        "seed": 201,
+        "view_budget": 21600,
+        "probe_every": 2160
+      },
+      "cpu": 6,
+      "original_data_sha256": "e4ca9924bea7059e3dd43308f48c9bd84f32cfabfcc249074466147d589e090b"
+    },
+    {
+      "config": {
+        "run_id": "evaluation_slice04800_1080_sframes_0.25",
+        "method": "sframes",
+        "rate": 0.25,
+        "phase": "evaluation",
+        "slice_id": "slice04800",
+        "n_train": 1080,
+        "grid": 512,
+        "rank": 64,
+        "batch": 64,
+        "seed": 201,
+        "view_budget": 21600,
+        "probe_every": 2160
+      },
+      "cpu": 0,
+      "original_data_sha256": "11485b748fc2826e778fbd10065975ddf44664e68b9c52446b93ddb7a00112ac"
+    },
+    {
+      "config": {
+        "run_id": "evaluation_slice04800_360_sframes_0.25",
+        "method": "sframes",
+        "rate": 0.25,
+        "phase": "evaluation",
+        "slice_id": "slice04800",
+        "n_train": 360,
+        "grid": 512,
+        "rank": 64,
+        "batch": 64,
+        "seed": 201,
+        "view_budget": 21600,
+        "probe_every": 2160
+      },
+      "cpu": 4,
+      "original_data_sha256": "11485b748fc2826e778fbd10065975ddf44664e68b9c52446b93ddb7a00112ac"
+    }
+  ]
+}

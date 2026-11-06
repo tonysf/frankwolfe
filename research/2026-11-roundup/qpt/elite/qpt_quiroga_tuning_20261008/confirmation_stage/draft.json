@@ -1,0 +1,109 @@
+{
+  "campaign_id": "qpt_quiroga_tuning_20261008_confirmation",
+  "frozen_screen_selection": {
+    "configuration": {
+      "alpha": 5e-05,
+      "eta_scale": 1.0,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    "no_retuning": true,
+    "screen_audit_sha256": "ce5135b4e04535bf90fa143cf7372341428fb15217986c8a8443f5536f356074",
+    "selection_file_sha256": "6f429f7adca8617bdb246e52839fd663ac64b6f1bc6adf0fa2e2cfdc55246a2f"
+  },
+  "gate": {
+    "fidelity_min": 0.99,
+    "normalized_tp_max": 0.001,
+    "rmse_max": 1e-06
+  },
+  "phase": "calibration",
+  "qualification": "Additional calibration confirmation on channels2..7, using exactly the setting selected on channels0/1. No retuning. Exact factor-ray line search is not printed Quiroga adaFGD. These channels are additional calibration, not claimed globally unseen.",
+  "resources": {
+    "minimum_seconds_before_new_trial": 120
+  },
+  "schema_version": 1,
+  "shared": {
+    "active_rows": 128,
+    "exact_line_stopping": {
+      "full_gradient_atol": 1e-12,
+      "full_gradient_rtol": 1e-10
+    },
+    "fixed_penalty": "lambda=128*alpha; constant throughout each trial",
+    "initialization_basis": "gell-mann",
+    "initialization_convention": "hs_unit_gell_mann_identity_sym_antisym_diag_v1",
+    "initialization_seed_rule": "200000+10*channel",
+    "n_qubits": 2,
+    "observation_mode": "noiseless",
+    "printed_spectral_norm": "dense exact Hermitian eigenspectrum",
+    "rank": 1,
+    "sampling_seed_rule": "300000+100*channel",
+    "work": "Printed128 rows/update; exact ray counts direction, polynomial and candidate passes; checkpoints excluded"
+  },
+  "source": {
+    "commit": "4ce1108a0692edc43b47ef465dbc74a42397765e",
+    "repo": "/gpfs/workdir/silvetian/frankwolfe-quiroga-4ce1108a0692edc43b47ef465dbc74a42397765e"
+  },
+  "trials": [
+    {
+      "alpha": 5e-05,
+      "channel": 2,
+      "eta_scale": 1.0,
+      "id": "c2-frozen-exact-linesearch-fgd",
+      "initialization_seed": 200020,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 3,
+      "eta_scale": 1.0,
+      "id": "c3-frozen-exact-linesearch-fgd",
+      "initialization_seed": 200030,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 4,
+      "eta_scale": 1.0,
+      "id": "c4-frozen-exact-linesearch-fgd",
+      "initialization_seed": 200040,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 5,
+      "eta_scale": 1.0,
+      "id": "c5-frozen-exact-linesearch-fgd",
+      "initialization_seed": 200050,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 6,
+      "eta_scale": 1.0,
+      "id": "c6-frozen-exact-linesearch-fgd",
+      "initialization_seed": 200060,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 7,
+      "eta_scale": 1.0,
+      "id": "c7-frozen-exact-linesearch-fgd",
+      "initialization_seed": 200070,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    }
+  ]
+}

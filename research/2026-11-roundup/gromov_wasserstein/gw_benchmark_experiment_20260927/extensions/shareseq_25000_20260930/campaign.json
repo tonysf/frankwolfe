@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "scope": "Exploratory SHARE-seq full QC-passing population (31890 paired cells), with constants transferred unchanged from selected SNARE-10000 configurations; not tuned or selected on SHARE-seq",
+  "methods": [
+    "smoothing-fw",
+    "stochastic-kl-momentum"
+  ],
+  "hardware": {
+    "cluster": "Ruche",
+    "partition": "gpua100",
+    "account": "fwllm",
+    "nodes": 1,
+    "gpus": 4,
+    "gpu": "A100 40GB",
+    "host_memory_gib": 128
+  },
+  "initialization": "product a*b^T",
+  "initialization_seed": 100,
+  "batch": 128,
+  "rho0": 0.3,
+  "momentum_exponent": 0.5,
+  "fw": {
+    "gamma0": 0.1,
+    "mu_scale": 0.1,
+    "step_exponent": 0.75,
+    "smoothing_exponent": 0.25
+  },
+  "kl": {
+    "eta": 0.1,
+    "inner_tol": 0.0001,
+    "inner_max": 1000,
+    "check_every": 10
+  },
+  "pilot": {
+    "seeds": [
+      450
+    ],
+    "budget_seconds": 30,
+    "checkpoints": [
+      10,
+      30
+    ]
+  },
+  "final": {
+    "seeds": [
+      500,
+      501,
+      502
+    ],
+    "budget_seconds": 300,
+    "checkpoints": [
+      10,
+      30,
+      100,
+      300
+    ]
+  },
+  "order": "FW then KL for even seed-list index; KL then FW for odd index",
+  "resource_gate": "All pilot rank/phase reserved-memory peaks below 80% of device memory and summed rank process RSS peaks below 80% of 128GiB",
+  "storage": "Save raw and rounded final coupling shards for six final runs, approximately48.8GB total; pilot plans validated and hashed without persistence",
+  "loss": "Original full unregularized squared-loss GW with no half factor; exact distributed diagnostics and float64 final validation",
+  "output": "Current iterate rounded at recorded checkpoints; no incumbent selection",
+  "timing": "Same four GPUs sequentially for each paired method; communication counts toward solver time; also report four times solver time and total allocated GPU-hours",
+  "interpretation": "Three stochastic repetitions of one fixed paired dataset; no biological alignment or asymptotic speedup claim implied",
+  "instance_id": "shareseq_full",
+  "expected_n": 31890,
+  "population": "All 31890 paired cells passing the unchanged joint QC, with no subsampling"
+}

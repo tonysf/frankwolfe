@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "scope": "Independent run_smoothing.py review and 2-step float32 CPU integration",
+  "fixed_issue": "Primary final float64 rounded metrics now score the actual solver-dtype rounded output, with separately labeled rerounding audit",
+  "checks": [
+    "Primary objective exactly matches independent evaluation of saved P_rounded",
+    "Initialization consumes and times one oracle call",
+    "Momentum diagnostics use retained P_k and d_k before each update",
+    "T=2 trajectory mean includes P0,P1 and excludes terminal P2",
+    "Checkpoint times conservatively follow completion of updates",
+    "Final float64 diagnostic call counts include both actual output and separate rerounding audit"
+  ],
+  "run": "/home/tony/gw_benchmark_experiment_20260927/runs/oracle_cpu_runner_review_float32"
+}

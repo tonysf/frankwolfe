@@ -1,0 +1,385 @@
+{
+  "arithmetic_dtype": "float64",
+  "array_files_sha256": {
+    "A.npy": "5f925848df0cb52280b3aa127c4b1cedb427212371c74ef2a9857b9d4376568b",
+    "B.npy": "52ba50d48e587fff6a1c803b3edaede091b6d23e7f23043a004d315e0d699b19",
+    "a.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d",
+    "b.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d"
+  },
+  "checkpoint": {
+    "format_version": 1,
+    "generation": "generation-000000002-60c693331c354ca0a66dcec2ee274ed1",
+    "identity": {
+      "array_files_sha256": {
+        "A.npy": "5f925848df0cb52280b3aa127c4b1cedb427212371c74ef2a9857b9d4376568b",
+        "B.npy": "52ba50d48e587fff6a1c803b3edaede091b6d23e7f23043a004d315e0d699b19",
+        "a.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d",
+        "b.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d"
+      },
+      "config": {
+        "device": "cpu",
+        "diagnostic_every": 1,
+        "dtype": "float64",
+        "epsilon": 3e-05,
+        "exact_block_rows": 128,
+        "init_mixture_weight": 0.9,
+        "initialization": "product",
+        "inner_max": 100000,
+        "iterations": 2,
+        "method": "pot-full",
+        "outer_min_iterations": 50,
+        "outer_stable_updates": 10,
+        "outer_tolerance": 1e-06,
+        "seed": 901
+      },
+      "cublas_workspace_config": ":4096:8",
+      "cuda_capability": null,
+      "device_model": "cpu",
+      "m": 8,
+      "manifest_sha256": "2c6f63635e7103d7f4b3d0d2da37dfe7848b64983ef94381e21036d20a782afd",
+      "n": 8,
+      "num_threads": 1,
+      "numpy_version": "2.4.6",
+      "source_file_sha256": {
+        "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+        "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+        "extensions/large_pot_frames_20261016/runner.py": "3452c64f878cd0e276e56508ad91eda11356ae8f3b8a5cccbffef7eb4b65a7cf",
+        "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "extensions/pot_entropy_init_20261018/runner.py": "e16afdbc67a792d16105e5884b210409fa1c6058d535246fc1fdfec37fd3cca1",
+        "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "torch_cuda_version": null,
+      "torch_version": "2.14.0+cpu",
+      "world_size": 1
+    },
+    "iteration": 2,
+    "shards": [
+      {
+        "bytes": 10789,
+        "file": "rank-0000.pt",
+        "sha256": "1f4b9dd9e9647d1cef353864fe14ab56dcfdcabb067c982d251609262772fa18"
+      }
+    ],
+    "world_size": 1
+  },
+  "completed_updates": 2,
+  "config": {
+    "device": "cpu",
+    "diagnostic_every": 1,
+    "dtype": "float64",
+    "epsilon": 3e-05,
+    "exact_block_rows": 128,
+    "init_mixture_weight": 0.9,
+    "initialization": "product",
+    "inner_max": 100000,
+    "iterations": 2,
+    "method": "pot-full",
+    "outer_min_iterations": 50,
+    "outer_stable_updates": 10,
+    "outer_tolerance": 1e-06,
+    "seed": 901
+  },
+  "counters": {
+    "completed_updates": 2,
+    "full_gradient_calls": 2,
+    "interrupted_inner_attempts": 0,
+    "total_inner_iterations": 20,
+    "updates_with_underflow": 0
+  },
+  "dimensions": {
+    "m": 8,
+    "n": 8
+  },
+  "elapsed_seconds": 1.2150529669597745,
+  "final_loss": 4.853319074521089e-05,
+  "final_raw_loss": 4.8533187539481575e-05,
+  "final_regularized_loss": -0.0001018666868768439,
+  "identity": {
+    "array_files_sha256": {
+      "A.npy": "5f925848df0cb52280b3aa127c4b1cedb427212371c74ef2a9857b9d4376568b",
+      "B.npy": "52ba50d48e587fff6a1c803b3edaede091b6d23e7f23043a004d315e0d699b19",
+      "a.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d",
+      "b.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d"
+    },
+    "config": {
+      "device": "cpu",
+      "diagnostic_every": 1,
+      "dtype": "float64",
+      "epsilon": 3e-05,
+      "exact_block_rows": 128,
+      "init_mixture_weight": 0.9,
+      "initialization": "product",
+      "inner_max": 100000,
+      "iterations": 2,
+      "method": "pot-full",
+      "outer_min_iterations": 50,
+      "outer_stable_updates": 10,
+      "outer_tolerance": 1e-06,
+      "seed": 901
+    },
+    "cublas_workspace_config": ":4096:8",
+    "cuda_capability": null,
+    "device_model": "cpu",
+    "m": 8,
+    "manifest_sha256": "2c6f63635e7103d7f4b3d0d2da37dfe7848b64983ef94381e21036d20a782afd",
+    "n": 8,
+    "num_threads": 1,
+    "numpy_version": "2.4.6",
+    "source_file_sha256": {
+      "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+      "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+      "extensions/large_pot_frames_20261016/runner.py": "3452c64f878cd0e276e56508ad91eda11356ae8f3b8a5cccbffef7eb4b65a7cf",
+      "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+      "extensions/pot_entropy_init_20261018/runner.py": "e16afdbc67a792d16105e5884b210409fa1c6058d535246fc1fdfec37fd3cca1",
+      "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+      "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+      "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+    },
+    "torch_cuda_version": null,
+    "torch_version": "2.14.0+cpu",
+    "world_size": 1
+  },
+  "initialization": {
+    "formula": "a b^T",
+    "initialization": "product",
+    "marginal_l1": 0.0,
+    "seed": 901,
+    "uses_labels": false
+  },
+  "inner_trace": [
+    {
+      "arithmetic_certificate": "FP64 arithmetic; not interval-certified",
+      "certificate_checks": 1,
+      "certificate_primal": "FP64 rounded feasible witness of returned plan",
+      "certificate_valid": true,
+      "cheap_marginal_checks": 1,
+      "collective_fallback": true,
+      "converged": true,
+      "dual_candidate_mass": 0.9999999999999997,
+      "dual_objective": 0.000116975646241684,
+      "eta": 33333.333333333336,
+      "fast_path_used": true,
+      "fast_scaling_iterations": 10,
+      "fixed_reference": "product_marginals",
+      "gap_arithmetic_crosscheck_error": 1.1627835906039486e-20,
+      "gap_normalizer": 1.0,
+      "gap_roundoff_tolerance": 5.684341886080802e-14,
+      "inner_iterations": 10,
+      "iteration": 0,
+      "kernel_rebuilds": 0,
+      "kernel_released_before_candidate": true,
+      "log_domain_iterations": 0,
+      "marginal_l1": 3.041673857229199e-11,
+      "marginal_tolerance": 1e-07,
+      "normalized_gap_tolerance": 1e-07,
+      "normalized_gap_upper_bound": 5.6843416936116767e-14,
+      "normalized_primal_dual_gap": -1.3552527156068805e-20,
+      "plan_dtype": "torch.float64",
+      "primal_dual_gap": -1.3552527156068805e-20,
+      "primal_objective": 0.00011697564624168398,
+      "primal_witness_feasibility_tolerance": 1.1368683772161603e-13,
+      "primal_witness_marginal_l1": 5.551115123125783e-17,
+      "primal_witness_plan_l1_difference": 3.0416374280362035e-11,
+      "proximal_optimality_certified": true,
+      "reference_mass": 1.0000000000000004,
+      "retained_log_dtype": "torch.float64",
+      "sinkhorn_arithmetic": "FP64 row-sharded matrix-vector scaling; original log-kernel candidate/certificate",
+      "sinkhorn_path": "distributed-positive-kernel-matrix-vector",
+      "stable_primal_dual_gap": -1.9246912500293193e-21,
+      "total_inner_budget": 100000,
+      "underflow_entries": 0
+    },
+    {
+      "arithmetic_certificate": "FP64 arithmetic; not interval-certified",
+      "certificate_checks": 1,
+      "certificate_primal": "FP64 rounded feasible witness of returned plan",
+      "certificate_valid": true,
+      "cheap_marginal_checks": 1,
+      "collective_fallback": true,
+      "converged": true,
+      "dual_candidate_mass": 0.9999999999999998,
+      "dual_objective": 0.00010929191173880835,
+      "eta": 33333.333333333336,
+      "fast_path_used": true,
+      "fast_scaling_iterations": 10,
+      "fixed_reference": "product_marginals",
+      "gap_arithmetic_crosscheck_error": 1.846606926763563e-20,
+      "gap_normalizer": 1.0,
+      "gap_roundoff_tolerance": 5.684341886080802e-14,
+      "inner_iterations": 10,
+      "iteration": 1,
+      "kernel_rebuilds": 0,
+      "kernel_released_before_candidate": true,
+      "log_domain_iterations": 0,
+      "marginal_l1": 5.991546102313006e-08,
+      "marginal_tolerance": 1e-07,
+      "normalized_gap_tolerance": 1e-07,
+      "normalized_gap_upper_bound": 5.684415561081655e-14,
+      "normalized_primal_dual_gap": 7.182839392716467e-19,
+      "plan_dtype": "torch.float64",
+      "primal_dual_gap": 7.182839392716467e-19,
+      "primal_objective": 0.00010929191173880907,
+      "primal_witness_feasibility_tolerance": 1.1368683772161603e-13,
+      "primal_witness_marginal_l1": 8.326672684688674e-17,
+      "primal_witness_plan_l1_difference": 5.991546090386782e-08,
+      "proximal_optimality_certified": true,
+      "reference_mass": 1.0000000000000004,
+      "retained_log_dtype": "torch.float64",
+      "sinkhorn_arithmetic": "FP64 row-sharded matrix-vector scaling; original log-kernel candidate/certificate",
+      "sinkhorn_path": "distributed-positive-kernel-matrix-vector",
+      "stable_primal_dual_gap": 7.367500085392823e-19,
+      "total_inner_budget": 100000,
+      "underflow_entries": 0
+    }
+  ],
+  "input_transform": "lossless float32 distance promotion; unchanged archived float64 marginals",
+  "last_outer_update_l1": 0.22729437916579526,
+  "manifest_sha256": "2c6f63635e7103d7f4b3d0d2da37dfe7848b64983ef94381e21036d20a782afd",
+  "max_memory_reserved_bytes_per_rank": [
+    0
+  ],
+  "max_memory_reserved_fraction": 0,
+  "memory_total_bytes_per_rank": [
+    0
+  ],
+  "method": "pot-full",
+  "original_array_dtypes": {
+    "A": "float32",
+    "B": "float32",
+    "a": "float64",
+    "b": "float64"
+  },
+  "outer_trace": [
+    {
+      "iteration": 1,
+      "stable_updates": 0,
+      "update_l1": 0.2174539271786276
+    },
+    {
+      "iteration": 2,
+      "stable_updates": 0,
+      "update_l1": 0.22729437916579526
+    }
+  ],
+  "retained_checkpoint": false,
+  "schedule": {
+    "epsilon": 3e-05,
+    "eta": 33333.333333333336,
+    "gap_tolerance": 1e-07,
+    "inner_tolerance": 1e-07,
+    "scope": "Full-gradient POT entropic GW PGD; fixed entropy coefficient"
+  },
+  "seed": 901,
+  "slurm_job_id": null,
+  "source_file_sha256": {
+    "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+    "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+    "extensions/large_pot_frames_20261016/runner.py": "3452c64f878cd0e276e56508ad91eda11356ae8f3b8a5cccbffef7eb4b65a7cf",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/pot_entropy_init_20261018/runner.py": "e16afdbc67a792d16105e5884b210409fa1c6058d535246fc1fdfec37fd3cca1",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "stable_updates": 0,
+  "status": "completed",
+  "stopping_criterion": {
+    "consecutive_updates": 10,
+    "global_optimality_certificate": false,
+    "minimum_updates": 50,
+    "norm": "L1(P_next-P_previous)",
+    "tolerance": 1e-06
+  },
+  "stopping_reason": "iteration_budget",
+  "target_updates": 2,
+  "trace": [
+    {
+      "iteration": 0,
+      "outer_update_l1": null,
+      "raw_entropy": -5.1588830833596715,
+      "raw_loss": 5.934258968424657e-05,
+      "raw_regularized_loss": -9.542390281654358e-05,
+      "raw_residuals": {
+        "both_l1": 0.0,
+        "col_l1": 0.0,
+        "col_l2": 0.0,
+        "mass_error": 0.0,
+        "min_entry": 0.015625,
+        "row_l1": 0.0
+      },
+      "rounded_entropy": -5.1588830833596715,
+      "rounded_loss": 5.934258968424657e-05,
+      "rounded_regularized_loss": -9.542390281654358e-05,
+      "rounded_residuals": {
+        "both_l1": 0.0,
+        "col_l1": 0.0,
+        "col_l2": 0.0,
+        "mass_error": 0.0,
+        "min_entry": 0.015625,
+        "row_l1": 0.0
+      },
+      "rounding_repair_l1": 0.0,
+      "stable_updates": 0
+    },
+    {
+      "iteration": 1,
+      "outer_update_l1": 0.2174539271786276,
+      "raw_entropy": -5.10905932189133,
+      "raw_loss": 5.465381311322228e-05,
+      "raw_regularized_loss": -9.861796654351762e-05,
+      "raw_residuals": {
+        "both_l1": 3.041673857229199e-11,
+        "col_l1": 2.914335439641036e-16,
+        "col_l2": 1.2177709378935645e-16,
+        "mass_error": 3.3306690738754696e-16,
+        "min_entry": 0.003518628761997116,
+        "row_l1": 3.0416447138748026e-11
+      },
+      "rounded_entropy": -5.109059321898517,
+      "rounded_loss": 5.4653813114666466e-05,
+      "rounded_regularized_loss": -9.861796654228906e-05,
+      "rounded_residuals": {
+        "both_l1": 5.551115123125783e-17,
+        "col_l1": 0.0,
+        "col_l2": 0.0,
+        "mass_error": 0.0,
+        "min_entry": 0.003518628764071877,
+        "row_l1": 5.551115123125783e-17
+      },
+      "rounding_repair_l1": 3.0416374280362035e-11,
+      "stable_updates": 0
+    },
+    {
+      "iteration": 2,
+      "outer_update_l1": 0.22729437916579526,
+      "raw_entropy": -5.013329214626103,
+      "raw_loss": 4.8533187539481575e-05,
+      "raw_regularized_loss": -0.00010186668889930153,
+      "raw_residuals": {
+        "both_l1": 5.991546102313006e-08,
+        "col_l1": 1.249000902703301e-16,
+        "col_l2": 5.721958498152797e-17,
+        "mass_error": 1.1102230246251565e-16,
+        "min_entry": 0.0007398434814415102,
+        "row_l1": 5.991546089822997e-08
+      },
+      "rounded_entropy": -5.013329254068493,
+      "rounded_loss": 4.853319074521089e-05,
+      "rounded_regularized_loss": -0.0001018666868768439,
+      "rounded_residuals": {
+        "both_l1": 8.326672684688674e-17,
+        "col_l1": 1.3877787807814457e-17,
+        "col_l2": 1.3877787807814457e-17,
+        "mass_error": 0.0,
+        "min_entry": 0.0007398472055956941,
+        "row_l1": 6.938893903907228e-17
+      },
+      "rounding_repair_l1": 5.991546090386782e-08,
+      "stable_updates": 0
+    }
+  ],
+  "updated_at": "2026-10-18T16:41:43.554856+00:00",
+  "world_size": 1
+}

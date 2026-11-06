@@ -1,0 +1,220 @@
+{
+  "experiment": "scot_reproduction_20261014",
+  "final_checkpoint_iterations": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100,
+    200,
+    500,
+    1000,
+    2000,
+    5000,
+    10000,
+    15000,
+    20000
+  ],
+  "final_iterations": 20000,
+  "final_marginal_l1_tolerance": 1.1920928955078125e-05,
+  "final_seeds": [
+    811,
+    812,
+    813
+  ],
+  "initialization": "product",
+  "instance": {
+    "id": "scot1047",
+    "n": 1047,
+    "world_size": 1
+  },
+  "interpretation": "POT reference establishes an attainable objective on the same released geometry; it is not a stochastic runtime competitor. Final feasible loss is an empirical selection metric, separate from random theorem-output guarantees. All stochastic methods cast identical released float64 arrays to float32. Independent final validation reloads the original float64 distance arrays and promotes the saved plans to float64.",
+  "methods": {
+    "published-msbpg": [
+      {
+        "coupling_fraction": 0.1,
+        "id": "msbpg00",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.1,
+        "id": "msbpg01",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.1,
+        "id": "msbpg02",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.3,
+        "id": "msbpg03",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.3,
+        "id": "msbpg04",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.3,
+        "id": "msbpg05",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg06",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg07",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg08",
+        "momentum_prefactor": 1.0
+      }
+    ],
+    "published-smd": [
+      {
+        "id": "smd00",
+        "prefactor_fraction": 0.01
+      },
+      {
+        "id": "smd01",
+        "prefactor_fraction": 0.025
+      },
+      {
+        "id": "smd02",
+        "prefactor_fraction": 0.05
+      },
+      {
+        "id": "smd03",
+        "prefactor_fraction": 0.1
+      },
+      {
+        "id": "smd04",
+        "prefactor_fraction": 0.2
+      },
+      {
+        "id": "smd05",
+        "prefactor_fraction": 0.35
+      },
+      {
+        "id": "smd06",
+        "prefactor_fraction": 0.5
+      },
+      {
+        "id": "smd07",
+        "prefactor_fraction": 0.75
+      },
+      {
+        "id": "smd08",
+        "prefactor_fraction": 1.0
+      }
+    ],
+    "smoothing-fw": [
+      {
+        "gamma0": 0.1,
+        "id": "fw00",
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 0.1,
+        "id": "fw01",
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 0.1,
+        "id": "fw02",
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 0.3,
+        "id": "fw03",
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 0.3,
+        "id": "fw04",
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 0.3,
+        "id": "fw05",
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 1.0,
+        "id": "fw06",
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 1.0,
+        "id": "fw07",
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "gamma0": 1.0,
+        "id": "fw08",
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      }
+    ]
+  },
+  "oracle": "pair-sampling",
+  "pairs_per_call": 1024,
+  "plan_storage": "none",
+  "preflight": {
+    "iterations": 200,
+    "maximum_gpu_reserved_fraction": 0.9,
+    "run_timeout_seconds": 3300,
+    "runtime_safety_factor": 2.0,
+    "seed": 809
+  },
+  "run_timeout_seconds": 82800,
+  "runner": {
+    "certificate_block_rows": 256,
+    "check_every": 10,
+    "dtype": "float32",
+    "exact_block_rows": 256,
+    "inner_gap_tol": 1e-07,
+    "inner_max": 10000,
+    "inner_tol": 1e-07,
+    "progress_every": 1000
+  },
+  "schema_version": 1,
+  "scope": "First reproduce the published SCOT1047 reference. Freeze its four distance/marginal arrays; tune nine theory-admissible prefactor candidates per stochastic method at 20000 updates on seed 810, then compare selected candidates at the same horizon on fresh seeds 811\u2013813. Every method uses the published iid coupling-pair oracle with 1024 pairs per call. No exponent changes or loss-based stopping.",
+  "selection_metric": "independent_float64_last_rounded_gw_loss",
+  "tuning_checkpoint_iterations": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100,
+    200,
+    500,
+    1000,
+    2000,
+    5000,
+    10000,
+    15000,
+    20000
+  ],
+  "tuning_iterations": 20000,
+  "tuning_seed": 810
+}

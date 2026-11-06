@@ -1,0 +1,674 @@
+{
+  "all_inventory_checksums_verified": false,
+  "all_results_present": false,
+  "audit_passed": true,
+  "audit_script_sha256": "705d9265f18e6cb8978914661364c923582d7a0cfda48d84b153d43e56203c80",
+  "audited_trials": 9,
+  "cases": [
+    {
+      "actual_optimizer_row_accesses": 802944,
+      "actual_optimizer_row_epochs": 6273.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 3000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 2.0,
+        "factor_operator_norm": 2.0,
+        "measurement_loss_mean": 1.8337858809621538e-32,
+        "measurement_loss_sum": 2.347245927631557e-30,
+        "normalized_tp_violation": 5.212490449913835e-16,
+        "process_fidelity": 1.0,
+        "rmse": 1.9150905362212794e-16,
+        "tp_violation": 1.042498089982767e-15
+      },
+      "failure_reason": "RuntimeError: Armijo line search failed after 31 trials.",
+      "final_factor_sha256": "b24fd9174d4b70610466b4d25a77a4d4cbf641bb388bfb4fda798c4f7e0c9090",
+      "first_recorded_physical_gate": {
+        "charged_row_epochs": 2285.0,
+        "charged_rows": 292480,
+        "checkpoint_metrics": {
+          "measurement_loss_mean": 2.542920526503875e-13,
+          "measurement_loss_sum": 3.25493827392496e-11,
+          "normalized_tp_violation": 1.2764987130958844e-06,
+          "process_fidelity": 0.9999999993151767,
+          "rmse": 7.131508292786141e-07,
+          "tp_violation": 2.552997426191769e-06
+        },
+        "step": 1100
+      },
+      "first_recorded_physical_gate_charged_rows": 292480,
+      "first_recorded_physical_gate_step": 1100,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": true,
+          "normalized_tp": true
+        },
+        "method_status": "failed",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-armijo-a5e-4/result.json",
+      "json_sha256": "963e985c4bc32511e407b8dabc6de63d38378b7883e3b5a127889ffbf331ca57",
+      "method": "armijo-fgd",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-armijo-a5e-4/result.npz",
+      "npz_sha256": "8936a1abed97d8df8f2bf44cc0f6748f6b5162f01daa0210b7fd6a3e6de6363c",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "failed",
+      "trial": {
+        "alpha": 0.0005,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-armijo-a5e-4",
+        "method": "armijo-fgd",
+        "tau": 2.0
+      },
+      "trial_id": "c0-armijo-a5e-4"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 40000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999611789386762,
+        "factor_operator_norm": 1.999961178938676,
+        "measurement_loss_mean": 1.1052794426966732e-11,
+        "measurement_loss_sum": 1.4147576866517417e-09,
+        "normalized_tp_violation": 4.927161481160037e-05,
+        "process_fidelity": 0.9999999987935599,
+        "rmse": 4.701658096239396e-06,
+        "tp_violation": 9.854322962320074e-05
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "095b0eb4cbb6764a9b493edcc255fa7d357e48594c65b9d3711c429531d375fb",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-fast-average/result.json",
+      "json_sha256": "bec618b49e0925b4f5f3adbd616ab0dbf662ca7d738c2d9175ca565bef95a4b4",
+      "method": "frames",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-fast-average/result.npz",
+      "npz_sha256": "54774a7fdb249accdb782b9a57cd96778f730384638746010692be3ee819b475",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 5e-05,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-f-fast-average",
+        "method": "frames",
+        "step_schedule": {
+          "cap": 1.0,
+          "exponent": 1.0,
+          "offset": 4.0,
+          "scale": 4.0
+        },
+        "tau": 2.0
+      },
+      "trial_id": "c0-f-fast-average"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 40000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9991340544557132,
+        "factor_operator_norm": 1.999134054455713,
+        "measurement_loss_mean": 3.3677022960554885e-09,
+        "measurement_loss_sum": 4.3106589389510253e-07,
+        "normalized_tp_violation": 0.0017289858911457142,
+        "process_fidelity": 0.9999992750466346,
+        "rmse": 8.206951073395635e-05,
+        "tp_violation": 0.0034579717822914285
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "6510695684727f5910e312951b494821f1433b68df556ac6df9ad5ddb014b334",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": false
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-lower-alpha/result.json",
+      "json_sha256": "5900e31ab87c8750036209caa7af6094de0b308608183942e84d3fd9d753adfa",
+      "method": "frames",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-lower-alpha/result.npz",
+      "npz_sha256": "9e9ea2c3e4335c0e0326d765aab092a42fac59a02e9676b9ac16f2549946372f",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 5e-06,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-f-lower-alpha",
+        "method": "frames",
+        "tau": 2.0
+      },
+      "trial_id": "c0-f-lower-alpha"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 40000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9998572152709053,
+        "factor_operator_norm": 1.9998572152709053,
+        "measurement_loss_mean": 9.560652081739545e-11,
+        "measurement_loss_sum": 1.2237634664626618e-08,
+        "normalized_tp_violation": 0.00028519028901632004,
+        "process_fidelity": 0.9999999802175555,
+        "rmse": 1.3827980388863404e-05,
+        "tp_violation": 0.0005703805780326401
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "64f3a33fc5c96ab3b30c4aab76484ca71504dcbb929870082fc504e2ca420da0",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-lower-alpha-fast/result.json",
+      "json_sha256": "c537e362c9b58f19f8647b25f570d289b72ea926da489e63c26af1dba280a6a5",
+      "method": "frames",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-lower-alpha-fast/result.npz",
+      "npz_sha256": "3c5901644085a1cdf1b726616ad7f89bb6c6c704c77e6513a4bdd95cf4c3dcba",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 5e-06,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-f-lower-alpha-fast",
+        "method": "frames",
+        "step_schedule": {
+          "cap": 1.0,
+          "exponent": 1.0,
+          "offset": 4.0,
+          "scale": 4.0
+        },
+        "tau": 2.0
+      },
+      "trial_id": "c0-f-lower-alpha-fast"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 40000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999279289030916,
+        "factor_operator_norm": 1.9999279289030916,
+        "measurement_loss_mean": 3.794423417724303e-11,
+        "measurement_loss_sum": 4.856861974687108e-09,
+        "normalized_tp_violation": 9.180128048521387e-05,
+        "process_fidelity": 0.9999999964981562,
+        "rmse": 8.71139875992863e-06,
+        "tp_violation": 0.00018360256097042774
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "98327e82a9bea2c48a765bd71e1a39d7b772c021994120c14b18b6cf888c611a",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-original-anchor/result.json",
+      "json_sha256": "1cd6c867c0506523301bd037208cd3cd3e21f4cf43f62ce1899aab05e94c77b1",
+      "method": "frames",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-original-anchor/result.npz",
+      "npz_sha256": "88a3d05c5fde964afdc68225d34ea2d7f4c82f24896aabed1e3879440e1afa03",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 5e-05,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-f-original-anchor",
+        "method": "frames",
+        "tau": 2.0
+      },
+      "trial_id": "c0-f-original-anchor"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 40000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999760424167483,
+        "factor_operator_norm": 1.999976042416748,
+        "measurement_loss_mean": 5.908791505537978e-12,
+        "measurement_loss_sum": 7.563253127088612e-10,
+        "normalized_tp_violation": 2.5699623188920064e-05,
+        "process_fidelity": 0.9999999996734492,
+        "rmse": 3.4376711609861633e-06,
+        "tp_violation": 5.139924637784013e-05
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "c9a74410c6977f467dd1050bbf26bcb035826cf5261e4a611ec80de9954845f9",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-tau2p02/result.json",
+      "json_sha256": "ca2564be8e93bbe321da38a567458e9005c75023ea296afb5113f1c4c1f37970",
+      "method": "frames",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-tau2p02/result.npz",
+      "npz_sha256": "4fe89881e875cb023e62d2050f0faeb503a1dee47dd9dfdad0192ac1a916b4a1",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 5e-05,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-f-tau2p02",
+        "method": "frames",
+        "tau": 2.02
+      },
+      "trial_id": "c0-f-tau2p02"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 40000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999583698317087,
+        "factor_operator_norm": 1.9999583698317085,
+        "measurement_loss_mean": 2.042125662030397e-11,
+        "measurement_loss_sum": 2.613920847398908e-09,
+        "normalized_tp_violation": 4.297512239050129e-05,
+        "process_fidelity": 0.9999999994874209,
+        "rmse": 6.390814755616684e-06,
+        "tp_violation": 8.595024478100258e-05
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "f922ee53d0af14023cf382d612ba93b73bf11cd85ffb1e06cefbab58318ec4f3",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-tau2p1/result.json",
+      "json_sha256": "59f9b4f3095956a345a8de286ec61acf6638dbcd633c014aad1eb504e37571d0",
+      "method": "frames",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-f-tau2p1/result.npz",
+      "npz_sha256": "172a80587d8b62b35254d0452206a62691c39ffe2e174618f227c653aedb2b65",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 5e-05,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-f-tau2p1",
+        "method": "frames",
+        "tau": 2.1
+      },
+      "trial_id": "c0-f-tau2p1"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 10000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9847259766778265,
+        "factor_operator_norm": 1.9847259766778262,
+        "measurement_loss_mean": 0.00028638244345708297,
+        "measurement_loss_sum": 0.03665695276250662,
+        "normalized_tp_violation": 0.06231973911269119,
+        "process_fidelity": 0.29303130688738976,
+        "rmse": 0.023932506908265292,
+        "tp_violation": 0.12463947822538238
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "655c4d0d8c87c3a7d7a940943151dd9ec5cc67feebb333f87fe2421d18bb7b6a",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": false,
+          "full_design_rmse": false,
+          "normalized_tp": false
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-q-a5e-4-e3e-1/result.json",
+      "json_sha256": "b9164559d4c7b26f3a811ff00f0d665e889101d70cdb6827a7baa47ec6bd032c",
+      "method": "printed-adafgd",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-q-a5e-4-e3e-1/result.npz",
+      "npz_sha256": "ca62e08939c3858ad5a98a0a36e0c292a44b663d5c18cf415950273f21ed7176",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 0.0005,
+        "channel": 0,
+        "eta_scale": 0.3,
+        "id": "c0-q-a5e-4-e3e-1",
+        "method": "printed-adafgd",
+        "tau": 2.0
+      },
+      "trial_id": "c0-q-a5e-4-e3e-1"
+    },
+    {
+      "actual_optimizer_row_accesses": 1280000,
+      "actual_optimizer_row_epochs": 10000.0,
+      "channel": 0,
+      "checkpoint_gate_qualification": "Retrospective physical-checkpoint diagnostic, conditional on the retained trajectory. It does not replace terminal method status, create an early-stopping result, or alter the official endpoint gate.",
+      "checks": "passed",
+      "completed_steps": 10000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999898264760902,
+        "factor_operator_norm": 1.9999898264760902,
+        "measurement_loss_mean": 0.0007924148564767812,
+        "measurement_loss_sum": 0.10142910162902799,
+        "normalized_tp_violation": 0.00022008891162452572,
+        "process_fidelity": 0.08385136346525385,
+        "rmse": 0.03980991978079788,
+        "tp_violation": 0.00044017782324905143
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "14b37dbcf19fb4fb456185f682f8bc89bff49378be815cc44ccfc67767c0c115",
+      "first_recorded_physical_gate": null,
+      "first_recorded_physical_gate_charged_rows": null,
+      "first_recorded_physical_gate_step": null,
+      "gate": {
+        "components": {
+          "fidelity": false,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-q-original-anchor/result.json",
+      "json_sha256": "b19e64b18693334a9e3845a61d15590515c2df8df230e93fead8413e3415d261",
+      "method": "printed-adafgd",
+      "npz_path": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed/c0-q-original-anchor/result.npz",
+      "npz_sha256": "a5c2614a417d6c59993dd330ac7c7f272abb415840809371b84006ac54f3169c",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "trial": {
+        "alpha": 0.5,
+        "channel": 0,
+        "eta_scale": 0.01,
+        "id": "c0-q-original-anchor",
+        "method": "printed-adafgd",
+        "tau": 2.0
+      },
+      "trial_id": "c0-q-original-anchor"
+    }
+  ],
+  "created_utc": "2026-10-06T16:05:11.911951+00:00",
+  "expected_trials": 60,
+  "inventories": [],
+  "kind": "qpt_diagnostic_result_audit",
+  "method_counts": {
+    "armijo-fgd": {
+      "audited_cases": 1,
+      "ever_recorded_physical_thresholds_met_including_failed": 1,
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "failed": 1
+      },
+      "terminal_physical_thresholds_met_including_failed": 1
+    },
+    "frames": {
+      "audited_cases": 6,
+      "ever_recorded_physical_thresholds_met_including_failed": 0,
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "complete": 6
+      },
+      "terminal_physical_thresholds_met_including_failed": 0
+    },
+    "printed-adafgd": {
+      "audited_cases": 2,
+      "ever_recorded_physical_thresholds_met_including_failed": 0,
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "complete": 2
+      },
+      "terminal_physical_thresholds_met_including_failed": 0
+    }
+  },
+  "missing_trial_ids": [
+    "c0-armijo-a5e-5",
+    "c0-armijo-original-alpha",
+    "c0-q-a5e-3-e1",
+    "c0-q-a5e-3-e1e-1",
+    "c0-q-a5e-3-e3",
+    "c0-q-a5e-3-e3e-1",
+    "c0-q-a5e-3-e3e-2",
+    "c0-q-a5e-4-e1",
+    "c0-q-a5e-4-e1e-1",
+    "c0-q-a5e-4-e3",
+    "c0-q-a5e-4-e3e-2",
+    "c0-q-a5e-5-e1",
+    "c0-q-a5e-5-e1e-1",
+    "c0-q-a5e-5-e3",
+    "c0-q-a5e-5-e3e-1",
+    "c0-q-a5e-5-e3e-2",
+    "c0-q-a5e-6-e1",
+    "c0-q-a5e-6-e1e-1",
+    "c0-q-a5e-6-e3",
+    "c0-q-a5e-6-e3e-1",
+    "c0-q-a5e-6-e3e-2",
+    "c1-armijo-a5e-4",
+    "c1-armijo-a5e-5",
+    "c1-armijo-original-alpha",
+    "c1-f-fast-average",
+    "c1-f-lower-alpha",
+    "c1-f-lower-alpha-fast",
+    "c1-f-original-anchor",
+    "c1-f-tau2p02",
+    "c1-f-tau2p1",
+    "c1-q-a5e-3-e1",
+    "c1-q-a5e-3-e1e-1",
+    "c1-q-a5e-3-e3",
+    "c1-q-a5e-3-e3e-1",
+    "c1-q-a5e-3-e3e-2",
+    "c1-q-a5e-4-e1",
+    "c1-q-a5e-4-e1e-1",
+    "c1-q-a5e-4-e3",
+    "c1-q-a5e-4-e3e-1",
+    "c1-q-a5e-4-e3e-2",
+    "c1-q-a5e-5-e1",
+    "c1-q-a5e-5-e1e-1",
+    "c1-q-a5e-5-e3",
+    "c1-q-a5e-5-e3e-1",
+    "c1-q-a5e-5-e3e-2",
+    "c1-q-a5e-6-e1",
+    "c1-q-a5e-6-e1e-1",
+    "c1-q-a5e-6-e3",
+    "c1-q-a5e-6-e3e-1",
+    "c1-q-a5e-6-e3e-2",
+    "c1-q-original-anchor"
+  ],
+  "partial_mode": true,
+  "provenance": {
+    "campaign_id": "qpt_resolution_20261006_1748",
+    "plan_sha256": "1e752e015062d665bbed7cc0161a6ffbf2c2250f2dfef08faa7b4f9bc01a865f",
+    "runner_sha256": "13bcfa92d5d4876cc68f4d04fa4b0869d611c67d42ec52cc56c067925c3884b6",
+    "source_commit": "c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+    "source_sha256": {
+      "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+      "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+      "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+      "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+      "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+      "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+      "paper/experiments/qpt_quiroga_campaign.py": "d2eca9f228f52689c6a86eda5ec7ed97286e351c13421fbc77f63b78ff5853b7",
+      "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+      "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+      "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+    }
+  },
+  "qualification": "Calibration diagnostic only: no winner selection or validation replacement. Failed terminal statuses remain failed even if earlier or final physical metrics meet thresholds. Armijo uses its actual counted line-search row charges and is not an equal-budget primary baseline.",
+  "results_root": "/home/tony/qpt_quiroga_resolution_20261006_1748/early_completed",
+  "schema_version": 1,
+  "trial_ids_without_inventory_checksum": [
+    "c0-armijo-a5e-4",
+    "c0-f-fast-average",
+    "c0-f-lower-alpha",
+    "c0-f-lower-alpha-fast",
+    "c0-f-original-anchor",
+    "c0-f-tau2p02",
+    "c0-f-tau2p1",
+    "c0-q-a5e-4-e3e-1",
+    "c0-q-original-anchor"
+  ]
+}

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Quiroga–FRAMES status — 5 October 2026</title>
+<style>@page { size:A4; margin:1.8cm; } body { font-family:"Liberation Sans",sans-serif; font-size:11pt; line-height:1.28; color:#18212b; } h1 { font-size:21pt; color:#164e78; margin-bottom:6pt; } p { margin:9pt 0; } table { border-collapse:collapse; width:100%; margin:12pt 0; } th,td { border:1px solid #cbd3da; padding:7pt; text-align:left; vertical-align:top; } th { background:#edf3f6; width:30%; } .small { font-size:9pt; color:#56616d; }</style></head><body>
+<h1>Quiroga–FRAMES status</h1>
+<p class="small">Checked 5 October 2026, 11:39 CEST · Elite, GitHub and Ruche</p>
+<p><b>The corrected comparison is ready locally, but its Ruche experiment has not started.</b> No new calibration or held-out results are available. The last completed work was the implementation, review and tiny local smoke on 4 October.</p>
+<table>
+<tr><th>Source</th><td>Elite: clean commit <b>0586c15</b>. GitHub branch: <b>d62fcf1</b>, confirmed live. Two local commits remain unpublished.</td></tr>
+<tr><th>Validation</th><td>Last recorded suite: <b>532 passed, 55 skipped</b>; focused checks: <b>27 passed</b>. Independent review approved. Tests were not rerun for this status check.</td></tr>
+<tr><th>Actually run</th><td>Local n=2, 128-row, two-epoch smoke: both methods completed. This validates execution and recording; it is too short to establish recovery.</td></tr>
+<tr><th>Artifacts</th><td>All six files in the corrected setup manifest still match their SHA-256 checksums, including the local JSON/NPZ pair and setup PDF.</td></tr>
+<tr><th>Ruche</th><td>User queue empty at inspection. No new QPT/Quiroga job in accounting since 4 October. The pinned source and campaign output directories are absent.</td></tr>
+</table>
+<p>The intended comparison is implemented: Quiroga independently tunes a fixed TP penalty; FRAMES independently tunes its initial TP penalty and increases it with exponent 0.25. Shared data, initialization, budgets and recovery criteria define the comparison. Penalized objectives remain method-specific diagnostics.</p>
+<p>In the smoke, Quiroga held alpha_Q=0.05 and lambda_Q=6.4 fixed. FRAMES used alpha_F,0=0.005, increasing to 0.008409 over eight updates (beta: 100 to 59.4604).</p>
+<p><b>Next execution step:</b> stage the pinned source on Ruche and run the prepared 20-minute CPU smoke; then independently calibrate the n=2 full and subset cases, freeze the selected settings, and evaluate on held-out instances. The n=4 comparison follows those checks.</p>
+<p>The previous turn stopped after local preparation. Its Git push was rejected by automatic approval review as code egress without explicit destination approval. This status check performed no publication, transfer or submission.</p>
+<p class="small">Evidence: clean local Git state; live GitHub branch tip; Ruche squeue/sacct and staging-path inspection; corrected bundle plan.json, manifest.sha256 and local_smoke/pair.json. Bundle: /home/tony/qpt_quiroga_best_for_best_20261004_02. Earlier experiment artifacts remain preserved.</p>
+</body></html>

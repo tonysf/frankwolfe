@@ -1,0 +1,349 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,graphicx,pdflscape}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\hypersetup{
+  pdftitle={Stochastic constrained factorization for low-dose CT},
+  pdfsubject={2DeteCT pilot and SFRAMES initialization ablation}
+}
+
+\newcommand{\ctfigure}[3]{%
+  \begin{figure}[!htp]
+    \centering
+    \includegraphics[page=#1,width=\linewidth,height=0.77\textheight,keepaspectratio]{ct_sframes_figures.pdf}
+    \caption{#3}\label{#2}
+  \end{figure}
+  \clearpage
+}
+
+\title{Stochastic constrained factorization for low-dose CT}
+\author{2DeteCT pilot and SFRAMES initialization ablation}
+\date{4 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We compare SFRAMES, SPRING--SARAH, ProxSARAH, and PALM on a common
+nonconvex, rank-64 reconstruction model for measured 2DeteCT data.
+The evaluation covers two slices and two training-view counts per slice.
+SFRAMES leads the shared-start comparison at the reported time and work budgets.
+A paired initialization experiment starts SFRAMES on its Frobenius caps
+and outside the nonnegative orthant, then tracks feasibility and loss
+under the original optimizer settings.
+\end{abstract}
+\section{Model and stochastic oracle}
+\label{sec:ct-model}
+
+The unknown attenuation image is \(X=UV^\top\) on a \(512\times512\) grid. Both factors lie in \(\mathbb R^{512\times64}\). All angular views of a slice constrain the same factors, so the number of measurements can vary at fixed image size and rank. In the SFRAMES template, the variable is \(x=(U,V)\) and the problem is
+\begin{align}
+  &\min_{x\in C} f(x)+g(Tx), \\
+  C&=\{(U,V):\ \|U\|_F\le R_U,\ \|V\|_F\le R_V\}, \\
+  D&=\{(U,V):\ U\ge 0,\ V\ge 0\}, \qquad g=\iota_D,\qquad T=\mathrm{Id}.
+\end{align}
+The inequalities are entrywise. The indicator \(\iota_D\) is zero on \(D\) and \(+\infty\) elsewhere. The identity \(T\) acts on the factors. The CT forward operator acts on their product inside \(f\).
+
+\paragraph{What the scanner measures.}
+An attenuation image describes how strongly the material at each location reduces the transmitted X-ray beam per unit distance. At one angular position, called a \emph{view}, an X-ray source illuminates a line of detector bins on the opposite side of the object. The rays from the source to those bins spread out in a fan. Each bin records the intensity transmitted along its ray. In the idealized Beer--Lambert model, dividing the transmitted intensity by the unobstructed intensity and taking the negative logarithm gives the line integral of attenuation along that ray. This is why the processed measurements can be fitted with a linear forward operator in the image \(X\) \cite{detect}.
+
+\paragraph{The forward operator \(P_i\).}
+Treat \(X_{pq}\) as the constant attenuation within pixel \((p,q)\). Let \(\ell_{ij,pq}\) be the length in millimeters of ray \(j\) in view \(i\) inside that pixel. The CPU line projector used here applies the map
+\begin{equation}
+  P_i\colon\mathbb R^{512\times512}\longrightarrow\mathbb R^{d},
+  \qquad
+  [P_i(X)]_j=\sum_{p,q}\ell_{ij,pq}X_{pq},
+  \qquad d=956 .
+  \label{eq:ct-ray}
+\end{equation}
+The weights are fixed by the calibrated source and detector geometry. A ray contributes only to pixels it crosses. ASTRA traces the rays to apply the operator, so the solver can evaluate a selected set of views directly \cite{astra}.
+
+Write \(\mathcal I_{\rm train}\) for the \(N\) training view indices and \(y_i\in\mathbb R^d\) for the processed low-dose measurements at view \(i\). The unweighted least-squares objective is
+\begin{equation}
+  f(U,V)=\frac{1}{N}\sum_{i\in\mathcal I_{\rm train}} q_i(U,V),
+  \qquad
+  q_i(U,V)=\frac{\|P_i(UV^\top)-y_i\|_2^2}{2d}.
+  \label{eq:ct-loss}
+\end{equation}
+Each view contributes all its detector bins. The image-space loss is quadratic and the factorized objective is quartic and nonconvex. The component gradients are Lipschitz on the compact feasible region \(C\). Global smoothness on the ambient factor space would require an extension outside a neighborhood of \(C\). Small strictly positive factors lie in the interiors of both \(C\) and \(D\).
+
+\paragraph{Backprojection and stochastic gradients.}
+The adjoint \(P_i^\ast\), called \emph{backprojection}, distributes each detector residual back to the pixels crossed by its ray, using the same weights \(\ell_{ij,pq}\). Thus \(P_i^\ast(P_i(X)-y_i)\) is the image-space gradient of the unnormalized half squared residual. The chain rule through \(X=UV^\top\) then gives the two factor gradients.
+
+At each SFRAMES update, draw a fresh uniform \(64\)-element subset \(B\subset\mathcal I_{\rm train}\) without replacement within the batch and independently between updates. The gradient estimate is
+\begin{align}
+  E_B &= \frac{1}{|B|d}\sum_{i\in B} P_i^\ast\bigl(P_i(UV^\top)-y_i\bigr),
+  &
+  \widehat{\nabla f}_B(U,V)&=(E_B V,E_B^\top U).
+  \label{eq:ct-gradient}
+\end{align}
+This estimate is unbiased conditional on the current iterate. One joint gradient evaluation uses one forward projection and one adjoint restricted to \(B\).
+
+\section{Data and acquisition geometry}
+\label{sec:ct-data}
+
+The inputs are measured fan-beam sinograms from 2DeteCT \cite{detect}. Mode~1 supplies low-dose observations for fitting and held-out-view diagnostics. The image reference for each slice is the published Mode~2 nonnegative least-squares reconstruction from a separate high-dose acquisition. The development slice is \texttt{04300}. The evaluation slices are \texttt{04531} and \texttt{04800}. The official Zenodo archives supplied slices \texttt{04300} and \texttt{04800}, and the DeepInverse single-slice mirror supplied \texttt{04531} \cite{deepinv}. Experiment data sidecars \texttt{data/slice*.json} record download sources and TIFF checksums.
+
+A \emph{sinogram} stacks the detector readings from all angular views. Each raw Mode~1 sinogram has \(3{,}601\) views and \(1{,}912\) detector cells. Discard the repeated last view and sum adjacent detector cells. Apply the same binning to the dark field, which measures the detector offset, and the mean of the two flat fields, which measure unobstructed illumination. If \(S_i,D_{\rm dark},F_{\rm flat}\) denote the resulting arrays, the pre-reversal measurement is
+\[
+  -\log\left(\max\left\{\frac{S_i-D_{\rm dark}}{F_{\rm flat}-D_{\rm dark}},10^{-6}\right\}\right).
+\]
+Reverse the detector axis to match the DeepInverse convention \cite{deepinv}. The recorded clipping count was zero for each of the three sinograms. Each processed acquisition has \(3{,}600\times956\) entries.
+
+We use the ASTRA 2.5.0 CPU \texttt{line\_fanflat} projector in physical millimeters. The source-to-origin distance is \(431.019989\)~mm, the origin-to-detector distance is \(97.980499\)~mm, and the binned detector spacing is \(0.1496\)~mm. The square image field has width \(116.528143\)~mm and center \((-0.113797,-0.113797)\)~mm. The angle of view \(i\) is \(\pi-2\pi i/3600\). Vertically flip each published \(1024\times1024\) reference, divide by the native voxel width \(0.113797\)~mm, and average \(2\times2\) blocks to align with the \(512\times512\) fitting grid.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Exact view splits. Indices \(i\) range from \(0\) to \(3599\).}
+  \label{tab:ct-splits}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Role & Views & Selection rule \\
+    \midrule
+    Smaller training set & \(360\) & \(i\bmod 10=0\) \\
+    Larger training set & \(1{,}080\) & \(i\bmod 10\in\{0,3,6\}\) \\
+    Held-out validation & \(360\) & \(i\bmod 10=9\) \\
+    Calibration & \(120\) & \(i\bmod 30=0\) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Development runs use the smaller training set. Both training sizes are evaluated on each evaluation slice. Calibration views are a subset of both training sets and are disjoint from validation. The training split fixes which measured views define the objective. The optimizer then samples minibatches from that fixed split. Held-out loss measures how well the reconstruction predicts separate low-dose views of the same slice, while reference-image error compares the reconstructed attenuation values with the high-dose reconstruction.
+
+\section{Initialization and optimizer settings}
+\label{sec:ct-settings}
+
+\paragraph{Feasible calibration.}
+Let \(P_J\) stack the \(120\) calibration views. Divide the positive backprojection \((P_J^\ast y_J)_+\) entrywise by \(P_J^\ast P_J\mathbf{1}\), floored at \(10^{-3}\) of its maximum. Initialize rank-\(64\) nonnegative factors with an NNDSVD-style factorization of this image. Add \(10^{-3}\) times each factor's RMS times independent uniform \([0,1)\) entries. Fit a scalar amplitude by least squares on the calibration views with lower bound \(10^{-6}\), then multiply each factor by its square root. Denote the resulting factors by \(U_{\rm cal},V_{\rm cal}\). Each Frobenius cap is twice the norm of the corresponding calibrated factor.
+
+Estimate \(\lambda\) by ten power steps on \(P_J^\ast P_J\), starting from a normalized all-ones image, and divide the resulting eigenvalue estimate by \(120d\). The empirical block curvature scales are
+\[
+  L_U=\lambda\|V_{\rm cal}\|_{\rm op}^2,\qquad
+  L_V=\lambda\|U_{\rm cal}\|_{\rm op}^2 .
+\]
+Both training sizes use the same calibration and caps within each slice. Table~\ref{tab:ct-curvature} gives the resulting values.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Per-slice Frobenius caps, initial curvature scales, and smoothing prefactor.}
+  \label{tab:ct-curvature}
+  \begin{tabular}{@{}lrrrrr@{}}
+    \toprule
+    Slice & \(R_U\) & \(R_V\) & \(L_U\) & \(L_V\) & \(\mu_0\) \\
+    \midrule
+    04300 & 4.12869674 & 4.12867862 & 0.19331899 & 0.19443450 & 5.14312016 \\
+    04531 & 3.81305622 & 3.81304219 & 0.16367101 & 0.16325009 & 6.10981743 \\
+    04800 & 4.22469276 & 4.22465958 & 0.20220242 & 0.20283452 & 4.93012733 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{SFRAMES.}
+For \(k\ge0\), initialize momentum with the first sampled gradient and then use
+\[
+  m_k=(1-\rho_k)m_{k-1}+\rho_k\widehat{\nabla f}_{B_k}(x_k),
+  \qquad
+  \gamma_k=\frac{\gamma_0}{(k+1)^{3/4}},\qquad
+  \rho_k=\frac{1}{(k+1)^{1/2}},\qquad
+  \mu_k=\frac{\mu_0}{(k+1)^{1/4}} .
+\]
+The momentum formula applies for \(k\ge1\), and \(\mu_0=1/\max(L_U,L_V)\). The exponents follow the SFRAMES manuscript \cite{sframes}. Add the Moreau gradient after the momentum update and take the Frank--Wolfe step
+\[
+  s_k=\operatorname{LMO}_C\left(m_k+
+             \frac{x_k-\Pi_D(x_k)}{\mu_k}\right),
+  \qquad
+  x_{k+1}=(1-\gamma_k)x_k+\gamma_k s_k .
+\]
+The projection \(\Pi_D\) clips negative entries. For a block direction \(G\ne0\), the LMO on the radius-\(R\) Frobenius ball is \(-RG/\|G\|_F\). At \(G=0\) it returns zero.
+
+\paragraph{Paired LMO start.}
+The original four-way comparison uses \(U_{\rm cal},V_{\rm cal}\) for all methods. The SFRAMES ablation retains the caps, curvature scales, rate settings, view splits, and work budgets. It starts with one LMO atom for each factor using independent standard Gaussian block directions. This places the start on the Frobenius caps and outside \(D\), and replaces the data-informed initial directions. Both variants start with empty momentum. The base seed is 110 in development and 201 in evaluation. Minibatches use NumPy's separate generator seeded with the base plus \(100{,}000\). The LMO directions use the base plus \(200{,}000\). Within each original--rerun pair the minibatch stream is identical. The two evaluation view counts share the same LMO factors within each slice.
+
+\paragraph{Comparators.}
+SPRING-SARAH updates \(U\) and then \(V\) with the new \(U\), using independent full refresh probability \(1/16\) for each block and \(64\)-view recursive differences between refreshes. Both blocks begin with a full gradient at their respective query points \cite{spring}. ProxSARAH uses the joint factor gradient, with \(256\)-view snapshots, 12 recursive updates of \(64\) views per snapshot, and relaxation \(0.8\) \cite{proxsarah}. Each recursive difference evaluates the same sampled views at its two query points. PALM uses the full training set at each alternating block step \cite{palm}. Their projection onto \(C\cap D\) takes the positive part and radially clips each block to its cap if necessary.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Development grids and frozen evaluation step rules. The rate multiplier is \(a\).}
+  \label{tab:ct-rates}
+  \begin{tabular}{@{}llcl@{}}
+    \toprule
+    Method & Candidate rates & Selected & Step rule \\
+    \midrule
+    SFRAMES      & \(0.10,\ 0.25\) & \(0.25\) & \(\gamma_0=a,\ \rho_0=1\) \\
+    SPRING-SARAH & \(0.30,\ 0.70\) & \(0.70\) & \((\eta_U,\eta_V)=(a/L_U,a/L_V)\) \\
+    ProxSARAH    & \(0.40,\ 0.90\) & \(0.90\) & \(\eta=a/(L_U+L_V)\) \\
+    PALM         & \(0.60,\ 1.10\) & \(1.10\) & \((\eta_U,\eta_V)=(a/L_U,a/L_V)\) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The selected rate minimizes repaired training loss at the last development probe within \(5{,}760\) forward views. The table reports the practical pilot settings. The initialization ablation repeats both SFRAMES development rates and the frozen evaluation rate without selecting a new rate.
+
+\section{Work accounting and diagnostics}
+\label{sec:ct-work}
+
+Each run stops after the first completed update that reaches its target of \(5{,}760\) forward views in development or \(21{,}600\) in evaluation. Save probes at iteration zero, after the first update, upon crossing multiples of \(720\) or \(2{,}160\) views respectively, and at the endpoint. SFRAMES completes 90 development updates at \(5{,}760\) views and 338 evaluation updates at \(21{,}632\) views. Forward and backprojected views are recorded separately. Counts include refreshes and both gradient evaluations in a SARAH difference.
+
+Raw training loss is \(f\) at the actual iterate. Repaired training loss and held-out loss use the projection onto \(C\cap D\). The latter uses the normalization in \eqref{eq:ct-loss} over the held-out set. Relative reference-image error is the Frobenius error of the repaired reconstruction divided by the norm of the aligned Mode~2 image. For the raw factors, the distance to \(D\) is the product Frobenius norm of their negative parts. Maximum violation is the maximum of zero, the two cap excesses, and the largest negative-entry magnitude in either block. Repair and diagnostic evaluations leave the optimizer state unchanged.
+
+Elite used FP32 ASTRA forward and adjoint operations and FP64 factor arithmetic. Each worker used one BLAS thread on a distinct physical core. Optimizer timings include projections and oracle calls and exclude calibration, diagnostic probes, and checkpoint I/O. Times reflect concurrent arms on the same host.
+\section{Results}
+\label{sec:results}
+
+\subsection{Four methods with a common feasible start}
+
+All eight development runs and all sixteen evaluation runs completed. Each
+evaluation case used a common initialization for the four methods. We compare
+the last saved probe within each budget, with no interpolation. At both
+\(100\) optimizer seconds and \(21{,}600\) forward-projected views plus
+\(21{,}600\) backprojected views, SFRAMES had the lowest repaired training loss,
+held-out view loss, and relative reference-image error in every evaluation
+case. Table~\ref{tab:matched-methods} gives the medians across the four
+slice and view-count combinations at the projection budget.
+Appendix~\ref{app:four_method} gives the curves for each evaluation case.
+
+\begin{table}[htbp]
+\centering
+\caption{Median at the last saved probe within \(21{,}600\) forward views
+and the same number of backprojected views. Held-out loss and relative error
+against the high-dose reference use the repaired factors.}
+\label{tab:matched-methods}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Method & Raw training & Repaired training & Held-out & Reference error \\
+\midrule
+SFRAMES     & \(0.015717\) & \(0.015724\) & \(0.015768\) & \(45.17\%\) \\
+ProxSARAH   & \(0.022315\) & \(0.022315\) & \(0.022347\) & \(55.81\%\) \\
+SPRING-SARAH & \(0.024481\) & \(0.024481\) & \(0.024504\) & \(59.12\%\) \\
+PALM        & \(0.027301\) & \(0.027301\) & \(0.027329\) & \(62.59\%\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the \(100\)-second budget the median repaired training losses were
+\(0.01586\), \(0.02327\), \(0.02523\), and \(0.02780\) in the same order.
+All evaluation arms reached their stopping budget after approximately
+\(110\)--\(114\) optimizer seconds. At the matched projection budget,
+repair increased the SFRAMES median training loss by about \(0.04\%\).
+The other three methods were feasible to numerical precision at those probes.
+
+\subsection{Paired SFRAMES initialization ablation}
+
+The Gaussian-direction LMO starts were on the Frobenius caps and outside the
+nonnegative orthant. Their initial distances to \(D\) were \(4.1583\) on
+development slice 04300 and \(3.8221\) and \(4.2347\) on evaluation slices
+04531 and 04800. Each original start had zero distance to \(D\). All six
+reruns matched the original view counts at every saved probe and matched the
+terminal minibatch RNG state. The largest observed cap excess in the reruns
+was \(8.9\times 10^{-16}\).
+
+The development pairs ended after \(90\) updates and \(5{,}760\) views in
+each projection direction. The evaluation pairs ended after \(338\)
+updates and \(21{,}632\) views in each direction. Table~\ref{tab:lmo-start}
+compares the paired endpoints.
+
+\begin{table}[htbp]
+\centering
+\caption{Paired SFRAMES endpoints for the original warm start and the
+Gaussian-direction LMO start. Distance to \(D\) is measured on the raw factors.}
+\label{tab:lmo-start}
+\small
+\begin{tabular}{@{}lrrcccc@{}}
+\toprule
+ & & & \multicolumn{2}{c}{Repaired training loss} &
+         \multicolumn{2}{c}{Distance to \(D\)} \\
+\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Slice & Views & \(\gamma_0\) & Warm & LMO & Warm & LMO \\
+\midrule
+04300 &   360 & 0.10 & 0.019652 & 0.036069 & 0.007777 & 0.001284 \\
+04300 &   360 & 0.25 & 0.018151 & 0.018474 & 0.008689 & 0.006256 \\
+\addlinespace
+04531 &   360 & 0.25 & 0.013276 & 0.012975 & 0.004310 & 0.003932 \\
+04531 & 1,080 & 0.25 & 0.013294 & 0.012999 & 0.003984 & 0.003890 \\
+04800 &   360 & 0.25 & 0.017926 & 0.017668 & 0.003934 & 0.003814 \\
+04800 & 1,080 & 0.25 & 0.017979 & 0.017706 & 0.003846 & 0.003683 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the matched evaluation endpoints, the LMO start reduced repaired
+training loss by \(1.4\)--\(2.3\%\) in all four pairs. Median held-out
+loss fell from \(0.015658\) to \(0.015378\), and median relative
+reference-image error fell from \(44.88\%\) to \(44.12\%\). Both shorter
+development pairs finished with higher repaired loss from the LMO start,
+especially at \(\gamma_0=0.10\). The LMO start replaces the
+data-informed factors with random signed atoms, so the differences reflect
+both initial infeasibility and the change in starting information.
+
+\paragraph{Scope.}
+The evaluation spans two slices, two training-view counts per slice, and
+one evaluation seed. The larger candidate rate won for every method on the
+single development slice. The ordering therefore describes the tested
+rates and work budgets. The paired initialization results compare SFRAMES
+starts, while the four-method results use the original common warm start.
+
+\begin{thebibliography}{9}
+
+\bibitem{sframes}
+\emph{Improved convergence and stochastic estimation for the Frank--Wolfe with
+Moreau Envelope Smoothing (FraMES) algorithm}.
+Local manuscript, 27 September 2026. Corollary~2.10 and Proposition~2.11.
+
+\bibitem{detect}
+M.~B.~Kiss et al.
+\emph{2DeteCT: A large 2D expandable, trainable, experimental Computed Tomography
+dataset for machine learning}.
+Scientific Data, 10, article 576, 2023.
+\href{https://doi.org/10.1038/s41597-023-02484-6}{DOI}.
+
+\bibitem{deepinv}
+DeepInverse.
+\emph{Reconstruct real CT sinograms with the 2DeteCT benchmark}.
+\href{https://deepinv.org/auto_examples/external-libraries/demo_astra_2detect.html}{Preprocessing and geometry example}.
+
+\bibitem{astra}
+ASTRA Toolbox.
+\emph{2D Projectors}.
+\href{https://astra-toolbox.com/docs/proj2d.html#fan-beam}{Fan-beam line projector documentation}.
+
+\bibitem{spring}
+D.~Driggs, J.~Tang, J.~Liang, M.~E.~Davies, and C.-B.~Sch\"onlieb.
+\emph{A Stochastic Proximal Alternating Method for Nonsmooth and Nonconvex Optimization}.
+SIAM Journal on Imaging Sciences, 14(4), 1932--1970, 2021.
+\href{https://doi.org/10.1137/20M1387213}{DOI}.
+
+\bibitem{proxsarah}
+N.~H.~Pham, L.~M.~Nguyen, D.~T.~Phan, and Q.~Tran-Dinh.
+\emph{ProxSARAH: An Efficient Algorithmic Framework for Stochastic Composite
+Nonconvex Optimization}.
+Journal of Machine Learning Research, 21(110), 1--48, 2020.
+\href{https://www.jmlr.org/papers/v21/19-248.html}{Article}.
+
+\bibitem{palm}
+J.~Bolte, S.~Sabach, and M.~Teboulle.
+\emph{Proximal alternating linearized minimization for nonconvex and nonsmooth problems}.
+Mathematical Programming, 146, 459--494, 2014.
+\href{https://doi.org/10.1007/s10107-013-0701-9}{DOI}.
+
+\end{thebibliography}
+
+\clearpage
+\appendix
+
+\begin{landscape}
+\section{Four-method comparison plots}\label{app:four_method}
+The evaluation arms in these figures share the data-informed feasible start.
+\ctfigure{1}{fig:four_4531_360_loss}{Slice 04531 with 360 training views. Raw and repaired training loss by update count, optimizer time, and projection work.}
+\ctfigure{2}{fig:four_4531_360_quality}{Slice 04531 with 360 training views. Held-out loss and relative reference-image error use repaired factors. Feasibility is measured on the raw factors.}
+\ctfigure{3}{fig:four_4531_1080_loss}{Slice 04531 with 1,080 training views. Training loss by update count, optimizer time, and projection work.}
+\ctfigure{4}{fig:four_4531_1080_quality}{Slice 04531 with 1,080 training views. Held-out loss, reference-image error, and raw feasibility.}
+\ctfigure{5}{fig:four_4800_360_loss}{Slice 04800 with 360 training views. Training loss by update count, optimizer time, and projection work.}
+\ctfigure{6}{fig:four_4800_360_quality}{Slice 04800 with 360 training views. Held-out loss, reference-image error, and raw feasibility.}
+\ctfigure{7}{fig:four_4800_1080_loss}{Slice 04800 with 1,080 training views. Training loss by update count, optimizer time, and projection work.}
+\ctfigure{8}{fig:four_4800_1080_quality}{Slice 04800 with 1,080 training views. Held-out loss, reference-image error, and raw feasibility.}
+\end{landscape}
+
+\end{document}

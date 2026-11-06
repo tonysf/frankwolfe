@@ -1,0 +1,203 @@
+{
+  "baseline": "SPRING-SARAH Corollary3.3 parameters and loopless estimator, with certified numerical Dykstra block projections. Finite floating-point oracle errors are reported; not claimed to equal exact mathematical proxes.",
+  "bases": {
+    "orl64": {
+      "L_full_bound": 6.77631390221185e-05,
+      "RU": 5.5227582835705356,
+      "RV": 5.5227582835705356,
+      "batch": 20,
+      "checkpoint_every": 250,
+      "column_norm_max": 1.000000000000012,
+      "column_norm_min": 0.9999999999999908,
+      "columns_unit_norm": true,
+      "constraints_guaranteed_active": false,
+      "data_nonnegative": true,
+      "data_path": "data/processed/orl64_unitnorm.npz",
+      "dataset": "orl64",
+      "full_gradient_bound_formula": "(RU^2+RV^2+RU*RV+sigma1)/(m*n)",
+      "initialization_rule": "independent positive uniform factors; each operator norm at half its cap; exact least-squares scalar along their product; feasible radial repair",
+      "l1_budget_over_nonnegative_upper_bound": 0.35,
+      "l1_budget_selection": "Frozen before optimizer runs at 35 percent of the nonnegative-code spectral-ball l1 upper bound",
+      "l1_radius": 193.29653992496876,
+      "l1_rule": "0.35*sqrt(n_images*rank)*RV",
+      "m": 4096,
+      "mean_data_square": 0.000244140625,
+      "n": 400,
+      "n_components": 400,
+      "nonnegative_V": false,
+      "nonnegative_V_l1_global_upper_bound": 552.2758283570536,
+      "probe_every": 100,
+      "radius_rule": "RU=RV=1.25*sqrt(sigma1(A))",
+      "rank": 25,
+      "rank_r_loss_floor_note": "Unconstrained rank-r approximation; constraints may increase the attainable loss",
+      "rank_r_loss_lower_bound": 1.5406709393499316e-06,
+      "rank_r_relative_squared_error_lower_bound": 0.01262117633515464,
+      "sigma1": 19.52054979759806,
+      "signed_V_l1_global_upper_bound": 2761.3791417852676,
+      "spectral_cap_margin_over_svd": 1.25,
+      "spectral_caps_admit_balanced_unconstrained_svd_factors": true,
+      "zero_prediction_loss": 0.0001220703125
+    },
+    "yaleb32": {
+      "L_full_bound": 8.819605973405934e-05,
+      "RU": 7.7391365746858725,
+      "RV": 7.7391365746858725,
+      "batch": 121,
+      "checkpoint_every": 250,
+      "column_norm_max": 1.000000000000012,
+      "column_norm_min": 0.9999999999999887,
+      "columns_unit_norm": true,
+      "constraints_guaranteed_active": false,
+      "data_nonnegative": true,
+      "data_path": "data/processed/yaleb32_unitnorm.npz",
+      "dataset": "yaleb32",
+      "full_gradient_bound_formula": "(RU^2+RV^2+RU*RV+sigma1)/(m*n)",
+      "initialization_rule": "independent positive uniform factors; each operator norm at half its cap; exact least-squares scalar along their product; feasible radial repair",
+      "l1_budget_over_nonnegative_upper_bound": 0.35,
+      "l1_budget_selection": "Frozen before optimizer runs at 35 percent of the nonnegative-code spectral-ball l1 upper bound",
+      "l1_radius": 931.5951697560449,
+      "l1_rule": "0.35*sqrt(n_images*rank)*RV",
+      "m": 1024,
+      "mean_data_square": 0.0009765625,
+      "n": 2414,
+      "n_components": 2414,
+      "nonnegative_V": false,
+      "nonnegative_V_l1_global_upper_bound": 2661.700485017271,
+      "probe_every": 100,
+      "radius_rule": "RU=RV=1.25*sqrt(sigma1(A))",
+      "rank": 49,
+      "rank_r_loss_floor_note": "Unconstrained rank-r approximation; constraints may increase the attainable loss",
+      "rank_r_loss_lower_bound": 2.143691493970493e-05,
+      "rank_r_relative_squared_error_lower_bound": 0.04390280179651571,
+      "sigma1": 38.33231034984996,
+      "signed_V_l1_global_upper_bound": 18631.903395120902,
+      "spectral_cap_margin_over_svd": 1.25,
+      "spectral_caps_admit_balanced_unconstrained_svd_factors": true,
+      "zero_prediction_loss": 0.0004882812499999999
+    }
+  },
+  "blas_threads_per_worker": 1,
+  "confirmation_iterations": 50000,
+  "confirmation_seeds": [
+    201,
+    202,
+    203
+  ],
+  "constraints": "U spectral ball and nonnegative; V spectral ball and entrywise l1 budget, V may have either sign.",
+  "cpu_affinity": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "created_utc": "2026-11-04T11:40:05.634040+00:00",
+  "development_iterations": 20000,
+  "development_seeds": [
+    110
+  ],
+  "executable": "/home/tony/zofw_experiments/.venv/bin/python",
+  "grid": [
+    {
+      "candidate": "f00",
+      "gamma0": 0.3,
+      "mu_scale": 0.1,
+      "rho0": 0.1
+    },
+    {
+      "candidate": "f01",
+      "gamma0": 0.3,
+      "mu_scale": 1.0,
+      "rho0": 0.1
+    },
+    {
+      "candidate": "f02",
+      "gamma0": 0.3,
+      "mu_scale": 10.0,
+      "rho0": 0.1
+    },
+    {
+      "candidate": "f03",
+      "gamma0": 0.3,
+      "mu_scale": 0.1,
+      "rho0": 1.0
+    },
+    {
+      "candidate": "f04",
+      "gamma0": 0.3,
+      "mu_scale": 1.0,
+      "rho0": 1.0
+    },
+    {
+      "candidate": "f05",
+      "gamma0": 0.3,
+      "mu_scale": 10.0,
+      "rho0": 1.0
+    },
+    {
+      "candidate": "f06",
+      "gamma0": 1.0,
+      "mu_scale": 0.1,
+      "rho0": 0.1
+    },
+    {
+      "candidate": "f07",
+      "gamma0": 1.0,
+      "mu_scale": 1.0,
+      "rho0": 0.1
+    },
+    {
+      "candidate": "f08",
+      "gamma0": 1.0,
+      "mu_scale": 10.0,
+      "rho0": 0.1
+    },
+    {
+      "candidate": "f09",
+      "gamma0": 1.0,
+      "mu_scale": 0.1,
+      "rho0": 1.0
+    },
+    {
+      "candidate": "f10",
+      "gamma0": 1.0,
+      "mu_scale": 1.0,
+      "rho0": 1.0
+    },
+    {
+      "candidate": "f11",
+      "gamma0": 1.0,
+      "mu_scale": 10.0,
+      "rho0": 1.0
+    }
+  ],
+  "normalization_excludes_initialization_cost": true,
+  "objective": "Half mean squared pixel reconstruction loss; each image is normalized to unit Euclidean norm as in the author code.",
+  "oracle": "Uniform image columns without replacement within a minibatch, independently redrawn each iteration/block; no random-sign sketch.",
+  "pipeline_sha256": {
+    "build_plots.py": "3648911bfb6f7d60fdc0fbf044f39eda361ee737868c66d463a7527854bae0ef",
+    "campaign.py": "06468ab6f822632ce1b30c81cc0323a0e5958e230f84b0955341953cca84a9e4",
+    "control_runner.py": "9520123ae53b7706a12bd13c9c378ac219a174c55be1497ff51ee7919fd7d627",
+    "prepare_data.py": "a48558ede470f7edd1df48db4edf8a5e1a0b90e663c7b4a7ebfb49591a9a2160"
+  },
+  "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+  "publication_control": "Separate author-code sparse-l0 NMF control has different constraints; its losses must not be overlaid as same-problem competitors.",
+  "publication_control_gate": "Before main runs, each original-code control must finish and reduce its own objective by at least20%; failed gates stop automatic continuation.",
+  "publication_control_horizons": {
+    "orl64_source_epochs": 1000,
+    "yaleb32_source_epochs": 250
+  },
+  "publication_control_workers": "Two independent runs, each using two physical cores and two BLAS threads.",
+  "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]",
+  "reference": "Unconstrained rank-r SVD lower bound is a lower bound only; not a certified optimum for our constraints.",
+  "schema_version": 1,
+  "selection": "Per dataset: minimum FINAL feasible diagnostic loss after 20000 iterations on development seed110; no early elimination. Confirm winner on three fresh seeds.",
+  "sfr_frames_parameters": "gamma=gamma0*(k+1)^(-3/4),rho=rho0*(k+1)^(-1/2),mu=(mu_scale/L_full_bound)*(k+1)^(-1/4); first sample initializes momentum; exact penalty added after momentum.",
+  "source_sha256": {
+    "baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094",
+    "core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "run.py": "99b03d7dd4bef0a4151216c741afd5f7d5fb980ad0ae28e599bc9bfbc18ae660",
+    "setup_problem.py": "d7628d50ebb521edd7575b37f19347eef5b8c16b6eba2100e3ad53bbc6be7a7d"
+  },
+  "theorem_statistic": "Probe metrics only. No claim to measure the theorem's all-iterate averages or random-output expectation.",
+  "workers": 4
+}

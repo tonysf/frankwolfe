@@ -1,0 +1,1250 @@
+{
+  "title": "Parser smoke using existing local outputs",
+  "scope": "parser-smoke",
+  "scope_statement": "Parser/plotting smoke test using existing recorded local outputs. Directory layout is only a test fixture; these are not A100 measurements or experiment results beyond the original CPU checks.",
+  "status": "incomplete",
+  "generated_utc": "2026-09-27T18:21:45.967873+00:00",
+  "input_root": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/oracle_input",
+  "command": [
+    "summarize_diagnostics.py",
+    "--root",
+    "reports/summarizer_smoke/oracle_input",
+    "--out",
+    "reports/summarizer_smoke/oracle_parser_report_v2",
+    "--scope",
+    "parser-smoke",
+    "--expected-sizes",
+    "128"
+  ],
+  "expected": {
+    "sizes": [
+      128
+    ],
+    "sketch_batches": [
+      8,
+      32,
+      128
+    ],
+    "steps": 200,
+    "oracle_repetitions": 100,
+    "problem_seed": 1000,
+    "stochastic_seed": 0,
+    "m_mu0": 1
+  },
+  "completed_smoothing_runs": 0,
+  "completed_oracle_reports": 1,
+  "smoothing_runs": [
+    {
+      "name": "n128_exact",
+      "n": 128,
+      "method": "exact",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/oracle_input/smoothing/n128_exact",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n128_sketch_q8",
+      "n": 128,
+      "method": "sketch_q8",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/oracle_input/smoothing/n128_sketch_q8",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n128_sketch_q32",
+      "n": 128,
+      "method": "sketch_q32",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/oracle_input/smoothing/n128_sketch_q32",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    },
+    {
+      "name": "n128_sketch_q128",
+      "n": 128,
+      "method": "sketch_q128",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/oracle_input/smoothing/n128_sketch_q128",
+      "status": "missing",
+      "issues": [
+        "Missing config.json, summary.json, trace.csv"
+      ],
+      "source_sha256": {}
+    }
+  ],
+  "oracle_reports": [
+    {
+      "n": 128,
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/summarizer_smoke/oracle_input/reports/oracle_a100_n128_s1000.json",
+      "status": "completed",
+      "issues": [],
+      "source_sha256": "9bc9555ea895ca1e89a35f179f873f44bdf357f8567ccc7dcf610fd798d294a1",
+      "settings": {
+        "dtype": "float64",
+        "canonical_cost_dtype": "float32",
+        "device": "cpu",
+        "feasibility_tolerance": 1e-12,
+        "amp": false,
+        "cuda_matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "threads": 1,
+        "interop_threads": 1,
+        "deterministic_algorithms": true,
+        "matmul_precision": "highest",
+        "batches": [
+          8,
+          32,
+          128
+        ],
+        "evaluations_per_configuration": 100,
+        "warmup_per_configuration": 2,
+        "initialization_seed": 3000,
+        "stochastic_seed": 0,
+        "execution_order_seed": 9000
+      },
+      "recorded_device": "cpu",
+      "recorded_gpu": null,
+      "configurations": [
+        {
+          "plan": "product",
+          "oracle": "anchor",
+          "batch_size": 8,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816067841433354,
+          "empirical_mean_bias_frobenius": 28.881586587120097,
+          "empirical_mean_relative_bias_frobenius": 2.2535450767315828,
+          "sample_variance_frobenius": 83848.89629348238,
+          "sample_variance_mean_per_entry": 5.117730486662743,
+          "empirical_mean_noise_rms_frobenius": 28.956673892814827,
+          "absolute_error_frobenius": {
+            "mean": 289.5280721698407,
+            "median": 289.8537668076812,
+            "q25": 285.9325086465346,
+            "q75": 292.197833685258,
+            "min": 278.4605118574567,
+            "max": 299.1653765359261,
+            "std_sample": 4.269790517460321
+          },
+          "relative_error_frobenius": {
+            "mean": 22.591022125664704,
+            "median": 22.616435118313472,
+            "q25": 22.310470901389657,
+            "q75": 22.799335747943303,
+            "min": 21.727453014661446,
+            "max": 23.342992580668746,
+            "std_sample": 0.33315916943388973
+          },
+          "fw_decision_error": {
+            "mean": 0.006083713858182686,
+            "median": 0.006066148022456419,
+            "q25": 0.005868266663632674,
+            "q75": 0.0062458221288302015,
+            "min": 0.005224724146358439,
+            "max": 0.006930389850316784,
+            "std_sample": 0.00031259452343218987
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00088343453,
+            "median": 0.0008577155000000001,
+            "q25": 0.0008351072500000001,
+            "q75": 0.00091111325,
+            "min": 0.00079597,
+            "max": 0.00140312,
+            "std_sample": 8.1969368545368e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.00080534122,
+            "median": 0.0007812750000000001,
+            "q25": 0.00076318825,
+            "q75": 0.00082393025,
+            "min": 0.00073517,
+            "max": 0.00129582,
+            "std_sample": 7.532403226660538e-05
+          }
+        },
+        {
+          "plan": "product",
+          "oracle": "anchor",
+          "batch_size": 32,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816067841433354,
+          "empirical_mean_bias_frobenius": 14.659787367602426,
+          "empirical_mean_relative_bias_frobenius": 1.1438600005072126,
+          "sample_variance_frobenius": 21033.22667029146,
+          "sample_variance_mean_per_entry": 1.2837662762629065,
+          "empirical_mean_noise_rms_frobenius": 14.50283650541902,
+          "absolute_error_frobenius": {
+            "mean": 145.03661178967303,
+            "median": 144.8793821709675,
+            "q25": 144.19346489684847,
+            "q75": 145.82478428070536,
+            "min": 141.64992432373924,
+            "max": 151.25225253678227,
+            "std_sample": 1.4856246598127563
+          },
+          "relative_error_frobenius": {
+            "mean": 11.316779341693316,
+            "median": 11.304511177959256,
+            "q25": 11.250991074710306,
+            "q75": 11.378278118134263,
+            "min": 11.05252610054045,
+            "max": 11.801767469410192,
+            "std_sample": 0.11591891352274578
+          },
+          "fw_decision_error": {
+            "mean": 0.005427919552484741,
+            "median": 0.0054482397614984,
+            "q25": 0.005210393999882178,
+            "q75": 0.005675680937675905,
+            "min": 0.004517112653668359,
+            "max": 0.006187680829666559,
+            "std_sample": 0.0003598072177588916
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.002905362180000001,
+            "median": 0.002824445,
+            "q25": 0.0027986127500000003,
+            "q75": 0.0029211477500000003,
+            "min": 0.002738021,
+            "max": 0.004805641,
+            "std_sample": 0.00025787475106472626
+          },
+          "kernel_seconds": {
+            "mean": 0.00282761307,
+            "median": 0.0027468755,
+            "q25": 0.0027237285,
+            "q75": 0.0028381727500000004,
+            "min": 0.0026781310000000003,
+            "max": 0.004676671,
+            "std_sample": 0.00025089021023379265
+          }
+        },
+        {
+          "plan": "product",
+          "oracle": "anchor",
+          "batch_size": 128,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816067841433354,
+          "empirical_mean_bias_frobenius": 7.294948966492845,
+          "empirical_mean_relative_bias_frobenius": 0.5692033669569726,
+          "sample_variance_frobenius": 5260.580974570418,
+          "sample_variance_mean_per_entry": 0.32108038174868275,
+          "empirical_mean_noise_rms_frobenius": 7.252986263995278,
+          "absolute_error_frobenius": {
+            "mean": 72.53229525758975,
+            "median": 72.48382497145792,
+            "q25": 72.23709636945479,
+            "q75": 72.739341940803,
+            "min": 71.37443551803328,
+            "max": 74.08435026946974,
+            "std_sample": 0.5100900240147206
+          },
+          "relative_error_frobenius": {
+            "mean": 5.659481219590495,
+            "median": 5.655699226023393,
+            "q25": 5.636447720409052,
+            "q75": 5.6756364620388755,
+            "min": 5.5691368367515395,
+            "max": 5.780583497690358,
+            "std_sample": 0.03980082115090238
+          },
+          "fw_decision_error": {
+            "mean": 0.0042972841617006825,
+            "median": 0.004260788813539203,
+            "q25": 0.0039752957720725,
+            "q75": 0.004637333026217331,
+            "min": 0.003207515053345822,
+            "max": 0.005627734771695203,
+            "std_sample": 0.000496388540797819
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.010864848400000005,
+            "median": 0.0106459615,
+            "q25": 0.01057905525,
+            "q75": 0.010999699000000002,
+            "min": 0.010466671,
+            "max": 0.013749962000000001,
+            "std_sample": 0.00048435423820152317
+          },
+          "kernel_seconds": {
+            "mean": 0.01078758581,
+            "median": 0.0105751625,
+            "q25": 0.010502842000000002,
+            "q75": 0.010902439250000001,
+            "min": 0.010394361000000001,
+            "max": 0.013660922,
+            "std_sample": 0.00048033134241651395
+          }
+        },
+        {
+          "plan": "product",
+          "oracle": "trace_sketch",
+          "batch_size": 8,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816067841433354,
+          "empirical_mean_bias_frobenius": 52.26622020529049,
+          "empirical_mean_relative_bias_frobenius": 4.078179114838784,
+          "sample_variance_frobenius": 321391.06719374465,
+          "sample_variance_mean_per_entry": 19.616154003524453,
+          "empirical_mean_noise_rms_frobenius": 56.69136329228154,
+          "absolute_error_frobenius": {
+            "mean": 550.2467218488898,
+            "median": 527.5815267983593,
+            "q25": 467.5410757782049,
+            "q75": 620.6304073373619,
+            "min": 315.1519057248895,
+            "max": 977.5461335780308,
+            "std_sample": 135.3538549558888
+          },
+          "relative_error_frobenius": {
+            "mean": 42.934129926340205,
+            "median": 41.165631559215775,
+            "q25": 36.480852127411566,
+            "q75": 48.425961458389914,
+            "min": 24.590374335100492,
+            "max": 76.27504361499241,
+            "std_sample": 10.561262364599871
+          },
+          "fw_decision_error": {
+            "mean": 0.006286901912673446,
+            "median": 0.006687145527888461,
+            "q25": 0.0036750994091653416,
+            "q75": 0.008707320877911387,
+            "min": 0.0007263404039931642,
+            "max": 0.013354654710330024,
+            "std_sample": 0.003178106215284548
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0004373976800000001,
+            "median": 0.00041896,
+            "q25": 0.00040553750000000004,
+            "q75": 0.0004546925,
+            "min": 0.00037160000000000003,
+            "max": 0.00062277,
+            "std_sample": 5.387741488475707e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.00037719516999999995,
+            "median": 0.000363135,
+            "q25": 0.00034997,
+            "q75": 0.0003950625,
+            "min": 0.00031778000000000004,
+            "max": 0.00055495,
+            "std_sample": 4.9245449613517336e-05
+          }
+        },
+        {
+          "plan": "product",
+          "oracle": "trace_sketch",
+          "batch_size": 32,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816067841433354,
+          "empirical_mean_bias_frobenius": 28.714150517178094,
+          "empirical_mean_relative_bias_frobenius": 2.2404805336897073,
+          "sample_variance_frobenius": 83699.91770727925,
+          "sample_variance_mean_per_entry": 5.108637555375931,
+          "empirical_mean_noise_rms_frobenius": 28.930938060712663,
+          "absolute_error_frobenius": {
+            "mean": 286.6913897302837,
+            "median": 279.5705751603739,
+            "q25": 257.76701794987764,
+            "q75": 314.28261662359836,
+            "min": 224.23811078680893,
+            "max": 382.86230909084617,
+            "std_sample": 38.866100425318194
+          },
+          "relative_error_frobenius": {
+            "mean": 22.369684155652852,
+            "median": 21.81406798242312,
+            "q25": 20.11280067639287,
+            "q75": 24.522546268641545,
+            "min": 17.496638872483533,
+            "max": 29.873617542276268,
+            "std_sample": 3.0326072634905312
+          },
+          "fw_decision_error": {
+            "mean": 0.006544505401052742,
+            "median": 0.006929526831520184,
+            "q25": 0.003928809288972629,
+            "q75": 0.009155696468643212,
+            "min": 0.00030327789527165305,
+            "max": 0.012658934236227215,
+            "std_sample": 0.003240591410240018
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00074197092,
+            "median": 0.000722775,
+            "q25": 0.00069704,
+            "q75": 0.0007654700000000001,
+            "min": 0.00064797,
+            "max": 0.0011563200000000002,
+            "std_sample": 7.883536170043226e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.0006522092000000001,
+            "median": 0.0006364350000000001,
+            "q25": 0.000610105,
+            "q75": 0.0006711227500000001,
+            "min": 0.0005574400000000001,
+            "max": 0.0010426600000000002,
+            "std_sample": 7.31203445627118e-05
+          }
+        },
+        {
+          "plan": "product",
+          "oracle": "trace_sketch",
+          "batch_size": 128,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816067841433354,
+          "empirical_mean_bias_frobenius": 15.204477632128217,
+          "empirical_mean_relative_bias_frobenius": 1.1863605764455554,
+          "sample_variance_frobenius": 21183.845052129513,
+          "sample_variance_mean_per_entry": 1.2929592927325142,
+          "empirical_mean_noise_rms_frobenius": 14.554671089423325,
+          "absolute_error_frobenius": {
+            "mean": 144.8719841165568,
+            "median": 142.64722248867542,
+            "q25": 133.96223860304292,
+            "q75": 151.3845802141192,
+            "min": 119.48261542597098,
+            "max": 195.26472259782514,
+            "std_sample": 14.746715429745077
+          },
+          "relative_error_frobenius": {
+            "mean": 11.30393392957838,
+            "median": 11.130342336945816,
+            "q25": 10.452678642192684,
+            "q75": 11.812092608054446,
+            "min": 9.322876322462413,
+            "max": 15.23593078733162,
+            "std_sample": 1.150642740987223
+          },
+          "fw_decision_error": {
+            "mean": 0.006696315285667014,
+            "median": 0.0062513916144366355,
+            "q25": 0.004643543157401914,
+            "q75": 0.009205333442683206,
+            "min": 0.0007263404039931642,
+            "max": 0.013354654710330024,
+            "std_sample": 0.003111147815539135
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0017364384200000001,
+            "median": 0.00167391,
+            "q25": 0.0016529625000000002,
+            "q75": 0.00176160475,
+            "min": 0.00159248,
+            "max": 0.0025986010000000003,
+            "std_sample": 0.00015966046130803504
+          },
+          "kernel_seconds": {
+            "mean": 0.0015367069799999999,
+            "median": 0.0014785655,
+            "q25": 0.001457975,
+            "q75": 0.0015603667500000001,
+            "min": 0.00139846,
+            "max": 0.002362751,
+            "std_sample": 0.00015145869446302527
+          }
+        },
+        {
+          "plan": "mixed_permutation",
+          "oracle": "anchor",
+          "batch_size": 8,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816772899491621,
+          "empirical_mean_bias_frobenius": 29.004771025851078,
+          "empirical_mean_relative_bias_frobenius": 2.263032297857252,
+          "sample_variance_frobenius": 84025.70338274805,
+          "sample_variance_mean_per_entry": 5.128521934982181,
+          "empirical_mean_noise_rms_frobenius": 28.987187408016673,
+          "absolute_error_frobenius": {
+            "mean": 289.8359143094611,
+            "median": 289.69856518511733,
+            "q25": 286.5791146240069,
+            "q75": 293.18120907592186,
+            "min": 278.1741041371479,
+            "max": 302.9099489120744,
+            "std_sample": 4.699652639358891
+          },
+          "relative_error_frobenius": {
+            "mean": 22.613798074003284,
+            "median": 22.603081716194584,
+            "q25": 22.359693572738117,
+            "q75": 22.874807205763236,
+            "min": 21.703911454043293,
+            "max": 23.633870342205203,
+            "std_sample": 0.3666798714632217
+          },
+          "fw_decision_error": {
+            "mean": 0.006615768063241866,
+            "median": 0.006583600098334683,
+            "q25": 0.006347289421438553,
+            "q75": 0.0068408185743600025,
+            "min": 0.005826852158832482,
+            "max": 0.007796607085103241,
+            "std_sample": 0.0003598275650728895
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0008629468000000001,
+            "median": 0.0008412555,
+            "q25": 0.0008218450000000001,
+            "q75": 0.0008922875,
+            "min": 0.0007898400000000001,
+            "max": 0.00107654,
+            "std_sample": 6.331214529789858e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.0007879625,
+            "median": 0.000767385,
+            "q25": 0.0007526475,
+            "q75": 0.000809765,
+            "min": 0.00073324,
+            "max": 0.0009975000000000001,
+            "std_sample": 5.585682521953841e-05
+          }
+        },
+        {
+          "plan": "mixed_permutation",
+          "oracle": "anchor",
+          "batch_size": 32,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816772899491621,
+          "empirical_mean_bias_frobenius": 14.482498460918844,
+          "empirical_mean_relative_bias_frobenius": 1.1299645062364563,
+          "sample_variance_frobenius": 21013.306433811304,
+          "sample_variance_mean_per_entry": 1.2825504415168032,
+          "empirical_mean_noise_rms_frobenius": 14.49596717498053,
+          "absolute_error_frobenius": {
+            "mean": 144.95426219972737,
+            "median": 145.00873115632822,
+            "q25": 144.14980701101007,
+            "q75": 145.69522641479347,
+            "min": 142.31024869132196,
+            "max": 147.92190021344783,
+            "std_sample": 1.0908255035455825
+          },
+          "relative_error_frobenius": {
+            "mean": 11.309731656825797,
+            "median": 11.313981475171493,
+            "q25": 11.24696584244914,
+            "q75": 11.367543730182852,
+            "min": 11.103438424579304,
+            "max": 11.541274966283842,
+            "std_sample": 0.08510921681298185
+          },
+          "fw_decision_error": {
+            "mean": 0.005951973633207796,
+            "median": 0.0059561393703817175,
+            "q25": 0.005662742052869717,
+            "q75": 0.006203454699080159,
+            "min": 0.004889231456089382,
+            "max": 0.007028340751849771,
+            "std_sample": 0.0003954025489424714
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0028751976800000002,
+            "median": 0.0028060855000000004,
+            "q25": 0.0027811675,
+            "q75": 0.00291425575,
+            "min": 0.002725401,
+            "max": 0.003937581,
+            "std_sample": 0.00017279295440678083
+          },
+          "kernel_seconds": {
+            "mean": 0.0027994851499999994,
+            "median": 0.0027363755000000003,
+            "q25": 0.0027076202500000003,
+            "q75": 0.00283245275,
+            "min": 0.002670331,
+            "max": 0.0038420710000000003,
+            "std_sample": 0.00016663623917258615
+          }
+        },
+        {
+          "plan": "mixed_permutation",
+          "oracle": "anchor",
+          "batch_size": 128,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816772899491621,
+          "empirical_mean_bias_frobenius": 7.254628616263285,
+          "empirical_mean_relative_bias_frobenius": 0.5660261497300183,
+          "sample_variance_frobenius": 5261.001832640082,
+          "sample_variance_mean_per_entry": 0.32110606888672377,
+          "empirical_mean_noise_rms_frobenius": 7.2532763856343445,
+          "absolute_error_frobenius": {
+            "mean": 72.5310794538417,
+            "median": 72.49863528555869,
+            "q25": 72.14659479427783,
+            "q75": 72.79377943029951,
+            "min": 71.30522906158376,
+            "max": 73.9411801245264,
+            "std_sample": 0.5163625048901211
+          },
+          "relative_error_frobenius": {
+            "mean": 5.6590750279049296,
+            "median": 5.656543644339235,
+            "q25": 5.6290764734654495,
+            "q75": 5.679571605203902,
+            "min": 5.563430796562845,
+            "max": 5.769094974559414,
+            "std_sample": 0.040288027956756775
+          },
+          "fw_decision_error": {
+            "mean": 0.004929766029603272,
+            "median": 0.004907643741333664,
+            "q25": 0.004575301133447146,
+            "q75": 0.005242453201587515,
+            "min": 0.0037857181894048048,
+            "max": 0.00643636346284053,
+            "std_sample": 0.0005240343061861804
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0109709745,
+            "median": 0.010611212500000002,
+            "q25": 0.0105088635,
+            "q75": 0.01099765125,
+            "min": 0.010423093000000001,
+            "max": 0.014624872,
+            "std_sample": 0.0007702596708189985
+          },
+          "kernel_seconds": {
+            "mean": 0.010890402300000001,
+            "median": 0.010536987000000001,
+            "q25": 0.010435976,
+            "q75": 0.010912367,
+            "min": 0.010343423000000001,
+            "max": 0.014503052,
+            "std_sample": 0.0007626439292722445
+          }
+        },
+        {
+          "plan": "mixed_permutation",
+          "oracle": "trace_sketch",
+          "batch_size": 8,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816772899491621,
+          "empirical_mean_bias_frobenius": 53.5297289560803,
+          "empirical_mean_relative_bias_frobenius": 4.1765372122809135,
+          "sample_variance_frobenius": 313367.9184935732,
+          "sample_variance_mean_per_entry": 19.126459868992505,
+          "empirical_mean_noise_rms_frobenius": 55.979274601728555,
+          "absolute_error_frobenius": {
+            "mean": 543.3495863534368,
+            "median": 518.9480568239738,
+            "q25": 449.6340937384913,
+            "q75": 612.4509502467034,
+            "min": 314.3973923782702,
+            "max": 975.0568789034334,
+            "std_sample": 134.35554444656577
+          },
+          "relative_error_frobenius": {
+            "mean": 42.39363454547821,
+            "median": 40.48975985558408,
+            "q25": 35.08169312700595,
+            "q75": 47.785113698238064,
+            "min": 24.53015239044618,
+            "max": 76.07662916006798,
+            "std_sample": 10.482790441882216
+          },
+          "fw_decision_error": {
+            "mean": 0.0067177232343254316,
+            "median": 0.006315381480302834,
+            "q25": 0.004039702269103204,
+            "q75": 0.00941855237061794,
+            "min": 0.000825342801577908,
+            "max": 0.013837260152552364,
+            "std_sample": 0.003203177977542917
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00043114807000000006,
+            "median": 0.00041714000000000003,
+            "q25": 0.000392885,
+            "q75": 0.00045119275000000004,
+            "min": 0.00037217,
+            "max": 0.00072771,
+            "std_sample": 5.863659661690157e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.00037185565,
+            "median": 0.000358905,
+            "q25": 0.0003407425,
+            "q75": 0.00038653250000000004,
+            "min": 0.00031604,
+            "max": 0.0006479400000000001,
+            "std_sample": 5.341152647293646e-05
+          }
+        },
+        {
+          "plan": "mixed_permutation",
+          "oracle": "trace_sketch",
+          "batch_size": 32,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816772899491621,
+          "empirical_mean_bias_frobenius": 30.29814967771572,
+          "empirical_mean_relative_bias_frobenius": 2.363945270413389,
+          "sample_variance_frobenius": 87170.18910327528,
+          "sample_variance_mean_per_entry": 5.320446112260454,
+          "empirical_mean_noise_rms_frobenius": 29.52459806725153,
+          "absolute_error_frobenius": {
+            "mean": 292.1358827043402,
+            "median": 286.2739125614404,
+            "q25": 257.2876870027626,
+            "q75": 317.94037190066985,
+            "min": 221.79318196252103,
+            "max": 412.4430490469129,
+            "std_sample": 43.497255488619714
+          },
+          "relative_error_frobenius": {
+            "mean": 22.793247956818195,
+            "median": 22.33588086536163,
+            "q25": 20.07429553604464,
+            "q75": 24.806585432537467,
+            "min": 17.304916276648584,
+            "max": 32.17994516102197,
+            "std_sample": 3.3937759395225795
+          },
+          "fw_decision_error": {
+            "mean": 0.007122359140434184,
+            "median": 0.007265560171402091,
+            "q25": 0.004898169337821064,
+            "q75": 0.009691656775537696,
+            "min": 0.000825342801577908,
+            "max": 0.013837260152552364,
+            "std_sample": 0.003279033457005244
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00073523741,
+            "median": 0.000712725,
+            "q25": 0.0006970025,
+            "q75": 0.0007668132500000001,
+            "min": 0.0006371100000000001,
+            "max": 0.0010524900000000001,
+            "std_sample": 7.308916972432931e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.0006450466900000001,
+            "median": 0.0006257195,
+            "q25": 0.0006093357500000001,
+            "q75": 0.0006663625,
+            "min": 0.00055282,
+            "max": 0.0009459000000000001,
+            "std_sample": 6.789794303882063e-05
+          }
+        },
+        {
+          "plan": "mixed_permutation",
+          "oracle": "trace_sketch",
+          "batch_size": 128,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.816772899491621,
+          "empirical_mean_bias_frobenius": 14.799135055184314,
+          "empirical_mean_relative_bias_frobenius": 1.1546693673390533,
+          "sample_variance_frobenius": 20704.96260555488,
+          "sample_variance_mean_per_entry": 1.2637306277804492,
+          "empirical_mean_noise_rms_frobenius": 14.389219091234548,
+          "absolute_error_frobenius": {
+            "mean": 143.31275879874343,
+            "median": 141.8870984667093,
+            "q25": 134.68751970164524,
+            "q75": 150.79952630814248,
+            "min": 120.52267179308043,
+            "max": 188.58730034763198,
+            "std_sample": 13.423202562896467
+          },
+          "relative_error_frobenius": {
+            "mean": 11.181657030408017,
+            "median": 11.07042307602542,
+            "q25": 10.508692067641118,
+            "q75": 11.765795297357883,
+            "min": 9.403511534316175,
+            "max": 14.71410173422924,
+            "std_sample": 1.0473153162781639
+          },
+          "fw_decision_error": {
+            "mean": 0.006629613935170371,
+            "median": 0.0062770820797354715,
+            "q25": 0.005142993271893409,
+            "q75": 0.00807613473533901,
+            "min": 0.000825342801577908,
+            "max": 0.013374533370898015,
+            "std_sample": 0.0027069828831960837
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0017967244800000004,
+            "median": 0.0017027755000000003,
+            "q25": 0.0016466475,
+            "q75": 0.0018143025,
+            "min": 0.0015924300000000001,
+            "max": 0.0029602310000000002,
+            "std_sample": 0.0002642528917079045
+          },
+          "kernel_seconds": {
+            "mean": 0.00159283694,
+            "median": 0.001508915,
+            "q25": 0.0014510350000000003,
+            "q75": 0.00161251275,
+            "min": 0.0013997010000000002,
+            "max": 0.002646411,
+            "std_sample": 0.00024745433876583524
+          }
+        },
+        {
+          "plan": "concentrated_permutation",
+          "oracle": "anchor",
+          "batch_size": 8,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.865645811886669,
+          "empirical_mean_bias_frobenius": 29.63643708610998,
+          "empirical_mean_relative_bias_frobenius": 2.3035327972987294,
+          "sample_variance_frobenius": 87535.94377733047,
+          "sample_variance_mean_per_entry": 5.34277000594058,
+          "empirical_mean_noise_rms_frobenius": 29.58647389895093,
+          "absolute_error_frobenius": {
+            "mean": 295.3293320240437,
+            "median": 292.9016464061863,
+            "q25": 285.27448233440487,
+            "q75": 298.44593809739933,
+            "min": 261.78325770699246,
+            "max": 361.0103986089948,
+            "std_sample": 17.964285245792695
+          },
+          "relative_error_frobenius": {
+            "mean": 22.954878157082998,
+            "median": 22.766182956441426,
+            "q25": 22.173351148127956,
+            "q75": 23.19712064680522,
+            "min": 20.347463433598406,
+            "max": 28.06002931274966,
+            "std_sample": 1.3962987562734979
+          },
+          "fw_decision_error": {
+            "mean": 0.026331099572270943,
+            "median": 0.026569376747261744,
+            "q25": 0.026569376747261744,
+            "q75": 0.026569376747261744,
+            "min": 0.021601987479566598,
+            "max": 0.026656591821838174,
+            "std_sample": 0.0009136380267673937
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0008701204800000001,
+            "median": 0.0008524450000000001,
+            "q25": 0.0008273222500000001,
+            "q75": 0.00088937,
+            "min": 0.0007936000000000001,
+            "max": 0.001220111,
+            "std_sample": 6.405164012101108e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.0007940763699999999,
+            "median": 0.0007756600000000001,
+            "q25": 0.000755645,
+            "q75": 0.0008086325000000001,
+            "min": 0.00073463,
+            "max": 0.001119791,
+            "std_sample": 5.814235310198114e-05
+          }
+        },
+        {
+          "plan": "concentrated_permutation",
+          "oracle": "anchor",
+          "batch_size": 32,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.865645811886669,
+          "empirical_mean_bias_frobenius": 14.597729500815321,
+          "empirical_mean_relative_bias_frobenius": 1.1346285848572302,
+          "sample_variance_frobenius": 21856.102576332854,
+          "sample_variance_mean_per_entry": 1.3339906357625033,
+          "empirical_mean_noise_rms_frobenius": 14.783809582219616,
+          "absolute_error_frobenius": {
+            "mean": 147.76484867984394,
+            "median": 147.52497139248882,
+            "q25": 144.8834936652679,
+            "q75": 149.49682753961878,
+            "min": 140.4217876957729,
+            "max": 161.89533054291047,
+            "std_sample": 4.043294957387821
+          },
+          "relative_error_frobenius": {
+            "mean": 11.485225914063552,
+            "median": 11.466581122277544,
+            "q25": 11.261268636154195,
+            "q75": 11.61984635093075,
+            "min": 10.914476408641386,
+            "max": 12.58353703421045,
+            "std_sample": 0.31427065663910864
+          },
+          "fw_decision_error": {
+            "mean": 0.025587659547972996,
+            "median": 0.026569376747261744,
+            "q25": 0.02434939418716112,
+            "q75": 0.026569376747261744,
+            "min": 0.021264832762689506,
+            "max": 0.02667519539296788,
+            "std_sample": 0.0016942901908482161
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.0028967537599999997,
+            "median": 0.0028263355000000003,
+            "q25": 0.0027781535,
+            "q75": 0.00294769525,
+            "min": 0.002722869,
+            "max": 0.0034506510000000003,
+            "std_sample": 0.0001623649977421877
+          },
+          "kernel_seconds": {
+            "mean": 0.0028194823200000003,
+            "median": 0.002745926,
+            "q25": 0.0027075502500000003,
+            "q75": 0.0028696810000000002,
+            "min": 0.002664919,
+            "max": 0.0033735410000000003,
+            "std_sample": 0.00015722573384869347
+          }
+        },
+        {
+          "plan": "concentrated_permutation",
+          "oracle": "anchor",
+          "batch_size": 128,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.865645811886669,
+          "empirical_mean_bias_frobenius": 7.403076166435183,
+          "empirical_mean_relative_bias_frobenius": 0.5754142679410174,
+          "sample_variance_frobenius": 5461.732857776906,
+          "sample_variance_mean_per_entry": 0.3333577183701725,
+          "empirical_mean_noise_rms_frobenius": 7.390353751869329,
+          "absolute_error_frobenius": {
+            "mean": 73.89461437488683,
+            "median": 73.67730124535704,
+            "q25": 73.10095896094144,
+            "q75": 74.44467207991835,
+            "min": 72.0033727007925,
+            "max": 78.79868880096555,
+            "std_sample": 1.233796928408578
+          },
+          "relative_error_frobenius": {
+            "mean": 5.743560444250303,
+            "median": 5.72666948263771,
+            "q25": 5.681872486603268,
+            "q75": 5.786314435233275,
+            "min": 5.596561086289817,
+            "max": 6.124736367929765,
+            "std_sample": 0.09589856167722757
+          },
+          "fw_decision_error": {
+            "mean": 0.02413111003652559,
+            "median": 0.023454375818144538,
+            "q25": 0.022426825751421787,
+            "q75": 0.02645715626204586,
+            "min": 0.020256882262729148,
+            "max": 0.026778007735252976,
+            "std_sample": 0.00196332227583421
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.01087258654,
+            "median": 0.010621066500000002,
+            "q25": 0.010536511,
+            "q75": 0.010942598000000001,
+            "min": 0.010427301,
+            "max": 0.014230233,
+            "std_sample": 0.0006088031832439678
+          },
+          "kernel_seconds": {
+            "mean": 0.010794633230000001,
+            "median": 0.0105444575,
+            "q25": 0.010460608500000001,
+            "q75": 0.01085490975,
+            "min": 0.010355282,
+            "max": 0.014144243,
+            "std_sample": 0.0006049502229346678
+          }
+        },
+        {
+          "plan": "concentrated_permutation",
+          "oracle": "trace_sketch",
+          "batch_size": 8,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.865645811886669,
+          "empirical_mean_bias_frobenius": 54.25214891449737,
+          "empirical_mean_relative_bias_frobenius": 4.216822824733244,
+          "sample_variance_frobenius": 331615.19729078206,
+          "sample_variance_mean_per_entry": 20.24018538151746,
+          "empirical_mean_noise_rms_frobenius": 57.58603973974787,
+          "absolute_error_frobenius": {
+            "mean": 558.6242913359985,
+            "median": 522.9529168270576,
+            "q25": 461.61642454086416,
+            "q75": 661.874267901644,
+            "min": 322.2009892833888,
+            "max": 1047.8702350122583,
+            "std_sample": 139.19408043937125
+          },
+          "relative_error_frobenius": {
+            "mean": 43.41984067522528,
+            "median": 40.64723407385406,
+            "q25": 35.87977092563618,
+            "q75": 51.44508698429528,
+            "min": 25.043514643136287,
+            "max": 81.44715394264335,
+            "std_sample": 10.819051175088996
+          },
+          "fw_decision_error": {
+            "mean": 0.023665329510610688,
+            "median": 0.024045636378606697,
+            "q25": 0.021730832887314654,
+            "q75": 0.025890571585911785,
+            "min": 0.017501412011526107,
+            "max": 0.030745881469070563,
+            "std_sample": 0.0028171443093215993
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00043639256,
+            "median": 0.000416535,
+            "q25": 0.000398915,
+            "q75": 0.0004501875,
+            "min": 0.00037186,
+            "max": 0.0006749400000000001,
+            "std_sample": 6.309096734022753e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.00037573406000000005,
+            "median": 0.00035854,
+            "q25": 0.0003438025,
+            "q75": 0.00038381000000000005,
+            "min": 0.00031537000000000004,
+            "max": 0.00057764,
+            "std_sample": 5.5503383454937765e-05
+          }
+        },
+        {
+          "plan": "concentrated_permutation",
+          "oracle": "trace_sketch",
+          "batch_size": 32,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.865645811886669,
+          "empirical_mean_bias_frobenius": 28.137446535923086,
+          "empirical_mean_relative_bias_frobenius": 2.187021696954123,
+          "sample_variance_frobenius": 79571.05848090591,
+          "sample_variance_mean_per_entry": 4.85663198735998,
+          "empirical_mean_noise_rms_frobenius": 28.208342468302867,
+          "absolute_error_frobenius": {
+            "mean": 279.760389652528,
+            "median": 275.87293402268597,
+            "q25": 250.94696207670108,
+            "q75": 302.21050999807863,
+            "min": 214.1564689786456,
+            "max": 385.9416011233941,
+            "std_sample": 36.2537100173866
+          },
+          "relative_error_frobenius": {
+            "mean": 21.744760717262647,
+            "median": 21.442602886502975,
+            "q25": 19.505197465085608,
+            "q75": 23.489727170855584,
+            "min": 16.645605833543527,
+            "max": 29.997841287284597,
+            "std_sample": 2.817869428978957
+          },
+          "fw_decision_error": {
+            "mean": 0.0235774064264905,
+            "median": 0.02301796030726378,
+            "q25": 0.02134965921192396,
+            "q75": 0.0255267378522404,
+            "min": 0.01779909986633886,
+            "max": 0.031932252712651835,
+            "std_sample": 0.003327202121448793
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00075578171,
+            "median": 0.0007189200000000001,
+            "q25": 0.00068904,
+            "q75": 0.000775995,
+            "min": 0.00065585,
+            "max": 0.001146331,
+            "std_sample": 9.917130214603061e-05
+          },
+          "kernel_seconds": {
+            "mean": 0.00066496511,
+            "median": 0.0006317250000000001,
+            "q25": 0.0006059425,
+            "q75": 0.000681,
+            "min": 0.00057052,
+            "max": 0.0010343610000000001,
+            "std_sample": 9.195129856580209e-05
+          }
+        },
+        {
+          "plan": "concentrated_permutation",
+          "oracle": "trace_sketch",
+          "batch_size": 128,
+          "evaluations": 100,
+          "true_gradient_frobenius": 12.865645811886669,
+          "empirical_mean_bias_frobenius": 13.064871764239975,
+          "empirical_mean_relative_bias_frobenius": 1.0154851109121346,
+          "sample_variance_frobenius": 20420.41296438694,
+          "sample_variance_mean_per_entry": 1.2463630959708825,
+          "empirical_mean_noise_rms_frobenius": 14.290001037224224,
+          "absolute_error_frobenius": {
+            "mean": 142.34411590614454,
+            "median": 140.77892196220543,
+            "q25": 135.3591124821512,
+            "q75": 148.90488662411855,
+            "min": 119.13242472509786,
+            "max": 174.381285499769,
+            "std_sample": 11.239018247555562
+          },
+          "relative_error_frobenius": {
+            "mean": 11.063892010351454,
+            "median": 10.942235160254349,
+            "q25": 10.520973020809565,
+            "q75": 11.573836929860462,
+            "min": 9.259731417060348,
+            "max": 13.554025040752855,
+            "std_sample": 0.8735681373391878
+          },
+          "fw_decision_error": {
+            "mean": 0.023510976142864667,
+            "median": 0.02273745263385967,
+            "q25": 0.021287093478451605,
+            "q75": 0.025336401686402475,
+            "min": 0.017864454459415327,
+            "max": 0.03171090177243449,
+            "std_sample": 0.0031597915430756915
+          },
+          "sampling_inclusive_seconds": {
+            "mean": 0.00172352499,
+            "median": 0.0016689650000000001,
+            "q25": 0.00164932775,
+            "q75": 0.0017616307500000002,
+            "min": 0.00156215,
+            "max": 0.002273951,
+            "std_sample": 0.00013485473194616728
+          },
+          "kernel_seconds": {
+            "mean": 0.0015231527600000003,
+            "median": 0.001476145,
+            "q25": 0.0014560175000000002,
+            "q75": 0.00156181,
+            "min": 0.00136292,
+            "max": 0.0020366110000000002,
+            "std_sample": 0.00012700644759519063
+          }
+        }
+      ],
+      "exact_gradient": {
+        "product": {
+          "evaluations": 100,
+          "seconds": {
+            "mean": 0.0005374939900000001,
+            "median": 0.0005161300000000001,
+            "q25": 0.000494795,
+            "q75": 0.0005458825000000001,
+            "min": 0.00045693000000000003,
+            "max": 0.00092402,
+            "std_sample": 7.623976291279963e-05
+          }
+        },
+        "mixed_permutation": {
+          "evaluations": 100,
+          "seconds": {
+            "mean": 0.00052768292,
+            "median": 0.0005082050000000001,
+            "q25": 0.00048741250000000006,
+            "q75": 0.0005430375000000001,
+            "min": 0.00044984,
+            "max": 0.00080082,
+            "std_sample": 6.223796213973162e-05
+          }
+        },
+        "concentrated_permutation": {
+          "evaluations": 100,
+          "seconds": {
+            "mean": 0.0005212196400000001,
+            "median": 0.0005103600000000001,
+            "q25": 0.00048656000000000003,
+            "q75": 0.0005423725,
+            "min": 0.00043537000000000003,
+            "max": 0.000703271,
+            "std_sample": 5.416602903876826e-05
+          }
+        }
+      },
+      "time_breakdown_seconds": {
+        "preparation_and_initial_exact_diagnostics": 0.00867989205289632,
+        "warmup": 0.10539265896659344,
+        "sampling_inclusive_oracles": 5.279684110999995,
+        "timed_exact_gradients": 0.15863965499999996,
+        "error_and_moment_diagnostics": 0.588805875275284,
+        "raw_serialization": 0.11955804307945073,
+        "figures": 3.564716596971266,
+        "total_before_summary_serialization": 10.034781286027282
+      },
+      "peak_process_rss_mib": 387.9609375,
+      "peak_cuda_allocated_bytes": null,
+      "peak_cuda_reserved_bytes": null,
+      "instance_hashes": {
+        "A": "941adedc0f18ba5b49613efd4e330324352cd2eb50ed20e267be5184467594a8",
+        "B": "b94cb8c2e17bae50834fe5e3bc8a1fcce8d2b4ba5e7b8b45f5da4da1ff668812"
+      },
+      "source": {
+        "git_commit_at_run": "a8e120e511a3990e3d80d4b9f8f93b87762560e7",
+        "git_porcelain_at_run": [
+          " M make_instances.py",
+          "?? capture_environment.py",
+          "?? configs/",
+          "?? environment.lock.txt",
+          "?? oracle_diagnostics.py",
+          "?? prepare_development_data.py",
+          "?? provenance/Nonsmooth_FW-7.pdf",
+          "?? provenance/bmmc_downloads.json",
+          "?? provenance/manuscript.txt",
+          "?? provenance/pot_installed_api.json",
+          "?? provenance/pot_ot_bregman__sinkhorn.py",
+          "?? provenance/pot_ot_gromov__bregman.py",
+          "?? provenance/pot_ot_gromov__estimators.py",
+          "?? provenance/pot_ot_gromov__gw.py",
+          "?? provenance/pot_ot_gromov__utils.py",
+          "?? reports/",
+          "?? smoothing_fw.py",
+          "?? test_protocol_checks.py",
+          "?? test_smoothing_fw.py",
+          "?? validate_baselines.py"
+        ],
+        "sha256": {
+          "oracle_diagnostics.py": "a7e630dd2a7c241ab12b645593244168dca9977e0b41771914b52e4af2ea1f9e",
+          "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+          "PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+        }
+      },
+      "methodology": {
+        "seed_derivation": "SeedSequence([stochastic_seed, plan_id, oracle_id, batch_size, replicate]); two uint32 words combined and masked to 63 bits. Each evaluation uses a fresh torch.Generator on the selected device.",
+        "timing": "perf_counter_ns with CUDA synchronization at sampling/kernel boundaries when using CUDA; interleaved shuffled evaluations after per-configuration warmup. Sampling-inclusive includes RNG draws and oracle, excludes per-evaluation generator setup, diagnostics and file I/O. Kernel timing reuses the just-drawn sample. Exact gradient uses identical P and cached A^2/B^2 on same dtype/backend/thread policy.",
+        "variance": "sum ||Ghat - sample_mean||_F^2 / (repetitions-1), via Welford; this is an unbiased sample estimator of total Frobenius variance.",
+        "mean_bias": "||sample_mean - G||_F is empirical finite-sample mean error, not evidence of theoretical bias. sqrt(sample_variance/repetitions) records its sampling-noise scale.",
+        "decision_error": "<G,row_lmo(Ghat,a)> - sum_i a_i min_j G_ij; argmin uses the first index on ties. Values are not clipped.",
+        "anchor_caveat": "Supplied Python-loop reference anchor implementation; timing is not a production implementation speedup comparison.",
+        "independence": "Plan permutations, oracle draws and evaluation ordering use separate seed streams. Frozen planted correspondence never enters plan construction or evaluation."
+      }
+    }
+  ],
+  "figures": [
+    "oracle_time_vs_relative_error.png",
+    "oracle_time_vs_relative_error.pdf",
+    "oracle_time_vs_decision_regret.png",
+    "oracle_time_vs_decision_regret.pdf"
+  ],
+  "full_study_complete": false,
+  "oracle_frozen": false,
+  "fitted_slopes": null,
+  "speedup_claim": null,
+  "script_sha256": "40bcb90bbb40c2bd83de3ee7a6ff3a465fc80ec24c2fe182659f04e1c9a56d93",
+  "plot_library": "matplotlib 3.11.2"
+}

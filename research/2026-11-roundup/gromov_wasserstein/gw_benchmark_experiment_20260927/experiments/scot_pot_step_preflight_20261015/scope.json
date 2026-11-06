@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-10-15T18:58:44.210572+00:00",
+  "purpose": "Same-subproblem numerical parity check against POT before the fixed-step comparison.",
+  "scope": "Initial SCOT1047 FP64 full and pair-sampled gradients; epsilon=0.001; unit-mass fixed product reference.",
+  "production_variants": [
+    "full_plain/result.json",
+    "pair_plain/result.json"
+  ],
+  "alternative_cost_variants": [
+    "full/result.json",
+    "pair/result.json"
+  ],
+  "alternative_cost_note": "Adds epsilon*log(a*b) to cost; for these uniform marginals this is a scalar shift. Production uses plain GW gradient.",
+  "parity": "pot_parity.json",
+  "kernel_ranges": "kernel_ranges.json",
+  "kernel_range_scope": "Representative later rounded states; fresh diagnostic pair seeds, not replayed production oracle states.",
+  "result": "Independent POT first-step plans agree within 1e-11 maximum absolute entry difference; production marginal and normalized-gap tolerance remain 1e-7."
+}

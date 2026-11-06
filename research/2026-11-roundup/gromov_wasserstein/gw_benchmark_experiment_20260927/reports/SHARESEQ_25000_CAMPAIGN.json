@@ -1,0 +1,239 @@
+{
+  "status": "superseded_before_gpu_execution_by_full_population",
+  "updated_utc": "2026-09-30T18:17:32.353863+00:00",
+  "dataset": "SHARE-seq mouse skin",
+  "n": 25000,
+  "m": 25000,
+  "qc": {
+    "atac_raw_cells": 32231,
+    "paired_before_qc": 32231,
+    "paired_failing_atac": 0,
+    "paired_failing_either": 341,
+    "paired_failing_rna": 341,
+    "retained_paired_cells": 31890,
+    "rna_raw_cells": 32231
+  },
+  "scope": "Three paired stochastic seeds, product initialization,300solver seconds each method on4A100s; constants transferred from SNARE10000 with noSHARE-seq tuning",
+  "jobs": {
+    "preparation": {
+      "id": 1981928,
+      "last_observed_state": "COMPLETED",
+      "elapsed": "00:08:03",
+      "exit_code": "0:0",
+      "max_rss_kib": 5974724
+    },
+    "gpu": {
+      "id": 1981933,
+      "last_observed_state": "CANCELLED",
+      "dependency": "afterok:1981928",
+      "elapsed": "00:00:00",
+      "start": null
+    },
+    "report": {
+      "id": 1981934,
+      "last_observed_state": "CANCELLED",
+      "dependency": "afterok:1981933",
+      "elapsed": "00:00:00",
+      "start": null
+    }
+  },
+  "submissions": {
+    "preparation": {
+      "job_id": "1981928",
+      "source_revision": "8c98135cc60c46e12a8a597a494305f6477a2d61",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_prep_8c98135",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/preparation_8c98135",
+      "submission_output": "DATA.md: OK\nSOURCE_REVISION: OK\ndata_sources.json: OK\nprepare.sbatch: OK\nprepare_shareseq.py: OK\n1981928\n"
+    },
+    "gpu": {
+      "job_id": "1981933",
+      "dependency": "afterok:1981928",
+      "source_revision": "44d54fc814893d7d057d866c58e6b195f9d6c90e",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_gpu_44d54fc",
+      "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/preparation_8c98135/data",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/campaign_44d54fc",
+      "submission_output": "README.md: OK\nSOURCE_REVISION: OK\ncampaign.json: OK\ncampaign.py: OK\ngpu.sbatch: OK\ngpu_correctness.py: OK\nreference/gw_core.py: OK\nrun_sharded.py: OK\nsharded_gw.py: OK\ntheory_config.json: OK\n1981933\n"
+    },
+    "report": {
+      "job_id": "1981934",
+      "dependency": "afterok:1981933",
+      "source_revision": "5a4ec767b502316da4aaf9af00eb9b11fdce3844",
+      "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/shareseq_report_5a4ec76",
+      "output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/campaign_44d54fc",
+      "submission_output": "SOURCE_REVISION: OK\nreport.py: OK\nreport.sbatch: OK\n1981934\n"
+    }
+  },
+  "instance_manifest": {
+    "A_scale": 50.00077231389644,
+    "B_scale": 1.891221765723182,
+    "array_files_sha256": {
+      "A.npy": "3098ef1cb215c89d0f595381744d86197f155396012a92cf6b9a93775f3e8758",
+      "B.npy": "264ada80c69ce90f6176df81cc0d92f8b376a1e007bf8c0eb36bb2dd7d8a9304",
+      "a.npy": "5fb3d525a08be1a1775150f276b2fd8b2554d478b1be0bb14c13db3b75809624",
+      "b.npy": "5fb3d525a08be1a1775150f276b2fd8b2554d478b1be0bb14c13db3b75809624"
+    },
+    "arrays": {
+      "A": {
+        "bytes": 2500000128,
+        "dtype": "float32",
+        "file": "A.npy",
+        "sha256": "3098ef1cb215c89d0f595381744d86197f155396012a92cf6b9a93775f3e8758",
+        "shape": [
+          25000,
+          25000
+        ]
+      },
+      "B": {
+        "bytes": 2500000128,
+        "dtype": "float32",
+        "file": "B.npy",
+        "sha256": "264ada80c69ce90f6176df81cc0d92f8b376a1e007bf8c0eb36bb2dd7d8a9304",
+        "shape": [
+          25000,
+          25000
+        ]
+      },
+      "a": {
+        "bytes": 200128,
+        "dtype": "float64",
+        "file": "a.npy",
+        "sha256": "5fb3d525a08be1a1775150f276b2fd8b2554d478b1be0bb14c13db3b75809624",
+        "shape": [
+          25000
+        ]
+      },
+      "b": {
+        "bytes": 200128,
+        "dtype": "float64",
+        "file": "b.npy",
+        "sha256": "5fb3d525a08be1a1775150f276b2fd8b2554d478b1be0bb14c13db3b75809624",
+        "shape": [
+          25000
+        ]
+      }
+    },
+    "binding": {
+      "preparation_script_sha256": "8583c55d87a6fb2262bf04e9224123caec596ad6d6b828465736cefbac2d521a",
+      "raw_files": {
+        "Ma-2020-ATAC.h5ad": {
+          "bytes": 274596957,
+          "sha256": "fb94f9d3c9ee42c07aca5ce3769f77b754084bce7737999ddbb63c6c7f8f7c17",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-ATAC.h5ad"
+        },
+        "Ma-2020-RNA.h5ad": {
+          "bytes": 50822146,
+          "sha256": "d38865f573e345b62f2d5a3714bd880ae8f298789d794bd635366599db182cee",
+          "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-RNA.h5ad"
+        }
+      },
+      "recipe_sha256": "f1bf91a02891e75f77a6466004ef77cc0f0d4c73d0f7af1b0da9af31c986381b",
+      "representations_file": "representations.npz",
+      "representations_sha256": "fbbfa56b5e03cc6713cc072e60a1541be5fd7da9ae213e4ac09885135e628db3",
+      "source_manifest_sha256": "e041e79fa43e04e80f02a0a97ee43882ce748e53a9c1067be6cd109ffaae1350"
+    },
+    "correspondence_file": "correspondence.npz",
+    "correspondence_sha256": "c32644a750e8d885ac96f1488d85393329f0e214ab355cb0b6c0ec77de2d996c",
+    "cost_storage_dtype": "float32",
+    "family": "shareseq_mouse_skin",
+    "id": "shareseq25000",
+    "known_optimum": null,
+    "m": 25000,
+    "metric": "ordinary Euclidean distance, not squared Euclidean",
+    "n": 25000,
+    "objective": "full_squared_discrepancy_no_half_no_entropy",
+    "representation_shapes": [
+      [
+        31890,
+        50
+      ],
+      [
+        31890,
+        49
+      ]
+    ],
+    "scale": "each_matrix_divided_by_its_own_maximum",
+    "schema_version": 1,
+    "source_representation": "log_library10000_top2000_variance_centered_pca50",
+    "storage": "standalone_npy_arrays",
+    "target_representation": "binary_log1p_tfidf_lsi50_discard_first_row_l2"
+  },
+  "local_validation": {
+    "status": "passed",
+    "backend": "four-rank CPU/Gloo",
+    "checks": 352,
+    "failed_checks": 0,
+    "source_sha256_at_test": {
+      "gpu_correctness.py": "a23edcbba82370cb4490125301e07fa94234282fe6673d3c8ceeefb9916b77cc",
+      "sharded_gw.py": "d942837ab8749d397253acb29a9a49f9ebfd982af684c10c05d636173e7e1b4b",
+      "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444"
+    },
+    "note": "Core constructor metadata agreement subsequently strengthened; allocated four-GPU correctness gate tests frozen production payload.",
+    "preparation_tests": {
+      "passed": 7,
+      "scope": "tiny H5AD reader, pairing/QC, deterministic representations/order, exact blocked distances and manifest"
+    },
+    "kernel_tests": {
+      "passed": 3,
+      "scope": "single-process and three-rank CPU/Gloo, both precisions, uneven and empty partitions, exact/sketch/KL/FW parity"
+    },
+    "runner_integration": {
+      "passed": 6,
+      "scope": "two-rank saved-output and independent loss/metrics parity; float32 state release before validation"
+    },
+    "resource_gate_tests": {
+      "passed": 11,
+      "scope": "fail closed for missing/invalid/nonfinite results and resource thresholds"
+    },
+    "runner_and_campaign_tests": {
+      "passed": 45,
+      "seconds": 16.06,
+      "scope": "two-rank integration, direct loss and metrics, solver state release, memory gates, source/config/data/rank binding and pair matching"
+    },
+    "frozen_local_source_sha256": {
+      "run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+      "sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+      "campaign.py": "4de8d3f87b133530e548b116b8c4331536021a643acd9836e30701fa73a0261f",
+      "gpu_correctness.py": "a23edcbba82370cb4490125301e07fa94234282fe6673d3c8ceeefb9916b77cc"
+    }
+  },
+  "monitoring": "Check named jobs only on user request or a later bounded collection; no polling loop",
+  "report_destination": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/campaign_44d54fc",
+  "replacement": "reports/SHARESEQ_FULL_CAMPAIGN.json",
+  "supersession": {
+    "requested_change": "Use full QC-passing paired population if the 25000-cell jobs have not started",
+    "observed_before_cancellation": {
+      "1981933": {
+        "state": "PENDING",
+        "reason": "Resources",
+        "elapsed": "00:00:00"
+      },
+      "1981934": {
+        "state": "PENDING",
+        "reason": "Dependency",
+        "elapsed": "00:00:00"
+      }
+    },
+    "cancellation": {
+      "command": "scancel --user=silvetian --state=PENDING 1981933 1981934",
+      "verified": {
+        "1981933": {
+          "state": "CANCELLED by 3359",
+          "elapsed": "00:00:00",
+          "start": "None",
+          "end": "2026-09-30T20:58:10"
+        },
+        "1981934": {
+          "state": "CANCELLED by 3359",
+          "elapsed": "00:00:00",
+          "start": "None",
+          "end": "2026-09-30T20:58:10"
+        }
+      }
+    },
+    "new_population": 31890,
+    "qc_unchanged": true,
+    "source_population_before_qc": 32231,
+    "gpu_count": 4,
+    "updated_utc": "2026-09-30T19:01:39.080308+00:00"
+  }
+}

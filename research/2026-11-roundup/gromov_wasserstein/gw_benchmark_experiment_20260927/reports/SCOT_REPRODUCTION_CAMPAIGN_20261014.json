@@ -1,0 +1,141 @@
+{
+  "status": "submitted_resources_and_dependencies_verified",
+  "site": "Ruche",
+  "account": "fwllm",
+  "source_commit": "1265ffdf5a0fe3be3c54ac498d7989f14a4f9737",
+  "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd",
+  "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/scot_reproduction_20261014_1265ffd/source_1265ffd",
+  "config_sha256": "65a243a1614b8d3e9b6457f71181942492ed3050270cf03c7ad200ad7bf088b1",
+  "source_archive_sha256": "99e711e01b67334cf8cef3efc3a4bd6d746f7f02d184b5870bbcefbe67991cd2",
+  "source_manifest_sha256": "ae6b99384cca072b12b820a06d98e97ac5d6b2eb022a5d8cc62455213b459df2",
+  "input_transfer_sha256": "dbbc3e1aee40fbb85ae16b186c97e9f513487218a34d343be5aae9ff4268eec7",
+  "remote_source_input_and_wheel_checksums_verified": true,
+  "reference": {
+    "method": "Authors SCOT using POT entropic GW, epsilon=0.001 and original omitted solver defaults",
+    "dataset": "Released 1047-cell SNARE-seq feature arrays",
+    "job_id": "2069001",
+    "observed_state": "RUNNING",
+    "result_available_at_verification": false,
+    "expected_product_loss": 0.07045975745628463,
+    "published_POT_loss": 0.016519975128479896,
+    "required_repaired_loss_at_most": 0.025,
+    "interpretation": "Source/settings reproduction with recorded installed package versions, not a bitwise historical environment claim."
+  },
+  "jobs": [
+    {
+      "stage": "reference",
+      "JobId": "2069001",
+      "ArrayTaskId": null,
+      "JobState": "RUNNING",
+      "Partition": "cpu_short",
+      "TimeLimit": "01:00:00",
+      "CPUs/Task": "2",
+      "MinMemoryNode": "16G",
+      "TresPerNode": null,
+      "Dependency": "(null)"
+    },
+    {
+      "stage": "preflight",
+      "JobId": "2069002",
+      "ArrayTaskId": "0-26%4",
+      "JobState": "PENDING",
+      "Partition": "gpua100",
+      "TimeLimit": "01:00:00",
+      "CPUs/Task": "2",
+      "MinMemoryNode": "16G",
+      "TresPerNode": "gres/gpu:1",
+      "Dependency": "afterok:2069001(unfulfilled)"
+    },
+    {
+      "stage": "tuning",
+      "JobId": "2069003",
+      "ArrayTaskId": "0-26%4",
+      "JobState": "PENDING",
+      "Partition": "gpua100",
+      "TimeLimit": "1-00:00:00",
+      "CPUs/Task": "2",
+      "MinMemoryNode": "16G",
+      "TresPerNode": "gres/gpu:1",
+      "Dependency": "afterok:2069002_*(unfulfilled)"
+    },
+    {
+      "stage": "selection",
+      "JobId": "2069004",
+      "ArrayTaskId": null,
+      "JobState": "PENDING",
+      "Partition": "cpu_short",
+      "TimeLimit": "01:00:00",
+      "CPUs/Task": "2",
+      "MinMemoryNode": "16G",
+      "TresPerNode": null,
+      "Dependency": "afterok:2069003_*(unfulfilled)"
+    },
+    {
+      "stage": "confirmation",
+      "JobId": "2069005",
+      "ArrayTaskId": "0-8%4",
+      "JobState": "PENDING",
+      "Partition": "gpua100",
+      "TimeLimit": "1-00:00:00",
+      "CPUs/Task": "2",
+      "MinMemoryNode": "16G",
+      "TresPerNode": "gres/gpu:1",
+      "Dependency": "afterok:2069004(unfulfilled)"
+    },
+    {
+      "stage": "report",
+      "JobId": "2069006",
+      "ArrayTaskId": null,
+      "JobState": "PENDING",
+      "Partition": "cpu_short",
+      "TimeLimit": "01:00:00",
+      "CPUs/Task": "2",
+      "MinMemoryNode": "16G",
+      "TresPerNode": null,
+      "Dependency": "afterany:2069001(unfulfilled),afterany:2069002_*(unfulfilled),afterany:2069003_*(unfulfilled),afterany:2069004(unfulfilled),afterany:2069005_*(unfulfilled)"
+    }
+  ],
+  "preflight_cells": 27,
+  "tuning_cells": 27,
+  "confirmation_cells": 9,
+  "iterations_per_tuning_and_confirmation_run": 20000,
+  "pairs_per_gradient": 1024,
+  "tuning_seed": 810,
+  "confirmation_seeds": [
+    811,
+    812,
+    813
+  ],
+  "methods": [
+    "FraMES with gradient momentum",
+    "Entropic stochastic mirror descent with fresh gradients",
+    "MSBPG with theorem-prescribed coupled schedules"
+  ],
+  "numerical_changes": "None to existing oracle, optimizer updates, exponents, inner tolerances or output distributions; only a new reference instance and declared prefactor selection.",
+  "inner_feasibility_and_guarded_gap_tolerance": 1e-07,
+  "production_process_timeout_seconds": 82800,
+  "runtime_safety_factor": 2,
+  "array_concurrency": 4,
+  "GPU_per_task": 1,
+  "local_tests": {
+    "passed": 23,
+    "skipped": 1,
+    "skip_reason": "sklearn not installed locally; pinned wheels installed in the scheduled CPU job before all tests",
+    "junit_file": "/home/tony/gw_benchmark_experiment_20260927/logs/scot_reproduction_20261014/local_tests.xml",
+    "junit_sha256": "1ac6a18df1b3aa480f2f1ed7634d9e62652da4c5c331be7abe30a934248d0097"
+  },
+  "numerical_proofs_reused_only_if_source_hashes_match": {
+    "cpu": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/cpu/checks.json",
+    "A100": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f/checks/gpu1/checks.json"
+  },
+  "launch_verification_file": "/home/tony/gw_benchmark_experiment_20260927/logs/scot_reproduction_20261014/launch_verification.json",
+  "launch_verification_sha256": "913b4777711331da8d0199d046c19bde9e112d817392f07e9473a7e448c864ea",
+  "verified_utc": "2026-10-14T10:31:25.168452Z",
+  "monitoring": "No active monitoring, automatic resubmission or cancellation of other jobs.",
+  "latest_observation": {
+    "checked_utc": "2026-10-14T10:58:39.443613Z",
+    "status": "published_reference_reproduced_comparison_pending_A100_quota",
+    "report": "/home/tony/gw_benchmark_experiment_20260927/reports/SCOT_REPRODUCTION_RESULT_20261014.json",
+    "report_sha256": "e78372f7511b1efb5adf96eda2f8a12e8045f43d4d968e81a68a082473fcd7c0"
+  }
+}

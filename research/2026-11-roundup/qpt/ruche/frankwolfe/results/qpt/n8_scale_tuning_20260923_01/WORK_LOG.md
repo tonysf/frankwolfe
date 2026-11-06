@@ -1,0 +1,5 @@
+# N8 scale tuning and batch preparation optimization
+
+User authorized four n8 scale comparisons and single-GPU jobs only, plus investigation/optimization of CPU preparation. Keep exponents step3/4, smoothing1/4, momentum1/2, original dataset/U0/seeds, usual sigma.05, batch65536, beta scale1e7, offsets10/1/4 and148000-step budgets. Scales (step,rho):(.5,.6),(.5,2),(1,.6),(1,2). No early stopping. One campaign GPU at a time: short preflight, then a dependent four-task array with concurrency1.
+
+Source/defaults/Git and existing reports remain preserved. Proposed experimental source changes only host batch preparation: retain sampled row indices for noise, decode using smaller integer temporaries and contiguous writes. An allocated preflight must verify exact symbols/noise/RNG state, full factors/momentum/diagnostics, restart compatibility, and compare timings before choosing the candidate. Production falls back to the original frozen source if a scientifically equivalent candidate does not improve measured runner time. Framework execution and profiling stay inside allocations.

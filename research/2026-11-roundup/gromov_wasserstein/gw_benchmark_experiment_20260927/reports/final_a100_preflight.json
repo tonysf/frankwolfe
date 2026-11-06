@@ -1,0 +1,3588 @@
+{
+  "status": "passed",
+  "job_id": "1961539",
+  "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+  "audited_at_utc": "2026-09-27T20:37:41.037903+00:00",
+  "artifact_root": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/preflight_1961539",
+  "slurm_accounting": "1961539|gw_campaign_check|gpua100|fwllm|COMPLETED|0:0|00:03:24|billing=2,cpu=2,gres/gpu=1,mem=12G,node=1||2026-09-27T22:29:25|2026-09-27T22:32:49\n1961539.batch|batch||fwllm|COMPLETED|0:0|00:03:24|cpu=2,gres/gpu=1,mem=12G,node=1|369536K|2026-09-27T22:29:25|2026-09-27T22:32:49\n1961539.extern|extern||fwllm|COMPLETED|0:0|00:03:24|billing=2,cpu=2,gres/gpu=1,mem=12G,node=1||2026-09-27T22:29:25|2026-09-27T22:32:49\n",
+  "slurm_accounting_time_zone": "Europe/Paris (+02:00 on this date)",
+  "pytest": {
+    "tests": 125,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "gpu_projection_cases": 18,
+  "actual_runner_smokes": 20,
+  "transfer_verification": {
+    "status": "verified",
+    "transfer_method": "scp recursive (rsync unavailable locally)",
+    "remote_before_after_identical": true,
+    "file_count": 182,
+    "total_bytes": 21911630,
+    "files": [
+      {
+        "path": "./COMPLETED",
+        "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a",
+        "bytes": 10
+      },
+      {
+        "path": "./dispatcher_validation/manifest.json",
+        "sha256": "311a0fbb262d146bc38d1b17b8dc560652da6688f4e37eb2fbbf5277e763220f",
+        "bytes": 896
+      },
+      {
+        "path": "./dispatcher_validation/outputs/_campaign/dispatch_000_1961539.json",
+        "sha256": "668ff6fabd47006451743510fdf5e53b4e653c7ac8d37317c00efb0539bdfe75",
+        "bytes": 988
+      },
+      {
+        "path": "./dispatcher_validation/outputs/_campaign/environment_0_1961539/environment.json",
+        "sha256": "25f8827fadd6cca6f75d422c37e36796428a23a7e24d52f1ad50910bc8ab0682",
+        "bytes": 6991
+      },
+      {
+        "path": "./dispatcher_validation/outputs/_campaign/environment_0_1961539/environment.lock.txt",
+        "sha256": "86aea8dbd36ea3bcd52c7ef61610280d6c8ccf14922b30926d629cedb96b8a3a",
+        "bytes": 1926
+      },
+      {
+        "path": "./dispatcher_validation/outputs/_campaign/logs/dispatcher-smoke__stochastic-kl-momentum__toy16.log",
+        "sha256": "0b87838043576531d950fbff70a97105a35ca63c8cc1c9f83ab543fe2f86460e",
+        "bytes": 279
+      },
+      {
+        "path": "./dispatcher_validation/outputs/_campaign/shard_00.json",
+        "sha256": "79132f9b01220c2363fa4f2488fc404ae589402e9f4d1d6cc70a7727c1289e60",
+        "bytes": 3222
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/campaign_receipt.json",
+        "sha256": "44eb6a802dc2ae586639e00739c9f6f74213f1490d65ef93940ab5419d37a5d9",
+        "bytes": 2080
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/final.npz",
+        "sha256": "2e20bfd2abccee28564d66210917087fbd2d6ca239f798d3dac613fb6a345e39",
+        "bytes": 2562
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/metadata.json",
+        "sha256": "8cf01e3bb6c52ed4815d57ebfc592df628434625d8a456d8e673b68b2bb27d2f",
+        "bytes": 9716
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/trace.csv",
+        "sha256": "f0081b3eaa7e62359c39fec3659d5c795b1340269e0d3bcbca7529acf0d00b2c",
+        "bytes": 2273
+      },
+      {
+        "path": "./dispatcher_validation/plan.json",
+        "sha256": "7a43edb9f19da57f1e62fec87f35008c210c92dc41affcbea049415068018a49",
+        "bytes": 480
+      },
+      {
+        "path": "./environment.json",
+        "sha256": "25f8827fadd6cca6f75d422c37e36796428a23a7e24d52f1ad50910bc8ab0682",
+        "bytes": 6991
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/final.npz",
+        "sha256": "fcbae0790acf720d67d3242b2bf3450902409f34249bd1ed12a3806d31751baa",
+        "bytes": 8000514
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/metadata.json",
+        "sha256": "f44ad978e057131cdb9a8d992992ba6bbeaa04cf4dfb330d44c47368f61a4893",
+        "bytes": 10043
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/product/trace.csv",
+        "sha256": "c777b6fc4fd4c626eb22cf04936f3a39df42b7273a95e168091150f2cbcb8316",
+        "bytes": 2751
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/final.npz",
+        "sha256": "63fe7413f88900eb97672c08beab1acc40aca34e3c8ce0704bed1f21a85cce40",
+        "bytes": 8000514
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/metadata.json",
+        "sha256": "cd43036a5c8393a7de3c9de52dd7657f5264720ee23ab4ff409fefce8a924d4e",
+        "bytes": 21137
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./momentum-campaign-size/bmmc1000/randomized/trace.csv",
+        "sha256": "fbcb0562f8564e39e453b74038e12063254de939d2aa062011e92bdc22b06912",
+        "bytes": 2674
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/final.npz",
+        "sha256": "b5f5100b67dd3be9b25ecccdaeaea25bd6d5fd1b034e402e1ae33639266abc35",
+        "bytes": 2097666
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/metadata.json",
+        "sha256": "92db0682859d8f80e0b36ffcfd0f513aa57e7b4575aa50e64aae4c3c96441247",
+        "bytes": 9262
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/product/trace.csv",
+        "sha256": "66ec987c0a6ca01905abce570916df5100b7ef373e489809c46dc6c6c32263ad",
+        "bytes": 2590
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/final.npz",
+        "sha256": "98bac0cf2c44c58e515f8d22b8977232f8d6e09707e7ab265c4d1f42ac071b1f",
+        "bytes": 2097666
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/metadata.json",
+        "sha256": "1d6a999f3658890e860934d9382849305c5f379fbf8f109ad9d21a885d4f2635",
+        "bytes": 15117
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./momentum-campaign-size/metric512_noisy_s1000/randomized/trace.csv",
+        "sha256": "a835e86949ddafb8d963de01a1a854c33f17fc665e7b451511fee03885151f9a",
+        "bytes": 2758
+      },
+      {
+        "path": "./native-product/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./native-product/final.npz",
+        "sha256": "1e44afdaef938e11ebf76c9231cf74738b18e96665035a9a38e963a37e64354a",
+        "bytes": 2562
+      },
+      {
+        "path": "./native-product/metadata.json",
+        "sha256": "6f2e326040a331c5ed34570ec9f945da06ea035f09ec22c65ebf20ec984bb6c8",
+        "bytes": 10494
+      },
+      {
+        "path": "./native-product/native_source/execution_report.json",
+        "sha256": "a353aade6001fde8035b09e4b9a7f95c09cb2d1edb8dd7f4e1b0b51492afa02e",
+        "bytes": 3268
+      },
+      {
+        "path": "./native-product/native_source/instrumentation_module.py",
+        "sha256": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a",
+        "bytes": 20598
+      },
+      {
+        "path": "./native-product/native_source/instrumented_function.py",
+        "sha256": "1ce7eb75e153a491fead08e8bb08d5413e73f19e23f78bea3d486e67342251d5",
+        "bytes": 5604
+      },
+      {
+        "path": "./native-product/native_source/manifest.json",
+        "sha256": "f3e40bcbca9636e5af34c89104758bb6df9fc7b20abe8eeb8574643cf9bae421",
+        "bytes": 1732
+      },
+      {
+        "path": "./native-product/native_source/native_function.py",
+        "sha256": "97b674117293bae24993e057ce77f8f569320a9f6627fde81f188e7ce488ac5d",
+        "bytes": 6276
+      },
+      {
+        "path": "./native-product/native_source/native_module.py",
+        "sha256": "bf7c893dd61ea089581695ba80d1230a26edce8c543acf193fbf6986d84e8211",
+        "bytes": 16433
+      },
+      {
+        "path": "./native-product/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./native-product/source_snapshot/native_sampled_gw.py",
+        "sha256": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a",
+        "bytes": 20598
+      },
+      {
+        "path": "./native-product/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./native-product/source_snapshot/run_native_sampled.py",
+        "sha256": "b0cba9678844544af3c05c07c51772fc75c3f500e2b1ede73208ef140936bb16",
+        "bytes": 19182
+      },
+      {
+        "path": "./native-product/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./native-product/trace.csv",
+        "sha256": "6e6ce0a0a07eb1255ae50d680023e36a3223047c02beb2b3f83f19e3dc45dcdf",
+        "bytes": 1235
+      },
+      {
+        "path": "./product/full-kl/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/full-kl/final.npz",
+        "sha256": "f3e43706b79a8ffdbe5ba7a04853ca53a5efe03f5e4571519ae0860b52eab5eb",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/full-kl/metadata.json",
+        "sha256": "524aac1cbfde09b045ff25c23caee5d01f82546c8358174251b23a4c52ef6a49",
+        "bytes": 8409
+      },
+      {
+        "path": "./product/full-kl/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/full-kl/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/full-kl/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/full-kl/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/full-kl/trace.csv",
+        "sha256": "7a4aa1b98748f43bc598dccf9b3e8dd06b8baa56e721519ab44565e23bffd14f",
+        "bytes": 2219
+      },
+      {
+        "path": "./product/fw/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/fw/final.npz",
+        "sha256": "f7c08686491a95f34f68199f9e880b63b90a17683a05bad9dab4a8688cb88068",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/fw/metadata.json",
+        "sha256": "456bdf1e91e46abc3139361d3671db1d73121c7bc65e9259e4d690dc92d94b77",
+        "bytes": 8140
+      },
+      {
+        "path": "./product/fw/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/fw/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/fw/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/fw/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/fw/trace.csv",
+        "sha256": "7bf38ec4f8313e74fc89740d6c22c3642d53b3f59902c2fbaf6f363fbc64659f",
+        "bytes": 1568
+      },
+      {
+        "path": "./product/pg/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/pg/final.npz",
+        "sha256": "bcda6f7d07a6b86a725a3a0f4feb19b061b4eecc5a774c047d339ccbb051451b",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/pg/metadata.json",
+        "sha256": "f6afb18873a17324e3ceaf85b231d232113ea1ce8759cd348b6f22a75ce0c8f7",
+        "bytes": 8394
+      },
+      {
+        "path": "./product/pg/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/pg/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/pg/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/pg/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/pg/trace.csv",
+        "sha256": "c8a5c04df900181a4a852e4b7dbd747ac4591487e63c4cee4db8fd717a6898c4",
+        "bytes": 1979
+      },
+      {
+        "path": "./product/smoothing-fw/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/smoothing-fw/final.npz",
+        "sha256": "ae4725ed376fa110736c670eab9861e99459d35b11a8c2ca593a51387284fe71",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/smoothing-fw/metadata.json",
+        "sha256": "60a61c5eb4c94bd2be795c6b3f37ee379567a9c92541da2400c4f410879cd8d2",
+        "bytes": 9316
+      },
+      {
+        "path": "./product/smoothing-fw/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/smoothing-fw/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/smoothing-fw/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/smoothing-fw/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/smoothing-fw/trace.csv",
+        "sha256": "6fd886ee6b78159ff482605025a52d1497c2ed7da6a95501b2d1468bc4d73dcf",
+        "bytes": 2261
+      },
+      {
+        "path": "./product/smoothing-row-projection/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/smoothing-row-projection/final.npz",
+        "sha256": "84f25f92ed7d03ef8b7fcb8c5e3650b941dc2fc57db61ca53093b0d60e17fdf2",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/smoothing-row-projection/metadata.json",
+        "sha256": "2e3e111543db0d7ecc1ae014662e4adce8ab19da46e38d85442bf48c43b5bb08",
+        "bytes": 9376
+      },
+      {
+        "path": "./product/smoothing-row-projection/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/smoothing-row-projection/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/smoothing-row-projection/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/smoothing-row-projection/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/smoothing-row-projection/trace.csv",
+        "sha256": "38bd76a6c616335a0a114be295ec4acbaccc98bf117b6210b381cceef97d45e0",
+        "bytes": 2485
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/final.npz",
+        "sha256": "7d3b5639306534dfc97e9bcf53479cf73c4c0bc1165b9e28c99f2da76b896f4e",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/metadata.json",
+        "sha256": "eb0ea3f7047d1248913abd55f230aab4af0eb6ae4e74c61b84d4bdd4f87aa1f5",
+        "bytes": 9218
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/stochastic-kl-momentum/trace.csv",
+        "sha256": "8a73f357ba874da02462787b06de2e8f408fec7ec9a24347613056c76a443803",
+        "bytes": 2581
+      },
+      {
+        "path": "./product/stochastic-kl/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./product/stochastic-kl/final.npz",
+        "sha256": "2adf13d8598d5d9cf0434338e884f480e74bdf703a2c554d9db6f0da6810c4fb",
+        "bytes": 2562
+      },
+      {
+        "path": "./product/stochastic-kl/metadata.json",
+        "sha256": "0b652bdc77286f602a76fc23bee9ceaa34b30e43da12b137f0825a73666c8a7f",
+        "bytes": 8430
+      },
+      {
+        "path": "./product/stochastic-kl/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./product/stochastic-kl/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./product/stochastic-kl/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./product/stochastic-kl/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./product/stochastic-kl/trace.csv",
+        "sha256": "38c06db10c25443203272f01fadd1e68bb868e70b86333551d5ffc326d57656f",
+        "bytes": 2244
+      },
+      {
+        "path": "./projection_gpu_validation/source_snapshot/capture_environment.py",
+        "sha256": "1d18f419dca0f910a9cf5b54761ba08294b5d782d9c4d70950594f41e27d0544",
+        "bytes": 3430
+      },
+      {
+        "path": "./projection_gpu_validation/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./projection_gpu_validation/source_snapshot/validate_projection_gpu.py",
+        "sha256": "1f61dc55b5aa67d8ee703520fe48ba969ef8ae6c724d47bf651d55df55e00ec8",
+        "bytes": 5490
+      },
+      {
+        "path": "./projection_gpu_validation/validation.json",
+        "sha256": "92dcfde1f9b93488b60b1496ffbec41d902d1800d5bc15776bbe9a8620e80e1a",
+        "bytes": 21510
+      },
+      {
+        "path": "./pytest.xml",
+        "sha256": "9d38f378c7b3c6bd6c64b82c1ce8f10aa9a8293745001ca918470c42dd4a1ccf",
+        "bytes": 16467
+      },
+      {
+        "path": "./randomized/full-kl/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/full-kl/final.npz",
+        "sha256": "22803f1e4a4e3fffe9d3cc221646d194e390b6afd18d3f99f81088ff8c8c5f5a",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/full-kl/metadata.json",
+        "sha256": "487c01a72b341ba6408b91c311972b44ce00ecf95d0b3cd4d2a09e10be836c41",
+        "bytes": 8875
+      },
+      {
+        "path": "./randomized/full-kl/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/full-kl/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/full-kl/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/full-kl/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/full-kl/trace.csv",
+        "sha256": "e35ccffcd4c9f80af973995b78904a368c69573589758aec4989457c4ea19277",
+        "bytes": 2011
+      },
+      {
+        "path": "./randomized/fw/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/fw/final.npz",
+        "sha256": "084e577c541f7c6e7059cb056f3a5a7d3001904d1b59d69c291d65630e6ef78c",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/fw/metadata.json",
+        "sha256": "b7e0d3fac8c9397214f1cc789b1a0b9ff4611f533e283298dbf4618022fa6e9e",
+        "bytes": 8648
+      },
+      {
+        "path": "./randomized/fw/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/fw/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/fw/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/fw/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/fw/trace.csv",
+        "sha256": "1e0f7d815782528f58fe8289d34037171a7c20a0549c427f4044297d6972c2fd",
+        "bytes": 1744
+      },
+      {
+        "path": "./randomized/pg/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/pg/final.npz",
+        "sha256": "8b3af41f290c6fa541a0e569d7b4d533f9cef0c0f95ed143dded62c62e2d9f0b",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/pg/metadata.json",
+        "sha256": "5d26e722989f891ba42a0392e87d9ba0f19acb8699edb7d5a3be07f0f0e0fd92",
+        "bytes": 8862
+      },
+      {
+        "path": "./randomized/pg/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/pg/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/pg/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/pg/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/pg/trace.csv",
+        "sha256": "24253942f8df9300664bddad556da512508d31d1402af1195e4b139b6379601e",
+        "bytes": 1918
+      },
+      {
+        "path": "./randomized/smoothing-fw/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/smoothing-fw/final.npz",
+        "sha256": "2682012a44016e7a5f3b9e379804e8ed3af6ff8c4266f21369fa3388408df3f2",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/smoothing-fw/metadata.json",
+        "sha256": "6d9c3aa1a41b38d5df6d0a93139350f6b2bab2833de63a45c6e84595584e7f5e",
+        "bytes": 9654
+      },
+      {
+        "path": "./randomized/smoothing-fw/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/smoothing-fw/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/smoothing-fw/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/smoothing-fw/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/smoothing-fw/trace.csv",
+        "sha256": "c33a2ef8ea1a05800ec8c354645a2e21714de2b695fa31f4fdfebbc281ff1eeb",
+        "bytes": 2001
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/final.npz",
+        "sha256": "5b4ad0667b76968fb30ca348c80ac98e03b477cd41d23e10877fc51fdf80e650",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/metadata.json",
+        "sha256": "ef571aeab40b24ca35b71f50b1751f2a9d32316a46f2b959e4edc8c4871de721",
+        "bytes": 9874
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/smoothing-row-projection/trace.csv",
+        "sha256": "b8e723f5693f8f0057b52662894d7a8bd43e9aabce64ef353b39fc3598c685a8",
+        "bytes": 2181
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/final.npz",
+        "sha256": "5a65faecdc125999974a5becfae5beec0bf4d6442c6cb2e9d09c6dd4743f549d",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/metadata.json",
+        "sha256": "5ce6b2002b12642cec9bd98cbb72c575932596391dbaba54b588bc1f11583d65",
+        "bytes": 9686
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/stochastic-kl-momentum/trace.csv",
+        "sha256": "4e9b4fbbb6da0f5ce9574a585cbb5b9ab264e4e69101e74a272d0f5ec627c9d8",
+        "bytes": 2268
+      },
+      {
+        "path": "./randomized/stochastic-kl/failures.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "bytes": 2
+      },
+      {
+        "path": "./randomized/stochastic-kl/final.npz",
+        "sha256": "5a65faecdc125999974a5becfae5beec0bf4d6442c6cb2e9d09c6dd4743f549d",
+        "bytes": 2562
+      },
+      {
+        "path": "./randomized/stochastic-kl/metadata.json",
+        "sha256": "03244840c6b5cb81b363375f0895151bf5174ab2be7bffd1f2cdbe0a02324461",
+        "bytes": 8890
+      },
+      {
+        "path": "./randomized/stochastic-kl/source_snapshot/gw_core.py",
+        "sha256": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+        "bytes": 12729
+      },
+      {
+        "path": "./randomized/stochastic-kl/source_snapshot/run_benchmark.py",
+        "sha256": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+        "bytes": 35830
+      },
+      {
+        "path": "./randomized/stochastic-kl/source_snapshot/smoothing_fw.py",
+        "sha256": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+        "bytes": 12567
+      },
+      {
+        "path": "./randomized/stochastic-kl/source_snapshot/theory_config.json",
+        "sha256": "574be9cf43846a382fc35ea1f52df824ae774aa1c3bb4d73927372d00bbe7484",
+        "bytes": 1541
+      },
+      {
+        "path": "./randomized/stochastic-kl/trace.csv",
+        "sha256": "993b332f56b0796851612e9fbaab148af49b85587978b7e9de6072eaf695c14a",
+        "bytes": 1977
+      }
+    ],
+    "log_sha256": "2768072f7655933a075c59b00111fed0182263427a8cde1d13c0bbaf5ea50961",
+    "collected_unix": 1790541285.579605,
+    "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/preflight_1961539"
+  },
+  "environment": {
+    "hostname": "ruche-gpu18.cluster",
+    "platform": "Linux-4.18.0-553.el8_10.x86_64-x86_64-with-glibc2.28",
+    "python": "3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]",
+    "python_executable": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/bin/python",
+    "cpu": {
+      "returncode": 0,
+      "stdout": "Architecture:        x86_64\nCPU op-mode(s):      32-bit, 64-bit\nByte Order:          Little Endian\nCPU(s):              32\nOn-line CPU(s) list: 0-31\nThread(s) per core:  1\nCore(s) per socket:  16\nSocket(s):           2\nNUMA node(s):        2\nVendor ID:           GenuineIntel\nCPU family:          6\nModel:               106\nModel name:          Intel(R) Xeon(R) Gold 6346 CPU @ 3.10GHz\nStepping:            6\nCPU MHz:             3100.000\nCPU max MHz:         3100.0000\nCPU min MHz:         800.0000\nBogoMIPS:            6200.00\nL1d cache:           48K\nL1i cache:           32K\nL2 cache:            1280K\nL3 cache:            36864K\nNUMA node0 CPU(s):   0-15\nNUMA node1 CPU(s):   16-31\nFlags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 invpcid_single intel_ppin ssbd mba ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect wbnoinvd dtherm arat pln pts avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid fsrm md_clear pconfig flush_l1d arch_capabilities\n",
+      "stderr": ""
+    },
+    "device": "cuda",
+    "gpu": {
+      "name": "NVIDIA A100-SXM4-40GB",
+      "total_memory_bytes": 42405855232,
+      "capability": [
+        8,
+        0
+      ],
+      "visible_count": 1,
+      "driver": {
+        "returncode": 0,
+        "stdout": "name, driver_version, memory.total [MiB]\nNVIDIA A100-SXM4-40GB, 580.105.08, 40960 MiB\n",
+        "stderr": ""
+      }
+    },
+    "torch_cuda_runtime": "12.1",
+    "torch_version": "2.5.1+cu121",
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "torch": "2.5.1+cu121",
+      "pytest": "9.1.1",
+      "POT": "0.9.6.post1"
+    },
+    "threads": 1,
+    "interop_threads": 1,
+    "deterministic_algorithms": true,
+    "matmul_precision": "highest",
+    "allow_tf32": false,
+    "AMP": false,
+    "cpu_validation_dtype": "float64",
+    "gpu_experiment_dtype": "float32",
+    "git": {
+      "returncode": 0,
+      "stdout": "af7b7c549351b81de2aa886b987bc3e56ffeff9c\n",
+      "stderr": ""
+    },
+    "git_status": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "source_sha256": {
+      "capture_environment.py": "1d18f419dca0f910a9cf5b54761ba08294b5d782d9c4d70950594f41e27d0544",
+      "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+      "make_instances.py": "ecf425940b3c6ac5f77fe37b93a12c75ec052cddc5c03ab352c889f06c4f3903",
+      "native_sampled_gw.py": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a",
+      "oracle_diagnostics.py": "33bf59f0d08faa70b7d87ebdc6ecdebc4a0abc216fb44f3b0c9a6b1d0aab0005",
+      "precision_control.py": "440e93bc0eaa6630e1bea5731259f5a5e6d7cb7355326b94ea098362323bcecb",
+      "prepare_development_data.py": "e083d64021ae53653ff1019c185d342b4350f3faa7b76a9668b7d7831d5c322c",
+      "prepare_momentum_ablation.py": "efab8e67de30177659317079278f2ff290f791f70aadcc21ee7bffaa7bd1128c",
+      "prepare_stage_c_campaign.py": "efb725f88ea0ea62ea14ba0cd8a463208916a9a0a45026487ce9cbfa5995676d",
+      "run_benchmark.py": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+      "run_campaign_shard.py": "a629c2ca51e2c0f192402fa09db929ba4db3440ae898a9e1ad72596142a7a014",
+      "run_native_sampled.py": "b0cba9678844544af3c05c07c51772fc75c3f500e2b1ede73208ef140936bb16",
+      "run_panel_array.py": "687346b118729add757612646458ad844abba84f8df403e959e29cabcb60c703",
+      "run_reference.py": "d6f54a62850072f0b3f11b56f74a1c11277f8f683d38054e3213d81b6a320926",
+      "run_smoothing.py": "e74a36b8ac4c8c93bdfb246bfa068b88c16bfe228b2f1ac2403a7ef8ad3b4e7d",
+      "smoothing_fw.py": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+      "summarize_campaign.py": "bfa552cb626521126c9bc8eb57af4f0faf147dc7eb767dd92985b1d666a5c1b8",
+      "summarize_diagnostics.py": "40bcb90bbb40c2bd83de3ee7a6ff3a465fc80ec24c2fe182659f04e1c9a56d93",
+      "summarize_practical.py": "6f4f2b39fe769d9322a6b4cfb90a6173651a8fcdf55b33b22744144c5c00e676",
+      "summarize_theory.py": "d9ab79d28d184ff1e9cc3b841f0612e4469c1abc61287f139c34c29d2ce92fa7",
+      "test_benchmark.py": "f32c116e1b6b313ecc4008d7c69502fd6be4e5e103ea79e7e4b228dba9f7ab9d",
+      "test_campaign_shard.py": "2118669e76663c993b7b77d1a0a9573a33095b0133f6e467d0597e9fb9d9a649",
+      "test_deterministic_projection.py": "b24ff6927ad6ad16eafb86f6aa18532caa109bd851abf2c1381d76847295873e",
+      "test_gw_core.py": "b0ce961c335b698e657b478235dc6367e866efeef8ee686246b24dbf2f71502e",
+      "test_kl_momentum.py": "ec71a2179828a4526c7973e72dcbd39e77d431d79fd5ab029e75546ed838be6c",
+      "test_momentum_ablation_manifest.py": "018d3fc08c0f873d89d422de76433a39e8b876a320486490e38880d989386f60",
+      "test_native_runner.py": "edba03f54615116c50e3cda8f1cb601f942c832a618c8d6eea4ede1501cffb4c",
+      "test_panel_dispatch.py": "b8de44cf2b7a6913535cb82777552f7547c5e70b7aa1d9a167f96c39af7d7ebd",
+      "test_protocol_checks.py": "e4947898b7ff1715b66722fe95f30f27299fd317bcb332f6f1c077f251e42efd",
+      "test_randomized_initialization.py": "b4f8e58c88b84b36f2cd66e91e5894294eb3d73a4c1adedacc85b1d3210e6ed6",
+      "test_smoothing_fw.py": "bbfdb9fbf882443b1dcd4634f7c0db77b37bde728138530aed658a9ef8ae6e3e",
+      "test_stage_c_campaign.py": "791dd2785f5c5cca2dd05e565c1178ca3bed0fa76f26638b822ebcd023aa675e",
+      "validate_baselines.py": "515ec4e837a454d060a08763503ceef368093767ba25386a076084d4605e807c",
+      "validate_gpu.py": "56cadb7c41f9544a20aa135b25918fba83861fe465c278aea3d80f859bcda2c7",
+      "validate_native_gpu.py": "3bff42491f8d4adfb66b196fe7771f46358aa3937bff90ddfcc7cb55c413c5f2",
+      "validate_noiseless_control.py": "5057ee8011a0290287148eef1fb7be1f697d9e8dea0ba532b32f33f583a10a46",
+      "validate_panel_dispatch_gpu.py": "6602995bae70a6141ced15d2ba822139764fa9ad6e74d81f1e14379d0fa960d3",
+      "validate_projection_gpu.py": "1f61dc55b5aa67d8ee703520fe48ba969ef8ae6c724d47bf651d55df55e00ec8"
+    },
+    "job_id": "1961539",
+    "cuda_visible_devices": "0",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    }
+  },
+  "runner_rows": [
+    {
+      "path": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 7.404014468193054e-08,
+      "rounded_loss_float64": 0.10001683848377985,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    },
+    {
+      "path": "momentum-campaign-size/bmmc1000/product",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 1000,
+      "initialization": "product",
+      "completed_updates": 24,
+      "rounded_both_l1_float64": 1.1751337672914752e-07,
+      "rounded_loss_float64": 0.16858178827937464,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    },
+    {
+      "path": "momentum-campaign-size/bmmc1000/randomized",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 1000,
+      "initialization": "randomized",
+      "completed_updates": 11,
+      "rounded_both_l1_float64": 1.214698504281575e-07,
+      "rounded_loss_float64": 0.16857903398751284,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 2.220446049250313e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    },
+    {
+      "path": "momentum-campaign-size/metric512_noisy_s1000/product",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 512,
+      "initialization": "product",
+      "completed_updates": 32,
+      "rounded_both_l1_float64": 6.419259079848416e-08,
+      "rounded_loss_float64": 0.04015560652227612,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    },
+    {
+      "path": "momentum-campaign-size/metric512_noisy_s1000/randomized",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 512,
+      "initialization": "randomized",
+      "completed_updates": 8,
+      "rounded_both_l1_float64": 6.112850314821117e-08,
+      "rounded_loss_float64": 0.04013346377391214,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 2.220446049250313e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    },
+    {
+      "path": "native-product",
+      "method": "native-sampled-gw",
+      "status": "completed_with_warnings",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 3.934837877750397e-08,
+      "rounded_loss_float64": 0.09720939262784567,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": null,
+      "native_warning_count": 1,
+      "momentum_config": null
+    },
+    {
+      "path": "product/full-kl",
+      "method": "full-kl",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 22,
+      "rounded_both_l1_float64": 5.21540641784668e-08,
+      "rounded_loss_float64": 0.10070267678661571,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "product/fw",
+      "method": "fw",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 0.0,
+      "rounded_loss_float64": 0.0,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "product/pg",
+      "method": "pg",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 8,
+      "rounded_both_l1_float64": 6.007030606269836e-08,
+      "rounded_loss_float64": 0.10051899541568676,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "product/smoothing-fw",
+      "method": "smoothing-fw",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 28,
+      "rounded_both_l1_float64": 4.871981218457222e-08,
+      "rounded_loss_float64": 0.10024168304002035,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "product/smoothing-row-projection",
+      "method": "smoothing-row-projection",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 23,
+      "rounded_both_l1_float64": 6.379559636116028e-08,
+      "rounded_loss_float64": 0.1001779749520828,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "product/stochastic-kl",
+      "method": "stochastic-kl",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 18,
+      "rounded_both_l1_float64": 6.798654794692993e-08,
+      "rounded_loss_float64": 0.1007029341323058,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "product/stochastic-kl-momentum",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 16,
+      "initialization": "product",
+      "completed_updates": 13,
+      "rounded_both_l1_float64": 4.563480615615845e-08,
+      "rounded_loss_float64": 0.10070294935275892,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    },
+    {
+      "path": "randomized/full-kl",
+      "method": "full-kl",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 7.636845111846924e-08,
+      "rounded_loss_float64": 0.10002466473486527,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "randomized/fw",
+      "method": "fw",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 0.0,
+      "rounded_loss_float64": 0.02848991904543796,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "randomized/pg",
+      "method": "pg",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 5.541369318962097e-08,
+      "rounded_loss_float64": 0.0999679037041501,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 0.0,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "randomized/smoothing-fw",
+      "method": "smoothing-fw",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 0.0,
+      "rounded_loss_float64": 0.10070422110463129,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "randomized/smoothing-row-projection",
+      "method": "smoothing-row-projection",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 4.936009645462036e-08,
+      "rounded_loss_float64": 0.1000737629387417,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "randomized/stochastic-kl",
+      "method": "stochastic-kl",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 6.007030606269836e-08,
+      "rounded_loss_float64": 0.10002462474961715,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": null
+    },
+    {
+      "path": "randomized/stochastic-kl-momentum",
+      "method": "stochastic-kl-momentum",
+      "status": "completed",
+      "n": 16,
+      "initialization": "randomized",
+      "completed_updates": 1,
+      "rounded_both_l1_float64": 6.007030606269836e-08,
+      "rounded_loss_float64": 0.10002462474961715,
+      "absolute_loss_difference_cpu_vs_gpu_float64": 1.1102230246251565e-16,
+      "intra_op_threads": 1,
+      "interop_threads": 32,
+      "inner_stopping_failures": 0,
+      "native_warning_count": 0,
+      "momentum_config": {
+        "rho0": 0.3,
+        "beta": 0.5,
+        "rho_formula": "rho0/(k+1)**beta",
+        "indexing": "k=0,1,...",
+        "oracle": "sketch",
+        "batch": 128,
+        "initialization": "d0=first smooth gradient estimate at P0; reused for update zero",
+        "recurrence": "d_k=(1-rho_k)*d_(k-1)+rho_k*g_k(P_k), k>=1",
+        "penalty": "none; full-transport KL prox uses only the smooth-gradient momentum",
+        "parameter_policy": "rho0 from selected smoothing; eta, eta-power and inner settings from selected stochastic-kl; no independent retuning",
+        "theorem_claim": "none; this matched KL ablation is not the smoothing theorem algorithm"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "check": "stable_remote_transfer",
+      "passed": true,
+      "detail": {
+        "files": 182,
+        "bytes": 21911630
+      }
+    },
+    {
+      "check": "transfer_file:./COMPLETED",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/_campaign/dispatch_000_1961539.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/_campaign/environment_0_1961539/environment.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/_campaign/environment_0_1961539/environment.lock.txt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/_campaign/logs/dispatcher-smoke__stochastic-kl-momentum__toy16.log",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/_campaign/shard_00.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/campaign_receipt.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./dispatcher_validation/plan.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./environment.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/product/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/bmmc1000/randomized/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/product/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./momentum-campaign-size/metric512_noisy_s1000/randomized/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/native_source/execution_report.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/native_source/instrumentation_module.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/native_source/instrumented_function.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/native_source/manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/native_source/native_function.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/native_source/native_module.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/source_snapshot/native_sampled_gw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/source_snapshot/run_native_sampled.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./native-product/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/full-kl/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/fw/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/pg/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-fw/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/smoothing-row-projection/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl-momentum/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./product/stochastic-kl/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./projection_gpu_validation/source_snapshot/capture_environment.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./projection_gpu_validation/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./projection_gpu_validation/source_snapshot/validate_projection_gpu.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./projection_gpu_validation/validation.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./pytest.xml",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/full-kl/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/fw/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/pg/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-fw/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/smoothing-row-projection/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl-momentum/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/failures.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/final.npz",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/metadata.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/source_snapshot/gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/source_snapshot/run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/source_snapshot/smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/source_snapshot/theory_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transfer_file:./randomized/stochastic-kl/trace.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "transferred_log_sha256",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scheduler_completed_exit0",
+      "passed": true,
+      "detail": "1961539|gw_campaign_check|gpua100|fwllm|COMPLETED|0:0|00:03:24|billing=2,cpu=2,gres/gpu=1,mem=12G,node=1||2026-09-27T22:29:25|2026-09-27T22:32:49"
+    },
+    {
+      "check": "completion_marker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "125_pytest_passed",
+      "passed": true,
+      "detail": {
+        "tests": 125,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "check": "top_level_environment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_gpu_projection_cases",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "projection_source_revision",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "projection_source:capture_environment.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "projection_source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "projection_source:validate_projection_gpu.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "exactly_20_expected_runner_outputs",
+      "passed": true,
+      "detail": {
+        "actual_count": 20,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_validation/outputs/dispatcher-smoke/stochastic-kl-momentum/toy16:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/product:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/bmmc1000/randomized:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/product:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "momentum-campaign-size/metric512_noisy_s1000/randomized:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:source:run_native_sampled.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:source:native_sampled_gw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "native-product:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/full-kl:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/fw:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/pg:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-fw:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/smoothing-row-projection:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product/stochastic-kl-momentum:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/full-kl:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/fw:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/pg:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-fw:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/smoothing-row-projection:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:terminal_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:immutable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:source:run_benchmark.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:source:smoothing_fw.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:source:gw_core.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:precision_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:float64_actual_output_validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:frozen_instance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:actual_saved_plan_audit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:at_least_one_update",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:momentum_matched_config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:momentum_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized/stochastic-kl-momentum:point_aligned_momentum_error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "product:all_methods_same_initial_plan",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "randomized:all_methods_same_initial_plan",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "one_dispatch_receipt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_plan_and_manifest_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_clean_source_and_slurm_id",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_completed_one_trial",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_source_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "dispatcher_visible_device_preserved",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "failed_checks": [],
+  "notes": [
+    "Validation smokes are correctness/compatibility checks, not tuned performance comparisons.",
+    "Actual saved float32 raw/rounded plans independently evaluated on CPU float64 without rerounding.",
+    "Every numerical runner reports intra-op threads=1 and inter-op setting=32; the standalone capture/validator process sets inter-op=1.",
+    "Native warnings and unexposed native inner counts remain visible; success does not certify inner convergence.",
+    "No job was submitted, cancelled or rerun during monitoring/collection."
+  ]
+}

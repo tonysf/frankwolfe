@@ -1,0 +1,1430 @@
+{
+  "artifacts": {
+    "curve_data.csv": "16f83a01016841beacd5af3c2fd2ae784577056d57419b342130b9e6b00815cd",
+    "endpoints.csv": "0c31449688d5c95abe32cca3874f386fb6cb49a3b00faddd684c3d06136bea59",
+    "feasible_gw_loss.pdf": "b662f26d74fc4efaefe8ac5b497e66fad9014d1dc1a26bdd0aebf581c617db99",
+    "feasible_gw_loss.png": "f8e387ac392f5a7cdc702de004516265755c5ddb94953d32c9faa099e154166f",
+    "observations.csv": "48a5ac2f0c622975e149d59ee83c3ae90be5b9bb103f78c194b3fe49a68f5ce7",
+    "pair_sampling_preliminary.pdf": "2a6050b44a04c2378f7df7d66a108dc1f1baf42917414d47ff7d481d854e62fc",
+    "relative_loss_reduction.pdf": "bfd25ed262845e6af94a6357d23c5f0e99c71271fa5a295609613ca354fb3fe7",
+    "relative_loss_reduction.png": "5593819cfff52ef4ab0721bfee31564919ce89ea5818f6106fd534b5c8556b1b"
+  },
+  "campaign_config_sha256": "0cc32879f9cb87b46190aaec0745113720d3a4cb7f234d7353ccc0cfceb0c05c",
+  "clock": "Recorded solver seconds + current output repair seconds. Excludes diagnostic, preparation, logging, serialization and final-validation time.",
+  "datasets": {
+    "bmmc6224": {
+      "horizon": 20000,
+      "label": "BMMC",
+      "n": 6224
+    },
+    "metric512_s1000": {
+      "horizon": 200000,
+      "label": "Synthetic metric data",
+      "n": 512
+    },
+    "snare_full": {
+      "horizon": 20000,
+      "label": "SNARE-seq",
+      "n": 10000
+    }
+  },
+  "excluded_runs": [
+    {
+      "dataset": "shareseq_full",
+      "method": "smoothing-fw",
+      "seed": 710,
+      "status": "completed"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "smoothing-fw",
+      "seed": 711,
+      "status": "completed"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "smoothing-fw",
+      "seed": 712,
+      "status": "completed"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-smd",
+      "seed": 710,
+      "status": "started_without_result"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-smd",
+      "seed": 711,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-smd",
+      "seed": 712,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-msbpg",
+      "seed": 710,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-msbpg",
+      "seed": 711,
+      "status": "missing"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-msbpg",
+      "seed": 712,
+      "status": "missing"
+    }
+  ],
+  "expected_included_run_count": 27,
+  "generated_utc": "2026-10-14T08:48:34.058523+00:00",
+  "groups": [
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        20000,
+        50000,
+        100000,
+        150000,
+        200000
+      ],
+      "completed_updates": 200000,
+      "coverage_complete": true,
+      "dataset": "metric512_s1000",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": 4.6590045421623927e-07,
+        "median": -6.173812139298462e-08,
+        "minimum": -8.90503346617777e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.043883562088012695,
+        "median": 0.043883562088012695,
+        "minimum": 0.043883562088012695
+      },
+      "interpolated_grid_point_count": 147,
+      "interpolation_support_seconds": [
+        0.33568031701724976,
+        8794.947706960607
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 10092.038058622391,
+        "median": 9290.684329319512,
+        "minimum": 8794.947706960607
+      },
+      "maximum_absolute_float64_minus_online": 4.6590045421623927e-07,
+      "method": "smoothing-fw",
+      "method_label": "FraMES",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 99.9944561161035,
+        "median": 20.03133390787558,
+        "minimum": 19.984548029430194
+      },
+      "solver_seconds": {
+        "maximum": 10092.036303447443,
+        "median": 9290.682672819472,
+        "minimum": 8794.945101808291
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.03511363054550898,
+        "median": 0.035093099235492975,
+        "minimum": 2.43285373180413e-06
+      },
+      "terminal_online_loss": {
+        "maximum": 0.03511369228363037,
+        "median": 0.03509318828582764,
+        "minimum": 1.9669532775878906e-06
+      },
+      "total_elapsed_seconds": {
+        "maximum": 10130.339010820026,
+        "median": 9319.445743303979,
+        "minimum": 8826.277624160983
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        20000,
+        50000,
+        100000,
+        150000,
+        200000
+      ],
+      "completed_updates": 200000,
+      "coverage_complete": true,
+      "dataset": "metric512_s1000",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": 2.7813859770908778e-08,
+        "median": 2.627104878083486e-08,
+        "minimum": -9.387447752473577e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.043883562088012695,
+        "median": 0.043883562088012695,
+        "minimum": 0.043883562088012695
+      },
+      "interpolated_grid_point_count": 154,
+      "interpolation_support_seconds": [
+        0.3918472989462316,
+        10542.008912552148
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 12561.731304620742,
+        "median": 11928.94631930627,
+        "minimum": 10542.008912552148
+      },
+      "maximum_absolute_float64_minus_online": 9.387447752473577e-08,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh gradient)",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 0.01583373886732111,
+        "median": 0.01583160541071403,
+        "minimum": 0.015828089718466942
+      },
+      "solver_seconds": {
+        "maximum": 12561.729600802762,
+        "median": 11928.944684813265,
+        "minimum": 10542.007487247232
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.043876616158433746,
+        "median": 0.043876614615622755,
+        "minimum": 0.043876613679386
+      },
+      "terminal_online_loss": {
+        "maximum": 0.043876707553863525,
+        "median": 0.043876588344573975,
+        "minimum": 0.043876588344573975
+      },
+      "total_elapsed_seconds": {
+        "maximum": 12584.989448917913,
+        "median": 11952.385220809025,
+        "minimum": 10583.010878672823
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        20000,
+        50000,
+        100000,
+        150000,
+        200000
+      ],
+      "completed_updates": 200000,
+      "coverage_complete": true,
+      "dataset": "metric512_s1000",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": -5.12912833317003e-08,
+        "median": -5.130947455800339e-08,
+        "minimum": -5.1419820623621604e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.043883562088012695,
+        "median": 0.043883562088012695,
+        "minimum": 0.043883562088012695
+      },
+      "interpolated_grid_point_count": 164,
+      "interpolation_support_seconds": [
+        0.10474856290966272,
+        12019.109333300032
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 13682.688950802549,
+        "median": 12321.645155501901,
+        "minimum": 12019.109333300032
+      },
+      "maximum_absolute_float64_minus_online": 5.1419820623621604e-08,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameters)",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 0.00025299784273742865,
+        "median": 0.0002527463908033379,
+        "minimum": 0.0002527049374084048
+      },
+      "solver_seconds": {
+        "maximum": 13682.68719882355,
+        "median": 12321.643530748901,
+        "minimum": 12019.10778332781
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.04388345119208459,
+        "median": 0.04388345117389336,
+        "minimum": 0.043883451063547296
+      },
+      "terminal_online_loss": {
+        "maximum": 0.04388350248336792,
+        "median": 0.04388350248336792,
+        "minimum": 0.04388350248336792
+      },
+      "total_elapsed_seconds": {
+        "maximum": 13713.07244052901,
+        "median": 12346.293813477969,
+        "minimum": 12046.137229551096
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "completed_updates": 20000,
+      "coverage_complete": true,
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": 4.606971193421572e-09,
+        "median": -1.0664851224362337e-09,
+        "minimum": -5.838584210549058e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.16103965044021606,
+        "median": 0.16103965044021606,
+        "minimum": 0.16103965044021606
+      },
+      "interpolated_grid_point_count": 115,
+      "interpolation_support_seconds": [
+        0.19583499582950026,
+        1477.9329193473095
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 1552.2263289607363,
+        "median": 1489.178049116861,
+        "minimum": 1477.9329193473095
+      },
+      "maximum_absolute_float64_minus_online": 5.838584210549058e-08,
+      "method": "smoothing-fw",
+      "method_label": "FraMES",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 1.6834692875833819,
+        "median": 1.6341708704201072,
+        "minimum": 1.606894148326142
+      },
+      "solver_seconds": {
+        "maximum": 1552.2169472128153,
+        "median": 1489.168964838842,
+        "minimum": 1477.9243057742715
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.15845191372080736,
+        "median": 0.1584079873828957,
+        "minimum": 0.1583285973842234
+      },
+      "terminal_online_loss": {
+        "maximum": 0.15845191478729248,
+        "median": 0.1584080457687378,
+        "minimum": 0.1583285927772522
+      },
+      "total_elapsed_seconds": {
+        "maximum": 1561.4674792629667,
+        "median": 1501.2681632899912,
+        "minimum": 1487.5127140050754
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "completed_updates": 20000,
+      "coverage_complete": true,
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": -6.52035947457108e-08,
+        "median": -6.873033175924803e-08,
+        "minimum": -7.061007417652476e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.16103965044021606,
+        "median": 0.16103965044021606,
+        "minimum": 0.16103965044021606
+      },
+      "interpolated_grid_point_count": 112,
+      "interpolation_support_seconds": [
+        0.9096264294348657,
+        4329.1876538500655
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 4399.708067437634,
+        "median": 4341.028696230962,
+        "minimum": 4329.1876538500655
+      },
+      "maximum_absolute_float64_minus_online": 7.061007417652476e-08,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh gradient)",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 2.0052266363321034,
+        "median": 2.0051537787800577,
+        "minimum": 2.003077726964425
+      },
+      "solver_seconds": {
+        "maximum": 4399.699123394676,
+        "median": 4341.019820572925,
+        "minimum": 4329.178725249018
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.15781390107066673,
+        "median": 0.15781055780407988,
+        "minimum": 0.15781044047453274
+      },
+      "terminal_online_loss": {
+        "maximum": 0.15781396627426147,
+        "median": 0.15781062841415405,
+        "minimum": 0.1578105092048645
+      },
+      "total_elapsed_seconds": {
+        "maximum": 4414.203278623987,
+        "median": 4353.117623913917,
+        "minimum": 4339.487292992999
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "completed_updates": 20000,
+      "coverage_complete": true,
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": -3.016190242011163e-08,
+        "median": -3.0393436656339645e-08,
+        "minimum": -3.05753206086834e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.16103965044021606,
+        "median": 0.16103965044021606,
+        "minimum": 0.16103965044021606
+      },
+      "interpolated_grid_point_count": 130,
+      "interpolation_support_seconds": [
+        0.4103417838923633,
+        5912.842827479821
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 6013.62894031615,
+        "median": 5993.937217207509,
+        "minimum": 5912.842827479821
+      },
+      "maximum_absolute_float64_minus_online": 3.05753206086834e-08,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameters)",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 0.0002780730291032647,
+        "median": 0.0002779600855195904,
+        "minimum": 0.0002778163108432327
+      },
+      "solver_seconds": {
+        "maximum": 6013.620553234126,
+        "median": 5993.928789598518,
+        "minimum": 5912.834531923756
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.16103920304580022,
+        "median": 0.16103920281426598,
+        "minimum": 0.16103920263238203
+      },
+      "terminal_online_loss": {
+        "maximum": 0.16103923320770264,
+        "median": 0.16103923320770264,
+        "minimum": 0.16103923320770264
+      },
+      "total_elapsed_seconds": {
+        "maximum": 6023.865271665971,
+        "median": 6006.0116314070765,
+        "minimum": 5924.243636511732
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "completed_updates": 20000,
+      "coverage_complete": true,
+      "dataset": "snare_full",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": -4.242160400735884e-08,
+        "median": -5.828032267896077e-08,
+        "minimum": -7.936325580049086e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.09407249093055725,
+        "median": 0.09407249093055725,
+        "minimum": 0.09407249093055725
+      },
+      "interpolated_grid_point_count": 104,
+      "interpolation_support_seconds": [
+        0.7375067258253694,
+        1892.2973565342836
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 1997.854782262817,
+        "median": 1988.6233582511777,
+        "minimum": 1892.2973565342836
+      },
+      "maximum_absolute_float64_minus_online": 7.936325580049086e-08,
+      "method": "smoothing-fw",
+      "method_label": "FraMES",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 2.206807357120839,
+        "median": 2.002960303572889,
+        "minimum": 1.973220215779006
+      },
+      "solver_seconds": {
+        "maximum": 1997.8389251637273,
+        "median": 1988.6088703181595,
+        "minimum": 1892.2826116355136
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.09221623352202862,
+        "median": 0.09218825628063598,
+        "minimum": 0.09199649227967488
+      },
+      "terminal_online_loss": {
+        "maximum": 0.09221631288528442,
+        "median": 0.09218829870223999,
+        "minimum": 0.09199655055999756
+      },
+      "total_elapsed_seconds": {
+        "maximum": 2021.9125240342692,
+        "median": 2009.600356584997,
+        "minimum": 1917.3048477880657
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "completed_updates": 20000,
+      "coverage_complete": true,
+      "dataset": "snare_full",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": 8.004456819588057e-09,
+        "median": 4.766439909431597e-09,
+        "minimum": 4.717795043518436e-09
+      },
+      "initial_online_loss": {
+        "maximum": 0.09407249093055725,
+        "median": 0.09407249093055725,
+        "minimum": 0.09407249093055725
+      },
+      "interpolated_grid_point_count": 121,
+      "interpolation_support_seconds": [
+        0.7375470669940114,
+        8605.737174266833
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 8727.129023704561,
+        "median": 8622.381374165881,
+        "minimum": 8605.737174266833
+      },
+      "maximum_absolute_float64_minus_online": 8.004456819588057e-09,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh gradient)",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 1.0023871543596194,
+        "median": 1.0018767779305169,
+        "minimum": 0.9996626082730278
+      },
+      "solver_seconds": {
+        "maximum": 8727.113816151628,
+        "median": 8622.366771738045,
+        "minimum": 8605.722712260787
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.09313208341405343,
+        "median": 0.0931300004895032,
+        "minimum": 0.09312952036568323
+      },
+      "terminal_online_loss": {
+        "maximum": 0.09313207864761353,
+        "median": 0.09312999248504639,
+        "minimum": 0.09312951564788818
+      },
+      "total_elapsed_seconds": {
+        "maximum": 8748.650835626991,
+        "median": 8647.265636213124,
+        "minimum": 8628.00064930797
+      }
+    },
+    {
+      "common_logged_iterations": [
+        0,
+        1,
+        2,
+        5,
+        10,
+        20,
+        50,
+        100,
+        200,
+        500,
+        1000,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "completed_updates": 20000,
+      "coverage_complete": true,
+      "dataset": "snare_full",
+      "expected_seeds": [
+        710,
+        711,
+        712
+      ],
+      "float64_minus_online": {
+        "maximum": -1.2209822874975629e-08,
+        "median": -1.2419066885982488e-08,
+        "minimum": -1.2951946237738099e-08
+      },
+      "initial_online_loss": {
+        "maximum": 0.09407249093055725,
+        "median": 0.09407249093055725,
+        "minimum": 0.09407249093055725
+      },
+      "interpolated_grid_point_count": 135,
+      "interpolation_support_seconds": [
+        0.298766084946692,
+        13314.77253982611
+      ],
+      "last_feasible_output_seconds": {
+        "maximum": 13516.616316725616,
+        "median": 13376.19774417393,
+        "minimum": 13314.77253982611
+      },
+      "maximum_absolute_float64_minus_online": 1.2951946237738099e-08,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameters)",
+      "observed_seeds": [
+        710,
+        711,
+        712
+      ],
+      "relative_reduction_final_float64_percent": {
+        "maximum": 0.00036224988743408827,
+        "median": 0.00036168343134635806,
+        "minimum": 0.0003614610028670683
+      },
+      "solver_seconds": {
+        "maximum": 13516.60192486865,
+        "median": 13376.183420881862,
+        "minimum": 13314.758264427073
+      },
+      "terminal_float64_loss": {
+        "maximum": 0.09407215089518811,
+        "median": 0.0940721506859441,
+        "minimum": 0.09407215015306475
+      },
+      "terminal_online_loss": {
+        "maximum": 0.09407216310501099,
+        "median": 0.09407216310501099,
+        "minimum": 0.09407216310501099
+      },
+      "total_elapsed_seconds": {
+        "maximum": 13545.513349303976,
+        "median": 13401.065456424956,
+        "minimum": 13337.023363723885
+      }
+    }
+  ],
+  "included_run_count": 27,
+  "input_report": "/home/tony/gw_benchmark_experiment_20260927/reports/pair_sampling_preliminary_20261014/report.json",
+  "input_report_sha256": "4d1b9ce9112194482745d0400467572335ec78308f0e5ce6261007f86dfbb5fe",
+  "interpretation": "Independent sampled baseline output and last-rounded GW loss are separate. Neither loss establishes global optimality or stationarity. Fixed 1e-7 proximal accuracy has no claimed inexact-outer theorem.",
+  "matplotlib_version": "3.11.2",
+  "methods": {
+    "published-msbpg": {
+      "color": "#009E73",
+      "label": "MSBPG (theorem parameters)"
+    },
+    "published-smd": {
+      "color": "#D55E00",
+      "label": "Entropic SMD (fresh gradient)"
+    },
+    "smoothing-fw": {
+      "color": "#0072B2",
+      "label": "FraMES"
+    }
+  },
+  "numpy_version": "2.4.6",
+  "overall_campaign_status": "incomplete",
+  "precision": "Online full-objective checkpoint values are preserved. Hollow markers and endpoint tables use independent final FP64 evaluations; all discrepancies are retained.",
+  "run_bindings": [
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.15845191478729248,
+            "time_to_this_feasible_output": 1552.2261510248063
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.15845191478729248,
+            "time_to_this_feasible_output": 1552.2263289607363
+          }
+        }
+      ],
+      "metadata_sha256": "d0f444a084fbf168390fcf46402a36f73e626da9175bf4d3ba0d763f7ad30bd0",
+      "method": "smoothing-fw",
+      "seed": 710
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.1584080457687378,
+            "time_to_this_feasible_output": 1477.9328650361858
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.1584080457687378,
+            "time_to_this_feasible_output": 1477.9329193473095
+          }
+        }
+      ],
+      "metadata_sha256": "6d06efe1ea6d5990c12804a836219f63af51b2f80224f935c7d1b50ed92105a8",
+      "method": "smoothing-fw",
+      "seed": 711
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.1583285927772522,
+            "time_to_this_feasible_output": 1489.177580816904
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.1583285927772522,
+            "time_to_this_feasible_output": 1489.178049116861
+          }
+        }
+      ],
+      "metadata_sha256": "c4cd336f6d131f5084d02aea0cbb55d6e440190184fb78d04d5eaf7a54a4274a",
+      "method": "smoothing-fw",
+      "seed": 712
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.15781396627426147,
+            "time_to_this_feasible_output": 4329.187954630004
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.15781396627426147,
+            "time_to_this_feasible_output": 4329.1876538500655
+          }
+        }
+      ],
+      "metadata_sha256": "c995b852f9357123f5c52990f1f1152a2aff753de1364a5df804884eacfd5f04",
+      "method": "published-smd",
+      "seed": 710
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.1578105092048645,
+            "time_to_this_feasible_output": 4341.0287803650135
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.1578105092048645,
+            "time_to_this_feasible_output": 4341.028696230962
+          }
+        }
+      ],
+      "metadata_sha256": "77125464e1185e85537ea501a3ead95feebc812d11fc816d76471918aec2fa1f",
+      "method": "published-smd",
+      "seed": 711
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.15781062841415405,
+            "time_to_this_feasible_output": 4399.70811883267
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.15781062841415405,
+            "time_to_this_feasible_output": 4399.708067437634
+          }
+        }
+      ],
+      "metadata_sha256": "722639f8c68b20c6d878563b47dc87b73db160f9904b48e33efdb7b7c72eb412",
+      "method": "published-smd",
+      "seed": 712
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.16103923320770264,
+            "time_to_this_feasible_output": 5993.937100098585
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.16103923320770264,
+            "time_to_this_feasible_output": 5993.937217207509
+          }
+        }
+      ],
+      "metadata_sha256": "227d92087d2b4f14c78a050c546304487cbfec1553ccdb95d0dfaa31e48e6a84",
+      "method": "published-msbpg",
+      "seed": 710
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.16103923320770264,
+            "time_to_this_feasible_output": 6013.628909313236
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.16103923320770264,
+            "time_to_this_feasible_output": 6013.62894031615
+          }
+        }
+      ],
+      "metadata_sha256": "8188e48b34553d2d6b86dd61a6009894328f4c65a61e001c4d52fdb508ecb6a6",
+      "method": "published-msbpg",
+      "seed": 711
+    },
+    {
+      "dataset": "bmmc6224",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.16103923320770264,
+            "time_to_this_feasible_output": 5912.8428285676055
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.16103923320770264,
+            "time_to_this_feasible_output": 5912.842827479821
+          }
+        }
+      ],
+      "metadata_sha256": "38d9fbeffa7e84c6bc7b1bbe6791e2e49021c52e5fcc1388f70f946bd900d47f",
+      "method": "published-msbpg",
+      "seed": 712
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.03511369228363037,
+            "time_to_this_feasible_output": 8794.946646454278
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.03511369228363037,
+            "time_to_this_feasible_output": 8794.947706960607
+          }
+        }
+      ],
+      "metadata_sha256": "88fa046d07e410ce4086242c3c1f441ce416748989f35d307e452f021db75ce7",
+      "method": "smoothing-fw",
+      "seed": 710
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 1.9669532775878906e-06,
+            "time_to_this_feasible_output": 9290.68431435246
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 1.9669532775878906e-06,
+            "time_to_this_feasible_output": 9290.684329319512
+          }
+        }
+      ],
+      "metadata_sha256": "a0d9a051e6f2070508c495616db681fe032e3b5aff6f4fc0098ee05d35c64f0e",
+      "method": "smoothing-fw",
+      "seed": 711
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.03509318828582764,
+            "time_to_this_feasible_output": 10092.03803733841
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.03509318828582764,
+            "time_to_this_feasible_output": 10092.038058622391
+          }
+        }
+      ],
+      "metadata_sha256": "7c97548f290fcbcfc9d407a70a01d84757d678fff736d289646542000559a980",
+      "method": "smoothing-fw",
+      "seed": 712
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.043876588344573975,
+            "time_to_this_feasible_output": 12561.731281702756
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.043876588344573975,
+            "time_to_this_feasible_output": 12561.731304620742
+          }
+        }
+      ],
+      "metadata_sha256": "a5e4764d336f483a864078ea009d5ccd47a426a692d33bbbe6626e93f427ccb7",
+      "method": "published-smd",
+      "seed": 710
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.043876707553863525,
+            "time_to_this_feasible_output": 10542.00891749328
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.043876707553863525,
+            "time_to_this_feasible_output": 10542.008912552148
+          }
+        }
+      ],
+      "metadata_sha256": "d728edddc171167e35c48d82a902a115992589f104289b1c2be995ef1f8bbcb8",
+      "method": "published-smd",
+      "seed": 711
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.043876588344573975,
+            "time_to_this_feasible_output": 11928.946288736304
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.043876588344573975,
+            "time_to_this_feasible_output": 11928.94631930627
+          }
+        }
+      ],
+      "metadata_sha256": "39fb5e6264c4b9e17f8da72c8bfbbb3ac6b59c6e7af03b00a21574c9fb5b7837",
+      "method": "published-smd",
+      "seed": 712
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.04388350248336792,
+            "time_to_this_feasible_output": 13682.68892515148
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.04388350248336792,
+            "time_to_this_feasible_output": 13682.688950802549
+          }
+        }
+      ],
+      "metadata_sha256": "7ee2555605613fdbc188bfb856bcbdbcc208c41eb7b7ed5cd592ce8a7dd2245c",
+      "method": "published-msbpg",
+      "seed": 710
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.04388350248336792,
+            "time_to_this_feasible_output": 12321.645116571919
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.04388350248336792,
+            "time_to_this_feasible_output": 12321.645155501901
+          }
+        }
+      ],
+      "metadata_sha256": "2a758bee09cbac5261a148d30806d31c1375d8be6fbf1033f73112362f068b49",
+      "method": "published-msbpg",
+      "seed": 711
+    },
+    {
+      "dataset": "metric512_s1000",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 200000,
+          "previous": {
+            "iteration": 200000,
+            "rounded_loss": 0.04388350248336792,
+            "time_to_this_feasible_output": 12019.109304532874
+          },
+          "retained": {
+            "iteration": 200000,
+            "rounded_loss": 0.04388350248336792,
+            "time_to_this_feasible_output": 12019.109333300032
+          }
+        }
+      ],
+      "metadata_sha256": "76e63372ab113db96f48017a9bde7a34850342fb6689ee2f46d029d3836de239",
+      "method": "published-msbpg",
+      "seed": 712
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09218829870223999,
+            "time_to_this_feasible_output": 1997.8543311194517
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09218829870223999,
+            "time_to_this_feasible_output": 1997.854782262817
+          }
+        }
+      ],
+      "metadata_sha256": "1356c4c3e750045d049163b0bcd62013f37de3d0d6b43e84f1afc615cae8d374",
+      "method": "smoothing-fw",
+      "seed": 710
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09221631288528442,
+            "time_to_this_feasible_output": 1988.6233935621567
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09221631288528442,
+            "time_to_this_feasible_output": 1988.6233582511777
+          }
+        }
+      ],
+      "metadata_sha256": "8643a72ab4a7afae6f8531db059b52fc3d302f3767accb63f4f11b1817a0c66e",
+      "method": "smoothing-fw",
+      "seed": 711
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09199655055999756,
+            "time_to_this_feasible_output": 1892.2970990017056
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09199655055999756,
+            "time_to_this_feasible_output": 1892.2973565342836
+          }
+        }
+      ],
+      "metadata_sha256": "c273d9a9eee752c3661157ab67d2722835879d5bbcb3cc8a55ce62ce2df2f0d4",
+      "method": "smoothing-fw",
+      "seed": 712
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09313207864761353,
+            "time_to_this_feasible_output": 8727.128973150626
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09313207864761353,
+            "time_to_this_feasible_output": 8727.129023704561
+          }
+        }
+      ],
+      "metadata_sha256": "3fd1550867f1494649f70900045dbc36e9de1c8c56f685065e3e4d0d5f47674d",
+      "method": "published-smd",
+      "seed": 710
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09312999248504639,
+            "time_to_this_feasible_output": 8605.73712323478
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09312999248504639,
+            "time_to_this_feasible_output": 8605.737174266833
+          }
+        }
+      ],
+      "metadata_sha256": "b9251ed5324e30179a50f0158b18042877194a1dadf544d6a7ca197f49f7ea19",
+      "method": "published-smd",
+      "seed": 711
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09312951564788818,
+            "time_to_this_feasible_output": 8622.381431253627
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09312951564788818,
+            "time_to_this_feasible_output": 8622.381374165881
+          }
+        }
+      ],
+      "metadata_sha256": "acfb38a19f2014b62eda4f1d9180dd02c88746be5c7281f14a2771f61f527f77",
+      "method": "published-smd",
+      "seed": 712
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09407216310501099,
+            "time_to_this_feasible_output": 13314.772536152042
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09407216310501099,
+            "time_to_this_feasible_output": 13314.77253982611
+          }
+        }
+      ],
+      "metadata_sha256": "ca051498f6526138b3e0de4c004af45a55c438527bc7196b9d9d3c0272922655",
+      "method": "published-msbpg",
+      "seed": 710
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09407216310501099,
+            "time_to_this_feasible_output": 13376.197753158864
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09407216310501099,
+            "time_to_this_feasible_output": 13376.19774417393
+          }
+        }
+      ],
+      "metadata_sha256": "14b2b60ef4f5d3180a0067213553a71117bf520456a3f0f79984b593afb25e70",
+      "method": "published-msbpg",
+      "seed": 711
+    },
+    {
+      "dataset": "snare_full",
+      "duplicate_iteration_measurements": [
+        {
+          "iteration": 20000,
+          "previous": {
+            "iteration": 20000,
+            "rounded_loss": 0.09407216310501099,
+            "time_to_this_feasible_output": 13516.616950593656
+          },
+          "retained": {
+            "iteration": 20000,
+            "rounded_loss": 0.09407216310501099,
+            "time_to_this_feasible_output": 13516.616316725616
+          }
+        }
+      ],
+      "metadata_sha256": "c9a70f5b161cc473d89abc2b8ae19a644bf06512c301dde76ff0c78588b313b4",
+      "method": "published-msbpg",
+      "seed": 712
+    }
+  ],
+  "scope": "Fixed-prefactor comparison: three stochastic methods use the same pair-sampling oracle and pair budget. Real-data prefactors were previously selected using Rademacher sketches; no retuning or loss-based stopping. This is not a ranking of independently retuned best configurations.",
+  "script_sha256": "5909ed467a64ef5645cd85a5415b7f2903fcbd550757a6be90d54272e1c67d02",
+  "seeds": [
+    710,
+    711,
+    712
+  ],
+  "status": "complete_for_three_included_datasets",
+  "time_interpolation": "Piecewise linear at the union of logged dataset times, restricted to the intersection of the three seed supports separately for each method; no extrapolation.",
+  "uncertainty": "Median and full min-max range across exactly three stochastic seeds; not a confidence interval."
+}

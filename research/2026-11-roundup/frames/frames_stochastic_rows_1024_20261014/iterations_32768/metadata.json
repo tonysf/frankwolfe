@@ -1,0 +1,160 @@
+{
+  "dimension": 1024,
+  "steps": 32768,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "problem": "min_{||x||_1<=1} ||A x-B||^2 - (5/8)*(u^T x)^2 + indicator_R_+^1024(x)",
+  "data": {
+    "matrix_shape": [
+      1024,
+      1024
+    ],
+    "matrix": "A=H_1024 diag(c)/sqrt(2048), H is the Sylvester Hadamard matrix",
+    "target": "B=A a; a_j=1/32 on first64, -3/128 on next64, 1/128 otherwise",
+    "column_signs": "c=2*default_rng(20261014).integers(0,2,1024)-1; sampled once, then fixed",
+    "data_seed": 20261014,
+    "identity": "A^T A=I/2; row norm squared=1/2"
+  },
+  "u": "Alternating +1/8,-1/8 on first64 entries, zero elsewhere",
+  "nonconvexity": "Hessian I-(5/4)uu^T has eigenvalues -1/4 and 1; feasible negative curvature at the uniform first64 stationary point",
+  "source_manuscript": "/home/tony/gw_benchmark_experiment_20260927/provenance/manuscript.txt",
+  "source_sha256": "f9637a3627ece8b29a851be28eae5bdadfa39f143bbab6b9c7912c0dc2afea5b",
+  "source_theorem": "Proposition 2.11 and pointwise Lemma 2.2 transfer bounds",
+  "schedules": {
+    "gamma": "(k+1)^(-3/4)",
+    "beta": "(k+1)^(-1/4)",
+    "alpha": "(k+1)^(-1/2)"
+  },
+  "prefactors": "All one; no tuning, no warm start, no schedule shift",
+  "initialization": {
+    "distribution": "x0=-e_J, J uniform on all1024 coordinates; m0=first sampled gradient",
+    "initialization_rng": "default_rng(SeedSequence([20261014, seed, 1024]))",
+    "oracle_rng": "default_rng(seed).integers(1024,size=32768)",
+    "independence": "Initialization and subsequent oracle sampling use separate random streams",
+    "initial_coordinates_zero_based": [
+      889,
+      774,
+      280,
+      566,
+      11,
+      564,
+      682,
+      2
+    ],
+    "feasibility": "||x0||_1=1, so x0 is in C; dist_D(x0)=1 is allowed",
+    "theorem_application": "Condition on the realized x0. The same uniform constants also bound averages over initialization randomness."
+  },
+  "oracle": {
+    "sample": "q_i(x)=2*1024*(A_i x-B_i)*A_i^T-(5/4)*(u^T x)u, i uniform among rows",
+    "finite_sum": "f_i=1024*(A_i x-B_i)^2-(5/8)*(u^T x)^2; f=(1/1024) sum_i f_i",
+    "noise": "Only IID uniform row indices; no additive noise, no block selection",
+    "conditional_mean": "grad f(x)=x-a-(5/4)*(u^T x)u",
+    "conditional_variance": "1023*||x-a||^2",
+    "variance_at_each_original_minimum": 123.87890625
+  },
+  "constants": {
+    "global_gradient_lipschitz": 1.0,
+    "component_gradient_lipschitz_bound": 1024.0,
+    "oracle_variance_bound": 1242.78515625,
+    "gradient_bound_on_C": 1.1021995055342748,
+    "oracle_second_moment_bound": 1244.0,
+    "diameter_C": 2.0,
+    "operator_norm_T": 1.0,
+    "regularity_kappa": 1.0,
+    "objective_lower_bound_on_C": -0.009765625,
+    "objective_upper_bound_on_C": 0.607421875
+  },
+  "gap_definition": "True gradient of f + ||x_-||^2/(2beta), LMO over l1ball; never use noisy momentum as the reporting gradient",
+  "original_gap_definition": "H=<grad f(x),x>+max(0,-min grad f(x)); signed off D; plot average absolute magnitude",
+  "averaging": "Every pre-update x_0 through x_(N-1), separately per seed, then average seeds",
+  "log_plot_zero_handling": "Exactly zero entries, if any, are omitted, never replaced by positive data",
+  "plotted_reference": {
+    "exponent": -0.3333333333333333,
+    "meaning": "Requested comparison slope, not a claimed theorem bound",
+    "anchor": "Each mean curve at N=1024"
+  },
+  "guarantees": {
+    "literal_equation65": "N^-1 sum E G_k=O(N^-1/4)",
+    "output_rule": "Conditional on each fixed x0, k_n(x0) in argmin_{ceil(n/2)<=k<=n} E[G_k|x0]; expectation over oracle draws, not a pathwise argmin",
+    "cumulative_original_diagnostics": "Derived from pathwise transfers: avg_delta<=M avg_beta+sqrt(avg_beta avg_G), avg_abs_H<=avg_G+M avg_delta; hence expectation O(N^-1/4)",
+    "long_horizon_output": "Only cumulative certificates reported; no claim of computing exact long-horizon expectation-selected output",
+    "output_computation": "The expectation-defined index is left formal. Binary-tree checks from the old oracle are inapplicable: row histories branch1024ways. Report cumulative Eq65, not a per-run minimum or last iterate substitute.",
+    "limitations": "No monotonicity or last-iterate rate claimed. Empirical finite-seed trends do not prove the theorem."
+  },
+  "checks": [
+    "Feasible negative curvature and analytic stationary-point KKT checks",
+    "Orthant changes the stationary points relative to the l1 ball alone",
+    "Directional finite-difference gradient check",
+    "Direct Ax-B loss and full-gradient agreement with the orthogonal-design formula",
+    "Exact all-row oracle expectation, variance, and second-moment checks",
+    "Finite-sum normalization and nonzero row-sampling variance at a constrained minimum",
+    "Exact smoothed stationary branch: zero gap, nonzero feasibility, signed original gap",
+    "Exact l1 LMO and orthant projection; pointwise transfer inequalities",
+    "All iterates remain in C and all true smoothed gaps are nonnegative",
+    "Pointwise and cumulative transfer inequalities hold for all recorded iterates",
+    "Random starts are in C and have orthant violation exactly one"
+  ],
+  "summary": [
+    {
+      "updates": 64,
+      "mean_cumulative_true_gap": 0.4979083702153833,
+      "seed_standard_error_true_gap": 0.00981487871203922,
+      "mean_cumulative_abs_original_gap": 0.22177727576842882,
+      "mean_cumulative_feasibility": 0.1407905273991537
+    },
+    {
+      "updates": 256,
+      "mean_cumulative_true_gap": 0.2438668086303898,
+      "seed_standard_error_true_gap": 0.0036857811317860573,
+      "mean_cumulative_abs_original_gap": 0.10703082339313258,
+      "mean_cumulative_feasibility": 0.0762056395270094
+    },
+    {
+      "updates": 1024,
+      "mean_cumulative_true_gap": 0.1261635562889699,
+      "seed_standard_error_true_gap": 0.0018053594764110789,
+      "mean_cumulative_abs_original_gap": 0.062441451967639526,
+      "mean_cumulative_feasibility": 0.037321481471236616
+    },
+    {
+      "updates": 4096,
+      "mean_cumulative_true_gap": 0.07195597320673389,
+      "seed_standard_error_true_gap": 0.0007012511732873109,
+      "mean_cumulative_abs_original_gap": 0.0427548378682345,
+      "mean_cumulative_feasibility": 0.01810632254017741
+    },
+    {
+      "updates": 16384,
+      "mean_cumulative_true_gap": 0.042823477181292716,
+      "seed_standard_error_true_gap": 0.0006330335644732033,
+      "mean_cumulative_abs_original_gap": 0.032517701705317356,
+      "mean_cumulative_feasibility": 0.00912510132598192
+    },
+    {
+      "updates": 32768,
+      "mean_cumulative_true_gap": 0.03420032814757426,
+      "seed_standard_error_true_gap": 0.0003496679946314117,
+      "mean_cumulative_abs_original_gap": 0.028670962862057246,
+      "mean_cumulative_feasibility": 0.006720847714753111
+    }
+  ],
+  "optimizer_seconds_including_certificates": 9.745775874936953,
+  "python_executable": "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+  "numpy_version": "2.4.6",
+  "matplotlib_version": "3.11.2",
+  "draft_caveats": [
+    "Use positive penalty gradient (x-proj_D(x))/beta; Algorithm1 printed sign is opposite",
+    "Use fixed-schedule Proposition2.11, not adaptive Algorithm1",
+    "Raw oracle unbiasedness and bounded variance are explicit here; draft leaves hypotheses incomplete",
+    "Common Lf=5/4 safely bounds both smoothness and gradient magnitude in the draft's notation"
+  ],
+  "total_seconds": 13.766686412040144
+}

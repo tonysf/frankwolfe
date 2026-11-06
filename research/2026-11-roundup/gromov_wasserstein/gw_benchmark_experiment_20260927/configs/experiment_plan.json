@@ -1,0 +1,103 @@
+{
+  "protocol_date": "2026-09-25",
+  "primary_gpu_host": "ruche",
+  "partition": "gpua100",
+  "account_verified": "fwllm",
+  "gpus_per_run": 1,
+  "cpu_correctness_dtype": "float64",
+  "gpu_dtype": "float32",
+  "AMP": false,
+  "matmul_policy": "highest; TF32 disabled",
+  "development_problem_seeds": [
+    1000,
+    1001,
+    1002
+  ],
+  "heldout_problem_seeds": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004
+  ],
+  "development_stochastic_seeds": [
+    0,
+    1,
+    2
+  ],
+  "heldout_stochastic_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "synthetic_noise": [
+    0,
+    0.1
+  ],
+  "stage_B_sizes": [
+    128,
+    512
+  ],
+  "stage_C_sizes": {
+    "synthetic": 512,
+    "bmmc": 1000
+  },
+  "stage_D_sizes": {
+    "synthetic": [
+      2048,
+      8192
+    ],
+    "bmmc": [
+      3000,
+      6224
+    ]
+  },
+  "practical_solver_budgets_seconds": [
+    30,
+    300
+  ],
+  "elapsed_solver_checkpoint_grid_seconds": [
+    1,
+    3,
+    10,
+    30,
+    100,
+    300
+  ],
+  "tuning_candidates_per_tunable_method": 12,
+  "candidate_configurations_status": "frozen in configs/stage_c_campaign.json and configs/stage_c_manifests/tuning.json; tuning array1961478 running",
+  "oracle_batches": [
+    8,
+    32,
+    128
+  ],
+  "oracle_evaluations_per_setting": 100,
+  "oracle_selection_status": "trace_sketch batch128 frozen for initial development pilot; A100 cost/error gate not passed",
+  "heldout_evaluation_started": false,
+  "stage_D_gate": "correct kernels, useful oracle tradeoff, competitive rounded output on Stage C",
+  "replication_rule": "No additional seeds without a prospective recorded amendment.",
+  "stage_B_initial_A100_pilot": {
+    "problem_seed": 1000,
+    "sizes": [
+      128,
+      512
+    ],
+    "stochastic_seed": 0,
+    "outer_steps": 200,
+    "m_mu0": 1,
+    "oracles": [
+      "exact",
+      "sketch_q8",
+      "sketch_q32",
+      "sketch_q128"
+    ],
+    "scope": "initial diagnostic candidates; not selected final configurations or a replicated performance study"
+  },
+  "execution_note": "Practical comparison and theory repeats use independent one-A100 jobs; no distributed optimization.",
+  "development_tuning_budget_seconds": 10,
+  "stage_C_status": "initial18-run pilot complete; full1164-run tuning campaign executing; final selections and held-out comparisons pending",
+  "stage_D_status": "not started: useful stochastic cost/error tradeoff not established",
+  "last_status_snapshot_utc": "2026-09-27T19:34:20.412469+00:00"
+}

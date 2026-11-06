@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "scope": "User-authorized SNARE-seq paired RNA/ATAC extension and canonical BMMC1000 independent tuning control; FAUST deferred",
+  "methods": [
+    "smoothing-fw",
+    "stochastic-kl-momentum"
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "development_seeds": [
+    10,
+    11,
+    12
+  ],
+  "final_seeds": [
+    300,
+    301,
+    302,
+    303,
+    304
+  ],
+  "budgets": {
+    "tuning": 60,
+    "final": 300
+  },
+  "shared": {
+    "oracle": "sketch",
+    "batch": 128,
+    "rho0": 0.3,
+    "beta": 0.5,
+    "first_gradient_reuse": true
+  },
+  "fw_fixed_exponents": {
+    "alpha": 0.75,
+    "delta": 0.25
+  },
+  "kl_inner_cap": 1000,
+  "candidates": {
+    "smoothing-fw": {
+      "c00": {
+        "gamma0": 0.1,
+        "mu_scale": 0.1
+      },
+      "c01": {
+        "gamma0": 0.1,
+        "mu_scale": 1.0
+      },
+      "c02": {
+        "gamma0": 0.1,
+        "mu_scale": 10.0
+      },
+      "c03": {
+        "gamma0": 0.1,
+        "mu_scale": 100.0
+      },
+      "c04": {
+        "gamma0": 0.3,
+        "mu_scale": 0.1
+      },
+      "c05": {
+        "gamma0": 0.3,
+        "mu_scale": 1.0
+      },
+      "c06": {
+        "gamma0": 0.3,
+        "mu_scale": 10.0
+      },
+      "c07": {
+        "gamma0": 0.3,
+        "mu_scale": 100.0
+      },
+      "c08": {
+        "gamma0": 1.0,
+        "mu_scale": 0.1
+      },
+      "c09": {
+        "gamma0": 1.0,
+        "mu_scale": 1.0
+      },
+      "c10": {
+        "gamma0": 1.0,
+        "mu_scale": 10.0
+      },
+      "c11": {
+        "gamma0": 1.0,
+        "mu_scale": 100.0
+      }
+    },
+    "stochastic-kl-momentum": {
+      "c00": {
+        "eta": 0.1,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c01": {
+        "eta": 0.1,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c02": {
+        "eta": 1.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c03": {
+        "eta": 1.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c04": {
+        "eta": 3.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c05": {
+        "eta": 3.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c06": {
+        "eta": 10.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c07": {
+        "eta": 10.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c08": {
+        "eta": 30.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c09": {
+        "eta": 30.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c10": {
+        "eta": 100.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c11": {
+        "eta": 100.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      }
+    }
+  },
+  "selection_rule": "Per(instance,method), minimum median final float64 rounded loss over all six development(start,seed) cells; any invalid output disqualifies candidate; exact-score ties by candidate ID; no fallback if all ineligible.",
+  "task_counts": {
+    "tuning": 36,
+    "final": 30
+  },
+  "run_counts": {
+    "tuning": 432,
+    "final": 60
+  },
+  "nominal_solver_gpu_hours": 12.2,
+  "max_concurrent_campaign_gpus": 3,
+  "parameter_policy": "Independently tune momentum-KL directly; supersedes legacy Stage C inheritance text in frozen runner metadata.",
+  "pilot_excluded_from_final_statistics": true,
+  "failures": "Preserve scientific/numerical failures; missing/infrastructure/provenance failures block selection. Inner stopping failures remain visible but do not by themselves invalidate a rounded output.",
+  "pairing": "Each(instance,start,seed) final pair runs sequentially in a fresh process per method within one GPU allocation; alternate method order by task and cell. Shared instance/init/oracle seeds.",
+  "interpretation": "BMMC canonical independent subsets and SNARE paired data; two SNARE sizes are nested, with costs separately normalized per instance. Optimizer seeds are not independent biological samples. Equal solver time is not equal oracle budget.",
+  "loss_target_fractions": [
+    0.99,
+    0.97,
+    0.95,
+    0.9
+  ],
+  "enabled_instance_ids": [
+    "bmmc1000",
+    "snare3000",
+    "snare_full"
+  ],
+  "runner_filename": "run_benchmark.py",
+  "base_runtime_commit": "b5851980646be55a148b083a89cfbf6153dac77e"
+}

@@ -1,0 +1,71 @@
+{
+  "hostname": "ruche-gpu16.cluster",
+  "platform": "Linux-4.18.0-553.144.1.el8_10.x86_64-x86_64-with-glibc2.28",
+  "python": "3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]",
+  "python_executable": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/bin/python",
+  "cpu": {
+    "returncode": 0,
+    "stdout": "Architecture:        x86_64\nCPU op-mode(s):      32-bit, 64-bit\nByte Order:          Little Endian\nCPU(s):              32\nOn-line CPU(s) list: 0-31\nThread(s) per core:  1\nCore(s) per socket:  16\nSocket(s):           2\nNUMA node(s):        2\nVendor ID:           GenuineIntel\nCPU family:          6\nModel:               106\nModel name:          Intel(R) Xeon(R) Gold 6346 CPU @ 3.10GHz\nStepping:            6\nCPU MHz:             3100.000\nBogoMIPS:            6200.00\nVirtualization:      VT-x\nL1d cache:           48K\nL1i cache:           32K\nL2 cache:            1280K\nL3 cache:            36864K\nNUMA node0 CPU(s):   0-15\nNUMA node1 CPU(s):   16-31\nFlags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 invpcid_single intel_ppin ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect wbnoinvd dtherm ida arat pln pts hwp_epp avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid fsrm md_clear pconfig flush_l1d arch_capabilities\n",
+    "stderr": ""
+  },
+  "device": "cuda",
+  "gpu": {
+    "name": "NVIDIA A100-SXM4-40GB",
+    "total_memory_bytes": 42404806656,
+    "capability": [
+      8,
+      0
+    ],
+    "visible_count": 1,
+    "driver": {
+      "returncode": 0,
+      "stdout": "name, driver_version, memory.total [MiB]\nNVIDIA A100-SXM4-40GB, 580.167.08, 40960 MiB\n",
+      "stderr": ""
+    }
+  },
+  "torch_cuda_runtime": "12.1",
+  "torch_version": "2.5.1+cu121",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.5.1+cu121",
+    "pytest": "9.1.1",
+    "POT": "0.9.6.post1"
+  },
+  "threads": 1,
+  "interop_threads": 1,
+  "deterministic_algorithms": true,
+  "matmul_precision": "highest",
+  "allow_tf32": false,
+  "AMP": false,
+  "cpu_validation_dtype": "float64",
+  "gpu_experiment_dtype": "float32",
+  "git": {
+    "returncode": 0,
+    "stdout": "ace667162dd3c82da2ff9712301f0019c9f63715\n",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "source_sha256": {
+    "capture_environment.py": "1d18f419dca0f910a9cf5b54761ba08294b5d782d9c4d70950594f41e27d0544",
+    "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+    "make_instances.py": "ecf425940b3c6ac5f77fe37b93a12c75ec052cddc5c03ab352c889f06c4f3903",
+    "measurements.py": "8035686c69fdf3252f33af542154e5677666f03505406c1397f501d5fb64d475",
+    "profile_components.py": "bc759b7dc773621fd41c6d36697698efadebb4c8982bf134b917d7826199fc6a",
+    "run_benchmark.py": "cb5cce6bab1e0fe9122b7476f904cfaadbe639740ec563764e4a2c1bd9a38b2a",
+    "run_campaign_shard.py": "a629c2ca51e2c0f192402fa09db929ba4db3440ae898a9e1ad72596142a7a014",
+    "smoothing_fw.py": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6"
+  },
+  "job_id": "1976567",
+  "cuda_visible_devices": "0",
+  "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  }
+}

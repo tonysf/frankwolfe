@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Higher-qubit QPT evidence audit</title>
+<style>
+body {
+  font-family: "Liberation Sans", Arial, sans-serif;
+  color: #172033;
+  font-size: 9.7pt;
+  line-height: 1.38;
+  max-width: 178mm;
+  margin: 0 auto;
+}
+h2 {
+  color: #174f7a;
+  font-size: 15pt;
+  margin: 7mm 0 3mm 0;
+  border-bottom: 0.7pt solid #b8c9d8;
+  padding-bottom: 1.4mm;
+}
+h3 {
+  color: #245d87;
+  font-size: 11.5pt;
+  margin: 5mm 0 2mm 0;
+}
+p { margin: 0 0 2.7mm 0; }
+ul, ol { margin: 1.5mm 0 3.5mm 5mm; padding-left: 5mm; }
+li { margin: 0 0 1.2mm 0; }
+code {
+  font-family: "Liberation Mono", monospace;
+  font-size: 8.3pt;
+  background: #eef3f7;
+  color: #173f5f;
+  padding: 0.25mm 0.6mm;
+}
+.meta {
+  background: #eef6fb;
+  border-left: 3pt solid #2878b5;
+  padding: 4mm 4.5mm;
+  margin: 0 0 5mm 0;
+}
+.title {
+  font-size: 21pt;
+  color: #102a43;
+  font-weight: bold;
+}
+.subtitle {
+  font-size: 11pt;
+  color: #3b5870;
+}
+.verdict {
+  background: #edf8f0;
+  border: 0.8pt solid #91b99d;
+  border-left: 3pt solid #2c8748;
+  padding: 4mm;
+  margin: 4mm 0;
+}
+.warning {
+  background: #fff8e7;
+  border: 0.8pt solid #dfc27f;
+  border-left: 3pt solid #d89b21;
+  padding: 3.5mm 4mm;
+  margin: 4mm 0;
+}
+.callout {
+  background: #f5f8fa;
+  border: 0.7pt solid #ccd8e2;
+  padding: 3.5mm 4mm;
+  margin: 3.5mm 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2mm 0 4mm 0;
+  font-size: 7.7pt;
+  page-break-inside: avoid;
+}
+th {
+  background: #215f8f;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 1.7mm 1.8mm;
+  border: 0.5pt solid #174f7a;
+}
+td {
+  padding: 1.5mm 1.8mm;
+  border: 0.5pt solid #b9c8d4;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #f4f7f9; }
+.num { text-align: right; white-space: nowrap; }
+.center { text-align: center; }
+.small { color: #516575; font-size: 8.4pt; }
+.status {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.retain { color: #246b39; }
+.relabel { color: #8a5a00; }
+.rerun { color: #8a341f; }
+.exclude { color: #8b1f35; }
+.pagebreak { page-break-before: always; }
+.keep { page-break-inside: avoid; }
+.path {
+  font-family: "Liberation Mono", monospace;
+  font-size: 7.5pt;
+  word-break: break-all;
+}
+.footer-note {
+  color: #566b7b;
+  font-size: 8pt;
+  border-top: 0.7pt solid #b8c9d8;
+  margin-top: 6mm;
+  padding-top: 2.5mm;
+}
+</style>
+</head>
+<body>
+<div>&nbsp;</div>
+<div class="meta">
+  <span class="title">Higher-qubit QPT evidence audit</span><br><br>
+  <span class="subtitle">What survives, what must be relabeled, and what must be rerun</span><br>
+  <strong>Date:</strong> 4 October 2026<br>
+  <strong>Repository:</strong> <code>stochastic-frames</code> at
+  <code>d62fcf192f27d8fb207ce61a1c466fc5059a7e1f</code>
+</div>
+
+<div class="verdict">
+  <strong>Decision: the previous higher-qubit work is not worthless.</strong>
+  It remains valid evidence for a physically meaningful local-product-input,
+  local-Pauli QPT benchmark. What does not survive is its attribution as a
+  reproduction of Quiroga’s reduced global-probe experiment, or the transfer
+  of its tuned constants and performance claims to that different sensing
+  geometry.
+</div>
+
+<div class="warning">
+  <strong>Main consequence.</strong> The old engineering and scaling work is
+  retained. The old empirical curves are retained and relabeled. Any headline
+  claim about FRAMES versus Quiroga under Quiroga-style sensing must use the
+  corrected campaign or be rerun. No historical artifact should be deleted.
+</div>
+
+<h2>1. Scope and audit method</h2>
+
+<p>This audit reviewed the active repository, Git history, documented sensing
+operators, tests, all named local QPT result trees, four shareable QPT PDFs,
+the verified September snapshot, and a bounded read-only inventory of the
+recorded Ruche result tree. No optimization was run and no historical artifact
+was modified or deleted.</p>
+
+<ul>
+  <li>The active repository was clean and synchronized with
+      <code>origin/stochastic-frames</code>.</li>
+  <li>The legacy numerical implementation was checked against commit
+      <code>423990f</code>; its core structured-data, operator, generator and
+      GPU-runner files are unchanged at current <code>HEAD</code>.</li>
+  <li>The Quiroga backend was added separately in <code>fe68eb4</code>,
+      hardened in <code>74c968a</code>, and given a reproducible campaign
+      runner in <code>d62fcf1</code>.</li>
+  <li>Classification means: <span class="status retain">RETAIN</span> as-is;
+      <span class="status relabel">RELABEL</span> without discarding;
+      <span class="status rerun">RERUN</span> before making the target claim;
+      <span class="status exclude">EXCLUDE</span> from the primary comparison
+      while preserving the record.</li>
+</ul>
+
+<h2>2. The two experiments are genuinely different</h2>
+
+<table>
+<thead><tr>
+  <th>Feature</th>
+  <th>Previous higher-qubit benchmark</th>
+  <th>Current Quiroga-style benchmark</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><strong>Input states</strong></td>
+  <td>4<sup>n</sup> product states from
+      {|0⟩, |1⟩, |+⟩, |+i⟩}<sup>⊗n</sup></td>
+  <td>d<sup>2</sup>=4<sup>n</sup> global states: basis states plus all pairwise
+      real and imaginary superpositions</td>
+</tr>
+<tr>
+  <td><strong>Measurement</strong></td>
+  <td>3<sup>n</sup> local X/Y/Z settings with 2<sup>n</sup> outcomes</td>
+  <td>One generalized 2d-outcome POVM</td>
+</tr>
+<tr>
+  <td><strong>Rows</strong></td>
+  <td>24<sup>n</sup>; 331,776 at n=4 and 110,075,314,176 at n=8</td>
+  <td>2d<sup>3</sup>=2·8<sup>n</sup>; 8,192 at n=4 and 33,554,432 at n=8</td>
+</tr>
+<tr>
+  <td><strong>Coordinates</strong></td>
+  <td>Normalized [I, X, −iY, Z] tensor basis</td>
+  <td>Choi/matrix-unit coordinates</td>
+</tr>
+<tr>
+  <td><strong>Loss normalization</strong></td>
+  <td>Half <em>mean</em> squared residual</td>
+  <td>Quiroga’s printed rule uses half <em>sum</em> squared residual</td>
+</tr>
+<tr>
+  <td><strong>Typical data audited</strong></td>
+  <td>Fixed row-indexed additive Gaussian noise, commonly σ=0.05</td>
+  <td>Current n=2/n=4 campaign is noiseless</td>
+</tr>
+<tr>
+  <td><strong>Physical scope</strong></td>
+  <td>Conventional full QPT with product preparation and local readout</td>
+  <td>Reduced low-rank/near-unitary design; probes are already partly
+      entangled at n=2</td>
+</tr>
+</tbody>
+</table>
+
+<p>The objective-scale difference matters directly. The corrected campaign maps
+the mean-loss FRAMES convention to a fixed Quiroga TP weight using
+<strong>β=m/(2λ)</strong>. Old β, λ, step sizes, batch sizes and schedules
+therefore cannot be transferred numerically.</p>
+
+<p>The geometry also changed. At n=4, the measured informative RMS scale of the
+reduced POVM is about 0.0023, versus a local-Pauli probability standard
+deviation around 0.058. The reduced design is much less well conditioned for
+this optimizer. Its failure is not explained by “fewer rows” alone.</p>
+
+<h3>Physical meaning</h3>
+
+<p>The old sensing matrix is not an arbitrary or unphysical random matrix. It
+comes from valid product input states and local Pauli outcome projectors. Its
+results remain physically interpretable as a simulated local-Pauli QPT
+protocol. The Gaussian observation model is synthetic and can yield values
+outside [0,1], so it is not literal finite-shot data.</p>
+
+<p>The new design is mathematically physical—the POVM is positive and complete—
+but the repository models its probabilities rather than a device circuit.
+Preparing its global probes and implementing the generalized POVM would
+require nonlocal operations and possibly an ancilla dilation. Its 2d-outcome
+POVM is informationally complete for pure states, not generally for arbitrary
+high-rank mixed outputs.</p>
+
+<div class="callout">
+  <strong>Wording discipline:</strong> the current n=4 campaign is a documented
+  <em>Quiroga-style higher-dimensional extension</em>, not an exact published
+  n=4 reproduction. Quiroga does not provide that experiment, the POVM
+  constants, the adaptive-step proportionality constant, or the initialization
+  normalization.
+</div>
+
+<h2 class="pagebreak">3. Campaign-by-campaign disposition</h2>
+
+<table>
+<thead><tr>
+  <th>Campaign or evidence family</th>
+  <th>What was actually run</th>
+  <th>Disposition</th>
+  <th>Permitted claim</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td>On-demand/scaling campaigns through n=10</td>
+  <td>Local-Pauli/QPT_BFW data, structured and product-state backends,
+      synthetic noise, GPU profiling</td>
+  <td><span class="status retain">RETAIN</span><br>
+      <span class="status relabel">RELABEL</span></td>
+  <td>Valid memory, throughput, storage, backend-equivalence and
+      local-Pauli empirical findings</td>
+</tr>
+<tr>
+  <td>n=8 fidelity-99 and coauthor package</td>
+  <td>One noisy local-Pauli channel/seed; verified factor fidelity 0.9900265</td>
+  <td><span class="status relabel">RELABEL</span></td>
+  <td>“99% factor-fidelity target reached on one noisy local-Pauli instance,”
+      not exact recovery and not Quiroga sensing</td>
+</tr>
+<tr>
+  <td>Exponent comparison, n=8 scale tuning and 200k continuation</td>
+  <td>Controlled schedule/scale studies and exact continuation on the same
+      local-Pauli family</td>
+  <td><span class="status relabel">RELABEL</span></td>
+  <td>Valid within-design optimization and engineering evidence; no
+      cross-design hyperparameter transfer</td>
+</tr>
+<tr>
+  <td>n=8 FRAMES versus projected momentum-SGD</td>
+  <td>Complete held-out seeds 1–3 on paired local-Pauli minibatches</td>
+  <td><span class="status relabel">RELABEL</span><br>
+      <span class="status rerun">RERUN if primary</span></td>
+  <td>Valid local-Pauli baseline. It cannot serve as the momentum baseline for
+      the global-probe experiment without rerunning there.</td>
+</tr>
+<tr>
+  <td>n=8 MiFGD/Nesterov campaigns</td>
+  <td>Local-Pauli calibration; no scientifically promising admissible setting
+      in the expanded penalty tuning</td>
+  <td><span class="status exclude">EXCLUDE primary</span></td>
+  <td>Retain as negative local-Pauli calibration evidence. Kim-style MiFGD is
+      not the main Quiroga comparison.</td>
+</tr>
+<tr>
+  <td>n=8 “Quiroga adaFGD” campaign</td>
+  <td>Local-Pauli sensing plus a factor-action Frobenius proxy replacing the
+      dense matrix spectral numerator; no admissible candidate</td>
+  <td><span class="status exclude">EXCLUDE primary</span></td>
+  <td>Algorithmic stress test only. It is neither Quiroga sensing nor the
+      literal printed adaptive numerator.</td>
+</tr>
+<tr>
+  <td>n=4 “exact Quiroga” campaign</td>
+  <td>Literal dense adaptive numerator and corrected summed-loss mapping, but
+      still evaluated on an 8,192-row subset of local-Pauli data</td>
+  <td><span class="status retain">RETAIN audit</span><br>
+      <span class="status exclude">EXCLUDE primary</span></td>
+  <td>The formula/finite-difference audit is valid. The empirical result is not
+      a Quiroga-sensing result and is superseded by the current campaign.</td>
+</tr>
+<tr>
+  <td>Current n=2 and n=4 campaign at d62fcf1</td>
+  <td>Global probes, generalized 2d POVM, shared observations and
+      initialization; printed adaFGD, FRAMES and Armijo controls</td>
+  <td><span class="status retain">RETAIN primary</span></td>
+  <td>Current comparison evidence, with the published-constant and n=4
+      extension qualifications stated explicitly</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Important recovered remote evidence</h3>
+
+<ul>
+  <li>The momentum campaign completed. FRAMES reached fidelities
+      0.99216, 0.98973 and 0.98919 on held-out local-Pauli sampling seeds;
+      projected momentum-SGD remained near 8.73×10<sup>−6</sup>.</li>
+  <li>The first MiFGD grid enforced TP but remained near
+      7.6×10<sup>−6</sup> fidelity; the coupled penalty retry had no
+      candidate meeting its 0.1-fidelity gate.</li>
+  <li>The n=8 proxy-adaFGD grid had no admissible candidate and retained all
+      numerical failures.</li>
+  <li>The n=4 legacy-sensing summed-loss retry had no scientifically promising
+      candidate; its formulation audit nevertheless passed.</li>
+</ul>
+
+<h2>4. What the old “recovery” results mean under the current gate</h2>
+
+<p>The present noiseless gate requires fidelity ≥0.99, RMSE ≤10<sup>−6</sup>
+and normalized TP ≤10<sup>−3</sup>, where normalized TP is
+||T(UU†)−I||<sub>F</sub>/√d. The old noisy campaigns were not designed around
+this gate and generally did not record its RMSE. Applying it retrospectively
+is therefore a diagnostic, not a fair restatement of their original goal.</p>
+
+<table>
+<thead><tr>
+  <th>Legacy highlighted endpoint</th>
+  <th class="num">Fidelity</th>
+  <th class="num">Normalized TP</th>
+  <th>Current-gate interpretation</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td>n=4 selected local-Pauli run</td>
+  <td class="num">0.996561</td>
+  <td class="num">0.000546</td>
+  <td>RMSE missing; cannot certify a full pass</td>
+</tr>
+<tr>
+  <td>n=5 selected local-Pauli run</td>
+  <td class="num">0.906799</td>
+  <td class="num">0.01369</td>
+  <td>Fails fidelity and TP</td>
+</tr>
+<tr>
+  <td>n=8 original “99%” endpoint</td>
+  <td class="num">0.990027</td>
+  <td class="num">0.01244</td>
+  <td>Real 99% factor overlap; TP is about 12.4× above the gate</td>
+</tr>
+<tr>
+  <td>n=8 requested-exponent continuation, 200k</td>
+  <td class="num">0.991393</td>
+  <td class="num">0.01066</td>
+  <td>Passes fidelity only; noisy local-Pauli result</td>
+</tr>
+<tr>
+  <td>n=10 at σ=0.05</td>
+  <td class="num">0.0000401</td>
+  <td class="num">0.3252</td>
+  <td>Fails</td>
+</tr>
+<tr>
+  <td>n=10 at reduced noise</td>
+  <td class="num">0.990045</td>
+  <td class="num">0.01595</td>
+  <td>Passes fidelity only and uses 32× lower noise</td>
+</tr>
+</tbody>
+</table>
+
+<div class="verdict">
+  <strong>Interpretation:</strong> no earlier higher-qubit endpoint is a
+  documented pass of the present three-part gate. This does not erase the
+  old n=8 result: it remains a verified high-factor-fidelity result on a
+  noisy local-Pauli instance. It should be called that, rather than “exact
+  recovery” or “Quiroga-style recovery.”
+</div>
+
+<p>For comparison, the corrected n=4 held-out campaign also does not currently
+establish FRAMES recovery: FRAMES fidelity is 0.0129–0.0778 with normalized TP
+0.00347–0.00354 at 2,000 effective row epochs. The printed adaFGD update passes
+TP but has fidelity 0.000789–0.01164. Exploratory 20,000-step Armijo FGD
+recovers all four seeds, demonstrating that the corrected inverse problem is
+solvable.</p>
+
+<h2 class="pagebreak">5. Existing reports and figures</h2>
+
+<table>
+<thead><tr>
+  <th>Existing PDF</th>
+  <th>Action before reuse</th>
+  <th>What survives</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td><code>qpt_coauthor_report_20260915.pdf</code><br><span class="small">5 pages</span></td>
+  <td>Label every page “legacy local-Pauli/QPT_BFW benchmark.” Replace
+      “recovery” headlines with factor-fidelity language unless the full gate
+      is shown.</td>
+  <td>Numerics, provenance, local-Pauli curves and engineering discussion</td>
+</tr>
+<tr>
+  <td><code>qpt_exponent_comparison_20260922.pdf</code><br><span class="small">11 pages</span></td>
+  <td>Relabel empirical pages 1 and 4–10. Do not transfer tuning conclusions
+      to the global-probe design.</td>
+  <td>Historical schedules, within-design comparisons and provenance pages</td>
+</tr>
+<tr>
+  <td><code>qpt_n8_scale_tuning_20260923.pdf</code><br><span class="small">9 pages</span></td>
+  <td>Relabel empirical pages 1 and 4–6.</td>
+  <td>Local-Pauli scale study; preparation-speed engineering with scoped wording</td>
+</tr>
+<tr>
+  <td><code>qpt_n8_followups_20260923.pdf</code><br><span class="small">3 pages</span></td>
+  <td>Archive as a stale, unsubmitted local-Pauli proposal.</td>
+  <td>Historical planning/provenance only</td>
+</tr>
+</tbody>
+</table>
+
+<p>Scientific plots requiring the same legacy label include
+<code>n8_fidelity_iterations</code>, <code>n8_sampling_and_tp</code>,
+<code>recovery.png</code>, the n=4/n=5 strong/weak figures, n=8 draw-budget
+figures, n=10, step-half, step-one and late-comparison plots.
+<code>preparation_speedup</code> may remain an implementation-engineering
+figure, but its measured speedup does not automatically apply to the new
+global-probe backend.</p>
+
+<h3>Manuscript impact</h3>
+
+<p>The repository contains no manuscript TeX or bibliography, so the actual
+Section 5.2 and manuscript-integrated figures could not be edited or checked.
+The required correction is already documented in
+<code>docs/qpt_quiroga_sensing.md</code>, lines 285–320.</p>
+
+<div class="callout">
+  <strong>Recommended manuscript wording.</strong><br>
+  “We evaluate two distinct QPT sensing designs. Benchmark A uses product
+  inputs and local Pauli measurements, giving 24<sup>n</sup> probability rows;
+  its measurement loss is mean-normalized. Benchmark B follows the reduced
+  global-probe/2d-POVM construction of Quiroga and Kyrillidis, giving
+  2·8<sup>n</sup> rows. The two designs have different signal scale and
+  conditioning, so optimizer constants and row budgets are not transferred
+  between them. Higher-qubit results from Benchmark A do not reproduce the
+  experiments of Quiroga and Kyrillidis.”
+</div>
+
+<h2>6. Preservation completed during this audit</h2>
+
+<p>The existing preservation state was already strong:</p>
+
+<ul>
+  <li><code>/home/tony/qpt_sync_20260923_01</code> is a verified snapshot with
+      516 payload files and 321,831,297 payload bytes.</li>
+  <li>Its archive SHA-256 is
+      <code>9da5f968be405fbfc4ae94f62d81bc67051fa2b7023929941a4728eeffcacd2c</code>.</li>
+  <li>All 480 active <code>results/qpt</code> files and all four QPT PDFs match
+      the snapshot byte-for-byte.</li>
+</ul>
+
+<p>Five later baseline campaigns existed completely on Ruche but only as
+launcher bundles on Elite. Because Ruche work storage is not backed up, this
+audit copied their complete stable result trees to:</p>
+
+<p class="path">/home/tony/qpt_higher_qubit_audit_20261004_01/archives/ruche</p>
+
+<table>
+<thead><tr>
+  <th>Preserved campaign</th>
+  <th class="num">Files</th>
+  <th class="num">Bytes</th>
+  <th>Full manifest digest</th>
+</tr></thead>
+<tbody>
+<tr><td>n8_momentum_sgd_20260924_01</td><td class="num">76</td><td class="num">53,635,205</td><td class="path">9c15f08f…aa2f</td></tr>
+<tr><td>n8_mifgd_20260925_01</td><td class="num">19</td><td class="num">10,713,588</td><td class="path">6e67ad0f…9821</td></tr>
+<tr><td>n8_mifgd_penalty_tuning_20260927_01</td><td class="num">19</td><td class="num">6,554,568</td><td class="path">0d5c0438…f1fe</td></tr>
+<tr><td>n8_quiroga_adafgd_20260927_01</td><td class="num">87</td><td class="num">14,272,419</td><td class="path">b15e6d83…e2b8</td></tr>
+<tr><td>n4_quiroga_exact_20260928_01</td><td class="num">104</td><td class="num">2,028,970</td><td class="path">b8e8a6bb…b862</td></tr>
+</tbody>
+</table>
+
+<p>All 305 files and 87,204,750 bytes have identical per-file aggregate
+manifests on Ruche and Elite. The Ruche queue was empty before collection.
+Nothing was removed from Ruche. The complete machine-readable inventory is
+<code>artifact_manifest.json</code> beside this report.</p>
+
+<h2>7. Decision for the project</h2>
+
+<ol>
+  <li><strong>Keep the old high-qubit work.</strong> Present it as a separate
+      local-Pauli/QPT_BFW benchmark and retain its engineering contributions.</li>
+  <li><strong>Correct attribution before reuse.</strong> Do not call the old
+      24<sup>n</sup> design Quiroga’s setup or say it faithfully reproduces
+      that paper.</li>
+  <li><strong>Do not claim a previous strict-gate pass.</strong> The older runs
+      optimized noisy factor fidelity and approximate TP; they lack the present
+      noiseless RMSE certificate.</li>
+  <li><strong>Use the d62fcf1 n=2/n=4 campaign as the primary current
+      comparison.</strong> State that n=4 is a principled extension, not a
+      published reproduction.</li>
+  <li><strong>Rerun only claims that need the global design.</strong> Momentum,
+      MiFGD, higher-qubit FRAMES, noise robustness and sample-efficiency claims
+      require new experiments if they are to appear in the primary
+      Quiroga-style comparison.</li>
+  <li><strong>Do not jump directly to an expensive n=8 conclusion.</strong>
+      First determine at n=4 whether extended-budget FRAMES can converge and
+      satisfy TP on the corrected geometry. That separates an iteration-budget
+      problem from a structural fixed-penalty problem.</li>
+</ol>
+
+<div class="verdict">
+  <strong>Final answer:</strong> the earlier higher-qubit program survives as a
+  substantial alternative physical benchmark and engineering result. What is
+  currently unvalidated is the transfer of its performance story to
+  Quiroga-style global sensing.
+</div>
+
+<h2>8. Limitations and evidence references</h2>
+
+<ul>
+  <li>No manuscript source was available in the repository.</li>
+  <li>Old campaigns generally did not save the RMSE required by the new gate.</li>
+  <li>Several highlighted old results use one channel/seed.</li>
+  <li>The old Gaussian-noise and current noiseless campaigns answer different
+      statistical questions.</li>
+  <li>The current global-probe backend has no fused GPU runner, so legacy GPU
+      scaling cannot be transferred.</li>
+  <li>General higher-rank recovery is not certified by the 2d-outcome POVM.</li>
+</ul>
+
+<p class="small"><strong>Primary code/document evidence:</strong><br>
+<code>docs/qpt_quiroga_sensing.md:15–31, 213–247, 274–320</code><br>
+<code>paper/experiments/qpt_structured_data.py:58–75, 165</code><br>
+<code>paper/experiments/qpt_quiroga_sensing.py:1–35, 148–255</code><br>
+<code>paper/experiments/quantum_process_tomography.py:275</code><br>
+<code>paper/experiments/qpt_quiroga_campaign.py:12, 481</code><br>
+<code>tests/test_qpt_structured_data.py:90</code> and
+<code>tests/test_qpt_quiroga_sensing.py:83, 155, 161</code></p>
+
+<p class="footer-note"><strong>Audit status:</strong> complete. Repository
+unchanged and clean; historical artifacts retained; five later Ruche campaigns
+newly backed up and checksum-verified; no compute jobs submitted.</p>
+</body>
+</html>

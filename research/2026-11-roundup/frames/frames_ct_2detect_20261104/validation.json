@@ -1,0 +1,61 @@
+{
+  "adjoint_relative_error": 1.2532630014608669e-06,
+  "batch_gradient_decomposition_relative_error": 1.0671980428670249e-08,
+  "directional_derivative_relative_error": 0.00014208425362359888,
+  "reference_rank64_svd_relative_tail": 0.11222175125268684,
+  "reference_rank64_nonnegative_fit_error": 0.2229543989068551,
+  "scope": "development slice only; nonnegative fit is diagnostic and unused by training",
+  "geometry_reference_test": "Vertical flip and mm conversion verified against calibrated low-dose views",
+  "initial_subset_loss": 0.05470889743148455,
+  "steps": {
+    "sframes": {
+      "step": {
+        "forward_views": 16,
+        "backward_views": 16,
+        "component_gradient_calls": 16,
+        "gradient_calls": 1,
+        "gamma": 0.1,
+        "rho": 1.0,
+        "mu": 5.143120162372789
+      },
+      "seconds": 0.08460163930431008,
+      "subset_raw_loss": 0.052374935923406626
+    },
+    "spring_sarah": {
+      "step": {
+        "forward_views": 720,
+        "backward_views": 720,
+        "component_gradient_calls": 720,
+        "gradient_calls": 2,
+        "refresh_u": true,
+        "refresh_v": true,
+        "projection_calls": 2
+      },
+      "seconds": 3.5961060798726976,
+      "subset_raw_loss": 0.05126113554041658
+    },
+    "prox_sarah": {
+      "step": {
+        "forward_views": 64,
+        "backward_views": 64,
+        "component_gradient_calls": 64,
+        "gradient_calls": 1,
+        "refresh": true,
+        "projection_calls": 2
+      },
+      "seconds": 0.3156087249517441,
+      "subset_raw_loss": 0.05261663517677615
+    },
+    "palm": {
+      "step": {
+        "forward_views": 720,
+        "backward_views": 720,
+        "component_gradient_calls": 720,
+        "gradient_calls": 2,
+        "projection_calls": 2
+      },
+      "seconds": 3.554084006231278,
+      "subset_raw_loss": 0.048007312791385884
+    }
+  }
+}

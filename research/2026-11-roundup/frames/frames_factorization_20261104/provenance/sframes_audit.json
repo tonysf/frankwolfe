@@ -1,0 +1,54 @@
+{
+  "method": "Stochastic FRAMES (SFRAMES)",
+  "manuscript": "provenance/stochastic_frames_manuscript.pdf",
+  "parameter_source": "Corollary 2.10 and Proposition 2.11; open-loop exponents (3/4,1/2,1/4)",
+  "model": {
+    "f": "||UV^T-A||_F^2/(2*m*n)",
+    "C": "Spectral norm balls on U and V",
+    "T": "Identity",
+    "g": "Indicator of D={U>=0, entrywise ||V||_1<=s}; V signed"
+  },
+  "finite_sum": {
+    "components": "q_j(U,V)=||Uv_j-A[:,j]||^2/(2*m); f=(1/n)sum_j q_j",
+    "sampling": "Fresh uniform fixed-size image subsets without replacement within each batch",
+    "estimator": "Average of component gradients, with V gradients embedded in their respective rows",
+    "unbiasedness": "Each index inclusion probability b/n gives E[(1/b)sum_{j in S} grad q_j]=grad f. Conditional statement holds because each subset is drawn independently of the past.",
+    "variance": "Bounded second moment on compact C; averaging is unbiased; momentum itself is a biased recursive estimator and is not asserted unbiased.",
+    "component_gradient_squared_bound": "(RU*RV+max_j||A[:,j]||)^2*(RU^2+RV^2)/m^2",
+    "component_lipschitz_bound_on_C": "(RU^2+RV^2+RU*RV+max_j||A[:,j]||)/m"
+  },
+  "global_smoothness": {
+    "issue": "Quartic factorization is smooth on compact C but its gradient is not globally Lipschitz on the ambient space.",
+    "extension": "For each component use chi(||(U,V)||_F^2/(2*R2))*q_j, R2=rank*(RU^2+RV^2). chi(s)=1 for s<=1; chi(s)=0 for s>=2; for t=s-1 in (0,1), chi(s)=1-10*t^3+15*t^4-6*t^5.",
+    "justification": "C lies in s<=1/2; extension agrees with objective and gradients on a neighborhood of every feasible query. The extension is C2 with compact support, hence has globally bounded Hessian and gradient. No numerical cutoff evaluation is needed.",
+    "numerical_schedule_scale": "L_full_bound is the original objective bound on C, used only to choose arbitrary positive mu0 prefactors; not advertised as the global cutoff Lipschitz constant."
+  },
+  "constraints": {
+    "C": "Nonempty compact convex product, finite-dimensional LMO available via thin SVD",
+    "g": "Proper lower-semicontinuous convex indicator; Moreau gradient (x-Proj_D(x))/mu",
+    "ri_qualification": "Choose every entry of U small and strictly positive and V=0, with strict spectral bounds and strict l1 budget. This lies in the interiors of both sets.",
+    "regularity": "The interior intersection gives bounded linear regularity on the compact C domain."
+  },
+  "update": {
+    "gamma": "gamma0/(k+1)^(3/4)",
+    "rho": "rho0/(k+1)^(1/2)",
+    "mu": "mu0/(k+1)^(1/4)",
+    "prefactors": "gamma0,rho0 in (0,1], mu0>0",
+    "momentum": "Initialize with first sampled smooth gradient; update only the smooth-gradient momentum; add positive Moreau penalty afterward.",
+    "sign": "Use + (x-Proj_D(x))/mu, the gradient of the squared-distance envelope.",
+    "initialization": "Shared nonzero feasible data-scaled random positive factors; avoid zero-factor stationary saddle."
+  },
+  "numerics": {
+    "dtype": "float64",
+    "LMO": "Minimum-Frobenius polar on numerically nonzero singular directions; support-gap upper bound recorded. Floating-point operation, not claimed literally exact.",
+    "prox_D": "Positive-part on U; exact-arithmetic l1 projection on V, implemented numerically.",
+    "inexact_theorem_claim": false
+  },
+  "reporting": {
+    "loss": "Raw objective and independently feasible repaired objective; repair never enters optimization.",
+    "stationarity": "True full-gradient smoothed FW gap at probes only; not the all-iterate average required by the theorem.",
+    "optimality": "Unconstrained rank-r SVD tail is a lower bound, not an achievable constrained optimum.",
+    "time": "Optimizer includes gradient, estimator, projection on D, LMO, and update; diagnostic repair, metrics, initialization, checkpoint IO excluded."
+  },
+  "validation": "29 tests passed, including finite differences, exact oracle expectation, spectral LMO support, projection certificates, and bitwise checkpoint continuation."
+}

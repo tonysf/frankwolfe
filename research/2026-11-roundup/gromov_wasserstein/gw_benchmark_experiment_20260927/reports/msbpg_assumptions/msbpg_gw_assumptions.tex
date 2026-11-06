@@ -1,0 +1,97 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=17mm,top=15mm,bottom=16mm]{geometry}
+\usepackage{amsmath,amssymb,microtype,xcolor}
+\usepackage[hidelinks]{hyperref}
+\definecolor{ink}{RGB}{25,48,70}
+\hypersetup{pdftitle={MSBPG assumption audit for the GW benchmark},pdfauthor={}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\abovedisplayskip}{6pt}\setlength{\belowdisplayskip}{6pt}
+\newcommand{\R}{\mathbb R}\newcommand{\one}{\mathbf1}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\begin{document}
+{\color{ink}\fontsize{16}{19}\selectfont\bfseries MSBPG: assumptions checked against GW\par}
+{\small Ding--Li--Toh, JMLR 2025, Section 3.2 and Theorem 24 \hfill 5 October 2026\par}
+\vspace{3pt}
+\textbf{Verdict.} The ideal MSBPG algorithm with exact KL-proximal steps can be matched to our GW problem. The objective, constraints and stochastic oracle meet the required conditions. An explicit extension of entropy outside the feasible set resolves the global kernel assumptions \emph{without changing a feasible KL update}. A prospective implementation must follow the paper's coupled step/momentum schedule. Its theorem does not directly cover the current finite $10^{-7}$ proximal tolerance.
+
+\textbf{Problem and domain.} Let $d=nm$ and vectorize the coupling when using the paper's Euclidean norm; this corresponds to the Frobenius norm for matrices. Write
+\[
+ f(P)=\sum_{i,k,j,\ell}(A_{ik}-B_{j\ell})^2P_{ij}P_{k\ell},\qquad
+ U=\{P\geq0:P\one_m=a,\ P^\top\one_n=b\}.
+\]
+Take the paper's smooth objective $F=f$, its open kernel domain $\mathcal C=\R_{++}^{n\times m}$, and its regularizer $R=\iota_U$. The paper minimizes over $\overline{\mathcal C}$; $R$ imposes all transport constraints. The empty ambient interior of $U$ causes no problem: $ab^\top\in U\cap\mathcal C$ because $a,b$ are strictly positive. This maps our earlier $\iota_C+g\circ T$ into the paper's single regularizer $R$.
+
+\textbf{Objective and regularizer: pass.} The GW objective is a finite smooth quadratic on the entire matrix space. The transport set is nonempty, convex and compact; its indicator is an admissible closed convex regularizer. On $U$, $f\geq0$, so $\inf(f+R)>-\infty$.
+
+\textbf{Kernel: a global extension is needed.} Ordinary entropy on the whole positive orthant is not uniformly strongly convex in Frobenius norm: its Hessian has entries $1/P_{ij}$. Merely citing compactness of $U$ would not establish the paper's conditions on the entire kernel domain. Instead define
+\[
+ \phi(P)=\sum_{ij}\psi(P_{ij}),\qquad
+ \psi(t)=\begin{cases}
+ t\log t-t,&0\leq t\leq1,\\
+ -1+\tfrac12(t-1)^2,&t\geq1,\\
+ +\infty,&t<0,
+ \end{cases}\quad 0\log0:=0.
+\]
+Its derivative and second derivative agree at $1$. On $(0,\infty)$,
+$\psi''(t)\geq1$; its gradient diverges at zero, and its quadratic tail makes it supercoercive. Thus $\phi$ is a Legendre kernel with strong-convexity constant $\mu=1$. Every feasible entry satisfies $0\leq P_{ij}\leq1$, hence
+\[
+ D_\phi(Q,P)=\KL(Q\|P)\qquad(Q\in U,\ P\in U\cap\mathcal C).
+\]
+This is an analytical extension only: it adds no penalty, clipping, positive entry floor or change to the transport problem or Sinkhorn subproblem.
+
+\textbf{Smooth adaptivity and gradient differences: pass globally.}
+Let $L>0$ bound $\|\nabla^2 f\|_{F\to F}$. A computable conservative choice is $L=2nmC_{\max}$ for $C_{\max}:=\max(A_{ik}-B_{j\ell})^2>0$, since the quadratic's coefficient matrix has $d$ entries per row, each at most $C_{\max}$. Then
+\begin{align*}
+ |f(Q)-f(P)-\langle\nabla f(P),Q-P\rangle_F|
+ &\leq\tfrac L2\|Q-P\|_F^2\leq L D_\phi(Q,P),\\
+ \|\nabla f(Q)-\nabla f(P)\|_F^2
+ &\leq L^2\|Q-P\|_F^2\leq2L^2D_\phi(Q,P).
+\end{align*}
+Thus valid paper constants are $\mu=1$, $L_F=L$, and $\kappa=2L^2$. The zero-objective case permits any positive upper bound $L$. These deliberately conservative constants establish applicability; they are not a claim that this is the best tuning range.
+
+\newpage
+{\color{ink}\fontsize{16}{19}\selectfont\bfseries Oracle, schedule and scope of the guarantee\par}
+\vspace{3pt}
+\textbf{Stochastic oracle: pass with the existing 128 probes.}
+Our sketch gradient is the average of $q=128$ independent single-probe gradients. Each is a continuous function of $P$ with a finite Rademacher sample space. Compactness of $U$ therefore gives a finite uniform single-probe variance $\sigma^2$. Fresh probes at each iteration imply
+\[
+ \mathbb E[\widehat G_k\mid\mathcal F_k]=\nabla f(P_k),\qquad
+ \mathbb E[\|\widehat G_k-\nabla f(P_k)\|_F^2\mid\mathcal F_k]\leq\sigma^2/q.
+\]
+These are the paper's noise conditions, with minibatch size $m_k=q$. The momentum itself is biased; the assumption applies to the \emph{fresh} estimator used to update it. No full gradient or growing minibatch is required for this mapping.
+
+\textbf{Initialization and ideal iterates: pass.}
+The product start is $ab^\top>0$. For our square, uniform-marginal instances, the randomized start mixes that product with a permutation coupling, with product weight $0.9$; it is also strictly positive and feasible. With a positive current coupling, finite gradient estimate and positive step, the exact entropy proximal minimizer is strictly positive: a move from a zero entry toward the positive product coupling has a negative infinite entropy directional derivative. Thus each ideal iterate remains in $U\cap\mathcal C$.
+
+\textbf{The published momentum update and its schedule.}
+With $v_0=\widehat G_0$, the prospective comparator is
+\[
+ v_k=(1-\beta_k)v_{k-1}+\beta_k\widehat G_k\quad(k\geq1),\qquad
+ P_{k+1}=\arg\min_{Q\in U}
+ \left\{\langle v_k,Q\rangle_F+\alpha_k^{-1}\KL(Q\|P_k)\right\}.
+\]
+Theorem 24 couples $\alpha_k$ to $\beta_{k+1}$. With the constants established above, one sufficient choice is
+\[
+ \alpha_k=s\beta_{k+1},\qquad 0<s\leq\frac1{4L},\qquad
+ \beta_{k+1}=\frac{\theta}{\sqrt{k+1}},\quad 0<\theta\leq1.
+\]
+Here $\theta$ is the momentum prefactor; $v_0$ is initialized directly. This preserves the theorem's one-index shift and satisfies its coupling bound $s\leq1/(2\sqrt{\mu\kappa})$. It also ensures $\alpha_k<1/L_F$. The latter small-step condition is used when the proof drops the forward-divergence term from Lemma 16, although it is not repeated in Theorem 24's short statement; Corollary 26 explicitly uses a small-step restriction. Our sufficient choice satisfies both.
+
+The earlier custom comparator used a \emph{constant} proximal step with a decaying momentum coefficient. That does not satisfy this coupling. The completed Fatkhullin--He baseline uses fresh gradients and a different method. Neither set of old results should be relabeled as a run of MSBPG under Theorem 24.
+
+\textbf{What the theorem measures.}
+For a horizon $N$ fixed in advance, sample $J\in\{0,\ldots,N-1\}$ independently with
+$\Pr(J=k)=\alpha_k/\sum_{j=0}^{N-1}\alpha_j$. The proof controls
+\[
+ \mathbb E\left\|\frac{P_J-P_{J+1}}{\alpha_J}\right\|_F^2.
+\]
+This normalized step differs from the Bregman forward--backward envelope used by Fatkhullin--He. It is also distinct from final feasible GW loss. As entries approach zero, the kernel gradient is not uniformly Lipschitz. The additional gradient-residual comparison therefore does not yield a boundary KKT guarantee from this bound alone.
+
+\textbf{The numerical qualification remains.}
+The theorem assumes an exact proximal minimizer. Our solver returns an FP32 plan, checks its marginal residual, and evaluates a guarded gap using an FP64 feasible witness, with both tolerances $10^{-7}$. Those numerical checks do not supply an inexact version of Theorem 24. A prospective run can accurately be described as a numerical implementation of the published method at those tolerances, with that limitation stated. The current audit neither modifies the experiment nor submits new jobs.
+
+\vfill
+{\small Source: \href{https://www.jmlr.org/papers/volume26/23-0657/23-0657.pdf}{Ding, Li and Toh, \emph{Nonconvex Stochastic Bregman Proximal Gradient Method with Application to Deep Learning}, JMLR 26 (2025)}, Definitions 2--6, Assumptions 1--3, Section 3.2 and Theorem 24. The entropy extension and GW bounds above are our explicit specialization, not a GW experiment reported by the authors. Source PDF SHA-256 prefix: \texttt{86aab45a641b9889}.}
+\end{document}

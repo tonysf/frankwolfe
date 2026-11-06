@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "generated_utc": "2026-10-14T12:13:34.596778+00:00",
+  "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 .venv/bin/python extensions/scot_cpu_fp64_20261014/summarize.py > experiments/scot_cpu_fp64_20261014/report_retry.log 2>&1",
+  "exit_code": 0,
+  "script_sha256": "195d70abcedc13dd9b7b892ed211c73beedbfdd245f7e96c0a94fcf795299ad9",
+  "failed_log_sha256": "3d9326692d15368031ca6a8dedeea46c4ecb37edaee00827dd6e2c169e2458ce",
+  "successful_log_sha256": "97b95a74234e42cc9a466e4fb78865fe92a6594a06b624407254e89d25f40aa4",
+  "diagnostic_receipt_sha256": "9f1a37022d19cf49f6619efcd0e23608fd4aabf2ae7c8c5066646ee8b4db8494",
+  "artifact_sha256": {
+    "report.json": "94e9b6f08ca63b0f920179e9c48b1d7638ede6948c55ad41d6d4ff4e7e47e62f",
+    "summary.txt": "c8a11af571dfd1ace6fe46eeb3e3b6db8f7df2c62385e8a595fa8d672c0d572f",
+    "scientific_plot.png": "fbd04b4d65ef168b168cfa02a90002185f43263f301aa2abe78b9ee62e9bca0b",
+    "scientific_plot.pdf": "53220ef91a3a61aa079cff5b320ce1627985cd8b9b55b04093200e9e3da5d9af",
+    "curve_data.csv": "f5aa3759a125e2cedb6ef1f661dd65f198910f2d84e84c3ad626970451656f89",
+    "endpoints.csv": "44b96f663abfb5c4fe334e75a210c1d056db1cec11c966cb727c95f15e130470",
+    "precision_comparison.json": "67f5d5f4ab75f972821eeb978bc8221101bf0ce53ff1ec9ce9abc4a40c8b76bb",
+    "precision_comparison.csv": "01ce298eacf983472710aa1132cac3c3c0a5b2adf3b8c1a90a2edba0ab84be79"
+  },
+  "expected_and_validated_runs": 7,
+  "expected_and_validated_confirmation_runs": 3,
+  "actual_saved_output_maximum_independent_combined_l1": 8.603469499324223e-15,
+  "actual_saved_output_strict_bound": 2.220446049250313e-14,
+  "maximum_independent_objective_difference": 1.1449174941446927e-16,
+  "auxiliary_repair_bound": 1e-12,
+  "auxiliary_repairs_exceeding_saved_output_bound": 1,
+  "execution_mode": "user_amended_parallel_confirmation",
+  "timing_comparison_performed": false,
+  "visual_check": "PNG inspected: title, completed-update axis, three seed curves/range/median and attainable reference line are legible with legend and caption outside the data. No runtime plot.",
+  "scope": "Report-only saved-output numerical validation and plotting; no optimizer, reference helper, frozen controller, source controls, or selected setting changed."
+}

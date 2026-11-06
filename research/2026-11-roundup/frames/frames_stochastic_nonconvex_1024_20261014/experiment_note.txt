@@ -1,0 +1,213 @@
+                   Stochastic FRAMES: experiment specification
+                       Nonconvex ℓ1 -constrained least squares in dimension 1024
+                             14 October 2026         ·   Random negative-vertex initialization
+
+Problem. Let d = 1024, and let ej denote the vector with entry 1 in position j and 0 elsewhere. The problem is
+
+                                          min F (x),         F (x) = f (x) + g(T x).
+                                           x∈C
+
+
+The four ingredients are
+                       1             2              2   5       1       2  1 5
+                f (x) =   ∥x − a − b∥2 + ∥x − a + b∥2 − (u⊤ x)2 = ∥x − a∥2 + − (u⊤ x)2 ,
+                       4                                 8       2          8 8
+                  C = {x ∈ R1024 : ∥x∥1 ≤ 1},      T = I1024 ,
+                                (
+                                 0,     z ∈ D,
+                g(z) = ιD (z) =                     D = R1024
+                                                           + .
+                                 +∞, z ∈  / D,
+                                                 P
+Thus original feasibility means x ≥ 0 and         j xj ≤ 1. The data vectors are
+             
+             1/32,            1 ≤ j ≤ 64,                                            (
+                                                              (−1)j−1                     (−1)j−1 /8,
+             
+                                                                                                             1 ≤ j ≤ 64,
+         aj = −3/128,          65 ≤ j ≤ 128,             bj =         ,       uj =
+                                                               64                        0,                 65 ≤ j ≤ 1024.
+               1/128,          129 ≤ j ≤ 1024,
+             
+
+With Q := I − 54 uu⊤ , the true smooth gradient is ∇f (x) = Qx − a. Since ∥u∥2 = 1, the Hessian Q has eigenvalues
+−1/4 and 1: the objective is nonconvex and globally 1-smooth. Nonconvexity also occurs within the feasible set:
+if xs has its first 64 entries equal to 1/64 and all other entries zero, then
+
+                                                                           91  t2                    1
+                               xs + tu ∈ C ∩ D,          F (xs + tu) =        − ,            |t| ≤     .
+                                                                          512  8                     8
+
+Finite sum and stochastic oracle. Sample one of two components uniformly:
+                             1             2  5
+                  fε (x) =     ∥x − a + εb∥2 − (u⊤ x)2 ,              ε ∈ {−1, +1},         f = 21 (f−1 + f+1 ).
+                             2                8
+At iteration k, draw a fresh independent εk and use qk = ∇fεk (xk ) = Qxk − a + εk b. Writing Fk for the history
+before this draw (including x0 ),
+
+                                                                               2                2      1
+                             E[qk | Fk ] = ∇f (xk ),       E[∥qk − ∇f (xk )∥2 | Fk ] = ∥b∥2 =            .
+                                                                                                       4
+This is one sampled least-squares block gradient per update, with the common concave quadratic included.
+Initialization and run parameters. For each seed s ∈ {0, . . . , 7}, independently of the oracle draws, sample Js
+uniformly from {1, . . . , 1024} and set
+                                                            (s)
+                                                          x0 = −eJs .
+                                                                                                                              (s)
+The initial point has one randomly chosen entry equal to −1 and all other entries equal to 0. It satisfies x0                           =1
+                                                                                                                                    1
+            (s)
+and distD (x0 ) = 1. The initial momentum estimate is the first sampled gradient: m0 = q0 .
+The experiment uses N = 32768 updates per seed, 8 seeds, and float64 arithmetic. For k = 0, . . . , N − 1, the
+schedules are
+                      γk = (k + 1)−3/4 ,  βk = (k + 1)−1/4 ,     αk = (k + 1)−1/2 .
+Here γk is the Frank–Wolfe step size, βk the smoothing parameter, and αk the weight on the new stochastic
+gradient. All prefactors are 1; there is no warm-up or schedule shift.
+
+
+
+
+                                                                  1
+Gap and feasibility notation. Define (xk )− = min(xk , 0) coordinatewise, and set
+
+                                                                                                                                           (xk )−
+                                                             zk := ∇f (xk ) = Qxk − a,                                    hk := zk +              .
+                                                                                                                                             βk
+The reported gaps use these exact vectors. Their definitions and explicit formulas are
+
+                    Gk := max⟨hk , xk − v⟩ = ⟨hk , xk ⟩ + ∥hk ∥∞ ,                                                                               smoothed Frank–Wolfe gap,
+                                 v∈C
+
+                    Hk := max ⟨zk , xk − v⟩ = ⟨zk , xk ⟩ + max{0, − min zk,j } ,                                                                 original constrained gap,
+                                v∈C∩D                                                                              j
+
+
+                        δk := distD (xk ) = ∥(xk )− ∥2 ,                                                                                         feasibility violation.
+
+Since xk ∈ C, Gk ≥ 0. However, Hk can be negative when xk ∈/ D; the original-gap plot therefore reports |Hk |.
+Feasibility and the original gap are interpreted together.
+What the plots average. For Zk ∈ {Gk , |Hk |, δk }, define
+                                                                                           N −1                                 7
+                                                                    (s)             1 X (s)                        bZ (N ) = 1
+                                                                                                                               X   (s)
+                                                                ZN =                   Zk ,                        A              Z .
+                                                                                    N                                        8 s=0 N
+                                                                                           k=0
+
+Every pre-update iterate x0 , . . . , xN −1 is included. Thin curves are individual seed averages; the black curve is
+AbZ (N ); the band is ±2 standard errors across the eight seed averages (descriptive). The dashed N −1/4 line is a
+slope guide, not a numerical upper bound.
+
+Plots. Eight seeds with random negative-vertex initialization.
+
+                                                                    Nonconvex 1024D: random negative-vertex initialization
+                                 True smoothed gap                                                       Original gap magnitude                                                  Feasibility violation
+                                               8-seed mean; band ±2 SE                                                                                      100
+                                               N −1/4 slope guide
+                                                                                     100
+            100
+                                                                                                                                           ∑ dist (x )
+                                                                                                                                                 k
+
+
+
+
+                                                                                    10−1
+                                                                         ∑ |H |
+  k
+
+
+
+
+                                                                            k
+
+
+
+
+                                                                                                                                                 D
+
+
+
+
+                                                                                                                                                           10−1
+∑G
+
+
+
+
+           10−1
+   <N
+
+
+
+
+                                                                             <N
+       k
+
+
+
+
+                                                                                                                                                   <N
+                                                                                k
+N −1
+
+
+
+
+                                                                         N −1
+
+
+
+
+                                                                                                                                                       k
+                                                                                                                                            N −1
+
+
+
+
+                                                                                    10−2
+           10−2
+                                                                                                                                                           10−2
+
+                  100       101       102       103        104                             100       101       102       103        104                           100       101       102       103        104
+                        Sampled component gradients / updates N                                  Sampled component gradients / updates N                                Sampled component gradients / updates N
+
+
+Cumulative averages of Gk , |Hk |, and δk over all recorded iterates.
+
+
+                                                                         Instantaneous certificates: fluctuations are permitted
+                                 True smoothed gap                                                         Signed original gap                                                   Feasibility violation
+       0.0014                                                                                                                                          0.0055
+                                                                                0.0010
+       0.0012                                                                                                                                          0.0050
+                                                                                0.0008
+       0.0010                                                                                                                                          0.0045
+                                                                                                                                           distD(xk)
+
+
+
+
+                                                                                0.0006
+                                                                          Hk
+Gk
+
+
+
+
+       0.0008
+                                                                                                                                                       0.0040
+       0.0006                                                                   0.0004
+                                                                                                                                                       0.0035
+       0.0004                                                                   0.0002
+                        31000      31500       32000      32500                                  31000       31500       32000    32500                                 31000      31500       32000     32500
+                                      Iteration k                                                               Iteration k                                                           Iteration k
+
+
+Individual values of Gk , signed Hk , and δk during the final 2048 iterations. Each color represents one seed.
+
+
+
+
+                                                                                                               2
+

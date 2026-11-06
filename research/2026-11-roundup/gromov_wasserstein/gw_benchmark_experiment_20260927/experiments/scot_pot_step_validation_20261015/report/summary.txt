@@ -1,0 +1,12 @@
+COMPLETE VALIDATED
+Both methods optimize F_epsilon=f+epsilon*h, h=sum P(log(P)-1), epsilon=0.001.
+Identical product start, FP64 data and iterates, and constant eta_k=1/epsilon=1000.
+This is the POT PGD entropic transport subproblem with full or pair-sampled GW gradients.
+The constant step is empirical; no stochastic convergence theorem is claimed.
+Completed 4/4 frozen runs; 3 outer iterations per run.
+Every saved rounded checkpoint was independently evaluated with NumPy and POT.
+Both marginal and guarded normalized proximal gap tolerances are 1e-7.
+Numerical inner certificates do not establish an exact-proximal convergence theorem.
+Curves show current rounded outputs; the independently sampled uniform output is diagnostic only.
+Full-gradient entropic GW, POT step: final median full GW loss 0.020614062412, range [0.020614062412, 0.020614062412], n=1; median reduction 70.743495%.
+Pair-sampled entropic GW, POT step: final median full GW loss 0.0243796251968, range [0.0185876026071, 0.0258480528176], n=3; median reduction 65.399221%.

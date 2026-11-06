@@ -1,0 +1,10 @@
+COMPLETE VALIDATED
+Both methods optimize F_epsilon=f+epsilon*h, h=sum P(log(P)-1), epsilon=0.001.
+Identical product start, FP64 data and iterates, and eta_k=1/((4*Cmax+2*epsilon)*sqrt(k+1)).
+Completed 4/4 frozen runs; 3 outer iterations per run.
+Every saved rounded checkpoint was independently evaluated with NumPy and POT.
+Both marginal and guarded normalized proximal gap tolerances are 1e-7.
+Numerical inner certificates do not establish an exact-proximal convergence theorem.
+Curves show current rounded outputs, not the independently sampled theorem output.
+Full GW gradient + exact entropy gradient: final median full GW loss 0.0704336073731, range [0.0704336073731, 0.0704336073731], n=1; median reduction 0.037113502%.
+Pair-sampled GW gradient + exact entropy gradient: final median full GW loss 0.0704326452541, range [0.0704318136862, 0.0704350942504], n=3; median reduction 0.038478989%.

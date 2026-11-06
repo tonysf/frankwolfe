@@ -37,3 +37,12 @@ recipes in this directory accompany the four final PDFs in Git. Do not regenerat
 datasets or overwrite existing runs to reconstruct a missing artifact.
 
 Future reports should follow [REPORT_STYLE.md](REPORT_STYLE.md).
+
+## Later experiment collection
+
+The [6 November QPT roundup](../../research/2026-11-roundup/qpt/README.md)
+records the later continuation, Quiroga and local FRAMES campaigns, Ruche source
+differences, preserved failure evidence and their scientific limits. Its
+[parent catalog](../../research/2026-11-roundup/README.md) also links the GW and
+other stochastic-FRAMES work and records the separate Ruche QPT raw backup.
+The dates and statuses above remain the historical September report record.

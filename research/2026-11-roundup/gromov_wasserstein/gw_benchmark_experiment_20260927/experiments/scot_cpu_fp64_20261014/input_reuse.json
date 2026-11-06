@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-10-14T11:39:12.261751+00:00",
+  "reference": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference/reference.json",
+  "reference_sha256": "990729dd5cdc982616bad5f39a10846938d203becb25b5d02245792b11a28d8c",
+  "baseline": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/baseline_local/replay.json",
+  "baseline_sha256": "2f84abcf08da9368f349ab035ecf6c106a75250600b35133bbae55d21e01cf86",
+  "baseline_scope": "Reuse the already completed FP64 NumPy/POT run on the same local CPU and identical frozen arrays; no new POT timing measurement.",
+  "baseline_solver_seconds": 142.71153389802203,
+  "baseline_repaired_loss": 0.016667597001530532,
+  "baseline_environment": {
+    "python": "3.11.2",
+    "python_executable": "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+    "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+    "hostname": "elite",
+    "cpu_count": 8,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": null,
+      "BLIS_NUM_THREADS": null,
+      "OMP_DYNAMIC": null,
+      "MKL_DYNAMIC": null
+    },
+    "thread_control": "Environment configured by caller before Python starts; no threadpoolctl override.",
+    "effective_library_thread_counts": "Not introspected; configured environment is recorded."
+  },
+  "target_optimizer_dtype": "float64",
+  "previous_optimizer_dtype": "float32"
+}

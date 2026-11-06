@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "full_suite": {
+    "passed": 24,
+    "subtests_passed": 11,
+    "elapsed_seconds": 21.85,
+    "scope": "Numerical runner, reporting and controller; before storage-reservation-only adjustment"
+  },
+  "final_controller_suite": {
+    "passed": 18,
+    "elapsed_seconds": 1.27,
+    "scope": "Final66GiB config and revised quota-isolation fixture"
+  },
+  "checks": [
+    "Allthree numerical methods match originalplans, momentum, RNG, losses and counters bit-for-bit when timestamp fields are excluded",
+    "Checkpointresume retains numerical parity and strictlyincreasing measuredtimestamps",
+    "Nonmonotoneor missing timing is rejected",
+    "Onlyeight frozen configurations inone serialA100stream",
+    "Bothbatchscripts passbashsyntax"
+  ],
+  "gpu_validation": "Queued source-specific actual-size gates must pass beforeproduction"
+}

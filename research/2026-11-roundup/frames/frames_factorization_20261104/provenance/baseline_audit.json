@@ -1,0 +1,77 @@
+{
+  "baseline": "SPRING-SARAH",
+  "paper": {
+    "authors": ["Derek Driggs", "Junqi Tang", "Jingwei Liang", "Mike Davies", "Carola-Bibiane Schonlieb"],
+    "title": "A stochastic proximal alternating method for non-smooth non-convex optimization",
+    "journal": "SIAM Journal on Imaging Sciences 14(4), 1932-1970 (2021)",
+    "doi": "10.1137/20M1387213",
+    "url": "https://www.pure.ed.ac.uk/ws/portalfiles/portal/240333690/2002.12266v3.pdf",
+    "verified_locations": ["Algorithm 1", "Assumptions A.1-A.4", "Proposition 2.2", "Theorem 3.1", "Corollary 3.3", "Section 5.1", "Remark 5.1", "Appendix C"]
+  },
+  "problem": {
+    "objective": "F(U,V)=sum((U V^T-M)^2)/(2*m*n)",
+    "finite_sum_components": "F_j(U,V)=||U v_j-M[:,j]||_2^2/(2*m), F=(1/n)sum_j F_j; n=image count",
+    "U_domain": "U>=0 and spectral_norm(U)<=RU",
+    "V_domain": "entrywise_l1_norm(V)<=s and spectral_norm(V)<=RV; V is SIGNED",
+    "adaptation_label": "Convex-constraint adaptation of a published factorization benchmark, NOT verbatim reproduction of SPRING sparse-NMF Eq.5.1",
+    "published_difference": "Published sparse-NMF requires both factors nonnegative and hard l0 column sparsity; this experiment uses a convex l1 ball on signed V and compact spectral caps"
+  },
+  "assumption_audit": {
+    "A1": "J and R are indicators of nonempty compact convex intersections; proper, lower semicontinuous and bounded below by zero",
+    "A2": "Each component is a quartic polynomial; its joint gradient is Lipschitz on bounded sets. All iterates and mixed block points remain in the spectral product domain",
+    "A3": "Global partial smoothness for fixed opposite block holds; on C, Lx<=RV^2/m and Ly<=RU^2/m",
+    "A4": "The constrained squared-error objective is bounded below by zero",
+    "joint_component_bound": "M_bound=(RU^2+RV^2+RU*RV+max_j||M[:,j]||_2)/m",
+    "L_used": "max(M_bound,Lx,Ly)",
+    "variance_reduction": "Loopless SARAH Proposition2.2: V1=V_Upsilon=2L^2,V2=2L,rho=1/p",
+    "global_smooth_extension_needed": false,
+    "global_smooth_extension_comment": "SPRING only assumes locally Lipschitz joint gradients, unlike the literal global SFRAMES manuscript assumption",
+    "additional_KL_or_error_bound_claim": "None. No global-optimum, linear-rate, or KL-exponent claim is made"
+  },
+  "theorem_mode": {
+    "source": "Corollary 3.3 (first bullet), supported by Theorem 3.1",
+    "p": "n_components",
+    "refresh_probability_per_block": "1/n_components",
+    "step_u": "1/(2*L*sqrt(30*n_components))",
+    "step_v": "1/(2*L*sqrt(30*n_components))",
+    "step_schedule": "Constant, positive, nonincreasing; strictly below 1/(4Lx) and 1/(4Ly)",
+    "mini_batch": "Fresh uniform fixed-size subsets WITHOUT replacement, separately sampled for U and V blocks",
+    "initialization": "Common supplied feasible factors; exact full-gradient initialization for each block at its first query point",
+    "U_recursion_points": "(U_k,V_k) minus (U_{k-1},V_{k-1})",
+    "V_recursion_points": "(U_{k+1},V_k) minus (U_k,V_{k-1})",
+    "output": "Uniform random pre-update iterate alpha in 0,...,T-1; expected squared distance to generalized block gradient mapping G_(gamma_u/2,gamma_v/2) from Eq1.4",
+    "output_warning": "Loss plots, last iterates and a common joint projected-gradient residual are useful diagnostics but are not the exact theorem statistic. Eq1.4 evaluates the V gradient at the updated U block",
+    "oracle_count": "n component-gradient calls per full callback; 2b per recursive block difference. A complete alternating nonrefresh step costs 4b; initialization costs 2n"
+  },
+  "practical_mode": {
+    "implemented": true,
+    "label": "SPRING-SARAH practical constant component-bound control; NOT theorem-prescribed and NOT verbatim published practical setting",
+    "step_u": "0.5/Lx by default",
+    "step_v": "0.5/Ly by default",
+    "published_setting": "Section5.1 uses 1/(2*L_tilde_block), where five power iterations on a sampled batch estimate local partial Lipschitz constants",
+    "published_theory_mismatch": "Remark5.1 explicitly says experimental steps replace the conservative Section3/4 theoretical prescriptions",
+    "do_not_relabel": true
+  },
+  "proximal_oracle": {
+    "algorithm": "Exact one-set reduction when either single-set projection is feasible for the other set; Dykstra splitting only when both constraints are coupled",
+    "feasible_candidate": "Last side-constraint projection followed by inward radial spectral rescaling, which preserves the side constraint",
+    "dual": "d(p,q)=<z,p+q>-0.5||p+q||_F^2-sigma_spectral(p)-sigma_side(q)",
+    "spectral_support": "RU_or_RV * nuclear_norm(p)",
+    "orthant_support": "0 if every entry of q<=0; otherwise infinity",
+    "l1_support": "s * max_abs_entry(q)",
+    "exact_arithmetic_certificate": "For a primal-feasible candidate c, ||c-proj_intersection(z)||_F <= sqrt(2*(0.5||c-z||_F^2-d(p,q)))",
+    "requested_distance": "1e-8/(outer_iteration+1)^1.1 by default; a summable ideal target",
+    "roundoff_handling": "Extended-precision accumulation, direct and stable dual-gap forms, a reported rounding allowance scaled by thin matrix rank, objective/support magnitudes AND absolute input/candidate squared norms. The absolute scales cover subtraction in corrections p/q and dual input products when corrections are tiny; floor dominance is recorded as numerical_floor",
+    "interval_arithmetic_certificate": false,
+    "iteration_cap": "2000 Dykstra iterations by default; ProjectionFailure raised unless the numerical gap target is attained",
+    "fixed_floor_is_exact_prox_theorem": false,
+    "inexact_convergence_theorem_claim": false,
+    "limitation": "This is a controlled numerical approximation to the exact proximal oracle. A summable requested tolerance does not establish an inexact SPRING theorem, and the floating-point floor is not summable. The parameter prescription is paper-matched; the numerical proximal implementation is not claimed literally exact"
+  },
+  "validation": {
+    "independent_projection_check": "CVXPY/CLARABEL small spectral-intersection conic programs for both orthant and signed entrywise-l1 cases; primal objectives and dual lower bounds compared",
+    "other_checks": ["Full-batch SARAH recursion agrees with exact alternating gradient updates, including mixed V query points", "Checkpoint round-trip preserves both gradient histories and RNG state bitwise", "Without-replacement block sampling and oracle accounting", "Literal Corollary3.3 constants", "Explicit cap failures and non-exact numerical-floor metadata", "Tiny active-l1 corrections terminate using the mathematically exact one-set reduction instead of exhausting the iteration cap", "Spectral-only reduction agrees with analytic rank-one projection", "Both-method runner checkpoint/oracle integration tests"],
+    "test_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=. /home/tony/zofw_experiments/.venv/bin/python -m pytest -q tests/test_baseline.py",
+    "last_result": "10 baseline tests and 2 runner integration tests passed; one independent CLARABEL solve reports optimal_inaccurate at the requested 1e-11 solver tolerances, while objective/duality checks pass"
+  }
+}

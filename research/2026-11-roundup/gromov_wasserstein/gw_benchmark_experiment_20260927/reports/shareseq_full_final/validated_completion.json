@@ -1,0 +1,70 @@
+{
+  "status": "completed",
+  "n": 31890,
+  "valid_final_runs": 6,
+  "paired_seeds": 3,
+  "correctness_checks_passed": 352,
+  "inner_stopping_failures_total": 0,
+  "underflow": {
+    "smoothing-fw": {
+      "affected_updates": 0,
+      "cumulative_zero_entries": 0,
+      "policy": "retain log-state; these are update-wise counts, not distinct final entries"
+    },
+    "stochastic-kl-momentum": {
+      "affected_updates": 2049,
+      "cumulative_zero_entries": 7685560,
+      "policy": "retain log-state; these are update-wise counts, not distinct final entries"
+    }
+  },
+  "fw_median_loss": 0.11689965558310311,
+  "kl_median_loss": 0.1165520114105415,
+  "kl_relative_median_loss_reduction_percent": 0.29738682362025803,
+  "fw_median_updates": 3412.0,
+  "kl_median_updates": 874.0,
+  "kl_lower_loss_pairs": 3,
+  "max_reserved_gib_any_gpu": 27.4140625,
+  "max_final_rounded_marginal_l1": 1.8702423050511125e-07,
+  "successful_gpu_job": {
+    "id": 1983902,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed_seconds": 2518,
+    "elapsed": "00:41:58",
+    "node": "ruche-gpu19",
+    "gpus": 4,
+    "allocation_gpu_hours": 2.7977777777777777
+  },
+  "report_job": {
+    "id": 1983903,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:00:45"
+  },
+  "failed_gpu_attempt": {
+    "id": 1981992,
+    "elapsed_seconds": 141,
+    "gpus": 4,
+    "allocation_gpu_hours": 0.15666666666666668,
+    "reason": "CUDA/device initialization failure before benchmarking"
+  },
+  "total_gpu_allocation_hours_including_failed_attempt": 2.9544444444444444,
+  "final_solver_gpu_hours": 2.000709496335282,
+  "collection": {
+    "remote": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_campaign_8f3b092_retry_20261001",
+    "files": {
+      "report.json": "051662db50c228f4fe5b9f65b6354b270a87494d9b2eecb3cf53bed97061769c",
+      "report.md": "8cb5ef4ba70e10afd6b37521abf11a804df4e7685f1ba8719bcb19b9e9fc0ab1",
+      "completion.json": "ba9ee2d767603317c24436457d180c608525be44e0e7b03a8b9451f631448852",
+      "correctness.json": "44d945df38ec9d33f0686cf4ad982ad4cf3f77c0876c20513c27dc9afc8c71ca",
+      "pilot_gate.json": "8def8aa22842172d7f9f2e17a81646e48557673feb54ece82b40b47e2a0e7113",
+      "frozen_campaign.json": "a598f91ae9aba6e619dbc0113f82623a5ea0c46669b2b8116cb9a3a8ef98eef1",
+      "current_rounded_loss_vs_feasible_time.png": "0fabd89dbfd424a74c37c4b1f2516b2d1ddee31eca5b7f51dae4897be47677fc",
+      "current_rounded_loss_vs_feasible_time.pdf": "53fe207342bdf587c58c525957209b2f106bb11db2cab929a04d618873d27e97",
+      "current_rounded_loss_vs_outer_updates.png": "1e001995b7108e117ea0489808d38766df06d2aa0460222b6341b3afb4a8ea6a",
+      "current_rounded_loss_vs_outer_updates.pdf": "505a0277c94bae23cb43a0ae81b82c5398420f42796705c24365a5c3a12f5e2a"
+    },
+    "all_sha256_verified": true
+  },
+  "interpretation": "Three product-start stochastic seeds, transferred SNARE constants, no SHARE-seq tuning; objective ranking does not demonstrate useful biological alignment."
+}

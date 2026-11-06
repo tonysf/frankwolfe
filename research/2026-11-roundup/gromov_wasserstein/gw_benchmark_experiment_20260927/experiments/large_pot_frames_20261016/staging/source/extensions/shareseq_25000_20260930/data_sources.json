@@ -1,0 +1,48 @@
+{
+  "accession": "GSE140203",
+  "dataset": "SHARE-seq mouse skin, scGLUE Ma-2020 raw-count export",
+  "expected_shared_cells_before_our_qc": 32231,
+  "files": [
+    {
+      "bytes": 50822146,
+      "count_path": "X",
+      "encoding_type": "csr_matrix",
+      "encoding_version": "0.1.0",
+      "filename": "Ma-2020-RNA.h5ad",
+      "modality": "RNA",
+      "nnz": 19789230,
+      "sha256": "d38865f573e345b62f2d5a3714bd880ae8f298789d794bd635366599db182cee",
+      "shape": [
+        32231,
+        21478
+      ],
+      "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-RNA.h5ad"
+    },
+    {
+      "bytes": 274596957,
+      "count_path": "X",
+      "encoding_type": "csr_matrix",
+      "encoding_version": "0.1.0",
+      "filename": "Ma-2020-ATAC.h5ad",
+      "modality": "ATAC",
+      "nnz": 127118599,
+      "sha256": "fb94f9d3c9ee42c07aca5ce3769f77b754084bce7737999ddbb63c6c7f8f7c17",
+      "shape": [
+        32231,
+        340341
+      ],
+      "url": "https://download.gao-lab.org/GLUE/dataset/Ma-2020-ATAC.h5ad"
+    }
+  ],
+  "original_publication": "https://pubmed.ncbi.nlm.nih.gov/33098772/",
+  "retrieved_utc_date": "2026-09-30",
+  "schema_version": 1,
+  "source_page": "https://scglue.readthedocs.io/en/v0.3.1/data.html",
+  "upstream_filters": [
+    "Author celltype_v2 subset excluding Mix",
+    "RNA genes with genomic annotation and >=1 count",
+    "ATAC peaks outside mm10 blacklist with >=1 count"
+  ],
+  "upstream_notebook_sha256": "d54dea70e4cd53f9471ec5d1e42f22498e4abcdf4a86fd5f44af96eef23a35cc",
+  "upstream_preparation": "https://github.com/gao-lab/GLUE/blob/5a30146c6148a52210f547c9e9c330ecfbdf1090/data/collect/Ma-2020.ipynb"
+}

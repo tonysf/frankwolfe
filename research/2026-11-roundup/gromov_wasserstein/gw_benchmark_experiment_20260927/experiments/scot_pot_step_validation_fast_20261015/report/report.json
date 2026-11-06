@@ -1,0 +1,1182 @@
+{
+  "status": "complete_validated",
+  "created_utc": "2026-10-15T19:01:40.780524+00:00",
+  "config_sha256": "b02747a39e8a6a14e6e0d56330a68e56c51052b8250fdab2fb3963b6316abc01",
+  "reporter_sha256": "c93243008c89687d58f78faf7a8367e43f805d78192df59b5114144038904e3f",
+  "objective": "F_epsilon=f+epsilon*sum(P*(log(P)-1)); full squared GW f has no factor 1/2",
+  "epsilon": 0.001,
+  "iterations": 20,
+  "completed_run_count": 4,
+  "expected_run_count": 4,
+  "pending": [],
+  "source_file_sha256": {
+    "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+    "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/scot_pot_step_20261015/campaign.py": "351a199a6e8e641d4ec4c3360a18ef087fdcfd6ad32a0035c7b3487d93d6c7ac",
+    "extensions/scot_pot_step_20261015/summarize.py": "c93243008c89687d58f78faf7a8367e43f805d78192df59b5114144038904e3f",
+    "extensions/scot_reproduction_20261014/reference.py": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6"
+  },
+  "array_files_sha256": {
+    "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+    "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+    "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+    "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+  },
+  "validation_environment": {
+    "numpy": "2.4.6",
+    "POT": "0.9.7.post1",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+  "endpoint_summary": {
+    "full": {
+      "final_loss": {
+        "n": 1,
+        "median": 0.016548058004121624,
+        "minimum": 0.016548058004121624,
+        "maximum": 0.016548058004121624
+      },
+      "final_regularized_loss": {
+        "n": 1,
+        "median": 0.005045687124541901,
+        "minimum": 0.005045687124541901,
+        "maximum": 0.005045687124541901
+      },
+      "full_loss_reduction_percent": {
+        "n": 1,
+        "median": 76.51417120703475,
+        "minimum": 76.51417120703475,
+        "maximum": 76.51417120703475
+      }
+    },
+    "pair": {
+      "final_loss": {
+        "n": 3,
+        "median": 0.018067845063169496,
+        "minimum": 0.01679887105742761,
+        "maximum": 0.018137969074481175
+      },
+      "final_regularized_loss": {
+        "n": 3,
+        "median": 0.006612819623486825,
+        "minimum": 0.005302218439670782,
+        "maximum": 0.006647486736942288
+      },
+      "full_loss_reduction_percent": {
+        "n": 3,
+        "median": 74.35721365578178,
+        "minimum": 74.25769016344618,
+        "maximum": 76.15820481946722
+      }
+    }
+  },
+  "runs": [
+    {
+      "id": "full_gradient",
+      "oracle": "full",
+      "seed": 811,
+      "metadata_sha256": "64c0a1cb10e16458b0a22246460968141e73ea3fbf4166fe4f90b257ecd2f3a8",
+      "source_file_sha256": {
+        "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+        "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+        "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "array_files_sha256": {
+        "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+        "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+        "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+        "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+      },
+      "counters": {
+        "certificate_checks": 20,
+        "completed_updates": 20,
+        "exact_diagnostic_loss_calls": 16,
+        "full_gradient_calls": 20,
+        "inner_iterations_total": 122280,
+        "inner_stopping_failures": 0,
+        "max_underflow_entries": 0,
+        "pair_samples": 0,
+        "stochastic_gradient_calls": 0,
+        "updates_with_underflow": 0
+      },
+      "schedule": {
+        "certificate_objective": "<G,Q> + epsilon*KL(Q||a*b); differs from <G,Q>+epsilon*h(Q) by a fixed feasible-set constant",
+        "cmax": 1.0,
+        "epsilon": 0.001,
+        "eta0": 1000.0,
+        "eta_last": 1000.0,
+        "fixed_reference": "product_marginals",
+        "formula": "eta_k=1/epsilon",
+        "inner_check_every": 10,
+        "inner_gap_tol": 1e-07,
+        "inner_max": 10000,
+        "inner_solver": "FP64 matrix-vector Sinkhorn with original-log-kernel certificate and log-domain fallback",
+        "inner_tol": 1e-07,
+        "kind": "pot-fixed",
+        "objective": "full_squared_GW_no_half + epsilon*sum(P*(log(P)-1))",
+        "output_distribution": "uniform P_0,...,P_(T-1); diagnostic only",
+        "theory_scope": "empirical, not claimed theorem-admissible"
+      },
+      "cmax": 1.0,
+      "eta0": 1000.0,
+      "certificates": {
+        "accepted_solves": 20,
+        "inner_iterations": 122280,
+        "maxima": {
+          "marginal_l1": 9.989841495380066e-08,
+          "normalized_gap_upper_bound": 7.981340394408156e-09,
+          "primal_witness_marginal_l1": 1.6609977282477928e-16
+        },
+        "scope": "Numerical acceptance criteria, not an exact-proximal outer convergence guarantee."
+      },
+      "selected_output": {
+        "index": 18,
+        "output_seed": 20811,
+        "probability": 0.05,
+        "scope": "Uniformly sampled pre-update diagnostic output; no theorem-selected output claim."
+      },
+      "plans": {
+        "last_raw": {
+          "loss": 0.016548048910290714,
+          "entropy": -11.502369918382255,
+          "regularized_loss": 0.005045678991908458,
+          "pot_actual_marginals_loss": 0.016548048910290727,
+          "independent_loss_absolute_difference": 1.3877787807814457e-17,
+          "residuals": {
+            "row_l1": 9.945382184819735e-08,
+            "col_l1": 8.429671891074797e-16,
+            "both_l1": 9.945382269116454e-08,
+            "mass_error": 0.0,
+            "min_entry": 7.27442013246004e-189
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "a1e858c69f239e9726b5326140666688ce32a3c656fc3e29226a6f3b07e87a7e"
+        },
+        "last_rounded": {
+          "loss": 0.016548058004121624,
+          "entropy": -11.502370879579722,
+          "regularized_loss": 0.005045687124541901,
+          "pot_actual_marginals_loss": 0.016548058004121638,
+          "independent_loss_absolute_difference": 1.3877787807814457e-17,
+          "residuals": {
+            "row_l1": 7.014788055981214e-17,
+            "col_l1": 8.109832250191573e-17,
+            "both_l1": 1.5124620306172787e-16,
+            "mass_error": 0.0,
+            "min_entry": 7.27441910414131e-189
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "195dc4b7d1e07f6a649d3baeca17709192ef231058860cb081df7363206db33e"
+        },
+        "selected_raw": {
+          "loss": 0.016553102904740324,
+          "entropy": -11.50606796064179,
+          "regularized_loss": 0.005047034944098534,
+          "pot_actual_marginals_loss": 0.016553102904740345,
+          "independent_loss_absolute_difference": 2.0816681711721685e-17,
+          "residuals": {
+            "row_l1": 9.948417192622537e-08,
+            "col_l1": 8.173800178368218e-16,
+            "both_l1": 9.948417274360539e-08,
+            "mass_error": 0.0,
+            "min_entry": 7.197263660089377e-189
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "6f4e8d3b1315b73e732fac9fc5c7683fdb757b8216d977a1811046f4cf3cc990"
+        },
+        "selected_rounded": {
+          "loss": 0.01655311199777132,
+          "entropy": -11.506068922028426,
+          "regularized_loss": 0.005047043075742892,
+          "pot_actual_marginals_loss": 0.016553111997771278,
+          "independent_loss_absolute_difference": 4.163336342344337e-17,
+          "residuals": {
+            "row_l1": 7.123208273229764e-17,
+            "col_l1": 7.968885967768458e-17,
+            "both_l1": 1.5092094240998222e-16,
+            "mass_error": 0.0,
+            "min_entry": 7.19726264232577e-189
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "0f964a08084b25feb9c2395c2a417606ce1ce9ca208d1ffb65e8a490271a9106"
+        }
+      },
+      "curve": [
+        {
+          "iteration": 0,
+          "loss": 0.07045975745628485,
+          "entropy": -14.907368421741067,
+          "regularized_loss": 0.05555238903454379,
+          "pot_actual_marginals_loss": 0.07045975745628467,
+          "independent_loss_absolute_difference": 1.8041124150158794e-16,
+          "residuals": {
+            "row_l1": 1.1351596745923231e-16,
+            "col_l1": 1.1427490897997217e-16,
+            "both_l1": 2.277908764392045e-16,
+            "mass_error": 1.1102230246251565e-16,
+            "min_entry": 9.122348019401406e-07
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "311c7def13f0a64b836bfb8157bfe47b96a1e00b9135a555c1c503e6063ed98d"
+        },
+        {
+          "iteration": 1,
+          "loss": 0.06326074576529794,
+          "entropy": -13.934198007223124,
+          "regularized_loss": 0.049326547758074824,
+          "pot_actual_marginals_loss": 0.06326074576529797,
+          "independent_loss_absolute_difference": 2.7755575615628914e-17,
+          "residuals": {
+            "row_l1": 5.822165666247159e-17,
+            "col_l1": 6.667843360785852e-17,
+            "both_l1": 1.249000902703301e-16,
+            "mass_error": 0.0,
+            "min_entry": 1.6933063320214514e-48
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "7ff0e3de8988bed6e4ce083c5a3d76dfd4aecacdcbae985ec649a3ef88894812"
+        },
+        {
+          "iteration": 2,
+          "loss": 0.0399622702791822,
+          "entropy": -13.260088180653174,
+          "regularized_loss": 0.026702182098529023,
+          "pot_actual_marginals_loss": 0.03996227027918212,
+          "independent_loss_absolute_difference": 7.632783294297951e-17,
+          "residuals": {
+            "row_l1": 6.483528991463317e-17,
+            "col_l1": 7.253312533928025e-17,
+            "both_l1": 1.373684152539134e-16,
+            "mass_error": 0.0,
+            "min_entry": 4.504318667149653e-60
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "3b6c81c455095ae037cc100a9700128a05a767ae1c438478cac5f12016bb20e6"
+        },
+        {
+          "iteration": 5,
+          "loss": 0.01705791980262117,
+          "entropy": -11.727093999753126,
+          "regularized_loss": 0.005330825802868042,
+          "pot_actual_marginals_loss": 0.01705791980262121,
+          "independent_loss_absolute_difference": 4.163336342344337e-17,
+          "residuals": {
+            "row_l1": 6.331740687315346e-17,
+            "col_l1": 7.741203511546502e-17,
+            "both_l1": 1.4072944198861848e-16,
+            "mass_error": 0.0,
+            "min_entry": 1.8485251213081664e-188
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "5e590e8f567e7b221f71b3a5f534ff3fe9663c9fa04ca07ea095e348d8834f78"
+        },
+        {
+          "iteration": 10,
+          "loss": 0.01665712072281955,
+          "entropy": -11.551268169246555,
+          "regularized_loss": 0.005105852553572996,
+          "pot_actual_marginals_loss": 0.01665712072281951,
+          "independent_loss_absolute_difference": 4.163336342344337e-17,
+          "residuals": {
+            "row_l1": 6.765421556309548e-17,
+            "col_l1": 7.838781707070197e-17,
+            "both_l1": 1.4604203263379745e-16,
+            "mass_error": 0.0,
+            "min_entry": 1.671004880932311e-188
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "98d364fe7281a73305751f535d00d7031a19e41b3c3b4c73320fb03992ca1db3"
+        },
+        {
+          "iteration": 20,
+          "loss": 0.016548058004121624,
+          "entropy": -11.502370879579722,
+          "regularized_loss": 0.005045687124541901,
+          "pot_actual_marginals_loss": 0.016548058004121638,
+          "independent_loss_absolute_difference": 1.3877787807814457e-17,
+          "residuals": {
+            "row_l1": 7.014788055981214e-17,
+            "col_l1": 8.109832250191573e-17,
+            "both_l1": 1.5124620306172787e-16,
+            "mass_error": 0.0,
+            "min_entry": 7.27441910414131e-189
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "195dc4b7d1e07f6a649d3baeca17709192ef231058860cb081df7363206db33e"
+        }
+      ],
+      "independent_saved_plan_evaluations": 10,
+      "full_loss_reduction_percent": 76.51417120703475,
+      "environment": {
+        "cpu_affinity": [
+          0
+        ],
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "distributed": false,
+        "dtype": "float64",
+        "hostname": "elite",
+        "numpy": "2.4.6",
+        "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+        "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "torch": "2.14.0+cpu",
+        "torch_interop_threads": 1,
+        "torch_threads": 1
+      }
+    },
+    {
+      "id": "pair_seed811",
+      "oracle": "pair",
+      "seed": 811,
+      "metadata_sha256": "fac27ad96c2d85c54cc722661ad143246d6c73098623023b6bded4671901293c",
+      "source_file_sha256": {
+        "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+        "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+        "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "array_files_sha256": {
+        "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+        "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+        "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+        "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+      },
+      "counters": {
+        "certificate_checks": 20,
+        "completed_updates": 20,
+        "exact_diagnostic_loss_calls": 16,
+        "full_gradient_calls": 0,
+        "inner_iterations_total": 93260,
+        "inner_stopping_failures": 0,
+        "max_underflow_entries": 0,
+        "pair_samples": 20480,
+        "stochastic_gradient_calls": 20,
+        "updates_with_underflow": 0
+      },
+      "schedule": {
+        "certificate_objective": "<G,Q> + epsilon*KL(Q||a*b); differs from <G,Q>+epsilon*h(Q) by a fixed feasible-set constant",
+        "cmax": 1.0,
+        "epsilon": 0.001,
+        "eta0": 1000.0,
+        "eta_last": 1000.0,
+        "fixed_reference": "product_marginals",
+        "formula": "eta_k=1/epsilon",
+        "inner_check_every": 10,
+        "inner_gap_tol": 1e-07,
+        "inner_max": 10000,
+        "inner_solver": "FP64 matrix-vector Sinkhorn with original-log-kernel certificate and log-domain fallback",
+        "inner_tol": 1e-07,
+        "kind": "pot-fixed",
+        "objective": "full_squared_GW_no_half + epsilon*sum(P*(log(P)-1))",
+        "output_distribution": "uniform P_0,...,P_(T-1); diagnostic only",
+        "theory_scope": "empirical, not claimed theorem-admissible"
+      },
+      "cmax": 1.0,
+      "eta0": 1000.0,
+      "certificates": {
+        "accepted_solves": 20,
+        "inner_iterations": 93260,
+        "maxima": {
+          "marginal_l1": 9.987464338878909e-08,
+          "normalized_gap_upper_bound": 8.60442990469057e-09,
+          "primal_witness_marginal_l1": 1.6447346956605102e-16
+        },
+        "scope": "Numerical acceptance criteria, not an exact-proximal outer convergence guarantee."
+      },
+      "selected_output": {
+        "index": 18,
+        "output_seed": 20811,
+        "probability": 0.05,
+        "scope": "Uniformly sampled pre-update diagnostic output; no theorem-selected output claim."
+      },
+      "plans": {
+        "last_raw": {
+          "loss": 0.01679886159585653,
+          "entropy": -11.496651657623032,
+          "regularized_loss": 0.0053022099382334965,
+          "pot_actual_marginals_loss": 0.0167988615958565,
+          "independent_loss_absolute_difference": 2.7755575615628914e-17,
+          "residuals": {
+            "row_l1": 9.927903754690728e-08,
+            "col_l1": 8.009001448150421e-16,
+            "both_l1": 9.927903834780743e-08,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 9.54491469505566e-187
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "c7a55ebb06f34d07d7ff883ae9c0dd1b3889aa4b06eaaffbfa7e0986046a57c1"
+        },
+        "last_rounded": {
+          "loss": 0.01679887105742761,
+          "entropy": -11.49665261775683,
+          "regularized_loss": 0.005302218439670782,
+          "pot_actual_marginals_loss": 0.016798871057427632,
+          "independent_loss_absolute_difference": 2.0816681711721685e-17,
+          "residuals": {
+            "row_l1": 7.047314121155779e-17,
+            "col_l1": 8.42425088021237e-17,
+            "both_l1": 1.5471565001368148e-16,
+            "mass_error": 0.0,
+            "min_entry": 9.54491333803329e-187
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "756c37ded9273af046665ff29f2b50414a85930fed87245a4fdf31d5dab7610b"
+        },
+        "selected_raw": {
+          "loss": 0.01694754197749182,
+          "entropy": -11.573190247654464,
+          "regularized_loss": 0.005374351729837355,
+          "pot_actual_marginals_loss": 0.0169475419774918,
+          "independent_loss_absolute_difference": 2.0816681711721685e-17,
+          "residuals": {
+            "row_l1": 9.953359391117605e-08,
+            "col_l1": 7.924433678696552e-16,
+            "both_l1": 9.953359470361942e-08,
+            "mass_error": 0.0,
+            "min_entry": 2.9615594606661983e-200
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "010d908bf755b48aa1c71479271d525befee9a25e1e7e9c2378c328808f38f55"
+        },
+        "selected_rounded": {
+          "loss": 0.016947551441993225,
+          "entropy": -11.573191206668767,
+          "regularized_loss": 0.005374360235324458,
+          "pot_actual_marginals_loss": 0.016947551441993128,
+          "independent_loss_absolute_difference": 9.71445146547012e-17,
+          "residuals": {
+            "row_l1": 6.407634839389331e-17,
+            "col_l1": 8.46761896711179e-17,
+            "both_l1": 1.487525380650112e-16,
+            "mass_error": 0.0,
+            "min_entry": 3.3509895242764847e-195
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "83ca3e042ee1c344232e30f27a6aa7db45186bd1768ae009ead0f1ac36628745"
+        }
+      },
+      "curve": [
+        {
+          "iteration": 0,
+          "loss": 0.07045975745628485,
+          "entropy": -14.907368421741067,
+          "regularized_loss": 0.05555238903454379,
+          "pot_actual_marginals_loss": 0.07045975745628467,
+          "independent_loss_absolute_difference": 1.8041124150158794e-16,
+          "residuals": {
+            "row_l1": 1.1351596745923231e-16,
+            "col_l1": 1.1427490897997217e-16,
+            "both_l1": 2.277908764392045e-16,
+            "mass_error": 1.1102230246251565e-16,
+            "min_entry": 9.122348019401406e-07
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "311c7def13f0a64b836bfb8157bfe47b96a1e00b9135a555c1c503e6063ed98d"
+        },
+        {
+          "iteration": 1,
+          "loss": 0.04323132913795691,
+          "entropy": -13.040728639894734,
+          "regularized_loss": 0.030190600498062173,
+          "pot_actual_marginals_loss": 0.04323132913795687,
+          "independent_loss_absolute_difference": 4.163336342344337e-17,
+          "residuals": {
+            "row_l1": 6.407634839389331e-17,
+            "col_l1": 7.177418381854039e-17,
+            "both_l1": 1.358505322124337e-16,
+            "mass_error": 0.0,
+            "min_entry": 2.414138661703656e-47
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "022ac7766f813ba8f7acda532278345ba1a570c1de414fe50643a60fc4fb683a"
+        },
+        {
+          "iteration": 2,
+          "loss": 0.03009709355918222,
+          "entropy": -12.068053391820193,
+          "regularized_loss": 0.018029040167362027,
+          "pot_actual_marginals_loss": 0.030097093559182275,
+          "independent_loss_absolute_difference": 5.551115123125783e-17,
+          "residuals": {
+            "row_l1": 6.526897078362737e-17,
+            "col_l1": 7.708677446371937e-17,
+            "both_l1": 1.4235574524734673e-16,
+            "mass_error": 0.0,
+            "min_entry": 5.562922685494284e-125
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "e9b6d616217d56da76af307f0bd08d4af06c1af0c53ccf2b490acf0a66f9f102"
+        },
+        {
+          "iteration": 5,
+          "loss": 0.0179431499072793,
+          "entropy": -11.695123258126724,
+          "regularized_loss": 0.006248026649152574,
+          "pot_actual_marginals_loss": 0.017943149907279233,
+          "independent_loss_absolute_difference": 6.591949208711867e-17,
+          "residuals": {
+            "row_l1": 7.491837011874836e-17,
+            "col_l1": 7.838781707070197e-17,
+            "both_l1": 1.5330618718945033e-16,
+            "mass_error": 0.0,
+            "min_entry": 7.444726323261592e-179
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "a06db3d3023524ad2f40e9c7dd4b92ce528988f560645a67f609cee6b215fb2c"
+        },
+        {
+          "iteration": 10,
+          "loss": 0.01707938319290403,
+          "entropy": -11.576127844189749,
+          "regularized_loss": 0.00550325534871428,
+          "pot_actual_marginals_loss": 0.01707938319290398,
+          "independent_loss_absolute_difference": 4.85722573273506e-17,
+          "residuals": {
+            "row_l1": 6.732895491134983e-17,
+            "col_l1": 8.174884380540703e-17,
+            "both_l1": 1.4907779871675686e-16,
+            "mass_error": 0.0,
+            "min_entry": 3.375334158454393e-201
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "213b70780fe5979144d70bb20bfb59b148d65d2f500f96516cf9d92ae6c6ac6a"
+        },
+        {
+          "iteration": 20,
+          "loss": 0.01679887105742761,
+          "entropy": -11.49665261775683,
+          "regularized_loss": 0.005302218439670782,
+          "pot_actual_marginals_loss": 0.016798871057427632,
+          "independent_loss_absolute_difference": 2.0816681711721685e-17,
+          "residuals": {
+            "row_l1": 7.047314121155779e-17,
+            "col_l1": 8.42425088021237e-17,
+            "both_l1": 1.5471565001368148e-16,
+            "mass_error": 0.0,
+            "min_entry": 9.54491333803329e-187
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "756c37ded9273af046665ff29f2b50414a85930fed87245a4fdf31d5dab7610b"
+        }
+      ],
+      "independent_saved_plan_evaluations": 10,
+      "full_loss_reduction_percent": 76.15820481946722,
+      "environment": {
+        "cpu_affinity": [
+          2
+        ],
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "distributed": false,
+        "dtype": "float64",
+        "hostname": "elite",
+        "numpy": "2.4.6",
+        "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+        "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "torch": "2.14.0+cpu",
+        "torch_interop_threads": 1,
+        "torch_threads": 1
+      }
+    },
+    {
+      "id": "pair_seed812",
+      "oracle": "pair",
+      "seed": 812,
+      "metadata_sha256": "2cf21b167e3a90e8bda0a3c010f476c9d1b5580c0d5d0e9088a2b239a940b496",
+      "source_file_sha256": {
+        "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+        "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+        "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "array_files_sha256": {
+        "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+        "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+        "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+        "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+      },
+      "counters": {
+        "certificate_checks": 20,
+        "completed_updates": 20,
+        "exact_diagnostic_loss_calls": 16,
+        "full_gradient_calls": 0,
+        "inner_iterations_total": 57570,
+        "inner_stopping_failures": 0,
+        "max_underflow_entries": 0,
+        "pair_samples": 20480,
+        "stochastic_gradient_calls": 20,
+        "updates_with_underflow": 0
+      },
+      "schedule": {
+        "certificate_objective": "<G,Q> + epsilon*KL(Q||a*b); differs from <G,Q>+epsilon*h(Q) by a fixed feasible-set constant",
+        "cmax": 1.0,
+        "epsilon": 0.001,
+        "eta0": 1000.0,
+        "eta_last": 1000.0,
+        "fixed_reference": "product_marginals",
+        "formula": "eta_k=1/epsilon",
+        "inner_check_every": 10,
+        "inner_gap_tol": 1e-07,
+        "inner_max": 10000,
+        "inner_solver": "FP64 matrix-vector Sinkhorn with original-log-kernel certificate and log-domain fallback",
+        "inner_tol": 1e-07,
+        "kind": "pot-fixed",
+        "objective": "full_squared_GW_no_half + epsilon*sum(P*(log(P)-1))",
+        "output_distribution": "uniform P_0,...,P_(T-1); diagnostic only",
+        "theory_scope": "empirical, not claimed theorem-admissible"
+      },
+      "cmax": 1.0,
+      "eta0": 1000.0,
+      "certificates": {
+        "accepted_solves": 20,
+        "inner_iterations": 57570,
+        "maxima": {
+          "marginal_l1": 9.928862479587075e-08,
+          "normalized_gap_upper_bound": 6.42156191850853e-09,
+          "primal_witness_marginal_l1": 1.6859343782149594e-16
+        },
+        "scope": "Numerical acceptance criteria, not an exact-proximal outer convergence guarantee."
+      },
+      "selected_output": {
+        "index": 11,
+        "output_seed": 20812,
+        "probability": 0.05,
+        "scope": "Uniformly sampled pre-update diagnostic output; no theorem-selected output claim."
+      },
+      "plans": {
+        "last_raw": {
+          "loss": 0.01806783521621569,
+          "entropy": -11.455024503715872,
+          "regularized_loss": 0.006612810712499816,
+          "pot_actual_marginals_loss": 0.018067835216215734,
+          "independent_loss_absolute_difference": 4.5102810375396984e-17,
+          "residuals": {
+            "row_l1": 9.639030579440544e-08,
+            "col_l1": 1.2923689896027213e-15,
+            "both_l1": 9.639030708677443e-08,
+            "mass_error": 0.0,
+            "min_entry": 1.4875315203478885e-202
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "724ee1436480ea75b9c29dba237cdfd11fbbe94e7d0eb68cbf8c9c7c1603c856"
+        },
+        "last_rounded": {
+          "loss": 0.018067845063169496,
+          "entropy": -11.455025439682672,
+          "regularized_loss": 0.006612819623486825,
+          "pot_actual_marginals_loss": 0.018067845063169413,
+          "independent_loss_absolute_difference": 8.326672684688674e-17,
+          "residuals": {
+            "row_l1": 7.058156142880634e-17,
+            "col_l1": 8.435092901937224e-17,
+            "both_l1": 1.5493249044817858e-16,
+            "mass_error": 0.0,
+            "min_entry": 2.167998014764895e-196
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "09970c43a1b3b68dbcf8afb9dd2fd80cc2e53b944d0190bd0328aa39f889380c"
+        },
+        "selected_raw": {
+          "loss": 0.018050726862003486,
+          "entropy": -11.45864751070945,
+          "regularized_loss": 0.0065920793512940345,
+          "pot_actual_marginals_loss": 0.018050726862003538,
+          "independent_loss_absolute_difference": 5.204170427930421e-17,
+          "residuals": {
+            "row_l1": 9.687550087990326e-08,
+            "col_l1": 1.3268466186877603e-15,
+            "both_l1": 9.687550220674988e-08,
+            "mass_error": 1.1102230246251565e-16,
+            "min_entry": 9.46405565572405e-207
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "2732d891423662c4740ffef9c2030045712cf96233a5c6d1e9d7d46a77349691"
+        },
+        "selected_rounded": {
+          "loss": 0.018050737083538437,
+          "entropy": -11.458648447708487,
+          "regularized_loss": 0.006592088635829949,
+          "pot_actual_marginals_loss": 0.018050737083538434,
+          "independent_loss_absolute_difference": 3.469446951953614e-18,
+          "residuals": {
+            "row_l1": 7.090682208055199e-17,
+            "col_l1": 8.142358315366138e-17,
+            "both_l1": 1.5233040523421337e-16,
+            "mass_error": 0.0,
+            "min_entry": 9.464054192724875e-207
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "9ff05e9f2a93b827662e01b960a0dcc128cdf49beb6ff933f1e0ee673c0e6f92"
+        }
+      },
+      "curve": [
+        {
+          "iteration": 0,
+          "loss": 0.07045975745628485,
+          "entropy": -14.907368421741067,
+          "regularized_loss": 0.05555238903454379,
+          "pot_actual_marginals_loss": 0.07045975745628467,
+          "independent_loss_absolute_difference": 1.8041124150158794e-16,
+          "residuals": {
+            "row_l1": 1.1351596745923231e-16,
+            "col_l1": 1.1427490897997217e-16,
+            "both_l1": 2.277908764392045e-16,
+            "mass_error": 1.1102230246251565e-16,
+            "min_entry": 9.122348019401406e-07
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "311c7def13f0a64b836bfb8157bfe47b96a1e00b9135a555c1c503e6063ed98d"
+        },
+        {
+          "iteration": 1,
+          "loss": 0.04503001498417669,
+          "entropy": -13.023881710866528,
+          "regularized_loss": 0.032006133273310165,
+          "pot_actual_marginals_loss": 0.04503001498417672,
+          "independent_loss_absolute_difference": 2.7755575615628914e-17,
+          "residuals": {
+            "row_l1": 6.407634839389331e-17,
+            "col_l1": 7.752045533271357e-17,
+            "both_l1": 1.4159680372660688e-16,
+            "mass_error": 0.0,
+            "min_entry": 3.7698539057623577e-48
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "9b486169a4db4862ed437ea5b78765650fe97d23f34364ec3d0c0cb514dec923"
+        },
+        {
+          "iteration": 2,
+          "loss": 0.021068617895990904,
+          "entropy": -12.084401466471846,
+          "regularized_loss": 0.008984216429519059,
+          "pot_actual_marginals_loss": 0.02106861789599091,
+          "independent_loss_absolute_difference": 6.938893903907228e-18,
+          "residuals": {
+            "row_l1": 6.808789643208968e-17,
+            "col_l1": 7.567731163948821e-17,
+            "both_l1": 1.437652080715779e-16,
+            "mass_error": 0.0,
+            "min_entry": 6.291754223960147e-136
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "fa7eb7b919a2da41947e8a23a9e9729771c4e6890f738bb77d9aeb97ed09bebc"
+        },
+        {
+          "iteration": 5,
+          "loss": 0.01811900362620067,
+          "entropy": -11.520257441969951,
+          "regularized_loss": 0.006598746184230718,
+          "pot_actual_marginals_loss": 0.018119003626200753,
+          "independent_loss_absolute_difference": 8.326672684688674e-17,
+          "residuals": {
+            "row_l1": 6.982261990806649e-17,
+            "col_l1": 8.109832250191573e-17,
+            "both_l1": 1.5092094240998222e-16,
+            "mass_error": 0.0,
+            "min_entry": 3.3904029525464202e-211
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "df11efc692daaf8bed5c9d06fb4d3b2fc62e0291584aa251cbbf887c22199eb7"
+        },
+        {
+          "iteration": 10,
+          "loss": 0.01806381710869498,
+          "entropy": -11.471988608522247,
+          "regularized_loss": 0.006591828500172732,
+          "pot_actual_marginals_loss": 0.01806381710869495,
+          "independent_loss_absolute_difference": 2.7755575615628914e-17,
+          "residuals": {
+            "row_l1": 7.123208273229764e-17,
+            "col_l1": 8.46761896711179e-17,
+            "both_l1": 1.5590827240341554e-16,
+            "mass_error": 0.0,
+            "min_entry": 2.1513182870074762e-203
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "84efad0ae1d80bd1318f046958fceb0f356670024188cc4e401eff0a386ab0d9"
+        },
+        {
+          "iteration": 20,
+          "loss": 0.018067845063169496,
+          "entropy": -11.455025439682672,
+          "regularized_loss": 0.006612819623486825,
+          "pot_actual_marginals_loss": 0.018067845063169413,
+          "independent_loss_absolute_difference": 8.326672684688674e-17,
+          "residuals": {
+            "row_l1": 7.058156142880634e-17,
+            "col_l1": 8.435092901937224e-17,
+            "both_l1": 1.5493249044817858e-16,
+            "mass_error": 0.0,
+            "min_entry": 2.167998014764895e-196
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "09970c43a1b3b68dbcf8afb9dd2fd80cc2e53b944d0190bd0328aa39f889380c"
+        }
+      ],
+      "independent_saved_plan_evaluations": 10,
+      "full_loss_reduction_percent": 74.35721365578178,
+      "environment": {
+        "cpu_affinity": [
+          4
+        ],
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "distributed": false,
+        "dtype": "float64",
+        "hostname": "elite",
+        "numpy": "2.4.6",
+        "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+        "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "torch": "2.14.0+cpu",
+        "torch_interop_threads": 1,
+        "torch_threads": 1
+      }
+    },
+    {
+      "id": "pair_seed813",
+      "oracle": "pair",
+      "seed": 813,
+      "metadata_sha256": "091ca717b4077a2daad95b9ba8b3ee9d78b980e64a2e0a2a7563ac8622f13452",
+      "source_file_sha256": {
+        "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+        "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+        "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "array_files_sha256": {
+        "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+        "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+        "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+        "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+      },
+      "counters": {
+        "certificate_checks": 20,
+        "completed_updates": 20,
+        "exact_diagnostic_loss_calls": 16,
+        "full_gradient_calls": 0,
+        "inner_iterations_total": 47850,
+        "inner_stopping_failures": 0,
+        "max_underflow_entries": 0,
+        "pair_samples": 20480,
+        "stochastic_gradient_calls": 20,
+        "updates_with_underflow": 0
+      },
+      "schedule": {
+        "certificate_objective": "<G,Q> + epsilon*KL(Q||a*b); differs from <G,Q>+epsilon*h(Q) by a fixed feasible-set constant",
+        "cmax": 1.0,
+        "epsilon": 0.001,
+        "eta0": 1000.0,
+        "eta_last": 1000.0,
+        "fixed_reference": "product_marginals",
+        "formula": "eta_k=1/epsilon",
+        "inner_check_every": 10,
+        "inner_gap_tol": 1e-07,
+        "inner_max": 10000,
+        "inner_solver": "FP64 matrix-vector Sinkhorn with original-log-kernel certificate and log-domain fallback",
+        "inner_tol": 1e-07,
+        "kind": "pot-fixed",
+        "objective": "full_squared_GW_no_half + epsilon*sum(P*(log(P)-1))",
+        "output_distribution": "uniform P_0,...,P_(T-1); diagnostic only",
+        "theory_scope": "empirical, not claimed theorem-admissible"
+      },
+      "cmax": 1.0,
+      "eta0": 1000.0,
+      "certificates": {
+        "accepted_solves": 20,
+        "inner_iterations": 47850,
+        "maxima": {
+          "marginal_l1": 9.985602125543985e-08,
+          "normalized_gap_upper_bound": 6.75533765153493e-09,
+          "primal_witness_marginal_l1": 1.6685871434551913e-16
+        },
+        "scope": "Numerical acceptance criteria, not an exact-proximal outer convergence guarantee."
+      },
+      "selected_output": {
+        "index": 15,
+        "output_seed": 20813,
+        "probability": 0.05,
+        "scope": "Uniformly sampled pre-update diagnostic output; no theorem-selected output claim."
+      },
+      "plans": {
+        "last_raw": {
+          "loss": 0.01813795879445612,
+          "entropy": -11.490481379718695,
+          "regularized_loss": 0.006647477414737427,
+          "pot_actual_marginals_loss": 0.018137958794456198,
+          "independent_loss_absolute_difference": 7.632783294297951e-17,
+          "residuals": {
+            "row_l1": 9.911962397623868e-08,
+            "col_l1": 1.2951879152511836e-15,
+            "both_l1": 9.911962527142659e-08,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 4.739552812319011e-205
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "91345b09d0ddc03b45b19b9f81a6991e23b93d74916420ecde1f4cbc53e6e307"
+        },
+        "last_rounded": {
+          "loss": 0.018137969074481175,
+          "entropy": -11.490482337538888,
+          "regularized_loss": 0.006647486736942288,
+          "pot_actual_marginals_loss": 0.018137969074481168,
+          "independent_loss_absolute_difference": 6.938893903907228e-18,
+          "residuals": {
+            "row_l1": 6.917209860457518e-17,
+            "col_l1": 8.413408858487514e-17,
+            "both_l1": 1.5330618718945033e-16,
+            "mass_error": 0.0,
+            "min_entry": 4.739552070669365e-205
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "5a3404130864a57d4e2094206417e30d3ea9e8c1470fffd296010b6c445a4d0c"
+        },
+        "selected_raw": {
+          "loss": 0.018336105939279368,
+          "entropy": -11.566865669019396,
+          "regularized_loss": 0.006769240270259972,
+          "pot_actual_marginals_loss": 0.01833610593927932,
+          "independent_loss_absolute_difference": 4.85722573273506e-17,
+          "residuals": {
+            "row_l1": 9.66641118658627e-08,
+            "col_l1": 1.2433630514063765e-15,
+            "both_l1": 9.666411310922576e-08,
+            "mass_error": 0.0,
+            "min_entry": 2.5709783212213876e-200
+          },
+          "marginal_l1_tolerance": 1e-07,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "18f36b670e93e3be32af2d37779a2dee9974609245c84aa0b36a94b858f7b011"
+        },
+        "selected_rounded": {
+          "loss": 0.018336115862943037,
+          "entropy": -11.56686660089294,
+          "regularized_loss": 0.006769249262050097,
+          "pot_actual_marginals_loss": 0.018336115862943092,
+          "independent_loss_absolute_difference": 5.551115123125783e-17,
+          "residuals": {
+            "row_l1": 6.949735925632083e-17,
+            "col_l1": 8.478460988836645e-17,
+            "both_l1": 1.5428196914468728e-16,
+            "mass_error": 0.0,
+            "min_entry": 2.570977922046301e-200
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "aa6d1bdd533af1378218471a5a77ffd6584abd00d0f1d461a04ad2eb59920560"
+        }
+      },
+      "curve": [
+        {
+          "iteration": 0,
+          "loss": 0.07045975745628485,
+          "entropy": -14.907368421741067,
+          "regularized_loss": 0.05555238903454379,
+          "pot_actual_marginals_loss": 0.07045975745628467,
+          "independent_loss_absolute_difference": 1.8041124150158794e-16,
+          "residuals": {
+            "row_l1": 1.1351596745923231e-16,
+            "col_l1": 1.1427490897997217e-16,
+            "both_l1": 2.277908764392045e-16,
+            "mass_error": 1.1102230246251565e-16,
+            "min_entry": 9.122348019401406e-07
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "311c7def13f0a64b836bfb8157bfe47b96a1e00b9135a555c1c503e6063ed98d"
+        },
+        {
+          "iteration": 1,
+          "loss": 0.05406807419318538,
+          "entropy": -12.995982318143547,
+          "regularized_loss": 0.04107209187504183,
+          "pot_actual_marginals_loss": 0.054068074193185336,
+          "independent_loss_absolute_difference": 4.163336342344337e-17,
+          "residuals": {
+            "row_l1": 6.342582709040201e-17,
+            "col_l1": 7.361732751176575e-17,
+            "both_l1": 1.3704315460216776e-16,
+            "mass_error": 0.0,
+            "min_entry": 5.330401386691188e-49
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "ba34f19f759b0425c5da261bd2e978d79cdceb78de2b9e2aea7fda7d55831a5f"
+        },
+        {
+          "iteration": 2,
+          "loss": 0.029964260071022153,
+          "entropy": -12.095529783296026,
+          "regularized_loss": 0.017868730287726127,
+          "pot_actual_marginals_loss": 0.0299642600710222,
+          "independent_loss_absolute_difference": 4.85722573273506e-17,
+          "residuals": {
+            "row_l1": 6.808789643208968e-17,
+            "col_l1": 7.35089072945172e-17,
+            "both_l1": 1.4159680372660688e-16,
+            "mass_error": 0.0,
+            "min_entry": 2.7327333809772953e-77
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "8487d458510e07264e1374e7a9ac1866a5573cece1019dd49e9bb4c9b099acda"
+        },
+        {
+          "iteration": 5,
+          "loss": 0.023978647162556377,
+          "entropy": -11.620462396623564,
+          "regularized_loss": 0.012358184765932813,
+          "pot_actual_marginals_loss": 0.023978647162556342,
+          "independent_loss_absolute_difference": 3.469446951953614e-17,
+          "residuals": {
+            "row_l1": 7.025630077706069e-17,
+            "col_l1": 8.055622141567298e-17,
+            "both_l1": 1.5081252219273367e-16,
+            "mass_error": 0.0,
+            "min_entry": 1.642506575797509e-194
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "9a9a2bdea033c3eef4ba3b86be471a4bebadf3ebed294a860d9ba67546486e4c"
+        },
+        {
+          "iteration": 10,
+          "loss": 0.01946411168163631,
+          "entropy": -11.540956969999694,
+          "regularized_loss": 0.007923154711636614,
+          "pot_actual_marginals_loss": 0.019464111681636313,
+          "independent_loss_absolute_difference": 3.469446951953614e-18,
+          "residuals": {
+            "row_l1": 7.058156142880634e-17,
+            "col_l1": 7.762887554996212e-17,
+            "both_l1": 1.4821043697876846e-16,
+            "mass_error": 0.0,
+            "min_entry": 1.5247743987169332e-194
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "63b03c8803715d9a9f2469d927404b48eb3a68553be09f2ba82003350ee96e6c"
+        },
+        {
+          "iteration": 20,
+          "loss": 0.018137969074481175,
+          "entropy": -11.490482337538888,
+          "regularized_loss": 0.006647486736942288,
+          "pot_actual_marginals_loss": 0.018137969074481168,
+          "independent_loss_absolute_difference": 6.938893903907228e-18,
+          "residuals": {
+            "row_l1": 6.917209860457518e-17,
+            "col_l1": 8.413408858487514e-17,
+            "both_l1": 1.5330618718945033e-16,
+            "mass_error": 0.0,
+            "min_entry": 4.739552070669365e-205
+          },
+          "marginal_l1_tolerance": 2.220446049250313e-14,
+          "marginal_accumulation": "FP64 sums over each contiguous row and each contiguous copied column; both axes use the fast-axis NumPy reduction; no plan repair or tolerance change",
+          "file_sha256": "5a3404130864a57d4e2094206417e30d3ea9e8c1470fffd296010b6c445a4d0c"
+        }
+      ],
+      "independent_saved_plan_evaluations": 10,
+      "full_loss_reduction_percent": 74.25769016344618,
+      "environment": {
+        "cpu_affinity": [
+          6
+        ],
+        "deterministic_algorithms": true,
+        "device": "cpu",
+        "distributed": false,
+        "dtype": "float64",
+        "hostname": "elite",
+        "numpy": "2.4.6",
+        "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+        "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+        "thread_environment": {
+          "MKL_NUM_THREADS": "1",
+          "NUMEXPR_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "torch": "2.14.0+cpu",
+        "torch_interop_threads": 1,
+        "torch_threads": 1
+      }
+    }
+  ],
+  "artifacts_sha256": {
+    "loss_vs_iterations.png": "73e33c104fc9219e0ea38b37248d811633b405962fd06411f4f150f903057d67",
+    "summary.txt": "131c976f74b3271c081f1afad2b538448231e60a471f5180d5f8a85894535b61",
+    "loss_vs_iterations.pdf": "7e281049f20ffb82fafd1beb4ecccc56dc7f563f98e9758894fc3e45fa250ace",
+    "curve_data.csv": "e3ff7e0f5c4cbfe7c7aa4f2199c69dc864eedd8ad61e7d275e7d099199aa9372",
+    "endpoints.csv": "ad39b34b2220440908ef2bfc0ec03497c2026e434570572eb53c330403f41928"
+  },
+  "schedule": "constant eta_k=1/epsilon=1000",
+  "theory_scope": "Empirical POT-scale comparison, not claimed theorem-admissible.",
+  "scope": "Current rounded plan losses are diagnostics. No last-iterate or finite-prox-error theorem claim. Seed bands are observed ranges; timing is not compared."
+}

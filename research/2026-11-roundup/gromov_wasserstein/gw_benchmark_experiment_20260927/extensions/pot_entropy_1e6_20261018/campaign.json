@@ -1,0 +1,117 @@
+{
+  "additive_grid_parent": {
+    "config_sha256": "30d2c276309a7fe90c8d54148004755d9112f6a0a400a033c2af21bbe16192bc",
+    "dependency": "After entire corresponding dataset stream, following CPU continuation dispatchers; parent grid is neither rerun nor mutated.",
+    "experiment": "pot_entropy_init_20261018",
+    "initial_dispatchers": {
+      "bmmc6224": "2082920",
+      "snare_full": "2082923"
+    },
+    "root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b",
+    "source_manifest_sha256": "8bcb40dd0b622ee11e9fce6f5ab774bdebd7bd351cba3925710c21554a5fb5bf"
+  },
+  "dtype": "float64",
+  "epsilons": [
+    1e-06
+  ],
+  "experiment": "pot_entropy_1e6_20261018",
+  "init_mixture_weight": 0.9,
+  "initializations": [
+    {
+      "kind": "product",
+      "seed": 810
+    },
+    {
+      "kind": "permutation-mixture",
+      "seed": 901
+    },
+    {
+      "kind": "permutation-mixture",
+      "seed": 902
+    },
+    {
+      "kind": "permutation-mixture",
+      "seed": 903
+    }
+  ],
+  "inner_gap_tol": 1e-07,
+  "inner_max": 100000,
+  "inner_tol": 1e-07,
+  "instances": {
+    "bmmc6224": {
+      "array_files_sha256": {
+        "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+        "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+        "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+        "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+      },
+      "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+      "n": 6224,
+      "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared/bmmc6224",
+      "world_size": 1
+    },
+    "snare_full": {
+      "array_files_sha256": {
+        "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+        "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+        "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+        "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+      },
+      "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+      "n": 10000,
+      "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared/snare_full",
+      "world_size": 1
+    }
+  },
+  "iterations": 2000,
+  "method": "pot-full",
+  "outer_min_iterations": 50,
+  "outer_stable_updates": 10,
+  "outer_tolerance": 1e-06,
+  "preflight": {
+    "epsilon": 1e-06,
+    "initializations": [
+      "product",
+      "permutation-mixture"
+    ],
+    "iterations": 2,
+    "max_seconds": 900,
+    "seed": 901
+  },
+  "runner": {
+    "checkpoint_every": 100,
+    "checkpoint_seconds": 1800,
+    "diagnostic_every": 25,
+    "max_seconds": 79200
+  },
+  "scheduler": {
+    "account": "fwllm",
+    "cpu_partition": "cpu_short",
+    "cpus_per_gpu": 2,
+    "exclude_nodes": [
+      "ruche-gpu13",
+      "ruche-gpu15",
+      "ruche-gpu16",
+      "ruche-gpu19"
+    ],
+    "exclude_nodes_reason": "Historical CUDA busy/unavailable failures on 13/16/19; additionally 15 failed CUDA initialization for SHARE on 2026-10-18. Campaign-scoped workaround, not site policy or permanent bad-node classification.",
+    "gpu_partition": "gpua100",
+    "maximum_gpu_reserved_fraction": 0.9,
+    "maximum_no_progress_retries": 2,
+    "memory_gib_per_gpu": 32,
+    "time": "24:00:00"
+  },
+  "schema_version": 1,
+  "scientific_scope": "Full-gradient fixed-entropy entropic GW PGD; empirical epsilon and initialization sensitivity, not a global convergence certificate.",
+  "storage": {
+    "combined_overhead_allowance_bytes": 2487193344,
+    "combined_peak_tensor_bytes": 67306025216,
+    "completed_checkpoint_retention": false,
+    "existing_share_reservation_bytes": 66571993088,
+    "new_campaign_reservation_bytes": 3221225472,
+    "receipt_max_age_seconds": 86400,
+    "required_quota_available_bytes": 69793218560,
+    "reservation_basis": "62 GiB SHARE retained final confirmations plus transient generations; 3 GiB entropy covers two generations per BMMC/SNARE stream (2.07 GiB total) and metadata. Each addon gate/production starts after its original dataset stream completes.",
+    "simultaneous_two_generation_plan_bytes": 2219810816
+  }
+}

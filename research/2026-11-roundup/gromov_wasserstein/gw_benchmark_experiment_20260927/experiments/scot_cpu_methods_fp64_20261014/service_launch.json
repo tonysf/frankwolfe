@@ -1,0 +1,58 @@
+{
+  "status": "startup_verified",
+  "service": "scot-fp64-methods-20261014.service",
+  "checked_utc": "2026-10-14T12:37:33.925557+00:00",
+  "workers": [
+    {
+      "run": "tune_smd00_seed810",
+      "pid": 2645377,
+      "core": {
+        "cpu_id": 2,
+        "package_id": 0,
+        "core_id": 1
+      },
+      "actual_affinity": "2"
+    },
+    {
+      "run": "tune_smd01_seed810",
+      "pid": 2645379,
+      "core": {
+        "cpu_id": 4,
+        "package_id": 0,
+        "core_id": 2
+      },
+      "actual_affinity": "4"
+    },
+    {
+      "run": "tune_smd02_seed810",
+      "pid": 2645376,
+      "core": {
+        "cpu_id": 0,
+        "package_id": 0,
+        "core_id": 0
+      },
+      "actual_affinity": "0"
+    },
+    {
+      "run": "tune_smd03_seed810",
+      "pid": 2645378,
+      "core": {
+        "cpu_id": 6,
+        "package_id": 0,
+        "core_id": 3
+      },
+      "actual_affinity": "6"
+    }
+  ],
+  "threads_per_worker": 1,
+  "controller_pid": 2645356,
+  "campaign_log": "experiments/scot_cpu_methods_fp64_20261014/systemd_campaign.log",
+  "automatic_stages": [
+    "tune",
+    "select",
+    "confirm",
+    "finalize",
+    "report"
+  ],
+  "scope": "Startup verification only; full scientific results remain pending."
+}

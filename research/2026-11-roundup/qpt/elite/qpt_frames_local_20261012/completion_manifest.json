@@ -1,0 +1,136 @@
+{
+  "best_for_best_ready": false,
+  "evidence_sha256": {
+    "audit_confirmation.json": "4035c93a365bad185ebcbf42d9bf10137b6c632c1bb1fe901130a42723bcb4f5",
+    "audit_long.json": "ce9739479a1a7697bcd97bbede0c047e2bc9c82a176194e594b28dabcd6cc27d",
+    "audit_screen.json": "0a7972b7dd08b9acc6275b8f684c5ed8dc296f5be2c0eda7bb6790c33ac0227a",
+    "backend_parity.json": "295d7ad13947e488d09be60e084867a1085c04cc86554b46053ee92a912d92e9",
+    "inventory_confirmation.json": "77f11d87c45b1bffef1bfdd739cd3eade421418ccb0a1828cbfff84af851f961",
+    "inventory_long.json": "f8516ec45c51c53c7523a68a47b1c4f20660699cff6bf6214f88b7f85b353a16",
+    "inventory_screen.json": "a46e9ba6c78f9a5d53cffdb57bb9fa35652e4fea4b56eafae913de24d4386438",
+    "plan_confirmation.json": "239c3f8294a51ef67e81e40aed1b1ccbeaa0a07786b53f8175d7e0b9fbb16607",
+    "plan_long.json": "c1e45c73fbb5014d7693c7e2a2014a224cfba9f2c72da686e5a4aecdb494c581",
+    "plan_screen.json": "87c41a281cc8a2a6a6a59c081b0ab918c5351c11c5c35793a59cdebc2117db98",
+    "selection_long.json": "64e822315a131d88aa19372aa201b564b04343cb4932a78f5b7efad97e986a98",
+    "selection_screen.json": "aaa3ec4672563ba2c6aa2d727351561ada8a598e92e07c6098bbfda7bc090019",
+    "validation_tests.json": "b6e3a3d48cb715ba278ffa41479d4453fef8dc8d054b29a9d76fb3b63ba7ab91"
+  },
+  "experiment_scope": "n=2, noiseless, rank-one Haar channels, full 128-row Quiroga-style design, Gell-Mann initialization",
+  "final_heldout_channels_reserved": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019
+  ],
+  "final_heldout_used": false,
+  "finished_utc": "2026-10-12T15:08:19.613179+00:00",
+  "qualifications": [
+    "Channels 0/1 were tuning channels. Confirmation channels 2..7 were previously exposed, not unseen final tests.",
+    "Two sampling replicates per channel do not make twelve independent channels.",
+    "Tuning and confirmation were fresh starts; duplicated screen prefixes are charged in totals.",
+    "Measurement-row counts exclude TP evaluation, checkpointing and compilation; they are not FLOP or wall-time parity.",
+    "JAX CPU64 scan uses a dense bridge at n=2 and does not establish high-qubit scalability.",
+    "The modified exact-line-search FGD diagnostic is not the published Quiroga method.",
+    "The separate 2,000-update timing pilot is retained but excluded from audited scientific stage counts; its pre-freeze runner snapshot is not retained.",
+    "All original results and source repository files were preserved; no remote writes or author messages were made."
+  ],
+  "remaining": [
+    "Resolve published Quiroga adaptive-step reproduction before labeling a published-method best-for-best comparison.",
+    "Freeze both methods and the final held-out evaluation and timing protocol.",
+    "Extend matched sensing to higher qubit counts after the small-scale comparison is validated."
+  ],
+  "resources": {
+    "execution": "local CPU only",
+    "logical_cpus": [
+      0,
+      1
+    ],
+    "max_optimization_workers": 2,
+    "nice": 10,
+    "ruche_used": false
+  },
+  "schema": "qpt_frames_local_calibration_completion_v1",
+  "script_sha256": {
+    "audit_local.py": "108027e53b030512675e56345a0182c3f4ed374b58e6803737788b0a96cc9d66",
+    "check_backend_parity.py": "2cb589cf107086b7daf509789177958e69c7ba79b8e7d2e054d59f5a552af0ff",
+    "finalize_campaign.py": "60aefb904a345e251432aa821fbe7c8f92a645b02563cdcbb78d29baf3dea9a9",
+    "jax_backend.py": "a96b2931d3be190c221a5025e722363d6fc0e494b1a508da9f6e3b3cbb30f44e",
+    "make_pilot.py": "8d5e8157de144f157e46bdca210c329ff9734c2f012ca89f06f3be50e0635dac",
+    "make_screen_plan.py": "929267be133ecdc3fc0cc76ae53f86ca1f9d8a03a1781942c2b5da0ccd3eef14",
+    "run_batch.py": "a0f1d1118d4f504dbc606af9cbbe70a824423b6500923afa49eb63ab1d17efb1",
+    "run_local.py": "0cff4f4411f3e0ed12420d2f96697d03955469d7e201993c5056afa631d77a34",
+    "run_validation.py": "fb22a87a956bf6b7fe6e3370cb3cb556c27daa08b86e5121f1076fce9844c877",
+    "select_stage.py": "38749e781e3c548559fa67114ca7700978f165c8c67d464eba89dfb5d186b8b0",
+    "test_audit_local.py": "01c30fc0ea72d5cd81b6325812cbbcc59802c96e5aa8cd0523852c1710351005",
+    "test_jax_backend.py": "241967e0eeeceb37cea7b254940f690b5999ca447b407f36b5dc802a4dfeaca4",
+    "test_select_stage.py": "d80e4834e4c77557ea1a76442af093788b5c910822f847c1685a51ff22b1cf16"
+  },
+  "selected_config": {
+    "alpha0": 5e-05,
+    "batch_size": 32,
+    "channel": 2,
+    "config_id": "rho-standard",
+    "id": "rho-standard-c2-s0",
+    "metrics_every": 4000,
+    "penalty_exponent": 0.25,
+    "rho_exponent": 0.6666666666666666,
+    "rho_offset": 8.0,
+    "rho_scale": 4.0,
+    "sampling_replicate": 0,
+    "step_exponent": 1.0,
+    "step_offset": 4.0,
+    "step_scale": 4.0,
+    "steps": 400000,
+    "tau": 2.0
+  },
+  "selected_config_ids": [
+    "rho-standard"
+  ],
+  "selected_config_passes_all_confirmation_trials": true,
+  "source_commit": "4ce1108a0692edc43b47ef465dbc74a42397765e",
+  "stages": {
+    "confirmation": {
+      "charged_measurement_rows": 153600000,
+      "complete_trials": 12,
+      "distinct_channels": 6,
+      "endpoint_gate_passes": 12,
+      "numerical_failures": 0,
+      "updates": 4800000
+    },
+    "long": {
+      "charged_measurement_rows": 51200000,
+      "complete_trials": 4,
+      "distinct_channels": 2,
+      "endpoint_gate_passes": 3,
+      "numerical_failures": 0,
+      "updates": 1600000
+    },
+    "screen": {
+      "charged_measurement_rows": 57600000,
+      "complete_trials": 18,
+      "distinct_channels": 2,
+      "endpoint_gate_passes": 0,
+      "numerical_failures": 0,
+      "updates": 1800000
+    }
+  },
+  "status": "complete",
+  "total_charged_measurement_rows_excluding_timing_pilot": 262400000,
+  "total_updates_excluding_timing_pilot": 8200000
+}

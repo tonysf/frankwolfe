@@ -1,0 +1,139 @@
+{
+  "timestamp_utc": "2026-10-14T06:44:44.506824+00:00",
+  "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pair_sampling_retry_20261013_7f7b20f",
+  "source_commit": "7f7b20f5c2a15b70e1ec6867480106c34c7117a8",
+  "status": "in_progress",
+  "production_counts": {
+    "completed": 27,
+    "running": 1,
+    "pending": 8,
+    "failed": 0
+  },
+  "correctness_checks": "CPU13tests, oneA100 andfourA100 passed",
+  "preflight_gates_passed": 12,
+  "active_runs": [
+    {
+      "path": "results/shareseq_full/smoothing-fw/seed710",
+      "completed_updates": 2000,
+      "fixed_horizon": 20000,
+      "solver_seconds": 226.06523919012398,
+      "gpus": 4
+    }
+  ],
+  "completed_medians": [
+    {
+      "dataset": "metric512_s1000",
+      "method": "smoothing-fw",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 200000,
+      "median_last_rounded_loss": 0.035093099235492975,
+      "median_solver_seconds": 9290.682672819472
+    },
+    {
+      "dataset": "metric512_s1000",
+      "method": "published-smd",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 200000,
+      "median_last_rounded_loss": 0.043876614615622755,
+      "median_solver_seconds": 11928.944684813265
+    },
+    {
+      "dataset": "metric512_s1000",
+      "method": "published-msbpg",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 200000,
+      "median_last_rounded_loss": 0.04388345117389336,
+      "median_solver_seconds": 12321.643530748901
+    },
+    {
+      "dataset": "bmmc6224",
+      "method": "smoothing-fw",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 20000,
+      "median_last_rounded_loss": 0.1584079873828957,
+      "median_solver_seconds": 1489.168964838842
+    },
+    {
+      "dataset": "bmmc6224",
+      "method": "published-smd",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 20000,
+      "median_last_rounded_loss": 0.15781055780407988,
+      "median_solver_seconds": 4341.019820572925
+    },
+    {
+      "dataset": "bmmc6224",
+      "method": "published-msbpg",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 20000,
+      "median_last_rounded_loss": 0.16103920281426598,
+      "median_solver_seconds": 5993.928789598518
+    },
+    {
+      "dataset": "snare_full",
+      "method": "smoothing-fw",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 20000,
+      "median_last_rounded_loss": 0.09218825628063598,
+      "median_solver_seconds": 1988.6088703181595
+    },
+    {
+      "dataset": "snare_full",
+      "method": "published-smd",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 20000,
+      "median_last_rounded_loss": 0.0931300004895032,
+      "median_solver_seconds": 8622.366771738045
+    },
+    {
+      "dataset": "snare_full",
+      "method": "published-msbpg",
+      "seeds": [
+        710,
+        711,
+        712
+      ],
+      "iterations": 20000,
+      "median_last_rounded_loss": 0.0940721506859441,
+      "median_solver_seconds": 13376.183420881862
+    }
+  ],
+  "provenance": {
+    "snapshot_file": "logs/pair_sampling_retry_20261013/status_20261014.json",
+    "snapshot_sha256": "1badb341185456cfd03e3b5031d7905263df0375765f30afc5b8180d5b5937cf"
+  },
+  "interpretation": "Medians of final rounded GW objective and solver time across all three completed seeds; fixed prefactors, not newly tuned for the pair oracle. Completion uses the controller numerical-audit receipts. SHARE results remain incomplete.",
+  "active_monitoring": false
+}
