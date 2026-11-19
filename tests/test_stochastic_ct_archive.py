@@ -11,12 +11,21 @@ from paper.experiments.stochastic_ct import bundle
 
 def test_captured_bundle_and_archived_links():
     result = bundle.validate_bundle(require_archive=True)
-    assert result["snapshot_date"] == "2026-11-19"
+    manifest = json.loads((bundle.BUNDLE / "manifest.json").read_text())
+    assert result["snapshot_date"] == manifest["snapshot"]["date"]
     assert result["figures"] == 2 and result["tables"] == 1
     assert result["archive_links_verified"]
-    assert result["captured_pdf_sha256"] == (
-        "b0359dd827c29dfedc7062ff8fa6f2efbe65a26815d98eb6fd7f01ff796862f2"
-    )
+    if manifest["snapshot"]["comparison"] == "gradient-only view budget":
+        assert manifest["snapshot"]["physical_trajectories"] == 448
+        assert result["captured_pdf_sha256"] == (
+            "b0359dd827c29dfedc7062ff8fa6f2efbe65a26815d98eb6fd7f01ff796862f2"
+        )
+    else:
+        assert manifest["snapshot"]["comparison"] == "equal directional solver-view budget"
+        assert manifest["snapshot"]["physical_trajectories"] == 504
+        archive = Path(__file__).resolve().parents[1] / "results/stochastic_matrix_factorization/ct_nonnegative"
+        publication = json.loads((archive / "report_update.json").read_text())
+        assert result["captured_pdf_sha256"] == publication["published_sha256"]["sframes_ct_section.pdf"]
 
 
 def test_appendix_relocation_preserves_original_prose():

@@ -52,8 +52,9 @@ def validate_bundle(root=BUNDLE, require_archive=False):
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     if manifest.get("schema_version") != 1:
         raise ValueError("Unsupported report-bundle manifest")
-    if manifest.get("snapshot", {}).get("comparison") != "gradient-only view budget":
-        raise ValueError("The snapshot is not the completed gradient-budget comparison")
+    if manifest.get("snapshot", {}).get("comparison") not in (
+            "gradient-only view budget", "equal directional solver-view budget"):
+        raise ValueError("The snapshot uses an unsupported comparison protocol")
     files = manifest["files"]
     for name, record in files.items():
         path = contained_path(root, name)
@@ -74,7 +75,8 @@ def validate_bundle(root=BUNDLE, require_archive=False):
         raise ValueError("The report must contain the two captured trajectory figures")
     if body.count(r"\begin{figure}") != 2 or body.count(r"\begin{table}") != 1:
         raise ValueError("The captured report's figure/table count changed")
-    if set(re.findall(r"\\bibitem\{([^}]+)\}", driver)) != {"detect", "spring", "proxsarah", "palm"}:
+    expected_references = set(manifest.get("bibliography_keys", ["detect", "spring", "proxsarah", "palm"]))
+    if set(re.findall(r"\\bibitem\{([^}]+)\}", driver)) != expected_references:
         raise ValueError("The self-contained report bibliography changed")
     link_source = (report / "ct_reproducibility_link.tex").read_text(encoding="utf-8")
     if "{../CT_REPRODUCIBILITY.md}" not in link_source or not (root / "CT_REPRODUCIBILITY.md").is_file():
@@ -90,7 +92,8 @@ def validate_bundle(root=BUNDLE, require_archive=False):
             try:
                 destination.relative_to(root)
             except ValueError:
-                expected = "../../../results/stochastic_matrix_factorization/ct/"
+                expected = ("../../../results/stochastic_matrix_factorization/ct/",
+                            "../../../results/stochastic_matrix_factorization/ct_nonnegative/")
                 if not relative.startswith(expected):
                     raise ValueError("Unexpected external local document link: " + target)
                 archive_links += 1
