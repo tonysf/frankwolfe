@@ -1,0 +1,59 @@
+{
+  "status": "selected_from_development_only",
+  "trials": [
+    {
+      "inner_maxiter": 5,
+      "view_count_scores": {
+        "360": 0.2517387032658115,
+        "1080": 0.316212573564675
+      },
+      "score": 0.28397563841524326,
+      "run_ids": [
+        "development_slice03150_1080_anls_inner5",
+        "development_slice03150_360_anls_inner5",
+        "development_slice04300_1080_anls_inner5",
+        "development_slice04300_360_anls_inner5"
+      ]
+    },
+    {
+      "inner_maxiter": 10,
+      "view_count_scores": {
+        "360": 0.24816158924392362,
+        "1080": 0.315354176404663
+      },
+      "score": 0.2817578828242933,
+      "run_ids": [
+        "development_slice03150_1080_anls_inner10",
+        "development_slice03150_360_anls_inner10",
+        "development_slice04300_1080_anls_inner10",
+        "development_slice04300_360_anls_inner10"
+      ]
+    },
+    {
+      "inner_maxiter": 20,
+      "view_count_scores": {
+        "360": 0.2430828122884442,
+        "1080": 0.31397714966577317
+      },
+      "score": 0.2785299809771087,
+      "run_ids": [
+        "development_slice03150_1080_anls_inner20",
+        "development_slice03150_360_anls_inner20",
+        "development_slice04300_1080_anls_inner20",
+        "development_slice04300_360_anls_inner20"
+      ]
+    }
+  ],
+  "criterion": "For each inner_maxiter, take the median relative raw training loss across the two development slices at each view count, then the median across the two view counts. Minimize this score, breaking exact ties by smaller inner_maxiter. MU has no tuned parameters.",
+  "parameters": {
+    "anls": {
+      "memory": 10,
+      "relative_kkt_tolerance": 0.001,
+      "ftol": 1e-09,
+      "maxls": 20,
+      "inner_maxiter": 20
+    },
+    "mu": {}
+  },
+  "selected_inner_maxiter": 20
+}

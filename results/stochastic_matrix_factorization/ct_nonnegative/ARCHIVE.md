@@ -1,0 +1,5 @@
+# Nonnegative-only CT baseline evidence
+
+This successor archive preserves the completed alternating NNLS and multiplicative-update campaign without spectral constraints. It contains 12 development runs and 56 deterministic evaluation runs, including every recorded native and terminal state. All solver forward/adjoint work is charged, including inner trials and the cached multiplicative-update right-hand side. The existing SFRAMES and other original results are retained in the separate `ct` archive.
+
+Files retain their original bytes and runtime-relative paths. Absolute paths inside them are historical provenance. `archive_manifest.json` records sizes and SHA-256 hashes. Raw CT data, calibration arrays, checkpoints, environments, caches and transient logs remain outside Git. This archive supports result inspection and plotting; restarting optimization needs the external datasets and checkpoints. The public paper bundle is at [paper/experiments/stochastic_ct](../../../paper/experiments/stochastic_ct/).

@@ -1,8 +1,8 @@
 # Stochastic CT paper section
 
-This bundle captures the completed **19 November 2026 gradient-budget comparison** of SFRAMES, SPRING–SARAH, ProxSARAH and PALM on 2DeteCT. It contains the exact published [PDF](report/sframes_ct_section.pdf), LaTeX section, embedded bibliography, and two mean ±1 SD trajectory figures. The endpoint comparison uses 69,120 gradient views per direction, with curvature work recorded separately. There are 448 physical trajectories, including 168 completed PALM/SPRING continuations.
+This bundle contains the published comparison of SFRAMES, SPRING–SARAH, ProxSARAH and PALM with nonnegative-only alternating NNLS and multiplicative updates on 2DeteCT. The two new baselines have no spectral constraints. The same two mean ±1 SD figures and endpoint table cover 504 physical trajectories at a 69,120-view cap per direction. Every operator call inside the new solvers is charged; historical curvature estimates remain recorded separately.
 
-The [public reproducibility appendix](CT_REPRODUCIBILITY.md) links to the repository's [archived experiment evidence](../../../results/stochastic_matrix_factorization/ct/archive_manifest.json). The [manifest](manifest.json) records the original and bundled SHA-256 digests. All report files are byte-identical to the published versions. Only the appendix's relative file links were relocated; its [original bytes](provenance/CT_REPRODUCIBILITY.source.md) are retained.
+The exact [PDF](report/sframes_ct_section.pdf), LaTeX, figures, and [public appendix](CT_REPRODUCIBILITY.md) are bundled. The [new evidence](../../../results/stochastic_matrix_factorization/ct_nonnegative/archive_manifest.json) and [original evidence](../../../results/stochastic_matrix_factorization/ct/archive_manifest.json) retain frozen sources, configurations and trajectories. The [manifest](manifest.json) records original hashes and the predecessor snapshot. Only appendix links are relocated; its [original bytes](provenance/CT_REPRODUCIBILITY.source.md) are retained.
 
 ## Validate
 

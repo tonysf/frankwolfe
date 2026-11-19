@@ -2,23 +2,40 @@
   "schema_version": 1,
   "snapshot": {
     "date": "2026-11-19",
-    "published_utc": "2026-11-19T10:14:05.801280+00:00",
-    "comparison": "gradient-only view budget",
-    "gradient_view_cap_per_direction": 69120,
-    "physical_trajectories": 448,
+    "published_utc": "2026-11-19T17:56:32.202562+00:00",
+    "comparison": "equal directional solver-view budget",
+    "solver_view_cap_per_direction": 69120,
+    "physical_trajectories": 504,
+    "added_nonnegative_trajectories": 56,
     "continued_trajectories": 168,
-    "native_iteration_observations": 272132,
+    "native_iteration_observations": 279155,
     "pages": 5,
     "figures": 2,
-    "tables": 1
+    "tables": 1,
+    "domains": "Six original spectral-constrained arms; two additional nonnegative-only baselines.",
+    "curvature_accounting": "Historical curvature-estimation work remains excluded and separately recorded."
   },
   "provenance": {
     "source_path_convention": "Paths are relative to the original CT experiment root; original host-specific paths remain only in historical evidence.",
     "publication_audit": {
-      "archive_relative_path": "spectral_balls/expanded/gradient_budget/report_update.json",
-      "sha256": "62da49fb8acc106ba8d146e69fb528bfa23111daafb558aa144c0f08d88e1fbc"
+      "archive_study": "ct_nonnegative",
+      "archive_relative_path": "report_update.json",
+      "sha256": "705ee573221846fe879b7a4703054e3d58879154b341a380268f7ad765730f60"
     },
-    "scientific_content": "All report files and the source appendix preserve their original bytes. The public appendix changes only relative file links."
+    "scientific_content": "All report files and the source appendix preserve their original bytes. The public appendix changes only relative file links.",
+    "predecessor_snapshot": {
+      "date": "2026-11-19",
+      "published_utc": "2026-11-19T10:14:05.801280+00:00",
+      "comparison": "gradient-only view budget",
+      "gradient_view_cap_per_direction": 69120,
+      "physical_trajectories": 448,
+      "continued_trajectories": 168,
+      "native_iteration_observations": 272132,
+      "pages": 5,
+      "figures": 2,
+      "tables": 1
+    },
+    "predecessor_pdf_sha256": "b0359dd827c29dfedc7062ff8fa6f2efbe65a26815d98eb6fd7f01ff796862f2"
   },
   "appendix_link_relocations": [
     {
@@ -44,14 +61,18 @@
     {
       "from": "](revised/joint_selection.png)",
       "to": "](../../../results/stochastic_matrix_factorization/ct/spectral_balls/expanded/reports/paper_section/revised/joint_selection.png)"
+    },
+    {
+      "from": "](../../nonnegative_baselines/",
+      "to": "](../../../results/stochastic_matrix_factorization/ct_nonnegative/"
     }
   ],
   "files": {
     "report/ct_experiments.tex": {
-      "bytes": 9499,
-      "sha256": "ce79e8e1aaf4578547d9cb011869b3983ad8a321099e922cbca3230cbf105ea9",
+      "bytes": 11822,
+      "sha256": "6db4031ca16dd96c7519f4157cb5534d319a2fd93f30654b98d3e64cf72f337d",
       "copy_mode": "byte-identical",
-      "original_sha256": "ce79e8e1aaf4578547d9cb011869b3983ad8a321099e922cbca3230cbf105ea9",
+      "original_sha256": "6db4031ca16dd96c7519f4157cb5534d319a2fd93f30654b98d3e64cf72f337d",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/ct_experiments.tex"
     },
     "report/ct_reproducibility_link.tex": {
@@ -62,10 +83,10 @@
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/ct_reproducibility_link.tex"
     },
     "report/sframes_ct_section.pdf": {
-      "bytes": 1953074,
-      "sha256": "b0359dd827c29dfedc7062ff8fa6f2efbe65a26815d98eb6fd7f01ff796862f2",
+      "bytes": 2058268,
+      "sha256": "e66eeba76e4ab8c4d93f93aaf3d16c3efb8c8a34fc89e86d744bcc51d62783d8",
       "copy_mode": "byte-identical",
-      "original_sha256": "b0359dd827c29dfedc7062ff8fa6f2efbe65a26815d98eb6fd7f01ff796862f2",
+      "original_sha256": "e66eeba76e4ab8c4d93f93aaf3d16c3efb8c8a34fc89e86d744bcc51d62783d8",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/sframes_ct_section.pdf"
     },
     "report/sframes_ct_section.tex": {
@@ -76,50 +97,50 @@
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/sframes_ct_section.tex"
     },
     "report/trajectories_1080.pdf": {
-      "bytes": 778079,
-      "sha256": "6412155dfdb13d7b21414f908e5d080cf5a10976557c493b653d6c0a6269f5f5",
+      "bytes": 805402,
+      "sha256": "0013dc3bb78593c02a4deec51520cd2772da529dda46b2089bfa96629196bcfa",
       "copy_mode": "byte-identical",
-      "original_sha256": "6412155dfdb13d7b21414f908e5d080cf5a10976557c493b653d6c0a6269f5f5",
+      "original_sha256": "0013dc3bb78593c02a4deec51520cd2772da529dda46b2089bfa96629196bcfa",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_1080.pdf"
     },
     "report/trajectories_1080.png": {
-      "bytes": 371677,
-      "sha256": "fb31bb0136eed7a1b8f39938fd64ce13b64303adb49ee35db19d378039740078",
+      "bytes": 402907,
+      "sha256": "8b0ed7616ec91446cd269c47f744edde944249b6ab3bfea1837879a4d0b2ad9e",
       "copy_mode": "byte-identical",
-      "original_sha256": "fb31bb0136eed7a1b8f39938fd64ce13b64303adb49ee35db19d378039740078",
+      "original_sha256": "8b0ed7616ec91446cd269c47f744edde944249b6ab3bfea1837879a4d0b2ad9e",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_1080.png"
     },
     "report/trajectories_360.pdf": {
-      "bytes": 949893,
-      "sha256": "d08a0cd37fdd6ee2fc6b4da7b9785af81582ab63d6079876a66f590129898f2b",
+      "bytes": 1025039,
+      "sha256": "ae06af89abcfc5ddc7a62605f25b7d9f97eb8d32f650a713ddae24710caa9371",
       "copy_mode": "byte-identical",
-      "original_sha256": "d08a0cd37fdd6ee2fc6b4da7b9785af81582ab63d6079876a66f590129898f2b",
+      "original_sha256": "ae06af89abcfc5ddc7a62605f25b7d9f97eb8d32f650a713ddae24710caa9371",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_360.pdf"
     },
     "report/trajectories_360.png": {
-      "bytes": 387052,
-      "sha256": "b007d2b3b9d431cfa9c7114545a098775aec647d56944c6f56ea9fa6e4cc7363",
+      "bytes": 418479,
+      "sha256": "74b4d91cd5e4cf4b78c12f791263c264c1f953e85fe7ba0add2e0e6ec2547e2c",
       "copy_mode": "byte-identical",
-      "original_sha256": "b007d2b3b9d431cfa9c7114545a098775aec647d56944c6f56ea9fa6e4cc7363",
+      "original_sha256": "74b4d91cd5e4cf4b78c12f791263c264c1f953e85fe7ba0add2e0e6ec2547e2c",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_360.png"
     },
     "provenance/CT_REPRODUCIBILITY.source.md": {
-      "bytes": 36561,
-      "sha256": "eb1c1e1754d38c649b378679f3c61e7e14d1b973cbf346bd9d46f064963c4213",
+      "bytes": 41139,
+      "sha256": "f42423884f2059b021dbbdbc4b00539ff84d57bb58e1839d3ef3327c0a598a41",
       "copy_mode": "byte-identical",
-      "original_sha256": "eb1c1e1754d38c649b378679f3c61e7e14d1b973cbf346bd9d46f064963c4213",
+      "original_sha256": "f42423884f2059b021dbbdbc4b00539ff84d57bb58e1839d3ef3327c0a598a41",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/CT_REPRODUCIBILITY.md"
     },
     "CT_REPRODUCIBILITY.md": {
-      "bytes": 37807,
-      "sha256": "f9015822bd5ed3a95514fc06add73ca49635489dfcfce1860212f8bd4e78dde6",
+      "bytes": 42529,
+      "sha256": "9ac3e296a8d83c5d43d9850d65a3bd52e37d173d73bfa18f817a82de7cd2a670",
       "copy_mode": "relative-links-only",
-      "original_sha256": "eb1c1e1754d38c649b378679f3c61e7e14d1b973cbf346bd9d46f064963c4213",
+      "original_sha256": "f42423884f2059b021dbbdbc4b00539ff84d57bb58e1839d3ef3327c0a598a41",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/CT_REPRODUCIBILITY.md"
     },
     "README.md": {
-      "bytes": 2490,
-      "sha256": "3c48bb4862170b0c8629327546771f55188105553d0b0f550de23723f235393b",
+      "bytes": 2571,
+      "sha256": "f85865ef400181c26799100e5148bb4e99dde9c7df688fb0e64ec23a09a53a9b",
       "copy_mode": "archive-support-file"
     },
     "bundle.py": {
@@ -132,5 +153,11 @@
       "sha256": "9cacc0bc5617acc1c426b7fc6f9cac191cf78f1aeaeebbfa24bd2feb50084477",
       "copy_mode": "archive-support-file"
     }
-  }
+  },
+  "bibliography_keys": [
+    "detect",
+    "palm",
+    "proxsarah",
+    "spring"
+  ]
 }

@@ -2,7 +2,7 @@
 
 This supplement specifies the data, numerical settings, and reporting rules for the SFRAMES low-dose CT experiment. The paper describes the optimization problem and main comparisons.
 
-The current paper uses the gradient-only view budget described in the final section below. Earlier total-view comparisons are retained as historical records. The data, parameter choices, initialization and evaluation cohort are unchanged.
+The current paper adds nonnegative-only baselines at the processed-view budget described in the final section below. Earlier total-view comparisons are retained as historical records. The data, parameter choices, initialization and evaluation cohort are unchanged.
 
 ## Data and view splits
 
@@ -288,3 +288,32 @@ Changes are paired within slice and seed before the same median aggregation. Cos
 
 The [continuation notes](../../gradient_budget/README.md), [completion audit](../../gradient_budget/validation_summary.json), and [publication audit](../../gradient_budget/report_update.json) specify frozen inputs, checkpoint provenance, work accounting and the derived comparison summary. Historical trace files, selections and summaries remain unchanged.
 <!-- CT_GRADIENT_BUDGET_END -->
+
+<!-- CT_NONNEGATIVE_BASELINES_START -->
+## Nonnegative-only baselines
+
+The existing six methods and all their recorded values are retained. Alternating NNLS and multiplicative updates minimize the same training loss over nonnegative factors without spectral bounds. Their actual factors are used for raw/evaluated training loss, held-out loss and image-reference error. Former spectral radii are diagnostics only. For the original methods, the established clipping plus optional radial spectral repair remains the evaluation convention: it produces a valid nonnegative candidate with the additional spectral restriction. Raw loss and raw orthant distance always use actual factors. Thus this is an application comparison across different feasible domains, not an isolated solver comparison on the same domain.
+
+There are 504 physical evaluation runs: the existing 448 plus 28 deterministic NNLS and 28 deterministic multiplicative runs (14 slices at each view count). The same calibrated initial factors are reused. Deterministic runs are not duplicated to manufacture stochastic repetitions. Each group, its slices, and each slice's physical repetitions retain equal nested weights for means and descriptive standard deviations; endpoint summaries retain nested medians.
+
+### Algorithms and selection
+
+Alternating NNLS uses SciPy L-BFGS-B for each convex factor subproblem, with nonnegative bounds, memory 10, relative projected-KKT tolerance 1e-3, objective tolerance 1e-9, and at most 20 line-search trials. The accepted-step cap per block is selected from 5, 10, 20 using only the two development slices and both view counts, with 34,560 processed views per direction. Selection minimizes nested-median raw training loss relative to initialization; held-out loss and reference images do not enter selection. The exact selection record is linked below.
+
+Multiplicative updates use the signed-right-hand-side majorization rule and alternate the two factors. They have no step-size tuning. Initialization, positivity safeguards, normalizations and stopping details are in the frozen method implementation and campaign notes.
+
+### Work and recorded states
+
+The cap is 69,120 forward views and 69,120 adjoint views per evaluation run. Every new solver application counts, including NNLS inner evaluations, line-search trials, and the cached adjoint of data for multiplicative updates. Evaluation diagnostics are excluded. Previously reported methods retain gradient views with curvature-estimation work recorded separately; this comparison therefore does not equalize total operator work across all eight methods. The displayed processed-view coordinate is the maximum of the two directional charged counts. Oracle calls count paired forward/adjoint evaluations plus the multiplicative method's standalone startup adjoint; prior arms use their gradient-call count, excluding curvature calls.
+
+Native iterations count accepted updates: an accepted inner factor step for NNLS, a factor update for multiplicative updates, and the original update convention for each retained method. This axis does not assign equal computational meaning to an iteration. Cost plots retain all native charged-work observations, including a terminal budget-stop record when unsuccessful trials spend additional work without changing factors. At duplicate coordinates the latest state is used. Mean/SD summaries use last-observation step alignment on fixed method cohorts; no metric interpolation or extrapolation is performed.
+
+| Training views | Method | Domain | Raw loss | Evaluated loss | Held-out loss | Raw orthant distance |
+| ---: | --- | --- | ---: | ---: | ---: | ---: |
+| 360 | Alternating NNLS | Nonnegative only | 0.007329927 | 0.007329927 | 0.007446206 | 0 |
+| 360 | Multiplicative updates | Nonnegative only | 0.01002637 | 0.01002637 | 0.01004065 | 0 |
+| 1080 | Alternating NNLS | Nonnegative only | 0.01074588 | 0.01074588 | 0.01073077 | 0 |
+| 1080 | Multiplicative updates | Nonnegative only | 0.01404035 | 0.01404035 | 0.0140912 | 0 |
+
+The [campaign notes](../../nonnegative_baselines/README.md), [selection](../../nonnegative_baselines/selection.json), [completion audit](../../nonnegative_baselines/validation_summary.json), and [publication audit](../../nonnegative_baselines/report_update.json) record all configurations, hashes, work counters and comparison statistics. The preceding gradient-budget publication is preserved in the publication backup; all earlier numerical traces and summaries remain unchanged.
+<!-- CT_NONNEGATIVE_BASELINES_END -->

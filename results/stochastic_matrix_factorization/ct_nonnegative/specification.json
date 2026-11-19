@@ -1,0 +1,39 @@
+{
+  "physical_evaluation_runs": 56,
+  "methods": [
+    "anls",
+    "mu"
+  ],
+  "rank": 64,
+  "grid": 512,
+  "training_views": [
+    360,
+    1080
+  ],
+  "calibration_seed": 201,
+  "constraint_geometry": "Nonnegative factors only; no spectral or Frobenius norm bounds.",
+  "repeats": "One physical run per deterministic method, slice and view count; no duplicate seed runs.",
+  "initialization": "Reuse the frozen calibrated U,V arrays without modifying or renormalizing them.",
+  "solver_view_budget_per_direction": 69120,
+  "accounting": "Every solver forward and adjoint call, including cached right-hand sides, inner solves and unsuccessful trials, is charged. Diagnostic evaluations are separate.",
+  "directional_counts": "Forward and adjoint totals are checked separately and need not agree.",
+  "recording": "Initialization and every accepted native state, with terminal charged work retained; no interpolation.",
+  "anls_fixed_parameters": {
+    "memory": 10,
+    "relative_kkt_tolerance": 0.001,
+    "ftol": 1e-09,
+    "maxls": 20
+  },
+  "anls_inner_maxiter_grid": [
+    5,
+    10,
+    20
+  ],
+  "development_runs": 12,
+  "development_view_budget_per_direction": 34560,
+  "parameter_selection": "For each inner_maxiter, take the median relative raw training loss across the two development slices at each view count, then the median across the two view counts. Minimize this score, breaking exact ties by smaller inner_maxiter. MU has no tuned parameters.",
+  "sframes_reruns": false,
+  "additional_figures": false,
+  "optimizer_timing": false,
+  "failure_policy": "Keep all evidence and halt on operational or numerical failure; no failed-run filtering."
+}
