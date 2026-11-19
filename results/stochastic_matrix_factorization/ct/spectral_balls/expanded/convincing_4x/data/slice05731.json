@@ -1,0 +1,43 @@
+{
+  "slice_number": 5731,
+  "measurement_mode": 1,
+  "reference_mode": 2,
+  "detector_index": 1,
+  "transmission_shift_indices": 1.0,
+  "raw_source": "https://zenodo.org/records/8014907/files/2DeteCT_slicesOOD.zip?download=1",
+  "reference_source": "https://zenodo.org/records/8017653/files/2DeteCT_slicesOOD_RecSeg.zip?download=1",
+  "preprocess_source": "https://deepinv.org/auto_examples/external-libraries/demo_astra_2detect.html",
+  "dataset_paper": "https://arxiv.org/html/2306.05907",
+  "tiff_entries": {
+    "slice05731/mode1/sinogram.tif": "34ad5b2f4f074600cc9cab88ebe277864d8b3a36c9583e6a9a357e8f07e22597",
+    "slice05731/mode1/dark.tif": "98f58a3c085fffb91dbfb62ee37dc35c30e48d4031a180e1b80e6e459053b51d",
+    "slice05731/mode1/flat1.tif": "9c8fcc02d7e80085ba7ffea909126833d83486ec97ad3981e054696a4e509005",
+    "slice05731/mode1/flat2.tif": "2f8a83c12ceb5bb013d1ef1a0a525d7d79f06ee2c97a2c3b87e914bc3d5e11bd",
+    "slice05731/mode2/reconstruction.tif": "b789caf5cbc55081db5cb3f6214670145ecbe965e427df4bdf41ac7cd7a1b909"
+  },
+  "clamped_count": 0,
+  "measured_shape": [
+    3600,
+    956
+  ],
+  "reference_shape": [
+    1024,
+    1024
+  ],
+  "sinogram_convention": "Bin adjacent raw detector cells, drop last view, correct flat/dark, apply published detector-1 transmission shift if needed, clip at 1e-6, negate log, reverse detector (DeepInverse reflected convention).",
+  "reference_convention": "Mode 2 TIFF stored without conversion. For DeepInverse angles with detector reversal, a physical-mm ASTRA model uses a vertical flip and divides attenuation by native voxel width in mm.",
+  "reference_source_code": "https://github.com/mbkiss/2DeteCTcodes/blob/main/Reconstructions_2DeteCT.py",
+  "preparation_source_sha256": "35400e3c25c9f92f48cf33e3addece158db46c417adaacbbf0e8ae5327b459d2",
+  "author_source_sha256": "83a40bf29928170ae6eebe99412d437630aabcc3919e1c5942a68f1805e7f4fd",
+  "geometry_mm": {
+    "detector_spacing": 0.1496,
+    "source_origin": 431.019989,
+    "origin_detector": 97.98049900000001,
+    "volume_width": 116.52814274682939,
+    "volume_center": [
+      -0.11379701440120057,
+      -0.11379701440120057
+    ],
+    "reference_voxel_width": 0.11379701440120057
+  }
+}

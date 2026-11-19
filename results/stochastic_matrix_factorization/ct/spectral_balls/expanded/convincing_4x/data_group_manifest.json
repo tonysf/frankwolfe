@@ -1,0 +1,123 @@
+{
+  "status": "frozen_before_new_optimization_outcomes",
+  "frozen_utc": "2026-11-06T19:14:36.859569+00:00",
+  "selection_basis": "Prespecified well-separated slice indices within published acquisition/material groups; no optimizer outcomes inspected.",
+  "groups": {
+    "mix_1": {
+      "label": "Mix 1",
+      "slices": [
+        601,
+        1201
+      ],
+      "detector": 1
+    },
+    "mix_2": {
+      "label": "Mix 2",
+      "slices": [
+        3041,
+        3381,
+        3611
+      ],
+      "detector": 2
+    },
+    "mix_3": {
+      "label": "Mix 3",
+      "slices": [
+        3791,
+        4131,
+        4931
+      ],
+      "detector": 2
+    },
+    "almond_pure": {
+      "label": "Almond (OOD Pure)",
+      "slices": [
+        5581,
+        5611
+      ],
+      "detector": 1
+    },
+    "walnut_pure": {
+      "label": "Walnut (OOD Pure)",
+      "slices": [
+        5731,
+        5761
+      ],
+      "detector": 1
+    },
+    "lava_stone_pure": {
+      "label": "Lava stone (OOD Pure)",
+      "slices": [
+        5831,
+        5861
+      ],
+      "detector": 1
+    }
+  },
+  "evaluation_slices": [
+    "slice00601",
+    "slice01201",
+    "slice03041",
+    "slice03381",
+    "slice03611",
+    "slice03791",
+    "slice04131",
+    "slice04931",
+    "slice05581",
+    "slice05611",
+    "slice05731",
+    "slice05761",
+    "slice05831",
+    "slice05861"
+  ],
+  "evaluation_slice_groups": {
+    "slice00601": "mix_1",
+    "slice01201": "mix_1",
+    "slice03041": "mix_2",
+    "slice03381": "mix_2",
+    "slice03611": "mix_2",
+    "slice03791": "mix_3",
+    "slice04131": "mix_3",
+    "slice04931": "mix_3",
+    "slice05581": "almond_pure",
+    "slice05611": "almond_pure",
+    "slice05731": "walnut_pure",
+    "slice05761": "walnut_pure",
+    "slice05831": "lava_stone_pure",
+    "slice05861": "lava_stone_pure"
+  },
+  "group_labels": {
+    "mix_1": "Mix 1",
+    "mix_2": "Mix 2",
+    "mix_3": "Mix 3",
+    "almond_pure": "Almond (OOD Pure)",
+    "walnut_pure": "Walnut (OOD Pure)",
+    "lava_stone_pure": "Lava stone (OOD Pure)"
+  },
+  "new_slices": [
+    "slice00601",
+    "slice01201",
+    "slice05581",
+    "slice05611",
+    "slice05731",
+    "slice05761",
+    "slice05831",
+    "slice05861"
+  ],
+  "existing_slices": [
+    "slice03041",
+    "slice03381",
+    "slice03611",
+    "slice03791",
+    "slice04131",
+    "slice04931"
+  ],
+  "development_slices": [
+    "slice04300",
+    "slice03150"
+  ],
+  "dataset_source": "https://arxiv.org/html/2306.05907",
+  "detector_source": "https://github.com/mbkiss/2DeteCTcodes/blob/main/Reconstructions_2DeteCT.py",
+  "detector_correction": "Detector 1: the published 1-index linear transmission shift with extrapolation, before log and detector reversal. Detector 2: zero shift.",
+  "grouping_caution": "Groups are acquisition/material groups, not a claim that all slices or material classes are statistically independent specimens."
+}

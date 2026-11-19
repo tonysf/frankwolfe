@@ -1,0 +1,48 @@
+{
+  "status": "future_publication_design_only_not_executed",
+  "created_utc": "2026-11-12T12:24:21.083577+00:00",
+  "authorization": "Current task is an audit. No new PALM/ProxSARAH variant, campaign, service, cancellation or publication is authorized or performed by these notes.",
+  "existing_order": [
+    "feasibility_retune completion and publication",
+    "spring_localcurvature completion and publication"
+  ],
+  "proposed_successor_order": "A future authorized PALM/ProxSARAH correction should follow the completed SPRING publication, without stopping the current SPRING queue.",
+  "dependency_gate": {
+    "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/progress.json",
+    "required_status": "completed",
+    "required_phase": "report_published"
+  },
+  "baseline_summary": {
+    "source_audit": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/report_update.json",
+    "required_fields": [
+      "corrected_summary",
+      "corrected_summary_sha256"
+    ],
+    "rule": "Read and verify the latest audited derived summary from the predecessor publication. Do not rebuild the new paper from convincing_4x_recovery/reports/summary.json: doing so would restore the superseded fixed-step SPRING arm.",
+    "later_successors": "If the predecessor audit already records a successor, follow the explicit successor chain to the latest verified all-method summary."
+  },
+  "scope_invariants": [
+    "Replace only the explicitly authorized PALM and ProxSARAH arms and their derived statistics.",
+    "Preserve the completed local-curvature SPRING arm, both existing SFRAMES arms, and the joint SFRAMES retune overlay.",
+    "Use unchanged paired data, constraints, factors and view split; declare new optimizer source files honestly instead of forcing their hashes to match historical optimizer code.",
+    "Retain literal gradient_calls and inclusive oracle_calls separately. For saved methods without curvature work, oracle_calls may equal gradient_calls only in the derived plotting records, leaving frozen traces unchanged.",
+    "Recompute within-cap endpoints, first-hit records, paired summaries and curves from native traces; include any new curvature work in the cost axes.",
+    "A deterministic PALM setting would require 28 physical slice/view-count runs for the present cohort, shared across the three logical seed comparisons. ProxSARAH has 84 stochastic physical cases. This is a planning observation, not a new run request."
+  ],
+  "transaction_and_audit_chain": [
+    "Acquire the successor publication lock, spring_localcurvature/report_update.lock, and feasibility_retune/report_update.lock in one documented order.",
+    "Stage and validate complete assets, the appendix, the new all-method derived summary, and compatibility audit updates before mutating live files.",
+    "Keep exact backups and hashes of the predecessor SPRING audit and the current feasibility publication audit.",
+    "Publish assets, appendix, and compatible current-state hashes in both predecessor publication audits in the same recoverable journaled transaction. Each predecessor audit must retain its original scientific input anchors and gain an explicit successor pointer and scope statement.",
+    "Otherwise, rerunning either upstream publisher will see legitimate successor assets as unexplained changes. Updating only feasibility_retune/report_update.json is insufficient because the SPRING publication audit also checks the live asset and appendix hashes, including the feasibility audit file.",
+    "Keep the original historical result directories, manifests, selections and native traces immutable. Do not erase the prior report or silently relabel old results.",
+    "If publication is interrupted, require every live file to be either its recorded old or new version, and replay or roll back the audited journal. An unrelated live edit must stop publication."
+  ],
+  "files_reviewed": {
+    "spring_publisher": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/update_report.py",
+    "spring_progress": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/progress.json",
+    "feasibility_publisher": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/feasibility_retune/report.py"
+  },
+  "jobs_changed": false,
+  "reports_changed_by_this_note": false
+}

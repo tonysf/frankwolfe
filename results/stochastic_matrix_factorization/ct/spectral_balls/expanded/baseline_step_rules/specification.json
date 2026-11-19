@@ -1,0 +1,87 @@
+{
+  "status": "frozen",
+  "palm": {
+    "rule": "Current full-data alternating block step eta=1/Lhat, using five normalized Hessian applications and a sixth norm evaluation.",
+    "power_iterations": 5,
+    "step_coefficient": 1.0,
+    "curvature_batch": "all training views",
+    "stochasticity": "Fresh Gaussian power directions; evaluate all three oracle/power seed labels."
+  },
+  "prox_sarah": {
+    "paper_variant": "ProxSARAH-v3",
+    "source": "Section 5 numerical variant with Section 3.4 constant-step parameter coupling",
+    "normalized_lipschitz": 1.0,
+    "gamma": 0.99,
+    "C": "2/(3*gamma^2)",
+    "inner_steps": "floor(sqrt(N))",
+    "batch": "floor(sqrt(N)/C)",
+    "eta_original_objective": "[2/(4+gamma)]/Lhat",
+    "full_snapshot": true,
+    "updates_per_epoch": "one snapshot update plus m recursive updates",
+    "fixed_scale": "Lhat=c_L*(L_U^0+L_V^0); c_L selected on original development cases only",
+    "scale_status": "Practical development-tuned smoothness estimate, not a certified global Lipschitz upper bound"
+  },
+  "development": {
+    "slices": [
+      "slice04300",
+      "slice03150"
+    ],
+    "training_views": [
+      360,
+      1080
+    ],
+    "seeds": [
+      110,
+      111,
+      112
+    ],
+    "calibration_seed": 110,
+    "view_budget_per_direction": 34560,
+    "recording": "initial, final, and last native within-cap observation",
+    "initial_scale_exponents": [
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "scale_base": 2,
+    "guard_exponents": [
+      -8,
+      5
+    ],
+    "eligibility": "All 12 runs completed with finite within-budget repaired/initial loss <=1.",
+    "ranking": "Median over the four slice/view cells of their three-seed median loss ratios; ties favor larger c_L.",
+    "expansion": "If the eligible winner is at a tested edge, evaluate all 12 cases at the next factor-two value on that edge, then reselect. With no eligible candidate, expand only the safer upper edge. Stop for review if the winner is at a guard edge or no eligible candidate exists at the upper guard.",
+    "failures": "Keep scientific nonfinite failures as ineligible outcomes and continue all scheduled cases; operational or projection failures halt for review."
+  },
+  "evaluation": {
+    "physical_runs": 168,
+    "methods": [
+      "palm",
+      "prox_sarah"
+    ],
+    "seeds": [
+      202,
+      203,
+      204
+    ],
+    "view_budget_per_direction": 69120,
+    "dense": true,
+    "shared_palm_seeds": false
+  },
+  "work": {
+    "gradient_calls": "Literal gradient evaluations",
+    "curvature_operator_calls": "Hessian applications",
+    "oracle_calls": "gradient_calls+curvature_operator_calls",
+    "directional_views": "Include estimator and curvature work",
+    "palm_per_iteration": "2 gradients +12 full-data Hessian applications =14N views per direction",
+    "prox_per_iteration": "Full snapshot: one gradient on N views; recursive update: two gradients on b views"
+  },
+  "parameter_selection_uses_evaluation_outcomes": false,
+  "implementation_scope": "Published practical numerical variants adapted to CT; neither power estimates nor tuned Lhat are certified theorem constants.",
+  "publication": "Follow the completed SPRING paper update, preserve all other arms, and add no figures."
+}

@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "validated_utc": "2026-11-12T13:35:08.306556+00:00",
+  "source_sha256": {
+    "run.py": "0578f7c60366c51b1ca828697270ec5c0df7c2842ccbb15f675d9def37e736a2",
+    "palm_paper.py": "120954e41343c590ac0ed01319ec15b81e6b753d6219143bf6140a9346202290",
+    "prox_paper.py": "0c94e23cc90f4b4efa27be2ecd1a4fe75eff688291f05892b1673a2490d6a57e",
+    "curvature_reference.py": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "52ca518e77b56fcda1cf361ead3557441e970e3e756fda1594358cd8bc238200"
+  },
+  "evidence": {
+    "palm_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/palm_validation.json",
+      "sha256": "bbbae8d3152b3457c4959a00716a507e65b712f9b94410bcf92ba02fcc7a7f46"
+    },
+    "engine_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/engine_validation.json",
+      "sha256": "a74881dc4ae0ed407d87f6e673276547734d62261020f46899f2d5530b12a2e6"
+    },
+    "method_smoke.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/method_smoke.json",
+      "sha256": "a953cb6b7ce0656d09eaebdb2a33efe709472dc5c5d5e113c7d1bba2359792e8"
+    },
+    "report_fixture_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/report_fixture_validation.json",
+      "sha256": "e39e77960b0674eb36b5da07fbde7e40fbd5bf4ef572cb73da49494657d8da0d"
+    }
+  },
+  "prox_unit_tests": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 taskset -c 6 nice -n 15 /home/tony/zofw_experiments/.venv/bin/python validate_prox_paper.py",
+    "exit_code": 0,
+    "tests_passed": 5,
+    "test_source_sha256": "d13aaddcd5bdb5cd3bfa904550cd20e76858f8c62a5875d4b5ba0dbb7fbe5578",
+    "coverage": [
+      "independent exact projected updates",
+      "normalized objective equivalence",
+      "named-v3 parameters and work counting",
+      "resume across refresh",
+      "parameter override rejection"
+    ]
+  },
+  "limitations": [
+    "Real CT smoke validates execution and accounting; it is not a performance comparison or hyperparameter selection.",
+    "Full matched-budget campaign remains pending."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "status": "audit_completed_corrections_required",
+  "utc": "2026-11-12T12:22:17.089674+00:00",
+  "scope": "Audit existing PALM and ProxSARAH step-size rules against primary papers and author code.",
+  "current_sources": {
+    "methods.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/methods.py",
+      "sha256": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1"
+    },
+    "run.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/run.py",
+      "sha256": "238836b8d64ff8040263b9723e53dd4fc7559430d25d4e9ccf2a6cef142a2744"
+    },
+    "baseline_selection.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/baseline_selection.json",
+      "sha256": "3d9112d755f352d266df9748832eb09c8a00956d47abf73a47e11cabcaa66292"
+    }
+  },
+  "current_selected": {
+    "palm": {
+      "rate": 2.3,
+      "median_relative_loss": 0.35173135999646865
+    },
+    "prox_sarah": {
+      "rate": 2.3,
+      "inner_steps": 96,
+      "snapshot_policy": "minibatch",
+      "median_relative_loss": 0.2656511700730771
+    }
+  },
+  "palm": {
+    "paper_step_faithful": false,
+    "current_rule": "eta_U=2.3/L_U0; eta_V=2.3/L_V0, fixed throughout.",
+    "published_practical_rule": "eta_U=1/Lhat_U(V_k); eta_V=1/Lhat_V(U_new); fresh five power iterations plus final norm on full training data for each block.",
+    "original_theory_qualification": "Convex block constraints allow inverse-current-L steps (Remark 3.2 iii-iv); finite power estimates are not certified upper bounds.",
+    "source": "https://bolte.perso.math.cnrs.fr/BST2013.pdf",
+    "practical_source": "/home/tony/frames_factorization_20261104/provenance/spring_arxiv_v3.pdf",
+    "published_practical_work_per_direction": "14*N per complete two-block iteration; curvature must count."
+  },
+  "prox_sarah": {
+    "paper_step_faithful": false,
+    "recursion_structure_correct": true,
+    "current_rule": "eta=2.3/(L_U0+L_V0); gamma=.8; inner batch64; m96; snapshotmin(N,256).",
+    "constant_paper_rule": "omega=3*(N-b)/(2*b*(N-1)); gamma=1/(L*sqrt(omega*m)); eta=2*sqrt(omega*m)/(4*sqrt(omega*m)+1), with admissible gamma<=1.",
+    "constant_step_is_permitted": true,
+    "dynamic_variant": "Backward precomputed relaxation schedule from fixed L; not online curvature estimation.",
+    "snapshot_qualification": "General Algorithm1 permits minibatch snapshots. Main finite-sum theorems/examples use full snapshots; fixed256 introduces a persistent snapshot-variance term.",
+    "smoothness_qualification": "Initial block-curvature sum does not certify joint average smoothness. The residual cross-Hessian terms and component variation matter.",
+    "source": "https://www.jmlr.org/papers/volume21/19-248/19-248.pdf",
+    "detailed_audit": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/provenance/proxsarah_step_audit.json"
+  },
+  "effect_on_current_results": "The saved PALM/ProxSARAH results are custom tuned implementations, not experiments with the prescribed paper parameter choices.",
+  "experiment_state": "No PALM/ProxSARAH replacement evaluations launched by this audit. Active SFRAMES and queued corrected SPRING campaigns remain as previously authorized.",
+  "source_evidence": {
+    "palm_source.json": "2160cb21c59d6f36ea91f6610e2b364a2d2d053d3d456289f231d02236612cae",
+    "proxsarah_sources.json": "f6bf14e1c4d41d851ca542370cbe536fca37baa99b6497e9a2c1545c3bb7629a",
+    "proxsarah_step_audit.json": "6532111c06c6cee8103fbba1a972554005194b6ac29361889127d1e6923916af"
+  }
+}

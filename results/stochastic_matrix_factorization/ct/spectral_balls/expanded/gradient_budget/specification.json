@@ -1,0 +1,54 @@
+{
+  "status": "frozen",
+  "physical_runs": 168,
+  "methods": [
+    "palm",
+    "spring_sarah"
+  ],
+  "training_views": [
+    360,
+    1080
+  ],
+  "seeds": [
+    202,
+    203,
+    204
+  ],
+  "gradient_view_budget_per_direction": 69120,
+  "original_inclusive_view_budget_per_direction": 69120,
+  "stopping_rule": "Continue until cumulative forward views minus curvature forward views reaches 69120; forward and adjoint counts must agree.",
+  "endpoint_rule": "Last native iterate with both gradient-only directional view counts <=69120; exclude an overshooting final update.",
+  "continuation": "Restore each completed source checkpoint, including factor state, gradient-estimator buffers, both RNG states and its complete dense prefix. The previously excluded inclusive-cap overshoot remains a valid prefix iterate under the new gradient cap.",
+  "recording": "Initialization and every native update; exact original prefix preserved; no interpolation.",
+  "optimizer_changes": false,
+  "parameter_retuning": false,
+  "prox_sarah_or_sframes_reruns": false,
+  "palm": {
+    "step": "1/Lhat",
+    "curvature": "Current full-data block curvature; five normalized power applications and sixth norm evaluation",
+    "gradient_views_per_update": "2N",
+    "curvature_views_per_update": "12N",
+    "iterations_at_gradient_cap": {
+      "360": 96,
+      "1080": 32
+    }
+  },
+  "spring_sarah": {
+    "step": "0.5/Lhat",
+    "batch": 64,
+    "refresh_period": 16,
+    "curvature": "Current sampled block curvature; five normalized power applications and sixth norm evaluation",
+    "curvature_views_per_update": 768,
+    "gradient_views_per_update": "Sum across two blocks: N for full refresh, otherwise 2*64 for the recursive difference"
+  },
+  "work": {
+    "gradient_views": "forward_views-curvature_forward_views (and separately backward)",
+    "curvature_views": "Unchanged cumulative curvature_forward_views/curvature_backward_views",
+    "inclusive_views": "Unchanged forward_views/backward_views, including all gradient and curvature work",
+    "gradient_calls": "Literal batch-gradient evaluations",
+    "oracle_calls": "gradient_calls+curvature_operator_calls"
+  },
+  "publication": "Update the existing two mean-plus/minus-SD figures and comparison table; preserve corrected ProxSARAH and SFRAMES results; no new figures.",
+  "failure_policy": "Retain evidence and halt; no failed-run filtering or evaluation-dependent parameter changes.",
+  "optimizer_timing": false
+}

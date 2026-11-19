@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/tmp/validate_ct_projection_guard.py", line 37, in <module>
+    solver().step()
+  File "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x/methods.py", line 102, in step
+    details = self._update()
+              ^^^^^^^^^^^^^^
+  File "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x/methods.py", line 223, in _update
+    new_v = self.project(self.V - self.eta_v * est_v, self.rv)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x/methods.py", line 95, in project
+    projected, certificate = project_factor(factor, cap, self.k, return_certificate=True)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x/methods.py", line 23, in project_factor
+    projected, certificate = project_intersection(factor, cap, iteration=iteration)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x/spectral_reference_baseline.py", line 183, in project_intersection
+    candidate, certificate, accepted = certify(
+                                       ^^^^^^^^
+  File "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x/spectral_reference_baseline.py", line 127, in certify
+    scale = min(1.0, radius / max(opnorm, np.finfo(float).tiny))
+                     ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FloatingPointError: overflow encountered in scalar divide

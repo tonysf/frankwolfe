@@ -1,0 +1,439 @@
+{
+  "status": "passed",
+  "purpose": "Bounded implementation smoke only; not calibration or evaluation",
+  "source_sha256": {
+    "palm_paper.py": "120954e41343c590ac0ed01319ec15b81e6b753d6219143bf6140a9346202290",
+    "prox_paper.py": "0c94e23cc90f4b4efa27be2ecd1a4fe75eff688291f05892b1673a2490d6a57e",
+    "curvature_reference.py": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "spectral_reference_baseline.py": "52ca518e77b56fcda1cf361ead3557441e970e3e756fda1594358cd8bc238200",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2"
+  },
+  "cases": [
+    {
+      "method": "palm",
+      "n_train": 360,
+      "slice_id": "slice03611",
+      "seed": 203,
+      "requested_iterations": 2,
+      "optimizer": {
+        "power_iterations": 5,
+        "step_coefficient": 1.0,
+        "curvature_batch_size": 360
+      },
+      "trace": [
+        {
+          "iteration": 0,
+          "loss": 0.05506000008697173,
+          "relative_loss": 1.0
+        },
+        {
+          "iteration": 1,
+          "loss": 0.04789867004258483,
+          "relative_loss": 0.8699358875213403,
+          "step": {
+            "forward_views": 5040,
+            "backward_views": 5040,
+            "component_gradient_calls": 720,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.734967458386393e-06,
+            "curvature_u": 0.18278176817857603,
+            "curvature_v": 0.1834375665412048,
+            "eta_u": 5.471005177184902,
+            "eta_v": 5.451446063396039,
+            "curvature_sample_views_u": 360,
+            "curvature_sample_views_v": 360,
+            "curvature_operator_calls": 12,
+            "curvature_forward_views": 4320,
+            "curvature_backward_views": 4320,
+            "oracle_calls": 14
+          }
+        },
+        {
+          "iteration": 2,
+          "loss": 0.04366933388072938,
+          "relative_loss": 0.7931226627633514,
+          "step": {
+            "forward_views": 5040,
+            "backward_views": 5040,
+            "component_gradient_calls": 720,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.751962605889212e-06,
+            "curvature_u": 0.18324405669646326,
+            "curvature_v": 0.18519359218794076,
+            "eta_u": 5.457202913033417,
+            "eta_v": 5.399754862928335,
+            "curvature_sample_views_u": 360,
+            "curvature_sample_views_v": 360,
+            "curvature_operator_calls": 12,
+            "curvature_forward_views": 4320,
+            "curvature_backward_views": 4320,
+            "oracle_calls": 14
+          }
+        }
+      ],
+      "status": "passed",
+      "endpoint_ratio": 0.7931226627633514,
+      "max_ratio": 1.0
+    },
+    {
+      "method": "palm",
+      "n_train": 1080,
+      "slice_id": "slice03611",
+      "seed": 203,
+      "requested_iterations": 1,
+      "optimizer": {
+        "power_iterations": 5,
+        "step_coefficient": 1.0,
+        "curvature_batch_size": 1080
+      },
+      "trace": [
+        {
+          "iteration": 0,
+          "loss": 0.05489826403334889,
+          "relative_loss": 1.0
+        },
+        {
+          "iteration": 1,
+          "loss": 0.047775966415459496,
+          "relative_loss": 0.8702637006233416,
+          "step": {
+            "forward_views": 15120,
+            "backward_views": 15120,
+            "component_gradient_calls": 2160,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7348442450826886e-06,
+            "curvature_u": 0.18278172190936412,
+            "curvature_v": 0.18332686216831326,
+            "eta_u": 5.471006562110568,
+            "eta_v": 5.454737991871018,
+            "curvature_sample_views_u": 1080,
+            "curvature_sample_views_v": 1080,
+            "curvature_operator_calls": 12,
+            "curvature_forward_views": 12960,
+            "curvature_backward_views": 12960,
+            "oracle_calls": 14
+          }
+        }
+      ],
+      "status": "passed",
+      "endpoint_ratio": 0.8702637006233416,
+      "max_ratio": 1.0
+    },
+    {
+      "method": "prox_sarah",
+      "n_train": 360,
+      "slice_id": "slice03611",
+      "seed": 203,
+      "requested_iterations": 6,
+      "optimizer": {
+        "paper_variant": "ProxSARAH-v3",
+        "normalized_lipschitz": 1.0,
+        "loss_scale": 0.3678829682737245,
+        "gamma": 0.99,
+        "relaxation": 0.99,
+        "C": 0.6802027004047206,
+        "eta_normalized": 0.4008016032064128,
+        "eta": 1.0894812692393931,
+        "batch": 27,
+        "inner_steps": 18,
+        "snapshot_batch": 360,
+        "updates_per_epoch": 19
+      },
+      "trace": [
+        {
+          "iteration": 0,
+          "loss": 0.05506000008697173,
+          "relative_loss": 1.0
+        },
+        {
+          "iteration": 1,
+          "loss": 0.053507352449856424,
+          "relative_loss": 0.9718008057634803,
+          "step": {
+            "forward_views": 360,
+            "backward_views": 360,
+            "component_gradient_calls": 360,
+            "gradient_calls": 1,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7196555478238727e-06,
+            "refresh": true,
+            "epoch_position": 0,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 1
+          }
+        },
+        {
+          "iteration": 2,
+          "loss": 0.05208787377332024,
+          "relative_loss": 0.9460202268623905,
+          "step": {
+            "forward_views": 54,
+            "backward_views": 54,
+            "component_gradient_calls": 54,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7214711316640176e-06,
+            "refresh": false,
+            "epoch_position": 1,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        },
+        {
+          "iteration": 3,
+          "loss": 0.050793028249073384,
+          "relative_loss": 0.9225032359034087,
+          "step": {
+            "forward_views": 54,
+            "backward_views": 54,
+            "component_gradient_calls": 54,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7240221434943226e-06,
+            "refresh": false,
+            "epoch_position": 2,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        },
+        {
+          "iteration": 4,
+          "loss": 0.04960896082452472,
+          "relative_loss": 0.9009981973513139,
+          "step": {
+            "forward_views": 54,
+            "backward_views": 54,
+            "component_gradient_calls": 54,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.726943541662071e-06,
+            "refresh": false,
+            "epoch_position": 3,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        },
+        {
+          "iteration": 5,
+          "loss": 0.048514432861489785,
+          "relative_loss": 0.8811193749520034,
+          "step": {
+            "forward_views": 54,
+            "backward_views": 54,
+            "component_gradient_calls": 54,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.730317586745928e-06,
+            "refresh": false,
+            "epoch_position": 4,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        },
+        {
+          "iteration": 6,
+          "loss": 0.047516461479066574,
+          "relative_loss": 0.862994213658018,
+          "step": {
+            "forward_views": 54,
+            "backward_views": 54,
+            "component_gradient_calls": 54,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7340281419686918e-06,
+            "refresh": false,
+            "epoch_position": 5,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        }
+      ],
+      "status": "passed",
+      "endpoint_ratio": 0.862994213658018,
+      "max_ratio": 1.0
+    },
+    {
+      "method": "prox_sarah",
+      "n_train": 1080,
+      "slice_id": "slice03611",
+      "seed": 203,
+      "requested_iterations": 4,
+      "optimizer": {
+        "paper_variant": "ProxSARAH-v3",
+        "normalized_lipschitz": 1.0,
+        "loss_scale": 0.3678829682737245,
+        "gamma": 0.99,
+        "relaxation": 0.99,
+        "C": 0.6802027004047206,
+        "eta_normalized": 0.4008016032064128,
+        "eta": 1.0894812692393931,
+        "batch": 48,
+        "inner_steps": 32,
+        "snapshot_batch": 1080,
+        "updates_per_epoch": 33
+      },
+      "trace": [
+        {
+          "iteration": 0,
+          "loss": 0.05489826403334889,
+          "relative_loss": 1.0
+        },
+        {
+          "iteration": 1,
+          "loss": 0.05335424102276201,
+          "relative_loss": 0.9718748299645881,
+          "step": {
+            "forward_views": 1080,
+            "backward_views": 1080,
+            "component_gradient_calls": 1080,
+            "gradient_calls": 1,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7195039345807017e-06,
+            "refresh": true,
+            "epoch_position": 0,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 1
+          }
+        },
+        {
+          "iteration": 2,
+          "loss": 0.0519470401930511,
+          "relative_loss": 0.9462419460384938,
+          "step": {
+            "forward_views": 96,
+            "backward_views": 96,
+            "component_gradient_calls": 96,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7212797393373592e-06,
+            "refresh": false,
+            "epoch_position": 1,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        },
+        {
+          "iteration": 3,
+          "loss": 0.050665038885369724,
+          "relative_loss": 0.9228896355373347,
+          "step": {
+            "forward_views": 96,
+            "backward_views": 96,
+            "component_gradient_calls": 96,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.723666985761828e-06,
+            "refresh": false,
+            "epoch_position": 2,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        },
+        {
+          "iteration": 4,
+          "loss": 0.04949522262327713,
+          "relative_loss": 0.9015808331063149,
+          "step": {
+            "forward_views": 96,
+            "backward_views": 96,
+            "component_gradient_calls": 96,
+            "gradient_calls": 2,
+            "projection_calls": 2,
+            "projection_inner_iterations": 2,
+            "projection_dykstra_calls": 0,
+            "projection_floor_count": 2,
+            "projection_max_distance_bound": 2.7266429299683887e-06,
+            "refresh": false,
+            "epoch_position": 3,
+            "eta": 1.0894812692393931,
+            "gamma": 0.99,
+            "curvature_operator_calls": 0,
+            "curvature_forward_views": 0,
+            "curvature_backward_views": 0,
+            "oracle_calls": 2
+          }
+        }
+      ],
+      "status": "passed",
+      "endpoint_ratio": 0.9015808331063149,
+      "max_ratio": 1.0
+    }
+  ]
+}

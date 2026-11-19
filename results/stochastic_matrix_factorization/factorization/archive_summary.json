@@ -1,0 +1,491 @@
+{
+  "ablation_source_hash_verification": [
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "spring_step_ablation/runs/orl64/local_curvature_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "spring_step_ablation/runs/yaleb32/local_curvature_seed110/metadata.json",
+      "source_hashes_match": true
+    }
+  ],
+  "archive_validation": {
+    "all_retained_json_parse": true,
+    "all_retained_python_parse": true,
+    "copied_bytes_match_source": true,
+    "experiments_rerun": false,
+    "symlinks_materialized": true
+  },
+  "failed_practical_spring_ablation": [
+    {
+      "directory": "spring_step_ablation/runs/orl64/local_curvature_seed110",
+      "exception_class": "baseline.ProjectionFailure",
+      "failure": "Dykstra projection did not attain its numerical target in 2000 iterations.",
+      "failure_evidence_original_path": "spring_step_ablation/runs/orl64/local_curvature_seed110/stdout.log",
+      "failure_evidence_sha256": "b2179b6cff7ecc2c87d9533d7713a866bc3ee5f18d1405934186bd4d7bb7fed3",
+      "last_saved_probe_iteration": 600,
+      "progress_and_trace_consistent": true,
+      "saved_progress_iteration": 646,
+      "status": "failed"
+    },
+    {
+      "caveat": "Original failed progress and saved trace disagree about the terminal iteration. Retained verbatim; not a completed comparable run.",
+      "directory": "spring_step_ablation/runs/yaleb32/local_curvature_seed110",
+      "exception_class": "baseline.ProjectionFailure",
+      "failure": "Dykstra projection did not attain its numerical target in 2000 iterations.",
+      "failure_evidence_original_path": "spring_step_ablation/runs/yaleb32/local_curvature_seed110/stdout.log",
+      "failure_evidence_sha256": "7fd851b438b1d1689feaa708a70b836d340fdd3d116bcb21dd15d6cf39a21efd",
+      "last_saved_probe_iteration": 5900,
+      "progress_and_trace_consistent": false,
+      "saved_progress_iteration": 5882,
+      "status": "failed"
+    }
+  ],
+  "historical_experiment": "ORL64 and Extended Yale-B32 spectrally constrained sparse matrix factorization; separate from the later CT/tomography experiment.",
+  "historical_validation": {
+    "note": "Historical recorded validation, not a new execution.",
+    "sha256": "78082451eb54d64b1a34ea7b88033ecd63364062a3c0e86296073961e5fca169",
+    "source": "validation.xml",
+    "testsuites": [
+      {
+        "errors": "0",
+        "failures": "0",
+        "hostname": "elite",
+        "name": "pytest",
+        "skipped": "0",
+        "tests": "29",
+        "time": "2.255",
+        "timestamp": "2026-11-04T12:34:10.233648+01:00"
+      }
+    ]
+  },
+  "main_campaign": {
+    "confirmation_runs": 12,
+    "development_runs": 26,
+    "elapsed_seconds": 11025.961305782199,
+    "finished_utc": "2026-11-04T14:44:12.548188+00:00",
+    "selected": {
+      "orl64": {
+        "candidate": "f05",
+        "gamma0": 0.3,
+        "mu0": 147572.85663428178,
+        "mu_scale": 10.0,
+        "rho0": 1.0
+      },
+      "yaleb32": {
+        "candidate": "f05",
+        "gamma0": 0.3,
+        "mu0": 113383.75013751577,
+        "mu_scale": 10.0,
+        "rho0": 1.0
+      }
+    },
+    "status": "completed"
+  },
+  "missing_external_dependencies": [
+    "Original and processed ORL/Yale-B data (data_manifest.json records locations, checksums, normalization).",
+    "Author SPRING code archive and bundled saved initial factors, required by prepare_data.py --spring-reproduction (source_manifest.json records pinned URL and SHA256).",
+    "Python environment and installed packages (versions recorded in provenance/environment.json).",
+    "Main-run trace payloads and all checkpoints; no continuation or full old plot regeneration from this small archive alone."
+  ],
+  "newton_schulz_benchmarks": {
+    "additional_scoped_filename_search": "/home/tony/experiments",
+    "found_in_additional_search": false,
+    "found_in_source": false
+  },
+  "run_source_hash_verification": [
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/confirmation/sframes_seed201/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/confirmation/sframes_seed202/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/confirmation/sframes_seed203/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/confirmation/spring_sarah_seed201/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/confirmation/spring_sarah_seed202/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/confirmation/spring_sarah_seed203/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f00_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f01_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f02_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f03_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f04_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f05_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f06_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f07_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f08_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f09_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f10_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/f11_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/orl64/development/spring_theorem_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/confirmation/sframes_seed201/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/confirmation/sframes_seed202/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/confirmation/sframes_seed203/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/confirmation/spring_sarah_seed201/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/confirmation/spring_sarah_seed202/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/confirmation/spring_sarah_seed203/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f00_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f01_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f02_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f03_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f04_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f05_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f06_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f07_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f08_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f09_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f10_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/f11_seed110/metadata.json",
+      "source_hashes_match": true
+    },
+    {
+      "checks": {
+        "baseline.py": true,
+        "core.py": true,
+        "run.py": true,
+        "setup_problem.py": true
+      },
+      "metadata": "runs/yaleb32/development/spring_theorem_seed110/metadata.json",
+      "source_hashes_match": true
+    }
+  ],
+  "schema_version": 1
+}

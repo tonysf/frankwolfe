@@ -1,0 +1,125 @@
+{
+  "status": "audit_only_derivation_not_used_by_any_optimizer",
+  "created_utc": "2026-11-12T12:24:21.083577+00:00",
+  "scope": "A defensible average-smoothness bound for the current factored CT objective on the feasible product of spectral balls; no new ProxSARAH or PALM variant has been selected or run.",
+  "source_files": {
+    "ct_problem.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/ct_problem.py",
+      "sha256": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa"
+    },
+    "data_preparation_manifest.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/data_preparation_manifest.json",
+      "sha256": "45aee12a9635b6fe56d60d6da4b4d5ec0f400ad3a107adb7fc86203ad02284b2"
+    },
+    "methods.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/methods.py",
+      "sha256": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1"
+    }
+  },
+  "references": [
+    {
+      "url": "https://www.jmlr.org/papers/v21/19-248.html",
+      "local_text": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/provenance/proxsarah_jmlr_2020.txt",
+      "relevance": "Assumption 2.2, equation (4), page 9 requires average component-gradient smoothness. The constant L is not merely the smoothness of the averaged objective."
+    },
+    {
+      "url": "https://astra-toolbox.com/docs/proj2d.html#line-fanflat",
+      "relevance": "The CPU line_fanflat model uses nonnegative ray/pixel intersection lengths; the geometry bound below applies to that ideal linear model."
+    }
+  ],
+  "definitions": {
+    "component": "f_i(U,V)=||A_i(UV^T)-y_i||_2^2/(2d), with one component per view and d=956 detector bins.",
+    "objective": "f=(1/N) sum_i f_i. A batch gradient in ct_problem.py divides by |B|d.",
+    "domain": "K={(U,V): ||U||_op<=R_U, ||V||_op<=R_V, U>=0, V>=0}; factors have r=64 columns.",
+    "pair_norm": "||(H,K)||^2=||H||_F^2+||K||_F^2.",
+    "image_operator": "q_i=||A_i||_{F->2}^2/d; s_i=||y_i||_2/sqrt(d).",
+    "target_assumption": "(1/N) sum_i ||grad f_i(x)-grad f_i(z)||^2 <= L^2 ||x-z||^2 for x,z in the domain queried by the method."
+  },
+  "derivation": [
+    "Let X=UV^T, H_i=A_i^* A_i/d and G_i=A_i^*(A_i X-y_i)/d. Let B_{U,V}(DeltaU,DeltaV)=DeltaU V^T+U DeltaV^T.",
+    "The joint Hessian is B^* H_i B plus the self-adjoint residual cross operator (DeltaU,DeltaV)->(G_i DeltaV,G_i^T DeltaU).",
+    "||B||^2<=R_U^2+R_V^2. The residual cross-operator norm equals ||G_i||_op.",
+    "||UV^T||_F<=sqrt(r) R_U R_V, hence ||G_i||_op<=q_i sqrt(r) R_U R_V+sqrt(q_i) s_i.",
+    "Therefore L_i=q_i (R_U^2+R_V^2+sqrt(r) R_U R_V)+sqrt(q_i) s_i bounds the joint Hessian norm uniformly on the product spectral balls.",
+    "The domain is convex; integration along its line segments gives component-gradient Lipschitz constants L_i on this domain.",
+    "L=sqrt((1/N)sum_i L_i^2) therefore satisfies the average-smoothness inequality on the domain.",
+    "If q_i<=qbar uniformly, Minkowski gives the simpler valid bound L=qbar (R_U^2+R_V^2+sqrt(r) R_U R_V)+sqrt(qbar) ||y_train||_2/sqrt(Nd)."
+  ],
+  "why_initial_block_sum_is_not_joint_L": {
+    "scalar_counterexample": "f(u,v)=0.5(uv)^2 at u=v=1 has block curvatures 1 and 1, but joint Hessian [[1,2],[2,1]] has spectral norm 3>2.",
+    "additional_current_implementation_issues": "The saved L_U^0 and L_V^0 come from ten power iterations on only 120 calibration views and the initial opposite-factor spectral norms. The spectral caps are twice the initial factor spectral norms, and cross/residual Hessian terms are absent. Neither the current joint Hessian nor the component-average smoothness condition is certified by their sum."
+  },
+  "geometry_bound": {
+    "assumptions": [
+      "Square grid of side w and pixel width h=w/512.",
+      "Source rotates at distance S from the origin; the flat detector is D behind the origin with uniform spacing delta.",
+      "The shifted volume lies in the disk of radius rho=w/sqrt(2)+||volume_center||<S.",
+      "The exact forward matrix consists of nonnegative zero-thickness intersection lengths."
+    ],
+    "derivation": [
+      "In coordinates aligned with the source, the detector coordinate of a point is t(x,y)=(S+D)y/(S-x).",
+      "On the containing disk, ||grad t||_2 <= G=(S+D)/(S-rho) sqrt(1+(rho/(S-rho))^2).",
+      "A pixel has diameter sqrt(2)h, so its detector shadow has length at most sqrt(2)h G. At most m=floor(sqrt(2)h G/delta)+1 ray centers can lie in this interval.",
+      "Every row sum of A_i is at most sqrt(2)w. Every column sum is at most m sqrt(2)h.",
+      "||A_i||_2^2 <= ||A_i||_1 ||A_i||_infinity gives q_i <= (sqrt(2)w)(m sqrt(2)h)/d."
+    ],
+    "values": {
+      "volume_width_mm": 116.52814274682939,
+      "pixel_width_mm": 0.22759402880240115,
+      "source_distance_mm": 431.019989,
+      "detector_distance_mm": 97.98049900000001,
+      "detector_spacing_mm": 0.1496,
+      "volume_radius_bound_mm": 82.5587732164808,
+      "detector_coordinate_gradient_bound": 1.5601304498834996,
+      "pixel_shadow_bound_mm": 0.5021538245616297,
+      "shadow_over_detector_spacing": 3.3566432123103587,
+      "rays_per_pixel_bound": 4,
+      "maximum_row_sum_bound_mm": 164.79567987071414,
+      "maximum_column_sum_bound_mm": 1.2874662489899542,
+      "qbar": 0.22193397051558328
+    },
+    "operator_evaluations_required": 0
+  },
+  "illustration": {
+    "slice_id": "slice03611",
+    "caps": [
+      3.8419105927438935,
+      3.847545634783799
+    ],
+    "metadata_path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/convincing_4x_recovery/runs/evaluation_slice03611_360_spring_sarah_seed203_a2p3_q16/metadata.json",
+    "old_initial_curvature_sum": 0.3678829682737245,
+    "data_read": "One cached sinogram, cast to float32 exactly as CTProblem does; only scalar measurement statistics were calculated. No projector, optimizer or benchmark was run.",
+    "cases": [
+      {
+        "n_train": 360,
+        "measurement_RMS": 0.8843774098744177,
+        "per_view_measurement_RMS_range": [
+          0.8452655448606906,
+          0.9302474299449036
+        ],
+        "L_using_minkowski": 33.22275210521225,
+        "L_using_explicit_RMS_of_L_i": 33.22269352907534,
+        "ratio_to_old_initial_curvature_sum": 90.30777827245291
+      },
+      {
+        "n_train": 1080,
+        "measurement_RMS": 0.8839612167315725,
+        "per_view_measurement_RMS_range": [
+          0.8385707883210222,
+          0.9302474299449036
+        ],
+        "L_using_minkowski": 33.22255603717017,
+        "L_using_explicit_RMS_of_L_i": 33.222494729389865,
+        "ratio_to_old_initial_curvature_sum": 90.30723788406144
+      }
+    ]
+  },
+  "limitations_and_applicability": [
+    "This is an analytic bound for the stated exact linear ray-weight model. It is not an interval-arithmetic certificate for ASTRA FP32 projector geometry, stored weights or accumulation.",
+    "The factored objective is quartic and is not globally smooth on all unconstrained factor space. The stated bound holds on the convex product spectral balls, including its nonnegative subset.",
+    "Applying the paper proof with this restricted-domain bound requires verifying that all gradient query points and descent line segments stay in that domain. Projection onto K and relaxation weights in [0,1] have this property; it should be stated rather than claiming unconstrained global smoothness.",
+    "The bound is conservative. It does not establish that the true average-smoothness constant is approximately 33 or that a smaller empirical constant is invalid.",
+    "A finite power-iteration estimate is not an upper bound. No author-supported backtracking replacement or iterate-dependent L rule was established in this audit. The paper adaptive scheme computes its relaxation schedule from a fixed L; it does not make local-curvature adaptation automatic.",
+    "No new variant, smoothness constant or parameter setting is adopted by this note. Choosing between published ProxSARAH variants requires a separate explicit implementation decision."
+  ]
+}

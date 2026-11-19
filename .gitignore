@@ -54,6 +54,18 @@ qpt_*.png
 !/results/**/*.txt
 /results/**/__pycache__/
 
+# Reviewed stochastic matrix-factorization source/evidence snapshots.
+!/results/stochastic_matrix_factorization/**/*.tex
+!/results/stochastic_matrix_factorization/**/*.sh
+!/results/stochastic_matrix_factorization/**/*.toml
+!/results/stochastic_matrix_factorization/**/reported_traces.tar.gz
+!/results/stochastic_matrix_factorization/**/historical_summaries.tar.gz
+!/results/stochastic_matrix_factorization/ct/**/*.png
+
+# The current CT report is a small, explicitly versioned paper artifact.
+!/paper/experiments/stochastic_ct/**/*.pdf
+!/paper/experiments/stochastic_ct/**/*.png
+
 # Large exploratory datasets from earlier development history
 fw_variants/nonconvex_nonsmooth/MNIST_CSV/generate_mnist_csv.py
 fw_variants/nonconvex_nonsmooth/MNIST_CSV/mnist_test.csv

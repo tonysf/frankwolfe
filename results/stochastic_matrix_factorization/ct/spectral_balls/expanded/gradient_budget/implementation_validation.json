@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "validated_utc": "2026-11-18T14:04:30.844828+00:00",
+  "source_sha256": {
+    "run.py": "13cbb75c86ff2eeaf6c101c62899af1d1ea04359d39c0505cb263b011d15e115",
+    "palm_paper.py": "120954e41343c590ac0ed01319ec15b81e6b753d6219143bf6140a9346202290",
+    "local_curvature.py": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8",
+    "curvature_reference.py": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "52ca518e77b56fcda1cf361ead3557441e970e3e756fda1594358cd8bc238200"
+  },
+  "evidence": {
+    "engine_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/gradient_budget/engine_validation.json",
+      "sha256": "e1adfa85b8c0c520dad212deac23a1296b760b405e233657c36c64d50043bd48"
+    },
+    "campaign_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/gradient_budget/campaign_validation.json",
+      "sha256": "efcbe641dae073d859c256ae587397a2437c3dfee2a776075824dc13c58766da"
+    }
+  },
+  "unchanged_numerical_sources": {
+    "palm_paper.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/palm_paper.py",
+      "sha256": "120954e41343c590ac0ed01319ec15b81e6b753d6219143bf6140a9346202290"
+    },
+    "local_curvature.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/local_curvature.py",
+      "sha256": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8"
+    },
+    "curvature_reference.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/curvature_reference.py",
+      "sha256": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8"
+    },
+    "ct_problem.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/ct_problem.py",
+      "sha256": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa"
+    },
+    "methods.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/methods.py",
+      "sha256": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1"
+    },
+    "spectral_reference_core.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/spectral_reference_core.py",
+      "sha256": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2"
+    },
+    "spectral_reference_baseline.py": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/baseline_step_rules/spectral_reference_baseline.py",
+      "sha256": "52ca518e77b56fcda1cf361ead3557441e970e3e756fda1594358cd8bc238200"
+    }
+  },
+  "independent_review": [
+    "Continuation restores completed solver and RNG state; source prefix remains exact.",
+    "Cumulative stopping work is total views minus separately retained curvature views.",
+    "Both directional counters and native overshoot handling are validated.",
+    "No optimizer parameter changes; all168physicalcontinuations retained."
+  ],
+  "limitations": [
+    "Real CT continuation smoke will be performed after frozen preparation and recorded separately before service launch."
+  ]
+}

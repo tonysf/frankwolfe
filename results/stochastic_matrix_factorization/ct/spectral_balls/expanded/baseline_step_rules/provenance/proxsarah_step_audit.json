@@ -1,0 +1,76 @@
+{
+  "scope": "Read-only paper/code/CT baseline audit; no algorithm or campaign changed.",
+  "current": {
+    "source": "convincing_4x_recovery/methods.py:230-264; run.py:48-64",
+    "eta": "2.3/(L_U_initial+L_V_initial)",
+    "gamma": 0.8,
+    "inner_batch": 64,
+    "inner_differences_per_epoch": 96,
+    "snapshot_batch": 256,
+    "epoch_total_updates": 97,
+    "structure": "Correct Algorithm1 estimator recursion, joint separable prox, then relaxation; same batch in both recursive terms. Convex product spectral-ball/orthant constraints preserve feasibility under gamma in [0,1].",
+    "parameter_faithfulness": "Tuned custom settings. Neither paper constant/dynamic coupled formulas nor authors finite-sum practical parameter configurations."
+  },
+  "assumption": {
+    "source": "Assumption2.2, equation4, paperp9",
+    "formula": "mean_i ||grad f_i(w)-grad f_i(z)||^2 <= L^2 ||w-z||^2",
+    "sufficient": "Per-component Lipschitz constants L_i give L=sqrt(mean_i L_i^2). A bound only on grad(mean_i f_i) does not suffice.",
+    "domain": "CT quartic is not globally smooth on unconstrained factor space; use a proven convex-domain bound containing queries/segments, or justify a smooth extension. Practical tuned L is explicitly not certified."
+  },
+  "constant_paper_rule": {
+    "source": "Lemma4 equation27 p15; Theorem8 equation34 p17",
+    "omega": "3*(N-bhat)/(2*bhat*(N-1))",
+    "gamma": "1/(L*sqrt(omega*m))",
+    "eta": "2*sqrt(omega*m)/(4*sqrt(omega*m)+1)",
+    "combined_eta_gamma": "2/(L*(4*sqrt(omega*m)+1))",
+    "requirement": "gamma <=1 must be checked; equivalently L*sqrt(omega*m)>=1.",
+    "best_complexity_specialization": "Full snapshot b_s=N, m=floor(N/bhat), 1<=bhat<=sqrt(N). The text allows larger batches, but loses the best-known complexity specialization. Lemma4 admits general m."
+  },
+  "dynamic_paper_rule": {
+    "source": "Theorem6 equation30 pp15-16",
+    "eta": "fixed in (0,2/3)",
+    "delta": "2/eta-3",
+    "omega_eta": "(1+2*eta^2)*(N-bhat)/(bhat*(N-1))",
+    "gamma_m": "delta/L",
+    "gamma_t": "delta/(L*(eta+omega_eta*L*sum_{j=t+1}^m gamma_j))",
+    "meaning": "Precompute a backward schedule once from fixed L,m,bhat, then reuse each epoch. Not an online estimate or backtracking rule. gamma in (0,1] remains required."
+  },
+  "batch_tradeoff": {
+    "source": "Section3.4 equation36 p18",
+    "chosen_gamma": "gamma_bar in (0,1]",
+    "C": "2/(3*L^2*gamma_bar^2)",
+    "bhat": "floor(m*N/(C*N+m-C))",
+    "eta": "2/(4+L*gamma_bar)",
+    "warning": "Do not fix gamma,m,bhat independently and still claim this tradeoff."
+  },
+  "snapshots": {
+    "source": "Equation29 p15, Theorem6b/c and Remark7 p16, Theorem8 p17, Theorem9 equation39 p19",
+    "general_algorithm": "Mini-batch snapshot is allowed; batch independent of inner batches.",
+    "clean_finite_sum_guarantee": "Full snapshot removes snapshot variance; the principal finite-sum results and supplied finite-sum experiment calls use N.",
+    "fixed_256": "Requires a variance qualification or target-dependent snapshot size. General finite-sum bound retains a snapshot variance term; full snapshots recommended for faithful CT comparison."
+  },
+  "authors_code": {
+    "finite_sum_python": "non_neg_pca_example.py:177-229 and binary_classification_example.py:266-333 use q_code=2+.01+1/100=2.02, omega_code=(q_code^2+8)/q_code^2, gamma .95/.99 for minibatch, eta=2/(q_code+gamma*L), C clipped to [.5,4], coupled batch and epoch choices. All experiment calls use full snapshots.",
+    "neural_net": "example_neural_net_1.py:110-114,158-203 uses tuned L=1 or4, q_code=4, C=1, gamma .95/.99, eta=2/(4+gamma*L), m/b near sqrt(N) or cube-root(N). PaperSection5.3 p30 explicitly tunes L before choosing coupled parameters.",
+    "adaptive": "method_ProxSARAH_Adaptive.py:143-153 precomputes gamma_m=.99 and gamma_t=1/[L*(eta+L*(1+2eta^2)*rho*sumfuturegamma)], with eta=1/(L*.99) supplied by example. This is a practical driver choice, not identical to equation30 conservative eta range.",
+    "L_estimation": "NN-PCA normalized-data analytic L=1; classification analytic constants; NN tuned scalar L=1/4. No evidence of iterate-wise local-curvature or line-search rule."
+  },
+  "recommended_CT_option": {
+    "description": "Full snapshots, preserve b64 and m96; apply equation34 to normalized objective f/Lhat with assumed normalized L=1. For indicator constraints this is exactly eta_CT=eta_normalized/Lhat with original gradients and unchanged projections.",
+    "omega": "3*(N-64)/(2*64*(N-1))",
+    "gamma": "1/sqrt(omega*96)",
+    "eta_CT": "2*sqrt(omega*96)/(Lhat*(4*sqrt(omega*96)+1))",
+    "Lhat": "Either justified average-smoothness bound, or fixed development-tuned scalar labelled practical (supported by paperSection5.3); no evaluation outcomes and no online curvature rule.",
+    "limitation": "Not literal authors experiment-driver reproduction; no claim of theorem8 optimal-complexity specialization at b64,m96. If Lhat is tuned, no claim of certified theorem step-size bound.",
+    "values": {
+      "360": {
+        "gamma": 0.7341927805685909,
+        "eta_CT_times_Lhat": 0.42245850405774854
+      },
+      "1080": {
+        "gamma": 0.6870251083931028,
+        "eta_CT_times_Lhat": 0.4267098967356885
+      }
+    }
+  }
+}

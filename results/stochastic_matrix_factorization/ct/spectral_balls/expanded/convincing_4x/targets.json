@@ -1,0 +1,29 @@
+{
+  "frozen_utc": "2026-11-06T19:14:37.689318+00:00",
+  "definition": "First saved native iterate within69120viewsperside satisfying both repaired_loss / initial_repaired_loss <= relative_repaired_loss and raw d_D / initial_factor_frobenius_norm <= max_relative_d_distance. No interpolated crossing; unreached cases remain censored.",
+  "normalization": "initial_factor_frobenius_norm = sqrt(||U_0||_F^2 + ||V_0||_F^2)",
+  "provenance": "Thresholds fixed before expanded evaluation. Initial factor norms on two original development slices are2.919423056505318 and2.8323907551932765. Feasibility levels span1% and0.1% of this factor scale; loss levels40% and30% of initial repaired training loss.",
+  "targets": [
+    {
+      "name": "loss40_feas0.01",
+      "relative_repaired_loss": 0.4,
+      "max_relative_d_distance": 0.01
+    },
+    {
+      "name": "loss40_feas0.001",
+      "relative_repaired_loss": 0.4,
+      "max_relative_d_distance": 0.001
+    },
+    {
+      "name": "loss30_feas0.01",
+      "relative_repaired_loss": 0.3,
+      "max_relative_d_distance": 0.01
+    },
+    {
+      "name": "loss30_feas0.001",
+      "relative_repaired_loss": 0.3,
+      "max_relative_d_distance": 0.001
+    }
+  ],
+  "report_rule": "Report attainment and censoring for all four prespecified targets, not only successful targets. Paired work ratios only on common attained cases, with denominator coverage explicit. Aggregate seed then slice then specimen group."
+}

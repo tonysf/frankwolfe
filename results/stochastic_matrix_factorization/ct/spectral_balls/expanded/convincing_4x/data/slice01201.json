@@ -1,0 +1,43 @@
+{
+  "slice_number": 1201,
+  "measurement_mode": 1,
+  "reference_mode": 2,
+  "detector_index": 1,
+  "transmission_shift_indices": 1.0,
+  "raw_source": "https://zenodo.org/records/8014766/files/2DeteCT_slices1001-2000.zip?download=1",
+  "reference_source": "https://zenodo.org/records/8017604/files/2DeteCT_slices1001-2000_RecSeg.zip?download=1",
+  "preprocess_source": "https://deepinv.org/auto_examples/external-libraries/demo_astra_2detect.html",
+  "dataset_paper": "https://arxiv.org/html/2306.05907",
+  "tiff_entries": {
+    "slice01201/mode1/sinogram.tif": "afa49be4ec6a82cbd019e822592548d5eeb31be8cbcade85531acd00d3b075a1",
+    "slice01201/mode1/dark.tif": "1b05ebf135e747c0bcca62da267a6eac54da61de24a1c1a8a5db5d71cce9ab18",
+    "slice01201/mode1/flat1.tif": "a88937668f8bb2ac16ea9f91cc25463d6b503b7406f38c20113e3d2aa579fdb3",
+    "slice01201/mode1/flat2.tif": "ed49976f9fc2e6a23dd2cf0ffd7fa80bcd532f3185f094ffc154b8897d157f8d",
+    "slice01201/mode2/reconstruction.tif": "846627292a95c6b8811f0e2fe7134868f6d8840b1b482790d8682d0c34a94b50"
+  },
+  "clamped_count": 0,
+  "measured_shape": [
+    3600,
+    956
+  ],
+  "reference_shape": [
+    1024,
+    1024
+  ],
+  "sinogram_convention": "Bin adjacent raw detector cells, drop last view, correct flat/dark, apply published detector-1 transmission shift if needed, clip at 1e-6, negate log, reverse detector (DeepInverse reflected convention).",
+  "reference_convention": "Mode 2 TIFF stored without conversion. For DeepInverse angles with detector reversal, a physical-mm ASTRA model uses a vertical flip and divides attenuation by native voxel width in mm.",
+  "reference_source_code": "https://github.com/mbkiss/2DeteCTcodes/blob/main/Reconstructions_2DeteCT.py",
+  "preparation_source_sha256": "35400e3c25c9f92f48cf33e3addece158db46c417adaacbbf0e8ae5327b459d2",
+  "author_source_sha256": "83a40bf29928170ae6eebe99412d437630aabcc3919e1c5942a68f1805e7f4fd",
+  "geometry_mm": {
+    "detector_spacing": 0.1496,
+    "source_origin": 431.019989,
+    "origin_detector": 97.98049900000001,
+    "volume_width": 116.52814274682939,
+    "volume_center": [
+      -0.11379701440120057,
+      -0.11379701440120057
+    ],
+    "reference_voxel_width": 0.11379701440120057
+  }
+}

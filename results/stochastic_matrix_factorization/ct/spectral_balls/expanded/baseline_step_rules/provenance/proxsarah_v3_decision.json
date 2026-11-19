@@ -1,0 +1,42 @@
+{
+  "status": "implementation_decision",
+  "variant": "ProxSARAH-v3",
+  "primary_source": "https://www.jmlr.org/papers/volume21/19-248/19-248.pdf",
+  "source_locations": {
+    "named_variant": "Section 5, printed page 21",
+    "constant_parameters": "Section 3.4, printed page 18",
+    "recursion": "Algorithm 1, printed page 13; finite-sum estimator (29), printed page 15",
+    "practical_smoothness_tuning_precedent": "Section 5.3, printed page 30"
+  },
+  "supersedes": {
+    "file": "proxsarah_step_audit.json",
+    "field": "recommended_CT_option",
+    "reason": "The subsequent request requires the paper's parameter choices as well as its step rule. Use the named experimental v3 variant rather than preserving the earlier custom batch 64 and epoch length 96. The earlier audit remains historical evidence."
+  },
+  "normalization": {
+    "objective": "f / loss_scale",
+    "assumed_normalized_L": 1.0,
+    "loss_scale": "A positive fixed practical smoothness estimate, selected using development data. It is not certified as a global smoothness bound and does not change during a run.",
+    "equivalence": "For the indicator of the feasible product set, objective normalization leaves the projection unchanged and divides the original-gradient eta by loss_scale."
+  },
+  "parameters": {
+    "gamma": 0.99,
+    "C": "2 / (3 * normalized_L**2 * gamma**2)",
+    "batch": "floor(sqrt(N) / C)",
+    "inner_steps": "floor(sqrt(N))",
+    "eta_normalized": "2 / (4 + gamma * normalized_L)",
+    "eta_original_gradient": "eta_normalized / loss_scale",
+    "snapshot_batch": "N",
+    "epoch_updates": "inner_steps + 1"
+  },
+  "regimes": {
+    "360": {"batch": 27, "inner_steps": 18, "snapshot_batch": 360, "updates_per_epoch": 19, "views_per_direction_per_complete_epoch": 1332},
+    "1080": {"batch": 48, "inner_steps": 32, "snapshot_batch": 1080, "updates_per_epoch": 33, "views_per_direction_per_complete_epoch": 4152}
+  },
+  "distinctions": [
+    "The literal Section 5 experimental batch floor(sqrt(N)/C) is used. The finite-N expression in equation (36) would instead give batches 24 and 45 for the chosen inner lengths; it is not the named experimental recipe reproduced here.",
+    "The authors' Python drivers contain additional practical parameter changes, including q_code=2.02 in finite-sum examples. Those changes are not imported into the literal paper-v3 implementation.",
+    "Every epoch begins with a full finite-sum gradient. Stochastic differences reuse the same sampled views at both joint factor points."
+  ],
+  "validation": "validate_prox_paper.py checks the full trajectory against an independent dense-sensing reference with exact rank-one projections, normalization equivalence, literal recipe and work counts, exact query history, bitwise checkpoint continuation, and rejection of arbitrary parameter overrides."
+}

@@ -206,6 +206,17 @@ complete deployment and troubleshooting guide.
 
 ## FRAMES Paper Figures
 
+### Stochastic matrix factorization experiments
+
+The [stochastic matrix factorization archive](results/stochastic_matrix_factorization/README.md)
+contains the ORL/Yale-B study and the subsequent low-dose CT experiments,
+including the corrected baseline step rules and the November 19, 2026
+gradient-budget comparison. The [CT paper section](paper/experiments/stochastic_ct/README.md)
+includes its LaTeX, PDF, two trajectory figures, and reproducibility supplement.
+Frozen experiment sources and result provenance are preserved separately from
+the reusable `frank_wolfe` package; datasets and optimizer checkpoints are not
+distributed through Git.
+
 The paper figure generation entrypoints live in `paper/`.
 
 ```bash

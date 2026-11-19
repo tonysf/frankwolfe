@@ -1,0 +1,331 @@
+\section{Numerical experiments}
+\label{sec:ct-experiments}
+
+We evaluate SFRAMES on spectrally constrained low-rank reconstruction from
+real low-dose computed tomography (CT) measurements. The experiments examine
+how sampling angular views affects progress at a fixed projection budget,
+and compare SFRAMES with SPRING--SARAH, ProxSARAH and PALM. Increasing the
+number of training views enlarges the finite sum while preserving the factor
+dimensions, allowing us to compare minibatch and full-batch updates under
+both measurement densities.
+Evaluation uses \(14\) 2DeteCT slices from \(6\) specimen/material groups, with \(N\in\{360,1{,}080\}\) training views and \(360\) held-out views per slice.
+
+\subsection{Spectrally constrained CT reconstruction}
+\label{subsec:ct-model}
+
+An attenuation image describes how strongly material reduces transmitted
+X-ray intensity per unit distance. At each angular position, or view, the
+source illuminates a line of detector bins along a fan of rays. Under the
+Beer--Lambert model, the negative logarithm of normalized transmitted
+intensity approximates the line integral of attenuation along a ray
+\cite{detect}. We represent attenuation by an image
+\(X\in\mathbb R^{n\times n}\), with \(n=512\). Let
+\(\ell_{ij,pq}\) be the length in millimeters of ray \(j\) of view \(i\)
+inside pixel \((p,q)\). The forward map for that view is
+\begin{equation}
+ P_i\colon\mathbb R^{n\times n}\longrightarrow\mathbb R^d,
+ \qquad [P_i(X)]_j=\sum_{p,q}\ell_{ij,pq}X_{pq},\qquad d=956.
+ \label{eq:ct-ray}
+\end{equation}
+The scanner geometry fixes the weights. The adjoint \(P_i^\ast\), called
+backprojection, distributes detector residuals over the crossed pixels
+using the same weights.
+
+We fit factors \(U,V\in\mathbb R^{n\times r}\), with \(r=64\), so that
+\(X=UV^\top\) has rank at most \(r\). For processed measurements
+\(y_i\in\mathbb R^d\) and a training-view set \(\mathcal I\) of size
+\(N\), define
+\begin{equation}
+ f(U,V)=\frac1N\sum_{i\in\mathcal I}q_i(U,V),\qquad
+ q_i(U,V)=\frac{\|P_i(UV^\top)-y_i\|_2^2}{2d}.
+ \label{eq:ct-loss}
+\end{equation}
+We bound each factor's largest singular value and impose entrywise
+nonnegativity through
+\begin{equation}
+ \begin{split}
+ C&=\{(U,V):\|U\|_{\rm op}\le R_U,\ \|V\|_{\rm op}\le R_V\},\\
+ D&=\{(U,V):U\ge0,\ V\ge0\}.
+ \end{split}
+ \label{eq:ct-sets}
+\end{equation}
+With \(x=(U,V)\), \(T=\operatorname{Id}\) and \(g=\iota_D\), the
+problem is
+\begin{equation}
+ \min_{x\in C,\,Tx\in D} f(x)
+ \;=\;\min_{x\in C}\{f(x)+g(Tx)\}.
+ \label{eq:ct-problem}
+\end{equation}
+Here \(\iota_D\) is zero on \(D\) and \(+\infty\) elsewhere.
+Nonnegative factors ensure a nonnegative reconstructed attenuation image.
+The set \(C\) is compact and convex, and strictly positive sufficiently
+small factors lie in the interiors of both \(C\) and \(D\). Each component
+has a Lipschitz gradient on a neighborhood of \(C\). A smooth compactly
+supported extension equal to the component on that neighborhood gives a
+globally Lipschitz gradient while preserving the values and gradients at
+every queried factor pair.
+
+For a uniform subset \(B\subset\mathcal I\), a joint stochastic gradient is
+\begin{equation}
+ E_B=\frac{1}{|B|d}\sum_{i\in B}P_i^\ast\bigl(P_i(UV^\top)-y_i\bigr),
+ \qquad \widehat\nabla f_B(U,V)=(E_BV,E_B^\top U).
+ \label{eq:ct-gradient}
+\end{equation}
+It is conditionally unbiased when \(B\) is drawn independently of the
+current factors. Each selected view contributes all \(d\) detector bins.
+One invocation uses a forward projection and an adjoint over the selected
+views. The full-batch gradient uses \(B=\mathcal I\).
+
+The orthant projection is \(\Pi_D(x)=x_+\), applied entrywise to both
+factors. Thus the smoothed term is
+\(g_{\beta}(x)=\operatorname{dist}_D(x)^2/(2\beta)\), with gradient
+\((x-\Pi_D(x))/\beta\). The implemented SFRAMES direction and update are
+\begin{equation}
+ s_k=\operatorname{LMO}_C\!\left(m_k+
+        \frac{x_k-\Pi_D(x_k)}{\beta_k}\right),\qquad
+ x_{k+1}=(1-\gamma_k)x_k+\gamma_k s_k,
+ \label{eq:ct-update}
+\end{equation}
+where \(m_0=\widehat\nabla f_{B_0}(x_0)\) and
+\(m_k=(1-\alpha_k)m_{k-1}+\alpha_k\widehat\nabla f_{B_k}(x_k)\) for
+\(k\ge1\). For a block direction \(G=A\operatorname{diag}(\sigma)B^\top\),
+the spectral-ball LMO returns \(-RA_+B_+^\top\), with singular vectors
+restricted to positive singular values. The two factors are handled
+independently, using one thin SVD per factor.
+
+\paragraph{Initialization and SFRAMES parameters.}
+All methods start from common nonnegative rank-\(64\) factors \(U_0,V_0\),
+obtained by an NNDSVD-style factorization of a sensitivity-normalized
+backprojection of \(120\) training views, followed by a small positive
+perturbation and a scale fit. Set \(R_U=2\|U_0\|_{\rm op}\) and
+\(R_V=2\|V_0\|_{\rm op}\). Ten power iterations on the stacked calibration
+operator \(P_J\) estimate \(\widehat\lambda\approx\|P_J\|_{\rm op}^2/(120d)\).
+We use the initial block-curvature estimates to scale the smoothing prefactor:
+\[
+ L_U=\widehat\lambda\|V_0\|_{\rm op}^2,\qquad
+ L_V=\widehat\lambda\|U_0\|_{\rm op}^2,\qquad
+ \beta_0=c_\beta/\max(L_U,L_V).
+\]
+Both SFRAMES variants retain \((c_\beta,\gamma_0)=(16,0.1)\) from the original joint development search.
+Minibatch SFRAMES draws \(64\) training views uniformly without replacement
+at each update, independently across updates; full-batch SFRAMES uses all
+\(N\) views. Both use
+\[
+ \gamma_k=\gamma_0(k+1)^{-3/4},\qquad
+ \alpha_k=(k+1)^{-1/2},\qquad
+ \beta_k=\beta_0(k+1)^{-1/4}.
+\]
+
+\paragraph{Evaluation criteria.}
+Raw training loss is \(f(U,V)\). To evaluate a feasible reconstruction, we
+repair each factor by
+\[
+ \mathcal R_R(A)=\frac{A_+}{\max\{1,\|A_+\|_{\rm op}/R\}},\qquad
+ \widetilde X=\mathcal R_{R_U}(U)\mathcal R_{R_V}(V)^\top.
+\]
+Repaired training loss uses \(\widetilde X\) in~\eqref{eq:ct-loss}.
+Held-out loss uses the same normalization over the \(360\) reserved views.
+Relative image error is \(\|\widetilde X-X_{\rm ref}\|_F/\|X_{\rm ref}\|_F\),
+where \(X_{\rm ref}\) is the aligned high-dose reconstruction. Feasibility
+is measured by the orthant distance
+\[
+ d_D=\bigl(\|\min(U,0)\|_F^2+\|\min(V,0)\|_F^2\bigr)^{1/2}.
+\]
+The repair is used only for diagnostics.
+
+\subsection{Results}
+\label{sec:ct-results}
+
+The comparison contains \(308\) complete evaluation runs on
+\(14\) slices from \(6\) specimen/material groups,
+with a common cap of \(69{,}120\) forward and \(69{,}120\) adjoint views,
+four times the original budget. Table~\ref{tab:ct-results} reports quality and feasibility.
+Median paired changes in repaired training loss relative to full-batch SFRAMES,
+SPRING--SARAH, ProxSARAH and PALM, in that order, are
+\((-7.9,-44.3,-19.4,-33.4)\%\) at \(N=360\) and \((-20.8,-40.2,-18.9,-53.7)\%\) at \(N=1{,}080\). Negative changes favor minibatch SFRAMES.
+Paired changes are computed before aggregation and can differ from ratios of the table entries.
+Across comparator/view-count combinations, minibatch SFRAMES is favored in
+all \(6\) groups;
+individual group changes range from \(-63.6\%\) to \(-5.8\%\).
+
+\begin{table}[!htbp]
+\centering
+\caption{Reconstruction quality at the last recorded iterate within the extended budget. Entries take medians over seeds within slices, slices within specimen/material groups, then across groups. Raw and repaired are training losses; held-out loss and relative reference error use repaired factors. Lower is better. Bold gives the best value within each training-view count, including ties.}
+\label{tab:ct-results}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+$N$ & Method & Raw & Repaired & Held-out & Ref. error & $d_D$ \\
+\midrule
+360 & Minibatch SFRAMES & $\boldsymbol{0.0056562}$ & $\boldsymbol{0.0061095}$ & $\boldsymbol{0.0064943}$ & $0.3623$ & $0.05824$ \\
+360 & Full-batch SFRAMES & $0.0063422$ & $0.0069884$ & $0.0071353$ & $\boldsymbol{0.3328}$ & $0.08823$ \\
+360 & SPRING--SARAH & $0.04776$ & $0.04776$ & $0.047953$ & $0.6058$ & $\boldsymbol{0}$ \\
+360 & ProxSARAH & $0.008613$ & $0.008613$ & $0.0086295$ & $0.4019$ & $\boldsymbol{0}$ \\
+360 & PALM & $0.0099313$ & $0.0099313$ & $0.0099042$ & $0.4415$ & $\boldsymbol{0}$ \\
+1{,}080 & Minibatch SFRAMES & $\boldsymbol{0.0058211}$ & $\boldsymbol{0.0062203}$ & $\boldsymbol{0.0063242}$ & $\boldsymbol{0.2830}$ & $0.05766$ \\
+1{,}080 & Full-batch SFRAMES & $0.0078513$ & $0.0088956$ & $0.0088748$ & $0.3649$ & $0.1306$ \\
+1{,}080 & SPRING--SARAH & $0.016491$ & $0.016491$ & $0.016495$ & $0.4834$ & $\boldsymbol{0}$ \\
+1{,}080 & ProxSARAH & $0.0086672$ & $0.0086672$ & $0.0086554$ & $0.3982$ & $\boldsymbol{0}$ \\
+1{,}080 & PALM & $0.014756$ & $0.014756$ & $0.014794$ & $0.5335$ & $\boldsymbol{0}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figures~\ref{fig:ct-trajectories-360} and~\ref{fig:ct-trajectories-1080}
+show every recorded update against iterations, oracle calls and processed views.
+The grey work-axis marker identifies the original \(17{,}280\)-view cap.
+At the cap, every raw SFRAMES orthant distance exceeds \(1\%\) of the initial joint Frobenius norm. The largest absolute raw--repaired SFRAMES endpoint-loss gap is
+\(20.19\%\) of repaired loss. The projection baselines remain in \(D\) throughout.
+
+For the four joint targets, ordered as \((0.4,0.01),(0.4,0.001),(0.3,0.01),(0.3,0.001)\), the specimen-balanced attainment percentages, averaged equally over the two view counts, are \((3,0,3,0)\) for Minibatch SFRAMES; \((0,0,0,0)\) for full-batch SFRAMES; \((88,88,72,72)\) for SPRING--SARAH; \((100,100,94,94)\) for ProxSARAH; \((94,94,67,67)\) for PALM. Unreached targets remain right censored. Conditional on both methods attaining a target, specimen-balanced median SFRAMES/comparator work ratios range from \(1.06\) to \(6.68\) across \(5/32\) comparator/target/view-count combinations, each using \(2\text{--}3\) of \(42\) paired seed cases from \(1\) of \(6\) groups.
+
+These are descriptive comparisons across the prespecified groups; slices and
+oracle seeds within a group are repeated measurements. All retuned numerical baseline parameters are interior to their final grids.
+
+\begin{figure}[p]
+ \centering
+ \includegraphics[width=\linewidth]{trajectories_360.pdf}
+ \caption{Trajectories with \(360\) training views. Thin lines show
+ individual runs, recorded at every update. Bold lines take median work
+ and metric at the same iteration, first over seeds within slices and
+ then over slices within groups and across groups. Bands show the middle \(50\%\) of group medians
+ for SFRAMES. Training losses are normalized by their initial values. All loss axes are logarithmic.}
+ \label{fig:ct-trajectories-360}
+\end{figure}
+
+\begin{figure}[p]
+ \centering
+ \includegraphics[width=\linewidth]{trajectories_1080.pdf}
+ \caption{Trajectories with \(1{,}080\) training views, using the same
+ metrics and summaries as Figure~\ref{fig:ct-trajectories-360}. The three
+ projection baselines coincide at zero orthant distance.}
+ \label{fig:ct-trajectories-1080}
+\end{figure}
+
+\clearpage
+\subsection{Experimental protocol}
+\label{subsec:ct-protocol}
+
+We use Mode~1 low-dose fan-beam measurements from 2DeteCT \cite{detect};
+the published Mode~2 high-dose reconstruction is the reference. Development
+retains slices \texttt{04300} and \texttt{03150}. The prespecified evaluation
+groups are Mix 1 (\texttt{00601}, \texttt{01201}); Mix 2 (\texttt{03041}, \texttt{03381}, \texttt{03611}); Mix 3 (\texttt{03791}, \texttt{04131}, \texttt{04931}); Almond (\texttt{05581}, \texttt{05611}); Lava stone (\texttt{05831}, \texttt{05861}); Walnut (\texttt{05731}, \texttt{05761}). Slices within each group are sections of the
+same specimen/material acquisition, rather than independent specimens.
+
+We discard the repeated final angle, sum adjacent detector cells, subtract
+the similarly binned dark field, and divide by the mean flat field after
+dark correction. Detector~1 acquisitions receive the published one-index
+linear transmission shift with extrapolation before taking the negative
+logarithm with floor \(10^{-6}\); Detector~2 uses zero shift. Reversing the
+detector axis gives \(3{,}600\times956\) sinograms in the DeepInverse convention
+\cite{deepinv}. The floor affects \(12\) in \texttt{05861}; it is inactive in the other evaluation acquisitions.
+ASTRA~2.5.0 applies the FP32 CPU \texttt{line\_fanflat} projector \cite{astra},
+while factor arithmetic is FP64. All acquisitions use source-to-origin and
+origin-to-detector distances \(431.019989\) and \(97.980499\)~mm, detector
+spacing \(0.1496\)~mm, and a square field of width \(116.528143\)~mm centered
+at \((-0.113797,-0.113797)\)~mm. View \(i\) has angle \(\pi-2\pi i/3600\).
+We vertically flip the \(1024\times1024\) reference, divide by its native
+voxel width \(0.113797\)~mm, and average \(2\times2\) blocks.
+
+
+For \(i\in\{0,\ldots,3599\}\), training selects \(i\bmod10=0\) for
+\(N=360\) and \(i\bmod10\in\{0,3,6\}\) for \(N=1{,}080\).
+Both reserve the \(360\) views with \(i\bmod10=9\). Calibration uses
+the \(120\) training views with \(i\bmod30=0\), shared across both sizes.
+Evaluation uses paired oracle seed labels \(202,203,204\), offset by
+\(100{,}000\) for generators. PALM and full-batch SFRAMES run once per
+slice/size and serve as shared deterministic references. Baseline development
+uses labels \(110, 111, 112\), with PALM once per case. Calibration uses seed
+\(110\) in development and \(201\) in evaluation.
+
+All methods start from common calibrated factors in \(C\cap D\). We divide
+\((P_J^\ast y_J)_+\) entrywise by \(P_J^\ast P_J\mathbf1\), with denominator
+floor \(10^{-3}\) times its maximum. A nonnegative SVD-based factorization
+gives rank-\(64\) factors, perturbed by \(10^{-3}\) times each factor's RMS
+times uniform \([0,1)\) entries. A least-squares amplitude fit on calibration
+views, bounded below by \(10^{-6}\), rescales both factors by its square root.
+The numerical LMO retains singular values above
+\(\epsilon_{\rm mach}\max(\operatorname{shape}G)\sigma_{\max}(G)\).
+
+SPRING--SARAH \cite{spring} alternates factor updates with steps
+\(a/L_U,a/L_V\). Each block independently refreshes with probability \(1/q\),
+starting from a full gradient; otherwise it uses a paired \(64\)-view SARAH
+difference. ProxSARAH \cite{proxsarah} uses joint steps \(a/(L_U+L_V)\),
+snapshots of \(\min(N,256)\) views for \(s=\mathrm{mini}\) or all \(N\)
+views for \(s=\mathrm{full}\), \(m\) recursive \(64\)-view updates, and relaxation
+\(0.8\). Both terms of each recursive difference share sampled views.
+PALM \cite{palm} uses full gradients and alternating steps \(a/L_U,a/L_V\).
+Proximal steps project onto each spectral ball intersected with the orthant.
+A feasible single-set projection is accepted directly; otherwise Dykstra uses
+a primal--dual distance certificate, tolerance \(10^{-8}(k+1)^{-1.1}\),
+at most \(2{,}000\) iterations, and checks at the first, every fifth and
+final iteration, with floating-point allowance.
+Feasibility rescaling tests the norm before division, including the zero-matrix case.
+
+\begin{table}[!htbp]
+\centering
+\caption{Hyperparameter searches. Every row denotes the full Cartesian product of its listed values. SFRAMES settings are retained from the original joint search; the three baselines are retuned at the longer development horizon.}
+\label{tab:ct-settings}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Method and parameter & Values tested & Selected \\
+\midrule
+\shortstack[l]{Minibatch SFRAMES\\$(c_\beta,\gamma_0)$} & \shortstack[l]{$c_\beta\in\{0.25,1,4,16,64\}$ \\ $\gamma_0\in\{0.05,0.1,0.16,0.25,0.5,0.8\}$} & $(16,0.1)$ \\
+\shortstack[l]{Full-batch SFRAMES\\$(c_\beta,\gamma_0)$} & \shortstack[l]{$c_\beta\in\{0.25,1,4,16,64\}$ \\ $\gamma_0\in\{0.05,0.1,0.16,0.25,0.5,0.8\}$} & $(16,0.1)$ \\
+SPRING--SARAH, $(a,q)$ & \shortstack[l]{$a\in\{0.7,1.1,1.6,2.3,3.4,5\}$ \\ $q\in\{8,16,32\}$} & $(2.3,16)$ \\
+ProxSARAH, $(a,m,s)$ & \shortstack[l]{$a\in\{0.9,1.5,2.3,3.4,5\}$ \\ $m\in\{6,12,24,48,96,192\}$ \\ $s\in\{\mathrm{mini},\mathrm{full}\}$} & $(2.3,96,\mathrm{mini})$ \\
+PALM, $a$ & \shortstack[l]{$a\in\{0.6,1.1,1.6,2.3,3.4,5\}$} & $2.3$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SFRAMES retains its joint \((c_\beta,\gamma_0)\) selection from
+\(8{,}640\) views per direction and oracle label \(110\).
+Figure~\ref{fig:ct-joint-selection} records that original search.
+The baselines are retuned at \(34{,}560\) views per direction,
+using complete Cartesian grids and extending selected edges to predefined
+guards. Selection minimizes repaired-to-initial training-loss ratio, taking
+seed medians within each development slice/size, then a median over the
+four cases. Nonfinite development candidates are ineligible; operational
+or projection failures are investigated. Evaluation groups, held-out views
+and reference images do not enter parameter selection.
+
+Evaluation permits \(69{,}120\)
+forward and adjoint views each. Counters include every gradient evaluation,
+refresh, snapshot and both terms of recursive differences. A gradient call
+returns a joint or block gradient; each iteration updates both factors.
+Processed views are \(W=\sum_{\ell=1}^G|B_\ell|\), where one view uses
+one forward and one adjoint over all \(956\) bins. Diagnostic projections
+are evaluated separately. Every update is recorded, and tables use the last
+recorded iterate within budget. Existing trajectories continue from exact
+optimizer/RNG checkpoints when parameters agree; new settings start from
+the shared calibrated factors. Saved prefixes are preserved exactly.
+
+Writing \(\mathcal R(x)\) for the pair of repaired factors, we fix joint
+targets before expanded evaluation:
+\[
+ \frac{f(\mathcal R(x_k))}{f(x_0)}\le\rho,
+ \qquad \frac{d_D(x_k)}{\sqrt{\|U_0\|_F^2+\|V_0\|_F^2}}\le\varepsilon,
+ \quad \rho\in\{0.4,0.3\},\quad
+ \varepsilon\in\{0.01,0.001\}.
+\]
+Both conditions must hold at the same recorded iterate. First-hit work uses
+native observations, without interpolated crossings. Unreached targets are
+right censored; work ratios use common attained pairs with coverage stated.
+Attainment is averaged over seeds within slices and slices within groups,
+then equally over groups and the two view counts. Quality and paired-effect
+summaries instead take medians at each level, with groups equally weighted.
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=0.9\linewidth]{joint_selection.pdf}
+ \caption{Original SFRAMES joint development search at \(8{,}640\) views
+ per direction. Cells give median repaired training loss relative to
+ initialization over two development slices and both training-view counts,
+ using oracle label \(110\). Here \(\beta_0=c_\beta/\max(L_U,L_V)\).
+ Boxes mark the retained pairs; lower is better.}
+ \label{fig:ct-joint-selection}
+\end{figure}

@@ -1,0 +1,641 @@
+{
+  "original_manifest_sha256": "5df64280ef474710159dc083f4c07814732cdaee6a3a88b0665bf5197289c07c",
+  "original_selection_sha256": "68473d9174abbdba5a7eff65e47eb7704befdd67de0eee27b76e165b00fcee1f",
+  "baseline_selection_sha256": "3d9112d755f352d266df9748832eb09c8a00956d47abf73a47e11cabcaa66292",
+  "original_sources": {
+    "campaign.py": "62f95369df0cab4b8871c0120dfea4cba19a382ad08db56bf510baea2ea63ee3",
+    "run.py": "6702f9b2aa0fbeec172e91134dac546d03aa81f9a6dde65b340e1373a519a50f",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094"
+  },
+  "sources": {
+    "campaign.py": "f09b50bd9098cf8605158f5d0c37a8c4003cba8f9d8f06db8a75a19a8745b3f7",
+    "run.py": "29852e9466b5eccb3c4997db0ed0349c1748d1917232b68c06dd53a2d58e6d1e",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094"
+  },
+  "data": {
+    "slice04300": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907",
+    "slice03150": "4aa82894c3c22ef263eebc45701b7d3dbb14a349c737df8a4eddf0d37b66ac82",
+    "slice03041": "4f9421724e207b595065e8fbe84d513c3b1cddc74748db4be8d652c6ac33d416",
+    "slice03381": "5a48808b22bdd8a805d05a96481c940f4c52ab7d4332ea6fbcaf327079f82d1d",
+    "slice03611": "fd9229624a77570fadd4012bd7700018f879dcad1908fb098a43fff80b5df9b5",
+    "slice03791": "d9cf2d7141e3822ffb0e6a3436c28b8690f053d2bd67fdb2f2287fd1ad70e67d",
+    "slice04131": "20f4bd171d83e2867148c2d8f60a94bd06065a40ee601ef8f896e408c092bb13",
+    "slice04931": "93dcd2310299307fea3bb18921279ee502f955a4e500064d1f93464f81869b77",
+    "slice00601": "2d6c7868b1a28539f5b8aa1a4a28d874190acfccd22fc5899e2521ab3300e0b9",
+    "slice01201": "4462182427623c9c839d50b87fc9dade518edb58223b0ae24ce9d2637c9e3755",
+    "slice05581": "ef495b6efafab797e1d66c4d3caa82bc5dd39022fab7965bbd0ca0483bc6a924",
+    "slice05611": "bffe986e6c36b33ca7d018b6b66a0a2d957f6cc217e4faf50b329cbad6f6dde1",
+    "slice05731": "4a73e3807bbc68ba6076b8328e707944518e2fa3eea526272c279dd3c049699b",
+    "slice05761": "2623bf4c0db6cee911372e777547468f84fbfc06a1579231dbe712b6af2cc510",
+    "slice05831": "374dcc0019a8bfb3263103bf7f8e99bb67d831eb87ca763165809cca2cdc3eb4",
+    "slice05861": "90ce19be933039da4130b8f15e9e782314f767ed1ea7ce3dc63fb442bfece640"
+  },
+  "data_sidecars": {
+    "slice04300": "5600de2852393d3a24b9dcd8931de8220efd2b79eae825040e3a307d76d712c4",
+    "slice03150": "8ae7f97195f9edc6a11be226a376f207ff8186b7b809ff18a2bac1218de478a6",
+    "slice03041": "93f4086706428dc833d187833521f7173201ce181615f829bf3976f6a54a782b",
+    "slice03381": "72bae770c312209d7c769016988d4b3ac09492380ff68f8cbeee2b7a81ae62d4",
+    "slice03611": "95d8494d1f26e0da23958fdca5e5c8b63d9123d63e32c2cb8cd71bb8199e1f45",
+    "slice03791": "01ba172720df2ad496332d560aaf6f84e2cfb3db207b0728f0c7bf05ba016651",
+    "slice04131": "bb3b49efa3c8cb87b076c6a748bb3ecb66c0689d2ae0154c3f32ddf2f9d348ed",
+    "slice04931": "3d8a0034e6d7ccaa3780cf104aee8577addc30cb12acaccebbb88354c88fc31a",
+    "slice00601": "ff4bc61bb265b6a9a08673a9bfed5b1cbbf8730855ab5238ee77b738635ca591",
+    "slice01201": "624a527494a3ce8e807bc2080c8c8e8253b910f72d5d1b6f9ad586f1254eec19",
+    "slice05581": "efb2cb1d4dddba5b95caa00ad2a40575ea0f9c82294d86725bf8991d4b751a4e",
+    "slice05611": "1ff353c391a427e251b3f8f2313c55ef83b27cda26e5343ee44baece44439599",
+    "slice05731": "93e3bd5c71cc106ef1a3f74c6dfdb3f72c2b28046245d645bb7a5db9c663525e",
+    "slice05761": "0fa8311b0c44947505fec0ad32f65481874aec177531bb4c4d74a0469f513480",
+    "slice05831": "c0cb3e41e5611b7cb4a858a47dbc37acab3b63b441bf5a21a0045dab2321fb98",
+    "slice05861": "bf95d896d6519fa935da9ab44cdd008caa202c844f76394fd30449bbfc8fe9e6"
+  },
+  "calibration": {
+    "slice03041": "026b95e1988c8261c870acf60aacd274e4fe839fb58036d8a6b70b3566de4311",
+    "slice03381": "0975533048395d6924e38d65b30af2389e55a5910c77c51b53fcde7053bd0447",
+    "slice03611": "652731ff127f175494d57c50a5e6be67577f69975f690f07764b09a4e5b93c85",
+    "slice03791": "7af37d72455091d39540c4040a6f820f1548c0ad1e7b69e41e734fa512cc5285",
+    "slice04131": "c218884923ba854784c09c32bb6774368437570ffea7a1467794bf41cb1fba64",
+    "slice04931": "8616eada97adc1411e4cc3d2250f526dacc920cb42b9be55bf21514571a21161",
+    "slice00601": "a9e0bb7330e68cb6f0b2a4e2e80081eedf31c1fd938e2ddbcea8c9de8696d8c4",
+    "slice01201": "85b48acc0de0dff3777c8d70795a80df1c49c8af09dc2bc406d575d3936de5f1",
+    "slice05581": "13ac485a497a010b6cda24114a2323d587b348c9c63557b06830df24305aca87",
+    "slice05611": "4b46d0ab83af32e40012c880184e9b81d04ab2e5cc1913f37eacc7020019a445",
+    "slice05731": "2cc51c6ae752b131e6983ce3e41c90ff938b4afa364de67d9e580b39998104e6",
+    "slice05761": "c115f45a29122a6386ebf5ba518ec7713c9f96220c0951ef0c0cd9af461e8cdc",
+    "slice05831": "6381cd2e6f9cc4b8179717a5b89ebfc19e68f1be3d1960a2df4577a1edc15146",
+    "slice05861": "d47aa9ac884b5dfb41c86fe83d8af27737e1de8bd465f0f0f4dbb20a483d53e6"
+  },
+  "cohort_sha256": "9df68f8703b14ce09f7b38f5aa8deb8fd4ee5dff576b6a2ccc60444df9a592be",
+  "targets_sha256": "bb02b5a4da3dfa7d2a7d1690ef076d66848e724bad713d2ed558103365843278",
+  "protocol_sha256": "dd1d0c01681e82594b84de987aae55c2dee2d11b64f728cd491fb7f754801e2e",
+  "selection_sha256": "3d9112d755f352d266df9748832eb09c8a00956d47abf73a47e11cabcaa66292",
+  "development_manifest_sha256": "64e12ea62754e8ddd81353fab723749d0ca7168b0e639efb665033c4387b82a6",
+  "host": "elite",
+  "python": "/home/tony/zofw_experiments/.venv/bin/python",
+  "cpus": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "blas_threads": 1,
+  "timing_measurements": false,
+  "design": {
+    "development_slices": [
+      "slice04300",
+      "slice03150"
+    ],
+    "evaluation_slices": [
+      "slice03041",
+      "slice03381",
+      "slice03611",
+      "slice03791",
+      "slice04131",
+      "slice04931",
+      "slice00601",
+      "slice01201",
+      "slice05581",
+      "slice05611",
+      "slice05731",
+      "slice05761",
+      "slice05831",
+      "slice05861"
+    ],
+    "evaluation_slice_mixes": {
+      "slice03041": "Mix 2",
+      "slice03381": "Mix 2",
+      "slice03611": "Mix 2",
+      "slice03791": "Mix 3",
+      "slice04131": "Mix 3",
+      "slice04931": "Mix 3"
+    },
+    "evaluation_training_views": [
+      360,
+      1080
+    ],
+    "evaluation_seeds": [
+      202,
+      203,
+      204
+    ],
+    "deterministic_variants": [
+      "sframes_full",
+      "palm"
+    ],
+    "development_calibration_seed": 110,
+    "evaluation_calibration_seed": 201,
+    "development_oracle_seed": 110,
+    "grid": 512,
+    "rank": 64,
+    "development_view_budget": 34560,
+    "evaluation_view_budget": 69120,
+    "stochastic_batch": 64,
+    "heldout_views": 360,
+    "constraint_geometry": "Separate spectral-norm balls and nonnegative factors.",
+    "full_batch": "SFRAMES with all training views and separately tuned gamma0. The decay exponents and smoothing scale are shared.",
+    "inference": "Fresh slices from separated acquisition batches of two sample mixes. Slices in a mix share a sample tube; summarize paired effects descriptively.",
+    "selection": "No evaluation slice, held-out view, or reference image enters rate selection.",
+    "variants": [
+      "sframes",
+      "sframes_full",
+      "spring_sarah",
+      "prox_sarah",
+      "palm"
+    ],
+    "baseline_development_trials": {
+      "spring_sarah": [
+        {
+          "rate": 0.7,
+          "refresh_period": 8
+        },
+        {
+          "rate": 0.7,
+          "refresh_period": 16
+        },
+        {
+          "rate": 0.7,
+          "refresh_period": 32
+        },
+        {
+          "rate": 1.1,
+          "refresh_period": 8
+        },
+        {
+          "rate": 1.1,
+          "refresh_period": 16
+        },
+        {
+          "rate": 1.1,
+          "refresh_period": 32
+        },
+        {
+          "rate": 1.6,
+          "refresh_period": 8
+        },
+        {
+          "rate": 1.6,
+          "refresh_period": 16
+        },
+        {
+          "rate": 1.6,
+          "refresh_period": 32
+        },
+        {
+          "rate": 2.3,
+          "refresh_period": 8
+        },
+        {
+          "rate": 2.3,
+          "refresh_period": 16
+        },
+        {
+          "rate": 2.3,
+          "refresh_period": 32
+        },
+        {
+          "rate": 3.4,
+          "refresh_period": 8
+        },
+        {
+          "rate": 3.4,
+          "refresh_period": 16
+        },
+        {
+          "rate": 3.4,
+          "refresh_period": 32
+        },
+        {
+          "rate": 5.0,
+          "refresh_period": 8
+        },
+        {
+          "rate": 5.0,
+          "refresh_period": 16
+        },
+        {
+          "rate": 5.0,
+          "refresh_period": 32
+        }
+      ],
+      "prox_sarah": [
+        {
+          "rate": 0.9,
+          "inner_steps": 6,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 6,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 12,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 12,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 24,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 24,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 48,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 48,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 96,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 96,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 192,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 0.9,
+          "inner_steps": 192,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 6,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 6,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 12,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 12,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 24,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 24,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 48,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 48,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 96,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 96,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 192,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 192,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 6,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 6,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 12,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 12,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 24,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 24,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 48,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 48,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 96,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 96,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 192,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 192,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 6,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 6,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 12,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 12,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 24,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 24,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 48,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 48,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 96,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 96,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 192,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 3.4,
+          "inner_steps": 192,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 6,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 6,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 12,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 12,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 24,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 24,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 48,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 48,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 96,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 96,
+          "snapshot_policy": "full"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 192,
+          "snapshot_policy": "minibatch"
+        },
+        {
+          "rate": 5.0,
+          "inner_steps": 192,
+          "snapshot_policy": "full"
+        }
+      ],
+      "palm": [
+        {
+          "rate": 0.6
+        },
+        {
+          "rate": 1.1
+        },
+        {
+          "rate": 1.6
+        },
+        {
+          "rate": 2.3
+        },
+        {
+          "rate": 3.4
+        },
+        {
+          "rate": 5.0
+        }
+      ]
+    },
+    "beta_scale_definition": "beta0=beta_scale/max(L_U,L_V)",
+    "diagnostics": "Evaluation records initialization and every native completed optimizer update, including continued prefixes.",
+    "development_seeds": [
+      110,
+      111,
+      112
+    ],
+    "development_training_views": [
+      360,
+      1080
+    ],
+    "evaluation_slice_groups": {
+      "slice03041": "Mix2",
+      "slice03381": "Mix2",
+      "slice03611": "Mix2",
+      "slice03791": "Mix3",
+      "slice04131": "Mix3",
+      "slice04931": "Mix3",
+      "slice00601": "Mix1",
+      "slice01201": "Mix1",
+      "slice05581": "Almond",
+      "slice05611": "Almond",
+      "slice05731": "Walnut",
+      "slice05761": "Walnut",
+      "slice05831": "LavaStone",
+      "slice05861": "LavaStone"
+    },
+    "specimen_group_labels": {
+      "Mix1": "Mix 1",
+      "Mix2": "Mix 2",
+      "Mix3": "Mix 3",
+      "Almond": "Almond",
+      "Walnut": "Walnut",
+      "LavaStone": "Lava stone"
+    },
+    "baseline_development_grids": {
+      "spring_sarah": {
+        "rate": [
+          0.7,
+          1.1,
+          1.6,
+          2.3,
+          3.4,
+          5.0
+        ],
+        "refresh_period": [
+          8,
+          16,
+          32
+        ]
+      },
+      "prox_sarah": {
+        "rate": [
+          0.9,
+          1.5,
+          2.3,
+          3.4,
+          5.0
+        ],
+        "inner_steps": [
+          6,
+          12,
+          24,
+          48,
+          96,
+          192
+        ],
+        "snapshot_policy": [
+          "minibatch",
+          "full"
+        ]
+      },
+      "palm": {
+        "rate": [
+          0.6,
+          1.1,
+          1.6,
+          2.3,
+          3.4,
+          5.0
+        ]
+      }
+    },
+    "fixed_sframes_parameters": {
+      "beta_scale": 16.0,
+      "gamma0": 0.1
+    },
+    "grouping": "Median over seeds within slice, then slices within specimen group, then across groups."
+  },
+  "physical_arm_origins": {
+    "continued_from_previous": 48,
+    "fresh": 260
+  }
+}

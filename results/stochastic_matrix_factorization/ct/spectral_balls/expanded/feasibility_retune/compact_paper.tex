@@ -1,0 +1,116 @@
+\section{Numerical experiments}
+\label{sec:ct-experiments}
+
+We compare minibatch and full-batch SFRAMES with
+SPRING--SARAH~\cite{spring}, ProxSARAH~\cite{proxsarah}, and PALM~\cite{palm}
+on low-rank reconstruction from real low-dose computed tomography (CT)
+data. The experiment examines data fitting and constraint satisfaction at
+equal projection budgets.
+
+\paragraph{Reconstruction problem.}
+The negative logarithm of calibrated X-ray transmission approximates line
+integrals of attenuation. A \emph{view} groups detector rays at one source
+angle. For an image \(X\), the linear forward map for view \(i\) is
+\([P_i(X)]_j=\sum_{p,q}\ell_{ij,pq}X_{pq}\), where \(\ell_{ij,pq}\) is
+the length of ray \(j\) through pixel \((p,q)\). Its adjoint \(P_i^\ast\)
+backprojects detector residuals onto the image using the same weights.
+
+We use low-dose fan-beam measurements from 2DeteCT~\cite{detect} and
+represent the \(512\times512\) attenuation image as \(UV^\top\), with
+\(U,V\in\mathbb R^{512\times64}\). For a set \(\mathcal I\) of \(N\)
+training views and detector data \(y_i\in\mathbb R^d\), \(d=956\), the
+training loss is
+\begin{equation}
+  f(U,V)=\frac1N\sum_{i\in\mathcal I}
+          \frac{\|P_i(UV^\top)-y_i\|_2^2}{2d}.
+  \label{eq:ct-loss}
+\end{equation}
+We constrain each factor by a spectral norm bound and require nonnegative
+factors, which ensure nonnegative attenuation. For \(x=(U,V)\), set
+\[
+ C=\{(U,V):\|U\|_{\rm op}\le R_U,\ \|V\|_{\rm op}\le R_V\},
+ \qquad D=\{(U,V):U\ge0,\ V\ge0\}.
+\]
+The bilinear factorization makes the problem nonconvex. Its SFRAMES
+formulation is \(\min_{x\in C} f(x)+g(Tx)\), with
+\(T=\operatorname{Id}\) and \(g=\iota_D\), the indicator of \(D\).
+Uniformly sampling views gives an unbiased estimator of \(\nabla f\).
+The spectral-ball linear oracle separates by factor and uses one thin SVD
+per block. The gradient of the Moreau envelope of \(g\) is
+\((x-x_+)/\beta\), where \(x_+\) clips both factors to nonnegativity.
+
+\paragraph{Evaluation.}
+We evaluate on 14 slices from six acquisition groups, with either \(360\)
+or \(1{,}080\) training views and \(360\) held-out views per slice.
+The two view counts change the finite-sum size while keeping the factor
+dimensions fixed. We use three stochastic repetitions per slice and view
+count, with a common initialization across methods.
+We compare the last iterate within \(69{,}120\) forward and adjoint
+views per direction, including all refresh and recursive-gradient work.
+An oracle call returns one joint or block gradient on a batch.
+All trajectories use observations recorded at every update.
+
+Raw loss is the data-fit term \(f\) evaluated at the current factors.
+To assess a feasible reconstruction, we clip each factor to
+nonnegativity and rescale it radially into its spectral ball if needed.
+We evaluate the resulting image by training and held-out loss and relative
+Frobenius error against the high-dose reconstruction.
+Repair is used only for evaluation. Raw nonnegativity violation is
+\[
+ d_D(U,V)=\bigl(\|U-U_+\|_F^2+\|V-V_+\|_F^2\bigr)^{1/2}.
+\]
+Relative infeasibility divides \(d_D\) by
+\(\bigl(\|U_0\|_F^2+\|V_0\|_F^2\bigr)^{1/2}\).
+Quality summaries take successive medians over repetitions, slices within
+each group, and groups. Paired percentage changes are computed before this
+aggregation, so they need not equal ratios of the table entries.
+
+\paragraph{Results.}
+@@RESULTS_TEXT@@
+Table~\ref{tab:ct-results} gives endpoint metrics; Figures~\ref{fig:ct-trajectories-360}
+and~\ref{fig:ct-trajectories-1080} show progress versus iterations, oracle calls,
+and processed views.
+
+@@RESULTS_TABLE@@
+
+\paragraph{Implementation and parameter selection.}
+All methods start from a nonnegative SVD-based factorization of a
+sensitivity-normalized backprojection of training views, with its
+amplitude fitted to those views. Set
+\(R_U=2\|U_0\|_{\rm op}\) and \(R_V=2\|V_0\|_{\rm op}\).
+Minibatch SFRAMES samples \(64\) views uniformly without replacement,
+independently across iterations; full-batch SFRAMES uses all \(N\) views.
+Both use \(\gamma_k=\gamma_0(k+1)^{-3/4}\),
+\(\alpha_k=(k+1)^{-1/2}\) for gradient averaging, and
+\(\beta_k=\beta_0(k+1)^{-1/4}\), with
+\(\beta_0=c_\beta/\max(L_U,L_V)\) scaled by initial block-curvature estimates.
+@@TUNING_TEXT@@
+
+SPRING--SARAH alternates block updates with loopless SARAH estimates;
+ProxSARAH uses joint updates with periodic snapshots; PALM alternates
+full-gradient block updates. The stochastic baselines use \(64\)-view
+gradient differences. Their proximal steps project onto each spectral
+ball intersected with the nonnegative orthant, using practical tuned
+step sizes. The \CTReproducibility{} specifies the data split,
+preprocessing, search grids, and numerical solver settings.
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=\linewidth]{trajectories_360.pdf}
+ \caption{Trajectories for \(N=360\). Thin curves show individual
+ runs at their recorded iterates; bold curves summarize work and metrics
+ at the same iteration by successive medians over repetitions, slices,
+ and groups. SFRAMES bands span the middle \(50\%\) of group medians.
+ Training losses are relative to their initial values.
+ Vertical markers indicate one quarter of the total view budget.}
+ \label{fig:ct-trajectories-360}
+\end{figure}
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=\linewidth]{trajectories_1080.pdf}
+ \caption{Trajectories for \(N=1{,}080\), summarized as in
+ Figure~\ref{fig:ct-trajectories-360}. The three projection baselines
+ coincide at zero orthant distance.}
+ \label{fig:ct-trajectories-1080}
+\end{figure}

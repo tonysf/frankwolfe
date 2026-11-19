@@ -1,0 +1,46 @@
+{
+  "frozen_utc": "2026-11-06T19:15:17.088441+00:00",
+  "scope": "User-authorized stronger baselines, expanded specimen groups and4xwork. No new figures, no optimizer-time measurements.",
+  "old_evaluation_budget": 17280,
+  "evaluation_budget": 69120,
+  "old_development_budget": 8640,
+  "baseline_development_budget": 34560,
+  "fixed_sframes_selection_sha256": "68473d9174abbdba5a7eff65e47eb7704befdd67de0eee27b76e165b00fcee1f",
+  "fixed_sframes": {
+    "beta_scale": 16.0,
+    "gamma0": 0.1,
+    "batch": 64,
+    "full_batch_variant": true
+  },
+  "cohort_sha256": "9df68f8703b14ce09f7b38f5aa8deb8fd4ee5dff576b6a2ccc60444df9a592be",
+  "targets_sha256": "bb02b5a4da3dfa7d2a7d1690ef076d66848e724bad713d2ed558103365843278",
+  "evaluation_seed_labels": [
+    202,
+    203,
+    204
+  ],
+  "calibration_seed_labels": {
+    "development": 110,
+    "evaluation": 201
+  },
+  "parameter_transfer": "SFRAMES settings retained from originaljointdevelopmentsearch; baselineparametersselectedonlyontwooriginaldevelopmentslicesattheextendeddevelopmentbudget. Allparametersfrozenbeforeexpandedheld-outcohortevaluation.",
+  "geometry": "Productofspectralnormballsplusnonnegativeorthant; sameper-instancecapsandinitialfactorsforallmethods. Originalproblemdataandcalibrationpreserved.",
+  "work_accounting": "Alloptimizergradientcallsincludingrecursivebothterms,snapshots,refreshes; per-directionviews. Diagnosticforwardprojectionsseparate. Everyevaluationupdatelossandfeasibilityrecorded.",
+  "grouping": "Mediansoverseedswithinslices,thenwithinspecimengroups,thenacrosssixgroups. Reportgroupwiseeffectrangesandattainmentcoverage; nogrouppseudoreplication.",
+  "continuation": "Exactpriorcheckpointcontinuationonlywhenselectedoptimizer,data,calibration,caps,curvature,splitsandnumericalhelpersmatch; preserveprefixnativeobservationsandRNG;otherwisefreshcalibratedstart.",
+  "report": "Updateexistingpaper_sectiononlyaftercompletevalidatedcohort;keep2trajectoryfiguresandexistingSFjointdevelopmentheatmapatmost;bestboldintables,noabstract/subtitle,nodCcolumn,nopaired-differenceorinit-comparisonplots,experimentalprotocolatend.",
+  "development_seed_labels": [
+    110,
+    111,
+    112
+  ],
+  "baseline_selection_aggregation": "Medianrelative repairedloss across3oracle seeds within(slice,N), thenmedianacross4development(slice,N)cases. PALMoncepercase.",
+  "protocol_refined_before_outcomes_utc": "2026-11-06T19:16:45.913185+00:00",
+  "prox_snapshot_policies": [
+    "minibatch",
+    "full"
+  ],
+  "initial_baseline_development_runs": 600,
+  "preflight_validation_sha256": "e008b51b639d0b246fe2d378e9088ee227994a753963ba68f32b238ba2649ec5",
+  "production_source_freeze_utc": "2026-11-06T19:24:57.588056+00:00"
+}

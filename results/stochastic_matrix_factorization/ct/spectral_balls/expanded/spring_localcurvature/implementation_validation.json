@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "utc": "2026-11-11T23:10:42.834707+00:00",
+  "source_sha256": {
+    "run.py": "a55d2542c2b26e4fc8e171741b9cdab3c0c481170992ab2b6d7aeae30a6612a3",
+    "local_curvature.py": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "52ca518e77b56fcda1cf361ead3557441e970e3e756fda1594358cd8bc238200"
+  },
+  "checks": [
+    "explicit dense block Hessians",
+    "central gradient differences",
+    "published five power iterations plus sixth norm",
+    "alternating block points",
+    "minibatch curvature on full refresh",
+    "inclusive views and separate oracle counts",
+    "bitwise checkpoint continuation of both RNG streams",
+    "zero curvature fails explicitly",
+    "recording engine interruption/resume, cap crossing and idempotence",
+    "real ASTRA CT steps on both training sizes"
+  ],
+  "evidence": {
+    "algebra_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/algebra_validation.json",
+      "sha256": "7969bdf196b5a98e7c8c9d636cc736d50e3a0a85d95b855464204d7248da15c4"
+    },
+    "engine_validation.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/engine_validation.json",
+      "sha256": "8f952f266a24b05559d5c3fcb578bf6e0ef57e1abbbd9cd8e34f51d932aa7cfe"
+    },
+    "ct_smoke.json": {
+      "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_localcurvature/ct_smoke.json",
+      "sha256": "79e652cde70b63d6d91792ceb871224beb8d220b20deed1c2ca32ef530f0b929"
+    }
+  },
+  "real_ct_cases": [
+    {
+      "n_train": 360,
+      "seed": 203,
+      "slice_id": "slice03611",
+      "requested_iterations": 28,
+      "status": "passed",
+      "endpoint_ratio": 0.6172446527000509,
+      "max_ratio": 1.0
+    },
+    {
+      "n_train": 1080,
+      "seed": 203,
+      "slice_id": "slice03611",
+      "requested_iterations": 8,
+      "status": "passed",
+      "endpoint_ratio": 0.7214612088888378,
+      "max_ratio": 1.0
+    }
+  ],
+  "instrumentation_change_after_ct_start": {
+    "prior_module_sha256": "0b7f45fa0c21b5875cf89f18067d17472897488bfc1974fbfc15f33f132f3835",
+    "final_module_sha256": "359b9f23f94956212b839d2e957a3fef83a0fbe15e526cdbce6158c84dbb4bc8",
+    "exact_removed_line": "            \"component_gradient_calls\": self.forward_views - self.curvature_forward_views,",
+    "exact_other_bytes_identical": true,
+    "effect": "Correct legacy component_gradient_calls output alias to exclude curvature. No change to any numerical update, RNG, or primary work counter. Algebra and recording-engine validations use the final source."
+  },
+  "no_hyperparameters_selected_from_smoke": true,
+  "production_evaluation_started": false
+}

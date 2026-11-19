@@ -1,0 +1,32 @@
+{
+  "status": "frozen",
+  "algorithm": "SPRING-SARAH with current minibatch block-curvature steps",
+  "parameter_source": "Published practical step rule; inherited loopless refresh setting",
+  "optimizer": {
+    "batch": 64,
+    "refresh_period": 16,
+    "power_iterations": 5,
+    "step_coefficient": 0.5
+  },
+  "rule": "eta_U=0.5/Lhat_U(V_k); eta_V=0.5/Lhat_V(U_{k+1})",
+  "curvature_estimator": "Fresh normalized Gaussian factor-space direction per block; five normalized Hessian applications, then the norm of a sixth application.",
+  "curvature_sample": "64 views without replacement per block. Reuse the SARAH difference batch on recursive updates; draw a separate 64-view curvature batch on full-gradient refreshes.",
+  "recursion": "Independent loopless full-gradient refresh with probability 1/16 per block; both first estimates are full. No initial SGD epoch or deterministic epoch refresh.",
+  "random_stream": "Gradient RNG retains the historical seed+100000 stream. A separately checkpointed curvature RNG draws refresh minibatches and fresh power directions.",
+  "curvature_normalization": "Hessian of the mean squared data-fit objective with the same view-and-detector normalization as problem.grad.",
+  "zero_curvature": "Raise FloatingPointError for a zero or nonfinite estimate; do not silently floor, cap, damp, or change parameters.",
+  "theoretical_scope": "Published practical numerical step heuristic adapted to CT, not a certificate of the theorem step-size conditions or a literal reproduction of the separate epoch-based SNMF driver.",
+  "tuning_performed": false,
+  "endpoint_exclusion_screen": false,
+  "evaluation_outcomes_used_for_parameters": false,
+  "work": {
+    "forward_views": "All estimator and curvature forward views",
+    "backward_views": "All estimator and curvature adjoint views",
+    "gradient_calls": "Literal gradient evaluations, including both recursive difference terms",
+    "curvature_operator_calls": "One Hessian-vector application using one forward and one adjoint minibatch operation",
+    "oracle_calls": "gradient_calls + curvature_operator_calls",
+    "curvature_applications_per_iteration": 12,
+    "curvature_views_per_direction_per_iteration": 768
+  },
+  "baseline_comparison": "Other saved methods have no additional curvature work during optimization; their oracle count remains the saved gradient_calls."
+}

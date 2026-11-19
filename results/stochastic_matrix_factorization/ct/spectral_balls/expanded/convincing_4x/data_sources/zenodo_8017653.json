@@ -1,0 +1,145 @@
+{
+  "created": "2023-06-09T08:29:32.863275+00:00",
+  "modified": "2023-09-25T16:27:40.319797+00:00",
+  "id": 8017653,
+  "conceptrecid": "8017652",
+  "doi": "10.5281/zenodo.8017653",
+  "conceptdoi": "10.5281/zenodo.8017652",
+  "doi_url": "https://doi.org/10.5281/zenodo.8017653",
+  "metadata": {
+    "title": "2DeteCT - A large 2D expandable, trainable, experimental Computed Tomography dataset for machine learning: Slices OOD (reference reconstructions and segmentations)",
+    "doi": "10.5281/zenodo.8017653",
+    "publication_date": "2023-06-08",
+    "description": "<p>This upload contains the reference reconstructions and segmentation of the out-of-distribution slices (OOD) from the data collection described in</p>\n\n<p>Maximilian B. Kiss, Sophia B. Coban, K. Joost Batenburg, Tristan van Leeuwen, and Felix Lucka &ldquo;&quot;2DeteCT - A large 2D expandable, trainable, experimental Computed Tomography dataset for machine learning&quot;, <a href=\"https://doi.org/10.1038/s41597-023-02484-6\"><em>Sci Data</em> <strong>10</strong>, 576 (2023)</a> or&nbsp; <a href=\"https://arxiv.org/abs/2306.05907\">arXiv:2306.05907 (2023)</a></p>\n\n<p>Abstract:<br>\n&quot;Recent research in computational imaging largely focuses on developing machine learning (ML) techniques for image reconstruction, which requires large-scale training datasets consisting of measurement data and ground-truth images. However, suitable experimental datasets for X-ray Computed Tomography (CT) are scarce, and methods are often developed and evaluated only on simulated data. We fill this gap by providing the community with a versatile, open 2D fan-beam CT dataset suitable for developing ML techniques for a range of image reconstruction tasks. To acquire it, we designed a sophisticated, semi-automatic scan procedure that utilizes a highly-flexible laboratory X-ray CT setup. A diverse mix of samples with high natural variability in shape and density was scanned slice-by-slice (5000 slices in total) with high angular and spatial resolution and three different beam characteristics: A high-fidelity, a low-dose and a beam-hardening-inflicted mode. In addition, 750 out-of-distribution slices were scanned with sample and beam variations to accommodate robustness and segmentation tasks. We provide raw projection data, reference reconstructions and segmentations based on an open-source data processing pipeline.&quot;</p>\n\n<p>The data collection has been acquired using a highly flexible, programmable and custom-built X-ray CT scanner, the FleX-ray scanner, developed by <a href=\"https://info.tescan.com/micro-ct\">TESCAN-XRE NV,</a> located in the FleX-ray Lab at the <a href=\"https://www.cwi.nl/en/\">Centrum Wiskunde &amp; Informatica (CWI)</a> in Amsterdam, Netherlands. It consists of a cone-beam microfocus X-ray point source (limited to 90 kV and 90 W) that projects polychromatic X-rays onto a 14-bit CMOS (complementary metal-oxide semiconductor) flat panel detector with CsI(Tl) scintillator (Dexella 1512NDT) and 1536-by-1944 pixels,&nbsp; <span class=\"math-tex\">\\(74.8\\mu m^2\\)</span> each. To create a 2D dataset, a fan-beam geometry was mimicked by only reading out the central row of the detector. Between source and detector there is a rotation stage, upon which samples can be mounted. The machine components (i.e., the source, the detector panel, and the rotation stage) are mounted on translation belts that allow the moving of the components independently from one another.</p>\n\n<p>Please refer to the paper for all further technical details.</p>\n\n<p>The complete dataset&nbsp;can be found via the following links: <a href=\"https://doi.org/10.5281/zenodo.8014758\">1-1000</a>, <a href=\"https://doi.org/10.5281/zenodo.8014766\">1001-2000</a>, <a href=\"https://doi.org/10.5281/zenodo.8014787\">2001-3000</a>, <a href=\"https://doi.org/10.5281/zenodo.8014829\">3001-4000</a>, <a href=\"https://doi.org/10.5281/zenodo.8014874\">4001-5000</a>, <a href=\"https://doi.org/10.5281/zenodo.8014907\">OOD</a>.<br>\nThe reference reconstructions and segmentations can be found via the following links: <a href=\"https://doi.org/10.5281/zenodo.8017583\">1-1000</a>, <a href=\"https://doi.org/10.5281/zenodo.8017604\">1001-2000</a>, <a href=\"https://doi.org/10.5281/zenodo.8017612\">2001-3000</a>, <a href=\"https://doi.org/10.5281/zenodo.8017618\">3001-4000</a>, <a href=\"https://doi.org/10.5281/zenodo.8017624\">4001-5000</a>, <a href=\"https://doi.org/10.5281/zenodo.8017653\">OOD</a>.</p>\n\n<p>The corresponding Python scripts for loading, pre-processing, reconstructing and segmenting the projection data in the way described in the paper can be found on <a href=\"https://github.com/mbkiss/2DeteCTcodes\">github</a>. A machine-readable file with the used scanning parameters and instrument data for each acquisition mode as well as a script loading it can be found on the GitHub repository as well.</p>\n\n<p>Note: It is advisable to use the graphical user interface when decompressing the .zip archives. If you experience a zipbomb error when unzipping the file on a Linux system rerun the command with the UNZIP_DISABLE_ZIPBOMB_DETECTION=TRUE environment variable by setting in your .bashrc &ldquo;export UNZIP_DISABLE_ZIPBOMB_DETECTION=TRUE&rdquo;.</p>\n\n<p>For more information or guidance in using the data collection, please get in touch with</p>\n\n<p>&nbsp;&nbsp; &nbsp;Maximilian.Kiss [at] cwi.nl</p>\n\n<p>&nbsp;&nbsp; &nbsp;Felix.Lucka [at] cwi.nl</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Kiss, Maximilian B.",
+        "affiliation": "Centrum Wiskunde & Informatica"
+      },
+      {
+        "name": "Coban, Sophia Bethany",
+        "affiliation": "University of Manchester"
+      },
+      {
+        "name": "Batenburg, K. Joost",
+        "affiliation": "Leiden University"
+      },
+      {
+        "name": "van Leeuwen, Tristan",
+        "affiliation": "Centrum Wiskunde & Informatica"
+      },
+      {
+        "name": "Lucka, Felix",
+        "affiliation": "Centrum Wiskunde & Informatica"
+      }
+    ],
+    "keywords": [
+      "X-ray",
+      "computed tomography",
+      "machine learning",
+      "deep learning",
+      "low dose",
+      "denoising",
+      "beam hardening",
+      "artifact reduction",
+      "computational imaging",
+      "experimental data",
+      "dataset",
+      "projection data",
+      "sinogram",
+      "reconstruction",
+      "segmentation"
+    ],
+    "resource_type": {
+      "title": "Dataset",
+      "type": "dataset"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "communities": [
+      {
+        "id": "ci-cwi"
+      }
+    ],
+    "relations": {
+      "version": [
+        {
+          "index": 0,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "8017652"
+          }
+        }
+      ]
+    }
+  },
+  "title": "2DeteCT - A large 2D expandable, trainable, experimental Computed Tomography dataset for machine learning: Slices OOD (reference reconstructions and segmentations)",
+  "links": {
+    "self": "https://zenodo.org/api/records/8017653",
+    "self_html": "https://zenodo.org/records/8017653",
+    "preview_html": "https://zenodo.org/records/8017653?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.8017653",
+    "self_doi": "https://doi.org/10.5281/zenodo.8017653",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8017653",
+    "reserve_doi": "https://zenodo.org/api/records/8017653/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/8017652",
+    "parent_html": "https://zenodo.org/records/8017652",
+    "parent_doi": "https://doi.org/10.5281/zenodo.8017652",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8017652",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:8017653/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:8017653/sequence/default",
+    "files": "https://zenodo.org/api/records/8017653/files",
+    "media_files": "https://zenodo.org/api/records/8017653/media-files",
+    "latest": "https://zenodo.org/api/records/8017653/versions/latest",
+    "latest_html": "https://zenodo.org/records/8017653/latest",
+    "versions": "https://zenodo.org/api/records/8017653/versions",
+    "draft": "https://zenodo.org/api/records/8017653/draft",
+    "access_links": "https://zenodo.org/api/records/8017653/access/links",
+    "access_grants": "https://zenodo.org/api/records/8017653/access/grants",
+    "access_users": "https://zenodo.org/api/records/8017653/access/users",
+    "access_request": "https://zenodo.org/api/records/8017653/access/request",
+    "access": "https://zenodo.org/api/records/8017653/access",
+    "communities": "https://zenodo.org/api/records/8017653/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/8017653/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/8017653/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/8017653/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/8017653/quota-increase",
+    "requests": "https://zenodo.org/api/records/8017653/requests"
+  },
+  "updated": "2023-09-25T16:27:40.319797+00:00",
+  "recid": "8017653",
+  "revision": 6,
+  "files": [
+    {
+      "id": "9c9188b8-ceeb-48c7-b0bf-c4a159e56d12",
+      "key": "2DeteCT_slicesOOD_RecSeg.zip",
+      "size": 5033425555,
+      "checksum": "md5:dc4073bfd7669f7ca424dbbd287a3fa5",
+      "links": {
+        "self": "https://zenodo.org/api/records/8017653/files/2DeteCT_slicesOOD_RecSeg.zip/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "563657"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 762,
+    "unique_downloads": 209,
+    "views": 633,
+    "unique_views": 597,
+    "version_downloads": 760,
+    "version_unique_downloads": 207,
+    "version_unique_views": 594,
+    "version_views": 630
+  },
+  "state": "done",
+  "submitted": true
+}

@@ -1,0 +1,108 @@
+{
+  "previous_manifest_sha256": "5df64280ef474710159dc083f4c07814732cdaee6a3a88b0665bf5197289c07c",
+  "previous_selection_sha256": "68473d9174abbdba5a7eff65e47eb7704befdd67de0eee27b76e165b00fcee1f",
+  "sources": {
+    "campaign.py": "f09b50bd9098cf8605158f5d0c37a8c4003cba8f9d8f06db8a75a19a8745b3f7",
+    "run.py": "29852e9466b5eccb3c4997db0ed0349c1748d1917232b68c06dd53a2d58e6d1e",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094"
+  },
+  "data": {
+    "slice04300": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907",
+    "slice03150": "4aa82894c3c22ef263eebc45701b7d3dbb14a349c737df8a4eddf0d37b66ac82"
+  },
+  "host": "elite",
+  "python": "/home/tony/zofw_experiments/.venv/bin/python",
+  "cpus": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "blas_threads": 1,
+  "timing_measurements": false,
+  "design": {
+    "development_slices": [
+      "slice04300",
+      "slice03150"
+    ],
+    "development_seeds": [
+      110,
+      111,
+      112
+    ],
+    "development_calibration_seed": 110,
+    "development_training_views": [
+      360,
+      1080
+    ],
+    "development_view_budget": 34560,
+    "evaluation_view_budget": 69120,
+    "initial_baseline_grids": {
+      "spring_sarah": {
+        "rate": [
+          0.7,
+          1.1,
+          1.6,
+          2.3,
+          3.4,
+          5.0
+        ],
+        "refresh_period": [
+          8,
+          16,
+          32
+        ]
+      },
+      "prox_sarah": {
+        "rate": [
+          0.9,
+          1.5,
+          2.3,
+          3.4,
+          5.0
+        ],
+        "inner_steps": [
+          6,
+          12,
+          24
+        ],
+        "snapshot_policy": [
+          "minibatch",
+          "full"
+        ]
+      },
+      "palm": {
+        "rate": [
+          0.6,
+          1.1,
+          1.6,
+          2.3,
+          3.4,
+          5.0
+        ]
+      }
+    },
+    "rate_limits": [
+      0.05,
+      80.0
+    ],
+    "secondary_limits": {
+      "spring_sarah": [
+        1,
+        128
+      ],
+      "prox_sarah": [
+        3,
+        256
+      ]
+    },
+    "frozen_sframes_parameters": {
+      "beta_scale": 16.0,
+      "gamma0": 0.1
+    },
+    "refinement": "Expand each selected boundary by a factor of two to its predefined guard, retaining complete Cartesian grids; no evaluation data enter selection."
+  }
+}

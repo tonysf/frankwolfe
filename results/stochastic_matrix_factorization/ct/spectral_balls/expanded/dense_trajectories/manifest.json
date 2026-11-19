@@ -1,0 +1,188 @@
+{
+  "original_manifest_sha256": "e33346971c48e684b8f3ddb02f9d2e5f3706c209f66a6f43ee640bc2a872ff78",
+  "original_selection_sha256": "69b142c7a686a1c021a7c07c492c8c13b9c9beb8ad9083223f050a1b60517c5a",
+  "original_sources": {
+    "campaign.py": "9c18ed9b52b10b8eb91178438bfdc1ca610c2ae695bec5c3c8a6b1fb3f6536b7",
+    "run.py": "7e98b27c72975d406f3ee841abb3d697fe1ed7442d0c4944406bd8033fff07cc",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "7821a2296a9c30a84360552f314b65e44b2a1c7141944f6eb9ae77291fd8bc38",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094"
+  },
+  "sources": {
+    "campaign.py": "5899e1ba6361d2caacd8c4fc11367e6021bd14c4650b6547a9a26df081f406ed",
+    "run.py": "62c14620c2e5f9db75ddec0e8cf56a2714abac9bd72411bd9562f463828b3e19",
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094"
+  },
+  "data": {
+    "slice04300": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907",
+    "slice03150": "4aa82894c3c22ef263eebc45701b7d3dbb14a349c737df8a4eddf0d37b66ac82",
+    "slice03041": "4f9421724e207b595065e8fbe84d513c3b1cddc74748db4be8d652c6ac33d416",
+    "slice03381": "5a48808b22bdd8a805d05a96481c940f4c52ab7d4332ea6fbcaf327079f82d1d",
+    "slice03611": "fd9229624a77570fadd4012bd7700018f879dcad1908fb098a43fff80b5df9b5",
+    "slice03791": "d9cf2d7141e3822ffb0e6a3436c28b8690f053d2bd67fdb2f2287fd1ad70e67d",
+    "slice04131": "20f4bd171d83e2867148c2d8f60a94bd06065a40ee601ef8f896e408c092bb13",
+    "slice04931": "93dcd2310299307fea3bb18921279ee502f955a4e500064d1f93464f81869b77"
+  },
+  "data_sidecars": {
+    "slice04300": "5600de2852393d3a24b9dcd8931de8220efd2b79eae825040e3a307d76d712c4",
+    "slice03150": "8ae7f97195f9edc6a11be226a376f207ff8186b7b809ff18a2bac1218de478a6",
+    "slice03041": "93f4086706428dc833d187833521f7173201ce181615f829bf3976f6a54a782b",
+    "slice03381": "72bae770c312209d7c769016988d4b3ac09492380ff68f8cbeee2b7a81ae62d4",
+    "slice03611": "95d8494d1f26e0da23958fdca5e5c8b63d9123d63e32c2cb8cd71bb8199e1f45",
+    "slice03791": "01ba172720df2ad496332d560aaf6f84e2cfb3db207b0728f0c7bf05ba016651",
+    "slice04131": "bb3b49efa3c8cb87b076c6a748bb3ecb66c0689d2ae0154c3f32ddf2f9d348ed",
+    "slice04931": "3d8a0034e6d7ccaa3780cf104aee8577addc30cb12acaccebbb88354c88fc31a"
+  },
+  "host": "elite",
+  "python": "/home/tony/zofw_experiments/.venv/bin/python",
+  "cpus": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "blas_threads": 1,
+  "design": {
+    "development_slices": [
+      "slice04300",
+      "slice03150"
+    ],
+    "evaluation_slices": [
+      "slice03041",
+      "slice03381",
+      "slice03611",
+      "slice03791",
+      "slice04131",
+      "slice04931"
+    ],
+    "evaluation_slice_mixes": {
+      "slice03041": "Mix 2",
+      "slice03381": "Mix 2",
+      "slice03611": "Mix 2",
+      "slice03791": "Mix 3",
+      "slice04131": "Mix 3",
+      "slice04931": "Mix 3"
+    },
+    "evaluation_training_views": [
+      360,
+      1080
+    ],
+    "evaluation_seeds": [
+      202,
+      203,
+      204
+    ],
+    "deterministic_variants": [
+      "sframes_full",
+      "palm"
+    ],
+    "development_calibration_seed": 110,
+    "evaluation_calibration_seed": 201,
+    "development_oracle_seed": 110,
+    "grid": 512,
+    "rank": 64,
+    "development_view_budget": 8640,
+    "evaluation_view_budget": 17280,
+    "stochastic_batch": 64,
+    "development_trials": {
+      "sframes": [
+        {
+          "rate": 0.05
+        },
+        {
+          "rate": 0.1
+        },
+        {
+          "rate": 0.16
+        },
+        {
+          "rate": 0.25
+        }
+      ],
+      "sframes_full": [
+        {
+          "rate": 0.1
+        },
+        {
+          "rate": 0.25
+        },
+        {
+          "rate": 0.5
+        },
+        {
+          "rate": 0.8
+        }
+      ],
+      "spring_sarah": [
+        {
+          "rate": 0.7,
+          "refresh_period": 16
+        },
+        {
+          "rate": 1.1,
+          "refresh_period": 16
+        },
+        {
+          "rate": 1.6,
+          "refresh_period": 16
+        },
+        {
+          "rate": 1.1,
+          "refresh_period": 8
+        },
+        {
+          "rate": 1.1,
+          "refresh_period": 32
+        }
+      ],
+      "prox_sarah": [
+        {
+          "rate": 0.9,
+          "inner_steps": 12
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 12
+        },
+        {
+          "rate": 2.3,
+          "inner_steps": 12
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 6
+        },
+        {
+          "rate": 1.5,
+          "inner_steps": 24
+        }
+      ],
+      "palm": [
+        {
+          "rate": 0.6
+        },
+        {
+          "rate": 1.1
+        },
+        {
+          "rate": 1.6
+        },
+        {
+          "rate": 2.3
+        }
+      ]
+    },
+    "heldout_views": 360,
+    "constraint_geometry": "Separate spectral-norm balls and nonnegative factors.",
+    "full_batch": "SFRAMES with all training views and separately tuned gamma0. The decay exponents and smoothing scale are shared.",
+    "inference": "Fresh slices from separated acquisition batches of two sample mixes. Slices in a mix share a sample tube; summarize paired effects descriptively.",
+    "selection": "No evaluation slice, held-out view, or reference image enters rate selection.",
+    "diagnostic_cadence": "iteration_zero_and_every_completed_iteration"
+  },
+  "diagnostics": "Full original metrics at iteration zero and every update.",
+  "timing_measurements": false
+}

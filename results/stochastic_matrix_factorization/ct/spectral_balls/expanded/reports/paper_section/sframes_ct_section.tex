@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\setcounter{topnumber}{2}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.08}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{18pt}
+\makeatother
+\hypersetup{pdftitle={Numerical experiments: spectrally constrained low-dose CT}}
+\begin{document}
+\input{ct_experiments.tex}
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{detect}
+M.~B.~Kiss et al.
+\emph{2DeteCT: A large 2D expandable, trainable, experimental Computed Tomography
+dataset for machine learning}. Scientific Data 10, article 576, 2023.
+\href{https://doi.org/10.1038/s41597-023-02484-6}{DOI}.
+\bibitem{deepinv}
+DeepInverse.
+\href{https://deepinv.org/auto_examples/external-libraries/demo_astra_2detect.html}
+{Reconstruct real CT sinograms with the 2DeteCT benchmark}.
+\bibitem{astra}
+ASTRA Toolbox. \href{https://astra-toolbox.com/docs/proj2d.html#fan-beam}{2D Projectors}.
+\bibitem{spring}
+D.~Driggs, J.~Tang, J.~Liang, M.~E.~Davies, and C.-B.~Sch\"onlieb.
+\emph{A Stochastic Proximal Alternating Method for Nonsmooth and Nonconvex Optimization}.
+SIAM Journal on Imaging Sciences 14(4), 1932--1970, 2021.
+\href{https://doi.org/10.1137/20M1387213}{DOI}.
+\bibitem{proxsarah}
+N.~H.~Pham, L.~M.~Nguyen, D.~T.~Phan, and Q.~Tran-Dinh.
+\emph{ProxSARAH: An Efficient Algorithmic Framework for Stochastic Composite Nonconvex Optimization}.
+Journal of Machine Learning Research 21(110), 1--48, 2020.
+\href{https://www.jmlr.org/papers/v21/19-248.html}{Article}.
+\bibitem{palm}
+J.~Bolte, S.~Sabach, and M.~Teboulle.
+\emph{Proximal alternating linearized minimization for nonconvex and nonsmooth problems}.
+Mathematical Programming 146, 459--494, 2014.
+\href{https://doi.org/10.1007/s10107-013-0701-9}{DOI}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,200 @@
+{
+  "status": "diagnosed",
+  "utc": "2026-11-11T22:35:34.545881+00:00",
+  "reference": "evaluation_slice03611_360_spring_sarah_seed203_a2p3_q16",
+  "original_reproduced_native_iterations": 28,
+  "selected_development_worst_ratio": 33.65949798829017,
+  "failure": "Median tuning hid a catastrophic development endpoint; fixed initial-curvature step overshoots evolving block curvature.",
+  "witness": {
+    "iteration": 20,
+    "relative_loss": 54.95366976825413,
+    "v_gradient_refreshed": true,
+    "v_details": {
+      "eta_curvature_on_actual_step": 9.032651580541193,
+      "true_directional_gradient": -2.707117298597889,
+      "estimator_directional_gradient": -2.707117313813651,
+      "predicted_block_loss_change": 2.634688886965148,
+      "projected_step_residual": -1.5243403323410671,
+      "old_norm": 0.0025061535540637134,
+      "new_norm": 3.848525262634934,
+      "new_opnorm": 3.8475456347837858
+    }
+  },
+  "selection_rule": "Require finite completed endpoints at or below initialization in every development run, then original median ranking.",
+  "screened_candidates": [
+    {
+      "rate": 0.7,
+      "refresh_period": 8,
+      "score": 0.3543013892514887,
+      "eligible": true,
+      "worst_ratio": 0.3900041754541298
+    },
+    {
+      "rate": 0.7,
+      "refresh_period": 16,
+      "score": 0.33104852688614905,
+      "eligible": true,
+      "worst_ratio": 0.37597630051306513
+    },
+    {
+      "rate": 0.7,
+      "refresh_period": 32,
+      "score": 0.3267769161462669,
+      "eligible": true,
+      "worst_ratio": 0.35329376172369364
+    },
+    {
+      "rate": 1.1,
+      "refresh_period": 8,
+      "score": 0.31492292693077,
+      "eligible": true,
+      "worst_ratio": 0.3503187355141459
+    },
+    {
+      "rate": 1.1,
+      "refresh_period": 16,
+      "score": 0.30192638335575694,
+      "eligible": true,
+      "worst_ratio": 0.3382084700352057
+    },
+    {
+      "rate": 1.1,
+      "refresh_period": 32,
+      "score": 0.2988090078897496,
+      "eligible": true,
+      "worst_ratio": 0.3197934752710587
+    },
+    {
+      "rate": 1.6,
+      "refresh_period": 8,
+      "score": 0.2937094618592605,
+      "eligible": true,
+      "worst_ratio": 0.32256705256163715
+    },
+    {
+      "rate": 1.6,
+      "refresh_period": 16,
+      "score": 0.28235650728895434,
+      "eligible": true,
+      "worst_ratio": 0.3119170313084612
+    },
+    {
+      "rate": 1.6,
+      "refresh_period": 32,
+      "score": 0.2790478829915436,
+      "eligible": true,
+      "worst_ratio": 0.2963855815026784
+    },
+    {
+      "rate": 2.3,
+      "refresh_period": 8,
+      "score": 0.28623721858870477,
+      "eligible": false,
+      "worst_ratio": 7.819013914422617
+    },
+    {
+      "rate": 2.3,
+      "refresh_period": 16,
+      "score": 0.27124665013034244,
+      "eligible": false,
+      "worst_ratio": 33.65949798829017
+    },
+    {
+      "rate": 2.3,
+      "refresh_period": 32,
+      "score": 0.27416533618232847,
+      "eligible": false,
+      "worst_ratio": 53.592277020497185
+    },
+    {
+      "rate": 3.4,
+      "refresh_period": 8,
+      "score": 26.44970782761577,
+      "eligible": false,
+      "worst_ratio": 61.424667105233915
+    },
+    {
+      "rate": 3.4,
+      "refresh_period": 16,
+      "score": 7.4200775464675015,
+      "eligible": false,
+      "worst_ratio": 56.124531644196
+    },
+    {
+      "rate": 3.4,
+      "refresh_period": 32,
+      "score": 7.4200775464675015,
+      "eligible": false,
+      "worst_ratio": 59.94574977017586
+    },
+    {
+      "rate": 5.0,
+      "refresh_period": 8,
+      "score": 37.39218636911561,
+      "eligible": false,
+      "worst_ratio": 60.775741910021324
+    },
+    {
+      "rate": 5.0,
+      "refresh_period": 16,
+      "score": 7.4200775464675015,
+      "eligible": false,
+      "worst_ratio": 7.841108830866112
+    },
+    {
+      "rate": 5.0,
+      "refresh_period": 32,
+      "score": 7.4200775464675015,
+      "eligible": false,
+      "worst_ratio": 50.18829482336641
+    }
+  ],
+  "screened_winner": {
+    "rate": 1.6,
+    "refresh_period": 32,
+    "score": 0.2790478829915436,
+    "eligible": true,
+    "worst_ratio": 0.2963855815026784
+  },
+  "source_hashes": {
+    "methods.py": "f43c5c56cb91239c12bde778eef5ff67b7b7ee77544bb4bc4e2c79e06d37eac1",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "baseline_selection.json": "3d9112d755f352d266df9748832eb09c8a00956d47abf73a47e11cabcaa66292"
+  },
+  "controlled_replay": {
+    "path": "/home/tony/frames_ct_2detect_20261104/spectral_balls/expanded/spring_diagnostic/replay.json",
+    "sha256": "55fbf62a78b5af598159fa9f6d4327c40e96fa5f9cf4fa8aa79c35730cb802f9",
+    "iterations": 28,
+    "cases": [
+      {
+        "label": "original",
+        "rate": 2.3,
+        "refresh_period": 16,
+        "endpoint_ratio": 7.102464600987617,
+        "max_ratio": 54.95366976825413
+      },
+      {
+        "label": "smaller_same_refresh",
+        "rate": 1.6,
+        "refresh_period": 16,
+        "endpoint_ratio": 0.5061861933383153,
+        "max_ratio": 1.0
+      },
+      {
+        "label": "development_screen_winner",
+        "rate": 1.6,
+        "refresh_period": 32,
+        "endpoint_ratio": 0.5061861933383153,
+        "max_ratio": 1.0
+      },
+      {
+        "label": "full_gradient_original_step",
+        "rate": 2.3,
+        "refresh_period": 1,
+        "endpoint_ratio": 0.44294187741597907,
+        "max_ratio": 1.0
+      }
+    ],
+    "interpretation": "Lowering only the step multiplier removes the reproduced blow-up. Full refresh every iteration is also stable in this replay; the failure involves the stochastic trajectory and fixed initial-curvature steps. The original witness at iteration 20 overshoots despite a fresh exact block gradient, so stale estimation alone does not explain it."
+  }
+}
