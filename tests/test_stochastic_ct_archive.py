@@ -25,7 +25,11 @@ def test_captured_bundle_and_archived_links():
         assert manifest["snapshot"]["physical_trajectories"] == 504
         archive = Path(__file__).resolve().parents[1] / "results/stochastic_matrix_factorization/ct_nonnegative"
         publication = json.loads((archive / "report_update.json").read_text())
-        assert result["captured_pdf_sha256"] == publication["published_sha256"]["sframes_ct_section.pdf"]
+        expected_pdf = publication["published_sha256"]["sframes_ct_section.pdf"]
+        for revision in manifest.get("document_revisions", []):
+            assert revision["previous_pdf_sha256"] == expected_pdf
+            expected_pdf = revision["pdf_sha256"]
+        assert result["captured_pdf_sha256"] == expected_pdf
 
 
 def test_appendix_relocation_preserves_original_prose():

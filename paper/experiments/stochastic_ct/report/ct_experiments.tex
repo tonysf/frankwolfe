@@ -37,10 +37,34 @@ formulation is \(\min_{x\in C} f(x)+g(Tx)\), with
 \(T=\operatorname{Id}\) and \(g=\iota_D\), the indicator of \(D\).
 The additional NNLS and multiplicative baselines minimize the same loss
 over \(D\) alone, so they solve a less constrained application problem.
-Uniformly sampling views gives an unbiased estimator of \(\nabla f\).
-The spectral-ball linear oracle separates by factor and uses one thin SVD
-per block. The gradient of the Moreau envelope of \(g\) is
-\((x-x_+)/\beta\), where \(x_+\) clips both factors to nonnegativity.
+
+\paragraph{Stochastic gradient estimator.}
+At \(x_k=(U_k,V_k)\), draw a subset \(B_k\subset\mathcal I\) of
+\(b=64\) views uniformly without replacement, independently across
+iterations. Each sampled view includes all \(d\) detector rays. The
+minibatch gradient is
+\[
+ Z_k=\frac{1}{bd}\sum_{i\in B_k}
+       P_i^\ast\!\left(P_i(U_kV_k^\top)-y_i\right),
+ \qquad \widehat G_k=(Z_kV_k,\,Z_k^\top U_k).
+\]
+Thus both factor gradients reuse the same backprojected residual \(Z_k\).
+One estimate costs a forward/adjoint pair on \(b\) views.
+The normalization makes \(\widehat G_k\) conditionally unbiased:
+\(\mathbb E[\widehat G_k\mid x_k]=\nabla f(x_k)\).
+SFRAMES averages these estimates using
+\[
+ \overline G_0=\widehat G_0,\qquad
+ \overline G_k=(1-\alpha_k)\overline G_{k-1}+\alpha_k\widehat G_k,
+ \qquad \alpha_k=(k+1)^{-1/2}\quad(k\ge1).
+\]
+The average incorporates gradients at earlier iterates and is generally
+not an unbiased estimate of the current gradient. The linear oracle uses
+\(\overline G_k+(x_k-(x_k)_+)/\beta_k\), where \((x_k)_+\) clips both
+factors to nonnegativity. This Moreau-envelope penalty gradient is computed
+exactly and added after averaging. The oracle separates by factor and uses
+one thin SVD per block. Full-batch SFRAMES sets \(B_k=\mathcal I\) and
+\(b=N\), retaining the same averaging recursion.
 
 \paragraph{Evaluation.}
 We evaluate on 14 slices from six acquisition groups, with either \(360\)
@@ -137,10 +161,7 @@ All methods start from a nonnegative SVD-based factorization of a
 sensitivity-normalized backprojection of training views, with its
 amplitude fitted to those views. Set
 \(R_U=2\|U_0\|_{\rm op}\) and \(R_V=2\|V_0\|_{\rm op}\).
-Minibatch SFRAMES samples \(64\) views uniformly without replacement,
-independently across iterations; full-batch SFRAMES uses all \(N\) views.
-Both use \(\gamma_k=\gamma_0(k+1)^{-3/4}\),
-\(\alpha_k=(k+1)^{-1/2}\) for gradient averaging, and
+Both SFRAMES variants use \(\gamma_k=\gamma_0(k+1)^{-3/4}\) and
 \(\beta_k=\beta_0(k+1)^{-1/4}\), with
 \(\beta_0=c_\beta/\max(L_U,L_V)\) scaled by initial block-curvature estimates.
 The loss-tuned SFRAMES setting \((c_\beta,\gamma_0)=(16,0.1)\)
