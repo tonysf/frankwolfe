@@ -317,3 +317,22 @@ Native iterations count accepted updates: an accepted inner factor step for NNLS
 
 The [campaign notes](../../../results/stochastic_matrix_factorization/ct_nonnegative/README.md), [selection](../../../results/stochastic_matrix_factorization/ct_nonnegative/selection.json), [completion audit](../../../results/stochastic_matrix_factorization/ct_nonnegative/validation_summary.json), and [publication audit](../../../results/stochastic_matrix_factorization/ct_nonnegative/report_update.json) record all configurations, hashes, work counters and comparison statistics. The preceding gradient-budget publication is preserved in the publication backup; all earlier numerical traces and summaries remain unchanged.
 <!-- CT_NONNEGATIVE_BASELINES_END -->
+
+<!-- CT_JOINT_LBFGSB_START -->
+## Joint nonnegative L-BFGS-B
+
+The current comparison contains 532 physical trajectories: all previous 504 plus 28 deterministic joint L-BFGS-B runs, one for each of the 14 evaluation slices and two view counts. Its feasible set is nonnegative factors only. The same frozen rank-64 initial factors, data and view split are reused; there is no spectral bound, radial repair, factor balancing or regularizer. All prior numerical evidence remains unchanged.
+
+SciPy 1.18.1 L-BFGS-B operates on the concatenated U,V vector and retains its limited-memory state across joint accepted updates. This differs from alternating NNLS, whose optimizer is restarted for each factor subproblem. Each joint evaluation uses one shared residual/backprojection to obtain both factor gradients. Every trial forward/adjoint pair counts, including unsuccessful line-search trials. Loss and feasibility are recorded at every accepted state, with terminal unaccepted work retained as a repeated native iteration. Checkpoints preserve the complete reverse-communication state.
+
+The memory is selected from {5,10,20} by twelve development runs (two slices, two view counts) at 34,560 views per direction. The selection criterion is the median relative raw endpoint loss across slices at each view count, then the median over view counts; exact ties favor lower memory. Fixed settings are relative projected-gradient tolerance 1e-3, objective tolerance 1e-9, and at most 20 line-search trials. The resulting setting is frozen before evaluation; held-out images are not used for selection.
+
+Evaluation stops within 69,120 views separately in the forward and adjoint directions. Only numerical stopping conditions or the budget can end the joint solve; there is no inner-iteration restart cap. Diagnostics remain outside solver work. Earlier spectral-constrained methods retain their gradient-only budget and separate curvature accounting. Consequently the comparison does not equalize total operator work across all nine methods. Native joint iterations are accepted updates of both factors; oracle calls and views retain their actual charged costs. The existing group-balanced means ±1 descriptive SD and nested-median endpoint statistics are unchanged.
+
+| Training views | Raw/evaluated loss | Held-out loss | Relative orthant distance |
+| ---: | ---: | ---: | ---: |
+| 360 | 0.005606946 | 0.006330238 | 0 |
+| 1080 | 0.006823715 | 0.006873106 | 0 |
+
+The [campaign notes](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/README.md), [selection](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/selection.json), [completion audit](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/validation_summary.json), and [publication audit](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/report_update.json) retain the exact configuration and results. The previous scientific publication and the subsequent gradient-estimator editorial revision are preserved in the predecessor records and document backup.
+<!-- CT_JOINT_LBFGSB_END -->

@@ -1,0 +1,57 @@
+{
+  "status": "selected_from_development_only",
+  "trials": [
+    {
+      "memory": 5,
+      "view_count_scores": {
+        "360": 0.21529803646861778,
+        "1080": 0.25586679326083595
+      },
+      "score": 0.23558241486472686,
+      "run_ids": [
+        "development_slice03150_1080_joint_lbfgsb_memory5",
+        "development_slice03150_360_joint_lbfgsb_memory5",
+        "development_slice04300_1080_joint_lbfgsb_memory5",
+        "development_slice04300_360_joint_lbfgsb_memory5"
+      ]
+    },
+    {
+      "memory": 10,
+      "view_count_scores": {
+        "360": 0.21197411065016605,
+        "1080": 0.2497399202327951
+      },
+      "score": 0.23085701544148057,
+      "run_ids": [
+        "development_slice03150_1080_joint_lbfgsb_memory10",
+        "development_slice03150_360_joint_lbfgsb_memory10",
+        "development_slice04300_1080_joint_lbfgsb_memory10",
+        "development_slice04300_360_joint_lbfgsb_memory10"
+      ]
+    },
+    {
+      "memory": 20,
+      "view_count_scores": {
+        "360": 0.21143276721391752,
+        "1080": 0.24674786077519
+      },
+      "score": 0.22909031399455376,
+      "run_ids": [
+        "development_slice03150_1080_joint_lbfgsb_memory20",
+        "development_slice03150_360_joint_lbfgsb_memory20",
+        "development_slice04300_1080_joint_lbfgsb_memory20",
+        "development_slice04300_360_joint_lbfgsb_memory20"
+      ]
+    }
+  ],
+  "selected_memory": 20,
+  "criterion": "For each memory, median relative raw training loss over development slices at each view count, then median over the two view counts; minimize, breaking exact ties by smaller memory.",
+  "parameters": {
+    "joint_lbfgsb": {
+      "relative_kkt_tolerance": 0.001,
+      "ftol": 1e-09,
+      "maxls": 20,
+      "memory": 20
+    }
+  }
+}

@@ -1,41 +1,60 @@
 {
   "schema_version": 1,
   "snapshot": {
-    "date": "2026-11-19",
-    "published_utc": "2026-11-19T17:56:32.202562+00:00",
+    "date": "2026-11-20",
+    "published_utc": "2026-11-20T14:47:24.253049+00:00",
     "comparison": "equal directional solver-view budget",
     "solver_view_cap_per_direction": 69120,
-    "physical_trajectories": 504,
-    "added_nonnegative_trajectories": 56,
+    "physical_trajectories": 532,
+    "added_nonnegative_trajectories": 84,
     "continued_trajectories": 168,
-    "native_iteration_observations": 279155,
+    "native_iteration_observations": 282734,
     "pages": 5,
     "figures": 2,
     "tables": 1,
-    "domains": "Six original spectral-constrained arms; two additional nonnegative-only baselines.",
-    "curvature_accounting": "Historical curvature-estimation work remains excluded and separately recorded."
+    "domains": "Six original spectral-constrained arms; three nonnegative-only baselines.",
+    "curvature_accounting": "Historical curvature-estimation work remains excluded and separately recorded.",
+    "added_joint_lbfgsb_trajectories": 28
   },
   "provenance": {
     "source_path_convention": "Paths are relative to the original CT experiment root; original host-specific paths remain only in historical evidence.",
     "publication_audit": {
-      "archive_study": "ct_nonnegative",
+      "archive_study": "ct_joint_lbfgsb",
       "archive_relative_path": "report_update.json",
-      "sha256": "705ee573221846fe879b7a4703054e3d58879154b341a380268f7ad765730f60"
+      "sha256": "d2fdfb459f757509c085be1f7f43560be0ba2bcb705aad862230905b78a678fa"
     },
-    "scientific_content": "Report files and the source appendix preserve the current Elite document bytes. Document revisions record explanatory edits after the frozen experiment publication; numerical results and figures are unchanged. The public appendix changes only relative file links.",
+    "scientific_content": "Current report files and source appendix preserve their published Elite bytes. Prior numerical evidence and the gradient-estimator explanation are retained. Only public appendix links are relocated.",
     "predecessor_snapshot": {
       "date": "2026-11-19",
-      "published_utc": "2026-11-19T10:14:05.801280+00:00",
-      "comparison": "gradient-only view budget",
-      "gradient_view_cap_per_direction": 69120,
-      "physical_trajectories": 448,
+      "published_utc": "2026-11-19T17:56:32.202562+00:00",
+      "comparison": "equal directional solver-view budget",
+      "solver_view_cap_per_direction": 69120,
+      "physical_trajectories": 504,
+      "added_nonnegative_trajectories": 56,
       "continued_trajectories": 168,
-      "native_iteration_observations": 272132,
+      "native_iteration_observations": 279155,
       "pages": 5,
       "figures": 2,
-      "tables": 1
+      "tables": 1,
+      "domains": "Six original spectral-constrained arms; two additional nonnegative-only baselines.",
+      "curvature_accounting": "Historical curvature-estimation work remains excluded and separately recorded."
     },
-    "predecessor_pdf_sha256": "b0359dd827c29dfedc7062ff8fa6f2efbe65a26815d98eb6fd7f01ff796862f2"
+    "predecessor_pdf_sha256": "9a93f231118a5ed9dac959249aad49d782f022ee493eb6db52cb949596f457ef",
+    "predecessor_document_revisions": [
+      {
+        "date": "2026-11-20",
+        "updated_utc": "2026-11-20T12:37:15.789063+00:00",
+        "description": "Define the sampled CT factor gradient, normalization, averaging recurrence, exact Moreau-envelope contribution, and full-batch variant.",
+        "previous_pdf_sha256": "e66eeba76e4ab8c4d93f93aaf3d16c3efb8c8a34fc89e86d744bcc51d62783d8",
+        "pdf_sha256": "9a93f231118a5ed9dac959249aad49d782f022ee493eb6db52cb949596f457ef",
+        "previous_tex_sha256": "6db4031ca16dd96c7519f4157cb5534d319a2fd93f30654b98d3e64cf72f337d",
+        "tex_sha256": "7b3ed3aee6a08cb17b10bcca05fb57b77781727dab4de6865a3968918104ed6e",
+        "numerical_results_unchanged": true,
+        "pages": 5,
+        "figures": 2,
+        "tables": 1
+      }
+    ]
   },
   "appendix_link_relocations": [
     {
@@ -65,14 +84,18 @@
     {
       "from": "](../../nonnegative_baselines/",
       "to": "](../../../results/stochastic_matrix_factorization/ct_nonnegative/"
+    },
+    {
+      "from": "](../../joint_lbfgsb/",
+      "to": "](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/"
     }
   ],
   "files": {
     "report/ct_experiments.tex": {
-      "bytes": 12697,
-      "sha256": "7b3ed3aee6a08cb17b10bcca05fb57b77781727dab4de6865a3968918104ed6e",
+      "bytes": 12966,
+      "sha256": "81d65544d1cd8513fa365e2e6a8288f7e589b96cb616126b9d7599c585f3de88",
       "copy_mode": "byte-identical",
-      "original_sha256": "7b3ed3aee6a08cb17b10bcca05fb57b77781727dab4de6865a3968918104ed6e",
+      "original_sha256": "81d65544d1cd8513fa365e2e6a8288f7e589b96cb616126b9d7599c585f3de88",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/ct_experiments.tex"
     },
     "report/ct_reproducibility_link.tex": {
@@ -83,10 +106,10 @@
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/ct_reproducibility_link.tex"
     },
     "report/sframes_ct_section.pdf": {
-      "bytes": 2067301,
-      "sha256": "9a93f231118a5ed9dac959249aad49d782f022ee493eb6db52cb949596f457ef",
+      "bytes": 2116814,
+      "sha256": "e29f08dfe7ac9f6e24bde2384942e4548f107e0540fc07003f44c7172e4e80c7",
       "copy_mode": "byte-identical",
-      "original_sha256": "9a93f231118a5ed9dac959249aad49d782f022ee493eb6db52cb949596f457ef",
+      "original_sha256": "e29f08dfe7ac9f6e24bde2384942e4548f107e0540fc07003f44c7172e4e80c7",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/sframes_ct_section.pdf"
     },
     "report/sframes_ct_section.tex": {
@@ -97,50 +120,50 @@
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/sframes_ct_section.tex"
     },
     "report/trajectories_1080.pdf": {
-      "bytes": 805402,
-      "sha256": "0013dc3bb78593c02a4deec51520cd2772da529dda46b2089bfa96629196bcfa",
+      "bytes": 820955,
+      "sha256": "dfef0de0a0e265c385cdb8887ae098424e219527b1cee4fe36d77bcccb094c96",
       "copy_mode": "byte-identical",
-      "original_sha256": "0013dc3bb78593c02a4deec51520cd2772da529dda46b2089bfa96629196bcfa",
+      "original_sha256": "dfef0de0a0e265c385cdb8887ae098424e219527b1cee4fe36d77bcccb094c96",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_1080.pdf"
     },
     "report/trajectories_1080.png": {
-      "bytes": 402907,
-      "sha256": "8b0ed7616ec91446cd269c47f744edde944249b6ab3bfea1837879a4d0b2ad9e",
+      "bytes": 418018,
+      "sha256": "0e66aa2215e1290d5c04d66602971bc94c2e1f61e367adfc6f5a116f53b451da",
       "copy_mode": "byte-identical",
-      "original_sha256": "8b0ed7616ec91446cd269c47f744edde944249b6ab3bfea1837879a4d0b2ad9e",
+      "original_sha256": "0e66aa2215e1290d5c04d66602971bc94c2e1f61e367adfc6f5a116f53b451da",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_1080.png"
     },
     "report/trajectories_360.pdf": {
-      "bytes": 1025039,
-      "sha256": "ae06af89abcfc5ddc7a62605f25b7d9f97eb8d32f650a713ddae24710caa9371",
+      "bytes": 1059208,
+      "sha256": "df317089acf56fbff787a1bfe7093ed42533f743926e8cc8b6db834553eed3da",
       "copy_mode": "byte-identical",
-      "original_sha256": "ae06af89abcfc5ddc7a62605f25b7d9f97eb8d32f650a713ddae24710caa9371",
+      "original_sha256": "df317089acf56fbff787a1bfe7093ed42533f743926e8cc8b6db834553eed3da",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_360.pdf"
     },
     "report/trajectories_360.png": {
-      "bytes": 418479,
-      "sha256": "74b4d91cd5e4cf4b78c12f791263c264c1f953e85fe7ba0add2e0e6ec2547e2c",
+      "bytes": 430299,
+      "sha256": "d805a2daa2adee3ff9e69c3f378060d9c9b418514e6bef0e1c59792a277f37cb",
       "copy_mode": "byte-identical",
-      "original_sha256": "74b4d91cd5e4cf4b78c12f791263c264c1f953e85fe7ba0add2e0e6ec2547e2c",
+      "original_sha256": "d805a2daa2adee3ff9e69c3f378060d9c9b418514e6bef0e1c59792a277f37cb",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/trajectories_360.png"
     },
     "provenance/CT_REPRODUCIBILITY.source.md": {
-      "bytes": 41139,
-      "sha256": "f42423884f2059b021dbbdbc4b00539ff84d57bb58e1839d3ef3327c0a598a41",
+      "bytes": 44050,
+      "sha256": "24039bf759bab5c4223f666f75efa17df9d1b5bd86ccf72d02420042ab7260f7",
       "copy_mode": "byte-identical",
-      "original_sha256": "f42423884f2059b021dbbdbc4b00539ff84d57bb58e1839d3ef3327c0a598a41",
+      "original_sha256": "24039bf759bab5c4223f666f75efa17df9d1b5bd86ccf72d02420042ab7260f7",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/CT_REPRODUCIBILITY.md"
     },
     "CT_REPRODUCIBILITY.md": {
-      "bytes": 42529,
-      "sha256": "9ac3e296a8d83c5d43d9850d65a3bd52e37d173d73bfa18f817a82de7cd2a670",
+      "bytes": 45624,
+      "sha256": "274079029d4950139dd26e301b49bf34ef46e313040ffce5754bbb564e24dfba",
       "copy_mode": "relative-links-only",
-      "original_sha256": "f42423884f2059b021dbbdbc4b00539ff84d57bb58e1839d3ef3327c0a598a41",
+      "original_sha256": "24039bf759bab5c4223f666f75efa17df9d1b5bd86ccf72d02420042ab7260f7",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/CT_REPRODUCIBILITY.md"
     },
     "README.md": {
-      "bytes": 2571,
-      "sha256": "f85865ef400181c26799100e5148bb4e99dde9c7df688fb0e64ec23a09a53a9b",
+      "bytes": 2565,
+      "sha256": "408e0710c81c417e1cc8a8ab2fb6f7d01e6744c0adbcf7685996385ba12558c5",
       "copy_mode": "archive-support-file"
     },
     "bundle.py": {
@@ -160,19 +183,5 @@
     "proxsarah",
     "spring"
   ],
-  "document_revisions": [
-    {
-      "date": "2026-11-20",
-      "updated_utc": "2026-11-20T12:37:15.789063+00:00",
-      "description": "Define the sampled CT factor gradient, normalization, averaging recurrence, exact Moreau-envelope contribution, and full-batch variant.",
-      "previous_pdf_sha256": "e66eeba76e4ab8c4d93f93aaf3d16c3efb8c8a34fc89e86d744bcc51d62783d8",
-      "pdf_sha256": "9a93f231118a5ed9dac959249aad49d782f022ee493eb6db52cb949596f457ef",
-      "previous_tex_sha256": "6db4031ca16dd96c7519f4157cb5534d319a2fd93f30654b98d3e64cf72f337d",
-      "tex_sha256": "7b3ed3aee6a08cb17b10bcca05fb57b77781727dab4de6865a3968918104ed6e",
-      "numerical_results_unchanged": true,
-      "pages": 5,
-      "figures": 2,
-      "tables": 1
-    }
-  ]
+  "document_revisions": []
 }

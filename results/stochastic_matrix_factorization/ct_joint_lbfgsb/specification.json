@@ -1,0 +1,36 @@
+{
+  "method": "joint_lbfgsb",
+  "physical_evaluation_runs": 28,
+  "development_runs": 12,
+  "rank": 64,
+  "grid": 512,
+  "training_views": [
+    360,
+    1080
+  ],
+  "calibration_seed": 201,
+  "constraint_geometry": "Joint entrywise nonnegative U,V; no spectral or Frobenius bounds.",
+  "initialization": "Unmodified frozen calibrated factors shared with previous methods.",
+  "deterministic_repeats": 1,
+  "solver_view_budget_per_direction": 69120,
+  "development_view_budget_per_direction": 34560,
+  "memory_grid": [
+    5,
+    10,
+    20
+  ],
+  "fixed_parameters": {
+    "relative_kkt_tolerance": 0.001,
+    "ftol": 1e-09,
+    "maxls": 20
+  },
+  "parameter_selection": "For each memory, median relative raw training loss over development slices at each view count, then median over the two view counts; minimize, breaking exact ties by smaller memory.",
+  "accounting": "Every solver forward/adjoint action including rejected line-search trials counts; diagnostics are separate.",
+  "recording": "Initialization, every accepted joint update, and terminal charged work; no interpolation.",
+  "stopping": "Native L-BFGS-B projected-gradient or relative-function-decrease convergence is retained explicitly; line-search failure halts for review.",
+  "retained_physical_runs": 504,
+  "rerun_previous_methods": false,
+  "additional_figures": false,
+  "optimizer_timing": false,
+  "failure_policy": "Retain evidence and halt on failure; no failed-run filtering."
+}
