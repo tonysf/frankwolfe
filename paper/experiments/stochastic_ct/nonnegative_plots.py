@@ -187,7 +187,8 @@ def plot_size(analysis, runs, slices, groups, size, budget, original_cap, output
             ax.spines[["top", "right"]].set_visible(False)
     handles, labels = axes[0, 0].get_legend_handles_labels()
     fig.suptitle(f"{size:,} training views", fontsize=10, weight="bold", y=0.995)
-    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.52, 0.974), ncol=4,
+    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.52, 0.974),
+               ncol=getattr(analysis, "legend_columns", 4),
                frameon=False, fontsize=6.5, handlelength=1.7, columnspacing=0.8)
     fig.tight_layout(rect=(0, 0, 1, 0.925), h_pad=1.0, w_pad=1.0)
     stem = output / f"trajectories_{size}"

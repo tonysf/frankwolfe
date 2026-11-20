@@ -22,8 +22,12 @@ def test_captured_bundle_and_archived_links():
         )
     else:
         assert manifest["snapshot"]["comparison"] == "equal directional solver-view budget"
-        assert manifest["snapshot"]["physical_trajectories"] == 504
-        archive = Path(__file__).resolve().parents[1] / "results/stochastic_matrix_factorization/ct_nonnegative"
+        study = manifest["provenance"]["publication_audit"]["archive_study"]
+        assert study in ("ct_nonnegative", "ct_joint_lbfgsb")
+        assert manifest["snapshot"]["physical_trajectories"] == {
+            "ct_nonnegative": 504, "ct_joint_lbfgsb": 532
+        }[study]
+        archive = Path(__file__).resolve().parents[1] / "results/stochastic_matrix_factorization" / study
         publication = json.loads((archive / "report_update.json").read_text())
         expected_pdf = publication["published_sha256"]["sframes_ct_section.pdf"]
         for revision in manifest.get("document_revisions", []):
