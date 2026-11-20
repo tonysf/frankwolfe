@@ -1,0 +1,1808 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "interpretation": [
+    "CPU full-data cross-evaluation of saved final factors, not an optimizer rerun or performance benchmark.",
+    "Each distinct numeric factor is evaluated once by both formulations; all timing repeats are retained.",
+    "The full-gradient gap uses beta[T-1], not a stochastic momentum estimator.",
+    "Numerical discrepancies are findings; completion does not mean dense/structured benchmark parity passed.",
+    "CPU batchwise summation differs from the original monolithic dense metrics and GPU fusion.",
+    "Agreement at saved final factors does not validate every intermediate GPU update or establish harmless roundoff.",
+    "Original HDF5 verification is inherited; the source HDF5 file is neither loaded nor regenerated.",
+    "Input/reference byte guards are conservative array estimates, not total process RAM limits."
+  ],
+  "source": {
+    "benchmark_report": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/result.json",
+    "benchmark_status": "failed",
+    "benchmark_parity_passed": false,
+    "configuration": {
+      "h5": "/gpfs/workdir/silvetian/QPT_BFW/jax_arr_gt_xi_0.05.h5",
+      "save": "results/qpt/benchmark_tensor_noauto_1883052/result.json",
+      "artifacts_dir": "results/qpt/benchmark_tensor_noauto_1883052/artifacts",
+      "device": "gpu",
+      "device_index": 0,
+      "precision": "64",
+      "steps": 1000,
+      "rank": 1,
+      "tau": 10.0,
+      "batch_size": 32,
+      "chunk_steps": 100,
+      "metrics_every": 0,
+      "metric_mode": "full",
+      "metric_samples": 512,
+      "metric_batch_size": 32,
+      "metric_seed": 12345,
+      "initialization_seed": 0,
+      "sampling_seed": 0,
+      "repeats": 3,
+      "backends": [
+        "dense",
+        "structured"
+      ],
+      "measurement_backend": "tensor",
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "allocator": "grow",
+      "profile_memory": true,
+      "memory_poll_ms": 100.0,
+      "require_gpu_memory": true,
+      "rho_scale": 2.0,
+      "rho_offset": 4.0,
+      "rho_exponent": 0.6,
+      "smoothing_scale": 10.0,
+      "smoothing_offset": 1.0,
+      "smoothing_exponent": 0.25,
+      "step_scale": 2.0,
+      "step_offset": 2.0,
+      "step_exponent": 1.0
+    },
+    "compact_data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/data.npz",
+    "artifacts_relocated": false,
+    "input_files": {
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/result.json": {
+        "sha256": "5557e91add73df0eed36e212950c858d1cfd7a35f3398ba503ca8969867c2426",
+        "file_bytes": 71963
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/data.npz": {
+        "sha256": "7792bb14d89b12a5d00e55189f21b1a740d3962c2288ba7485478b6833b5f3b1",
+        "file_bytes": 107685
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_dense_0.npy": {
+        "sha256": "63fb46e2db848d0c9835c593652bc13ac9ce47f0832ead8016a9c9934ade7e7f",
+        "file_bytes": 1152
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_dense_1.npy": {
+        "sha256": "63fb46e2db848d0c9835c593652bc13ac9ce47f0832ead8016a9c9934ade7e7f",
+        "file_bytes": 1152
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_dense_2.npy": {
+        "sha256": "63fb46e2db848d0c9835c593652bc13ac9ce47f0832ead8016a9c9934ade7e7f",
+        "file_bytes": 1152
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_structured_0.npy": {
+        "sha256": "5b5fc762e51d7a6b036a5370d5d12d74b2c891d6a89f5175aae10c0c301be5b5",
+        "file_bytes": 1152
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_structured_1.npy": {
+        "sha256": "5b5fc762e51d7a6b036a5370d5d12d74b2c891d6a89f5175aae10c0c301be5b5",
+        "file_bytes": 1152
+      },
+      "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_structured_2.npy": {
+        "sha256": "5b5fc762e51d7a6b036a5370d5d12d74b2c891d6a89f5175aae10c0c301be5b5",
+        "file_bytes": 1152
+      }
+    },
+    "input_storage_estimate_bytes": 306352,
+    "inherited_verification": {
+      "source_path": "/gpfs/workdir/silvetian/QPT_BFW/jax_arr_gt_xi_0.05.h5",
+      "source_fingerprint": {
+        "method": "filesystem_stat",
+        "size_bytes": 910376960,
+        "mtime_ns": 1789052306592669523
+      },
+      "verification": "full",
+      "verified_measurement_rows": 13824,
+      "verified_basis_rows": 64,
+      "verified_penalty_blocks": 4096,
+      "verification_rtol": 1e-10,
+      "verification_atol": 1e-12,
+      "observations_preserved": true
+    },
+    "original_workers": [
+      {
+        "backend": "dense",
+        "repeat": 0,
+        "hostname": "ruche-gpu04.cluster",
+        "device_kind": "Tesla V100-PCIE-32GB",
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1"
+      },
+      {
+        "backend": "structured",
+        "repeat": 0,
+        "hostname": "ruche-gpu04.cluster",
+        "device_kind": "Tesla V100-PCIE-32GB",
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1"
+      },
+      {
+        "backend": "structured",
+        "repeat": 1,
+        "hostname": "ruche-gpu04.cluster",
+        "device_kind": "Tesla V100-PCIE-32GB",
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1"
+      },
+      {
+        "backend": "dense",
+        "repeat": 1,
+        "hostname": "ruche-gpu04.cluster",
+        "device_kind": "Tesla V100-PCIE-32GB",
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1"
+      },
+      {
+        "backend": "dense",
+        "repeat": 2,
+        "hostname": "ruche-gpu04.cluster",
+        "device_kind": "Tesla V100-PCIE-32GB",
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1"
+      },
+      {
+        "backend": "structured",
+        "repeat": 2,
+        "hostname": "ruche-gpu04.cluster",
+        "device_kind": "Tesla V100-PCIE-32GB",
+        "jax_version": "0.11.1",
+        "jaxlib_version": "0.11.1"
+      }
+    ],
+    "note": "HDF5 is not opened or revalidated. Current hashes identify supplied artifacts; original full verification is inherited evidence."
+  },
+  "settings": {
+    "beta": 1.7782794100389228,
+    "smoothing_iteration": 999,
+    "tau": 10.0,
+    "rank": 1,
+    "precision": "64",
+    "measurement_backend": "tensor",
+    "batch_size": 32,
+    "rtol": 1e-10,
+    "atol": 1e-12,
+    "reference_allocation_estimate_bytes": 36326400,
+    "max_reference_bytes": 134217728,
+    "max_input_bytes": 134217728,
+    "max_measurements": 1000000
+  },
+  "factors": [
+    {
+      "id": "dense:0",
+      "backend": "dense",
+      "repeat": 0,
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_dense_0.npy",
+      "fingerprint": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "cd0ab11eec695f8e7a22264ce209c97e9cbfec0ba46421ab2165c219a377bcb2"
+      },
+      "original_metrics": {
+        "final_measurement_loss": 0.00631303394183741,
+        "final_smoothed_gap": 0.2059544657057711
+      },
+      "evaluation_id": "evaluation_000",
+      "cpu_vs_saved_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 8.673617379884035e-19,
+            "relative_l2_difference": 1.3739221838176236e-16
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 2.498001805406602e-16,
+            "relative_l2_difference": 1.2128903332328204e-15
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 1.0547118733938987e-15,
+            "relative_l2_difference": 5.121092518094131e-15
+          }
+        }
+      }
+    },
+    {
+      "id": "dense:1",
+      "backend": "dense",
+      "repeat": 1,
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_dense_1.npy",
+      "fingerprint": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "cd0ab11eec695f8e7a22264ce209c97e9cbfec0ba46421ab2165c219a377bcb2"
+      },
+      "original_metrics": {
+        "final_measurement_loss": 0.00631303394183741,
+        "final_smoothed_gap": 0.2059544657057711
+      },
+      "evaluation_id": "evaluation_000",
+      "cpu_vs_saved_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 8.673617379884035e-19,
+            "relative_l2_difference": 1.3739221838176236e-16
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 2.498001805406602e-16,
+            "relative_l2_difference": 1.2128903332328204e-15
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 1.0547118733938987e-15,
+            "relative_l2_difference": 5.121092518094131e-15
+          }
+        }
+      }
+    },
+    {
+      "id": "dense:2",
+      "backend": "dense",
+      "repeat": 2,
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_dense_2.npy",
+      "fingerprint": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "cd0ab11eec695f8e7a22264ce209c97e9cbfec0ba46421ab2165c219a377bcb2"
+      },
+      "original_metrics": {
+        "final_measurement_loss": 0.00631303394183741,
+        "final_smoothed_gap": 0.2059544657057711
+      },
+      "evaluation_id": "evaluation_000",
+      "cpu_vs_saved_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 8.673617379884035e-19,
+            "relative_l2_difference": 1.3739221838176236e-16
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 2.498001805406602e-16,
+            "relative_l2_difference": 1.2128903332328204e-15
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 1.0547118733938987e-15,
+            "relative_l2_difference": 5.121092518094131e-15
+          }
+        }
+      }
+    },
+    {
+      "id": "structured:0",
+      "backend": "structured",
+      "repeat": 0,
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_structured_0.npy",
+      "fingerprint": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "a04e85e07803d25b58834a69b990cc889e14bd6bf49c285d856c62abd562f6eb"
+      },
+      "original_metrics": {
+        "final_measurement_loss": 0.006313591820697372,
+        "final_smoothed_gap": 0.20603819329747158
+      },
+      "evaluation_id": "evaluation_001",
+      "cpu_vs_saved_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 6.938893903907228e-18,
+            "relative_l2_difference": 1.099040625521589e-15
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 2.1649348980190553e-15,
+            "relative_l2_difference": 1.0507444582827364e-14
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 8.673617379884035e-18,
+            "relative_l2_difference": 1.3738007819019863e-15
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 4.163336342344337e-16,
+            "relative_l2_difference": 2.0206624197744934e-15
+          }
+        }
+      }
+    },
+    {
+      "id": "structured:1",
+      "backend": "structured",
+      "repeat": 1,
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_structured_1.npy",
+      "fingerprint": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "a04e85e07803d25b58834a69b990cc889e14bd6bf49c285d856c62abd562f6eb"
+      },
+      "original_metrics": {
+        "final_measurement_loss": 0.006313591820697372,
+        "final_smoothed_gap": 0.20603819329747158
+      },
+      "evaluation_id": "evaluation_001",
+      "cpu_vs_saved_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 6.938893903907228e-18,
+            "relative_l2_difference": 1.099040625521589e-15
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 2.1649348980190553e-15,
+            "relative_l2_difference": 1.0507444582827364e-14
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 8.673617379884035e-18,
+            "relative_l2_difference": 1.3738007819019863e-15
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 4.163336342344337e-16,
+            "relative_l2_difference": 2.0206624197744934e-15
+          }
+        }
+      }
+    },
+    {
+      "id": "structured:2",
+      "backend": "structured",
+      "repeat": 2,
+      "path": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_tensor_noauto_1883052/artifacts/timing_structured_2.npy",
+      "fingerprint": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "a04e85e07803d25b58834a69b990cc889e14bd6bf49c285d856c62abd562f6eb"
+      },
+      "original_metrics": {
+        "final_measurement_loss": 0.006313591820697372,
+        "final_smoothed_gap": 0.20603819329747158
+      },
+      "evaluation_id": "evaluation_001",
+      "cpu_vs_saved_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 6.938893903907228e-18,
+            "relative_l2_difference": 1.099040625521589e-15
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 2.1649348980190553e-15,
+            "relative_l2_difference": 1.0507444582827364e-14
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 8.673617379884035e-18,
+            "relative_l2_difference": 1.3738007819019863e-15
+          },
+          "smoothed_gap": {
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": true,
+            "max_abs_difference": 4.163336342344337e-16,
+            "relative_l2_difference": 2.0206624197744934e-15
+          }
+        }
+      }
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "evaluation_000",
+      "factor_ids": [
+        "dense:0",
+        "dense:1",
+        "dense:2"
+      ],
+      "artifact": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/same_factor_1886122/evaluation_000.npz",
+      "artifact_sha256": "fdfdcdc15679a115baaea3bdc73ee37bdadd319f5c179d041b53c21cdc195860",
+      "seconds": 3.332588877994567,
+      "measurement_count": 13824,
+      "batches": 432,
+      "dense_measurement_entries": 56623104,
+      "same_factor_comparisons": {
+        "measurement_loss": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 8.673617379884035e-19,
+          "relative_l2_difference": 1.3739221838176234e-16
+        },
+        "measurement_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 6.705420115022808e-19,
+          "relative_l2_difference": 4.412623778209114e-16
+        },
+        "tp_residual": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 4.460365043975677e-16,
+          "relative_l2_difference": 5.1472480957520745e-14
+        },
+        "tp_violation": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 1.2836953722228372e-16,
+          "relative_l2_difference": 6.104449314224535e-15
+        },
+        "tp_loss": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 2.6834003769016235e-18,
+          "relative_l2_difference": 1.2136249751186454e-14
+        },
+        "tp_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 5.374879098547316e-16,
+          "relative_l2_difference": 4.581446230898626e-14
+        },
+        "moreau_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 3.021964616621518e-16,
+          "relative_l2_difference": 4.581880451229401e-14
+        },
+        "full_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 3.0256413372009253e-16,
+          "relative_l2_difference": 4.7795587328802105e-14
+        },
+        "smoothed_objective": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 8.673617379884035e-19,
+          "relative_l2_difference": 1.347385016634494e-16
+        },
+        "lmo_atom": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 1.3726595616249452e-13,
+          "relative_l2_difference": 4.771869213879534e-14
+        },
+        "smoothed_gap": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 8.049116928532385e-16,
+          "relative_l2_difference": 3.908202184861315e-15
+        },
+        "factor_operator_norm": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        },
+        "feasibility_violation": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        }
+      },
+      "same_factor_allclose": true,
+      "dense": {
+        "measurement_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "a777edb7c2ca542a1a6a6529563eb326bfa0f8b76ff0f65d38113ac4695c5eb8",
+          "finite": true,
+          "value": 0.006313033941837411
+        },
+        "measurement_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "a9b7ab5b92f9824d2e8cbe363389aeaf2d07ae59ef71f28c15df03ac51b4651c",
+          "finite": true,
+          "l2_norm": 0.005527601316457411
+        },
+        "tp_residual": {
+          "shape": [
+            8,
+            8
+          ],
+          "dtype": "complex128",
+          "sha256": "ed9a3abf0b1611f2defdb375f5a294fdb6d811ffc3cf40ca93ae310b2167ebaf",
+          "finite": true,
+          "l2_norm": 0.021028848076952354
+        },
+        "tp_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "522d337fa808a0f88f9441c7b3f0920c4dd5b5975c422586cbe4581d7d8a0aed",
+          "finite": true,
+          "value": 0.021028848076952354
+        },
+        "tp_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "d74eb79862de74fddee1079f19ab416c90a6435f4a72c13f492090e215142704",
+          "finite": true,
+          "value": 0.00022110622572177135
+        },
+        "tp_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "685a98294e8841971be838cd1e436e1026f74a847652d4817f22d46ba94a65c6",
+          "finite": true,
+          "l2_norm": 0.041858726884321296
+        },
+        "moreau_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "f725aebde70f3c34f6f7036955ee6420683a7dd67f76d81f1513da8e1a95becf",
+          "finite": true,
+          "l2_norm": 0.023538891946910126
+        },
+        "full_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "3b68777f2d64999f349e105f6dbc36b4d9aa17a410ff9241af03f58d2a02bca8",
+          "finite": true,
+          "l2_norm": 0.022558600671130653
+        },
+        "smoothed_objective": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "ce92d1590f1b3d2353fb117ab8853af5ed4432c3aa3fa52777ecc0d5d45da8b6",
+          "finite": true,
+          "value": 0.006437371109817628
+        },
+        "lmo_atom": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "b3f24128e3b103b607070e8317699d649d8d1409c16276e1788c84cf68147527",
+          "finite": true,
+          "l2_norm": 10.000000000000002
+        },
+        "smoothed_gap": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "3cbe674cf860cb87bf332ddc1a203f5e9ee2fe7beb6ccc7e4d951a5c349c9a52",
+          "finite": true,
+          "value": 0.20595446570577086
+        },
+        "factor_operator_norm": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "444d2714bcd1deb0be18f89387891c94ae398de00a459fa8e87f62fbc9178b72",
+          "finite": true,
+          "value": 2.8236347669449784
+        },
+        "feasibility_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+          "finite": true,
+          "value": 0.0
+        }
+      },
+      "structured": {
+        "measurement_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "c31f8d4b82598cce121cf56060a5b80658bacd115a6faf3bff3ddff6b53aa843",
+          "finite": true,
+          "value": 0.00631303394183741
+        },
+        "measurement_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "623fa79dd3dbe8af7334083aadfdaaa7e1a7badf90ddbbc9742c2ca13997a544",
+          "finite": true,
+          "l2_norm": 0.0055276013164574115
+        },
+        "tp_residual": {
+          "shape": [
+            8,
+            8
+          ],
+          "dtype": "complex128",
+          "sha256": "47c62b40d580daac79587fa017a8a3e85718655360151e5c74051d1a57f2cd7d",
+          "finite": true,
+          "l2_norm": 0.021028848076952482
+        },
+        "tp_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "fb7182571cfd9052b05cfd3a211aaf84750d23baab36eedf48c36f5c69be2629",
+          "finite": true,
+          "value": 0.021028848076952482
+        },
+        "tp_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "1057e53b4e733b5299afc6346cb22a10c8962261e1a123f3688c8ce0684a86da",
+          "finite": true,
+          "value": 0.00022110622572177403
+        },
+        "tp_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "74234fc1f296ff552c093ce4ef4fbc739cfc18c6bb3d6b43506cfa3f07bc6e1e",
+          "finite": true,
+          "l2_norm": 0.04185872688432154
+        },
+        "moreau_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "2fd8bce9ea89c4f6208365c0596a42f22ecf72e9745014285375ed41fa25ea4f",
+          "finite": true,
+          "l2_norm": 0.023538891946910268
+        },
+        "full_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "636e790924349f4684ef0661285c5d55e696d9da1fce888c4f199cdf18c45366",
+          "finite": true,
+          "l2_norm": 0.022558600671130705
+        },
+        "smoothed_objective": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "3f83d73422b093426acf2fd86568b25e1aa9e1a3f39d2a5cc6881e8194b5eff2",
+          "finite": true,
+          "value": 0.006437371109817629
+        },
+        "lmo_atom": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "e858c429de474a090b9977d7865851ec8c6035246c57f26910199b1913a59879",
+          "finite": true,
+          "l2_norm": 10.000000000000002
+        },
+        "smoothed_gap": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "f174b3c657dd0acd0b0ddbaf7746fb9adc4b23d05178200c578d58c90a208acf",
+          "finite": true,
+          "value": 0.20595446570577006
+        },
+        "factor_operator_norm": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "444d2714bcd1deb0be18f89387891c94ae398de00a459fa8e87f62fbc9178b72",
+          "finite": true,
+          "value": 2.8236347669449784
+        },
+        "feasibility_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+          "finite": true,
+          "value": 0.0
+        }
+      }
+    },
+    {
+      "id": "evaluation_001",
+      "factor_ids": [
+        "structured:0",
+        "structured:1",
+        "structured:2"
+      ],
+      "artifact": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/same_factor_1886122/evaluation_001.npz",
+      "artifact_sha256": "595d51302f3a4920026d8c017786295e6fe3c32369ad5bd32f1d6c0299a51260",
+      "seconds": 3.312307176995091,
+      "measurement_count": 13824,
+      "batches": 432,
+      "dense_measurement_entries": 56623104,
+      "same_factor_comparisons": {
+        "measurement_loss": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 1.734723475976807e-18,
+          "relative_l2_difference": 2.7476015638039755e-16
+        },
+        "measurement_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 6.527761501258139e-19,
+          "relative_l2_difference": 3.720753587414833e-16
+        },
+        "tp_residual": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 4.449557262054371e-16,
+          "relative_l2_difference": 5.2697597429384396e-14
+        },
+        "tp_violation": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 3.2612801348363973e-16,
+          "relative_l2_difference": 1.550588903396347e-14
+        },
+        "tp_loss": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 6.830473686658678e-18,
+          "relative_l2_difference": 3.088146902451082e-14
+        },
+        "tp_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 5.435369235427436e-16,
+          "relative_l2_difference": 4.7813146751576545e-14
+        },
+        "moreau_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 3.0550008476966235e-16,
+          "relative_l2_difference": 4.78099086861363e-14
+        },
+        "full_gradient": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 3.0550008476966235e-16,
+          "relative_l2_difference": 4.987722625331119e-14
+        },
+        "smoothed_objective": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 1.734723475976807e-18,
+          "relative_l2_difference": 2.694518313152276e-16
+        },
+        "lmo_atom": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 1.280899022243532e-13,
+          "relative_l2_difference": 4.812341065497605e-14
+        },
+        "smoothed_gap": {
+          "same_shape": true,
+          "finite": true,
+          "exact": false,
+          "allclose": true,
+          "max_abs_difference": 1.7486012637846216e-15,
+          "relative_l2_difference": 8.48678216305296e-15
+        },
+        "factor_operator_norm": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        },
+        "feasibility_violation": {
+          "same_shape": true,
+          "finite": true,
+          "exact": true,
+          "allclose": true,
+          "max_abs_difference": 0.0,
+          "relative_l2_difference": 0.0
+        }
+      },
+      "same_factor_allclose": true,
+      "dense": {
+        "measurement_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "d08343f973c259f6f534b61178e8beb754740a559da22f2823fe346a53d244ad",
+          "finite": true,
+          "value": 0.0063135918206973654
+        },
+        "measurement_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "ccdc55f81d1bc68aeb9c2da5ca896c77b8a300c983ecc967fc215ceaeca32a42",
+          "finite": true,
+          "l2_norm": 0.005527971939465223
+        },
+        "tp_residual": {
+          "shape": [
+            8,
+            8
+          ],
+          "dtype": "complex128",
+          "sha256": "34e81e65b93f509d8fbc5383eb9de53141389f551701c4adf075dd336b96a95a",
+          "finite": true,
+          "l2_norm": 0.021032525949934388
+        },
+        "tp_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "0a8b2c858b91d06e982f2fc880195fae7470ead9025042673c9500c2d6109777",
+          "finite": true,
+          "value": 0.021032525949934388
+        },
+        "tp_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "c526447a68be2a99d763527684c05df826f241f6ca07ee04fc6d8cc042d92a29",
+          "finite": true,
+          "value": 0.0002211835739173317
+        },
+        "tp_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "dec75922fcaaad1dc4c7f655583dd354dcd3713ebed9efe325961023911d62c2",
+          "finite": true,
+          "l2_norm": 0.04186606626328021
+        },
+        "moreau_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "cd151aa08449dbf6ab5a8fa0ce23886237692b46df0055b43ed218bf7787d1df",
+          "finite": true,
+          "l2_norm": 0.023543019182999964
+        },
+        "full_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "02c1633ea1d4f9db018831040146d25eadd5d84d822ec00447426ad33afa8b78",
+          "finite": true,
+          "l2_norm": 0.022564349607560263
+        },
+        "smoothed_objective": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "10d3f5b3a1816850d66c495fea226cb69be92748a62a86fc3048425f2bad4112",
+          "finite": true,
+          "value": 0.0064379724847643755
+        },
+        "lmo_atom": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "b2badf7a9d5112ba306e25be14eefa85ac1ed0f40712c4063ab3c887deed720b",
+          "finite": true,
+          "l2_norm": 9.999999999999998
+        },
+        "smoothed_gap": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "48e1eae60f2d624fac453c460a7b0c5f97944326d9c6f93ac18ec00b0064d564",
+          "finite": true,
+          "value": 0.20603819329746942
+        },
+        "factor_operator_norm": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "d03a91adaa56a3b53306f768f7aea2272a015b1b9b95c93e7757f7e7e882cb32",
+          "finite": true,
+          "value": 2.8236386925541774
+        },
+        "feasibility_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+          "finite": true,
+          "value": 0.0
+        }
+      },
+      "structured": {
+        "measurement_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "387d2702c2c29560c679e04fdbc07de16ce5542349606da4e30aa79fe77a12aa",
+          "finite": true,
+          "value": 0.006313591820697364
+        },
+        "measurement_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "26aca11cc156a72be2f03bb6179ef275f4a3328337f6618ec9efc9218c821591",
+          "finite": true,
+          "l2_norm": 0.005527971939465223
+        },
+        "tp_residual": {
+          "shape": [
+            8,
+            8
+          ],
+          "dtype": "complex128",
+          "sha256": "e1810d996de6a8a00227a491ec269701276d3804f608f80768201aad51c29db4",
+          "finite": true,
+          "l2_norm": 0.021032525949934714
+        },
+        "tp_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "e470bbd7f743794483470b1750a94c5ac682e2d4d7910cee491e5add06be62d9",
+          "finite": true,
+          "value": 0.021032525949934714
+        },
+        "tp_loss": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "3486f2532d2d42341221cd5448440d3aa3cc255dd1904d72bb83d30a45982859",
+          "finite": true,
+          "value": 0.00022118357391733853
+        },
+        "tp_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "e468b37f58938db764474b022a7aa80c52f563b47f3d7b9db693e1aa89cccdef",
+          "finite": true,
+          "l2_norm": 0.041866066263280856
+        },
+        "moreau_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "78ee98190a88b55141b4a5fb5fc85986f1a357df6179432da1bee6ee0bc98e59",
+          "finite": true,
+          "l2_norm": 0.02354301918300032
+        },
+        "full_gradient": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "c49bf7eaff7036ecc181ca26d92c3212ca02e81a304b88addbf53b1a4273fd77",
+          "finite": true,
+          "l2_norm": 0.02256434960756056
+        },
+        "smoothed_objective": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "46997d84acc15651b390f71491f954c55145a3aaf9330e07ee6fcceafb7e3212",
+          "finite": true,
+          "value": 0.006437972484764377
+        },
+        "lmo_atom": {
+          "shape": [
+            64,
+            1
+          ],
+          "dtype": "complex128",
+          "sha256": "820eb1522e874fd8ae02101e41a140ddad28d71846490bb86db15195a90091da",
+          "finite": true,
+          "l2_norm": 10.0
+        },
+        "smoothed_gap": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "4c78815d5f44bc8fd922fd8a9be64aeed7567960168dcd220db33e85f31bd444",
+          "finite": true,
+          "value": 0.20603819329747117
+        },
+        "factor_operator_norm": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "d03a91adaa56a3b53306f768f7aea2272a015b1b9b95c93e7757f7e7e882cb32",
+          "finite": true,
+          "value": 2.8236386925541774
+        },
+        "feasibility_violation": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+          "finite": true,
+          "value": 0.0
+        }
+      }
+    }
+  ],
+  "environment": {
+    "hostname": "node010",
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "platform": "Linux-4.18.0-553.144.1.el8_10.x86_64-x86_64-with-glibc2.28",
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "numerical_source_sha256": {
+    "scripts/diagnose_qpt_same_factor.py": "ed5845b470f336e7371ea9e2a7f7357b0ebd8e9122a52f81dea707fd1d46838c",
+    "scripts/diagnose_qpt_reproducibility.py": "6f52fdc33ce5905f8d3fef10a1f1e5bed4f1cccec38c1275526fed639c1e6d6b",
+    "paper/experiments/qpt_same_factor.py": "cd48021fcd304c4aefd8fdd5f0be1242cc8cea89f90b87486054058c8800a10f",
+    "paper/experiments/qpt_structured_data.py": "65bc789f2385555d2099af56f8f408162d9e48e7c1e31513425092bde1e09c23",
+    "paper/experiments/qpt_structured_operators.py": "f0d955d900f2c3ed77b0a8e5bea06acf03dbadfa272abb9e708c357e219c715d",
+    "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+  },
+  "repeatability": {
+    "dense": {
+      "comparisons": [
+        {
+          "reference": "dense:0",
+          "actual": "dense:1",
+          "raw_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "aligned_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "process_matrix": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "alignment": "right-unitary Procrustes; global phase for rank one",
+          "overlap_singular_values": [
+            7.972913297100424
+          ],
+          "note": "Gauge/process agreement does not establish identical optimization trajectories."
+        },
+        {
+          "reference": "dense:0",
+          "actual": "dense:2",
+          "raw_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "aligned_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "process_matrix": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "alignment": "right-unitary Procrustes; global phase for rank one",
+          "overlap_singular_values": [
+            7.972913297100424
+          ],
+          "note": "Gauge/process agreement does not establish identical optimization trajectories."
+        }
+      ],
+      "exact": true,
+      "allclose": true
+    },
+    "structured": {
+      "comparisons": [
+        {
+          "reference": "structured:0",
+          "actual": "structured:1",
+          "raw_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "aligned_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "process_matrix": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "alignment": "right-unitary Procrustes; global phase for rank one",
+          "overlap_singular_values": [
+            7.972935466089066
+          ],
+          "note": "Gauge/process agreement does not establish identical optimization trajectories."
+        },
+        {
+          "reference": "structured:0",
+          "actual": "structured:2",
+          "raw_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "aligned_factor": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "process_matrix": {
+            "same_shape": true,
+            "finite": true,
+            "exact": true,
+            "allclose": true,
+            "max_abs_difference": 0.0,
+            "relative_l2_difference": 0.0
+          },
+          "alignment": "right-unitary Procrustes; global phase for rank one",
+          "overlap_singular_values": [
+            7.972935466089066
+          ],
+          "note": "Gauge/process agreement does not establish identical optimization trajectories."
+        }
+      ],
+      "exact": true,
+      "allclose": true
+    }
+  },
+  "cross_backend": [
+    {
+      "repeat": 0,
+      "reference": "dense:0",
+      "actual": "structured:0",
+      "raw_factor": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 6.164816849991326e-05,
+        "relative_l2_difference": 9.66024711841175e-05
+      },
+      "aligned_factor": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 6.20399272458434e-05,
+        "relative_l2_difference": 9.659711998054618e-05
+      },
+      "process_matrix": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 5.5322996896016505e-05,
+        "relative_l2_difference": 0.00013662319998673724
+      },
+      "alignment": "right-unitary Procrustes; global phase for rank one",
+      "overlap_singular_values": [
+        7.972924344397104
+      ],
+      "note": "Gauge/process agreement does not establish identical optimization trajectories.",
+      "common_evaluator_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "reference": 0.006313033941837411,
+            "actual": 0.0063135918206973654,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 5.578788599544179e-07,
+            "relative_l2_difference": 8.836937439180741e-05
+          },
+          "tp_violation": {
+            "reference": 0.021028848076952354,
+            "actual": 0.021032525949934388,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 3.6778729820344247e-06,
+            "relative_l2_difference": 0.00017489655013796872
+          },
+          "smoothed_objective": {
+            "reference": 0.006437371109817628,
+            "actual": 0.0064379724847643755,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 6.013749467475085e-07,
+            "relative_l2_difference": 9.341933787697158e-05
+          },
+          "smoothed_gap": {
+            "reference": 0.20595446570577086,
+            "actual": 0.20603819329746942,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 8.372759169855692e-05,
+            "relative_l2_difference": 0.0004065344803844711
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "reference": 0.00631303394183741,
+            "actual": 0.006313591820697364,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 5.578788599535506e-07,
+            "relative_l2_difference": 8.836937439167003e-05
+          },
+          "tp_violation": {
+            "reference": 0.021028848076952482,
+            "actual": 0.021032525949934714,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 3.677872982232183e-06,
+            "relative_l2_difference": 0.00017489655014737182
+          },
+          "smoothed_objective": {
+            "reference": 0.006437371109817629,
+            "actual": 0.006437972484764377,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 6.013749467483759e-07,
+            "relative_l2_difference": 9.34193378771063e-05
+          },
+          "smoothed_gap": {
+            "reference": 0.20595446570577006,
+            "actual": 0.20603819329747117,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 8.372759170111044e-05,
+            "relative_l2_difference": 0.0004065344803968711
+          }
+        }
+      }
+    },
+    {
+      "repeat": 1,
+      "reference": "dense:1",
+      "actual": "structured:1",
+      "raw_factor": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 6.164816849991326e-05,
+        "relative_l2_difference": 9.66024711841175e-05
+      },
+      "aligned_factor": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 6.20399272458434e-05,
+        "relative_l2_difference": 9.659711998054618e-05
+      },
+      "process_matrix": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 5.5322996896016505e-05,
+        "relative_l2_difference": 0.00013662319998673724
+      },
+      "alignment": "right-unitary Procrustes; global phase for rank one",
+      "overlap_singular_values": [
+        7.972924344397104
+      ],
+      "note": "Gauge/process agreement does not establish identical optimization trajectories.",
+      "common_evaluator_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "reference": 0.006313033941837411,
+            "actual": 0.0063135918206973654,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 5.578788599544179e-07,
+            "relative_l2_difference": 8.836937439180741e-05
+          },
+          "tp_violation": {
+            "reference": 0.021028848076952354,
+            "actual": 0.021032525949934388,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 3.6778729820344247e-06,
+            "relative_l2_difference": 0.00017489655013796872
+          },
+          "smoothed_objective": {
+            "reference": 0.006437371109817628,
+            "actual": 0.0064379724847643755,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 6.013749467475085e-07,
+            "relative_l2_difference": 9.341933787697158e-05
+          },
+          "smoothed_gap": {
+            "reference": 0.20595446570577086,
+            "actual": 0.20603819329746942,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 8.372759169855692e-05,
+            "relative_l2_difference": 0.0004065344803844711
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "reference": 0.00631303394183741,
+            "actual": 0.006313591820697364,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 5.578788599535506e-07,
+            "relative_l2_difference": 8.836937439167003e-05
+          },
+          "tp_violation": {
+            "reference": 0.021028848076952482,
+            "actual": 0.021032525949934714,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 3.677872982232183e-06,
+            "relative_l2_difference": 0.00017489655014737182
+          },
+          "smoothed_objective": {
+            "reference": 0.006437371109817629,
+            "actual": 0.006437972484764377,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 6.013749467483759e-07,
+            "relative_l2_difference": 9.34193378771063e-05
+          },
+          "smoothed_gap": {
+            "reference": 0.20595446570577006,
+            "actual": 0.20603819329747117,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 8.372759170111044e-05,
+            "relative_l2_difference": 0.0004065344803968711
+          }
+        }
+      }
+    },
+    {
+      "repeat": 2,
+      "reference": "dense:2",
+      "actual": "structured:2",
+      "raw_factor": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 6.164816849991326e-05,
+        "relative_l2_difference": 9.66024711841175e-05
+      },
+      "aligned_factor": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 6.20399272458434e-05,
+        "relative_l2_difference": 9.659711998054618e-05
+      },
+      "process_matrix": {
+        "same_shape": true,
+        "finite": true,
+        "exact": false,
+        "allclose": false,
+        "max_abs_difference": 5.5322996896016505e-05,
+        "relative_l2_difference": 0.00013662319998673724
+      },
+      "alignment": "right-unitary Procrustes; global phase for rank one",
+      "overlap_singular_values": [
+        7.972924344397104
+      ],
+      "note": "Gauge/process agreement does not establish identical optimization trajectories.",
+      "common_evaluator_metrics": {
+        "dense": {
+          "measurement_loss": {
+            "reference": 0.006313033941837411,
+            "actual": 0.0063135918206973654,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 5.578788599544179e-07,
+            "relative_l2_difference": 8.836937439180741e-05
+          },
+          "tp_violation": {
+            "reference": 0.021028848076952354,
+            "actual": 0.021032525949934388,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 3.6778729820344247e-06,
+            "relative_l2_difference": 0.00017489655013796872
+          },
+          "smoothed_objective": {
+            "reference": 0.006437371109817628,
+            "actual": 0.0064379724847643755,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 6.013749467475085e-07,
+            "relative_l2_difference": 9.341933787697158e-05
+          },
+          "smoothed_gap": {
+            "reference": 0.20595446570577086,
+            "actual": 0.20603819329746942,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 8.372759169855692e-05,
+            "relative_l2_difference": 0.0004065344803844711
+          }
+        },
+        "structured": {
+          "measurement_loss": {
+            "reference": 0.00631303394183741,
+            "actual": 0.006313591820697364,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 5.578788599535506e-07,
+            "relative_l2_difference": 8.836937439167003e-05
+          },
+          "tp_violation": {
+            "reference": 0.021028848076952482,
+            "actual": 0.021032525949934714,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 3.677872982232183e-06,
+            "relative_l2_difference": 0.00017489655014737182
+          },
+          "smoothed_objective": {
+            "reference": 0.006437371109817629,
+            "actual": 0.006437972484764377,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 6.013749467483759e-07,
+            "relative_l2_difference": 9.34193378771063e-05
+          },
+          "smoothed_gap": {
+            "reference": 0.20595446570577006,
+            "actual": 0.20603819329747117,
+            "same_shape": true,
+            "finite": true,
+            "exact": false,
+            "allclose": false,
+            "max_abs_difference": 8.372759170111044e-05,
+            "relative_l2_difference": 0.0004065344803968711
+          }
+        }
+      }
+    }
+  ],
+  "findings": {
+    "inputs_unchanged": true,
+    "numerical_sources_unchanged": true,
+    "no_jax_imported": true,
+    "same_factor_formulations_allclose": true,
+    "dense_repeats_exact": true,
+    "structured_repeats_exact": true,
+    "cross_backend_raw_allclose": false,
+    "cross_backend_aligned_allclose": false,
+    "cross_backend_process_allclose": false,
+    "saved_metrics_match_both_cpu_evaluators": true
+  },
+  "seconds": 13.86840676801512
+}

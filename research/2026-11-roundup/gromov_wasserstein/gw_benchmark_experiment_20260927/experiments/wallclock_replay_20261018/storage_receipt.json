@@ -1,0 +1,23 @@
+{
+  "quota_verified": true,
+  "quota_available_bytes": 73723117568,
+  "checkpoint_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/checkpoints",
+  "verified_utc": "2026-10-18T18:22:53.634830+00:00",
+  "command": [
+    "mmlsquota",
+    "-u",
+    "silvetian",
+    "gpfs:workdir"
+  ],
+  "raw_output": "                         Block Limits                                               |     File Limits\nFilesystem Fileset    type             KB      quota      limit   in_doubt    grace |    files   quota    limit in_doubt    grace  Remarks\ngpfs       workdir    USR       449960688  524288000  576716800    2332080     none |   238861  400000   440000      196     none \n",
+  "quota_used_kib": 449960688,
+  "quota_soft_limit_kib": 524288000,
+  "quota_hard_limit_kib": 576716800,
+  "quota_in_doubt_kib": 2332080,
+  "required_available_bytes": 70866960384,
+  "global_serialized_reservation_bytes": 70866960384,
+  "share_transaction_peak_bytes": 65086214400,
+  "entropy_two_stream_peak_bytes": 2219810816,
+  "paused_replay_peak_bytes": 3200000000,
+  "peak_note": "SHARE needs all four allowed A100s; at its peak, the replay is paused; reserve both generations in case its checkpoint writer was interrupted."
+}

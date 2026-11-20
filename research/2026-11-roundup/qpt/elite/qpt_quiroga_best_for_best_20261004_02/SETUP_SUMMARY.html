@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiroga–FRAMES best-for-best setup</title>
+  <style>
+    :root { color-scheme: light; --ink:#18212b; --muted:#56616d; --line:#cbd3da; --blue:#164e78; --ok:#166534; --paper:#fff; --wash:#f2f6f8; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--wash); color:var(--ink); font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:980px; margin:28px auto; background:var(--paper); padding:34px 42px 42px; box-shadow:0 2px 16px #0001; }
+    h1 { margin:0 0 4px; color:var(--blue); font-size:28px; }
+    h2 { margin:28px 0 10px; color:var(--blue); font-size:19px; border-bottom:1px solid var(--line); padding-bottom:5px; }
+    p { margin:8px 0; }
+    .status { margin:20px 0; padding:14px 16px; border:2px solid var(--ok); color:var(--ok); background:#f3fbf5; font-weight:700; }
+    code { background:#eef2f4; padding:1px 4px; border-radius:3px; }
+    table { width:100%; border-collapse:collapse; margin:10px 0 16px; }
+    th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+    th { background:#edf3f6; }
+    ul, ol { margin:8px 0 8px 22px; padding:0; }
+    .small { color:var(--muted); font-size:13px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Quiroga–FRAMES best-for-best setup</h1>
+  <p class="small">Campaign setup <code>qpt_quiroga_best_for_best_20261004_02</code> · 4 October 2026</p>
+
+  <div class="status">
+    LOCAL SETUP COMPLETE — REMOTE SMOKE NOT SUBMITTED.<br>
+    Pinned source revision: <code>0586c15a8c4eccf644b67d3bae97dc3b017e6e69</code>.
+  </div>
+
+  <p>This bundle corrects the primary comparison so that each method receives its own calibrated TP treatment. Fairness comes from shared physical data and evaluation—not from forcing two different algorithms to optimize the same penalized objective.</p>
+
+  <h2>Validation completed</h2>
+  <table>
+    <tbody>
+      <tr><th>Focused tests</th><td>27 passed, 0 failed</td></tr>
+      <tr><th>Full repository suite</th><td>532 passed, 55 skipped, 0 failed</td></tr>
+      <tr><th>Independent audit</th><td>Approved</td></tr>
+      <tr><th>Committed source</th><td><code>0586c15a8c4eccf644b67d3bae97dc3b017e6e69</code></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Method-native objectives</h2>
+  <table>
+    <thead><tr><th>Method</th><th>Objective and independently selected controls</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Printed adaFGD</td>
+        <td><code>0.5||r||² + λ<sub>Q</sub>H</code>, with fixed <code>α<sub>Q</sub>=λ<sub>Q</sub>/m</code>. Select <code>α<sub>Q</sub></code> and <code>eta_scale</code> independently.</td>
+      </tr>
+      <tr>
+        <td>FRAMES</td>
+        <td><code>(1/(2m))||r||² + α<sub>F,k</sub>H</code>, with <code>α<sub>F,0</sub>=1/(2β<sub>0</sub>)</code> and <code>α<sub>F,k</sub>=α<sub>F,0</sub>(k+1)<sup>0.25</sup></code>. Select only the initial <code>α<sub>F,0</sub></code> from its own grid; the exponent is fixed.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Critical analysis rule:</strong> method-native penalized objectives are retained as diagnostics but are never differenced, pooled, or used as a cross-method score. Paired differences are limited to recovery/physical metrics: loss or RMSE, fidelity, TP violation, and the gate indicator. Factor norms, timing, and work counters remain method diagnostics—not paired estimands.</p>
+
+  <h2>Predeclared grids</h2>
+  <table>
+    <tbody>
+      <tr><th>Printed <code>α<sub>Q</sub></code></th><td>0.5, 0.05, 0.005, 0.0005, 0.00005</td></tr>
+      <tr><th>Printed <code>eta_scale</code></th><td>1e-4, 3e-4, 1e-3, 3e-3, 1e-2, 3e-2</td></tr>
+      <tr><th>FRAMES <code>α<sub>F,0</sub></code></th><td>0.5, 0.05, 0.005, 0.0005, 0.00005</td></tr>
+      <tr><th>FRAMES exponent</th><td><code>p=0.25</code>, fixed and positive</td></tr>
+    </tbody>
+  </table>
+  <p>The two alpha grids happen to contain the same numeric values, but they are independent method-specific grids and do not define paired penalty settings.</p>
+
+  <h2>Shared comparison contract</h2>
+  <ul>
+    <li>Identical data/channel instance, active rows, observations, serialized <code>U0</code>, rank, precision, logical row budget, and checkpoints.</li>
+    <li>Common noiseless recovery gate: fidelity ≥ 0.99, full-design RMSE ≤ 1e-6, and normalized TP violation ≤ 1e-3.</li>
+    <li>FRAMES retains its operator-norm-ball domain; printed adaFGD remains unconstrained. This domain difference must be reported.</li>
+    <li>Logical row epochs are the progress axis, not a compute-equivalence claim. Wall time, LMO work, and spectral-norm work remain separate.</li>
+  </ul>
+
+  <h2>Order and freezing</h2>
+  <ol>
+    <li>Run <strong>n=2 full 128 rows</strong>, then <strong>n=2 subset 96</strong>. The subset gate uses RMSE on all 128 rows.</li>
+    <li>Select one configuration per method on calibration instances using the predeclared gate-first rule.</li>
+    <li>Write and hash an immutable selection manifest containing both selected config IDs. Validation runs use those frozen IDs and cannot rerank them.</li>
+    <li>Run held-out instances only with the same selection-manifest hash, selected config IDs, budgets, checkpoints, gate, and source commit.</li>
+    <li>Proceed to <strong>n=4 full 8,192 rows</strong> only after the n=2 launcher, archive, accounting, and aggregation checks pass.</li>
+  </ol>
+  <p>Previous corrected-design runs remain preserved as exploratory or ablation evidence. The old shared-penalty bundle is preserved unchanged but is superseded for primary claims; it may be reported only as a matched-penalty ablation. Legacy high-qubit QPT_BFW runs remain valid only for their local-Pauli sensing design.</p>
+
+  <h2>Local n=2 full-design smoke</h2>
+  <table>
+    <tbody>
+      <tr><th>Outcome</th><td>Completed; both methods complete; schema 2; protocol <code>method_tuned_dynamic_frames_matched_nominal_row_accesses_v2</code></td></tr>
+      <tr><th>Printed adaFGD</th><td><code>alpha_Q=0.05</code>; fixed <code>lambda_Q=6.4</code></td></tr>
+      <tr><th>FRAMES initial</th><td><code>alpha_F0=0.005</code>; <code>beta0=100</code>; <code>p=0.25</code></td></tr>
+      <tr><th>FRAMES endpoint</th><td><code>alpha_F=0.008408964152537144</code>; <code>beta=59.46035575013606</code></td></tr>
+      <tr><th>JSON SHA-256</th><td><code>3f68231ff64c0cff1bb7b725c30940d20f8b4a58ea121bc863861e30fc888301</code></td></tr>
+      <tr><th>NPZ SHA-256</th><td><code>5f1f593cb27b8439fc48990bccad56ff06b3e271284c46a85d614813c8de40bc</code></td></tr>
+    </tbody>
+  </table>
+  <p class="small">This two-row-epoch run validates launcher, provenance, budget, serialization, and method plumbing. It is not a recovery result.</p>
+
+  <h2>Ruche smoke staged locally</h2>
+  <table>
+    <tbody>
+      <tr><th>Partition/resources</th><td><code>cpu_short</code>; 1 task; 2 CPUs; 1 GiB; 20 minutes</td></tr>
+      <tr><th>Environment</th><td><code>anaconda3/2023.09-0/none-none</code>, Conda environment <code>qpt</code></td></tr>
+      <tr><th>Output root</th><td><code>/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_0586c15a8c4eccf644b67d3bae97dc3b017e6e69_20261004_02</code></td></tr>
+      <tr><th>CLI penalty flags</th><td><code>--printed-tp-weight-per-row</code>, <code>--frames-initial-tp-weight-per-row</code>, <code>--frames-penalty-exponent 0.25</code></td></tr>
+      <tr><th>Submission state</th><td><strong>Not transferred or submitted.</strong> Transfer and submission require separate authorization and remote preflight checks.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Bundle and deferred work</h2>
+  <p>This HTML, its PDF rendering, the plan, launcher, and local smoke pair are sealed by <code>manifest.sha256</code>. Selection manifests, calibration/validation/held-out results, remote logs, transfer, and submission remain deliberately unperformed.</p>
+</main>
+</body>
+</html>

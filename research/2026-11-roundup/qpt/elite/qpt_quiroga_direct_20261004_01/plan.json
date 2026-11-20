@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "campaign_id": "qpt_quiroga_direct_20261004_01",
+  "created_local_date": "2026-10-04",
+  "status": "local_setup_complete_remote_smoke_not_submitted",
+  "objective": "Direct paired comparison of stochastic FRAMES and the printed Quiroga adaFGD update on the Quiroga-style global-probe/2d-outcome-POVM sensing design.",
+  "source": {
+    "repository": "/home/tony/frankwolfe",
+    "branch": "stochastic-frames",
+    "git_commit": "3bf36c4f47ac2c637df9fe3e1d9db0d8173484e2",
+    "git_commit_short": "3bf36c4",
+    "origin_branch": "origin/stochastic-frames",
+    "published_to_origin": false,
+    "publication_note": "Push was not performed because this environment requires explicit authorization for code egress to the configured remote."
+  },
+  "preservation": {
+    "prior_results_modified": false,
+    "prior_primary_reference": "/home/tony/qpt_quiroga_n4_d62fcf1_20261002_01",
+    "prior_result_role": "exploratory evidence only because the held-out adaFGD and FRAMES arms used different penalty strengths",
+    "legacy_high_qubit_role": "retain as local-Pauli/QPT_BFW evidence, not as Quiroga-style sensing evidence"
+  },
+  "scientific_contract": {
+    "methods": [
+      "printed-adafgd",
+      "frames"
+    ],
+    "sensing": "Quiroga-style global probes with one generalized 2d-outcome POVM",
+    "truth_rank": 1,
+    "observation_mode": "noiseless",
+    "shared_arrays": [
+      "truth factor",
+      "active rows",
+      "observations",
+      "initial factor"
+    ],
+    "portable_penalty": {
+      "symbol": "alpha",
+      "common_mean_objective": "(1/(2m))*||A_S(UU^H)-y_S||_2^2 + alpha*||Tr_out(UU^H)-I||_F^2",
+      "printed_adafgd_lambda": "m*alpha",
+      "frames_beta": "1/(2*alpha)"
+    },
+    "primary_alpha_grid": [
+      0.5,
+      0.05,
+      0.005,
+      0.0005,
+      0.00005
+    ],
+    "equivalent_frames_beta_grid": [
+      1.0,
+      10.0,
+      100.0,
+      1000.0,
+      10000.0
+    ],
+    "budget_unit": "logical active-row epochs",
+    "budget_warning": "Logical row epochs are not compute-equivalent. Report wall time and adaFGD spectral work separately.",
+    "recovery_gate": {
+      "process_fidelity_min": 0.99,
+      "full_design_rmse_max": 1e-06,
+      "normalized_tp_violation_max": 0.001
+    },
+    "primary_analysis_unit": "independent data/channel instance",
+    "nested_aggregation": [
+      "sampling streams within initialization",
+      "initializations within data/channel instance",
+      "equal-weight data/channel instances within cohort"
+    ],
+    "gate_estimand": "nested mean of Boolean gate outcomes",
+    "secondary_gate_diagnostic": "all replicates and initializations pass"
+  },
+  "domains": {
+    "frames": {
+      "constraint": "operator-norm ball",
+      "tau_n2": 2.0,
+      "tau_n4": 4.0
+    },
+    "printed_adafgd": {
+      "constraint": "none",
+      "projection": "none"
+    }
+  },
+  "seed_plan": {
+    "master_seed_label": 20261004,
+    "calibration_channel_ids_n2": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "validation_channel_ids_n2": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107
+    ],
+    "final_heldout_channel_ids_n2": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019
+    ],
+    "calibration_channel_ids_n4": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "validation_channel_ids_n4": [
+      100,
+      101,
+      102,
+      103
+    ],
+    "final_heldout_channel_ids_n4": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009
+    ],
+    "domain_separation": {
+      "initialization_seed": "200000 + 10*channel_id + initialization_index",
+      "frames_sampling_seed": "300000 + 100*channel_id + 10*initialization_index + sampling_index",
+      "subset_seed": "400000 + channel_id"
+    },
+    "sampling_replicates_per_initialization_for_final_runs": 3,
+    "note": "Earlier exposed held-out seeds 1-3 are not reused as unseen final instances."
+  },
+  "calibration": {
+    "printed_adafgd_eta_scale_grid": [
+      0.0001,
+      0.0003,
+      0.001,
+      0.003,
+      0.01,
+      0.03
+    ],
+    "frames_batch_size": 32,
+    "frames_rho_schedule": {
+      "type": "PowerSchedule",
+      "scale": 2.0,
+      "offset": 4.0,
+      "exponent": 0.6,
+      "cap": 1.0
+    },
+    "frames_step_schedule": {
+      "type": "PowerSchedule",
+      "scale": 2.0,
+      "offset": 2.0,
+      "exponent": 1.0,
+      "cap": 1.0
+    },
+    "successive_halving_row_epochs": [
+      400,
+      2000,
+      "maximum"
+    ],
+    "maximum_row_epochs_n2": 10000,
+    "maximum_row_epochs_n4": 20000,
+    "selection_rule": "Tune algorithm-specific controls only on calibration instances. Keep alpha common for every paired primary comparison and report the complete held-out alpha grid.",
+    "secondary_lane": "Independent alpha tuning is allowed only as a separately labeled method-tuned/different-objective analysis."
+  },
+  "phases": [
+    {
+      "name": "local_postcommit_smoke",
+      "status": "passed",
+      "n_qubits": 1,
+      "row_epochs": 1,
+      "nominal_row_accesses": 16,
+      "artifact_location": "/tmp/qpt-direct-smoke.y7WC9o",
+      "artifact_role": "transient plumbing evidence, not a scientific result"
+    },
+    {
+      "name": "elite_n2_launcher_equivalent_smoke",
+      "status": "passed",
+      "n_qubits": 2,
+      "design": "full_128",
+      "row_epochs": 2,
+      "nominal_row_accesses_per_method": 256,
+      "artifact_location": "/home/tony/qpt_quiroga_direct_20261004_01/local_smoke",
+      "npz_sha256": "423e4e4723c28d5773362864de14471e7e23236ff3478667b77e3d68d283095d",
+      "json_sha256": "25accd1752caf2b47848947c81be04a3c122db2952da4f5dae8fd7ed447cca4b",
+      "both_methods_complete": true,
+      "recovery_gate_role": "plumbing only; two epochs are not a recovery budget"
+    },
+    {
+      "name": "ruche_scheduler_smoke",
+      "status": "staged_not_submitted",
+      "n_qubits": 2,
+      "design": "full_128",
+      "row_epochs": 2,
+      "checkpoint_epochs": 1,
+      "alpha": 0.005,
+      "eta_scale": 0.003,
+      "batch_size": 32,
+      "channel_seed": 0,
+      "initialization_seed": 0,
+      "sampling_seed": 0
+    },
+    {
+      "name": "n2_full_and_subset96_calibration",
+      "status": "not_started"
+    },
+    {
+      "name": "n2_frozen_validation_and_heldout",
+      "status": "not_started"
+    },
+    {
+      "name": "n4_full_design_calibration_validation_heldout",
+      "status": "blocked_on_n2_pipeline_and_accounting_checks"
+    }
+  ],
+  "ruche": {
+    "remote_repo_target": "/gpfs/workdir/silvetian/frankwolfe-quiroga-3bf36c4",
+    "remote_output_root": "/gpfs/workdir/silvetian/qpt_quiroga_direct_3bf36c4_20261004_01",
+    "environment": {
+      "module": "anaconda3/2023.09-0/none-none",
+      "conda_environment": "qpt"
+    },
+    "smoke_resources": {
+      "partition": "cpu_short",
+      "nodes": 1,
+      "tasks": 1,
+      "cpus_per_task": 2,
+      "memory": "1G",
+      "walltime": "00:20:00"
+    },
+    "n4_2000_epoch_pilot": {
+      "partition": "cpu_short",
+      "cpus_per_task": 2,
+      "memory": "2G",
+      "walltime": "00:20:00",
+      "array_concurrency_cap": 3
+    },
+    "n4_20000_epoch_followup": {
+      "partition": "cpu_med",
+      "cpus_per_task": 2,
+      "memory": "2G",
+      "walltime": "01:45:00",
+      "array_concurrency_cap": 3
+    },
+    "jobs_submitted_by_this_setup": []
+  },
+  "validation": {
+    "focused_tests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "quiroga_frames_regression_tests": {
+      "passed": 96,
+      "failed": 0
+    },
+    "full_repository_tests": {
+      "passed": 525,
+      "skipped": 55,
+      "failed": 0
+    },
+    "postcommit_smoke": {
+      "passed": true,
+      "json_npz_metadata_match": true,
+      "pickle_free_npz": true,
+      "method_pair_present": true
+    }
+  },
+  "known_limitations_before_paper_production": [
+    "A paired sidecar currently reruns deterministic printed-adaFGD for every FRAMES sampling seed. The aggregator validates and collapses identical scientific endpoints, but a production launcher should compute/reuse the deterministic trajectory once.",
+    "The sidecar aggregator validates JSON metadata only. A separate NPZ/JSON/checksum validator is required before paper use.",
+    "If FRAMES raises during optimization, the current core retains the shared initial point rather than the last finite FRAMES iterate.",
+    "Fixed-order per-method optimizer timings are descriptive; controlled timing claims require fresh processes with balanced or randomized order and recorded hardware.",
+    "Subset-96 full-design recovery gating is endpoint-only until full-design metrics are retained at every checkpoint."
+  ]
+}

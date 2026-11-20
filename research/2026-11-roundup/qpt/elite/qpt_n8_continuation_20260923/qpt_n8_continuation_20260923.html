@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@page { size: A4 landscape; margin: 13mm 14mm 12mm 14mm; }
+body { font-family: 'DejaVu Sans', sans-serif; color: #253343; font-size: 9.5pt; line-height: 1.34; }
+.page { page-break-after: always; position: relative; min-height: 165mm; }
+.page:last-child { page-break-after: auto; }
+h1 { color: #253343; font-size: 21pt; margin: 0 0 2mm 0; border-top: 1px solid #DCE4EA; padding-top: 4mm; }
+h2 { color: #176B9A; font-size: 12pt; margin: 4mm 0 2mm 0; }
+.kicker { color: #617183; font-size: 8.5pt; margin-bottom: 5mm; }
+.callout { color: #176B9A; font-size: 13pt; font-weight: bold; margin: 3mm 0 4mm 0; }
+.small { color: #617183; font-size: 8pt; }
+.twocol { display: table; width: 100%; table-layout: fixed; }
+.col { display: table-cell; width: 50%; vertical-align: top; padding-right: 5mm; }
+table { border-collapse: collapse; width: 100%; margin: 2mm 0 4mm 0; font-size: 8.3pt; }
+th { background: #253343; color: white; text-align: left; padding: 1.7mm; }
+td { padding: 1.5mm 1.7mm; border-bottom: 0.3mm solid #DCE4EA; }
+tbody tr:nth-child(even) { background: #F5F7F9; }
+img.chart { width: 100%; height: auto; margin: 1mm 0 1mm 0; }
+.footer { position: absolute; bottom: 0; left: 0; right: 0; border-top: 1px solid #DCE4EA; color: #617183; font-size: 7.5pt; padding-top: 2mm; }
+code { font-family: 'DejaVu Sans Mono', monospace; font-size: 8pt; }
+</style></head><body>
+
+<section class="page">
+<h1>Eight-qubit QPT: exact continuation to 200,000 steps</h1>
+<div class="kicker">Usual noise σ=0.05 · batch 65,536 · requested exponents 3/4, 1/4, 1/2 · one fixed dataset and seed</div>
+<div class="callout">The requested-exponent trajectory reaches 99% at the saved 174,000-step checkpoint and finishes at 99.13929%.</div>
+<table><thead><tr><th>Checkpoint</th><th>Fidelity</th><th>Sampled loss</th><th>TP residual</th></tr></thead><tbody><tr><td>Parent, 148,000</td><td>98.76891%</td><td>0.0011358295</td><td>0.1976805</td></tr><tr><td>Continuation, 200,000</td><td>99.13929%</td><td>0.00113493693</td><td>0.1706184</td></tr></tbody></table>
+<p><b>Answer to the experiment question.</b> More iterations alone were sufficient for this trajectory to cross 99%. Every saved checkpoint from 191,000 through 200,000 also remained above 99%, so the endpoint is not a lone saved-threshold excursion.</p>
+<p>From 148,000 to 200,000 steps, factor fidelity improves by 0.3704 percentage points, the fixed-sample loss changes from 0.0011358295 to 0.00113493693, and the complete-factor TP residual improves from 0.1976805 to 0.1706184. TP is reported separately; fidelity is not a physical-feasibility certificate.</p>
+<h2>Fixed scientific scope</h2>
+<p>This is one exact restart, not a new sweep. It preserves the parent factor, momentum estimate, PCG64 sampling state, global schedule index, dataset, source snapshot and all optimizer settings. The segment adds 52,000 updates and 3,407,872,000 optimizer-row draws, ending at 13,107,200,000 total draws.</p>
+<div class="footer">Structured stochastic-FRAMES / QPT · job 1939620 · 24 September 2026 · page 1</div>
+</section>
+
+<section class="page">
+<h1>Combined saved trajectory</h1>
+<div class="kicker">Solid blue: original winning run, steps 0–148,000 · solid orange: exact continuation, steps 148,000–200,000 · no smoothing or fitted curve</div>
+<img class="chart" src="report_assets/trajectory_full.svg">
+<p class="small">Fidelity is |c†u|²/(||c||²||u||²), computed from complete factors and invariant to nonzero phase/scale. Sampled measurement loss uses the fixed 512-row metric sample with seed 12345. TP is ||T(uu†)−I||<sub>F</sub> from the complete factor and is plotted logarithmically. The dotted line is the 99% reference.</p>
+<div class="footer">Saved evidence at 1,000-step cadence · page 2</div>
+</section>
+
+<section class="page">
+<h1>Late trajectory and threshold persistence</h1>
+<div class="kicker">Zoomed to 100,000–200,000 steps; the scientific traces remain unsmoothed</div>
+<img class="chart" src="report_assets/trajectory_late.svg">
+<div class="twocol"><div class="col"><h2>Final ten saved checkpoints</h2><table><thead><tr><th>Saved step</th><th>Fidelity</th><th>Sampled loss</th><th>TP residual</th></tr></thead><tbody><tr><td>191,000</td><td>99.10148%</td><td>0.00113636912</td><td>0.1734496</td></tr><tr><td>192,000</td><td>99.10645%</td><td>0.00113646555</td><td>0.1747628</td></tr><tr><td>193,000</td><td>99.11019%</td><td>0.00113655213</td><td>0.1731092</td></tr><tr><td>194,000</td><td>99.11469%</td><td>0.00113644414</td><td>0.1735892</td></tr><tr><td>195,000</td><td>99.11820%</td><td>0.00113618074</td><td>0.1740994</td></tr><tr><td>196,000</td><td>99.12464%</td><td>0.00113561092</td><td>0.17316</td></tr><tr><td>197,000</td><td>99.12849%</td><td>0.00113553702</td><td>0.1722434</td></tr><tr><td>198,000</td><td>99.13288%</td><td>0.00113545259</td><td>0.1711749</td></tr><tr><td>199,000</td><td>99.13407%</td><td>0.00113560469</td><td>0.170114</td></tr><tr><td>200,000</td><td>99.13929%</td><td>0.00113493693</td><td>0.1706184</td></tr></tbody></table></div>
+<div class="col"><h2>Observed threshold behavior</h2>
+<p>First saved F≥99%: <b>174,000 steps</b>.</p>
+<p>All saved checkpoints 191,000–200,000 ≥99%: <b>yes</b>.</p>
+<p>The prior descriptive projection suggested a crossing near 170–175k; the observed saved crossing is 174k. This agreement does not turn the earlier fit into a confidence interval or validate extrapolation to other seeds.</p>
+<p>The TP residual continues improving, from 0.1976805 at restart to 0.1706184 at the endpoint.</p></div></div>
+<div class="footer">Threshold assessment uses saved 1,000-step checkpoints · page 3</div>
+</section>
+
+<section class="page">
+<h1>Schedules, budgets, and runtime definitions</h1>
+<table><thead><tr><th>Quantity</th><th>Exact value</th></tr></thead><tbody><tr><td>Step size γₖ</td><td>min(1, 0.5/(k+10)<sup>3/4</sup>)</td></tr><tr><td>Smoothing βₖ</td><td>10<sup>7</sup>/(k+1)<sup>1/4</sup>; no cap</td></tr><tr><td>Momentum ρₖ</td><td>min(1, 0.6/(k+4)<sup>1/2</sup>)</td></tr><tr><td>Segment / total steps</td><td>148,000→200,000 / 200,000</td></tr><tr><td>Batch / rank / τ / precision</td><td>65,536 / 1 / 20 / 64-bit</td></tr><tr><td>Backend / prefetch / metric</td><td>product-state / yes / sampled 512 rows every 1,000</td></tr><tr><td>Seeds</td><td>channel, noise, initialization, sampling: 0; metric: 12345</td></tr></tbody></table>
+<h2>Measured continuation runtime</h2>
+<table><thead><tr><th>Timer</th><th>Measured value</th><th>Scope</th></tr></thead><tbody><tr><td>Slurm elapsed</td><td>12 min 17 s</td><td>Whole allocation; COMPLETED, exit 0:0</td></tr><tr><td>Runner</td><td>705.106 s (11.75 min)</td><td>Continuation runner after setup</td></tr><tr><td>Optimizer</td><td>403.873 s (6.73 min)</td><td>52,000 GPU updates</td></tr><tr><td>Host preparation</td><td>346.519 s</td><td>Overlapped background time</td></tr><tr><td>Metric evaluation</td><td>2.358 s</td><td>Saved-checkpoint metrics</td></tr></tbody></table>
+<p><b>Definitions.</b> Runner time begins after setup and includes compilation, host preparation, transfers, metrics and rolling restart checkpointing. Optimizer time measures GPU update execution. Host preparation accumulates background preparation time and overlaps GPU work under prefetch, so these phase timers must not be added as disjoint totals. Slurm elapsed time is the whole allocation.</p>
+<p class="small">Virtual dataset M=24⁸=110,075,314,176 rows, sampled uniformly with replacement and never materialized. The noisy-truth expectation σ²/2=0.00125 is not a measured convergence floor. No fidelity early stopping was used.</p>
+<div class="footer">Exact continuation configuration · page 4</div>
+</section>
+
+<section class="page">
+<h1>Independent verification and provenance</h1>
+<table><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody><tr><td>Scheduler</td><td>COMPLETED on ruche-gpu15; exit 0:0</td></tr><tr><td>Restart continuity</td><td>The resumed step-148000 factor hash and initial fidelity/loss/TP match the parent endpoint.</td></tr><tr><td>Exact schedules</td><td>All 52,000 applied scalar values match the frozen exponents, scales, offsets and caps.</td></tr><tr><td>Final step</td><td>200,000; exactly 52,000 additional updates</td></tr><tr><td>Independent full-factor result</td><td>verified; primary ≥99% target met</td></tr><tr><td>Final-ten persistence</td><td>all saved checkpoints 191,000–200,000 ≥99%</td></tr></tbody></table>
+<h2>Interpretation and limitations</h2>
+<p>The independent verifier recomputed fidelity and TP from the complete saved factor using NumPy-only contractions. Saved fidelity 0.9913929063754052 agrees with independently computed 0.9913929063754066 (matrix form 0.9913929063754067); saved TP 0.1706183674269944 agrees with independently computed 0.1706183674269938. Truth TP residual is 4.91e-14.</p>
+<p>This is one Haar-unitary channel, one fixed noisy dataset, one initialization and one optimizer sampling seed. It answers the bounded continuation question for this trajectory only; it does not establish a success probability, uncertainty interval, universal scale optimum, or physical-feasibility certificate.</p>
+<p><b>Backup integrity.</b> All 11 copied files matched Ruche byte-for-byte by SHA-256 at collection. The wrapper’s internal manifest matches every scientific artifact. Its Slurm stdout entry records the empty-file hash because the wrapper computed checksums before Slurm appended the final COMPLETE line; the finalized stdout was separately matched between Ruche and Elite and the preserved manifest was not rewritten.</p>
+<p class="small">Frozen scientific source: <code>/gpfs/workdir/silvetian/frankwolfe/results/qpt/n8_scale_tuning_20260923_01/source_fast</code><br>Final archive SHA-256: <code>6521b319b0e1cc68bb058c8be5e653b8aeac6bba35d724a2b588674681e89987</code><br>Resumed factor SHA-256: <code>fe2d5c002927690e6cdbc3501d0d38b73a1f628ecefc2dcf89ce96c07135589e</code></p>
+<div class="footer">Verified result and one-seed limitations · page 5</div>
+</section>
+</body></html>

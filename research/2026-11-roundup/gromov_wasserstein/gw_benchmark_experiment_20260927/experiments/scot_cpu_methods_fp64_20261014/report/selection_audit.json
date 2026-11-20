@@ -1,0 +1,159 @@
+{
+  "new_methods": {
+    "published-smd": {
+      "status": "same_winner_confirmed",
+      "runner_selected": {
+        "id": "smd03",
+        "prefactor_fraction": 1.0
+      },
+      "independently_selected": {
+        "id": "smd03",
+        "prefactor_fraction": 1.0
+      },
+      "candidates": [
+        {
+          "candidate": {
+            "id": "smd00",
+            "prefactor_fraction": 0.1
+          },
+          "runner_float64_loss": 0.07035853957969013,
+          "numpy_actual_marginal_loss": 0.07035853957969085,
+          "pot_actual_marginal_loss": 0.07035853957969083
+        },
+        {
+          "candidate": {
+            "id": "smd01",
+            "prefactor_fraction": 0.3
+          },
+          "runner_float64_loss": 0.07015351145388898,
+          "numpy_actual_marginal_loss": 0.07015351145388993,
+          "pot_actual_marginal_loss": 0.07015351145388973
+        },
+        {
+          "candidate": {
+            "id": "smd02",
+            "prefactor_fraction": 0.6
+          },
+          "runner_float64_loss": 0.06984033081502217,
+          "numpy_actual_marginal_loss": 0.06984033081502283,
+          "pot_actual_marginal_loss": 0.06984033081502289
+        },
+        {
+          "candidate": {
+            "id": "smd03",
+            "prefactor_fraction": 1.0
+          },
+          "runner_float64_loss": 0.069411305356962,
+          "numpy_actual_marginal_loss": 0.06941130535696294,
+          "pot_actual_marginal_loss": 0.0694113053569629
+        }
+      ],
+      "scope": "The controller selected the final saved-rounded loss from its separate Torch FP64 evaluation. This later independent NumPy/POT audit confirms that choice; it does not reselect from confirmation runs."
+    },
+    "published-msbpg": {
+      "status": "same_winner_confirmed",
+      "runner_selected": {
+        "id": "msbpg03",
+        "coupling_fraction": 1.0,
+        "momentum_prefactor": 1.0
+      },
+      "independently_selected": {
+        "id": "msbpg03",
+        "coupling_fraction": 1.0,
+        "momentum_prefactor": 1.0
+      },
+      "candidates": [
+        {
+          "candidate": {
+            "id": "msbpg00",
+            "coupling_fraction": 0.3,
+            "momentum_prefactor": 0.3
+          },
+          "runner_float64_loss": 0.07045927602934288,
+          "numpy_actual_marginal_loss": 0.07045927602934365,
+          "pot_actual_marginal_loss": 0.07045927602934365
+        },
+        {
+          "candidate": {
+            "id": "msbpg01",
+            "coupling_fraction": 0.3,
+            "momentum_prefactor": 1.0
+          },
+          "runner_float64_loss": 0.07045815034138742,
+          "numpy_actual_marginal_loss": 0.07045815034138814,
+          "pot_actual_marginal_loss": 0.07045815034138815
+        },
+        {
+          "candidate": {
+            "id": "msbpg02",
+            "coupling_fraction": 1.0,
+            "momentum_prefactor": 0.3
+          },
+          "runner_float64_loss": 0.07045815289136315,
+          "numpy_actual_marginal_loss": 0.07045815289136403,
+          "pot_actual_marginal_loss": 0.07045815289136392
+        },
+        {
+          "candidate": {
+            "id": "msbpg03",
+            "coupling_fraction": 1.0,
+            "momentum_prefactor": 1.0
+          },
+          "runner_float64_loss": 0.07045439901962514,
+          "numpy_actual_marginal_loss": 0.07045439901962625,
+          "pot_actual_marginal_loss": 0.07045439901962605
+        }
+      ],
+      "scope": "The controller selected the final saved-rounded loss from its separate Torch FP64 evaluation. This later independent NumPy/POT audit confirms that choice; it does not reselect from confirmation runs."
+    }
+  },
+  "frames": {
+    "report_path": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_fp64_20261014/report/report.json",
+    "report_sha256": "94e9b6f08ca63b0f920179e9c48b1d7638ede6948c55ad41d6d4ff4e7e47e62f",
+    "reporting_source_sha256": "195d70abcedc13dd9b7b892ed211c73beedbfdd245f7e96c0a94fcf795299ad9",
+    "execution": {
+      "mode": "user_amended_parallel_confirmation",
+      "amendment": {
+        "created_utc": "2026-10-14T12:01:01.490205+00:00",
+        "reason": "Explicit user instruction to use available CPU cores and assess loss versus iterations; timing is not important at this stage.",
+        "user_instruction": "timing is not so important at this stage, we can just see it works with # of iterations",
+        "config_sha256": "546830830d836f407088b54f282bfcb1d95ada9a7694ea82b80e075f152104e0",
+        "frozen_controller_sha256": "4568346e87bd340d3b54343035a7c6d20bf42350a007bccfac5aca9f63d21cf3",
+        "parallel_controller_sha256": "630450de8c859c57809adda76f65d13014377caaceeb47654a2b47184d1bf69e",
+        "remaining_seeds": [
+          812,
+          813
+        ],
+        "existing_seed": 811,
+        "additional_workers": 2,
+        "maximum_total_workers": 3,
+        "cpu_threads_per_process": 1,
+        "scientific_prescription_unchanged": true,
+        "comparison_axis": "completed_updates",
+        "confirmation_timings_comparable": false,
+        "timing_scope": "Confirmation processes may overlap. Their observed times are archived but excluded from method/precision speed comparisons."
+      },
+      "execution_amendment_sha256": "4795c5bd7e0bb3238858ea268ab7fa3126e4c212bf83931409eebf4c06b55a0b",
+      "maximum_confirmation_processes": 3,
+      "confirmation_timings_comparable": false,
+      "analysis_axis": "completed updates; no runtime comparison",
+      "note": "Seed811 continued its original stage; seeds812/813 ran as two additional one-thread workers. Scientific controls and selected prefactors stayed fixed.",
+      "input_sha256": {
+        "execution_amendment.json": "4795c5bd7e0bb3238858ea268ab7fa3126e4c212bf83931409eebf4c06b55a0b",
+        "stage_parallel_confirm.json": "61247c484830013a957865479046d414d041f3b27021e55262e7a50f4afdb7d4",
+        "stage_finalize_parallel.json": "222816be9d6c08b49d04a7643a06648641ddf1fac1c4802e68b185cdc1a36bef",
+        "stage_tune.json": "9ad4ca5d0e5b1195b063bf02600fadcfece92221c4835fa6885b0b1b19cc30eb",
+        "stage_confirm_seed811.json": "6b0778dce7e1cc6fa91c8340902013436f34aafe3a8184c55af28f093a602d27"
+      },
+      "timing_comparison_performed": false
+    },
+    "selected_candidate": {
+      "id": "fw08",
+      "gamma0": 1.0,
+      "rho0": 0.3,
+      "mu_scale": 10.0
+    },
+    "independent_tuning_winner_confirmed": true,
+    "scope": "The three existing fresh FP64 confirmation runs are reused once; no new FraMES trials or reselection."
+  }
+}

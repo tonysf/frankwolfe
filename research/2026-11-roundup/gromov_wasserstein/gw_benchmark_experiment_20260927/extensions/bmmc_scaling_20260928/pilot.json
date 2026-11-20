@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "scope": "Feasibility and fixed-settings scaling pilot; no tuning or automatic replication",
+  "runtime_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+  "sizes": [
+    3000,
+    6224
+  ],
+  "methods": [
+    "smoothing-fw",
+    "stochastic-kl-momentum"
+  ],
+  "initialization": "product",
+  "stochastic_seed": 100,
+  "initialization_seed": 100,
+  "budget_seconds_per_method": 300,
+  "checkpoints_seconds": [
+    30,
+    100,
+    300
+  ],
+  "q": 128,
+  "rho0": 0.3,
+  "beta": 0.5,
+  "fw_parameters": {
+    "gamma0": 1,
+    "alpha": 0.75,
+    "mu_scale": 10,
+    "delta": 0.25
+  },
+  "kl_parameters": {
+    "eta": 10,
+    "eta_power": 0,
+    "inner_tol": 0.0001,
+    "inner_max": 1000
+  },
+  "host_memory_bytes": 34359738368,
+  "walltime_seconds": 7200,
+  "source_subset_seed": 2026,
+  "target_subset_seed": 2027,
+  "order": "FW then KL at3000; KL then FW at6224; same GPU allocation",
+  "next_stage": "Inspect all pilot outputs before specifying any tuning or replicated campaign",
+  "user_direction": "Larger real-data problems to investigate the observed FW cost-per-update advantage; overrides earlier deferral for this bounded extension only",
+  "canonical_n1000_sha256": {
+    "bmmc1000.npz": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+    "bmmc1000.json": "263d29b87bb1cc2ad23881afe438b0b37bceddd77c15de40418b742b6e3861ad"
+  },
+  "startup_timeout_seconds": 600,
+  "infrastructure_retry_of": 1968346,
+  "startup_retry_reason": "Environment validation exceeded180s before numerical work; retain failure and allow600s with periodic diagnostic stack dumps."
+}

@@ -1,0 +1,1688 @@
+{
+  "all_pilots_finished": true,
+  "campaign_status": "finished",
+  "completion_wait": {
+    "completion_observed": true,
+    "interval_seconds": 60,
+    "maximum_seconds": 4500,
+    "timed_out": false,
+    "waited_seconds": 1260.0532462317497
+  },
+  "generated_at": "2026-10-18T19:50:01.935382+00:00",
+  "notes": [
+    "Only completed profiling events are counted; an operation still running at this snapshot is absent.",
+    "CPU RNG and prefix arithmetic can differ from CUDA; same settings do not imply identical stochastic trajectories.",
+    "Projections compare the fixed experiment horizons, not equal achieved losses.",
+    "CPU busy-core utilization covers profiled intervals only, excluding imports and later unfinished operations."
+  ],
+  "partial": false,
+  "runs": [
+    {
+      "completed_updates": 79,
+      "component_seconds": {
+        "checkpoint": {
+          "count": 2,
+          "maximum": 6.837232789956033,
+          "mean": 5.273347980342805,
+          "median": 5.273347980342805,
+          "minimum": 3.7094631707295775
+        },
+        "checkpoint_load": {
+          "count": 1,
+          "maximum": 3.8499943912029266e-05,
+          "mean": 3.8499943912029266e-05,
+          "median": 3.8499943912029266e-05,
+          "minimum": 3.8499943912029266e-05
+        },
+        "diagnostic": {
+          "count": 7,
+          "maximum": 22.172260524705052,
+          "mean": 21.92940915775086,
+          "median": 21.905834825709462,
+          "minimum": 21.510689164046198
+        },
+        "full_gradient": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "fw_step": {
+          "count": 79,
+          "maximum": 0.44962228275835514,
+          "mean": 0.39388721646693875,
+          "median": 0.3913955809548497,
+          "minimum": 0.37332275742664933
+        },
+        "load_problem": {
+          "count": 1,
+          "maximum": 2.93171540601179,
+          "mean": 2.93171540601179,
+          "median": 2.93171540601179,
+          "minimum": 2.93171540601179
+        },
+        "pair_gradient": {
+          "count": 79,
+          "maximum": 1.2977707581594586,
+          "mean": 1.1504405878095216,
+          "median": 1.1418784516863525,
+          "minimum": 1.1038483809679747
+        },
+        "pot_step": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "sample_pairs": {
+          "count": 79,
+          "maximum": 0.19194757798686624,
+          "mean": 0.16224699344816088,
+          "median": 0.16099411388859153,
+          "minimum": 0.15756748197600245
+        }
+      },
+      "cpu_usage": {
+        "average_busy_cores": 3.738508778258039,
+        "cpu_seconds": 1155.2551489999998,
+        "fraction_of_four_cores": 0.9346271945645097,
+        "profile_interval_seconds": 309.0149622540921
+      },
+      "dataset": "bmmc6224",
+      "diagnostic_seconds": {
+        "count": 7,
+        "maximum": 22.172260524705052,
+        "mean": 21.92940915775086,
+        "median": 21.905834825709462,
+        "minimum": 21.510689164046198
+      },
+      "diagnostic_trace": [
+        {
+          "gamma": 0.3,
+          "iteration": 0,
+          "mu": 0.0016066838046272494,
+          "raw_entropy": -18.472336131716464,
+          "raw_loss": 0.1610398659783735,
+          "raw_regularized_loss": 0.14256752984665705,
+          "raw_residuals": {
+            "both_l1": 0.0,
+            "col_l1": 0.0,
+            "col_l2": 0.0,
+            "mass_error": 0.0,
+            "min_entry": 2.581432848051493e-08,
+            "row_l1": 0.0
+          },
+          "rho": 1.0,
+          "rounded_entropy": -18.472336131716464,
+          "rounded_loss": 0.1610398659783735,
+          "rounded_regularized_loss": 0.14256752984665705,
+          "rounded_residuals": {
+            "both_l1": 0.0,
+            "col_l1": 0.0,
+            "col_l2": 0.0,
+            "mass_error": 0.0,
+            "min_entry": 2.581432848051493e-08,
+            "row_l1": 0.0
+          },
+          "rounding_repair_l1": 0.0,
+          "schedule_iteration": 0
+        },
+        {
+          "gamma": 0.3,
+          "iteration": 1,
+          "lmo_changed_source_mass": 0.9999999999999994,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0016066838046272494,
+          "penalty_frobenius_norm": 9531.758063904055,
+          "penalty_to_momentum_norm_ratio": 122.91023358632185,
+          "raw_entropy": -16.46135028066877,
+          "raw_loss": 0.14311335333108594,
+          "raw_regularized_loss": 0.12665200305041716,
+          "raw_residuals": {
+            "both_l1": 0.5992287917737786,
+            "col_l1": 0.5992287917737784,
+            "col_l2": 0.19411926333274718,
+            "mass_error": 6.661338147750939e-16,
+            "min_entry": 1.8070029936360448e-08,
+            "row_l1": 2.3109769306528527e-16
+          },
+          "rho": 1.0,
+          "rounded_entropy": -18.468749319604168,
+          "rounded_loss": 0.16103736211920855,
+          "rounded_regularized_loss": 0.14256861279960437,
+          "rounded_residuals": {
+            "both_l1": 5.096292311768114e-16,
+            "col_l1": 1.689186984732416e-16,
+            "col_l2": 2.146268503073378e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1.598834713887949e-11,
+            "row_l1": 3.4071053270356977e-16
+          },
+          "rounding_repair_l1": 0.599228791773779,
+          "row_centered_momentum_frobenius_norm": 77.55056504070303,
+          "schedule_iteration": 0
+        },
+        {
+          "gamma": 0.17838106725040817,
+          "iteration": 2,
+          "lmo_changed_source_mass": 0.9999999999999994,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0013510546517572536,
+          "penalty_frobenius_norm": 10892.188881600317,
+          "penalty_to_momentum_norm_ratio": 52.02428297974794,
+          "raw_entropy": -15.72984329840476,
+          "raw_loss": 0.12815362318529078,
+          "raw_regularized_loss": 0.11242377988688601,
+          "raw_residuals": {
+            "both_l1": 0.8454303379588345,
+            "col_l1": 0.8454303379588344,
+            "col_l2": 0.18653197516737596,
+            "mass_error": 0.0,
+            "min_entry": 1.4846678711065646e-08,
+            "row_l1": 1.3991629035925435e-16
+          },
+          "rho": 0.7071067811865475,
+          "rounded_entropy": -18.455827422646646,
+          "rounded_loss": 0.1610236951427541,
+          "rounded_regularized_loss": 0.14256786772010746,
+          "rounded_residuals": {
+            "both_l1": 8.077577235560129e-16,
+            "col_l1": 3.3694293015418264e-16,
+            "col_l2": 4.274957746626305e-18,
+            "mass_error": 6.661338147750939e-16,
+            "min_entry": 1.5988347138878468e-11,
+            "row_l1": 4.708147934018303e-16
+          },
+          "rounding_repair_l1": 0.8454303379588335,
+          "row_centered_momentum_frobenius_norm": 209.36740033188806,
+          "schedule_iteration": 1
+        },
+        {
+          "gamma": 0.08972092687327324,
+          "iteration": 5,
+          "lmo_changed_source_mass": 0.9999999999999994,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0010744542175071049,
+          "penalty_frobenius_norm": 12615.656729965543,
+          "penalty_to_momentum_norm_ratio": 30.789824424737482,
+          "raw_entropy": -14.89653956917447,
+          "raw_loss": 0.10228809291588109,
+          "raw_regularized_loss": 0.08739155334670662,
+          "raw_residuals": {
+            "both_l1": 1.1663309730457172,
+            "col_l1": 1.1663309730457172,
+            "col_l2": 0.17181575558997925,
+            "mass_error": 3.3306690738754696e-16,
+            "min_entry": 1.0491206357542934e-08,
+            "row_l1": 7.047314121155779e-17
+          },
+          "rho": 0.4472135954999579,
+          "rounded_entropy": -18.40907498069528,
+          "rounded_loss": 0.16095396499694448,
+          "rounded_regularized_loss": 0.1425448900162492,
+          "rounded_residuals": {
+            "both_l1": 4.856412581105696e-16,
+            "col_l1": 1.700029006457271e-16,
+            "col_l2": 2.1842705181364235e-18,
+            "mass_error": 0.0,
+            "min_entry": 1.5988347138879838e-11,
+            "row_l1": 3.156383574648425e-16
+          },
+          "rounding_repair_l1": 1.1663309730457174,
+          "row_centered_momentum_frobenius_norm": 409.7346108875418,
+          "schedule_iteration": 4
+        },
+        {
+          "gamma": 0.05334838230116768,
+          "iteration": 10,
+          "lmo_changed_source_mass": 0.9999999999999994,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0009035046998559594,
+          "penalty_frobenius_norm": 13348.665792655182,
+          "penalty_to_momentum_norm_ratio": 25.195236808159503,
+          "raw_entropy": -14.48424155401862,
+          "raw_loss": 0.08215073675796719,
+          "raw_regularized_loss": 0.06766649520394857,
+          "raw_residuals": {
+            "both_l1": 1.3621970229267997,
+            "col_l1": 1.362197022926799,
+            "col_l2": 0.15287394885680966,
+            "mass_error": 5.551115123125783e-16,
+            "min_entry": 7.518416747300908e-09,
+            "row_l1": 5.832736637428892e-16
+          },
+          "rho": 0.31622776601683794,
+          "rounded_entropy": -18.327635194698495,
+          "rounded_loss": 0.16083591062628178,
+          "rounded_regularized_loss": 0.1425082754315833,
+          "rounded_residuals": {
+            "both_l1": 2.8023915653319076e-16,
+            "col_l1": 2.0111950299606107e-17,
+            "col_l2": 1.416741544541225e-18,
+            "mass_error": 0.0,
+            "min_entry": 1.598834713887847e-11,
+            "row_l1": 2.6012720623358465e-16
+          },
+          "rounding_repair_l1": 1.3621970229267995,
+          "row_centered_momentum_frobenius_norm": 529.8091021844336,
+          "schedule_iteration": 9
+        },
+        {
+          "gamma": 0.03172113790321692,
+          "iteration": 20,
+          "lmo_changed_source_mass": 0.9999999999999994,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0007597538632737595,
+          "penalty_frobenius_norm": 12634.1797336627,
+          "penalty_to_momentum_norm_ratio": 19.529976840137326,
+          "raw_entropy": -14.307808524784996,
+          "raw_loss": 0.06460219378392706,
+          "raw_regularized_loss": 0.050294385259142066,
+          "raw_residuals": {
+            "both_l1": 1.4853052784219876,
+            "col_l1": 1.4853052784219873,
+            "col_l2": 0.12167046728021795,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 5.033252260238591e-09,
+            "row_l1": 1.7450233966154194e-16
+          },
+          "rho": 0.22360679774997896,
+          "rounded_entropy": -18.185230473990558,
+          "rounded_loss": 0.1606947769751848,
+          "rounded_regularized_loss": 0.14250954650119424,
+          "rounded_residuals": {
+            "both_l1": 4.4276106218876787e-16,
+            "col_l1": 1.6658766380239776e-16,
+            "col_l2": 2.2348113171040178e-18,
+            "mass_error": 0.0,
+            "min_entry": 1.5988347138878458e-11,
+            "row_l1": 2.761733983863701e-16
+          },
+          "rounding_repair_l1": 1.4853052784219873,
+          "row_centered_momentum_frobenius_norm": 646.9121718412576,
+          "schedule_iteration": 19
+        },
+        {
+          "gamma": 0.015954887690834963,
+          "iteration": 50,
+          "lmo_changed_source_mass": 0.9999999999999994,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0006042100085293049,
+          "penalty_frobenius_norm": 10383.919925120033,
+          "penalty_to_momentum_norm_ratio": 14.534535254242229,
+          "raw_entropy": -14.43465335991697,
+          "raw_loss": 0.05353687833163656,
+          "raw_regularized_loss": 0.03910222497171959,
+          "raw_residuals": {
+            "both_l1": 1.5080165407886437,
+            "col_l1": 1.5080165407886434,
+            "col_l2": 0.07952697317805496,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 2.6202208816473576e-09,
+            "row_l1": 2.6576505753050927e-16
+          },
+          "rho": 0.1414213562373095,
+          "rounded_entropy": -17.906784555972134,
+          "rounded_loss": 0.16017289344327967,
+          "rounded_regularized_loss": 0.14226610888730754,
+          "rounded_residuals": {
+            "both_l1": 2.881809374466471e-16,
+            "col_l1": 1.5628774316378546e-16,
+            "col_l2": 2.3716535304897816e-18,
+            "mass_error": 0.0,
+            "min_entry": 1.598834713887847e-11,
+            "row_l1": 1.3189319428286161e-16
+          },
+          "rounding_repair_l1": 1.5080165407886437,
+          "row_centered_momentum_frobenius_norm": 714.4308189757395,
+          "schedule_iteration": 49
+        }
+      ],
+      "full_horizon_finished": false,
+      "gpu_reference": {
+        "median_full_budget_seconds": 1345.9489930942655,
+        "note": "Original one-A100 FP64 campaign; fixed-budget time, not time to an equal loss.",
+        "records": [
+          {
+            "completed_updates": 20000,
+            "path": "reports/wallclock_comparison_20261018/input/bmmc6224/confirmation/c08_seed813/metadata.json",
+            "seconds": 1371.68436565483,
+            "seed": 813
+          },
+          {
+            "completed_updates": 20000,
+            "path": "reports/wallclock_comparison_20261018/input/bmmc6224/confirmation/c08_seed811/metadata.json",
+            "seconds": 1345.9489930942655,
+            "seed": 811
+          },
+          {
+            "completed_updates": 20000,
+            "path": "reports/wallclock_comparison_20261018/input/bmmc6224/confirmation/c08_seed812/metadata.json",
+            "seconds": 1344.114887765143,
+            "seed": 812
+          }
+        ]
+      },
+      "incomplete_trailing_events_ignored": 0,
+      "measured_update_count": 79,
+      "method": "frames",
+      "not_finished": false,
+      "observed_inner_iterations": [],
+      "original_gpu_steady_inner_iterations": null,
+      "peak_rss_bytes": 3512492032,
+      "peak_rss_gib": 3.2712631225585938,
+      "pilot_finished": true,
+      "pilot_status": "finished",
+      "process_seconds": 310.8430138519034,
+      "projection": {
+        "assumption": "Update and diagnostic costs retain the observed medians. This is a duration extrapolation, not a measured full run or a prediction of final loss.",
+        "checkpoint_overhead_estimated_seconds_lower_upper": [
+          26.366739901714027,
+          137.10704748891294
+        ],
+        "checkpoint_seconds_median": 5.273347980342805,
+        "diagnostic_every": 500,
+        "diagnostic_iterations": [
+          0,
+          1,
+          2,
+          5,
+          10,
+          20,
+          50,
+          100,
+          200,
+          500,
+          1000,
+          1500,
+          2000,
+          2500,
+          3000,
+          3500,
+          4000,
+          4500,
+          5000,
+          5500,
+          6000,
+          6500,
+          7000,
+          7500,
+          8000,
+          8500,
+          9000,
+          9500,
+          10000,
+          10500,
+          11000,
+          11500,
+          12000,
+          12500,
+          13000,
+          13500,
+          14000,
+          14500,
+          15000,
+          15500,
+          16000,
+          16500,
+          17000,
+          17500,
+          18000,
+          18500,
+          19000,
+          19500,
+          20000
+        ],
+        "diagnostics_seconds": 1073.3859064597636,
+        "fixed_iteration_checkpoint_count": 5,
+        "full_horizon_diagnostic_count": 49,
+        "full_horizon_hours_excluding_checkpoint_writes": 10.033367597887473,
+        "full_horizon_hours_with_estimated_checkpoint_writes_lower_upper": [
+          10.040691692304616,
+          10.071452888856616
+        ],
+        "full_horizon_seconds_excluding_checkpoint_writes": 36120.123352394905,
+        "full_horizon_updates": 20000,
+        "load_seconds": 2.93171540601179,
+        "optimizer_seconds": 35043.80573052913,
+        "ratio_to_gpu_fixed_budget_excluding_checkpoint_writes": 26.8361754700352,
+        "status": "prefix_extrapolation",
+        "tentative": false,
+        "tentative_reasons": [],
+        "unmodeled": "Imports, potential thermal/frequency drift, future changes in inner solve workload, and diagnostics/checkpoint cost changes. Checkpoint overhead range is a heuristic schedule estimate, not a bound on future runtime."
+      },
+      "receipt": {
+        "argv": [
+          "taskset",
+          "-c",
+          "0,2,4,6",
+          "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+          "/home/tony/gw_benchmark_experiment_20260927/extensions/cpu_large_pilot_20261018/profile_runner.py",
+          "--profile-out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/bmmc6224_frames",
+          "--instance",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/data/bmmc6224",
+          "--out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/bmmc6224_frames",
+          "--method",
+          "frames",
+          "--device",
+          "cpu",
+          "--dtype",
+          "float64",
+          "--seed",
+          "811",
+          "--iterations",
+          "20000",
+          "--chunk-updates",
+          "100",
+          "--max-seconds",
+          "300",
+          "--checkpoint-seconds",
+          "1800",
+          "--checkpoint-every",
+          "5000",
+          "--retain-checkpoint",
+          "--pairs",
+          "1024",
+          "--epsilon",
+          ".001",
+          "--gamma0",
+          ".3",
+          "--rho0",
+          "1",
+          "--mu-scale",
+          "10",
+          "--inner-max",
+          "100000",
+          "--diagnostic-every",
+          "500",
+          "--exact-block-rows",
+          "128"
+        ],
+        "completed_updates": 79,
+        "cpu_ids": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "dataset": "bmmc6224",
+        "environment": {
+          "MALLOC_ARENA_MAX": "2",
+          "MKL_NUM_THREADS": "4",
+          "NUMEXPR_NUM_THREADS": "4",
+          "OMP_NUM_THREADS": "4",
+          "OMP_PLACES": "cores",
+          "OMP_PROC_BIND": "true",
+          "OPENBLAS_NUM_THREADS": "4"
+        },
+        "finished_at": "2026-10-18T19:31:10.522285+00:00",
+        "hard_seconds": 900,
+        "method": "frames",
+        "minimum_available_bytes_sampled": 8781303808,
+        "num_threads": 4,
+        "peak_rss_bytes_sampled": 3512492032,
+        "pid": 7,
+        "process_seconds": 310.8430138519034,
+        "returncode": 0,
+        "runner_elapsed_seconds": 307.6077441330999,
+        "runner_status": "checkpointed",
+        "soft_seconds": 300,
+        "started_at": "2026-10-18T19:25:59.679370+00:00",
+        "status": "finished",
+        "stop_reason": null
+      },
+      "run_directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/bmmc6224_frames",
+      "runner_status": "checkpointed",
+      "stop_reason": null,
+      "timing_window": {
+        "first_updates_excluded": 2,
+        "maximum_updates": 20,
+        "outer_update_indices": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79
+        ]
+      },
+      "timing_window_inner_iterations": [],
+      "update_seconds": {
+        "count": 20,
+        "maximum": 1.7910619769245386,
+        "mean": 1.7547944937134161,
+        "median": 1.7521902865264565,
+        "minimum": 1.722647672984749
+      }
+    },
+    {
+      "completed_updates": 7,
+      "component_seconds": {
+        "checkpoint": {
+          "count": 2,
+          "maximum": 3.8031419501639903,
+          "mean": 3.684298897627741,
+          "median": 3.684298897627741,
+          "minimum": 3.565455845091492
+        },
+        "checkpoint_load": {
+          "count": 1,
+          "maximum": 3.6209821701049805e-05,
+          "mean": 3.6209821701049805e-05,
+          "median": 3.6209821701049805e-05,
+          "minimum": 3.6209821701049805e-05
+        },
+        "diagnostic": {
+          "count": 4,
+          "maximum": 21.535109480842948,
+          "mean": 21.434288273216225,
+          "median": 21.449997282586992,
+          "minimum": 21.30204904684797
+        },
+        "full_gradient": {
+          "count": 7,
+          "maximum": 10.257148180156946,
+          "mean": 10.173427271723215,
+          "median": 10.188506518024951,
+          "minimum": 10.091857487335801
+        },
+        "fw_step": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "load_problem": {
+          "count": 1,
+          "maximum": 2.488120452966541,
+          "mean": 2.488120452966541,
+          "median": 2.488120452966541,
+          "minimum": 2.488120452966541
+        },
+        "pair_gradient": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "pot_step": {
+          "count": 7,
+          "maximum": 28.405290933791548,
+          "mean": 23.76028310327924,
+          "median": 26.930626857094467,
+          "minimum": 7.4930878900922835
+        },
+        "sample_pairs": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        }
+      },
+      "cpu_usage": {
+        "average_busy_cores": 2.583465641570576,
+        "cpu_seconds": 865.217305,
+        "fraction_of_four_cores": 0.645866410392644,
+        "profile_interval_seconds": 334.905675182119
+      },
+      "dataset": "bmmc6224",
+      "diagnostic_seconds": {
+        "count": 4,
+        "maximum": 21.535109480842948,
+        "mean": 21.434288273216225,
+        "median": 21.449997282586992,
+        "minimum": 21.30204904684797
+      },
+      "diagnostic_trace": [
+        {
+          "iteration": 0,
+          "raw_entropy": -18.472336131716464,
+          "raw_loss": 0.1610398659783735,
+          "raw_regularized_loss": 0.14256752984665705,
+          "raw_residuals": {
+            "both_l1": 0.0,
+            "col_l1": 0.0,
+            "col_l2": 0.0,
+            "mass_error": 0.0,
+            "min_entry": 2.581432848051493e-08,
+            "row_l1": 0.0
+          },
+          "rounded_entropy": -18.472336131716464,
+          "rounded_loss": 0.1610398659783735,
+          "rounded_regularized_loss": 0.14256752984665705,
+          "rounded_residuals": {
+            "both_l1": 0.0,
+            "col_l1": 0.0,
+            "col_l2": 0.0,
+            "mass_error": 0.0,
+            "min_entry": 2.581432848051493e-08,
+            "row_l1": 0.0
+          },
+          "rounding_repair_l1": 0.0
+        },
+        {
+          "iteration": 1,
+          "raw_entropy": -17.81902072601347,
+          "raw_loss": 0.15262367725679926,
+          "raw_regularized_loss": 0.1348046565307858,
+          "raw_residuals": {
+            "both_l1": 6.880964818835084e-08,
+            "col_l1": 1.9628938231763815e-15,
+            "col_l2": 3.116701752034423e-17,
+            "mass_error": 0.0,
+            "min_entry": 6.476106697144052e-45,
+            "row_l1": 6.880964622545701e-08
+          },
+          "rounded_entropy": -17.819021060265552,
+          "rounded_loss": 0.1526236887632031,
+          "rounded_regularized_loss": 0.13480466770293753,
+          "rounded_residuals": {
+            "both_l1": 2.057544672834366e-16,
+            "col_l1": 1.1018204577883939e-16,
+            "col_l2": 1.803861219681255e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 6.476104881569537e-45,
+            "row_l1": 9.557242150459722e-17
+          },
+          "rounding_repair_l1": 6.880964619942691e-08
+        },
+        {
+          "iteration": 2,
+          "raw_entropy": -17.217810934075857,
+          "raw_loss": 0.14890995176476046,
+          "raw_regularized_loss": 0.1316921408306846,
+          "raw_residuals": {
+            "both_l1": 7.835387255960028e-08,
+            "col_l1": 2.2551947288784735e-15,
+            "col_l2": 3.7840558562249447e-17,
+            "mass_error": 8.881784197001252e-16,
+            "min_entry": 1.5346542937952647e-81,
+            "row_l1": 7.835387030440556e-08
+          },
+          "rounded_entropy": -17.217811629205865,
+          "rounded_loss": 0.14890996451547023,
+          "rounded_regularized_loss": 0.13169215288626437,
+          "rounded_residuals": {
+            "both_l1": 1.9743321560961036e-16,
+            "col_l1": 1.0012607062903633e-16,
+            "col_l2": 1.7151310774785625e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1.5294499816318402e-79,
+            "row_l1": 9.730714498057402e-17
+          },
+          "rounding_repair_l1": 7.835387142007303e-08
+        },
+        {
+          "iteration": 5,
+          "raw_entropy": -16.29524696646922,
+          "raw_loss": 0.14552070532063316,
+          "raw_regularized_loss": 0.12922545835416394,
+          "raw_residuals": {
+            "both_l1": 8.662132712353903e-08,
+            "col_l1": 2.4235713262654723e-15,
+            "col_l2": 4.10717513632388e-17,
+            "mass_error": 1.3322676295501878e-15,
+            "min_entry": 1.5525042433208758e-88,
+            "row_l1": 8.66213246999677e-08
+          },
+          "rounded_entropy": -16.29524774873508,
+          "rounded_loss": 0.14552071880308148,
+          "rounded_regularized_loss": 0.1292254710543464,
+          "rounded_residuals": {
+            "both_l1": 2.004960867468819e-16,
+            "col_l1": 1.0102053742133688e-16,
+            "col_l2": 1.7378969467848244e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1.5525038149436295e-88,
+            "row_l1": 9.947554932554503e-17
+          },
+          "rounding_repair_l1": 8.662132651892196e-08
+        }
+      ],
+      "full_horizon_finished": false,
+      "gpu_reference": {
+        "median_full_budget_seconds": 1699.2572148018517,
+        "note": "Original one-A100 FP64 campaign; fixed-budget time, not time to an equal loss.",
+        "records": [
+          {
+            "completed_updates": 2000,
+            "path": "reports/wallclock_comparison_20261018/input/bmmc6224/baseline/pot-full_seed810/metadata.json",
+            "seconds": 1699.2572148018517,
+            "seed": 810
+          }
+        ]
+      },
+      "incomplete_trailing_events_ignored": 0,
+      "measured_update_count": 7,
+      "method": "pot-full",
+      "not_finished": false,
+      "observed_inner_iterations": [
+        110,
+        580,
+        690,
+        730,
+        750,
+        770,
+        780
+      ],
+      "original_gpu_steady_inner_iterations": 830,
+      "peak_rss_bytes": 3206053888,
+      "peak_rss_gib": 2.985870361328125,
+      "pilot_finished": true,
+      "pilot_status": "finished",
+      "process_seconds": 336.97459556302056,
+      "projection": {
+        "assumption": "Update and diagnostic costs retain the observed medians. This is a duration extrapolation, not a measured full run or a prediction of final loss.",
+        "checkpoint_overhead_estimated_seconds_lower_upper": [
+          7.368597795255482,
+          165.79345039324835
+        ],
+        "checkpoint_seconds_median": 3.684298897627741,
+        "diagnostic_every": 500,
+        "diagnostic_iterations": [
+          0,
+          1,
+          2,
+          5,
+          10,
+          20,
+          50,
+          100,
+          200,
+          500,
+          1000,
+          1500,
+          2000
+        ],
+        "diagnostics_seconds": 278.8499646736309,
+        "fixed_iteration_checkpoint_count": 2,
+        "full_horizon_diagnostic_count": 13,
+        "full_horizon_hours_excluding_checkpoint_writes": 21.068686118474773,
+        "full_horizon_hours_with_estimated_checkpoint_writes_lower_upper": [
+          21.070732951195676,
+          21.11473985469512
+        ],
+        "full_horizon_seconds_excluding_checkpoint_writes": 75847.27002650918,
+        "full_horizon_updates": 2000,
+        "load_seconds": 2.488120452966541,
+        "optimizer_seconds": 75565.93194138259,
+        "ratio_to_gpu_fixed_budget_excluding_checkpoint_writes": 44.63554391049247,
+        "status": "tentative",
+        "tentative": true,
+        "tentative_reasons": [
+          "Fewer than 10 POT updates; inner work increases after initialization."
+        ],
+        "unmodeled": "Imports, potential thermal/frequency drift, future changes in inner solve workload, and diagnostics/checkpoint cost changes. Checkpoint overhead range is a heuristic schedule estimate, not a bound on future runtime."
+      },
+      "receipt": {
+        "argv": [
+          "taskset",
+          "-c",
+          "0,2,4,6",
+          "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+          "/home/tony/gw_benchmark_experiment_20260927/extensions/cpu_large_pilot_20261018/profile_runner.py",
+          "--profile-out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/bmmc6224_pot-full",
+          "--instance",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/data/bmmc6224",
+          "--out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/bmmc6224_pot-full",
+          "--method",
+          "pot-full",
+          "--device",
+          "cpu",
+          "--dtype",
+          "float64",
+          "--seed",
+          "810",
+          "--iterations",
+          "2000",
+          "--chunk-updates",
+          "30",
+          "--max-seconds",
+          "300",
+          "--checkpoint-seconds",
+          "1800",
+          "--checkpoint-every",
+          "5000",
+          "--retain-checkpoint",
+          "--pairs",
+          "1024",
+          "--epsilon",
+          ".001",
+          "--gamma0",
+          ".3",
+          "--rho0",
+          "1",
+          "--mu-scale",
+          "10",
+          "--inner-max",
+          "100000",
+          "--diagnostic-every",
+          "500",
+          "--exact-block-rows",
+          "128"
+        ],
+        "completed_updates": 7,
+        "cpu_ids": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "dataset": "bmmc6224",
+        "environment": {
+          "MALLOC_ARENA_MAX": "2",
+          "MKL_NUM_THREADS": "4",
+          "NUMEXPR_NUM_THREADS": "4",
+          "OMP_NUM_THREADS": "4",
+          "OMP_PLACES": "cores",
+          "OMP_PROC_BIND": "true",
+          "OPENBLAS_NUM_THREADS": "4"
+        },
+        "finished_at": "2026-10-18T19:36:47.503555+00:00",
+        "hard_seconds": 900,
+        "method": "pot-full",
+        "minimum_available_bytes_sampled": 8973537280,
+        "num_threads": 4,
+        "peak_rss_bytes_sampled": 3206053888,
+        "pid": 17,
+        "process_seconds": 336.97459556302056,
+        "returncode": 0,
+        "runner_elapsed_seconds": 333.5616314089857,
+        "runner_status": "checkpointed",
+        "soft_seconds": 300,
+        "started_at": "2026-10-18T19:31:10.528935+00:00",
+        "status": "finished",
+        "stop_reason": null
+      },
+      "run_directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/bmmc6224_pot-full",
+      "runner_status": "checkpointed",
+      "stop_reason": null,
+      "timing_window": {
+        "first_updates_excluded": 2,
+        "maximum_updates": 20,
+        "outer_update_indices": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "timing_window_inner_iterations": [
+        690,
+        730,
+        750,
+        770,
+        780
+      ],
+      "update_seconds": {
+        "count": 5,
+        "maximum": 38.51199143985286,
+        "mean": 37.51500738784671,
+        "median": 37.78296597069129,
+        "minimum": 35.874213533941656
+      }
+    },
+    {
+      "completed_updates": 2,
+      "component_seconds": {
+        "checkpoint": {
+          "count": 2,
+          "maximum": 19.132251780014485,
+          "mean": 14.366934788879007,
+          "median": 14.366934788879007,
+          "minimum": 9.601617797743529
+        },
+        "checkpoint_load": {
+          "count": 1,
+          "maximum": 3.748992457985878e-05,
+          "mean": 3.748992457985878e-05,
+          "median": 3.748992457985878e-05,
+          "minimum": 3.748992457985878e-05
+        },
+        "diagnostic": {
+          "count": 3,
+          "maximum": 100.05148779321462,
+          "mean": 98.22120279322068,
+          "median": 99.95697761606425,
+          "minimum": 94.65514297038317
+        },
+        "full_gradient": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "fw_step": {
+          "count": 2,
+          "maximum": 1.0592354270629585,
+          "mean": 1.0542277896311134,
+          "median": 1.0542277896311134,
+          "minimum": 1.0492201521992683
+        },
+        "load_problem": {
+          "count": 1,
+          "maximum": 10.903543824795634,
+          "mean": 10.903543824795634,
+          "median": 10.903543824795634,
+          "minimum": 10.903543824795634
+        },
+        "pair_gradient": {
+          "count": 2,
+          "maximum": 3.119035969953984,
+          "mean": 3.026644153986126,
+          "median": 3.026644153986126,
+          "minimum": 2.9342523380182683
+        },
+        "pot_step": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "sample_pairs": {
+          "count": 2,
+          "maximum": 0.748585572000593,
+          "mean": 0.5740661495365202,
+          "median": 0.5740661495365202,
+          "minimum": 0.39954672707244754
+        }
+      },
+      "cpu_usage": {
+        "average_busy_cores": 3.28841794934403,
+        "cpu_seconds": 1139.630286,
+        "fraction_of_four_cores": 0.8221044873360075,
+        "profile_interval_seconds": 346.55883271386847
+      },
+      "dataset": "snare_full",
+      "diagnostic_seconds": {
+        "count": 3,
+        "maximum": 100.05148779321462,
+        "mean": 98.22120279322068,
+        "median": 99.95697761606425,
+        "minimum": 94.65514297038317
+      },
+      "diagnostic_trace": [
+        {
+          "gamma": 0.3,
+          "iteration": 0,
+          "mu": 0.001,
+          "raw_entropy": -19.420680743952342,
+          "raw_loss": 0.09407247358339277,
+          "raw_regularized_loss": 0.07465179283944043,
+          "raw_residuals": {
+            "both_l1": 2.710505431213761e-16,
+            "col_l1": 1.3552527156068805e-16,
+            "col_l2": 1.3552527156068805e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1e-08,
+            "row_l1": 1.3552527156068805e-16
+          },
+          "rho": 0.1,
+          "rounded_entropy": -19.420680743952342,
+          "rounded_loss": 0.09407247358339332,
+          "rounded_regularized_loss": 0.07465179283944098,
+          "rounded_residuals": {
+            "both_l1": 2.710505431213761e-16,
+            "col_l1": 1.3552527156068805e-16,
+            "col_l2": 1.3552527156068805e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 9.999999999999997e-09,
+            "row_l1": 1.3552527156068805e-16
+          },
+          "rounding_repair_l1": 3.3087224502121107e-16,
+          "schedule_iteration": 0
+        },
+        {
+          "gamma": 0.3,
+          "iteration": 1,
+          "lmo_changed_source_mass": 1.0000000000000009,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.001,
+          "penalty_frobenius_norm": 27323.794465630122,
+          "penalty_to_momentum_norm_ratio": 186.11296884749342,
+          "raw_entropy": -17.267787513272594,
+          "raw_loss": 0.09196569808747446,
+          "raw_regularized_loss": 0.07469791057420186,
+          "raw_residuals": {
+            "both_l1": 0.5995800000000003,
+            "col_l1": 0.5995799999999999,
+            "col_l2": 0.2732379446563158,
+            "mass_error": 3.3306690738754696e-16,
+            "min_entry": 7e-09,
+            "row_l1": 4.0637252677472313e-16
+          },
+          "rho": 0.1,
+          "rounded_entropy": -19.418184768744176,
+          "rounded_loss": 0.09407521628179205,
+          "rounded_regularized_loss": 0.07465703151304787,
+          "rounded_residuals": {
+            "both_l1": 7.979863514764873e-16,
+            "col_l1": 4.0663002479068844e-16,
+            "col_l2": 4.066706713068412e-18,
+            "mass_error": 4.440892098500626e-16,
+            "min_entry": 2.5705052878965933e-12,
+            "row_l1": 3.913563266857989e-16
+          },
+          "rounding_repair_l1": 0.5995800000000003,
+          "row_centered_momentum_frobenius_norm": 146.81295255689605,
+          "schedule_iteration": 0
+        },
+        {
+          "gamma": 0.17838106725040817,
+          "iteration": 2,
+          "lmo_changed_source_mass": 1.0000000000000009,
+          "lmo_diagnostic_timing": "current plan and stored momentum; previous update schedule",
+          "mu": 0.0008408964152537146,
+          "penalty_frobenius_norm": 30273.64145559366,
+          "penalty_to_momentum_norm_ratio": 189.45467025442983,
+          "raw_entropy": -16.47728237271853,
+          "raw_loss": 0.0813606207184484,
+          "raw_regularized_loss": 0.06488333834572987,
+          "raw_residuals": {
+            "both_l1": 0.8479847300263051,
+            "col_l1": 0.8479847300263051,
+            "col_l2": 0.25456996576684937,
+            "mass_error": 4.440892098500626e-16,
+            "min_entry": 5.7513325292471425e-09,
+            "row_l1": 2.7728470561316776e-17
+          },
+          "rho": 0.07071067811865475,
+          "rounded_entropy": -19.41328901285295,
+          "rounded_loss": 0.09407943208391412,
+          "rounded_regularized_loss": 0.07466614307106116,
+          "rounded_residuals": {
+            "both_l1": 1.9733834791951788e-16,
+            "col_l1": 4.87890977618477e-19,
+            "col_l2": 1.3953180707456683e-19,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 2.5705052878980506e-12,
+            "row_l1": 1.968504569418994e-16
+          },
+          "rounding_repair_l1": 0.847984730026305,
+          "row_centered_momentum_frobenius_norm": 159.79358764256065,
+          "schedule_iteration": 1
+        }
+      ],
+      "full_horizon_finished": false,
+      "gpu_reference": {
+        "median_full_budget_seconds": 2031.06787917763,
+        "note": "Original one-A100 FP64 campaign; fixed-budget time, not time to an equal loss.",
+        "records": [
+          {
+            "completed_updates": 20000,
+            "path": "reports/wallclock_comparison_20261018/input/snare_full/confirmation/c06_seed813/metadata.json",
+            "seconds": 2058.7102216901258,
+            "seed": 813
+          },
+          {
+            "completed_updates": 20000,
+            "path": "reports/wallclock_comparison_20261018/input/snare_full/confirmation/c06_seed812/metadata.json",
+            "seconds": 2031.06787917763,
+            "seed": 812
+          },
+          {
+            "completed_updates": 20000,
+            "path": "reports/wallclock_comparison_20261018/input/snare_full/confirmation/c06_seed811/metadata.json",
+            "seconds": 2023.4270142461173,
+            "seed": 811
+          }
+        ]
+      },
+      "incomplete_trailing_events_ignored": 0,
+      "measured_update_count": 2,
+      "method": "frames",
+      "not_finished": false,
+      "observed_inner_iterations": [],
+      "original_gpu_steady_inner_iterations": null,
+      "peak_rss_bytes": 8416395264,
+      "peak_rss_gib": 7.83837890625,
+      "pilot_finished": true,
+      "pilot_status": "finished",
+      "process_seconds": 349.09295452805236,
+      "projection": {
+        "assumption": "Update and diagnostic costs retain the observed medians. This is a duration extrapolation, not a measured full run or a prediction of final loss.",
+        "checkpoint_overhead_estimated_seconds_lower_upper": [
+          71.83467394439504,
+          876.3830221216194
+        ],
+        "checkpoint_seconds_median": 14.366934788879007,
+        "diagnostic_every": 500,
+        "diagnostic_iterations": [
+          0,
+          1,
+          2,
+          5,
+          10,
+          20,
+          50,
+          100,
+          200,
+          500,
+          1000,
+          1500,
+          2000,
+          2500,
+          3000,
+          3500,
+          4000,
+          4500,
+          5000,
+          5500,
+          6000,
+          6500,
+          7000,
+          7500,
+          8000,
+          8500,
+          9000,
+          9500,
+          10000,
+          10500,
+          11000,
+          11500,
+          12000,
+          12500,
+          13000,
+          13500,
+          14000,
+          14500,
+          15000,
+          15500,
+          16000,
+          16500,
+          17000,
+          17500,
+          18000,
+          18500,
+          19000,
+          19500,
+          20000
+        ],
+        "diagnostics_seconds": 4897.891903187148,
+        "fixed_iteration_checkpoint_count": 5,
+        "full_horizon_diagnostic_count": 49,
+        "full_horizon_hours_excluding_checkpoint_writes": 27.700161490723257,
+        "full_horizon_hours_with_estimated_checkpoint_writes_lower_upper": [
+          27.720115566818922,
+          27.943601219090375
+        ],
+        "full_horizon_seconds_excluding_checkpoint_writes": 99720.58136660373,
+        "full_horizon_updates": 20000,
+        "load_seconds": 10.903543824795634,
+        "optimizer_seconds": 94811.78591959178,
+        "ratio_to_gpu_fixed_budget_excluding_checkpoint_writes": 49.09761135456494,
+        "status": "tentative",
+        "tentative": true,
+        "tentative_reasons": [
+          "Too few completed updates to exclude the first two from throughput estimation."
+        ],
+        "unmodeled": "Imports, potential thermal/frequency drift, future changes in inner solve workload, and diagnostics/checkpoint cost changes. Checkpoint overhead range is a heuristic schedule estimate, not a bound on future runtime."
+      },
+      "receipt": {
+        "argv": [
+          "taskset",
+          "-c",
+          "0,2,4,6",
+          "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+          "/home/tony/gw_benchmark_experiment_20260927/extensions/cpu_large_pilot_20261018/profile_runner.py",
+          "--profile-out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/snare_full_frames",
+          "--instance",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/data/snare_full",
+          "--out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/snare_full_frames",
+          "--method",
+          "frames",
+          "--device",
+          "cpu",
+          "--dtype",
+          "float64",
+          "--seed",
+          "811",
+          "--iterations",
+          "20000",
+          "--chunk-updates",
+          "100",
+          "--max-seconds",
+          "300",
+          "--checkpoint-seconds",
+          "1800",
+          "--checkpoint-every",
+          "5000",
+          "--retain-checkpoint",
+          "--pairs",
+          "1024",
+          "--epsilon",
+          ".001",
+          "--gamma0",
+          ".3",
+          "--rho0",
+          ".1",
+          "--mu-scale",
+          "10",
+          "--inner-max",
+          "100000",
+          "--diagnostic-every",
+          "500",
+          "--exact-block-rows",
+          "128"
+        ],
+        "completed_updates": 2,
+        "cpu_ids": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "dataset": "snare_full",
+        "environment": {
+          "MALLOC_ARENA_MAX": "2",
+          "MKL_NUM_THREADS": "4",
+          "NUMEXPR_NUM_THREADS": "4",
+          "OMP_NUM_THREADS": "4",
+          "OMP_PLACES": "cores",
+          "OMP_PROC_BIND": "true",
+          "OPENBLAS_NUM_THREADS": "4"
+        },
+        "finished_at": "2026-10-18T19:42:36.598198+00:00",
+        "hard_seconds": 900,
+        "method": "frames",
+        "minimum_available_bytes_sampled": 3728158720,
+        "num_threads": 4,
+        "peak_rss_bytes_sampled": 8416395264,
+        "pid": 27,
+        "process_seconds": 349.09295452805236,
+        "returncode": 0,
+        "runner_elapsed_seconds": 345.09206543816254,
+        "runner_status": "checkpointed",
+        "soft_seconds": 300,
+        "started_at": "2026-10-18T19:36:47.505302+00:00",
+        "status": "finished",
+        "stop_reason": null
+      },
+      "run_directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/snare_full_frames",
+      "runner_status": "checkpointed",
+      "stop_reason": null,
+      "timing_window": {
+        "first_updates_excluded": 0,
+        "maximum_updates": 20,
+        "outer_update_indices": [
+          1,
+          2
+        ]
+      },
+      "timing_window_inner_iterations": [],
+      "update_seconds": {
+        "count": 2,
+        "maximum": 4.927532318979502,
+        "mean": 4.740589295979589,
+        "median": 4.740589295979589,
+        "minimum": 4.553646272979677
+      }
+    },
+    {
+      "completed_updates": 2,
+      "component_seconds": {
+        "checkpoint": {
+          "count": 2,
+          "maximum": 8.874297183938324,
+          "mean": 8.0968307107687,
+          "median": 8.0968307107687,
+          "minimum": 7.319364237599075
+        },
+        "checkpoint_load": {
+          "count": 1,
+          "maximum": 3.650970757007599e-05,
+          "mean": 3.650970757007599e-05,
+          "median": 3.650970757007599e-05,
+          "minimum": 3.650970757007599e-05
+        },
+        "diagnostic": {
+          "count": 3,
+          "maximum": 91.43972079269588,
+          "mean": 90.83440432154264,
+          "median": 90.67779123503715,
+          "minimum": 90.38570093689486
+        },
+        "full_gradient": {
+          "count": 2,
+          "maximum": 43.52662320807576,
+          "mean": 43.40512588922866,
+          "median": 43.40512588922866,
+          "minimum": 43.28362857038155
+        },
+        "fw_step": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "load_problem": {
+          "count": 1,
+          "maximum": 5.83068131795153,
+          "mean": 5.83068131795153,
+          "median": 5.83068131795153,
+          "minimum": 5.83068131795153
+        },
+        "pair_gradient": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        },
+        "pot_step": {
+          "count": 2,
+          "maximum": 21.339213019236922,
+          "mean": 18.70955825317651,
+          "median": 18.70955825317651,
+          "minimum": 16.0799034871161
+        },
+        "sample_pairs": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null
+        }
+      },
+      "cpu_usage": {
+        "average_busy_cores": 3.476277884828637,
+        "cpu_seconds": 1478.519772,
+        "fraction_of_four_cores": 0.8690694712071593,
+        "profile_interval_seconds": 425.31691107107326
+      },
+      "dataset": "snare_full",
+      "diagnostic_seconds": {
+        "count": 3,
+        "maximum": 91.43972079269588,
+        "mean": 90.83440432154264,
+        "median": 90.67779123503715,
+        "minimum": 90.38570093689486
+      },
+      "diagnostic_trace": [
+        {
+          "iteration": 0,
+          "raw_entropy": -19.420680743952342,
+          "raw_loss": 0.09407247358339277,
+          "raw_regularized_loss": 0.07465179283944043,
+          "raw_residuals": {
+            "both_l1": 2.710505431213761e-16,
+            "col_l1": 1.3552527156068805e-16,
+            "col_l2": 1.3552527156068805e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1e-08,
+            "row_l1": 1.3552527156068805e-16
+          },
+          "rounded_entropy": -19.420680743952342,
+          "rounded_loss": 0.09407247358339332,
+          "rounded_regularized_loss": 0.07465179283944098,
+          "rounded_residuals": {
+            "both_l1": 2.710505431213761e-16,
+            "col_l1": 1.3552527156068805e-16,
+            "col_l2": 1.3552527156068805e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 9.999999999999997e-09,
+            "row_l1": 1.3552527156068805e-16
+          },
+          "rounding_repair_l1": 3.3087224502121107e-16
+        },
+        {
+          "iteration": 1,
+          "raw_entropy": -18.836836357157235,
+          "raw_loss": 0.09059790464657891,
+          "raw_regularized_loss": 0.07176106828942166,
+          "raw_residuals": {
+            "both_l1": 7.454536992284623e-08,
+            "col_l1": 2.394745101004514e-15,
+            "col_l2": 3.0077979995917454e-17,
+            "mass_error": 4.440892098500626e-16,
+            "min_entry": 1.1318842913440025e-36,
+            "row_l1": 7.454536752810113e-08
+          },
+          "rounded_entropy": -18.836836610224783,
+          "rounded_loss": 0.0905979098634131,
+          "rounded_regularized_loss": 0.07176107325318831,
+          "rounded_residuals": {
+            "both_l1": 2.0079424234431542e-16,
+            "col_l1": 1.1100874993535959e-16,
+            "col_l2": 1.4105700478030284e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1.1318838441354727e-36,
+            "row_l1": 8.978549240895584e-17
+          },
+          "rounding_repair_l1": 7.454536749527767e-08
+        },
+        {
+          "iteration": 2,
+          "raw_entropy": -18.553098837525493,
+          "raw_loss": 0.08924677494971134,
+          "raw_regularized_loss": 0.07069367611218584,
+          "raw_residuals": {
+            "both_l1": 2.852642122672599e-08,
+            "col_l1": 2.5147527289715033e-15,
+            "col_l2": 3.1644085842789445e-17,
+            "mass_error": 4.440892098500626e-16,
+            "min_entry": 1.3228167446396324e-55,
+            "row_l1": 2.852641871197326e-08
+          },
+          "rounded_entropy": -18.553099003481428,
+          "rounded_loss": 0.08924677704719253,
+          "rounded_regularized_loss": 0.0706936780437111,
+          "rounded_residuals": {
+            "both_l1": 1.9881557337952938e-16,
+            "col_l1": 1.1010073061590298e-16,
+            "col_l2": 1.3971597282824399e-18,
+            "mass_error": 2.220446049250313e-16,
+            "min_entry": 1.3228165552374636e-55,
+            "row_l1": 8.87148427636264e-17
+          },
+          "rounding_repair_l1": 2.8526418691503104e-08
+        }
+      ],
+      "full_horizon_finished": false,
+      "gpu_reference": {
+        "median_full_budget_seconds": 1676.1894909427501,
+        "note": "Original one-A100 FP64 campaign; fixed-budget time, not time to an equal loss.",
+        "records": [
+          {
+            "completed_updates": 2000,
+            "path": "reports/wallclock_comparison_20261018/input/snare_full/baseline/pot-full_seed810/metadata.json",
+            "seconds": 1676.1894909427501,
+            "seed": 810
+          }
+        ]
+      },
+      "incomplete_trailing_events_ignored": 0,
+      "measured_update_count": 2,
+      "method": "pot-full",
+      "not_finished": false,
+      "observed_inner_iterations": [
+        60,
+        120
+      ],
+      "original_gpu_steady_inner_iterations": 250,
+      "peak_rss_bytes": 7620214784,
+      "peak_rss_gib": 7.0968780517578125,
+      "pilot_finished": true,
+      "pilot_status": "finished",
+      "process_seconds": 433.47336065396667,
+      "projection": {
+        "assumption": "Update and diagnostic costs retain the observed medians. This is a duration extrapolation, not a measured full run or a prediction of final loss.",
+        "checkpoint_overhead_estimated_seconds_lower_upper": [
+          16.1936614215374,
+          582.9718111753464
+        ],
+        "checkpoint_seconds_median": 8.0968307107687,
+        "diagnostic_every": 500,
+        "diagnostic_iterations": [
+          0,
+          1,
+          2,
+          5,
+          10,
+          20,
+          50,
+          100,
+          200,
+          500,
+          1000,
+          1500,
+          2000
+        ],
+        "diagnostics_seconds": 1178.811286055483,
+        "fixed_iteration_checkpoint_count": 2,
+        "full_horizon_diagnostic_count": 13,
+        "full_horizon_hours_excluding_checkpoint_writes": 34.83738715018831,
+        "full_horizon_hours_with_estimated_checkpoint_writes_lower_upper": [
+          34.841885389472075,
+          34.999323764403684
+        ],
+        "full_horizon_seconds_excluding_checkpoint_writes": 125414.59374067793,
+        "full_horizon_updates": 2000,
+        "load_seconds": 5.83068131795153,
+        "optimizer_seconds": 124229.95177330449,
+        "ratio_to_gpu_fixed_budget_excluding_checkpoint_writes": 74.82125047218867,
+        "status": "tentative",
+        "tentative": true,
+        "tentative_reasons": [
+          "Fewer than 10 POT updates; inner work increases after initialization.",
+          "Observed inner iterations remain below 90% of the original GPU steady workload.",
+          "Too few completed updates to exclude the first two from throughput estimation."
+        ],
+        "unmodeled": "Imports, potential thermal/frequency drift, future changes in inner solve workload, and diagnostics/checkpoint cost changes. Checkpoint overhead range is a heuristic schedule estimate, not a bound on future runtime."
+      },
+      "receipt": {
+        "argv": [
+          "taskset",
+          "-c",
+          "0,2,4,6",
+          "/home/tony/gw_benchmark_experiment_20260927/.venv/bin/python",
+          "/home/tony/gw_benchmark_experiment_20260927/extensions/cpu_large_pilot_20261018/profile_runner.py",
+          "--profile-out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/snare_full_pot-full",
+          "--instance",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/data/snare_full",
+          "--out",
+          "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/snare_full_pot-full",
+          "--method",
+          "pot-full",
+          "--device",
+          "cpu",
+          "--dtype",
+          "float64",
+          "--seed",
+          "810",
+          "--iterations",
+          "2000",
+          "--chunk-updates",
+          "30",
+          "--max-seconds",
+          "300",
+          "--checkpoint-seconds",
+          "1800",
+          "--checkpoint-every",
+          "5000",
+          "--retain-checkpoint",
+          "--pairs",
+          "1024",
+          "--epsilon",
+          ".001",
+          "--gamma0",
+          ".3",
+          "--rho0",
+          ".1",
+          "--mu-scale",
+          "10",
+          "--inner-max",
+          "100000",
+          "--diagnostic-every",
+          "500",
+          "--exact-block-rows",
+          "128"
+        ],
+        "completed_updates": 2,
+        "cpu_ids": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "dataset": "snare_full",
+        "environment": {
+          "MALLOC_ARENA_MAX": "2",
+          "MKL_NUM_THREADS": "4",
+          "NUMEXPR_NUM_THREADS": "4",
+          "OMP_NUM_THREADS": "4",
+          "OMP_PLACES": "cores",
+          "OMP_PROC_BIND": "true",
+          "OPENBLAS_NUM_THREADS": "4"
+        },
+        "finished_at": "2026-10-18T19:49:50.112411+00:00",
+        "hard_seconds": 900,
+        "method": "pot-full",
+        "minimum_available_bytes_sampled": 5486268416,
+        "num_threads": 4,
+        "peak_rss_bytes_sampled": 7620214784,
+        "pid": 37,
+        "process_seconds": 433.47336065396667,
+        "returncode": 0,
+        "runner_elapsed_seconds": 419.4110901430249,
+        "runner_status": "checkpointed",
+        "soft_seconds": 300,
+        "started_at": "2026-10-18T19:42:36.639080+00:00",
+        "status": "finished",
+        "stop_reason": null
+      },
+      "run_directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/cpu_large_pilot_20261018/runs/snare_full_pot-full",
+      "runner_status": "checkpointed",
+      "stop_reason": null,
+      "timing_window": {
+        "first_updates_excluded": 0,
+        "maximum_updates": 20,
+        "outer_update_indices": [
+          1,
+          2
+        ]
+      },
+      "timing_window_inner_iterations": [
+        60,
+        120
+      ],
+      "update_seconds": {
+        "count": 2,
+        "maximum": 64.8661224860698,
+        "mean": 62.114975886652246,
+        "median": 62.114975886652246,
+        "minimum": 59.363829287234694
+      }
+    }
+  ]
+}

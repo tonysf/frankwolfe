@@ -1,0 +1,13 @@
+{
+  "selection_stage": "initial development pilot, before Stage C",
+  "source_job": "Ruche 1961447",
+  "development_problem_seed": 1000,
+  "sizes": [128,512],
+  "frozen_oracle_for_next_matched_panel": "trace_sketch",
+  "batch": 128,
+  "selection_reason": "Sketch batches 8,32,128 had approximately equal A100 inclusive time; 128 had the smallest estimator variance and mean gradient error. Use the identical oracle/batch in own method and stochastic KL. This is a diagnostic default, not evidence of superiority.",
+  "cost_gate": "not passed at n128 or n512: exact full gradient is approximately 0.54ms and sketch approximately 1.15-1.17ms",
+  "anchor_scope": "Python-loop correctness reference; no CPU/GPU speedup claim",
+  "native_sampled_GW": "retains native estimator; its sample count has a different meaning",
+  "next_step": "bounded 30-second development comparison to diagnose feasible-output quality; no large-scale sweep or held-out tuning"
+}

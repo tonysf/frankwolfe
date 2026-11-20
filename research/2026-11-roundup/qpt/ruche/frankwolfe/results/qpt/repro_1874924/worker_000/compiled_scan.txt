@@ -1,0 +1,616 @@
+HloModule jit_scan, is_scheduled=true, entry_computation_layout={(c128[64,1]{1,0}, c128[64,1]{1,0}, s32[], s32[100,32,3]{2,1,0}, f64[100,32]{1,0}, /*index=5*/f64[100]{0}, f64[100]{0}, f64[100]{0}, c128[24,4,4]{2,1,0}, c128[4,2,2]{2,1,0})->(c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0})}, allow_spmd_sharding_propagation_to_parameters={false,false,false,false,false,false,false,false,false,false}, allow_spmd_sharding_propagation_to_output={true,true,true}, frontend_attributes={fingerprint_before_lhs="c36a5ca7f593fee3baf20ebdb39547a8",xla.sdy.meshes={empty_mesh = #sdy.mesh<[]>}}
+
+FileNames
+1 "/gpfs/workdir/silvetian/frankwolfe/scripts/diagnose_qpt_reproducibility.py"
+2 "/gpfs/workdir/silvetian/frankwolfe/paper/experiments/quantum_process_tomography_structured_jax.py"
+3 "/gpfs/workdir/silvetian/frankwolfe/paper/experiments/qpt_structured_operators.py"
+
+FunctionNames
+1 "<module>"
+2 "main"
+3 "run_worker"
+4 "_build_scan.<locals>.scan"
+5 "_build_scan.<locals>.scan.<locals>.step"
+6 "_build_scan.<locals>.scan.<locals>.step.<locals>.<lambda>"
+7 "measurement_loss_and_gradient"
+8 "apply_measurements"
+9 "trace_preserving_loss_and_gradient"
+10 "pauli_matrices_to_coefficients"
+11 "_transform_axis"
+12 "pauli_coefficients_to_matrices"
+13 "_lmo"
+
+FileLocations
+1 {file_name_id=1 function_name_id=1 line=550 end_line=550 column=21 end_column=27}
+2 {file_name_id=1 function_name_id=2 line=478 end_line=478 column=15 end_column=31}
+3 {file_name_id=1 function_name_id=3 line=328 end_line=328 column=21 end_column=58}
+4 {file_name_id=2 function_name_id=4 line=122 end_line=122 column=15 end_column=95}
+5 {file_name_id=2 function_name_id=5 line=108 end_line=111 column=23 end_column=13}
+6 {file_name_id=2 function_name_id=6 line=110 end_line=110 column=24 end_column=49}
+7 {file_name_id=2 function_name_id=6 line=110 end_line=110 column=52 end_column=68}
+8 {file_name_id=2 function_name_id=6 line=110 end_line=110 column=25 end_column=37}
+9 {file_name_id=2 function_name_id=5 line=107 end_line=107 column=25 end_column=74}
+10 {file_name_id=3 function_name_id=7 line=111 end_line=111 column=14 end_column=76}
+11 {file_name_id=3 function_name_id=8 line=75 end_line=75 column=13 end_column=61}
+12 {file_name_id=2 function_name_id=5 line=116 end_line=116 column=18 end_column=51}
+13 {file_name_id=2 function_name_id=5 line=112 end_line=112 column=29 end_column=86}
+14 {file_name_id=3 function_name_id=9 line=317 end_line=317 column=15 end_column=82}
+15 {file_name_id=3 function_name_id=10 line=264 end_line=264 column=17 end_column=61}
+16 {file_name_id=3 function_name_id=11 line=212 end_line=212 column=13 end_column=62}
+17 {file_name_id=3 function_name_id=10 line=261 end_line=261 column=13 end_column=46}
+18 {file_name_id=3 function_name_id=9 line=316 end_line=316 column=21 end_column=69}
+19 {file_name_id=3 function_name_id=9 line=312 end_line=312 column=12 end_column=71}
+20 {file_name_id=3 function_name_id=12 line=231 end_line=231 column=17 end_column=61}
+21 {file_name_id=3 function_name_id=8 line=83 end_line=85 column=17 end_column=9}
+22 {file_name_id=3 function_name_id=8 line=84 end_line=84 column=32 end_column=68}
+23 {file_name_id=3 function_name_id=8 line=84 end_line=84 column=51 end_column=67}
+24 {file_name_id=2 function_name_id=5 line=115 end_line=115 column=19 end_column=43}
+25 {file_name_id=2 function_name_id=13 line=75 end_line=75 column=11 end_column=36}
+26 {file_name_id=3 function_name_id=7 line=114 end_line=114 column=47 end_column=62}
+27 {file_name_id=2 function_name_id=5 line=114 end_line=114 column=23 end_column=40}
+28 {file_name_id=2 function_name_id=5 line=113 end_line=113 column=21 end_column=44}
+29 {file_name_id=3 function_name_id=7 line=117 end_line=117 column=42 end_column=83}
+30 {file_name_id=3 function_name_id=7 line=115 end_line=115 column=15 end_column=39}
+31 {file_name_id=2 function_name_id=13 line=81 end_line=81 column=11 end_column=62}
+32 {file_name_id=2 function_name_id=13 line=77 end_line=77 column=15 end_column=30}
+33 {file_name_id=2 function_name_id=13 line=81 end_line=81 column=37 end_column=61}
+34 {file_name_id=2 function_name_id=13 line=77 end_line=77 column=33 end_column=87}
+35 {file_name_id=2 function_name_id=13 line=81 end_line=81 column=21 end_column=29}
+36 {file_name_id=3 function_name_id=9 line=316 end_line=316 column=38 end_column=68}
+37 {file_name_id=3 function_name_id=9 line=314 end_line=314 column=15 end_column=67}
+38 {file_name_id=3 function_name_id=9 line=316 end_line=316 column=49 end_column=68}
+39 {file_name_id=3 function_name_id=9 line=314 end_line=314 column=24 end_column=67}
+40 {file_name_id=3 function_name_id=9 line=313 end_line=313 column=38 end_column=52}
+41 {file_name_id=3 function_name_id=12 line=238 end_line=238 column=11 end_column=44}
+42 {file_name_id=3 function_name_id=7 line=117 end_line=117 column=15 end_column=83}
+43 {file_name_id=2 function_name_id=5 line=117 end_line=117 column=26 end_column=52}
+44 {file_name_id=2 function_name_id=5 line=117 end_line=117 column=55 end_column=71}
+45 {file_name_id=2 function_name_id=5 line=117 end_line=117 column=27 end_column=42}
+46 {file_name_id=2 function_name_id=5 line=116 end_line=116 column=37 end_column=50}
+47 {file_name_id=3 function_name_id=7 line=114 end_line=114 column=16 end_column=73}
+48 {file_name_id=3 function_name_id=7 line=114 end_line=114 column=24 end_column=72}
+49 {file_name_id=3 function_name_id=10 line=262 end_line=262 column=16 end_column=51}
+50 {file_name_id=2 function_name_id=5 line=109 end_line=109 column=16 end_column=30}
+51 {file_name_id=2 function_name_id=4 line=121 end_line=121 column=21 end_column=74}
+52 {file_name_id=2 function_name_id=4 line=121 end_line=121 column=29 end_column=74}
+53 {file_name_id=3 function_name_id=12 line=229 end_line=229 column=16 end_column=42}
+54 {file_name_id=3 function_name_id=8 line=82 end_line=82 column=17 end_column=50}
+55 {file_name_id=3 function_name_id=9 line=313 end_line=313 column=13 end_column=60}
+
+StackFrames
+1 {file_location_id=1 parent_frame_id=1}
+2 {file_location_id=2 parent_frame_id=2}
+3 {file_location_id=3 parent_frame_id=3}
+4 {file_location_id=4 parent_frame_id=4}
+5 {file_location_id=4 parent_frame_id=5}
+6 {file_location_id=4 parent_frame_id=6}
+7 {file_location_id=5 parent_frame_id=7}
+8 {file_location_id=6 parent_frame_id=8}
+9 {file_location_id=7 parent_frame_id=8}
+10 {file_location_id=8 parent_frame_id=8}
+11 {file_location_id=9 parent_frame_id=7}
+12 {file_location_id=10 parent_frame_id=12}
+13 {file_location_id=11 parent_frame_id=13}
+14 {file_location_id=4 parent_frame_id=7}
+15 {file_location_id=12 parent_frame_id=7}
+16 {file_location_id=13 parent_frame_id=7}
+17 {file_location_id=14 parent_frame_id=17}
+18 {file_location_id=15 parent_frame_id=18}
+19 {file_location_id=16 parent_frame_id=19}
+20 {file_location_id=17 parent_frame_id=18}
+21 {file_location_id=18 parent_frame_id=17}
+22 {file_location_id=19 parent_frame_id=17}
+23 {file_location_id=20 parent_frame_id=23}
+24 {file_location_id=16 parent_frame_id=24}
+25 {file_location_id=21 parent_frame_id=13}
+26 {file_location_id=22 parent_frame_id=13}
+27 {file_location_id=23 parent_frame_id=13}
+28 {file_location_id=24 parent_frame_id=7}
+29 {file_location_id=25 parent_frame_id=29}
+30 {file_location_id=9 parent_frame_id=30}
+31 {file_location_id=26 parent_frame_id=31}
+32 {file_location_id=27 parent_frame_id=7}
+33 {file_location_id=28 parent_frame_id=7}
+34 {file_location_id=29 parent_frame_id=12}
+35 {file_location_id=30 parent_frame_id=12}
+36 {file_location_id=31 parent_frame_id=29}
+37 {file_location_id=32 parent_frame_id=29}
+38 {file_location_id=33 parent_frame_id=29}
+39 {file_location_id=34 parent_frame_id=29}
+40 {file_location_id=35 parent_frame_id=29}
+41 {file_location_id=36 parent_frame_id=17}
+42 {file_location_id=37 parent_frame_id=17}
+43 {file_location_id=38 parent_frame_id=17}
+44 {file_location_id=13 parent_frame_id=44}
+45 {file_location_id=38 parent_frame_id=45}
+46 {file_location_id=39 parent_frame_id=17}
+47 {file_location_id=40 parent_frame_id=17}
+48 {file_location_id=13 parent_frame_id=48}
+49 {file_location_id=40 parent_frame_id=49}
+50 {file_location_id=41 parent_frame_id=23}
+51 {file_location_id=42 parent_frame_id=12}
+52 {file_location_id=43 parent_frame_id=7}
+53 {file_location_id=44 parent_frame_id=7}
+54 {file_location_id=45 parent_frame_id=7}
+55 {file_location_id=46 parent_frame_id=7}
+56 {file_location_id=47 parent_frame_id=12}
+57 {file_location_id=48 parent_frame_id=12}
+58 {file_location_id=26 parent_frame_id=12}
+59 {file_location_id=9 parent_frame_id=59}
+60 {file_location_id=26 parent_frame_id=60}
+61 {file_location_id=49 parent_frame_id=18}
+62 {file_location_id=13 parent_frame_id=62}
+63 {file_location_id=14 parent_frame_id=63}
+64 {file_location_id=49 parent_frame_id=64}
+65 {file_location_id=50 parent_frame_id=7}
+66 {file_location_id=51 parent_frame_id=4}
+67 {file_location_id=52 parent_frame_id=4}
+68 {file_location_id=53 parent_frame_id=23}
+69 {file_location_id=54 parent_frame_id=13}
+70 {file_location_id=55 parent_frame_id=17}
+
+
+%region_2.6 (mul.16: (c128[64,1])) -> (c128[64,1]) {
+  ROOT %mul.16 = (c128[64,1]{1,0}) parameter(0)
+}
+
+%fused_add (param_0.4: c128[64,1], param_1.7: c128[64,1], param_2.5: f64[]) -> c128[64,1] {
+  %constant_17_1 = f64[] constant(1), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %param_2.5 = f64[] parameter(2)
+  %sub.2.1 = f64[] subtract(%constant_17_1, %param_2.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/sub" stack_frame_id=10}
+  %convert_element_type.3.1 = c128[] convert(%sub.2.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/convert_element_type" stack_frame_id=8}
+  %mul.7.3 = c128[64,1]{1,0} broadcast(%convert_element_type.3.1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/mul" stack_frame_id=8}
+  %param_1.7 = c128[64,1]{1,0} parameter(1)
+  %mul.8.3 = c128[64,1]{1,0} multiply(%mul.7.3, %param_1.7), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/mul" stack_frame_id=8}
+  %convert_element_type.4.1 = c128[] convert(%param_2.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/convert_element_type" stack_frame_id=9}
+  %mul.9.1 = c128[64,1]{1,0} broadcast(%convert_element_type.4.1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/mul" stack_frame_id=9}
+  %param_0.4 = c128[64,1]{1,0} parameter(0)
+  %mul.10.1 = c128[64,1]{1,0} multiply(%mul.9.1, %param_0.4), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/mul" stack_frame_id=9}
+  ROOT %add.6.1 = c128[64,1]{1,0} add(%mul.8.3, %mul.10.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/add" stack_frame_id=8}
+}
+
+%region_1.5 (arg_tuple.2: (f64[], c128[64,1], c128[64,1])) -> (c128[64,1]) {
+  %arg_tuple.2 = (f64[], c128[64,1]{1,0}, c128[64,1]{1,0}) parameter(0), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %get-tuple-element.15.0 = f64[] get-tuple-element(%arg_tuple.2), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %get-tuple-element.16.0 = c128[64,1]{1,0} get-tuple-element(%arg_tuple.2), index=1, metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %get-tuple-element.17.0 = c128[64,1]{1,0} get-tuple-element(%arg_tuple.2), index=2, metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %loop_add_fusion = c128[64,1]{1,0} fusion(%get-tuple-element.17.0, %get-tuple-element.16.0, %get-tuple-element.15.0), kind=kLoop, calls=%fused_add, metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond/branch_0_fun/add" stack_frame_id=8}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  ROOT %tuple.13 = (c128[64,1]{1,0}) tuple(%loop_add_fusion)
+}
+
+%fused_transpose (param_0.75: c128[64,1]) -> c128[32,4,4,4,1] {
+  %param_0.75 = c128[64,1]{1,0} parameter(0)
+  %bitcast.5.3 = c128[64]{0} bitcast(%param_0.75)
+  %broadcast_in_dim.0.3 = c128[32,64,1]{2,1,0} broadcast(%bitcast.5.3), dimensions={1}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/broadcast_in_dim" stack_frame_id=13}
+  %bitcast.48.1 = c128[1,32,4,4,4]{4,3,2,1,0} bitcast(%broadcast_in_dim.0.3)
+  ROOT %transpose.71.1 = c128[32,4,4,4,1]{4,3,2,1,0} transpose(%bitcast.48.1), dimensions={1,3,4,2,0}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/broadcast_in_dim" stack_frame_id=13}
+}
+
+%fused_dynamic_update_slice (param_0.14: f64[100], param_1.16: s64[], param_2.7: f64[]) -> f64[100] {
+  %param_0.14 = f64[100]{0} parameter(0)
+  %param_2.7 = f64[] parameter(2)
+  %bitcast.46.1 = f64[1]{0} bitcast(%param_2.7), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=15}
+  %param_1.16 = s64[] parameter(1)
+  ROOT %dynamic_update_slice.0.1 = f64[100]{0} dynamic-update-slice(%param_0.14, %bitcast.46.1, %param_1.16), metadata={op_name="jit(scan)/while/body/jit(dynamic_update_index_in_dim)/dynamic_update_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"8","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+}
+
+%fused_transpose.1 (param_0.19: c128[16,4]) -> c128[1,4,4,4] {
+  %param_0.19 = c128[16,4]{1,0} parameter(0)
+  %bitcast.42.1 = c128[4,4,1,4]{3,2,1,0} bitcast(%param_0.19), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}
+  ROOT %transpose.81.1 = c128[1,4,4,4]{3,2,1,0} transpose(%bitcast.42.1), dimensions={2,0,3,1}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+}
+
+%fused_transpose.2 (param_0.21: c128[16,4]) -> c128[1,4,4,4] {
+  %param_0.21 = c128[16,4]{1,0} parameter(0)
+  %bitcast.40.1 = c128[4,4,1,4]{3,2,1,0} bitcast(%param_0.21), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}
+  ROOT %transpose.80.1 = c128[1,4,4,4]{3,2,1,0} transpose(%bitcast.40.1), dimensions={2,3,1,0}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+}
+
+%fused_transpose.3 (param_0.23: c128[8,8]) -> c128[1,2,2,2,2,2,2] {
+  %param_0.23 = c128[8,8]{1,0} parameter(0)
+  %bitcast.36.1 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} bitcast(%param_0.23), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=21}
+  ROOT %transpose.79.1 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} transpose(%bitcast.36.1), dimensions={0,1,4,2,5,3,6}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose" stack_frame_id=20}
+}
+
+%fused_transpose.4 (param_0.31: c128[16,4]) -> c128[1,4,4,4] {
+  %param_0.31 = c128[16,4]{1,0} parameter(0)
+  %bitcast.30.1 = c128[4,4,1,4]{3,2,1,0} bitcast(%param_0.31), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}
+  ROOT %transpose.75.1 = c128[1,4,4,4]{3,2,1,0} transpose(%bitcast.30.1), dimensions={2,0,3,1}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+}
+
+%fused_transpose.5 (param_0.33: c128[16,4]) -> c128[1,4,4,4] {
+  %param_0.33 = c128[16,4]{1,0} parameter(0)
+  %bitcast.28.1 = c128[4,4,1,4]{3,2,1,0} bitcast(%param_0.33), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}
+  ROOT %transpose.74.1 = c128[1,4,4,4]{3,2,1,0} transpose(%bitcast.28.1), dimensions={2,3,1,0}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+}
+
+%fused_transpose.6 (param_0.42: c128[32,16,4]) -> c128[32,4,1,4,4] {
+  %param_0.42 = c128[32,16,4]{2,1,0} parameter(0)
+  %bitcast.17.1 = c128[32,4,4,1,4]{4,3,2,1,0} bitcast(%param_0.42), metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}
+  ROOT %transpose.73.1 = c128[32,4,1,4,4]{4,3,2,1,0} transpose(%bitcast.17.1), dimensions={0,1,3,4,2}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+}
+
+%fused_transpose.7 (param_0.50: c128[32,16,4]) -> c128[32,1,4,4,4] {
+  %param_0.50 = c128[32,16,4]{2,1,0} parameter(0)
+  %bitcast.12.1 = c128[32,4,4,1,4]{4,3,2,1,0} bitcast(%param_0.50), metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}
+  ROOT %transpose.72.1 = c128[32,1,4,4,4]{4,3,2,1,0} transpose(%bitcast.12.1), dimensions={0,3,4,2,1}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+}
+
+%fused_gather (param_0.51: c128[24,4,4], param_1.142: s32[100,32,3], param_2.70: s64[]) -> (c128[32,1,4,4], c128[32,1,4,4], c128[32,1,4,4]) {
+  %param_0.51 = c128[24,4,4]{2,1,0} parameter(0)
+  %param_1.142 = s32[100,32,3]{2,1,0} parameter(1)
+  %param_2.70 = s64[] parameter(2)
+  %constant_1_1 = s64[] constant(0), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)" stack_frame_id=6}
+  %dynamic_slice.6.7 = s32[1,32,3]{2,1,0} dynamic-slice(%param_1.142, %param_2.70, %constant_1_1, %constant_1_1), dynamic_slice_sizes={1,32,3}, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"384","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.8.7 = s32[32,3]{1,0} bitcast(%dynamic_slice.6.7), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}
+  %slice.0.3 = s32[32,1]{1,0} slice(%bitcast.8.7), slice={[0:32], [0:1]}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/slice" stack_frame_id=27}
+  %bitcast.9.9 = s32[32]{0} bitcast(%slice.0.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/slice" stack_frame_id=27}
+  %constant_7_2 = s32[] constant(0), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %broadcast.0.1 = s32[32]{0} broadcast(%constant_7_2), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %lt.0.3 = pred[32]{0} compare(%bitcast.9.9, %broadcast.0.1), direction=LT, metadata={op_name="jit(scan)/while/body/eval_jaxpr/lt" stack_frame_id=26}
+  %constant_8_2 = s32[] constant(24), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %broadcast.1.1 = s32[32]{0} broadcast(%constant_8_2), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %add.0.3 = s32[32]{0} add(%bitcast.9.9, %broadcast.1.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=26}
+  %select_n.2.3 = s32[32]{0} select(%lt.0.3, %add.0.3, %bitcast.9.9), metadata={op_name="jit(scan)/while/body/eval_jaxpr/select_n" stack_frame_id=26}
+  %bitcast.10.1 = s32[32,1]{1,0} bitcast(%select_n.2.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/select_n" stack_frame_id=26}
+  %gather.6.1 = c128[32,1,4,4]{3,2,1,0} gather(%param_0.51, %bitcast.10.1), offset_dims={1,2,3}, collapsed_slice_dims={}, start_index_map={0}, index_vector_dim=1, slice_sizes={1,4,4}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %slice.1.3.clone.1 = s32[32,1]{1,0} slice(%bitcast.8.7), slice={[0:32], [1:2]}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/slice" stack_frame_id=27}
+  %bitcast.14.9.clone.1 = s32[32]{0} bitcast(%slice.1.3.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/slice" stack_frame_id=27}
+  %lt.1.3.clone.1 = pred[32]{0} compare(%bitcast.14.9.clone.1, %broadcast.0.1), direction=LT, metadata={op_name="jit(scan)/while/body/eval_jaxpr/lt" stack_frame_id=26}
+  %add.1.3.clone.1 = s32[32]{0} add(%bitcast.14.9.clone.1, %broadcast.1.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=26}
+  %select_n.3.3.clone.1 = s32[32]{0} select(%lt.1.3.clone.1, %add.1.3.clone.1, %bitcast.14.9.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/select_n" stack_frame_id=26}
+  %bitcast.15.1.clone.1 = s32[32,1]{1,0} bitcast(%select_n.3.3.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/select_n" stack_frame_id=26}
+  %gather.7.1.clone.1 = c128[32,1,4,4]{3,2,1,0} gather(%param_0.51, %bitcast.15.1.clone.1), offset_dims={1,2,3}, collapsed_slice_dims={}, start_index_map={0}, index_vector_dim=1, slice_sizes={1,4,4}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %slice.2.3.clone.1 = s32[32,1]{1,0} slice(%bitcast.8.7), slice={[0:32], [2:3]}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/slice" stack_frame_id=27}
+  %bitcast.19.9.clone.1 = s32[32]{0} bitcast(%slice.2.3.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/slice" stack_frame_id=27}
+  %lt.2.3.clone.1 = pred[32]{0} compare(%bitcast.19.9.clone.1, %broadcast.0.1), direction=LT, metadata={op_name="jit(scan)/while/body/eval_jaxpr/lt" stack_frame_id=26}
+  %add.2.3.clone.1 = s32[32]{0} add(%bitcast.19.9.clone.1, %broadcast.1.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=26}
+  %select_n.4.3.clone.1 = s32[32]{0} select(%lt.2.3.clone.1, %add.2.3.clone.1, %bitcast.19.9.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/select_n" stack_frame_id=26}
+  %bitcast.20.1.clone.1 = s32[32,1]{1,0} bitcast(%select_n.4.3.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/select_n" stack_frame_id=26}
+  %gather.8.1.clone.1 = c128[32,1,4,4]{3,2,1,0} gather(%param_0.51, %bitcast.20.1.clone.1), offset_dims={1,2,3}, collapsed_slice_dims={}, start_index_map={0}, index_vector_dim=1, slice_sizes={1,4,4}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  ROOT %tuple.11 = (c128[32,1,4,4]{3,2,1,0}, c128[32,1,4,4]{3,2,1,0}, c128[32,1,4,4]{3,2,1,0}) tuple(%gather.6.1, %gather.7.1.clone.1, %gather.8.1.clone.1)
+}
+
+%region_3.7 (reduce_sum.3: f64[], reduce_sum.4: f64[]) -> f64[] {
+  %reduce_sum.3 = f64[] parameter(0), metadata={op_name="reduce_sum"}
+  %reduce_sum.4 = f64[] parameter(1), metadata={op_name="reduce_sum"}
+  ROOT %reduce_sum.5.0 = f64[] add(%reduce_sum.3, %reduce_sum.4), metadata={op_name="reduce_sum"}
+}
+
+%fused_add_reduce (param_0.172: c128[64,1], param_1.170: c128[16,4], param_2.105: f64[100], param_3.82: s64[]) -> (f64[], c128[64,1]) {
+  %param_0.172 = c128[64,1]{1,0} parameter(0)
+  %param_1.170 = c128[16,4]{1,0} parameter(1)
+  %param_2.105 = f64[100]{0} parameter(2)
+  %param_3.82 = s64[] parameter(3)
+  %dynamic_slice.10.1.clone.1 = f64[1]{0} dynamic-slice(%param_2.105, %param_3.82), dynamic_slice_sizes={1}, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"8","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.44.3.clone.1 = f64[] bitcast(%dynamic_slice.10.1.clone.1), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}
+  %convert.8.3.clone.1 = c128[] convert(%bitcast.44.3.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/convert_element_type" stack_frame_id=33}
+  %broadcast.11.1.clone.1 = c128[16,4]{1,0} broadcast(%convert.8.3.clone.1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/div" stack_frame_id=33}
+  %div.8.1.clone.1 = c128[16,4]{1,0} divide(%param_1.170, %broadcast.11.1.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/div" stack_frame_id=33}
+  %bitcast.45.1.clone.1 = c128[64,1]{1,0} bitcast(%div.8.1.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/div" stack_frame_id=33}
+  %add.4.1.clone.1 = c128[64,1]{1,0} add(%param_0.172, %bitcast.45.1.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=32}
+  %real.9.6 = f64[64,1]{1,0} real(%add.4.1.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/real" stack_frame_id=31}
+  %imag.6.6 = f64[64,1]{1,0} imag(%add.4.1.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/imag" stack_frame_id=31}
+  %neg.6.6 = f64[64,1]{1,0} negate(%imag.6.6), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/neg" stack_frame_id=31}
+  %complex.6.10 = c128[64,1]{1,0} complex(%real.9.6, %neg.6.6), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/complex" stack_frame_id=31}
+  %mul.6.5 = c128[64,1]{1,0} multiply(%add.4.1.clone.1, %complex.6.10), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/mul" stack_frame_id=29}
+  %real.10.3 = f64[64,1]{1,0} real(%mul.6.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/real" stack_frame_id=29}
+  %bitcast.128.3 = f64[64]{0} bitcast(%real.10.3)
+  %constant_10_1 = f64[] constant(0), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)" stack_frame_id=29}
+  %reduce_sum.1.3 = f64[] reduce(%bitcast.128.3, %constant_10_1), dimensions={0}, to_apply=%region_3.7, metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/reduce_sum" stack_frame_id=29}
+  %sqrt.2.1 = f64[] sqrt(%reduce_sum.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/sqrt" stack_frame_id=29}
+  ROOT %tuple.8 = (f64[], c128[64,1]{1,0}) tuple(%sqrt.2.1, %add.4.1.clone.1)
+}
+
+%fused_multiply (param_0.82: c128[32,16,4], param_1.155: f64[32], param_2.88: f64[100,32], param_3.70: s64[]) -> c128[32,16,4] {
+  %param_1.155 = f64[32]{0} parameter(1)
+  %param_2.88 = f64[100,32]{1,0} parameter(2)
+  %param_3.70 = s64[] parameter(3)
+  %constant_1_2 = s64[] constant(0), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)" stack_frame_id=6}
+  %dynamic_slice.8.3 = f64[1,32]{1,0} dynamic-slice(%param_2.88, %param_3.70, %constant_1_2), dynamic_slice_sizes={1,32}, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"256","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.22.3 = f64[32]{0} bitcast(%dynamic_slice.8.3), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}
+  %sub.1.3 = f64[32]{0} subtract(%param_1.155, %bitcast.22.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/sub" stack_frame_id=35}
+  %dot_general.4.1 = c128[32]{0} convert(%sub.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/b,bnr->nr/dot_general" stack_frame_id=34}
+  %broadcast.14.1 = c128[32,16,4]{2,1,0} broadcast(%dot_general.4.1), dimensions={0}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/b,bnr->nr/dot_general" stack_frame_id=34}
+  %param_0.82 = c128[32,16,4]{2,1,0} parameter(0)
+  ROOT %multiply.7.1 = c128[32,16,4]{2,1,0} multiply(%broadcast.14.1, %param_0.82), metadata={op_name="jit(scan)/while/body/eval_jaxpr/b,bnr->nr/dot_general" stack_frame_id=34}
+}
+
+%fused_select (param_0.156: c128[64,1], param_1.162: f64[]) -> c128[64,1] {
+  %param_1.162 = f64[] parameter(1)
+  %constant_10_2 = f64[] constant(0), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)" stack_frame_id=29}
+  %gt.0.1 = pred[] compare(%param_1.162, %constant_10_2), direction=GT, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gt" stack_frame_id=40}
+  %select_n.10.1 = pred[64,1]{1,0} broadcast(%gt.0.1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(_where)/select_n" stack_frame_id=36}
+  %param_0.156 = c128[64,1]{1,0} parameter(0)
+  %constant_12_1 = c128[] constant((-10, 0)), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %mul.11.1 = c128[64,1]{1,0} broadcast(%constant_12_1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=37}
+  %mul.13.1 = c128[64,1]{1,0} multiply(%param_0.156, %mul.11.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=37}
+  %constant_13_1 = f64[] constant(2.2250738585072014e-308), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %max.0.1 = f64[] maximum(%param_1.162, %constant_13_1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/max" stack_frame_id=39}
+  %convert_element_type.7.1 = c128[] convert(%max.0.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/convert_element_type" stack_frame_id=37}
+  %div.2.1 = c128[64,1]{1,0} broadcast(%convert_element_type.7.1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/div" stack_frame_id=37}
+  %div.3.1 = c128[64,1]{1,0} divide(%mul.13.1, %div.2.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/div" stack_frame_id=37}
+  %constant_14_1 = c128[] constant((0, 0)), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %broadcast_in_dim.4.1 = c128[64,1]{1,0} broadcast(%constant_14_1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/broadcast_in_dim" stack_frame_id=38}
+  ROOT %select_n.11.1 = c128[64,1]{1,0} select(%select_n.10.1, %div.3.1, %broadcast_in_dim.4.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(_where)/select_n" stack_frame_id=36}
+}
+
+%fused_add.1 (param_0.121: c128[8,8]) -> c128[8,8] {
+  %param_0.121 = c128[8,8]{1,0} parameter(0)
+  %iota.4.3 = s64[8,8]{1,0} iota(), iota_dimension=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/iota" stack_frame_id=46}
+  %iota.10.3 = s64[8,8]{1,0} iota(), iota_dimension=1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/iota" stack_frame_id=46}
+  %eq.1.3 = pred[8,8]{1,0} compare(%iota.4.3, %iota.10.3), direction=EQ, metadata={op_name="jit(scan)/while/body/eval_jaxpr/eq" stack_frame_id=46}
+  %convert_element_type.5.5 = c128[8,8]{1,0} convert(%eq.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/convert_element_type" stack_frame_id=46}
+  %sub.3.5 = c128[8,8]{1,0} subtract(%param_0.121, %convert_element_type.5.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/sub" stack_frame_id=42}
+  %transpose.78.1 = c128[8,8]{1,0} transpose(%sub.3.5), dimensions={1,0}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/sub" stack_frame_id=42}
+  %real.21.3 = f64[8,8]{1,0} real(%sub.3.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=45}
+  %imag.14.5 = f64[8,8]{1,0} imag(%sub.3.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/imag" stack_frame_id=45}
+  %neg.14.3 = f64[8,8]{1,0} negate(%imag.14.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/neg" stack_frame_id=45}
+  %complex.14.1 = c128[8,8]{1,0} complex(%real.21.3, %neg.14.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=45}
+  ROOT %add.21.1 = c128[8,8]{1,0} add(%transpose.78.1, %complex.14.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=41}
+}
+
+%fused_transpose.8 (param_0.134: c128[16,4]) -> (c128[1,2,2,2,2,2,2], c128[1,2,2,2,2,2,2]) {
+  %param_0.134 = c128[16,4]{1,0} parameter(0)
+  %bitcast.32.7 = c128[2,2,2,2,2,2,1]{6,5,4,3,2,1,0} bitcast(%param_0.134), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}
+  %real.23.3 = f64[2,2,2,2,2,2,1]{6,5,4,3,2,1,0} real(%bitcast.32.7), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=49}
+  %imag.16.5 = f64[2,2,2,2,2,2,1]{6,5,4,3,2,1,0} imag(%bitcast.32.7), metadata={op_name="jit(scan)/while/body/eval_jaxpr/imag" stack_frame_id=49}
+  %negate.4 = f64[2,2,2,2,2,2,1]{6,5,4,3,2,1,0} negate(%imag.16.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/neg" stack_frame_id=49}
+  %complex.16.1 = c128[2,2,2,2,2,2,1]{6,5,4,3,2,1,0} complex(%real.23.3, %negate.4), metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=49}
+  %transpose.77.1 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} transpose(%complex.16.1), dimensions={6,0,2,4,1,3,5}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=49}
+  %transpose.76.1.clone.1 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} transpose(%bitcast.32.7), dimensions={6,0,2,4,1,3,5}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose" stack_frame_id=50}
+  ROOT %tuple.9 = (c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0}, c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0}) tuple(%transpose.77.1, %transpose.76.1.clone.1)
+}
+
+%fused_multiply.1 (param_0.91: c128[16,4]) -> c128[16,4] {
+  %param_0.91 = c128[16,4]{1,0} parameter(0)
+  %constant_9_1 = c128[] constant((0.0625, 0)), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %broadcast.16.1 = c128[16,4]{1,0} broadcast(%constant_9_1), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=51}
+  ROOT %mul.18.1 = c128[16,4]{1,0} multiply(%param_0.91, %broadcast.16.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=51}
+}
+
+%scalar_add_computation (scalar_lhs: c128[], scalar_rhs: c128[]) -> c128[] {
+  %scalar_lhs = c128[] parameter(0)
+  %scalar_rhs = c128[] parameter(1)
+  ROOT %add.7.0 = c128[] add(%scalar_lhs, %scalar_rhs)
+}
+
+%fused_add_reduce.1 (param_0.98: c128[64,1], param_1.93: c128[64,1], param_2.100: f64[100], param_3.81: s64[], param_4.39: c128[64,1]) -> (c128[64,1], f64[]) {
+  %constant_30_1 = f64[1]{0} constant({1}), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %param_2.100 = f64[100]{0} parameter(2)
+  %param_3.81 = s64[] parameter(3)
+  %dynamic_slice.11.1 = f64[1]{0} dynamic-slice(%param_2.100, %param_3.81), dynamic_slice_sizes={1}, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"8","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+  %sub.5.1 = f64[1]{0} subtract(%constant_30_1, %dynamic_slice.11.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/sub" stack_frame_id=54}
+  %bitcast.150 = f64[] bitcast(%sub.5.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/sub" stack_frame_id=54}
+  %convert.6.3 = c128[] convert(%bitcast.150), metadata={op_name="jit(scan)/while/body/eval_jaxpr/convert_element_type" stack_frame_id=52}
+  %mul.1.3 = c128[64,1]{1,0} broadcast(%convert.6.3), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=52}
+  %param_1.93 = c128[64,1]{1,0} parameter(1)
+  %mul.2.3 = c128[64,1]{1,0} multiply(%mul.1.3, %param_1.93), metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=52}
+  %bitcast.1.3 = f64[] bitcast(%dynamic_slice.11.1), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}
+  %convert.7.3 = c128[] convert(%bitcast.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/convert_element_type" stack_frame_id=53}
+  %mul.3.1 = c128[64,1]{1,0} broadcast(%convert.7.3), dimensions={}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=53}
+  %param_0.98 = c128[64,1]{1,0} parameter(0)
+  %mul.15.1 = c128[64,1]{1,0} multiply(%mul.3.1, %param_0.98), metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=53}
+  %add.5.1 = c128[64,1]{1,0} add(%mul.2.3, %mul.15.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=52}
+  %param_4.39 = c128[64,1]{1,0} parameter(4)
+  %real.9.4.clone.1 = f64[64,1]{1,0} real(%param_4.39), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/real" stack_frame_id=31}
+  %imag.6.4.clone.1 = f64[64,1]{1,0} imag(%param_4.39), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/imag" stack_frame_id=31}
+  %neg.6.4.clone.1 = f64[64,1]{1,0} negate(%imag.6.4.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/neg" stack_frame_id=31}
+  %complex.6.8.clone.1 = c128[64,1]{1,0} complex(%real.9.4.clone.1, %neg.6.4.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/complex" stack_frame_id=31}
+  %sub.4.5.clone.1 = c128[64,1]{1,0} subtract(%param_1.93, %param_0.98), metadata={op_name="jit(scan)/while/body/eval_jaxpr/sub" stack_frame_id=55}
+  %multiply.5.5.clone.1 = c128[64,1]{1,0} multiply(%complex.6.8.clone.1, %sub.4.5.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=15}
+  %bitcast.129.3.clone.1 = c128[64]{0} bitcast(%multiply.5.5.clone.1)
+  %constant_14_4_clone_1 = c128[] constant((0, 0)), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %reduce.2.3.clone.1 = c128[] reduce(%bitcast.129.3.clone.1, %constant_14_4_clone_1), dimensions={0}, to_apply=%scalar_add_computation, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=15}
+  %real.19.1.clone.1 = f64[] real(%reduce.2.3.clone.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=15}
+  ROOT %tuple.7 = (c128[64,1]{1,0}, f64[]) tuple(%add.5.1, %real.19.1.clone.1)
+}
+
+%scalar_add_computation.clone.1 (scalar_lhs.4: c128[], scalar_rhs.4: c128[]) -> c128[] {
+  %scalar_lhs.4 = c128[] parameter(0)
+  %scalar_rhs.4 = c128[] parameter(1)
+  ROOT %add.20.0 = c128[] add(%scalar_lhs.4, %scalar_rhs.4)
+}
+
+%fused_reduce (param_0.165: c128[32,16,4], param_1.163: c128[64,1]) -> f64[32] {
+  %param_1.163 = c128[64,1]{1,0} parameter(1)
+  %real.2.3 = f64[64,1]{1,0} real(%param_1.163), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=60}
+  %imag.1.3 = f64[64,1]{1,0} imag(%param_1.163), metadata={op_name="jit(scan)/while/body/eval_jaxpr/imag" stack_frame_id=60}
+  %neg.1.3 = f64[64,1]{1,0} negate(%imag.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/neg" stack_frame_id=60}
+  %complex.1.3 = c128[64,1]{1,0} complex(%real.2.3, %neg.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=60}
+  %bitcast.3.5 = c128[64]{0} bitcast(%complex.1.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=60}
+  %broadcast.23.5 = c128[32,64,1]{1,0,2} broadcast(%bitcast.3.5), dimensions={1}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/nr,bnr->b/dot_general" stack_frame_id=57}
+  %bitcast.4.3 = c128[32,16,4]{2,1,0} bitcast(%broadcast.23.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/nr,bnr->b/dot_general" stack_frame_id=57}
+  %param_0.165 = c128[32,16,4]{2,1,0} parameter(0)
+  %multiply.9.3 = c128[32,16,4]{2,1,0} multiply(%bitcast.4.3, %param_0.165), metadata={op_name="jit(scan)/while/body/eval_jaxpr/nr,bnr->b/dot_general" stack_frame_id=57}
+  %bitcast.130.3 = c128[32,64]{1,0} bitcast(%multiply.9.3), metadata={op_name="jit(scan)/while/body/eval_jaxpr/nr,bnr->b/dot_general" stack_frame_id=57}
+  %constant_14_2 = c128[] constant((0, 0)), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  %reduce.16 = c128[32]{0} reduce(%bitcast.130.3, %constant_14_2), dimensions={1}, to_apply=%scalar_add_computation.clone.1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/nr,bnr->b/dot_general" stack_frame_id=57}
+  ROOT %real.3.1 = f64[32]{0} real(%reduce.16), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=56}
+}
+
+%fused_complex (param_0.151: c128[4,2,2]) -> c128[4,2,2] {
+  %param_0.151 = c128[4,2,2]{2,1,0} parameter(0)
+  %real.22.1 = f64[4,2,2]{2,1,0} real(%param_0.151), metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=64}
+  %imag.15.1 = f64[4,2,2]{2,1,0} imag(%param_0.151), metadata={op_name="jit(scan)/while/body/eval_jaxpr/imag" stack_frame_id=64}
+  %neg.15.1 = f64[4,2,2]{2,1,0} negate(%imag.15.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/neg" stack_frame_id=64}
+  ROOT %complex.15.1 = c128[4,2,2]{2,1,0} complex(%real.22.1, %neg.15.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=64}
+}
+
+%fused_compare.1 (param_0.168: s32[100], param_1.166: s64[]) -> pred[1] {
+  %param_0.168 = s32[100]{0} parameter(0)
+  %param_1.166 = s64[] parameter(1)
+  %dynamic_slice.4.1 = s32[1]{0} dynamic-slice(%param_0.168, %param_1.166), dynamic_slice_sizes={1}, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"4","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+  %constant_34_1 = s32[1]{0} constant({0}), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  ROOT %eq.4.1 = pred[1]{0} compare(%dynamic_slice.4.1, %constant_34_1), direction=EQ, metadata={op_name="jit(scan)/while/body/eval_jaxpr/eq" stack_frame_id=65}
+}
+
+%fused_add.2 (param_0.163: s64[]) -> s64[] {
+  %param_0.163 = s64[] parameter(0)
+  %constant_29_1 = s64[] constant(1)
+  ROOT %add.17.1 = s64[] add(%param_0.163, %constant_29_1), metadata={op_name="jit(scan)/while/body/add" stack_frame_id=6}
+}
+
+%scalar_add_computation.clone (scalar_lhs.3: c128[], scalar_rhs.3: c128[]) -> c128[] {
+  %scalar_lhs.3 = c128[] parameter(0)
+  %scalar_rhs.3 = c128[] parameter(1)
+  ROOT %add.16.0 = c128[] add(%scalar_lhs.3, %scalar_rhs.3)
+}
+
+%fused_reduce.1 (param_0.166: c128[32,16,4]) -> c128[16,4] {
+  %param_0.166 = c128[32,16,4]{2,1,0} parameter(0)
+  %constant_14_3 = c128[] constant((0, 0)), metadata={op_name="jit(scan)/while/body/eval_jaxpr" stack_frame_id=6}
+  ROOT %reduce.7.1 = c128[16,4]{1,0} reduce(%param_0.166, %constant_14_3), dimensions={0}, to_apply=%scalar_add_computation.clone, metadata={op_name="jit(scan)/while/body/eval_jaxpr/b,bnr->nr/dot_general" stack_frame_id=34}
+}
+
+%wrapped_dynamic-slice_computation (param_0.173: f64[100], param_1.172: s64[]) -> f64[1] {
+  %param_0.173 = f64[100]{0} parameter(0)
+  %param_1.172 = s64[] parameter(1)
+  ROOT %dynamic_slice.9.1 = f64[1]{0} dynamic-slice(%param_0.173, %param_1.172), dynamic_slice_sizes={1}, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","dynamic_slice_config":{"byte_offset":"0","byte_stride":"8","loop_index":"0"},"force_earliest_schedule":false,"operation_queue_id":"0","reification_cost":[]}
+}
+
+%region_0.12 (arg_tuple.3: (s64[], c128[64,1], c128[64,1], f64[100], s32[100], /*index=5*/s32[100,32,3], f64[100,32], f64[100], f64[100], f64[100], /*index=10*/c128[24,4,4], c128[4,2,2])) -> (s64[], c128[64,1], c128[64,1], f64[100], s32[100], /*index=5*/s32[100,32,3], f64[100,32], f64[100], f64[100], f64[100], /*index=10*/c128[24,4,4], c128[4,2,2]) {
+  %arg_tuple.3 = (s64[], c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0}, s32[100]{0}, /*index=5*/s32[100,32,3]{2,1,0}, f64[100,32]{1,0}, f64[100]{0}, f64[100]{0}, f64[100]{0}, /*index=10*/c128[24,4,4]{2,1,0}, c128[4,2,2]{2,1,0}) parameter(0)
+  %get-tuple-element.63 = s64[] get-tuple-element(%arg_tuple.3), index=0
+  %get-tuple-element.80 = s32[100,32,3]{2,1,0} get-tuple-element(%arg_tuple.3), index=5
+  %get-tuple-element.85 = c128[24,4,4]{2,1,0} get-tuple-element(%arg_tuple.3), index=10
+  %loop_gather_fusion = (c128[32,1,4,4]{3,2,1,0}, c128[32,1,4,4]{3,2,1,0}, c128[32,1,4,4]{3,2,1,0}) fusion(%get-tuple-element.85, %get-tuple-element.80, %get-tuple-element.63), kind=kLoop, calls=%fused_gather, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.34 = c128[32,1,4,4]{3,2,1,0} get-tuple-element(%loop_gather_fusion), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %bitcast.11.0 = c128[32,4,4]{2,1,0} bitcast(%get-tuple-element.34), metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %get-tuple-element.64 = c128[64,1]{1,0} get-tuple-element(%arg_tuple.3), index=1
+  %loop_transpose_fusion = c128[32,4,4,4,1]{4,3,2,1,0} fusion(%get-tuple-element.64), kind=kLoop, calls=%fused_transpose, metadata={op_name="jit(scan)/while/body/eval_jaxpr/broadcast_in_dim" stack_frame_id=13}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.7.0 = c128[32,16,4]{2,1,0} bitcast(%loop_transpose_fusion), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose" stack_frame_id=69}
+  %custom-call.11 = (c128[32,16,4]{2,1,0}, s8[4194304]{0}) custom-call(%bitcast.7.0, %bitcast.11.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":["0"],"lhs_contracting_dimensions":["2"],"rhs_batch_dimensions":["0"],"rhs_contracting_dimensions":["2"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"2"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.2.0 = c128[32,16,4]{2,1,0} get-tuple-element(%custom-call.11), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}
+  %loop_transpose_fusion.7 = c128[32,1,4,4,4]{4,3,2,1,0} fusion(%get-tuple-element.2.0), kind=kLoop, calls=%fused_transpose.7, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.13.0 = c128[32,16,4]{2,1,0} bitcast(%loop_transpose_fusion.7), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+  %get-tuple-element.35 = c128[32,1,4,4]{3,2,1,0} get-tuple-element(%loop_gather_fusion), index=1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %bitcast.16.0 = c128[32,4,4]{2,1,0} bitcast(%get-tuple-element.35), metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %custom-call.12 = (c128[32,16,4]{2,1,0}, s8[4194304]{0}) custom-call(%bitcast.13.0, %bitcast.16.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":["0"],"lhs_contracting_dimensions":["2"],"rhs_batch_dimensions":["0"],"rhs_contracting_dimensions":["2"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"2"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.3.0 = c128[32,16,4]{2,1,0} get-tuple-element(%custom-call.12), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}
+  %loop_transpose_fusion.6 = c128[32,4,1,4,4]{4,3,2,1,0} fusion(%get-tuple-element.3.0), kind=kLoop, calls=%fused_transpose.6, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.18.0 = c128[32,16,4]{2,1,0} bitcast(%loop_transpose_fusion.6), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+  %get-tuple-element.36 = c128[32,1,4,4]{3,2,1,0} get-tuple-element(%loop_gather_fusion), index=2, metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %bitcast.21.0 = c128[32,4,4]{2,1,0} bitcast(%get-tuple-element.36), metadata={op_name="jit(scan)/while/body/eval_jaxpr/gather" stack_frame_id=26}
+  %custom-call.13 = (c128[32,16,4]{2,1,0}, s8[4194304]{0}) custom-call(%bitcast.18.0, %bitcast.21.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":["0"],"lhs_contracting_dimensions":["2"],"rhs_batch_dimensions":["0"],"rhs_contracting_dimensions":["2"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"2"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.4.0 = c128[32,16,4]{2,1,0} get-tuple-element(%custom-call.13), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/bij,b...j->b...i/dot_general" stack_frame_id=25}
+  %input_reduce_fusion = f64[32]{0} fusion(%get-tuple-element.4.0, %get-tuple-element.64), kind=kInput, calls=%fused_reduce, metadata={op_name="jit(scan)/while/body/eval_jaxpr/real" stack_frame_id=56}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.81 = f64[100,32]{1,0} get-tuple-element(%arg_tuple.3), index=6
+  %loop_multiply_fusion = c128[32,16,4]{2,1,0} fusion(%get-tuple-element.4.0, %input_reduce_fusion, %get-tuple-element.81, %get-tuple-element.63), kind=kLoop, calls=%fused_multiply, metadata={op_name="jit(scan)/while/body/eval_jaxpr/b,bnr->nr/dot_general" stack_frame_id=34}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %input_reduce_fusion.1 = c128[16,4]{1,0} fusion(%loop_multiply_fusion), kind=kInput, calls=%fused_reduce.1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/b,bnr->nr/dot_general" stack_frame_id=34}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %loop_multiply_fusion.1 = c128[16,4]{1,0} fusion(%input_reduce_fusion.1), kind=kLoop, calls=%fused_multiply.1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=51}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.23.0 = c128[64,1]{1,0} bitcast(%loop_multiply_fusion.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/mul" stack_frame_id=51}
+  %get-tuple-element.82 = f64[100]{0} get-tuple-element(%arg_tuple.3), index=7
+  %wrapped_dynamic-slice = f64[1]{0} fusion(%get-tuple-element.82, %get-tuple-element.63), kind=kLoop, calls=%wrapped_dynamic-slice_computation, metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.24.0 = f64[] bitcast(%wrapped_dynamic-slice), metadata={op_name="jit(scan)/while/body/jit(dynamic_index_in_dim)/dynamic_slice" stack_frame_id=14}
+  %get-tuple-element.65 = c128[64,1]{1,0} get-tuple-element(%arg_tuple.3), index=2
+  %cond.0.0 = (f64[], c128[64,1]{1,0}, c128[64,1]{1,0}) tuple(%bitcast.24.0, %get-tuple-element.65, %bitcast.23.0), metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond" stack_frame_id=7}
+  %tuple.6.0 = (c128[64,1]{1,0}) tuple(%bitcast.23.0)
+  %get-tuple-element.79 = s32[100]{0} get-tuple-element(%arg_tuple.3), index=4
+  %loop_compare_fusion.1 = pred[1]{0} fusion(%get-tuple-element.79, %get-tuple-element.63), kind=kLoop, calls=%fused_compare.1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/eq" stack_frame_id=65}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.2.0 = pred[] bitcast(%loop_compare_fusion.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/eq" stack_frame_id=65}
+  %cond.1.clone = (c128[64,1]{1,0}) conditional(%bitcast.2.0, %tuple.6.0, %cond.0.0), true_computation=%region_2.6, false_computation=%region_1.5, metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond" stack_frame_id=7}
+  %get-tuple-element.77 = c128[64,1]{1,0} get-tuple-element(%cond.1.clone), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/cond" stack_frame_id=7}
+  %get-tuple-element.86 = c128[4,2,2]{2,1,0} get-tuple-element(%arg_tuple.3), index=11
+  %bitcast.27.0 = c128[4,4]{1,0} bitcast(%get-tuple-element.86), metadata={op_name="jit(scan)/while/body/eval_jaxpr/reshape" stack_frame_id=68}
+  %bitcast.133.0 = c128[16,4]{0,1} bitcast(%get-tuple-element.64)
+  %custom-call.14 = (c128[16,4]{1,0}, s8[4194304]{0}) custom-call(%bitcast.133.0, %bitcast.27.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["0"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.5.0 = c128[16,4]{1,0} get-tuple-element(%custom-call.14), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}
+  %loop_transpose_fusion.5 = c128[1,4,4,4]{3,2,1,0} fusion(%get-tuple-element.5.0), kind=kLoop, calls=%fused_transpose.5, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" deduplicated_name="loop_transpose_fusion.2" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.29.0 = c128[16,4]{1,0} bitcast(%loop_transpose_fusion.5), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+  %custom-call.15 = (c128[16,4]{1,0}, s8[4194304]{0}) custom-call(%bitcast.29.0, %bitcast.27.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["0"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.6.0 = c128[16,4]{1,0} get-tuple-element(%custom-call.15), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}
+  %loop_transpose_fusion.4 = c128[1,4,4,4]{3,2,1,0} fusion(%get-tuple-element.6.0), kind=kLoop, calls=%fused_transpose.4, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" deduplicated_name="loop_transpose_fusion.1" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.31.0 = c128[16,4]{1,0} bitcast(%loop_transpose_fusion.4), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+  %custom-call.16 = (c128[16,4]{1,0}, s8[4194304]{0}) custom-call(%bitcast.31.0, %bitcast.27.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["0"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.7.0 = c128[16,4]{1,0} get-tuple-element(%custom-call.16), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=24}
+  %loop_transpose_fusion.8 = (c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0}, c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0}) fusion(%get-tuple-element.7.0), kind=kLoop, calls=%fused_transpose.8, metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=49}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.33 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} get-tuple-element(%loop_transpose_fusion.8), index=1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=49}
+  %bitcast.33.0 = c128[8,8]{1,0} bitcast(%get-tuple-element.33), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose" stack_frame_id=50}
+  %get-tuple-element.32 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} get-tuple-element(%loop_transpose_fusion.8), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=49}
+  %bitcast.135.0 = c128[8,8]{0,1} bitcast(%get-tuple-element.32)
+  %custom-call.17 = (c128[8,8]{1,0}, s8[4194304]{0}) custom-call(%bitcast.135.0, %bitcast.33.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/rai,raj->ij/dot_general" stack_frame_id=70}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["0"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"64","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.8.0 = c128[8,8]{1,0} get-tuple-element(%custom-call.17), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/rai,raj->ij/dot_general" stack_frame_id=70}
+  %loop_add_fusion.1 = c128[8,8]{1,0} fusion(%get-tuple-element.8.0), kind=kLoop, calls=%fused_add.1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=41}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.137.0 = c128[8,8]{0,1} bitcast(%loop_add_fusion.1)
+  %custom-call.18 = (c128[8,8]{1,0}, s8[4194304]{0}) custom-call(%bitcast.33.0, %bitcast.137.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=21}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["0"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"64","scale_mode":0,"selected_algorithm":"1"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.9.0 = c128[8,8]{1,0} get-tuple-element(%custom-call.18), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=21}
+  %loop_transpose_fusion.3 = c128[1,2,2,2,2,2,2]{6,5,4,3,2,1,0} fusion(%get-tuple-element.9.0), kind=kLoop, calls=%fused_transpose.3, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose" stack_frame_id=20}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.139.0 = c128[16,4]{0,1} bitcast(%loop_transpose_fusion.3)
+  %loop_complex_fusion = c128[4,2,2]{2,1,0} fusion(%get-tuple-element.86), kind=kLoop, calls=%fused_complex, metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=64}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.39.0 = c128[4,4]{1,0} bitcast(%loop_complex_fusion), metadata={op_name="jit(scan)/while/body/eval_jaxpr/complex" stack_frame_id=64}
+  %custom-call.19 = (c128[16,4]{1,0}, s8[4194304]{0}) custom-call(%bitcast.139.0, %bitcast.39.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["1"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.10.0 = c128[16,4]{1,0} get-tuple-element(%custom-call.19), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}
+  %loop_transpose_fusion.2 = c128[1,4,4,4]{3,2,1,0} fusion(%get-tuple-element.10.0), kind=kLoop, calls=%fused_transpose.2, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" deduplicated_name="loop_transpose_fusion.2" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.41.0 = c128[16,4]{1,0} bitcast(%loop_transpose_fusion.2), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+  %custom-call.20 = (c128[16,4]{1,0}, s8[4194304]{0}) custom-call(%bitcast.41.0, %bitcast.39.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["1"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.11.0 = c128[16,4]{1,0} get-tuple-element(%custom-call.20), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}
+  %loop_transpose_fusion.1 = c128[1,4,4,4]{3,2,1,0} fusion(%get-tuple-element.11.0), kind=kLoop, calls=%fused_transpose.1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" deduplicated_name="loop_transpose_fusion.1" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %bitcast.43.0 = c128[16,4]{1,0} bitcast(%loop_transpose_fusion.1), metadata={op_name="jit(scan)/while/body/eval_jaxpr/transpose;transpose" stack_frame_id=6}
+  %custom-call.21 = (c128[16,4]{1,0}, s8[4194304]{0}) custom-call(%bitcast.43.0, %bitcast.39.0), custom_call_target="__cublas$lt$matmul", metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"gemm_backend_config":{"alpha_imag":0,"alpha_real":1,"autotune_workspace_size":"4194304","beta":0,"damax_output":false,"dot_dimension_numbers":{"lhs_batch_dimensions":[],"lhs_contracting_dimensions":["1"],"rhs_batch_dimensions":[],"rhs_contracting_dimensions":["1"]},"epilogue":"DEFAULT","grad_x":false,"grad_y":false,"lhs_stride":"64","precision_config":{"algorithm":"ALG_UNSET","operand_precision":["DEFAULT","DEFAULT"]},"rhs_stride":"16","scale_mode":0,"selected_algorithm":"0"},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.12.0 = c128[16,4]{1,0} get-tuple-element(%custom-call.21), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/dot_general" stack_frame_id=19}
+  %get-tuple-element.83 = f64[100]{0} get-tuple-element(%arg_tuple.3), index=8
+  %input_add_reduce_fusion = (f64[], c128[64,1]{1,0}) fusion(%get-tuple-element.77, %get-tuple-element.12.0, %get-tuple-element.83, %get-tuple-element.63), kind=kInput, calls=%fused_add_reduce, metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/sqrt" stack_frame_id=29}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.30 = f64[] get-tuple-element(%input_add_reduce_fusion), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/sqrt" stack_frame_id=29}
+  %get-tuple-element.31 = c128[64,1]{1,0} get-tuple-element(%input_add_reduce_fusion), index=1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(norm)/sqrt" stack_frame_id=29}
+  %loop_select_fusion = c128[64,1]{1,0} fusion(%get-tuple-element.31, %get-tuple-element.30), kind=kLoop, calls=%fused_select, metadata={op_name="jit(scan)/while/body/eval_jaxpr/jit(_where)/select_n" stack_frame_id=36}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.84 = f64[100]{0} get-tuple-element(%arg_tuple.3), index=9
+  %input_add_reduce_fusion.1 = (c128[64,1]{1,0}, f64[]) fusion(%loop_select_fusion, %get-tuple-element.64, %get-tuple-element.84, %get-tuple-element.63, %get-tuple-element.31), kind=kInput, calls=%fused_add_reduce.1, control-predecessors={%loop_transpose_fusion, %bitcast.133.0, %input_reduce_fusion, %custom-call.14}, metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=52}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.14 = f64[] get-tuple-element(%input_add_reduce_fusion.1), index=1, metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=52}
+  %get-tuple-element.66 = f64[100]{0} get-tuple-element(%arg_tuple.3), index=3
+  %loop_dynamic_update_slice_fusion = f64[100]{0} fusion(%get-tuple-element.66, %get-tuple-element.63, %get-tuple-element.14), kind=kLoop, calls=%fused_dynamic_update_slice, metadata={op_name="jit(scan)/while/body/jit(dynamic_update_index_in_dim)/dynamic_update_slice" stack_frame_id=14}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %get-tuple-element.76 = c128[64,1]{1,0} get-tuple-element(%input_add_reduce_fusion.1), index=0, metadata={op_name="jit(scan)/while/body/eval_jaxpr/add" stack_frame_id=52}
+  %copy.24 = c128[64,1]{1,0} copy(%get-tuple-element.77)
+  %loop_add_fusion.2 = s64[] fusion(%get-tuple-element.63), kind=kLoop, calls=%fused_add.2, control-predecessors={%loop_compare_fusion.1, %loop_gather_fusion, %loop_multiply_fusion, %wrapped_dynamic-slice, %input_add_reduce_fusion, %input_add_reduce_fusion.1, %loop_dynamic_update_slice_fusion}, metadata={op_name="jit(scan)/while/body/add" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  ROOT %tuple.16 = (s64[], c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0}, s32[100]{0}, /*index=5*/s32[100,32,3]{2,1,0}, f64[100,32]{1,0}, f64[100]{0}, f64[100]{0}, f64[100]{0}, /*index=10*/c128[24,4,4]{2,1,0}, c128[4,2,2]{2,1,0}) tuple(%loop_add_fusion.2, %get-tuple-element.76, %copy.24, %loop_dynamic_update_slice_fusion, %get-tuple-element.79, /*index=5*/%get-tuple-element.80, %get-tuple-element.81, %get-tuple-element.82, %get-tuple-element.83, %get-tuple-element.84, /*index=10*/%get-tuple-element.85, %get-tuple-element.86)
+}
+
+%fused_compare (param_0.5: s64[]) -> pred[] {
+  %param_0.5 = s64[] parameter(0)
+  %constant_31_1 = s64[] constant(100)
+  ROOT %lt.7.1 = pred[] compare(%param_0.5, %constant_31_1), direction=LT, metadata={op_name="jit(scan)/while/cond/lt" stack_frame_id=6}
+}
+
+%region_4.13 (arg_tuple.5: (s64[], c128[64,1], c128[64,1], f64[100], s32[100], /*index=5*/s32[100,32,3], f64[100,32], f64[100], f64[100], f64[100], /*index=10*/c128[24,4,4], c128[4,2,2])) -> pred[] {
+  %arg_tuple.5 = (s64[], c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0}, s32[100]{0}, /*index=5*/s32[100,32,3]{2,1,0}, f64[100,32]{1,0}, f64[100]{0}, f64[100]{0}, f64[100]{0}, /*index=10*/c128[24,4,4]{2,1,0}, c128[4,2,2]{2,1,0}) parameter(0)
+  %get-tuple-element.42.0 = s64[] get-tuple-element(%arg_tuple.5), index=0
+  ROOT %loop_compare_fusion = pred[] fusion(%get-tuple-element.42.0), kind=kLoop, calls=%fused_compare, metadata={op_name="jit(scan)/while/cond/lt" stack_frame_id=6}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+}
+
+%fused_add.3 (param_0.170: s32[]) -> s32[100] {
+  %param_0.170 = s32[] parameter(0)
+  %add.18.1 = s32[100]{0} broadcast(%param_0.170), dimensions={}, metadata={op_name="jit(scan)/add" stack_frame_id=66}
+  %iota.9.1 = s32[100]{0} iota(), iota_dimension=0, metadata={op_name="jit(scan)/iota" stack_frame_id=67}
+  ROOT %add.19.1 = s32[100]{0} add(%add.18.1, %iota.9.1), metadata={op_name="jit(scan)/add" stack_frame_id=66}
+}
+
+%fused_broadcast () -> f64[100] {
+  %constant_32_1 = f64[] constant(0)
+  ROOT %broadcast_in_dim.13.1 = f64[100]{0} broadcast(%constant_32_1), dimensions={}, metadata={op_name="jit(scan)/broadcast_in_dim" stack_frame_id=5}
+}
+
+ENTRY %main.14 (state_0_.1: c128[64,1], state_1_.1: c128[64,1], start.1: s32[], symbols.1: s32[100,32,3], observations.1: f64[100,32], rho.1: f64[100], beta.1: f64[100], gamma.1: f64[100], bank.1: c128[24,4,4], basis.1: c128[4,2,2]) -> (c128[64,1], c128[64,1], f64[100]) {
+  %state_0_.1 = c128[64,1]{1,0} parameter(0), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}, {}]>"}, metadata={op_name="state[0]"}
+  %copy.30 = c128[64,1]{1,0} copy(%state_0_.1)
+  %state_1_.1 = c128[64,1]{1,0} parameter(1), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}, {}]>"}, metadata={op_name="state[1]"}
+  %copy.31 = c128[64,1]{1,0} copy(%state_1_.1)
+  %loop_broadcast_fusion = f64[100]{0} fusion(), kind=kLoop, calls=%fused_broadcast, metadata={op_name="jit(scan)/broadcast_in_dim" stack_frame_id=5}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %start.1 = s32[] parameter(2), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, []>"}, metadata={op_name="start"}
+  %loop_add_fusion.3 = s32[100]{0} fusion(%start.1), kind=kLoop, calls=%fused_add.3, metadata={op_name="jit(scan)/add" stack_frame_id=66}, backend_config={"device_type":"DEVICE_TYPE_INVALID","force_earliest_schedule":false,"native_emitter_backend_config":{"type":"NATIVE_EMITTER_TYPE_INVALID","unroll_factor":0},"operation_queue_id":"0","reification_cost":[]}
+  %constant_33_0 = s64[] constant(0)
+  %copy.29 = s64[] copy(%constant_33_0)
+  %bank.1 = c128[24,4,4]{2,1,0} parameter(8), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}, {}, {}]>"}, metadata={op_name="bank"}
+  %basis.1 = c128[4,2,2]{2,1,0} parameter(9), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}, {}, {}]>"}, metadata={op_name="basis"}
+  %beta.1 = f64[100]{0} parameter(6), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}]>"}, metadata={op_name="beta"}
+  %gamma.1 = f64[100]{0} parameter(7), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}]>"}, metadata={op_name="gamma"}
+  %observations.1 = f64[100,32]{1,0} parameter(4), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}, {}]>"}, metadata={op_name="observations"}
+  %rho.1 = f64[100]{0} parameter(5), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}]>"}, metadata={op_name="rho"}
+  %symbols.1 = s32[100,32,3]{2,1,0} parameter(3), sharding={replicated}, frontend_attributes={xla.sdy.sharding="#sdy.sharding<@empty_mesh, [{}, {}, {}]>"}, metadata={op_name="symbols"}
+  %tuple.14 = (s64[], c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0}, s32[100]{0}, /*index=5*/s32[100,32,3]{2,1,0}, f64[100,32]{1,0}, f64[100]{0}, f64[100]{0}, f64[100]{0}, /*index=10*/c128[24,4,4]{2,1,0}, c128[4,2,2]{2,1,0}) tuple(%copy.29, %copy.30, %copy.31, %loop_broadcast_fusion, %loop_add_fusion.3, /*index=5*/%symbols.1, %observations.1, %rho.1, %beta.1, %gamma.1, /*index=10*/%bank.1, %basis.1)
+  %while.7 = (s64[], c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0}, s32[100]{0}, /*index=5*/s32[100,32,3]{2,1,0}, f64[100,32]{1,0}, f64[100]{0}, f64[100]{0}, f64[100]{0}, /*index=10*/c128[24,4,4]{2,1,0}, c128[4,2,2]{2,1,0}) while(%tuple.14), condition=%region_4.13, body=%region_0.12, metadata={op_name="jit(scan)/while" stack_frame_id=5}, backend_config={"dynamic_variables":[],"known_induction_variable":{"tuple_index":"0"},"known_init_step":{"init":"0","step":"1"},"known_trip_count":{"n":"100"}}
+  %while.10.0 = c128[64,1]{1,0} get-tuple-element(%while.7), index=2, metadata={op_name="jit(scan)/while" stack_frame_id=5}
+  %while.11.0 = f64[100]{0} get-tuple-element(%while.7), index=3, metadata={op_name="jit(scan)/while" stack_frame_id=5}
+  %while.9.0 = c128[64,1]{1,0} get-tuple-element(%while.7), index=1, metadata={op_name="jit(scan)/while" stack_frame_id=5}
+  ROOT %tuple.5.0 = (c128[64,1]{1,0}, c128[64,1]{1,0}, f64[100]{0}) tuple(%while.9.0, %while.10.0, %while.11.0)
+}
+

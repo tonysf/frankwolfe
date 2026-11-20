@@ -1,0 +1,77 @@
+{
+  "parent_checkpoint_dir": "/home/tony/gw_benchmark_experiment_20260927/experiments/share_resumable_20261018/validation/local_cpu/completed_4/checkpoints",
+  "parent_checkpoint_manifest": {
+    "format_version": 1,
+    "generation": "generation-000000004-fe6fb1f0fe1c4442b610d924abedb8d5",
+    "identity": {
+      "array_files_sha256": {
+        "A.npy": "9c13ce05b77d8764dbf7b053dd21b2a4c65d8d0bcacf3d7ae28c947f9b140e63",
+        "B.npy": "ecc54b067546c8fa1b485e98f36802ef9e72c2f895b7cc47f31b5b4982558733",
+        "a.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d",
+        "b.npy": "07c3993ddac3c98a908d6828798b8d6f649ea2d770dcfce0d4c927f49440232d"
+      },
+      "config": {
+        "device": "cpu",
+        "diagnostic_every": 2,
+        "dtype": "float64",
+        "epsilon": 0.001,
+        "exact_block_rows": 128,
+        "gamma0": 0.3,
+        "inner_max": 100000,
+        "method": "frames",
+        "mu_scale": 10.0,
+        "pairs": 1024,
+        "rho0": 0.3,
+        "seed": 810
+      },
+      "cublas_workspace_config": ":4096:8",
+      "cuda_capability": null,
+      "device_model": "cpu",
+      "m": 8,
+      "manifest_sha256": "a164d96004b5b7d72a5410bdbef7af7d388e34f30a2b840ec0618ebd3bde5cf4",
+      "n": 8,
+      "num_threads": 1,
+      "numpy_version": "2.4.6",
+      "source_file_sha256": {
+        "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+        "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+        "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+        "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+        "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+        "extensions/share_resumable_20261018/runner.py": "700c02afdb4e622132a58c313d5771e985b93cda4fef344d7ca1127e5af19c96",
+        "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+      },
+      "torch_cuda_version": null,
+      "torch_version": "2.14.0+cpu",
+      "world_size": 1
+    },
+    "iteration": 4,
+    "shards": [
+      {
+        "bytes": 15709,
+        "file": "rank-0000.pt",
+        "sha256": "d7490b24960611e79542add7084c2b7335e5044b4bc42f5ae490eb8d396f6472"
+      }
+    ],
+    "world_size": 1
+  },
+  "parent_committed_manifest_sha256": "133dd81da43c3f15def03a49ab7ecde1f54060e8d07cea1b5bcd266c32650c68",
+  "parent_completed_updates": 4,
+  "parent_extension_provenance": null,
+  "parent_run_config": {
+    "device": "cpu",
+    "diagnostic_every": 2,
+    "dtype": "float64",
+    "epsilon": 0.001,
+    "exact_block_rows": 128,
+    "gamma0": 0.3,
+    "inner_max": 100000,
+    "iterations": 4,
+    "method": "frames",
+    "mu_scale": 10.0,
+    "pairs": 1024,
+    "rho0": 0.3,
+    "seed": 810
+  },
+  "target_updates": 6
+}

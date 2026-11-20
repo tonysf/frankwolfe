@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "active_runs_preserved_recovery_pending",
+  "recorded_utc": "2026-10-14T14:15:40.922892+00:00",
+  "summary": "The first detached controller survived. A sandbox process-visibility check incorrectly reported it and its workers absent; archiving live output paths and launching a second controller caused duplicate SMD work and an MSBPG receipt collision.",
+  "correction": {
+    "record": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_methods_fp64_20261014/launch_attempts/attempt1/ABORTED.json",
+    "record_sha256": "2a52fe62c2e24eac43267ea227bb2cbdae7b1f6242e65cd689354fd5ff44c596",
+    "incorrect_claim": "All recorded PIDs were confirmed absent; detached child processes did not survive termination of the exec session.",
+    "corrected_fact": "An escalated host process-table check on 2026-10-14 showed original controller PID 2644975 alive, PPID 1, with four active MSBPG child workers. Sandboxed process-table visibility was insufficient to establish absence."
+  },
+  "original_controller": {
+    "pid": 2644975,
+    "started_local": "2026-10-14 14:33:57 Europe/Paris",
+    "current_children": [
+      2652272,
+      2652315,
+      2652333,
+      2652363
+    ]
+  },
+  "duplicate_controller": {
+    "pid": 2645356,
+    "service": "scot-fp64-methods-20261014.service",
+    "exit_code": 1,
+    "failure": "FileExistsError on tune_msbpg00_seed810_receipt.json",
+    "failed_utc": "2026-10-14T13:48:12.022955+00:00"
+  },
+  "archived_config_sha256": "23b907809d773f5d21481f766c0c257d0c67a74bcbe43f49f8ffaa1a47d46615",
+  "current_config_sha256": "6ddbf54d2d25fa270d4b962270f766f6bafc8cbdb8748513b674db63e7d2aaf7",
+  "config_differences": {
+    "created_at": {
+      "archived": "2026-10-14T12:33:58.077615+00:00",
+      "current": "2026-10-14T12:36:42.067027+00:00"
+    }
+  },
+  "scientific_configuration_identical": true,
+  "smd": {
+    "status": "four_current_final_runs_validated",
+    "validation_receipt": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_methods_fp64_20261014/status_smd_validation_20261014.json",
+    "validation_receipt_sha256": "3b23d63b4e81eba4ba8fce3e25caeed0615016bbdc4d3bdc39a6551eb1c95c32",
+    "evidence": "Archived first-attempt worker logs and current second-attempt worker logs each report 2000 completed updates. Current completion receipts identify second-attempt worker PIDs and match current metadata and all saved-plan hashes.",
+    "caveat": "The two controllers temporarily used overlapping SMD output paths; final current artifacts passed full controller and independent NumPy/POT endpoint audits. Timing is not comparable and is excluded from the scientific comparison."
+  },
+  "msbpg": {
+    "status": "four_original_controller_workers_active_at_host_check",
+    "duplicate_runs_observed": false,
+    "precompletion_provenance_checked": true,
+    "evidence": "All four active MSBPG receipts match the current configuration hash, full executed command, source identity, input binding and thread policy. Each worker is a child of the original controller. The second controller stopped before starting any MSBPG worker."
+  },
+  "recovery": {
+    "required": "Wait for the original controller and four existing MSBPG workers to settle using host-visible PID identity checks, then independently audit all eight tuning results before selecting, confirming, finalizing and rendering the report.",
+    "reason": "Original SMD futures used archived configuration SHA 23b907... and failed after local_config was replaced. The original executor waits for already-queued MSBPG tasks before surfacing that pending failure, so its campaign cannot automatically progress to selection.",
+    "preserve": "Keep frozen numerical/controller sources and configuration unchanged, preserve all prior failed-stage and archived evidence, and record recovery under a new wrapper/service."
+  },
+  "evidence_files": {
+    "stage_campaign.json": "b4d11c4cf7de8ffb23b01fa576d0989177f2fde964dcd54f2e12de468b7a599e",
+    "stage_tune_both_0_end.json": "6cb4bee44eca06441915c7beaab4a07b3a4fdbabd7dbcbb1e0a38eee561e1eb3",
+    "systemd_campaign.log": "43ccb560336236ff0b4809caab2617ec64d311ee6fa2ded0330b35ad5eafb76b",
+    "service_launch.json": "fb0d4a5b0c363d5348f883e367af5d676667df82cc7e6e6ff51dea34c9ad0953"
+  }
+}

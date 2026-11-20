@@ -1,0 +1,115 @@
+{
+  "aggregate": {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-v",
+      "extensions/large_pot_frames_20261016/test_campaign.py",
+      "extensions/large_pot_frames_20261016/test_checkpoint.py",
+      "extensions/large_pot_frames_20261016/test_prox.py",
+      "extensions/large_pot_frames_20261016/test_report.py",
+      "extensions/large_pot_frames_20261016/test_runner.py",
+      "extensions/large_pot_frames_20261016/test_validation.py"
+    ],
+    "environment": {
+      "LARGE_GW_DISTRIBUTED_TEST": "1",
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "failure_reason": "Both distributed tests stopped before numerical computation because sandbox Gloo could not resolve 127.0.0.1 to a local address.",
+    "initial_exit_code": 1,
+    "initial_failed": 2,
+    "initial_passed": 45,
+    "log": "experiments/large_pot_frames_20261016/validation/pytest_full.log",
+    "log_sha256": "785663cc2728de4bd159deeb17b588214372964ea2d77aa46896035d91b424cc"
+  },
+  "distributed_host_rerun": {
+    "checks": [
+      "Uninterrupted and resumed trajectories match exactly for all three methods across four ranks, including plan, RNG state, momentum, trace and counters.",
+      "Four-rank full and sampled gradients and POT-step trajectories match independent dense references.",
+      "A kernel underflow visible on only one rank triggers the same certified log-domain fallback on every rank."
+    ],
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-v",
+      "extensions/large_pot_frames_20261016/test_runner.py::DistributedResumeTests::test_four_rank_resume_all_methods",
+      "extensions/large_pot_frames_20261016/test_validation.py::test_four_rank_gloo_matches_same_dense_reference_and_collective_fallback"
+    ],
+    "elapsed_seconds": 96.78,
+    "environment": {
+      "GLOO_SOCKET_IFNAME": "lo",
+      "LARGE_GW_DISTRIBUTED_TEST": "1",
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "exit_code": 0,
+    "host_loopback_access": true,
+    "log": "experiments/large_pot_frames_20261016/validation/pytest_distributed_host.log",
+    "log_sha256": "b1f14f7b3d046f9a7b9efa9f443c00e148586c263f47996d303bc866fa109393",
+    "passed": 2
+  },
+  "environment": {
+    "dtype": "float64",
+    "maximum_distributed_processes": 4,
+    "numeric_threads_per_process": 1,
+    "packages": {
+      "POT": "0.9.7.post1",
+      "numpy": "2.4.6",
+      "pytest": "9.1.1",
+      "torch": "2.14.0+cpu"
+    },
+    "python": "3.11.2",
+    "target": "local Elite CPU"
+  },
+  "limitations": [
+    "No local result establishes CUDA correctness or full-size memory fit. Scheduled A100 numerical, restart and actual-dataset memory gates remain required before production."
+  ],
+  "post_test_non_numerical_edits": [
+    "Scheduled CPU gate switched from unittest to pytest to include function-style tests.",
+    "Submission wrapper now calls the verified Ruche project virtualenv Python; bash syntax rechecked after this edit."
+  ],
+  "repository_parent_commit": "6e053acf1d648a960a5647718de787d29a48264c",
+  "scope": "Local FP64 CPU correctness, checkpoint/resume, controller and report validation",
+  "shell_syntax": {
+    "command": [
+      "bash",
+      "-n",
+      "extensions/large_pot_frames_20261016/cpu.sbatch",
+      "extensions/large_pot_frames_20261016/gpu.sbatch",
+      "extensions/large_pot_frames_20261016/submit_campaign.sh"
+    ],
+    "exit_code": 0
+  },
+  "source_file_sha256": {
+    "extensions/large_pot_frames_20261016/campaign.json": "8ccf8da894d8657ae218883ae906d30d23c70b0649c058692753d6506845af6f",
+    "extensions/large_pot_frames_20261016/campaign.py": "34d159cfa7f4a86cc8d57f3835a0d0616e5c854a8a6b6751009159232d3b3709",
+    "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+    "extensions/large_pot_frames_20261016/cpu.sbatch": "34ee3a33b4250a653c5cc16f4620cffb7608789da3ecb1f78129cfc6e8233917",
+    "extensions/large_pot_frames_20261016/gpu.sbatch": "a7ae7b77b54e98ce77726eeda01579059fee0c6bf938dd76b94f0b863cbedbf2",
+    "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+    "extensions/large_pot_frames_20261016/report.py": "4119bf6103d9df5c23ee916b28f99dc008eb435736d7d010a05be969d4fe37b0",
+    "extensions/large_pot_frames_20261016/runner.py": "3452c64f878cd0e276e56508ad91eda11356ae8f3b8a5cccbffef7eb4b65a7cf",
+    "extensions/large_pot_frames_20261016/stage_source.py": "8b55fbbbe6ef113cbdfd37b080bc28778776a093546333ff853986186e1da7e3",
+    "extensions/large_pot_frames_20261016/submit_campaign.sh": "0575b469da93148994ada8556a596b19a605576e551ea543a1afaa4337d50a6d",
+    "extensions/large_pot_frames_20261016/test_campaign.py": "751c08eb7073c5b3dd0b20f0ac47934ad52f4c8c40286e8e5823404dd738741b",
+    "extensions/large_pot_frames_20261016/test_checkpoint.py": "7fed9281de234b51c37c6809ff0f72c6749c1b9f0f5d02796089b6737bd001ed",
+    "extensions/large_pot_frames_20261016/test_prox.py": "5e56613cc42781cdf19d0cb04b9e199fe1b3745012159fc6805a65044ac6beb8",
+    "extensions/large_pot_frames_20261016/test_report.py": "e0b1953f8e5089acd13b898ba1cf5297d2ae2790ffe2eab9db496e84f1f33661",
+    "extensions/large_pot_frames_20261016/test_runner.py": "18f53055eae59db8b6411ce4526f801c564c3455508c76417bf3a51f35737ceb",
+    "extensions/large_pot_frames_20261016/test_validation.py": "2d1cb5fa26f2cd41d752b74b36797905ce6a6f9e4c9a44bd4aa06b14184d4273",
+    "extensions/large_pot_frames_20261016/validation.py": "cd5ed7ec1416dd8f5aac25e52d8051dae36dd19b9a2921821399f7e57dd37876",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "status": "passed",
+  "subtests_passed": 6,
+  "unique_tests_passed": 47,
+  "verified_utc": "2026-10-15T22:43:14.374152+00:00"
+}

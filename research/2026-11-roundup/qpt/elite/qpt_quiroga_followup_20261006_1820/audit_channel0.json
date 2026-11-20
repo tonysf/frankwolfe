@@ -1,0 +1,879 @@
+{
+  "audit_passed": true,
+  "audit_script_sha256": "ce3427bc9a0e604c92a73e6e3541c47f06c7ad87d5af25844b584192916f9716",
+  "audited_trials": 6,
+  "cases": [
+    {
+      "actual_optimizer_row_accesses": 7661568,
+      "channel": 0,
+      "completed_steps": 7633,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999999999304434,
+        "factor_operator_norm": 1.9999999999304434,
+        "measurement_loss_mean": 1.5870659551863614e-15,
+        "measurement_loss_sum": 2.0314444226385426e-13,
+        "normalized_tp_violation": 2.1655480810046315e-10,
+        "process_fidelity": 0.9999999999958744,
+        "rmse": 5.63394347715055e-08,
+        "tp_violation": 4.331096162009263e-10
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "213f457b713addb80b0667328cfbfe225bb0033e0f3cc0eaa3afbb4c2b1005a9",
+      "first_recorded_physical_gate": {
+        "charged_rows": 6459904,
+        "metrics": {
+          "measurement_loss_mean": 3.6217056614467893e-13,
+          "measurement_loss_sum": 4.63578324665189e-11,
+          "normalized_tp_violation": 3.1763598226607625e-09,
+          "process_fidelity": 0.9999999990588635,
+          "rmse": 8.510823299125402e-07,
+          "tp_violation": 6.352719645321525e-09
+        },
+        "step": 6400
+      },
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": true,
+          "normalized_tp": true
+        },
+        "method_status": "converged",
+        "pass": true,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-armijo-a5em1-gradstop/result.json",
+      "json_sha256": "26b3caefc529e2eed7e69061bf2a86723849759c78b0cd5a964a83b14e3c60eb",
+      "method": "armijo-fgd",
+      "npz_sha256": "a476a1f6791fe73c977a124833d9be9f765a085579c36e0d28d5a3b7c6db10ad",
+      "prior_trajectory_consistency": {
+        "absolute_tolerance": 1e-12,
+        "compared_metrics": [
+          "measurement_loss_sum",
+          "measurement_loss_mean",
+          "rmse",
+          "tp_violation",
+          "normalized_tp_violation",
+          "process_fidelity"
+        ],
+        "excluded_fields": [
+          "optimizer_seconds",
+          "penalized_objective",
+          "terminal_status",
+          "terminal_work_charge"
+        ],
+        "matching_checkpoint_count": 77,
+        "matching_checkpoint_steps": [
+          0,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1100,
+          1200,
+          1300,
+          1400,
+          1500,
+          1600,
+          1700,
+          1800,
+          1900,
+          2000,
+          2100,
+          2200,
+          2300,
+          2400,
+          2500,
+          2600,
+          2700,
+          2800,
+          2900,
+          3000,
+          3100,
+          3200,
+          3300,
+          3400,
+          3500,
+          3600,
+          3700,
+          3800,
+          3900,
+          4000,
+          4100,
+          4200,
+          4300,
+          4400,
+          4500,
+          4600,
+          4700,
+          4800,
+          4900,
+          5000,
+          5100,
+          5200,
+          5300,
+          5400,
+          5500,
+          5600,
+          5700,
+          5800,
+          5900,
+          6000,
+          6100,
+          6200,
+          6300,
+          6400,
+          6500,
+          6600,
+          6700,
+          6800,
+          6900,
+          7000,
+          7100,
+          7200,
+          7300,
+          7400,
+          7500,
+          7600
+        ],
+        "max_absolute_deviation": {
+          "measurement_loss_mean": 0.0,
+          "measurement_loss_sum": 0.0,
+          "normalized_tp_violation": 0.0,
+          "process_fidelity": 0.0,
+          "rmse": 0.0,
+          "tp_violation": 0.0
+        },
+        "prior_json_sha256": "2079df8b0ecd540a8fa0a172cda0d1861c79df3275fb11bfd6226e526e4b46c2",
+        "prior_npz_sha256": "e5c4234797ffdbcd24d251b17cbce234255fb9102e15cb0b9abf14983e961791",
+        "prior_terminal_status": "complete",
+        "prior_trial_id": "c0-armijo-original-alpha",
+        "qualification": "Only common accepted-step checkpoints are compared. Armijo's new terminal stationarity check adds a gradient row charge and may stop between old checkpoints; its status is not transferred to old artifacts.",
+        "relative_tolerance": 1e-10,
+        "shared_data_initial_factor_truth_exact_match": true
+      },
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "converged",
+      "stopping_audit": {
+        "archived_termination": {
+          "full_gradient_norm": 1.0039863760925965e-07,
+          "gradient_threshold": 1.0131979823330485e-07,
+          "initial_full_gradient_norm": 1013.1879823330485,
+          "reason": "full_gradient_tolerance"
+        },
+        "comparison_atol": 1e-13,
+        "independent_full_gradient_norm": 1.0039863760925965e-07,
+        "independent_initial_full_gradient_norm": 1013.1879823330485
+      },
+      "trial": {
+        "alpha": 0.5,
+        "armijo_gradient_atol": 1e-12,
+        "armijo_gradient_rtol": 1e-10,
+        "channel": 0,
+        "checkpoint_epochs": 100,
+        "eta_scale": 0.01,
+        "id": "c0-armijo-a5em1-gradstop",
+        "method": "armijo-fgd",
+        "row_epochs": 10000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-armijo-a5em1-gradstop",
+      "work_accounting_audit": {
+        "accepted_gradient_passes": 7633,
+        "accepted_iteration_objective_evaluations": 52222,
+        "rule": "128*(accepted gradients + accepted-iteration objective evaluations) + terminal attempt",
+        "terminal_attempt_rows": 128,
+        "verified_terminal_rows": 7661568
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 493056,
+      "channel": 0,
+      "completed_steps": 1853,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 2.0000000000218936,
+        "factor_operator_norm": 2.0000000000218936,
+        "measurement_loss_mean": 6.5128164910384324e-21,
+        "measurement_loss_sum": 8.336405108529193e-19,
+        "normalized_tp_violation": 2.0708729051423294e-10,
+        "process_fidelity": 1.0,
+        "rmse": 1.1412989521627041e-10,
+        "tp_violation": 4.1417458102846587e-10
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "007ae037fac135bc9d92cb718cedf5b8288b0a8c8a4771ae2ada771fc6d037b9",
+      "first_recorded_physical_gate": {
+        "charged_rows": 292480,
+        "metrics": {
+          "measurement_loss_mean": 2.542920526503875e-13,
+          "measurement_loss_sum": 3.25493827392496e-11,
+          "normalized_tp_violation": 1.2764987130958844e-06,
+          "process_fidelity": 0.9999999993151767,
+          "rmse": 7.131508292786141e-07,
+          "tp_violation": 2.552997426191769e-06
+        },
+        "step": 1100
+      },
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": true,
+          "normalized_tp": true
+        },
+        "method_status": "converged",
+        "pass": true,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-armijo-a5em4-gradstop/result.json",
+      "json_sha256": "ef0964d9e09e954395bfb2141a222ed63e4375c4443345bb3eff8e3575643aac",
+      "method": "armijo-fgd",
+      "npz_sha256": "29e003d03f6b4bbcce7dbfa49a60ddda039e113257bec10d6fbb0cb07e74e95d",
+      "prior_trajectory_consistency": {
+        "absolute_tolerance": 1e-12,
+        "compared_metrics": [
+          "measurement_loss_sum",
+          "measurement_loss_mean",
+          "rmse",
+          "tp_violation",
+          "normalized_tp_violation",
+          "process_fidelity"
+        ],
+        "excluded_fields": [
+          "optimizer_seconds",
+          "penalized_objective",
+          "terminal_status",
+          "terminal_work_charge"
+        ],
+        "matching_checkpoint_count": 19,
+        "matching_checkpoint_steps": [
+          0,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1100,
+          1200,
+          1300,
+          1400,
+          1500,
+          1600,
+          1700,
+          1800
+        ],
+        "max_absolute_deviation": {
+          "measurement_loss_mean": 0.0,
+          "measurement_loss_sum": 0.0,
+          "normalized_tp_violation": 0.0,
+          "process_fidelity": 0.0,
+          "rmse": 0.0,
+          "tp_violation": 0.0
+        },
+        "prior_json_sha256": "963e985c4bc32511e407b8dabc6de63d38378b7883e3b5a127889ffbf331ca57",
+        "prior_npz_sha256": "8936a1abed97d8df8f2bf44cc0f6748f6b5162f01daa0210b7fd6a3e6de6363c",
+        "prior_terminal_status": "failed",
+        "prior_trial_id": "c0-armijo-a5e-4",
+        "qualification": "Only common accepted-step checkpoints are compared. Armijo's new terminal stationarity check adds a gradient row charge and may stop between old checkpoints; its status is not transferred to old artifacts.",
+        "relative_tolerance": 1e-10,
+        "shared_data_initial_factor_truth_exact_match": true
+      },
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "converged",
+      "stopping_audit": {
+        "archived_termination": {
+          "full_gradient_norm": 2.1363931588840436e-10,
+          "gradient_threshold": 2.4370040001189167e-10,
+          "initial_full_gradient_norm": 2.4270040001189166,
+          "reason": "full_gradient_tolerance"
+        },
+        "comparison_atol": 1e-13,
+        "independent_full_gradient_norm": 2.1363931588840436e-10,
+        "independent_initial_full_gradient_norm": 2.4270040001189166
+      },
+      "trial": {
+        "alpha": 0.0005,
+        "armijo_gradient_atol": 1e-12,
+        "armijo_gradient_rtol": 1e-10,
+        "channel": 0,
+        "checkpoint_epochs": 100,
+        "eta_scale": 0.01,
+        "id": "c0-armijo-a5em4-gradstop",
+        "method": "armijo-fgd",
+        "row_epochs": 10000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-armijo-a5em4-gradstop",
+      "work_accounting_audit": {
+        "accepted_gradient_passes": 1853,
+        "accepted_iteration_objective_evaluations": 1998,
+        "rule": "128*(accepted gradients + accepted-iteration objective evaluations) + terminal attempt",
+        "terminal_attempt_rows": 128,
+        "verified_terminal_rows": 493056
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 459904,
+      "channel": 0,
+      "completed_steps": 1794,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999999999853557,
+        "factor_operator_norm": 1.9999999999853557,
+        "measurement_loss_mean": 4.020978189658749e-21,
+        "measurement_loss_sum": 5.146852082763198e-19,
+        "normalized_tp_violation": 3.5008738443013487e-10,
+        "process_fidelity": 0.9999999999999996,
+        "rmse": 8.967695567601243e-11,
+        "tp_violation": 7.001747688602697e-10
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "09cd51a280639d1f9484b58ee1826adcb776804164e73db6cdae9a954b3c0fe6",
+      "first_recorded_physical_gate": {
+        "charged_rows": 282112,
+        "metrics": {
+          "measurement_loss_mean": 5.176360462092128e-14,
+          "measurement_loss_sum": 6.625741391477924e-12,
+          "normalized_tp_violation": 1.2550945098870918e-06,
+          "process_fidelity": 0.9999999998578685,
+          "rmse": 3.217564439787377e-07,
+          "tp_violation": 2.5101890197741837e-06
+        },
+        "step": 1100
+      },
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": true,
+          "normalized_tp": true
+        },
+        "method_status": "converged",
+        "pass": true,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-armijo-a5em5-gradstop/result.json",
+      "json_sha256": "0a6c3197e065ee1defae3983aa2c1e903773372e9ce9f4699bab72fe5ab5c552",
+      "method": "armijo-fgd",
+      "npz_sha256": "3f287e5af14e6cf32dff39d8a342aeeb13f3ce4f1a1b6a3b769304473cdfca56",
+      "prior_trajectory_consistency": {
+        "absolute_tolerance": 1e-12,
+        "compared_metrics": [
+          "measurement_loss_sum",
+          "measurement_loss_mean",
+          "rmse",
+          "tp_violation",
+          "normalized_tp_violation",
+          "process_fidelity"
+        ],
+        "excluded_fields": [
+          "optimizer_seconds",
+          "penalized_objective",
+          "terminal_status",
+          "terminal_work_charge"
+        ],
+        "matching_checkpoint_count": 18,
+        "matching_checkpoint_steps": [
+          0,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000,
+          1100,
+          1200,
+          1300,
+          1400,
+          1500,
+          1600,
+          1700
+        ],
+        "max_absolute_deviation": {
+          "measurement_loss_mean": 0.0,
+          "measurement_loss_sum": 0.0,
+          "normalized_tp_violation": 0.0,
+          "process_fidelity": 0.0,
+          "rmse": 0.0,
+          "tp_violation": 0.0
+        },
+        "prior_json_sha256": "2ac484e38b13da4839dfe205a37abf8d63deb6df9b3e75f3bfcd4dcaa08b622c",
+        "prior_npz_sha256": "d4ccf2c903ceec25ebfa7dc37ee9230efa7c8aae176ae0c23ff774a038140cff",
+        "prior_terminal_status": "failed",
+        "prior_trial_id": "c0-armijo-a5e-5",
+        "qualification": "Only common accepted-step checkpoints are compared. Armijo's new terminal stationarity check adds a gradient row charge and may stop between old checkpoints; its status is not transferred to old artifacts.",
+        "relative_tolerance": 1e-10,
+        "shared_data_initial_factor_truth_exact_match": true
+      },
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "converged",
+      "stopping_audit": {
+        "archived_termination": {
+          "full_gradient_norm": 1.5584025112128378e-10,
+          "gradient_threshold": 1.5735392397431955e-10,
+          "initial_full_gradient_norm": 1.5635392397431955,
+          "reason": "full_gradient_tolerance"
+        },
+        "comparison_atol": 1e-13,
+        "independent_full_gradient_norm": 1.5584025112128378e-10,
+        "independent_initial_full_gradient_norm": 1.5635392397431955
+      },
+      "trial": {
+        "alpha": 5e-05,
+        "armijo_gradient_atol": 1e-12,
+        "armijo_gradient_rtol": 1e-10,
+        "channel": 0,
+        "checkpoint_epochs": 100,
+        "eta_scale": 0.01,
+        "id": "c0-armijo-a5em5-gradstop",
+        "method": "armijo-fgd",
+        "row_epochs": 10000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-armijo-a5em5-gradstop",
+      "work_accounting_audit": {
+        "accepted_gradient_passes": 1794,
+        "accepted_iteration_objective_evaluations": 1798,
+        "rule": "128*(accepted gradients + accepted-iteration objective evaluations) + terminal attempt",
+        "terminal_attempt_rows": 128,
+        "verified_terminal_rows": 459904
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 12800000,
+      "channel": 0,
+      "completed_steps": 400000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999916229485166,
+        "factor_operator_norm": 1.9999916229485166,
+        "measurement_loss_mean": 6.169356029109496e-13,
+        "measurement_loss_sum": 7.896775717260155e-11,
+        "normalized_tp_violation": 9.522904138219925e-06,
+        "process_fidelity": 0.9999999999620974,
+        "rmse": 1.1107975539322632e-06,
+        "tp_violation": 1.904580827643985e-05
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "81d97c4719412c58dae83b0c3d2b60b5a0137b54631b539d76c05ee7f58def18",
+      "first_recorded_physical_gate": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-f-fast-average-100kep/result.json",
+      "json_sha256": "8b3610ea5020dc25a484b0981ee4e97615d342719652f2c0aae7e3dba3f9db0a",
+      "method": "frames",
+      "npz_sha256": "4ef4aafcc6640a8c64bbd16b4a641204af88d6fe53aecea84a75f1eba5adb0d2",
+      "prior_trajectory_consistency": {
+        "absolute_tolerance": 1e-12,
+        "compared_metrics": [
+          "measurement_loss_sum",
+          "measurement_loss_mean",
+          "rmse",
+          "tp_violation",
+          "normalized_tp_violation",
+          "process_fidelity"
+        ],
+        "excluded_fields": [
+          "optimizer_seconds",
+          "penalized_objective",
+          "terminal_status",
+          "terminal_work_charge"
+        ],
+        "matching_checkpoint_count": 11,
+        "matching_checkpoint_steps": [
+          0,
+          4000,
+          8000,
+          12000,
+          16000,
+          20000,
+          24000,
+          28000,
+          32000,
+          36000,
+          40000
+        ],
+        "max_absolute_deviation": {
+          "measurement_loss_mean": 0.0,
+          "measurement_loss_sum": 0.0,
+          "normalized_tp_violation": 0.0,
+          "process_fidelity": 0.0,
+          "rmse": 0.0,
+          "tp_violation": 0.0
+        },
+        "prior_json_sha256": "bec618b49e0925b4f5f3adbd616ab0dbf662ca7d738c2d9175ca565bef95a4b4",
+        "prior_npz_sha256": "54774a7fdb249accdb782b9a57cd96778f730384638746010692be3ee819b475",
+        "prior_terminal_status": "complete",
+        "prior_trial_id": "c0-f-fast-average",
+        "qualification": "Only common accepted-step checkpoints are compared. Armijo's new terminal stationarity check adds a gradient row charge and may stop between old checkpoints; its status is not transferred to old artifacts.",
+        "relative_tolerance": 1e-10,
+        "shared_data_initial_factor_truth_exact_match": true
+      },
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "stopping_audit": null,
+      "trial": {
+        "alpha": 5e-05,
+        "armijo_gradient_atol": 0.0,
+        "armijo_gradient_rtol": 0.0,
+        "channel": 0,
+        "checkpoint_epochs": 1000,
+        "eta_scale": 0.01,
+        "id": "c0-f-fast-average-100kep",
+        "method": "frames",
+        "row_epochs": 100000,
+        "step_schedule": {
+          "cap": 1.0,
+          "exponent": 1.0,
+          "offset": 4.0,
+          "scale": 4.0
+        },
+        "tau": 2.0
+      },
+      "trial_id": "c0-f-fast-average-100kep",
+      "work_accounting_audit": {
+        "rule": "32*completed_steps",
+        "verified_terminal_rows": 12800000
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 12800000,
+      "channel": 0,
+      "completed_steps": 100000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 2.0000228464959227,
+        "factor_operator_norm": 2.0000228464959227,
+        "measurement_loss_mean": 1.2838868502588216e-06,
+        "measurement_loss_sum": 0.00016433751683312916,
+        "normalized_tp_violation": 0.0030064317388624967,
+        "process_fidelity": 0.9965358827134398,
+        "rmse": 0.0016024274400164406,
+        "tp_violation": 0.0060128634777249935
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "efbf65cc9a644c0f601491fbd9a23e0f6068c1d42251bc7866ab92a3c93bf71e",
+      "first_recorded_physical_gate": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": false
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-q-a5em4-e1-100kep/result.json",
+      "json_sha256": "854629738be893280c4e95b2f152b086fca9b9d16a217fbcf6404221236f89f8",
+      "method": "printed-adafgd",
+      "npz_sha256": "080c03707c823385d949e070b1e101028e4fa3cb8080f0d30db90d77e2f37415",
+      "prior_trajectory_consistency": {
+        "absolute_tolerance": 1e-12,
+        "compared_metrics": [
+          "measurement_loss_sum",
+          "measurement_loss_mean",
+          "rmse",
+          "tp_violation",
+          "normalized_tp_violation",
+          "process_fidelity"
+        ],
+        "excluded_fields": [
+          "optimizer_seconds",
+          "penalized_objective",
+          "terminal_status",
+          "terminal_work_charge"
+        ],
+        "matching_checkpoint_count": 11,
+        "matching_checkpoint_steps": [
+          0,
+          1000,
+          2000,
+          3000,
+          4000,
+          5000,
+          6000,
+          7000,
+          8000,
+          9000,
+          10000
+        ],
+        "max_absolute_deviation": {
+          "measurement_loss_mean": 0.0,
+          "measurement_loss_sum": 0.0,
+          "normalized_tp_violation": 0.0,
+          "process_fidelity": 0.0,
+          "rmse": 0.0,
+          "tp_violation": 0.0
+        },
+        "prior_json_sha256": "b209346b840434d32ce0cae92209681ebf856d7dbd979c54b5dfcfcece1bb549",
+        "prior_npz_sha256": "5dbbbfab2afc795e1d7cf2320647e73671ddce80fd16a228a25df99747555dc6",
+        "prior_terminal_status": "complete",
+        "prior_trial_id": "c0-q-a5e-4-e1",
+        "qualification": "Only common accepted-step checkpoints are compared. Armijo's new terminal stationarity check adds a gradient row charge and may stop between old checkpoints; its status is not transferred to old artifacts.",
+        "relative_tolerance": 1e-10,
+        "shared_data_initial_factor_truth_exact_match": true
+      },
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "stopping_audit": null,
+      "trial": {
+        "alpha": 0.0005,
+        "armijo_gradient_atol": 0.0,
+        "armijo_gradient_rtol": 0.0,
+        "channel": 0,
+        "checkpoint_epochs": 1000,
+        "eta_scale": 1.0,
+        "id": "c0-q-a5em4-e1-100kep",
+        "method": "printed-adafgd",
+        "row_epochs": 100000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-q-a5em4-e1-100kep",
+      "work_accounting_audit": {
+        "failed_terminal_attempt_rows": 0,
+        "rule": "128*completed_steps plus one attempted pass only on failed terminal update",
+        "verified_terminal_rows": 12800000
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 12800000,
+      "channel": 0,
+      "completed_steps": 100000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9993094545875225,
+        "factor_operator_norm": 1.9993094545875223,
+        "measurement_loss_mean": 1.1951995907421415e-06,
+        "measurement_loss_sum": 0.0001529855476149941,
+        "normalized_tp_violation": 0.007113939279086928,
+        "process_fidelity": 0.9967170083266248,
+        "rmse": 0.0015460915825022408,
+        "tp_violation": 0.014227878558173855
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "051c3a98c8d38780cf9b66a15d4defab1d57aaa79dbd5b9aa802c084a0766dfb",
+      "first_recorded_physical_gate": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": false
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-q-a5em6-e1-100kep/result.json",
+      "json_sha256": "15bec7142e0a526458b4cfb985febc4315cb024869103410aa416c5a1f97efee",
+      "method": "printed-adafgd",
+      "npz_sha256": "61c49b83a2d1893540dc2fd86aec5eca7e55c2a743d865d070ace47f94a36de7",
+      "prior_trajectory_consistency": {
+        "absolute_tolerance": 1e-12,
+        "compared_metrics": [
+          "measurement_loss_sum",
+          "measurement_loss_mean",
+          "rmse",
+          "tp_violation",
+          "normalized_tp_violation",
+          "process_fidelity"
+        ],
+        "excluded_fields": [
+          "optimizer_seconds",
+          "penalized_objective",
+          "terminal_status",
+          "terminal_work_charge"
+        ],
+        "matching_checkpoint_count": 11,
+        "matching_checkpoint_steps": [
+          0,
+          1000,
+          2000,
+          3000,
+          4000,
+          5000,
+          6000,
+          7000,
+          8000,
+          9000,
+          10000
+        ],
+        "max_absolute_deviation": {
+          "measurement_loss_mean": 0.0,
+          "measurement_loss_sum": 0.0,
+          "normalized_tp_violation": 0.0,
+          "process_fidelity": 0.0,
+          "rmse": 0.0,
+          "tp_violation": 0.0
+        },
+        "prior_json_sha256": "3f4e2e358d8969d1d28ee55200746a9ea03789bbd55f0bfab6ab3cee7781dcc8",
+        "prior_npz_sha256": "9a398bc994db309cf98e55f40d110e20e8fd0bb6112615d5adf816b5665ab7e4",
+        "prior_terminal_status": "complete",
+        "prior_trial_id": "c0-q-a5e-6-e1",
+        "qualification": "Only common accepted-step checkpoints are compared. Armijo's new terminal stationarity check adds a gradient row charge and may stop between old checkpoints; its status is not transferred to old artifacts.",
+        "relative_tolerance": 1e-10,
+        "shared_data_initial_factor_truth_exact_match": true
+      },
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "stopping_audit": null,
+      "trial": {
+        "alpha": 5e-06,
+        "armijo_gradient_atol": 0.0,
+        "armijo_gradient_rtol": 0.0,
+        "channel": 0,
+        "checkpoint_epochs": 1000,
+        "eta_scale": 1.0,
+        "id": "c0-q-a5em6-e1-100kep",
+        "method": "printed-adafgd",
+        "row_epochs": 100000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-q-a5em6-e1-100kep",
+      "work_accounting_audit": {
+        "failed_terminal_attempt_rows": 0,
+        "rule": "128*completed_steps plus one attempted pass only on failed terminal update",
+        "verified_terminal_rows": 12800000
+      }
+    }
+  ],
+  "created_utc": "2026-10-06T16:33:03.285987+00:00",
+  "expected_trials": 12,
+  "inventories": [
+    {
+      "channel": 0,
+      "path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/inventory.json",
+      "sha256": "47913d18622bb74c348fc74fb70a1556f9a3258ae11ca4cd455f191617b52f28",
+      "state": "complete"
+    }
+  ],
+  "kind": "qpt_followup_audit",
+  "method_counts": {
+    "armijo-fgd": {
+      "official_endpoint_gate_passes": 3,
+      "status_counts": {
+        "converged": 3
+      }
+    },
+    "frames": {
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "complete": 1
+      }
+    },
+    "printed-adafgd": {
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "complete": 2
+      }
+    }
+  },
+  "missing_trial_ids": [
+    "c1-armijo-a5em1-gradstop",
+    "c1-armijo-a5em4-gradstop",
+    "c1-armijo-a5em5-gradstop",
+    "c1-f-fast-average-100kep",
+    "c1-q-a5em4-e1-100kep",
+    "c1-q-a5em6-e1-100kep"
+  ],
+  "partial_mode": true,
+  "prior_audit": {
+    "path": "/home/tony/qpt_quiroga_resolution_20261006_1748/audit_complete.json",
+    "sha256": "75fd7bb854757292649478bce54bc7af7e4d43d124c43f472a7070ea4f45df62"
+  },
+  "prior_consistency_script_sha256": "2fa2c453742aef347545833a3b78bfc44e1444ecc45b13e35d6dec7d409c43a8",
+  "provenance": {
+    "base_runner_sha256": "13bcfa92d5d4876cc68f4d04fa4b0869d611c67d42ec52cc56c067925c3884b6",
+    "campaign_id": "qpt_followup_20261006_1820",
+    "plan_builder_sha256": "1ae3d27db688336e34aa7beab28f6e8de5724adb673b371bf2bc3116780e898c",
+    "plan_sha256": "97cf81b50dc033cbb91139d43cf4e6b52d5fd429c55d938895c73647f41e7ad4",
+    "runner_sha256": "fb73fd3727dd151291c101d7c84ba5247244f7223cd9fe0db560a29756e39fdb",
+    "source_commit": "0f7857e94f6b16ac07733be248f68aa6904d287b",
+    "source_sha256": {
+      "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+      "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+      "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+      "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+      "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+      "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+      "paper/experiments/qpt_quiroga_campaign.py": "86c964316754f4cb8eb989e50653143095ca759165af1ca5d125a2cbd2e1baea",
+      "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+      "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+      "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+    }
+  },
+  "qualification": "Exploratory calibration only, not selection or unseen validation. Convergence is an optimizer stop, not a recovery certificate. Earlier-checkpoint physical gates are retrospective diagnostics and never relabel failed terminal status. Armijo row charges are not nominal-budget-matched to the primary methods.",
+  "schema_version": 1,
+  "trial_ids_without_inventory_checksum": [],
+  "work_accounting_script_sha256": "53068736a1368f083359e1d8955cfd2e70861b42055ed17da1be6b4c78ce6d8a"
+}

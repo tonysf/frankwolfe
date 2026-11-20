@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-27T21:00:04.563671+00:00",
+  "source_report": "/home/tony/gw_benchmark_experiment_20260927/reports/campaign_summarizer_smoke/report/report.json",
+  "input_report_sha256": "a1e4ebeac1b8735a3fd68f12407e439f66c6d5923d8eb242a9771387db32c5f4",
+  "source_scope": "parser-smoke",
+  "source_status": "complete_provided_manifests",
+  "source_manifest_hashes": [
+    "28dc193f78a6f39c26456e0754072ae9170c2799a8143cb92a0bfc744a6ff920"
+  ],
+  "scope": "Descriptive final-output references only; no recomputation, repair, checkpoint search, parameter tuning or optimizer selection.",
+  "timing_policy": "Recorded output availability may precede final total solver time when a native epilogue returns the same previously repaired plan; both clocks are retained.",
+  "mixed_budget_policy": "The minimum spans the explicitly listed included budgets and phases; it is not a matched-budget algorithm comparison.",
+  "update_policy": "A lower independently evaluated feasible output requires a newly archived reference report; negative differences are never clipped.",
+  "tie_policy": "Exact loss ties use lexicographic run_id only to identify a reproducible source.",
+  "script_sha256": "028d4f5cee7498cd419b9a539a33233e40d3beea41fe93453a903c1adb390951",
+  "command": [
+    "summarize_feasible_references.py",
+    "--report",
+    "reports/campaign_summarizer_smoke/report/report.json",
+    "--out",
+    "reports/reference_helper_validation/cli_output_native_timing_fix"
+  ],
+  "instances": [
+    {
+      "instance": "toy16.npz",
+      "instance_sha256": "2a0d6c10d28c73457c3b2c92e4ba43c87aec7514cbd5c16ab88f9774b5c76a75",
+      "family": "synthetic",
+      "n": 16,
+      "noise": 0.0,
+      "problem_seed": 1000,
+      "known_f_star": 0.0,
+      "descriptive_f_ref": null,
+      "reference_value": 0.0,
+      "reference_kind": "known_noiseless_optimum",
+      "best_observed_rounded_loss_float64": 0.0,
+      "best_observed_source": {
+        "run_id": "final_product/fw/c00/toy16/s100_i200",
+        "phase": "final_product",
+        "method": "fw",
+        "candidate_id": "c00",
+        "budget": 0.03,
+        "actual_solver_seconds": 0.030189313925802708,
+        "final_time_to_output": 0.03036495391279459,
+        "final_rounded_residuals": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "final_npz_sha256": "1cbd34e802410da5e49d225f24dc3d15cb91e8f4894c28269e7dc0e634434b8e",
+        "rounded_loss_float64": 0.0
+      },
+      "expected_runs": 4,
+      "eligible_final_runs": 4,
+      "ineligible_final_runs": 0,
+      "included_budgets_seconds": [
+        0.03
+      ],
+      "mixed_budgets": false,
+      "phase_counts": {
+        "final_product": 4
+      },
+      "native_early_or_max_iter_runs": 0,
+      "valid_final_runs_meeting_budget": 4
+    }
+  ]
+}

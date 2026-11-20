@@ -1,0 +1,65 @@
+{
+  "checked_utc": "2026-11-04T13:13:48.995313+00:00",
+  "checks": [
+    "full and minibatch finite-difference block Hessians",
+    "rank-one power estimate and degenerate fallback",
+    "bitwise isolated/frozen strict updates on both real datasets",
+    "paired minibatch arrays, block refreshes and counts at each smoke step",
+    "bitwise practical checkpoint restart across both RNG streams"
+  ],
+  "results": {
+    "orl64": {
+      "component_gradient_calls": 10680,
+      "feasibility": {
+        "C_distance": 0.0,
+        "D_distance": 0.0,
+        "U_negative_norm": 0.0,
+        "U_spectral_norm": 5.522758283570515,
+        "U_spectral_violation": 0.0,
+        "V_l1_norm": 193.29653992496822,
+        "V_l1_violation": 0.0,
+        "V_negative_norm": 0.0,
+        "V_spectral_norm": 2.2411424238909166,
+        "V_spectral_violation": 0.0,
+        "feasible": true,
+        "max_constraint_violation": 0.0
+      },
+      "final_raw_loss": 2.8672962028546875e-05,
+      "first_loss": 3.0014713423783118e-05,
+      "first_steps": [
+        217247.57688738868,
+        26858.259907439482
+      ],
+      "full_block_refreshes": 3,
+      "initial_loss": 4.575986251603701e-05,
+      "iterations": 120
+    },
+    "yaleb32": {
+      "component_gradient_calls": 62424,
+      "feasibility": {
+        "C_distance": 0.0,
+        "D_distance": 0.0,
+        "U_negative_norm": 0.0,
+        "U_spectral_norm": 7.739136574685845,
+        "U_spectral_violation": 0.0,
+        "V_l1_norm": 931.5951697560432,
+        "V_l1_violation": 0.0,
+        "V_negative_norm": 0.0,
+        "V_spectral_norm": 3.3663848613683407,
+        "V_spectral_violation": 0.0,
+        "feasible": true,
+        "max_constraint_violation": 0.0
+      },
+      "final_raw_loss": 0.00018776546792959059,
+      "first_loss": 0.0002508990681897426,
+      "first_steps": [
+        167644.27038594722,
+        20635.842525028027
+      ],
+      "full_block_refreshes": 2,
+      "initial_loss": 0.0003011905822164822,
+      "iterations": 120
+    }
+  },
+  "status": "passed"
+}

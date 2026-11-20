@@ -1,0 +1,39 @@
+{
+  "slice_number": 4531,
+  "measurement_mode": 1,
+  "reference_mode": 2,
+  "raw_source": "https://huggingface.co/datasets/deepinv/images/resolve/main/2DeteCT_slices_4001-5000_slice04531.zip",
+  "reference_source": "https://huggingface.co/datasets/deepinv/images/resolve/main/2DeteCT_slices_4001-5000_slice04531.zip",
+  "preprocess_source": "https://deepinv.org/auto_examples/external-libraries/demo_astra_2detect.html",
+  "dataset_paper": "https://arxiv.org/html/2306.05907",
+  "tiff_entries": {
+    "2DeteCT_slices4001-5000/slice04531/mode1/sinogram.tif": "cfd07a3b96f6ee6014febeda86fdaad9e2ba652641914cca8041a128aafb66e1",
+    "2DeteCT_slices4001-5000/slice04531/mode1/dark.tif": "31581f72e0f3aabbe2ed8c80b686cd7fb12884141440be05c12c4acbfa579fd4",
+    "2DeteCT_slices4001-5000/slice04531/mode1/flat1.tif": "18def8e41676c05d1c6412064719cf0b6e59242ca988c918a89de28321af0913",
+    "2DeteCT_slices4001-5000/slice04531/mode1/flat2.tif": "f7104fd01e61e6962235a83111f97a839003e3e4fac09e892c661296d8fd0a36",
+    "2DeteCT_slices4001-5000_RecSeg/slice04531/mode2/reconstruction.tif": "e77c40a27a2584eb6208df40f160f9ae04e256ed1deecb4609ad679b9a3ae52b"
+  },
+  "clamped_count": 0,
+  "measured_shape": [
+    3600,
+    956
+  ],
+  "reference_shape": [
+    1024,
+    1024
+  ],
+  "geometry_mm": {
+    "detector_spacing": 0.1496,
+    "source_origin": 431.019989,
+    "origin_detector": 97.98049900000001,
+    "volume_width": 116.52814274682939,
+    "volume_center": [
+      -0.11379701440120057,
+      -0.11379701440120057
+    ],
+    "reference_voxel_width": 0.11379701440120057
+  },
+  "sinogram_convention": "DeepInverse: bin adjacent raw detector cells, drop last view, correct flat/dark, clip at 1e-6, negate log, reverse detector",
+  "reference_convention": "Mode 2 TIFF stored without conversion. For DeepInverse angles with detector reversal, a physical-mm ASTRA model uses a vertical flip and divides attenuation by native voxel width in mm.",
+  "reference_source_code": "https://github.com/mbkiss/2DeteCTcodes/blob/main/Reconstructions_2DeteCT.py"
+}

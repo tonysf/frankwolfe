@@ -1,0 +1,139 @@
+{
+  "campaign_id": "qpt_quiroga_tuning_20261008_revalidation",
+  "frozen_screen_selection": {
+    "configuration": {
+      "alpha": 5e-05,
+      "eta_scale": 1.0,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    "no_retuning": true,
+    "screen_audit_sha256": "ce5135b4e04535bf90fa143cf7372341428fb15217986c8a8443f5536f356074",
+    "selection_file_sha256": "6f429f7adca8617bdb246e52839fd663ac64b6f1bc6adf0fa2e2cfdc55246a2f"
+  },
+  "gate": {
+    "fidelity_min": 0.99,
+    "normalized_tp_max": 0.001,
+    "rmse_max": 1e-06
+  },
+  "phase": "validation",
+  "qualification": "Historical revalidation on channels100..107, already used in earlier campaigns, hence NOT unseen validation. Setting frozen before confirmation and unchanged afterwards. Exact factor-ray line search is not printed Quiroga adaFGD. Finalheldout1000..1019 untouched.",
+  "resources": {
+    "minimum_seconds_before_new_trial": 120
+  },
+  "schema_version": 1,
+  "selection": {
+    "calibration_audit_sha256": "13d46076f3106915099124828a9dc53b866d35a8df0c5cbb5385f088c34a7e07",
+    "configuration": {
+      "alpha": 5e-05,
+      "eta_scale": 1.0,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    }
+  },
+  "shared": {
+    "active_rows": 128,
+    "exact_line_stopping": {
+      "full_gradient_atol": 1e-12,
+      "full_gradient_rtol": 1e-10
+    },
+    "fixed_penalty": "lambda=128*alpha; constant throughout each trial",
+    "initialization_basis": "gell-mann",
+    "initialization_convention": "hs_unit_gell_mann_identity_sym_antisym_diag_v1",
+    "initialization_seed_rule": "200000+10*channel",
+    "n_qubits": 2,
+    "observation_mode": "noiseless",
+    "printed_spectral_norm": "dense exact Hermitian eigenspectrum",
+    "rank": 1,
+    "sampling_seed_rule": "300000+100*channel",
+    "work": "Printed128 rows/update; exact ray counts direction, polynomial and candidate passes; checkpoints excluded"
+  },
+  "source": {
+    "commit": "4ce1108a0692edc43b47ef465dbc74a42397765e",
+    "repo": "/gpfs/workdir/silvetian/frankwolfe-quiroga-4ce1108a0692edc43b47ef465dbc74a42397765e"
+  },
+  "trials": [
+    {
+      "alpha": 5e-05,
+      "channel": 100,
+      "eta_scale": 1.0,
+      "id": "c100-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201000,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 101,
+      "eta_scale": 1.0,
+      "id": "c101-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201010,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 102,
+      "eta_scale": 1.0,
+      "id": "c102-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201020,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 103,
+      "eta_scale": 1.0,
+      "id": "c103-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201030,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 104,
+      "eta_scale": 1.0,
+      "id": "c104-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201040,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 105,
+      "eta_scale": 1.0,
+      "id": "c105-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201050,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 106,
+      "eta_scale": 1.0,
+      "id": "c106-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201060,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 107,
+      "eta_scale": 1.0,
+      "id": "c107-frozen-exact-linesearch-fgd",
+      "initialization_seed": 201070,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    }
+  ]
+}

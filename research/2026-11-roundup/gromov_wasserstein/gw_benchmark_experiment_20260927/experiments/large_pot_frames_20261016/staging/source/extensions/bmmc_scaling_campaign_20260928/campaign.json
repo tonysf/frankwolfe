@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "scope": "User-authorized full larger-real-data study: independent equal-budget tuning then fresh five-seed evaluation",
+  "sizes": [
+    3000,
+    6224
+  ],
+  "methods": [
+    "smoothing-fw",
+    "stochastic-kl-momentum"
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "development_seeds": [
+    0,
+    1,
+    2
+  ],
+  "final_seeds": [
+    200,
+    201,
+    202,
+    203,
+    204
+  ],
+  "pilot_job_id": 1968437,
+  "pilot_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437",
+  "pilot_config_sha256": "bb255d317b0830ad73333cf4268e9fadbdda66340b6a6bee55af06297f2f250f",
+  "runtime_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+  "runtime_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+  "budgets": {
+    "tuning": 60,
+    "final": 300
+  },
+  "shared": {
+    "oracle": "sketch",
+    "batch": 128,
+    "rho0": 0.3,
+    "beta": 0.5,
+    "first_gradient_reuse": true
+  },
+  "fw_fixed_exponents": {
+    "alpha": 0.75,
+    "delta": 0.25
+  },
+  "kl_inner_cap": 1000,
+  "candidates": {
+    "smoothing-fw": {
+      "c00": {
+        "gamma0": 0.1,
+        "mu_scale": 0.1
+      },
+      "c01": {
+        "gamma0": 0.1,
+        "mu_scale": 1.0
+      },
+      "c02": {
+        "gamma0": 0.1,
+        "mu_scale": 10.0
+      },
+      "c03": {
+        "gamma0": 0.1,
+        "mu_scale": 100.0
+      },
+      "c04": {
+        "gamma0": 0.3,
+        "mu_scale": 0.1
+      },
+      "c05": {
+        "gamma0": 0.3,
+        "mu_scale": 1.0
+      },
+      "c06": {
+        "gamma0": 0.3,
+        "mu_scale": 10.0
+      },
+      "c07": {
+        "gamma0": 0.3,
+        "mu_scale": 100.0
+      },
+      "c08": {
+        "gamma0": 1.0,
+        "mu_scale": 0.1
+      },
+      "c09": {
+        "gamma0": 1.0,
+        "mu_scale": 1.0
+      },
+      "c10": {
+        "gamma0": 1.0,
+        "mu_scale": 10.0
+      },
+      "c11": {
+        "gamma0": 1.0,
+        "mu_scale": 100.0
+      }
+    },
+    "stochastic-kl-momentum": {
+      "c00": {
+        "eta": 0.1,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c01": {
+        "eta": 0.1,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c02": {
+        "eta": 1.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c03": {
+        "eta": 1.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c04": {
+        "eta": 3.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c05": {
+        "eta": 3.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c06": {
+        "eta": 10.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c07": {
+        "eta": 10.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c08": {
+        "eta": 30.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c09": {
+        "eta": 30.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      },
+      "c10": {
+        "eta": 100.0,
+        "eta_power": 0.0,
+        "inner_tol": 0.0001
+      },
+      "c11": {
+        "eta": 100.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-06
+      }
+    }
+  },
+  "selection_rule": "Per(size,method), minimum median final float64 rounded loss over all six development(start,seed) cells; any invalid output disqualifies candidate; exact-score ties by candidate ID; no fallback if all ineligible.",
+  "task_counts": {
+    "tuning": 24,
+    "final": 20
+  },
+  "run_counts": {
+    "tuning": 288,
+    "final": 40
+  },
+  "nominal_solver_gpu_hours": 8.133333333333333,
+  "max_concurrent_campaign_gpus": 3,
+  "parameter_policy": "Independently tune momentum-KL directly; supersedes legacy Stage C inheritance text in frozen runner metadata.",
+  "pilot_excluded_from_final_statistics": true,
+  "failures": "Preserve scientific/numerical failures; missing/infrastructure/provenance failures block selection. Inner stopping failures remain visible but do not by themselves invalidate a rounded output.",
+  "pairing": "Each(size,start,seed) final pair runs sequentially in a fresh process per method within one GPU allocation; alternate method order by task and cell. Shared instance/init/oracle seeds.",
+  "interpretation": "Same real dataset with nested cell subsets, separately normalized by size; fresh optimizer seeds do not constitute independent datasets. Equal walltime is not equal oracle budget.",
+  "runtime_file_sha256": {
+    "run_benchmark.py": "7607a3a9727d0414b3a3ca16b2f2af0a7d3ca4a5920b8c7a7e647d89fb4ef83c",
+    "smoothing_fw.py": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+    "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444"
+  }
+}

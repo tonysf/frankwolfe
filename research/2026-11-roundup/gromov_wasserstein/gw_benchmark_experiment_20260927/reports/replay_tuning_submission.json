@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "state": "submission_requires_inspection",
+  "utc": "2026-09-27T23:23:53.766500+00:00",
+  "dispatch_plan": "configs/momentum_diagnostic_replay_dispatch.json",
+  "dispatch_plan_sha256": "b4b8384760d044397e2a17b4f04c45efd7425373b0575a156f715e8c1cb1be81",
+  "preflight_audit_sha256": "5647f85a024aa88efce4268a28da6bcc72f0f43ddf6b7111e00bba334a740159",
+  "array": {
+    "phase": "tuning",
+    "scientific_replays": 504,
+    "manifest": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/tuning.json",
+    "manifest_sha256": "ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455",
+    "out_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_momentum_diagnostics/replay_20260928/tuning",
+    "shards": 8,
+    "per_shard_run_counts": [
+      63,
+      63,
+      63,
+      63,
+      63,
+      63,
+      63,
+      63
+    ],
+    "array": "0-7%4",
+    "dependency": "afterok:1961687",
+    "gpus_per_task": 1,
+    "wall_time_seconds": 5400,
+    "source_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+    "source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--array=0-7%4",
+      "--dependency=afterok:1961687",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/slurm/a100_momentum_replay.sbatch",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/tuning.json",
+      "ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+      "b5851980646be55a148b083a89cfbf6153dac77e",
+      "8"
+    ]
+  },
+  "command": [
+    "ssh",
+    "ruche",
+    "sbatch --parsable --array=0-7%4 --dependency=afterok:1961687 /gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/slurm/a100_momentum_replay.sbatch /gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/tuning.json ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455 /gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198 b5851980646be55a148b083a89cfbf6153dac77e 8"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "sbatch: error: Batch job submission failed: Job dependency problem\n",
+  "response_utc": "2026-09-27T23:23:54.711536+00:00"
+}

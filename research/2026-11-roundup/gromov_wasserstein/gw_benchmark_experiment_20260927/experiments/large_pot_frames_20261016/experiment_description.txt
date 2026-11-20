@@ -1,0 +1,59 @@
+Large-data POT-step controls and longer FraMES prefactor tuning
+
+Question
+Can the POT step obtain substantial GW loss reduction on the original large
+dataset geometries, and can longer development runs identify effective FraMES
+prefactors without changing the theorem's exponents?
+
+Data and common settings
+BMMC: 6,224 cells. SNARE-seq: 10,000 cells. SHARE-seq: 31,890 cells.
+Reuse the exact archived distance arrays and marginals identified by campaign.json.
+All arithmetic is FP64; archived FP32 distances are promoted identically for
+all methods. Initialization is the product coupling. Stochastic methods use
+1,024 independent coupling-pair samples per update, with mass correction.
+
+POT-step controls
+One full-gradient run and three pair-sampled runs, each 2,000 outer updates.
+epsilon = 0.001 and eta = 1/epsilon = 1,000.
+Each update minimizes <gradient,Q> + epsilon*h(Q) over feasible couplings.
+The KL solve uses a fixed product reference; its log-reference contribution
+is constant over feasible couplings, giving the POT entropic PGD update.
+Accept an inner solution only when actual marginal L1 residual and the guarded
+normalized primal-dual gap are both at most 1e-7 (cap: 100,000 inner updates).
+This is an empirical POT-step baseline, not a theorem-admissible stochastic
+step-size claim. It optimizes entropy-regularized GW; the common plotted metric
+is unregularized feasible GW loss. The regularized objective is also recorded.
+
+FraMES development and confirmation
+gamma_k = gamma0/(k+1)^(3/4)
+rho_k   = rho0/(k+1)^(1/2)
+mu_k    = mu_scale/[m*(k+1)^(1/4)]
+gamma0 in {0.3, 1}; rho0 in {0.1, 0.3, 1}; mu_scale in {0.1, 1, 10, 100}.
+All 24 candidates run for 20,000 updates on both development seeds 810, 814.
+Select the lowest median final feasible GW loss; candidate ID breaks ties.
+The winner runs for 20,000 updates on fresh seeds 811, 812, 813.
+No loss-based early stopping. Old prefactors are included in the grid.
+Reporting separates development from confirmation; held-out seed ranges are
+descriptive ranges, not confidence intervals.
+
+Execution and preservation
+55 production runs per dataset, 165 total, plus scheduled validation gates.
+BMMC and SNARE use one A100 each. SHARE uses four row-sharded A100s.
+Slurm allocations last at most 24 hours, with a 22-hour soft stop. Checkpoints
+preserve the iterate, momentum, random state and counters using two transactional
+generations. A CPU dispatcher submits continuation jobs when an allocation ends.
+Numerical failures freeze the affected dataset stream for review.
+Checkpoints are written between outer updates; an unusually long inner solve
+cannot be resumed internally. Repeated failure to make progress stops retries.
+Completed transient checkpoint tensors are removed after durable run metadata.
+Existing campaigns and source/data directories remain unchanged.
+
+Validation and interpretation
+Local tests cover POT parity, oracle expectation, feasibility/certificates,
+distributed algebra, exact checkpoint restart, selection and submission logic.
+Scheduled gates additionally validate CUDA, one/four GPU restart, actual-size
+memory use and restart before each dataset's production stream may run.
+No claim of GPU gate success is made before those jobs finish.
+Loss curves have different planned horizons: 2,000 POT versus 20,000 FraMES;
+reports include both the full horizon and a shared first-2,000-update view.
+No active monitoring is required after submission.

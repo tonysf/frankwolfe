@@ -1,0 +1,20 @@
+{
+  "validated_utc": "2026-10-07T15:50:50.090590+00:00",
+  "unit_tests_passed": 33,
+  "test_command": "python3 -m unittest discover -s extensions/long_horizon_20261007 -p 'test_*.py' -v",
+  "retry_submission_dry_run": "logs/long_horizon_all_20261007T153527Z/retry_submission_dry_run.json",
+  "shell_syntax_checks": "passed",
+  "git_diff_check": "passed",
+  "live_ruche_a100_max_walltime": "24:00:00",
+  "share_walltime_by_method": {
+    "smoothing-fw": "02:15:00",
+    "published-smd": "12:15:00",
+    "published-msbpg": "18:15:00"
+  },
+  "exact_optimizer_resume": false,
+  "runtime_strategy": "Complete each 20,000-update run in one allocation; enlarged per-method budgets remain below verified 24-hour limit. Scalar checkpoints are diagnostics, not resumable states.",
+  "remote_evidence": "logs/long_horizon_all_20261007T153527Z/remote_snapshot.txt",
+  "infrastructure_retry_evidence": "logs/long_horizon_all_20261007T153527Z/initial_failures.txt",
+  "gpu_gate": "Fresh GPU integration job to gate all new sentinels; prior successful gate2036886 is no longer in the live Slurm controller.",
+  "monitoring": "No active monitoring requested after submission; one verification of accepted resources/dependencies."
+}

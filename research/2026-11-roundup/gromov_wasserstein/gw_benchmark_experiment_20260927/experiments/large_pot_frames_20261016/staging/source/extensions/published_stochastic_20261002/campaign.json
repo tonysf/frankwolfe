@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "scope": "Published stochastic mirror descent versus stochastic FraMES on three frozen real datasets; fixed iteration and oracle budgets, not equal elapsed time.",
+  "instances": {
+    "bmmc6224": {
+      "n": 6224,
+      "world_size": 1,
+      "source_input": {
+        "kind": "npz",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.json",
+        "metadata_sha256": "48820164157773734f12a6d83d9cd64ad6a9ca47e28055ee683393304c506014"
+      }
+    },
+    "snare_full": {
+      "n": 10000,
+      "world_size": 1,
+      "source_input": {
+        "kind": "npz",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.json",
+        "metadata_sha256": "99c24af82ee8abcc966e956ea0204a4b9c40428bddb98b31cda658bd6f47acb8",
+        "sha256": "924f0a95feb5389758b29cfc2156fac09c6796b5f5c2e85718f72afbb0ac60d3"
+      }
+    },
+    "shareseq_full": {
+      "n": 31890,
+      "world_size": 4,
+      "source_input": {
+        "kind": "canonical",
+        "directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full/manifest.json",
+        "metadata_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b"
+      }
+    }
+  },
+  "methods": {
+    "smoothing-fw": [
+      {
+        "id": "fw00",
+        "gamma0": 0.1,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw01",
+        "gamma0": 0.1,
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw02",
+        "gamma0": 0.1,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw03",
+        "gamma0": 0.1,
+        "mu_scale": 100.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw04",
+        "gamma0": 0.3,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw05",
+        "gamma0": 0.3,
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw06",
+        "gamma0": 0.3,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw07",
+        "gamma0": 0.3,
+        "mu_scale": 100.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw08",
+        "gamma0": 1.0,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw09",
+        "gamma0": 1.0,
+        "mu_scale": 1.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw10",
+        "gamma0": 1.0,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      {
+        "id": "fw11",
+        "gamma0": 1.0,
+        "mu_scale": 100.0,
+        "rho0": 0.3
+      }
+    ],
+    "published-smd": [
+      {
+        "id": "smd00",
+        "prefactor_fraction": 0.01
+      },
+      {
+        "id": "smd01",
+        "prefactor_fraction": 0.01519911083
+      },
+      {
+        "id": "smd02",
+        "prefactor_fraction": 0.023101297001
+      },
+      {
+        "id": "smd03",
+        "prefactor_fraction": 0.035111917342
+      },
+      {
+        "id": "smd04",
+        "prefactor_fraction": 0.053366992312
+      },
+      {
+        "id": "smd05",
+        "prefactor_fraction": 0.081113083079
+      },
+      {
+        "id": "smd06",
+        "prefactor_fraction": 0.123284673944
+      },
+      {
+        "id": "smd07",
+        "prefactor_fraction": 0.187381742286
+      },
+      {
+        "id": "smd08",
+        "prefactor_fraction": 0.284803586844
+      },
+      {
+        "id": "smd09",
+        "prefactor_fraction": 0.432876128108
+      },
+      {
+        "id": "smd10",
+        "prefactor_fraction": 0.657933224658
+      },
+      {
+        "id": "smd11",
+        "prefactor_fraction": 1.0
+      }
+    ]
+  },
+  "development_seeds": [
+    710,
+    711,
+    712
+  ],
+  "final_seeds": [
+    810,
+    811,
+    812
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "tuning_iterations": 200,
+  "final_iterations": 2000,
+  "tuning_checkpoint_iterations": [
+    50,
+    100,
+    200
+  ],
+  "final_checkpoint_iterations": [
+    100,
+    300,
+    1000,
+    2000
+  ],
+  "checkpoint_seconds": [
+    10,
+    30,
+    100,
+    300
+  ],
+  "runner": {
+    "dtype": "float32",
+    "batch": 128,
+    "inner_tol": 1e-07,
+    "inner_gap_tol": 1e-07,
+    "inner_max": 10000,
+    "check_every": 10,
+    "certificate_block_rows": 256,
+    "exact_block_rows": 256,
+    "progress_every": 100
+  },
+  "run_timeout_seconds": 7200,
+  "final_marginal_l1_tolerance": 1.1920928955078125e-05,
+  "selection_rule": "One candidate per dataset/method: minimum median FP64 last-rounded GW loss at T=200 over all six development seed/start cells; every cell must pass; ties by candidate ID; no fallback.",
+  "storage_policy": "No dense tuning files. All final snapshots retained for BMMC/SNARE; SHARE snapshots retained for first final seed 810 and both initializations. Other SHARE finals retain hashes and FP64 validated metrics. Approximately92GB additional dense outputs; no previous data deleted.",
+  "budget_policy": "Equal candidates, fixed T and q=128 give equal stochastic oracle work. Solver time is measured and includes inner solves/certificates. Finite horizons never extend to reach a time target. Missing time checkpoints stay missing; compare only observed support.",
+  "theory_scope": "Published fixed-horizon weighted pre-update SMD output stored separately from current/last rounded loss. Finite 1e-7 inner solves are numerical choices, not a proved inexact-outer convergence guarantee. FW checkpoint gaps are not an every-iterate theorem statistic.",
+  "run_counts": {
+    "tuning": 432,
+    "final": 36
+  },
+  "deferred": "FAUST remains deferred pending licensed archive."
+}

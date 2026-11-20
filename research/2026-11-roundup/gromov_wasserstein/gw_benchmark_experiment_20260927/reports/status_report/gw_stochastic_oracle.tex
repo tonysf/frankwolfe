@@ -1,0 +1,77 @@
+% Shared oracle page. Keep experiment-specific probe counts and results on page 3.
+{\color{ink}\fontsize{19}{22}\selectfont\bfseries The stochastic gradient oracle\par}
+{\small\color{muted}Reference page \enspace / \enspace random probes, unbiasedness and precision\par}
+\vspace{7pt}
+
+\textbf{The target is the gradient of the full GW objective.}
+Let $r=P\one_m$, $c=P^\top\one_n$ and let $\odot2$ denote entrywise squares.
+For symmetric $A,B$,
+\[
+ \begin{aligned}
+ \nabla f(P)&=M(P)-4APB,\\
+ M(P)&=2(A^{\odot2}r)\one_m^\top+2\one_n(B^{\odot2}c)^\top.
+ \end{aligned}
+\]
+We compute $M(P)$ directly and estimate $APB$. The \emph{actual} marginals are
+used: substituting $c=b$ at a column-infeasible iterate would give the wrong gradient.
+
+\textbf{A probe is a random projection vector.}
+For each oracle call, draw $q$ fresh, independent vectors
+$z_s\in\{-1,+1\}^m$, with independent, equiprobable signs in every entry.
+Stack them into $Z=[z_1,\ldots,z_q]\in\mathbb R^{m\times q}$.
+Each vector involves all target points, and multiplication by $P$ and $A$ also
+involves all source points. Thus $q$ counts projection vectors, not sampled cells
+or coupling entries. The full coupling is retained with no imposed rank restriction.
+
+\textbf{The implemented estimator.}
+Using the same $Z$ in both terms, the oracle returns
+\[
+ \boxed{\widehat G(P;Z)=M(P)-\frac{2}{q}
+ \left[A\bigl(P(BZ)\bigr)Z^\top+A(PZ)(BZ)^\top\right].}
+\]
+The computation forms $BZ$, $PZ$ and $P(BZ)$, multiplies the last two by $A$,
+then forms the two $n\times m$ products above, avoiding explicit construction of
+$APB$. Work grows with $q$; large sketches can cost more than the full gradient.
+
+\textbf{Why there are two product terms.}
+The estimator is the derivative of the following unbiased scalar sketch of GW:
+\[
+ \widehat f_Z(P)=r^\top A^{\odot2}r+c^\top B^{\odot2}c
+ -\frac{2}{q}\left\langle PZ,\ A\bigl(P(BZ)\bigr)\right\rangle_F.
+\]
+Differentiating both occurrences of $P$ in the inner product produces the two
+terms in $\widehat G$. The matrices $A,B$ and the objective being optimized remain
+fixed. Reported losses are evaluations of the full $f$, rather than this random sketch.
+
+\textbf{Conditional unbiasedness.}
+The probes are independent of the current iterate and satisfy
+$\mathbb E[ZZ^\top/q]=I_m$. Conditional on $P$,
+\[
+ \begin{aligned}
+ \mathbb E\!\left[A(P(BZ))Z^\top/q\mid P\right]&=APB,\\
+ \mathbb E\!\left[A(PZ)(BZ)^\top/q\mid P\right]&=APB,
+ \end{aligned}
+ \qquad
+ \mathbb E[\widehat G(P;Z)\mid P]=\nabla f(P).
+\]
+The second identity uses $B=B^\top$. Fresh probes give the same unbiasedness
+conditional on the entire optimization history before that draw.
+
+\textbf{What the probe count controls.}
+At a fixed $P$, the estimator averages $q$ independent single-probe estimates.
+If $V(P)$ is the single-probe mean-squared Frobenius error, then
+\[
+ \mathbb E\!\left[\|\widehat G(P;Z)-\nabla f(P)\|_F^2\mid P\right]
+ =\frac{V(P)}{q}.
+\]
+Four times as many probes halves the root-mean-square error at that same iterate.
+This does not imply a corresponding improvement in loss or optimization time:
+the iterates themselves change with $q$. Even $q\geq m$ does not make independent
+random-sign probes exact, since $ZZ^\top/q$ need not equal $I_m$ for a finite draw.
+
+\textbf{Connection to the update.}
+FraMES averages outputs into $d_k$ and uses
+\mbox{$H_k=d_k+\nabla(g_{\mu_k}\circ T)(P_k)$}. The penalty gradient is computed
+without sampling; momentum is separate from the oracle.
+\vfill
+{\footnotesize\color{muted}Page 3 specifies the data, probe count, numerical precision and experimental results.}

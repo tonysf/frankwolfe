@@ -1,0 +1,80 @@
+{
+  "backend": "none",
+  "checks": [
+    {
+      "actual_marginal_l1": 5.071359998609637e-13,
+      "inner_iterations": 38,
+      "max_plan_error": 9.466039063710241e-14,
+      "name": "full_gradient_update_1",
+      "normalized_gap_upper_bound": 5.684515358428399e-14,
+      "sinkhorn_path": "distributed-positive-kernel-matrix-vector",
+      "underflow_entries": 0
+    },
+    {
+      "actual_marginal_l1": 9.136649770091765e-13,
+      "inner_iterations": 116,
+      "max_plan_error": 2.4971691381381333e-13,
+      "name": "full_gradient_update_2",
+      "normalized_gap_upper_bound": 5.684429860852345e-14,
+      "sinkhorn_path": "distributed-positive-kernel-matrix-vector",
+      "underflow_entries": 0
+    },
+    {
+      "actual_marginal_l1": 9.109449305988448e-13,
+      "inner_iterations": 194,
+      "max_plan_error": 3.2701619190333986e-13,
+      "name": "full_gradient_update_3",
+      "normalized_gap_upper_bound": 5.684359544304246e-14,
+      "sinkhorn_path": "distributed-positive-kernel-matrix-vector",
+      "underflow_entries": 0
+    },
+    {
+      "actual_marginal_l1": 8.743838986191577e-13,
+      "inner_iterations": 134,
+      "max_plan_error": 3.3009012190277076e-13,
+      "name": "specified_pairs_update",
+      "normalized_gap_upper_bound": 5.684341886080802e-14,
+      "sinkhorn_path": "distributed-positive-kernel-matrix-vector",
+      "underflow_entries": 0
+    },
+    {
+      "actual_marginal_l1": 9.034439862887211e-15,
+      "inner_iterations": 5,
+      "name": "single_rank_underflow_collective_fallback",
+      "normalized_gap_upper_bound": 5.714990720387637e-14,
+      "sinkhorn_path": "original-log-domain-fallback",
+      "underflow_entries": 1
+    },
+    {
+      "exact_plan_momentum_rng_trace_match": true,
+      "final_updates": 6,
+      "name": "completed_horizon_extension",
+      "parent_checkpoint_unchanged": true,
+      "parent_updates": 4,
+      "world_size": 1
+    }
+  ],
+  "device": "cpu",
+  "dtype": "float64",
+  "epsilon": 0.001,
+  "eta": 1000.0,
+  "fixture_shape": [
+    7,
+    5
+  ],
+  "slurm_job_id": null,
+  "source_file_sha256": {
+    "extensions/large_pot_frames_20261016/checkpoint.py": "07c8137e775400a43008cb76981aff0b8e046897ac8047357097a0c24f8e6b72",
+    "extensions/large_pot_frames_20261016/prox.py": "ebd5ae3cfd93241f303777ff56cd53125ddcb2148a0018ee9fa97713cb3e8208",
+    "extensions/large_pot_frames_20261016/validation.py": "cd5ed7ec1416dd8f5aac25e52d8051dae36dd19b9a2921821399f7e57dd37876",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/share_resumable_20261018/runner.py": "700c02afdb4e622132a58c313d5771e985b93cda4fef344d7ca1127e5af19c96",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "status": "passed",
+  "timestamp_utc": "2026-10-18T17:01:44.498322+00:00",
+  "validation_sha256": "0bb7ea14885dabee81613746583e778edcfb6ff7b31e6a5a52a22e5ea8f6bf0a",
+  "world_size": 1
+}

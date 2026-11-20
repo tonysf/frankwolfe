@@ -1,0 +1,32 @@
+{
+  "method": "SPRING_SARAH_original_author_code_control",
+  "dataset": "orl64",
+  "data_path": "/home/tony/frames_factorization_20261104/data/processed/orl64_unitnorm.npz",
+  "data_sha256": "9d88ccfd56aa85ae161127e5c8adbe9a17b3b056558aacacf357fc435f18b364",
+  "source_commit": "e756ade993f8331ae805fa115a844a77bcdb0bad",
+  "seed": 0,
+  "rng": "NumPy PCG64; fixed author initial factors, not MATLAB bitwise RNG reproduction",
+  "source_epochs": 1000,
+  "target_outer_cycles": 500,
+  "row_column_blocks": 20,
+  "sparsity_limit": 1024,
+  "rank": 25,
+  "threads": 2,
+  "theorem_matched": false,
+  "scope": "Author-code control only: l0 nonnegative NMF, no spectral bounds.",
+  "source_differences": [
+    "Cast bundled uint8 pixels to FP64 before the intended per-image normalization; the MATLAB demo omits this required cast.",
+    "Different PRNG draws from MATLAB, same sampling operations and saved initial factors.",
+    "Atomic resumable checkpoints and diagnostic evaluations outside optimizer timing.",
+    "Explicit residual-entry work accounting includes refresh and difference gradients."
+  ],
+  "source_details_preserved": [
+    "Each image divided by its L2 norm.",
+    "One plain-SGD outer cycle, then one deterministic full refresh per outer cycle.",
+    "20 shuffled contiguous row blocks and 20 independently shuffled contiguous column blocks.",
+    "5 power iterations, including source unused estimate calls; steps 0.5/L.",
+    "Inner threshold uses absolute tau-th magnitude and strict greater-than, then nonnegative clipping.",
+    "Refresh threshold keeps tau largest raw values, then nonnegative clipping.",
+    "Reported source epoch coordinate equals twice the outer-cycle count."
+  ]
+}

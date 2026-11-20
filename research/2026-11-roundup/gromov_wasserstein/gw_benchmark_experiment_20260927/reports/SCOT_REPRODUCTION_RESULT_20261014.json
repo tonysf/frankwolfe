@@ -1,0 +1,66 @@
+{
+  "status": "published_reference_reproduced_comparison_pending_A100_quota",
+  "checked_utc": "2026-10-14T10:58:39.443613Z",
+  "source_commit": "1265ffdf5a0fe3be3c54ac498d7989f14a4f9737",
+  "reference_job": "2069001",
+  "reference_job_state": "COMPLETED",
+  "reference_job_exit_code": "0:0",
+  "published_author_expression_loss": 0.016519975128479896,
+  "reproduced_author_expression_loss": 0.016519975128479886,
+  "absolute_reproduction_difference": 1.0408340855860843e-17,
+  "uniform_product_full_loss": 0.07045975745627076,
+  "raw_actual_marginal_full_loss": 0.01653712735217605,
+  "raw_marginal_both_l1": 0.0013310870921932282,
+  "repaired_full_feasible_loss": 0.016667597001530532,
+  "repaired_marginal_both_l1": 6.430403085011527e-16,
+  "feasible_loss_reduction_percent": 76.34451550322906,
+  "solver_seconds": 151.28313834201253,
+  "reference_total_elapsed_seconds": 155.21897957699548,
+  "scheduled_tests": {
+    "tests": 24,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "reproduction_gate": {
+    "passed": true,
+    "checks": {
+      "losses_finite": true,
+      "initial_product_matches_frozen_preprocessing": true,
+      "independent_full_objectives_agree": true,
+      "author_log_matches_its_fixed_marginal_expression": true,
+      "author_basic_numerical_flag": true,
+      "rounded_feasible": true,
+      "rounded_nonnegative": true,
+      "rounded_loss_below_reproduction_threshold": true,
+      "author_logged_loss_within_published_reference_tolerance": true
+    },
+    "rounded_loss_threshold": 0.025,
+    "published_author_logged_loss_reference": 0.016519975128479896,
+    "published_absolute_tolerance": 0.005,
+    "feasibility_both_l1_tolerance": 1e-12,
+    "interpretation": "Prospective reference reproduction check, not a certified optimum or a stochastic production loss gate. The published POT loss and reproduced author log both use the prescribed-marginal expression; they are compared with an explicit 0.005 tolerance. Actual-marginal raw and repaired full losses are reported separately; the repaired loss must independently be at most 0.025."
+  },
+  "warnings": {
+    "count": 119,
+    "unique_messages": [
+      "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`."
+    ]
+  },
+  "comparison": {
+    "preflight_completed": 0,
+    "tuning_completed": 0,
+    "confirmation_completed": 0,
+    "current_blocker": "QOSMaxGRESPerUser",
+    "preflight_job": "2069002",
+    "tuning_job": "2069003",
+    "selection_job": "2069004",
+    "confirmation_job": "2069005",
+    "report_job": "2069006"
+  },
+  "reference_receipt": "/home/tony/gw_benchmark_experiment_20260927/logs/scot_reproduction_20261014/status_requested/reference/reference.json",
+  "reference_receipt_sha256": "990729dd5cdc982616bad5f39a10846938d203becb25b5d02245792b11a28d8c",
+  "snapshot": "/home/tony/gw_benchmark_experiment_20260927/logs/scot_reproduction_20261014/status_requested/snapshot.json",
+  "snapshot_sha256": "5170c33809831459c93ea7492ee4a0324ef987a9c25c8a1150fb27eb2f382b63",
+  "interpretation": "The published POT objective convention reproduces to floating-point precision. The approximate raw plan has the same marginal error as the tutorial. Its separately repaired feasible full objective still falls substantially, establishing an attainable reference on this exact instance; no stochastic comparison result is available yet."
+}

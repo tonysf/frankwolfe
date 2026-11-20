@@ -1,0 +1,22 @@
+{
+  "scope": "native early-return parser fixture from a preserved real CPU test run",
+  "budget_solver_seconds": 0.1,
+  "checkpoints_seconds": [
+    0.1
+  ],
+  "instances": [
+    "toy16.npz"
+  ],
+  "stochastic_seed": 100,
+  "initialization": "product",
+  "initialization_seed": 200,
+  "dtype": "float64",
+  "device": "CPU parser fixture",
+  "threads": 1,
+  "methods": {
+    "native-sampled-gw": {
+      "native_samples": 8,
+      "epsilon": 0.1
+    }
+  }
+}

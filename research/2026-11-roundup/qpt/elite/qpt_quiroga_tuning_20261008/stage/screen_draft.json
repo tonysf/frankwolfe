@@ -1,0 +1,521 @@
+{
+  "campaign_id": "qpt_quiroga_tuning_20261008_screen",
+  "gate": {
+    "fidelity_min": 0.99,
+    "normalized_tp_max": 0.001,
+    "rmse_max": 1e-06
+  },
+  "phase": "calibration",
+  "preserved_prior_audit": {
+    "path": "/home/tony/qpt_gell_mann_init_20261007_1750/audit_complete.json",
+    "sha256": "73ae52860439868eb12fc59be9dc9f4c15d810e9463e0dc17b0811645a32fdd3"
+  },
+  "qualification": "44 new literal-rule constant-multiplier/fixed-TP settings and six separately labelled exact factor-ray line-search variants. The latter keep the objective/direction but change the printed step; they are not paper-exact adaFGD. No Armijo substitution, TP projection, or gate change.",
+  "resources": {
+    "minimum_seconds_before_new_trial": 120
+  },
+  "schema_version": 1,
+  "selection_rule": "Literal rule and variant ranked separately by worst-channel normalized gate deficit, with failed cases ranked behind every successful execution. A candidate must pass every calibration endpoint; tie-break by smaller total charged rows then smaller alpha. A passing candidate is frozen before additional channels; validation is not reused as training data.",
+  "trials": [
+    {
+      "alpha": 5e-06,
+      "channel": 0,
+      "eta_scale": 0.5,
+      "id": "c0-printed-a5e-06-s0.5",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 0,
+      "eta_scale": 2.0,
+      "id": "c0-printed-a5e-06-s2",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 0,
+      "eta_scale": 4.0,
+      "id": "c0-printed-a5e-06-s4",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 0,
+      "eta_scale": 8.0,
+      "id": "c0-printed-a5e-06-s8",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 0,
+      "eta_scale": 16.0,
+      "id": "c0-printed-a5e-06-s16",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 0.5,
+      "id": "c0-printed-a5e-05-s0.5",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 1.0,
+      "id": "c0-printed-a5e-05-s1",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 2.0,
+      "id": "c0-printed-a5e-05-s2",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 4.0,
+      "id": "c0-printed-a5e-05-s4",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 8.0,
+      "id": "c0-printed-a5e-05-s8",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 16.0,
+      "id": "c0-printed-a5e-05-s16",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 0,
+      "eta_scale": 0.5,
+      "id": "c0-printed-a0.0005-s0.5",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 0,
+      "eta_scale": 2.0,
+      "id": "c0-printed-a0.0005-s2",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 0,
+      "eta_scale": 4.0,
+      "id": "c0-printed-a0.0005-s4",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 0,
+      "eta_scale": 8.0,
+      "id": "c0-printed-a0.0005-s8",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 0,
+      "eta_scale": 16.0,
+      "id": "c0-printed-a0.0005-s16",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 0.5,
+      "id": "c0-printed-a0.005-s0.5",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 1.0,
+      "id": "c0-printed-a0.005-s1",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 2.0,
+      "id": "c0-printed-a0.005-s2",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 4.0,
+      "id": "c0-printed-a0.005-s4",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 8.0,
+      "id": "c0-printed-a0.005-s8",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 16.0,
+      "id": "c0-printed-a0.005-s16",
+      "initialization_seed": 200000,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 0,
+      "eta_scale": 1.0,
+      "id": "c0-exact-ray-a5e-05",
+      "initialization_seed": 200000,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 0,
+      "eta_scale": 1.0,
+      "id": "c0-exact-ray-a0.0005",
+      "initialization_seed": 200000,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 0,
+      "eta_scale": 1.0,
+      "id": "c0-exact-ray-a0.005",
+      "initialization_seed": 200000,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 1,
+      "eta_scale": 0.5,
+      "id": "c1-printed-a5e-06-s0.5",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 1,
+      "eta_scale": 2.0,
+      "id": "c1-printed-a5e-06-s2",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 1,
+      "eta_scale": 4.0,
+      "id": "c1-printed-a5e-06-s4",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 1,
+      "eta_scale": 8.0,
+      "id": "c1-printed-a5e-06-s8",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-06,
+      "channel": 1,
+      "eta_scale": 16.0,
+      "id": "c1-printed-a5e-06-s16",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 0.5,
+      "id": "c1-printed-a5e-05-s0.5",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 1.0,
+      "id": "c1-printed-a5e-05-s1",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 2.0,
+      "id": "c1-printed-a5e-05-s2",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 4.0,
+      "id": "c1-printed-a5e-05-s4",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 8.0,
+      "id": "c1-printed-a5e-05-s8",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 16.0,
+      "id": "c1-printed-a5e-05-s16",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 1,
+      "eta_scale": 0.5,
+      "id": "c1-printed-a0.0005-s0.5",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 1,
+      "eta_scale": 2.0,
+      "id": "c1-printed-a0.0005-s2",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 1,
+      "eta_scale": 4.0,
+      "id": "c1-printed-a0.0005-s4",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 1,
+      "eta_scale": 8.0,
+      "id": "c1-printed-a0.0005-s8",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 1,
+      "eta_scale": 16.0,
+      "id": "c1-printed-a0.0005-s16",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 0.5,
+      "id": "c1-printed-a0.005-s0.5",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 1.0,
+      "id": "c1-printed-a0.005-s1",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 2.0,
+      "id": "c1-printed-a0.005-s2",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 4.0,
+      "id": "c1-printed-a0.005-s4",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 8.0,
+      "id": "c1-printed-a0.005-s8",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 16.0,
+      "id": "c1-printed-a0.005-s16",
+      "initialization_seed": 200010,
+      "method": "printed-adafgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 5e-05,
+      "channel": 1,
+      "eta_scale": 1.0,
+      "id": "c1-exact-ray-a5e-05",
+      "initialization_seed": 200010,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.0005,
+      "channel": 1,
+      "eta_scale": 1.0,
+      "id": "c1-exact-ray-a0.0005",
+      "initialization_seed": 200010,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    },
+    {
+      "alpha": 0.005,
+      "channel": 1,
+      "eta_scale": 1.0,
+      "id": "c1-exact-ray-a0.005",
+      "initialization_seed": 200010,
+      "method": "exact-linesearch-fgd",
+      "metrics_frequency": 100,
+      "n_steps": 10000
+    }
+  ]
+}

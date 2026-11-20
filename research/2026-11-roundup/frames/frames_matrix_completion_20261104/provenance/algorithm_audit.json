@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "scope": "Independent mathematical and primary-source audit for the small matrix-completion comparison; does not certify the manuscript proofs or empirical competitiveness.",
+  "sources": {
+    "sframes": {
+      "path": "provenance/Nonsmooth_FW-7.pdf",
+      "sha256": "f657c025816f1928c3809eec866118c91b63f2cb32fdd04fe61951d2f8335b66",
+      "results": "Section 1.1; Corollary 2.10; Proposition 2.11, equations (65)-(67), pages 14-16"
+    },
+    "shcgm": {
+      "title": "Stochastic Frank-Wolfe for Composite Convex Minimization",
+      "authors": [
+        "Francesco Locatello",
+        "Alp Yurtsever",
+        "Olivier Fercoq",
+        "Volkan Cevher"
+      ],
+      "year": 2019,
+      "url": "https://proceedings.neurips.cc/paper/2019/file/bf40d1cbb2ba9fdad19821fc140fa50c-Paper.pdf",
+      "algorithm": "Algorithm 1, page 3",
+      "assumptions": "Bounded variance and strong duality; Theorem 2, page 4",
+      "matrix_completion_experiment": "Section 4.3, equation (19), pages 8-9"
+    }
+  },
+  "problem": {
+    "observations": "Omega is a fixed set of N distinct observed matrix entries; y_ij fixed, finite.",
+    "objective": "f(X)=(1/(2*N))*sum_(i,j in Omega)(X_ij-y_ij)^2",
+    "C": "{X: ||X||_* <= tau}, tau>0",
+    "D": "[-1,1]^(m*n)",
+    "g": "indicator_D",
+    "T": "identity",
+    "gradient": "grad f(X)=P_Omega(X-Y)/N",
+    "projection_D": "elementwise clipping to [-1,1]",
+    "smooth_gradient_lipschitz_constant": "1/N in Frobenius norm, assuming distinct observed entries",
+    "component_gradient_lipschitz_constant": 1,
+    "LMO": "-tau*u_1*v_1^T for a largest singular-vector pair of H; zero is a valid choice if H=0",
+    "LMO_value": "-tau*||H||_op",
+    "relative_interior": "0 belongs to int(C) intersect int(D); Slater condition and both relative-interior requirements hold.",
+    "diameter_C_frobenius": "2*tau",
+    "boundedness": "f is globally smooth and convex, C compact, and f and component gradients are bounded on C.",
+    "explicit_feasible_repair": "R(X)=X/max(1,max_ij |X_ij|), for X in C",
+    "repair_proof": "Scaling by a factor in (0,1] preserves the nuclear-norm ball and enforces every box bound. Elementwise clipping by itself need not preserve the nuclear-norm constraint.",
+    "linear_regularity": "For X in C, dist(X,C intersect D)<=||X-R(X)||_F<=max(1,tau)*dist(X,D). If maxabs(X)=a>1, ||X-R(X)||_F=||X||_F*(a-1)/a<=tau*(a-1)<=tau*dist(X,D)."
+  },
+  "oracle": {
+    "draw": "Fresh iid uniform index I=(i,j) from Omega, independent of the past conditional on current X.",
+    "sample_gradient": "G_I(X)=(X_ij-y_ij)*e_i*e_j^T",
+    "unbiasedness": "E[G_I(X)|history]=grad f(X)",
+    "variance_exact": "E||G_I-grad f||_F^2=(1-1/N)*(1/N)*sum_Omega(X_ij-y_ij)^2, for distinct Omega entries.",
+    "variance_bound": "E||G_I-grad f||_F^2 <= (tau+max_Omega |y_ij|)^2 for X in C.",
+    "minibatch": "Average B independent draws with replacement; mean unchanged and conditional variance divided by B.",
+    "duplicate_indices": "A minibatch may contain repeats; accumulate repeated coordinate gradients, then divide by B. Never overwrite duplicates.",
+    "oracle_count": "After k updates: B*k sampled entries and k minibatch calls, since the first sampled gradient is reused for update 1. Diagnostics are counted separately."
+  },
+  "sframes": {
+    "indexing": "k=0,1,... indexes current X_k before update k+1.",
+    "gamma": "gamma0/(k+1)^(3/4)",
+    "rho": "rho0/(k+1)^(1/2)",
+    "beta": "beta0/(k+1)^(1/4)",
+    "prefactor_domains": "0<gamma0<=1, 0<rho0<=1, beta0>0",
+    "initialization": "Initialize smooth-gradient momentum from the first minibatch at X_0; do not multiply that first minibatch by rho0.",
+    "later_momentum": "M_k=(1-rho_k)*M_(k-1)+rho_k*G_k(X_k) for k>=1",
+    "direction": "H_est=M_k+(X_k-clip(X_k))/beta_k",
+    "step": "X_(k+1)=(1-gamma_k)*X_k+gamma_k*LMO_C(H_est)",
+    "paper_exact_schedule_case": "gamma0=rho0=1 is the literal displayed prescription in Proposition 2.11; beta0 is free positive.",
+    "tuned_prefactor_scope": "User expressly permits tuning fixed positive prefactors with theoretical exponents fixed. Label these runs fixed-exponent prefactor tuning, rather than claiming the displayed theorem literally specifies every tuned constant.",
+    "primary_theorem_statistic": "(1/t)*sum_(k=0 to t-1) E[G_true_beta_k(X_k)]",
+    "rate": "O(t^(-1/4)) for the averaged true smoothed FW gap, with p=3/4,q=1/4,r=1/2.",
+    "other_claim_scope": "Original-gap and feasibility statements (66)-(67) concern a subsequence selected through expected gaps; they are not an arbitrary last-iterate rate.",
+    "manuscript_sign_discrepancy": "Algorithm 1 line 6 in the supplied draft prints Proj_D(Tx)-Tx, opposite to the derivative of its positive squared-distance penalty. Use +(X-clip(X))/beta as explicitly defined in the objective and Section 2 analysis, consistently with prior experiments."
+  },
+  "shcgm": {
+    "indexing": "Paper k=1,2,...; an implementation zero-based update j uses k=j+1.",
+    "initialization": "X_1 in C; d_0=0.",
+    "eta": "9/(k+8), equivalently 9/(j+9)",
+    "rho": "4/(k+7)^(2/3), equivalently 4/(j+8)^(2/3)",
+    "beta": "beta0/sqrt(k+8), equivalently beta0/sqrt(j+9)",
+    "momentum": "d_k=(1-rho_k)*d_(k-1)+rho_k*G_k(X_k)",
+    "direction": "v_k=d_k+(X_k-clip(X_k))/beta_k",
+    "step": "X_(k+1)=(1-eta_k)*X_k+eta_k*LMO_C(v_k)",
+    "first_update_values": {
+      "eta": 1,
+      "rho": 1,
+      "beta": "beta0/3"
+    },
+    "tuning_scope": "Keep eta and rho formulas including offsets/constants exactly as in Algorithm 1. beta0 is a free positive input and may be selected with a disclosed grid.",
+    "assumption_result": "Convex smooth f, compact C, closed convex D, finite variance, and strong duality all hold for this test.",
+    "rate_scope": "Theorem 2 controls expected objective residual and feasibility; no finite-run optimizer ranking follows.",
+    "reproduction_scope": "This is an implementation of the published SHCGM algorithm on a new synthetic problem. It is not an exact reproduction of published MovieLens losses, train/test split, dimensions, or objective scaling."
+  },
+  "metrics": {
+    "true_smoothed_gradient": "H_true=grad f(X)+(X-clip(X))/beta",
+    "true_smoothed_FW_gap": "<H_true,X>+tau*||H_true||_op",
+    "theorem_average": "If reporting the SFRAMES theorem statistic, sum true gaps at every pre-update iterate X_0,...,X_(t-1) using each current beta. Sparse checkpoint averages, stochastic-direction gaps and best-so-far gaps are not substitutes.",
+    "feasibility": "Report ||X-clip(X)||_F and max(0,||X||_*-tau) separately.",
+    "raw_objective": "f(X) at an infeasible X can lie below the constrained optimum. Do not label it a feasible optimality gap.",
+    "feasible_objective": "Evaluate f(R(X)), with the disclosed radial repair above, and save repair distance. Repair is diagnostic and never feeds the update.",
+    "reference_dual_lower_bound": "For arbitrary Xr and Z, LB=f(Xr)-<grad f(Xr),Xr>-tau*||grad f(Xr)+Z||_op-||Z||_1 <= f_star. For a convex reference solver use Z=box_upper_dual-box_lower_dual.",
+    "reference_proof": "Convexity lower-bounds f by its tangent; min_(X in C)<grad f(Xr)+Z,X>=-tau||grad f(Xr)+Z||_op, and sup_(X in D)<Z,X>=||Z||_1.",
+    "reference_accuracy": "Compare an independently evaluated feasible upper bound f(R(Xr)) to the dual lower bound. Report the resulting interval rather than assuming solver status alone proves accuracy.",
+    "timing": "Separate optimizer time from diagnostics, feasible repairs, exact-gap SVDs, reference solve and plots. Also retain total wall time. Initialization and tuning scope must be stated.",
+    "target_time": "Compare the first measured time to shared feasible-loss/feasibility targets, not endpoints after one method has already plateaued."
+  },
+  "fairness": [
+    "Same fixed instance, same initial matrix, FP64, batch sizes and iid index streams per seed across methods.",
+    "Different trajectories imply different gradient values even when sampled coordinate indices coincide.",
+    "Use disjoint tuning and confirmation seeds; freeze configuration selection before inspecting confirmation results.",
+    "Do not equate identical nominal beta0 with identical initial smoothing: SHCGM starts beta0/3 and SFRAMES starts beta0.",
+    "Use exact SVD-based LMOs at the small scale; an approximate leading singular-vector solve requires its own error control and theory mapping.",
+    "A convex test is covered by the nonconvex SFRAMES theory but does not demonstrate a nonconvex advantage.",
+    "SHCGM exploits convexity and has a stronger convex guarantee; no SFRAMES win should be presumed."
+  ],
+  "validation_suggestions": [
+    "Finite-difference the full smooth gradient and positive squared-box-distance penalty at interior, exterior and boundary matrices.",
+    "Enumerate every observed-entry gradient on a tiny instance and compare its exact average against the full gradient.",
+    "Use a repeated-index minibatch to detect assignment-versus-accumulation bugs.",
+    "Validate LMO feasibility and its objective against -tau*largest_singular_value on generic and rank-deficient gradients.",
+    "Verify prescribed schedule values at first and several later updates, including the SHCGM offsets and zero-momentum initialization.",
+    "Check nuclear-norm invariance of every FW update and both constraints after radial repair.",
+    "Audit the reference primal-dual interval independently from the chosen convex solver.",
+    "Verify that identical seed/batch settings generate identical entry-index streams for both methods without reading diagnostic RNG draws.",
+    "Cross-check the accumulated true-gap sum against independently recomputed saved tiny-run iterates to catch off-by-one errors."
+  ]
+}

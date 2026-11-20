@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-15T18:56:22.356539+00:00",
+  "source_commit": "effbe808b8969044e0dfb0b51a5a5a3cc83d4c97",
+  "source_file_sha256": {
+    "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+    "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/scot_pot_step_20261015/campaign.py": "351a199a6e8e641d4ec4c3360a18ef087fdcfd6ad32a0035c7b3487d93d6c7ac",
+    "extensions/scot_pot_step_20261015/summarize.py": "c93243008c89687d58f78faf7a8367e43f805d78192df59b5114144038904e3f",
+    "extensions/scot_reproduction_20261014/reference.py": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6"
+  },
+  "reference": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference",
+  "reference_record_sha256": "990729dd5cdc982616bad5f39a10846938d203becb25b5d02245792b11a28d8c",
+  "reference_repaired_gw_loss": 0.016667597001530532,
+  "instance": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_20261014/reference/prepared/scot1047",
+  "array_files_sha256": {
+    "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+    "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+    "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+    "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+  },
+  "instance_manifest_sha256": "9334c5d0b4040e40aabd8e14f1cbf039290ebed1d86cd96a5f4f6b458ec7165c",
+  "epsilon": 0.001,
+  "iterations": 20,
+  "pairs_per_call": 1024,
+  "checkpoint_iterations": [
+    0,
+    1,
+    2,
+    5,
+    10,
+    20
+  ],
+  "inner_tol": 1e-07,
+  "inner_gap_tol": 1e-07,
+  "inner_max": 10000,
+  "check_every": 10,
+  "threads_per_process": 1,
+  "inner_solver": "FP64 matrix-vector Sinkhorn; original-objective certificate and log-domain fallback",
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "physical_cores": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "run_timeout_seconds": 86400,
+  "hostname": "elite",
+  "runs": [
+    {
+      "id": "full_gradient",
+      "oracle": "full",
+      "seed": 811,
+      "output_seed": 20811,
+      "iterations": 20,
+      "cpu": 0
+    },
+    {
+      "id": "pair_seed811",
+      "oracle": "pair",
+      "seed": 811,
+      "output_seed": 20811,
+      "iterations": 20,
+      "cpu": 2
+    },
+    {
+      "id": "pair_seed812",
+      "oracle": "pair",
+      "seed": 812,
+      "output_seed": 20812,
+      "iterations": 20,
+      "cpu": 4
+    },
+    {
+      "id": "pair_seed813",
+      "oracle": "pair",
+      "seed": 813,
+      "output_seed": 20813,
+      "iterations": 20,
+      "cpu": 6
+    }
+  ],
+  "initialization": "uniform product a b^T",
+  "dtype": "float64",
+  "objective": "F_epsilon(P)=f(P)+epsilon*h(P); h=sum(P*(log(P)-1)); f is full squared GW without a half factor",
+  "update": "argmin_Q <G_k,Q>+epsilon*h(Q), Q in U(a,b); full or iid pair gradient",
+  "proximal_certificate_objective": "<G_k,Q>+epsilon*KL(Q||a*b^T); differs from the entropy-regularized linear problem by a feasible constant",
+  "schedule": "eta_k=1/epsilon=1000, constant; no tuning",
+  "eta": 1000.0,
+  "theory": {
+    "source": "https://pythonot.github.io/_modules/ot/gromov/_bregman.html#entropic_gromov_wasserstein",
+    "reference": "POT entropic_gromov_wasserstein PGD update at epsilon=0.001",
+    "scope": "Empirical comparison at the published POT step. This is not the conservative Fatkhullin-He theorem prescription. Independently uniform selected output is diagnostic only."
+  },
+  "interpretation": "Fixed POT-step full-gradient control and stochastic counterpart, differing only in the GW gradient oracle. No method speed comparison."
+}

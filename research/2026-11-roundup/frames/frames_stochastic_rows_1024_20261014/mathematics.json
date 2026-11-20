@@ -1,0 +1,146 @@
+{
+  "dimension": 1024,
+  "perturbation": {
+    "rho": "5/4",
+    "definition": "psi(x)=-(rho/2)*(u^T x)^2=-(5/8)*(u^T x)^2",
+    "u": "u_j=+1/8 for odd one-based j<=64, -1/8 for even one-based j<=64, and 0 otherwise"
+  },
+  "identities": {
+    "norm_u_squared": "1",
+    "u_dot_a": "0",
+    "hessian": "Q=I-(5/4)u u^T",
+    "hessian_spectrum": "-1/4 (multiplicity1), +1 (multiplicity1023)",
+    "Q_a": "a",
+    "norm_a_squared": "39/256",
+    "gradient_norm_identity": "||grad f(x)||^2=||x-a||^2-(15/16)(u^T x)^2"
+  },
+  "constants": {
+    "global_gradient_Lipschitz_constant": 1,
+    "gradient_bound_on_C": "sqrt(311)/16; valid since ||grad f(x)||^2<=||x-a||^2<=311/256",
+    "conditional_oracle_variance": "1023||x-a||^2 <=318153/256",
+    "conditional_oracle_second_moment_bound": "1244",
+    "objective_lower_bound_on_C": "-5/512",
+    "objective_upper_bound_on_C": "311/512",
+    "diameter_C": 2,
+    "linear_regularity_kappa": 1,
+    "source_lower_bound_requirement": "Global boundedness below on R^1024 is not assumed in manuscript Section1.1; boundedness on compact C suffices.",
+    "component_gradient_Lipschitz_constant": 1024,
+    "component_smoothness_proof": "For signed Hadamard row v_i, Hessian f_i=v_i v_i^T-(5/4)uu^T. Its eigenvalues lie in [-5/4,1024], hence operator norm at most1024.",
+    "conditional_oracle_variance_bound_decimal": 1242.78515625,
+    "lower_bound_proof": "Least-squares term is nonnegative; |u^T x|<=||u||_infinity ||x||_1<=1/8.",
+    "upper_bound_proof": "Concave term is nonpositive and ||x-a||^2<=1+2||a||_infinity+||a||^2=311/256."
+  },
+  "nonconvex_feasible_line": {
+    "saddle": "x_s has first64 entries1/64, others0",
+    "line": "x(t)=x_s+t*u, -1/8<=t<=1/8; all points are nonnegative with l1 norm1",
+    "objective": "F(x(t))=27/512-t^2/8",
+    "curvature": "second derivative -1/4 <0"
+  },
+  "complete_stationary_set": {
+    "points": [
+      {
+        "name": "x_s",
+        "description": "first64 entries1/64, others0",
+        "classification": "strict saddle on feasible face",
+        "objective": "27/512",
+        "KKT_multiplier": "1/64"
+      },
+      {
+        "name": "x_plus",
+        "description": "32 positive-u coordinates1/32, all others0",
+        "classification": "strict local and global minimizer",
+        "objective": "13/256",
+        "KKT_multiplier": "5/256"
+      },
+      {
+        "name": "x_minus",
+        "description": "32 negative-u coordinates1/32, all others0",
+        "classification": "strict local and global minimizer",
+        "objective": "13/256",
+        "KKT_multiplier": "5/256"
+      }
+    ],
+    "proof": [
+      "For t=u^T x and multiplier lambda>=0 of sum x<=1, KKT is x_j=max(a_j+rho*t*u_j-lambda,0), with lambda(sum x-1)=0.",
+      "Each of the four coordinate groups P(32 positive-u), M(32 negative-u), B(64 negative-a), R(896 remaining) therefore has equal entries, either all positive or all zero.",
+      "B is zero because its right-hand response is -3/128-lambda<0.",
+      "If P and M are both positive, their coefficient difference is rho*t/4 and t=4 times that difference, so t=rho*t. Since rho=5/4, t=0. If lambda<1/128, the first64 alone have mass>3/2, infeasible. Thus R is zero; lambda cannot be0, so sum constraint is active and coefficients=1/64,lambda=1/64.",
+      "If P alone is positive with common coefficient z, t=4z and stationarity gives lambda=1/32-(3/8)z. If lambda<1/128, z>1/16, infeasible because32z>2. Thus R is zero; lambda>0 and mass constraint gives z=1/32,lambda=5/256. Inactive M has response (1-rho)z<0. The M-only case is symmetric.",
+      "If neither P nor M is positive, t=0 and their inactive conditions give lambda>=1/32. Then R is also zero, leaving x=0 while lambda>0, violating complementarity.",
+      "These exhaust the KKT points. A global minimizer exists by compactness and is stationary. x_s is not a local minimizer by the displayed feasible negative-curvature line. x_plus and x_minus have equal objective, hence both are global minimizers. Strict positive inactive KKT margins and positive Hessian on each active face imply strict local minima."
+    ]
+  },
+  "orthant_constraint_role": {
+    "feasible_direction_on_C_alone": "d=-e_j-x_plus for any j=65,...,128 (and analogously for x_minus)",
+    "directional_derivative": "<grad f(x_plus),d>=-1/256<0",
+    "consequence": "x_plus and x_minus are not stationary on C alone, so the orthant indicator changes the optimization problem and remains meaningful."
+  },
+  "exact_smoothed_stationary_branches": {
+    "beta": "any beta>0",
+    "w": "beta/[256*(1+7*beta/4)]",
+    "z": "1/32-2*w",
+    "branch_plus": "x_P=z, x_M=0, x_B=-w, x_R=0",
+    "branch_minus": "swap P and M",
+    "LMO_gradient_magnitude": "lambda_beta=5/256+3*w/4",
+    "smoothed_gap": "0 exactly",
+    "feasibility": "8*w=beta/[32*(1+7*beta/4)]",
+    "signed_original_gap": "-64*w^2/beta=-beta/[1024*(1+7*beta/4)^2]",
+    "classification": "Strict local minima on their support faces with strict inactive LMO margins; no global smoothed-minimum claim made."
+  },
+  "oracle": {
+    "sampling": "Fresh independent uniform row index i in{1,...,1024}; row indices independent of the initial point.",
+    "finite_sum": "f=(1/m) sum_i f_i, where f_i(x)=m(A_i x-B_i)^2-(5/8)(u^T x)^2 and m=1024",
+    "sample": "q_i(x)=2m(A_i x-B_i)A_i^T-(5/4)(u^T x)u",
+    "implementation_identity": "For signed Hadamard row v_i of W diag(c), q_i(x)=v_i(v_i^T(x-a))-(5/4)(u^T x)u",
+    "mean": "E[q_i(x)|history]=2A^T(Ax-B)-(5/4)(u^T x)u=Qx-a",
+    "variance": "E[||q_i-grad f||^2|history]=(m-1)||x-a||^2=1023||x-a||^2",
+    "variance_proof": "E||v_i(v_i^T r)||^2=m||r||^2, E[v_i(v_i^T r)]=r, where r=x-a; the common deterministic concave-gradient cancels from centered noise.",
+    "second_moment": "E||q_i||^2=||grad f||^2+1023||x-a||^2<=1024*(311/256)=1244",
+    "variance_at_minima": "31713/256>0, since ||x_plus-a||^2=||x_minus-a||^2=31/256",
+    "variance_at_saddle": "27621/256>0, since ||x_s-a||^2=27/256",
+    "noise_source": "Uniform sampling of individual scalar data rows only; the concave term is evaluated exactly."
+  },
+  "validation_method": "Exact algebra using orthogonality and signed Hadamard rows, plus the unchanged groupwise KKT case split. Empirical numerical checks are recorded separately by run_demo.py.",
+  "row_count": 1024,
+  "data_matrix": {
+    "hadamard_definition": "W_1=[1]; W_(2n)=[[W_n,W_n],[W_n,-W_n]]",
+    "column_signs": "c=2*np.random.default_rng(20261014).integers(0,2,1024)-1; sampled once and fixed across all optimization seeds",
+    "A": "W_1024 diag(c)/sqrt(2048), shape (1024,1024)",
+    "B": "A a, shape (1024,)",
+    "a": "entries1..64 are1/32; entries65..128 are -3/128; entries129..1024 are1/128",
+    "identities": [
+      "A^T A=I/2",
+      "A A^T=I/2",
+      "||A_i||^2=1/2",
+      "||Ax-B||^2=||x-a||^2/2"
+    ],
+    "total_smooth_objective": "f(x)=||Ax-B||^2-(5/8)(u^T x)^2",
+    "relation_to_previous_problem": "Identical full gradient and Hessian; objective differs only by removal of constant1/8. Previous additive block noise is removed."
+  },
+  "assumptions": {
+    "C": "Nonempty compact convex l1 unit ball; Euclidean diameter2.",
+    "D": "Nonempty closed convex nonnegative orthant.",
+    "g": "Indicator of D; proper lower-semicontinuous convex; prox_beta_g(x)=max(x,0).",
+    "T": "Identity, operator norm1.",
+    "relative_interior_qualification": "Vector with all coordinates1/2048 lies in ri(C) intersect ri(D).",
+    "constraint_regularity": "For x in C, x_+ lies in C intersect D and dist(x,C intersect D)=dist(x,D)=||x_-||, so kappa=1.",
+    "initial_point": "For each seed, x0=-e_J with J uniform over1024 coordinates and independent of future oracle draws; x0 belongs to C.",
+    "exact_lmo": "s=-sign(v_j)e_j, j=first argmax|v_i|; s=0 if v=0.",
+    "schedules": "gamma_k=(k+1)^(-3/4), beta_k=(k+1)^(-1/4), alpha_k=(k+1)^(-1/2); all prefactors1; momentum initialized from first sample.",
+    "exponents": "p=3/4,q=1/4,r=1/2 satisfy0<q<p<1,0<r<p,p+q>=1.",
+    "random_initialization_interpretation": "Apply estimates conditionally on x0; bounds above are uniform over C and thus remain valid after averaging over initialization."
+  },
+  "certificates": {
+    "z": "Qx-a",
+    "h": "z+x_-/beta, where x_-=min(x,0) coordinatewise",
+    "G": "max_(v in C) <h,x-v>=<h,x>+||h||_infinity",
+    "H": "max_(v in C intersect D) <z,x-v>=<z,x>+max(0,-min_j z_j)",
+    "feasibility": "delta=||x_-||_2",
+    "averages": "G and |H|: cumulative average of every pre-update x_0 through x_(N-1), then mean across seeds. Feasibility: delta_N at x_N after N updates, mean across seeds only; no time average.",
+    "slope_guide": "N^(-1/3) and N^(-1/4) are comparison slope references, anchored to each mean curve at N=50000. They are not numerical upper bounds and do not change the schedules. Shown only in the zoom from N=1000; full-range plots omit reference lines.",
+    "source_bound": "The supplied Proposition2.11 with p=3/4,q=1/4,r=1/2 gives O(N^(-1/4)) for the expected averaged smoothed gap.",
+    "output_rule": "The source expectation-selected index is not approximated by a per-path minimum or last iterate. Long runs report the averaged gap directly; no exhaustive row-history enumeration is attempted.",
+    "feasibility_statement": "Prop2.11 Eq67 gives E delta_(k_n)=O(n^-1/4) for k_n in argmin over the last half of E G_k. Per-iteration seed-mean feasibility is descriptive, not an all-last-iterate rate.",
+    "feasibility_indexing": "Long-range panels use stored feasibility[1:] for x_1 through x_(STEPS-1), followed by ||min(final_x,0)||_2 for x_STEPS. Raw stored feasibility and instantaneous plots retain their original x_k indexing."
+  }
+}

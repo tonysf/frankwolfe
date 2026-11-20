@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "passed_archive_and_protocol_audit",
+  "job_array_id": "2014377",
+  "channel": 100,
+  "inventory_sha256": "c270c3457d5f479eb4a9a6952c2a54fd0168dc3453126fc4032a63e1500a440c",
+  "paired_archives_validated": 3,
+  "checks": [
+    "Inventory and execution-status checksum chains",
+    "JSON, NPZ and log artifact hashes",
+    "Frozen manifest identity and exact executed command",
+    "Pinned clean source provenance",
+    "Matched budget and checkpoint accounting",
+    "Repeated deterministic Quiroga endpoint and final-factor identity"
+  ],
+  "unique_printed_outcomes": 1,
+  "unique_frames_outcomes": 3,
+  "printed_status": "failed",
+  "printed_completed_steps": 8,
+  "printed_attempted_row_accesses": 1152,
+  "printed_final_factor_operator_norm": 9.064366578462808e217,
+  "printed_failure": "Common checkpoint metrics became nonfinite; failed factor and unavailable diagnostics retained.",
+  "frames_statuses": ["complete", "complete", "complete"],
+  "frames_completed_steps_each": 40000,
+  "frames_row_accesses_each": 1280000,
+  "frames_fidelity_pass_count": 3,
+  "frames_tp_pass_count": 3,
+  "frames_full_rmse_pass_count": 0,
+  "frames_rmse_range_rounded": [0.0000108639, 0.0000180612],
+  "full_gate_pass_count": {"printed_unique": 0, "frames": 0},
+  "interpretation": "No launch, frozen-configuration or archival defect identified. This is one new validation channel, not an aggregate or general claim about either method. The three printed failures are repeated executions of one deterministic outcome. No validation-based retuning."
+}

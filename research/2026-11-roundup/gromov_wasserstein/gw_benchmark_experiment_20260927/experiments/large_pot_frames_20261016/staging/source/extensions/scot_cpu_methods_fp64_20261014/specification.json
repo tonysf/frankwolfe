@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "workers": 4,
+  "run_timeout_seconds": 7200,
+  "methods": {
+    "published-smd": [
+      {
+        "id": "smd00",
+        "prefactor_fraction": 0.1
+      },
+      {
+        "id": "smd01",
+        "prefactor_fraction": 0.3
+      },
+      {
+        "id": "smd02",
+        "prefactor_fraction": 0.6
+      },
+      {
+        "id": "smd03",
+        "prefactor_fraction": 1.0
+      }
+    ],
+    "published-msbpg": [
+      {
+        "id": "msbpg00",
+        "coupling_fraction": 0.3,
+        "momentum_prefactor": 0.3
+      },
+      {
+        "id": "msbpg01",
+        "coupling_fraction": 0.3,
+        "momentum_prefactor": 1.0
+      },
+      {
+        "id": "msbpg02",
+        "coupling_fraction": 1.0,
+        "momentum_prefactor": 0.3
+      },
+      {
+        "id": "msbpg03",
+        "coupling_fraction": 1.0,
+        "momentum_prefactor": 1.0
+      }
+    ]
+  }
+}

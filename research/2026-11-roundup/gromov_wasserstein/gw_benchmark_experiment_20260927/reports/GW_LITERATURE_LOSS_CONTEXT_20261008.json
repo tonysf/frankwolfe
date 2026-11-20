@@ -1,0 +1,66 @@
+{
+  "graph_k": 40,
+  "feature_normalization": "row l2",
+  "distances": "binary correlation KNN graph shortest paths, each divided by max",
+  "derived_product_initial_gw": 0.07045975745628463,
+  "stats": [
+    {
+      "file": "SNAREseq_atac_feat.npy",
+      "sha256": "80d685b6517c100a7fd612846ad38209b64ed9caf095d1630af5a1d7797bd79c",
+      "shape": [
+        1047,
+        19
+      ],
+      "graph_max": 8.0,
+      "mean": 0.49208088968435765,
+      "mean_square": 0.2808046868799654,
+      "knn_cutoff_ties": 0
+    },
+    {
+      "file": "SNAREseq_rna_feat.npy",
+      "sha256": "a8a2c2bbfc036dea5b350d01dd2180b93bb3b1c0008bed49493080348da96a9b",
+      "shape": [
+        1047,
+        10
+      ],
+      "graph_max": 6.0,
+      "mean": 0.5325836587730989,
+      "mean_square": 0.3138035518571529,
+      "knn_cutoff_ties": 0
+    }
+  ],
+  "published_tutorial_finals": {
+    "POT": 0.016519975128479896,
+    "OTT": 0.01785334522049412
+  },
+  "derived_percent_reductions": {
+    "POT": 76.55402782399672,
+    "OTT": 74.66164252471225
+  },
+  "scope": "Derived uniform product-coupling baseline for the published1047-cell human mixture SCOT/OTT example; not our10000-cell mouse-cortex instance. No optimization performed.",
+  "derived_initial_and_percentages_are_not_published_values": true,
+  "tutorial_url": "https://ott-jax.readthedocs.io/tutorials/quadratic/200_gromov_wasserstein_multiomics.html#alignment-and-evaluation",
+  "tutorial_reported_marginal_L1_error": {
+    "POT": 0.0013310870921931293,
+    "OTT": 0.0009850427
+  },
+  "tutorial_solver_warning": "POT prints Sinkhorn nonconvergence warning. Final values are approximate solver outputs, not certified feasible optima.",
+  "reproduction_script": "/home/tony/gw_benchmark_experiment_20260927/logs/gw_literature_context_20261008/derive_uniform_baseline.py",
+  "reproduction_script_sha256": "173b94f565c7de3b4666d42d7941f3fbb3daf4127bc5c3e517633194e1a0ad7d",
+  "official_scot_source_sha256": "a492f39a67ffa62d8d7cc4b5048871d6cf228bf98b53a31d0e3049ab24db8008",
+  "additional_primary_sources": [
+    {
+      "url": "https://proceedings.mlr.press/v162/scetbon22b/scetbon22b.pdf",
+      "figure": 4,
+      "finding": "SNARE1047 graph-metric loss visually falls roughly0.085\u20130.090 to0.040\u20130.045 for successful configurations; approximate figure reading. Highentropy0.1 remainsnear0.09."
+    },
+    {
+      "url": "https://moscot.readthedocs.io/en/latest/notebooks/tutorials/600_tutorial_translation.html",
+      "finding": "BMMC6224: FOSCTTM0.4686 pureGW and0.0524 fusedGW; these are matching errors, not GW objectives. No raw GW loss found."
+    },
+    {
+      "url": "https://people.ece.uw.edu/bilmes/p/mypubs/hristov-synmatch-bioinformatics-2022.pdf",
+      "finding": "SHARE SCOT FOSCTTM0.36 over ten10000-cell subsets, not GW loss. No raw GW loss found."
+    }
+  ]
+}

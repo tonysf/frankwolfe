@@ -1,0 +1,47 @@
+{
+  "status": "diagnosed_report_only_tolerance_mismatch",
+  "generated_utc": "2026-10-14T12:11:59.888097+00:00",
+  "failed_report_script_sha256": "bd388f6b164eeac9e2529ebced0089770d4b7b17cd0a7bdd43969e48e8c24400",
+  "failed_log_path": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_cpu_fp64_20261014/report.log",
+  "failed_log_sha256": "3d9326692d15368031ca6a8dedeea46c4ecb37edaee00827dd6e2c169e2458ce",
+  "frozen_reference_helper_sha256": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6",
+  "completed_sha256": "22bd51292b17a2cbd0ebc9d61bb6b4917c3e095b26c72499c267fcde0ecac01a",
+  "environment_thread_variables": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "diagnostic_scope": "Read and NumPy-repair the seven saved raw plans; independently evaluate only the sole auxiliary repair that exceeds100*eps64. No optimizer or scientific controls changed.",
+  "actual_saved_output_tolerance_both_l1": 2.220446049250313e-14,
+  "unchanged_reference_helper_tolerance_both_l1": 1e-12,
+  "auxiliary_repaired_both_l1": {
+    "tune_fw04_seed810": 1.8045460958848736e-14,
+    "tune_fw05_seed810": 2.5177451269675633e-14,
+    "tune_fw07_seed810": 1.8295911660692887e-15,
+    "tune_fw08_seed810": 8.373293378105551e-16,
+    "confirm_fw08_seed811": 9.128982292327947e-16,
+    "confirm_fw08_seed812": 8.470871573629246e-16,
+    "confirm_fw08_seed813": 7.9732227764584e-16
+  },
+  "sole_exceedance": {
+    "run": "tune_fw05_seed810",
+    "raw_plan_sha256": "14320ba18779afe2bde0885b522aa7e42b76a6567157b5d426a96af6db73ecf8",
+    "metadata_sha256": "a3f561c2a89f8dae2e2cce67c7fc3ab18d84166d32f73c642eaca51c13532476",
+    "auxiliary_row_l1": 1.1526586976562392e-14,
+    "auxiliary_col_l1": 1.365086429311324e-14,
+    "clipped_row_deficit_sum": 0.013608331102989996,
+    "clipped_column_deficit_sum": 0.01360833110300149,
+    "clipped_deficit_sum_difference": -1.1494277751822324e-14,
+    "unclipped_column_deficit_sum": 0.01360833110299357,
+    "minimum_unclipped_column_deficit": -6.1257422745431e-17,
+    "auxiliary_mass_error": 1.1324274851176597e-14,
+    "auxiliary_full_loss": 0.026447936924005266,
+    "auxiliary_pot_actual_marginals_loss": 0.026447936924004767,
+    "independent_loss_absolute_difference": 4.996003610813204e-16,
+    "recorded_actual_saved_loss": 0.02644793692400199,
+    "recorded_actual_saved_both_l1": 2.9826401765076227e-16
+  },
+  "diagnosis": "The NumPy implementation computes row and column totals in different reduction orders and clips tiny negative deficits. Their finite-precision totals differ by1.1494e-14; the outer-product correction divides by the row deficit total, leaving a residual of that scale. This is an auxiliary post-run repair, distinct from the actual saved Torch repair.",
+  "resolution": "Keep actual saved outputs and the baseline subject to100*eps64. Evaluate auxiliary NumPy repairs against the existing frozen reference helper criterion1e-12; preserve both their measured residual and100*eps64 pass/fail. Base endpoint and reduction summaries on independently evaluated actual saved outputs. No rerun, reselection, or helper modification."
+}

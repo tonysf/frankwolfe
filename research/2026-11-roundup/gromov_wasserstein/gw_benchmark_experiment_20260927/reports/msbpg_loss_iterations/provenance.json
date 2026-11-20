@@ -1,0 +1,36 @@
+{
+  "source_report": "logs/msbpg_campaign_20261005_4137d53/status_20261007T123725Z/report_artifacts/report.json",
+  "source_sha256": "20805d51a53128017859dd55f007f8915b9f315f19ab3cc0c9df6a0a7e3b1317",
+  "config_sha256": "7fa2cc2edf51454db9f1070aa1ef25a0778112a9e157f2492e569dca848f2fc7",
+  "final_runs": 54,
+  "seeds": [
+    810,
+    811,
+    812
+  ],
+  "checkpoints": [
+    0,
+    100,
+    300,
+    1000,
+    2000
+  ],
+  "observation_rows": 270,
+  "summary_rows": 90,
+  "aggregation": "Median and linear IQR across all three final seeds, separately by dataset, start, method.",
+  "duplicate_endpoint_policy": "Only the FP64 last record is used at 2000; current_diagnostic is excluded.",
+  "trajectory_policy": "Only common prescribed observed checkpoints; no smoothing, interpolation of seed traces, or best-so-far loss.",
+  "precision": "FP32 intermediate diagnostics, FP64 final endpoints.",
+  "methods": {
+    "smoothing-fw": "FraMES (momentum)",
+    "published-smd": "Entropic SMD (no momentum)",
+    "published-msbpg": "MSBPG (theorem parameters)"
+  },
+  "plotter_sha256": "97313cdfd07bdd89bae536d02a7e5905ffc1f901805b44136b0167cda43988e7",
+  "files": {
+    "observations.csv": "330e40e8cfc3120dc3d70002d8252ec98679f2aa609e92c35a93084f4475c473",
+    "median_loss_iterations.csv": "999f0f09a8998d8a248a4c3b8008c5911b54fad2cdc7661aff2beffb073123dc",
+    "median_loss_iterations.png": "5e9b14e999bf65b5b42c63e3bc24fa2ce10d949d1d10db5bbe6b49cd774f4488",
+    "median_loss_iterations.pdf": "be91f5fe2c599a369b6d00e1a956a0e311158a7b0e1fb27e60c2d62fb009e51e"
+  }
+}

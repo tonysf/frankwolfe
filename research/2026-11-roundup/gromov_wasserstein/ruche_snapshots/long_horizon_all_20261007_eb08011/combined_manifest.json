@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "parts": {
+    "original": {
+      "config": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/source_1963919/extensions/long_horizon_20261007/campaign.json",
+      "config_sha256": "da603d653024fcf4f8d30c93e562da0819a92c65ce53ed2a81be51a811ed8e48",
+      "source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/source_1963919",
+      "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared",
+      "out": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results"
+    },
+    "retry": {
+      "config": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/source_1963919/extensions/long_horizon_20261007/campaign.json",
+      "config_sha256": "da603d653024fcf4f8d30c93e562da0819a92c65ce53ed2a81be51a811ed8e48",
+      "source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/source_1963919",
+      "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared",
+      "out": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/retry/results"
+    },
+    "share": {
+      "config": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/source_eb08011/extensions/long_horizon_share_20261007/campaign.json",
+      "config_sha256": "4134ba6b243bacd6ab9b80a8e3b99a8d3b3abb7416cacf8afad15347bae38174",
+      "source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/source_eb08011",
+      "prepared": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared",
+      "out": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/share/results"
+    }
+  },
+  "routes": [
+    {
+      "dataset": "bmmc6224",
+      "method": "smoothing-fw",
+      "part": "original"
+    },
+    {
+      "dataset": "bmmc6224",
+      "method": "published-smd",
+      "part": "original"
+    },
+    {
+      "dataset": "bmmc6224",
+      "method": "published-msbpg",
+      "part": "retry"
+    },
+    {
+      "dataset": "snare_full",
+      "method": "smoothing-fw",
+      "part": "retry"
+    },
+    {
+      "dataset": "snare_full",
+      "method": "published-smd",
+      "part": "retry"
+    },
+    {
+      "dataset": "snare_full",
+      "method": "published-msbpg",
+      "part": "original"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "smoothing-fw",
+      "part": "share"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-smd",
+      "part": "share"
+    },
+    {
+      "dataset": "shareseq_full",
+      "method": "published-msbpg",
+      "part": "share"
+    }
+  ]
+}

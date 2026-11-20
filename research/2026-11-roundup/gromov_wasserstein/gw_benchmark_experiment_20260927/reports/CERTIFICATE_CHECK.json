@@ -1,0 +1,966 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-09-28T07:26:36.850155+00:00",
+  "scope": "Archived scalar postprocessing only; no arrays, optimizer, loss, gradient, assignment or repair rerun. Optional consistency check, not a proof or replacement for gap plots.",
+  "coverage_complete": true,
+  "issues": [],
+  "expected_runs": 18,
+  "observed_runs": 18,
+  "expected_preupdate_points": 11600,
+  "expected_terminal_points": 18,
+  "expected_points": 11618,
+  "observed_points": 11618,
+  "finite_points": 11618,
+  "required_finite_fields": [
+    "certificate_rhs",
+    "certificate_excess",
+    "true_smoothed_gap",
+    "original_fw_gap_at_rounded",
+    "col_l1",
+    "row_l1",
+    "rounded_both_l1",
+    "rounded_min_entry",
+    "mu"
+  ],
+  "positive_excess_count": 0,
+  "positive_excesses": [],
+  "signed_policy": "List strict recorded excess > 0 without clipping or passing tolerance. epsilon*scale is descriptive, not a forward-error bound.",
+  "formula": "rhs=G_mu,C(P)+6*kappa*column_l1(P); excess=(G_U(round(P))-G_mu,C(P))-6*kappa*column_l1(P).",
+  "kappa_source_formula": "max((max(A)-min(B))**2,(max(B)-min(A))**2), computed once from canonical arrays in archived runner.",
+  "kappa_limitation": "Numeric kappa was not separately logged. Source formula verified; inferred ranges are scalar inversions, not independent cost-array verification. No NPZ loaded.",
+  "point_alignment": "Pre_update k uses retained P_k and its rounded copy with mu_k after update k+1; completed_updates=k+1. Terminal P_T/mu_T evaluated separately, excluded from theorem averages. Both gaps use exact full gradients, not momentum.",
+  "arithmetic_scope": "Original gradients/reductions/rounded plans are float32 A100; extracted scalar arithmetic is Python float. Regrouped subtraction differences are reported without a sign tolerance. Nonzero raw-row/rounded residuals preclude claiming exact-domain or interval-certified verification.",
+  "float32_epsilon": 1.1920928955078125e-07,
+  "archives": {
+    "ruche_results/1961447": {
+      "checksum_manifest_sha256": "8f6ef69fa542466243c64256cbf3e775806b60f3d047cc0dffe6ce716df6d72b"
+    },
+    "ruche_results/1961460": {
+      "checksum_manifest_sha256": "5b3b5c57c0bfd751bb6211fe1c60fa1a7e0c414ca83b2deb3eb36db01b88632d"
+    }
+  },
+  "source_git_objects_sha256": {
+    "8da53a73676cd645f0707f70819f60c0a519e328:gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+    "8da53a73676cd645f0707f70819f60c0a519e328:smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+    "8da53a73676cd645f0707f70819f60c0a519e328:run_smoothing.py": "e74a36b8ac4c8c93bdfb246bfa068b88c16bfe228b2f1ac2403a7ef8ad3b4e7d",
+    "8da53a73676cd645f0707f70819f60c0a519e328:PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db",
+    "564d56dc5ee7563ee8d689b9d8f213bc6e68a699:gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+    "564d56dc5ee7563ee8d689b9d8f213bc6e68a699:smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+    "564d56dc5ee7563ee8d689b9d8f213bc6e68a699:run_smoothing.py": "e74a36b8ac4c8c93bdfb246bfa068b88c16bfe228b2f1ac2403a7ef8ad3b4e7d",
+    "564d56dc5ee7563ee8d689b9d8f213bc6e68a699:PROTOCOL.md": "299a0ccf4636a29371f18df8af16971ee512c4e222c25bc50e70c11ebc9383db"
+  },
+  "groups": [
+    {
+      "track": "stage_b",
+      "instance": "metric128_s1000.npz",
+      "runs": 4,
+      "expected_points": 804,
+      "observed_points": 804,
+      "finite_points": 804,
+      "preupdate_points": 800,
+      "terminal_points": 4,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "positive_excess_points": 0,
+      "max_raw_row_l1": 2.384185791015625e-07,
+      "max_rounded_both_l1": 2.528540790081024e-07
+    },
+    {
+      "track": "stage_b",
+      "instance": "metric512_s1000.npz",
+      "runs": 4,
+      "expected_points": 804,
+      "observed_points": 804,
+      "finite_points": 804,
+      "preupdate_points": 800,
+      "terminal_points": 4,
+      "certificate_rhs": {
+        "min": 0.0046207234263420105,
+        "max": 621.970437212059
+      },
+      "certificate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "positive_excess_points": 0,
+      "max_raw_row_l1": 2.3469328880310059e-07,
+      "max_rounded_both_l1": 5.881302058696747e-07
+    },
+    {
+      "track": "theory_replicates",
+      "instance": "metric128_s1000.npz",
+      "runs": 10,
+      "expected_points": 10010,
+      "observed_points": 10010,
+      "finite_points": 10010,
+      "preupdate_points": 10000,
+      "terminal_points": 10,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "positive_excess_points": 0,
+      "max_raw_row_l1": 3.67872416973114e-07,
+      "max_rounded_both_l1": 2.752058207988739e-07
+    }
+  ],
+  "runs": [
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n128_exact",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "exact",
+      "batch": 32,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "71a54d77528caed5a1602a2f63dd901343565af3bcb698e418c0a975075b3ace",
+        "summary.json": "2bb614edc4ba9436c48adcd58e124b1ad160f506541907ac06b0553d071e00be",
+        "trace.csv": "b90afae6d69eaf698a6904faf8da05ea1911385ba2ba2ddd09b9ffe5385332c8"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 92.68684589137746
+      },
+      "certificate_excess": {
+        "min": -92.6862644733298,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -92.6862644733298,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -8.254410515117744,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759358
+      },
+      "max_raw_row_l1": 1.6391277313232422e-07,
+      "max_rounded_both_l1": 1.2293457984924316e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n128_sketch_q8",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 8,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "aaf72da08e091078b6af950041aac869d17d608914cf754d86b8697c9e840dd2",
+        "summary.json": "590e526592c3af16e9c4761e8fc8e3df1ecc5fa3e9a0e34d5e98bc06a53cfd4c",
+        "trace.csv": "8e5354f8a984506e2ef900dc452f45950934f30c0e887ad390faa82da80389ba"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -9.313104152298932,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999917745759351,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 1.955777406692505e-07,
+      "max_rounded_both_l1": 1.4202669262886047e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n128_sketch_q32",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 32,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "3b3d45cf54b26577216c1ec90d40f9f7af2a65b035207f3e83717a0944d67a75",
+        "summary.json": "de6c3076f3fd9f2dd0d249991a3edc4c94d467d2896c53625c2ac3d50e855965",
+        "trace.csv": "790e25b9a268822f80235ec5803d8c2d026bc6e21bd7976d9c60200e4839078a"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -8.953826552010018,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 2.384185791015625e-07,
+      "max_rounded_both_l1": 2.528540790081024e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n128_sketch_q128",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "f6eea55af4ddca9db6caa7daca13b04310989d7a0c105e011281b677e08993fe",
+        "summary.json": "3e1384bd5d27be7b7832716eaf3daca5ff31318fca8401f44c438c7b56cb20ec",
+        "trace.csv": "d143627a66d2bf5eb3c617ba3003016c28890f39ea673ba05740e8b9cb4b0761"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -8.441092629260654,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999917745759351,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 2.384185791015625e-07,
+      "max_rounded_both_l1": 2.123415470123291e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n512_exact",
+      "instance": "metric512_s1000.npz",
+      "instance_sha256_recorded": "77beb54bd255cef1579b0eec8718eae21dbe2abbb85a0dff8259dcb45d855f8a",
+      "shape": [
+        512,
+        512
+      ],
+      "oracle": "exact",
+      "batch": 32,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "58b8d4a35131327e408ab20c54d7f6edcc55b1694e192113f677455d08b70a0d",
+        "summary.json": "07d5c9ca77e4eb08684668709467fd9bee02094ae1986b15766ff5bcf771bdaa",
+        "trace.csv": "4effabc83f16521ae520e7adb7c7579c56a3cde127405e678fe2b172d1401bab"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.0046207234263420105,
+        "max": 605.4951566123901
+      },
+      "certificate_excess": {
+        "min": -605.4949274887159,
+        "max": -0.0044430643756641075
+      },
+      "preupdate_excess": {
+        "min": -605.4949274887159,
+        "max": -0.0044430643756641075
+      },
+      "terminal_excess": -21.547067936830118,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999930858731569,
+        "max": 0.9999930858731615
+      },
+      "max_raw_row_l1": 1.555308699607849e-07,
+      "max_rounded_both_l1": 2.3888424038887024e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n512_sketch_q8",
+      "instance": "metric512_s1000.npz",
+      "instance_sha256_recorded": "77beb54bd255cef1579b0eec8718eae21dbe2abbb85a0dff8259dcb45d855f8a",
+      "shape": [
+        512,
+        512
+      ],
+      "oracle": "sketch",
+      "batch": 8,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "e81dc72c4baf740fb061fde1c79a13f8143c0c5ee1023dff7fb8c55cf95880a0",
+        "summary.json": "b356e69b65465b5c2d761ac55f3be45a56fe198215b0f6e0e402514ee6afcbbd",
+        "trace.csv": "774b1d55f8da3012b460e4d0924ce89aeb5485636a46a4006395030091aaff1a"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.0046207234263420105,
+        "max": 621.970437212059
+      },
+      "certificate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "preupdate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "terminal_excess": -29.028747284225236,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999930858731564,
+        "max": 0.9999930858731584
+      },
+      "max_raw_row_l1": 2.1560117602348328e-07,
+      "max_rounded_both_l1": 4.4016633182764053e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n512_sketch_q32",
+      "instance": "metric512_s1000.npz",
+      "instance_sha256_recorded": "77beb54bd255cef1579b0eec8718eae21dbe2abbb85a0dff8259dcb45d855f8a",
+      "shape": [
+        512,
+        512
+      ],
+      "oracle": "sketch",
+      "batch": 32,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "dd606e7431e09ff382c742bee42972d3093a09ab5cdf76db5c4f0361ecc90b73",
+        "summary.json": "d038f22503d9492b478583e14dbec8639a72cf75f185388f808dfe5715b1d904",
+        "trace.csv": "0d1210f64785b22db51ab6c37ea34ac2364fd06a3745755d7b2261ca351547bc"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.0046207234263420105,
+        "max": 621.970437212059
+      },
+      "certificate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "preupdate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "terminal_excess": -28.995422087044613,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999930858731564,
+        "max": 0.9999930858731584
+      },
+      "max_raw_row_l1": 2.3469328880310059e-07,
+      "max_rounded_both_l1": 5.881302058696747e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "stage_b",
+      "run_id": "smoothing/n512_sketch_q128",
+      "instance": "metric512_s1000.npz",
+      "instance_sha256_recorded": "77beb54bd255cef1579b0eec8718eae21dbe2abbb85a0dff8259dcb45d855f8a",
+      "shape": [
+        512,
+        512
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 0,
+      "source_revision": "8da53a73676cd645f0707f70819f60c0a519e328",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "21cd2ce872b1685af7995505b7b0ac010df5897e6210f842444373d8288b9e19",
+        "summary.json": "9103ee224e5b048e4417ef4979c4401aa4532024bc8f3cad914616f633eb46f8",
+        "trace.csv": "4fe327596e832c7fbfc4d9697becb1f692774f893332296a1c233a8c2f07ce46"
+      },
+      "expected_points": 201,
+      "expected_preupdate_points": 200,
+      "observed_points": 201,
+      "finite_points": 201,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.0046207234263420105,
+        "max": 621.970437212059
+      },
+      "certificate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "preupdate_excess": {
+        "min": -621.9702595530083,
+        "max": -0.0044430643756641075
+      },
+      "terminal_excess": -28.967612642042965,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999930858731564,
+        "max": 0.9999930858731584
+      },
+      "max_raw_row_l1": 1.1920928955078125e-07,
+      "max_rounded_both_l1": 4.1408929973840714e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed0",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 0,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "9f9783a1bac96f595f06e93273691cb19a238bd64843e2bfd0473545d0f06ccf",
+        "summary.json": "f3c3cdacd0e9d3eb75730dfc4685f8e64825a92f7a2a7c43e31b5fad13c14481",
+        "trace.csv": "f19b1a0c82d2f6aecc6af217b71b20622302fe6445e9b64841cd1c25e2d67dff"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.289980395704249,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999917745759351,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.655441105365753e-07,
+      "max_rounded_both_l1": 2.123415470123291e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed1",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 1,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "8c25714da147015942643e489cada2d485dd478485d91da5ea6506e295bb0e91",
+        "summary.json": "3a986724b913603defe7abc909e716a2f9f31e0f99e08248196e9792ecd87ac7",
+        "trace.csv": "f5d1c08b7ade5513e3d5d9381bf8a795e06d70bf6bbf311da8ef103a86eee28e"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23130160217755
+      },
+      "certificate_excess": {
+        "min": -165.23079495815676,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23079495815676,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.2302001600563957,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.5762786865234375e-07,
+      "max_rounded_both_l1": 2.2212043404579163e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed2",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 2,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "781e404af47157f524820beae7deb4594f534a20dc7a960961ec8b96d362c8b7",
+        "summary.json": "98c08ebc3936c08eab789cb65a9240f3307c2432897a000504ac16badc3f833e",
+        "trace.csv": "7cf6f1c2f51507f65ff9c45bc97bd08a909740937dc80ea0b5ac451f8f3d4795"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.286884425009358,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.366731107234955e-07,
+      "max_rounded_both_l1": 2.752058207988739e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed3",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 3,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "0a6f26c584bff3524427d4be0a14705c0765e5d015259275c27bd2455d2cba6d",
+        "summary.json": "e631b8e06f464f465ecdd1a924c6c64cd451cad6a9c8c3dfacd978039c39d153",
+        "trace.csv": "8f8d44f2157ee4472fdfdc15357a5781cf636a4e43716410e3eb5c3e1fbb01db"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.055646244406452,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999917745759351,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.5390257835388184e-07,
+      "max_rounded_both_l1": 1.2060627341270447e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed4",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 4,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "cf4d8a068dfaf71b7282a797bae6ea095b1d74a0b5cf679aea5c1f1bf8648bb7",
+        "summary.json": "d9235f90d2fad02057dfb340ad86bb24274e596596d6b52ce438b2fccf8e34e1",
+        "trace.csv": "3c4e1ba391a21ff3f54d33727bbb1bd4810ce5e0d0b426bb111874ad8e770fb8"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.2312863433885
+      },
+      "certificate_excess": {
+        "min": -165.2307796993677,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.2307796993677,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.1277888345712648,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.5157427191734314e-07,
+      "max_rounded_both_l1": 2.076849341392517e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed5",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 5,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "5e53429ab2de1617e578208712b2b66230fe10fb45e33526040464d245a0a993",
+        "summary.json": "b71895c95ddd9eba544e3450e0a296a37d2c9c1d81c13e19d0cdfffc73a06eed",
+        "trace.csv": "9951f75e69f0c8db0d46442c4025a3d40179c64a2f8b39c89f720ffd60f92e68"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.4477387892259994,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.9999917745759351,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.5762786865234375e-07,
+      "max_rounded_both_l1": 1.3085082173347473e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed6",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 6,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "81ae7b00f59464df66d567c5d8586f450e1d0f1384cf71d9044db3fde4e98122",
+        "summary.json": "7eb580b899a98042cb3735dc5272ff142a598cf5295e4e2a494b50ec92e4923f",
+        "trace.csv": "3d7a69ee6cab0f6b98f6ef0c97047553ef602b92e0df77fd16457c9692df216c"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.0273967061441636,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.608874976634979e-07,
+      "max_rounded_both_l1": 2.7008354663848877e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed7",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 7,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "fba8fa1eef4183b313b3fa3706de46af838d5c9a1f48dfd0bbf935d3eab24c0a",
+        "summary.json": "85c6c79aa672588015dc2971b271b30813d216756262552aefc6d37a3a0a1b3b",
+        "trace.csv": "d76e9f3779da728fb58e0709a7044c35c068d8057e1c977e88cabdc062c816bc"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 94.53773700465871
+      },
+      "certificate_excess": {
+        "min": -94.53714007252319,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -94.53714007252319,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.226639879047776,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759359
+      },
+      "max_raw_row_l1": 3.67872416973114e-07,
+      "max_rounded_both_l1": 1.955777406692505e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed8",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 8,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "31ad95321be4dd434a336036de1faa8b1788408458f5494cefbb3bd00b03bbd8",
+        "summary.json": "fbd1e53b2c0beb10537691f407c1a8ea72b7a569291376bf682a1993bbf2bda5",
+        "trace.csv": "c2c2ef53e9c520fc575092197347dce694be89457bd6302b91062f444a3c649c"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23130160217755
+      },
+      "certificate_excess": {
+        "min": -165.23079495815676,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23079495815676,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.2274220805330707,
+      "max_regrouped_identity_difference_abs": 0.0,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.5669654607772827e-07,
+      "max_rounded_both_l1": 1.671724021434784e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    },
+    {
+      "track": "theory_replicates",
+      "run_id": "theory_replicates/seed9",
+      "instance": "metric128_s1000.npz",
+      "instance_sha256_recorded": "1bfaf167bfb3db66c7a04e2ce5f8262eb3f3a2ebb4abc7290636abc12943c640",
+      "shape": [
+        128,
+        128
+      ],
+      "oracle": "sketch",
+      "batch": 128,
+      "seed": 9,
+      "source_revision": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "dtype": "float32",
+      "input_sha256": {
+        "config.json": "cdac739d89f5dbc35a7b6e8161905cfa4dc219eaba023cb61d2068610d3eea59",
+        "summary.json": "da1dd4ea944c4ba9ce5f96b45a1a5175b1a8365bba3989fa5f1c269a7677a8b2",
+        "trace.csv": "cebb78d5c995bf8b0248844a1a326dcf9b34038734f32a8d6cbe394706d4624f"
+      },
+      "expected_points": 1001,
+      "expected_preupdate_points": 1000,
+      "observed_points": 1001,
+      "finite_points": 1001,
+      "positive_excess_points": 0,
+      "certificate_rhs": {
+        "min": 0.006360307335853577,
+        "max": 165.23131686096661
+      },
+      "certificate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "preupdate_excess": {
+        "min": -165.23081021694583,
+        "max": -0.005853663315065205
+      },
+      "terminal_excess": -3.1328371872322514,
+      "max_regrouped_identity_difference_abs": 4.440892098500626e-16,
+      "inferred_kappa_from_scalars": {
+        "min": 0.999991774575935,
+        "max": 0.9999917745759361
+      },
+      "max_raw_row_l1": 3.548339009284973e-07,
+      "max_rounded_both_l1": 2.086162567138672e-07,
+      "min_rounded_entry": 0.0,
+      "issues": []
+    }
+  ],
+  "inputs_unchanged": true
+}

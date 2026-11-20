@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "state": "submitted",
+  "utc": "2026-09-27T23:26:05.156171+00:00",
+  "dispatch_plan": "configs/momentum_diagnostic_replay_dispatch_active.json",
+  "dispatch_plan_sha256": "4d44c521477333ee6d58627b8a19fe64b2101492beb2e77f02c978b3a2a36e99",
+  "preflight_audit_sha256": "5647f85a024aa88efce4268a28da6bcc72f0f43ddf6b7111e00bba334a740159",
+  "independent_dispatch_audit": "baseline_validation: exact comparison passed; only already-satisfied purged preflight dependency removed",
+  "array": {
+    "phase": "tuning",
+    "scientific_replays": 504,
+    "manifest": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/tuning.json",
+    "manifest_sha256": "ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455",
+    "out_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_momentum_diagnostics/replay_20260928/tuning",
+    "shards": 8,
+    "per_shard_run_counts": [
+      63,
+      63,
+      63,
+      63,
+      63,
+      63,
+      63,
+      63
+    ],
+    "array": "0-7%4",
+    "dependency": null,
+    "gpus_per_task": 1,
+    "wall_time_seconds": 5400,
+    "source_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+    "source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--array=0-7%4",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/slurm/a100_momentum_replay.sbatch",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/tuning.json",
+      "ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198",
+      "b5851980646be55a148b083a89cfbf6153dac77e",
+      "8"
+    ]
+  },
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "ruche",
+    "sbatch --parsable --array=0-7%4 /gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/slurm/a100_momentum_replay.sbatch /gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198/configs/momentum_diagnostic_replays/tuning.json ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455 /gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/releases/b585198 b5851980646be55a148b083a89cfbf6153dac77e 8"
+  ],
+  "returncode": 0,
+  "stdout": "1961715\n",
+  "stderr": "",
+  "response_utc": "2026-09-27T23:26:16.658504+00:00",
+  "array_job_id": 1961715
+}

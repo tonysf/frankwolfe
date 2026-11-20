@@ -1,0 +1,71 @@
+{
+  "sources": {
+    "campaign.py": "dd90f7464f073df0b567c6f1d392f32827addb55343a7312d5002fdc715e8b74",
+    "run.py": "8a25ad4971314199b7f45d32d4306ecd51204ae2debf88a208aaf99f38979d7c",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "7821a2296a9c30a84360552f314b65e44b2a1c7141944f6eb9ae77291fd8bc38",
+    "spectral_reference_core.py": "f5cdf8996c583eb3b3c287957bcc2cb1b92ea69b00ed04bbbc72bf6d22e949b2",
+    "spectral_reference_baseline.py": "fc0b3d5362c82a43d8a30f27e3a600924d53c6f5f19a3f6061828b4bb8836094"
+  },
+  "data": {
+    "slice04300": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907",
+    "slice04531": "e4ca9924bea7059e3dd43308f48c9bd84f32cfabfcc249074466147d589e090b",
+    "slice04800": "11485b748fc2826e778fbd10065975ddf44664e68b9c52446b93ddb7a00112ac"
+  },
+  "host": "elite",
+  "python": "/home/tony/zofw_experiments/.venv/bin/python",
+  "cpus": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "blas_threads": 1,
+  "design": {
+    "development_slice": "slice04300",
+    "evaluation_slices": [
+      "slice04531",
+      "slice04800"
+    ],
+    "grid": 512,
+    "rank": 64,
+    "development_view_budget": 5760,
+    "evaluation_view_budget": 21600,
+    "evaluation_training_views": [
+      360,
+      1080
+    ],
+    "stochastic_batch": 64,
+    "heldout_views": 360,
+    "development_rates": {
+      "sframes": [
+        0.05,
+        0.1,
+        0.25
+      ],
+      "spring_sarah": [
+        0.3,
+        0.7
+      ],
+      "prox_sarah": [
+        0.4,
+        0.9
+      ],
+      "palm": [
+        0.6,
+        1.1
+      ]
+    },
+    "stop": "First completed update reaching the forward-view budget.",
+    "timing": "Optimizer work only. Arms share the host, one BLAS thread per physical core.",
+    "spring": "Alternating SPRING-SARAH, practical tuned fixed steps, independent 1/16 full refresh per block.",
+    "proxsarah": "Joint Algorithm 1 with minibatch snapshots, empirical tuned steps.",
+    "constraints": "Nonnegative factors with separate spectral norm caps.",
+    "radius": "Each cap equals twice the operator norm of its calibrated warm factor.",
+    "projection": "Certified spectral-ball/orthant Dykstra with single-set reductions.",
+    "repair": "Diagnostic positive part followed by inward radial spectral scaling.",
+    "signed_start": "Independent Gaussian directions, mapped by one spectral LMO per block; seed base+200000.",
+    "reference": "Mode 2 TIFF reflected into DeepInv convention and converted to per-mm attenuation.",
+    "inference": "One development slice and two held-out evaluation slices. Pilot."
+  }
+}

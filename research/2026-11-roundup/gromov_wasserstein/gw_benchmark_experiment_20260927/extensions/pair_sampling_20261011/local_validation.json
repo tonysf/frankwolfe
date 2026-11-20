@@ -1,0 +1,67 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "extensions/pair_sampling_20261011/test_pair_oracle.py",
+    "extensions/pair_sampling_20261011/test_run_pair.py",
+    "--junitxml=/tmp/pair_sampling_deterministic_scan_tests_20261013.xml"
+  ],
+  "coverage": [
+    "fixed tree with all cumsum entrypoints forbidden",
+    "bitwise CPU reference at widths1,2,3,7,16,17,31,512,6224,10000,31890",
+    "repeatability and vector/single/multiple-row layout equality",
+    "q1 and16+singleton conditional sampling blocks",
+    "nonunit/sparse/nonuniform/rectangular exact oracle checks",
+    "four ranks including empty shards",
+    "three method trajectories and counter/RNG semantics",
+    "legacy exports without pair directory"
+  ],
+  "environment": {
+    "GLOO_SOCKET_IFNAME": "lo",
+    "OMP_NUM_THREADS": "1"
+  },
+  "fix": "CUDA fixed-tree FP64 prefix additions replace floating cumsum in both row and conditional CDFs; CPU cumsum unchanged",
+  "generated_utc": "2026-10-13T12:15:52.197117+00:00",
+  "junit_sha256": "cfd5761f953e70ea89af8a70b7040742478ded2a0470cfbaeb82303828c5a89e",
+  "quantization": false,
+  "scheduled_a100_validation": "pending; no CUDA execution claimed",
+  "scope": "bounded local CPU validation of deterministic scan fix; no benchmark or scientific campaign",
+  "single_rank_command": [
+    ".venv/bin/python",
+    "extensions/pair_sampling_20261011/validate_distributed.py",
+    "--device",
+    "cpu",
+    "--out",
+    "/tmp/pair_sampling_deterministic_scan_proof_20261013.json"
+  ],
+  "single_rank_proof_sha256": "68297d650fbed592afedd7272bd314396e76adf6712ea1af7d2ab6cf0bc47bb1",
+  "source_file_sha256": {
+    "msbpg_20261005/msbpg.py": "85e509b2d5d9ea7fb533ba3da1c49701b9d5857820643ff02fbf71929cf5464a",
+    "msbpg_20261005/run_msbpg.py": "04a919012330c68750eada450b977daf091a62a1b41dbcbaa3d22f9d93a175f6",
+    "msbpg_20261005/stable_prox.py": "fbb58362b0592d66a5da786bc62519bf679ab804c76ca9c0941b9ea1bd5cfdbf",
+    "pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "pair_sampling_20261011/run_pair.py": "542ba2d5202ee9a6281215265bfce9e5a8d5a80149e10b06fd99aa7ce370b275",
+    "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+    "published_stochastic_20261002/run_published.py": "8c4348078be733b6f0ef6833325b5fb63aa1b0df98fb1fcc124d8dc3fe19c495",
+    "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+    "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "status": "passed_local_cpu",
+  "strict_determinism_preserved": true,
+  "summary": "8 passed in 26.61s",
+  "test_source_sha256": {
+    "extensions/pair_sampling_20261011/test_pair_oracle.py": "ac55b7516d787cccaa2b20903dd74855b2f4f646a34763bc5bc61ba8adba12b3",
+    "extensions/pair_sampling_20261011/test_run_pair.py": "9e31d6297aba51902f16f919f3e49f0ae9171ff3423ff094a81c4326dbc3f4cb"
+  },
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 8
+  },
+  "validation_source_sha256": "edfead4ac4cdb847e5dc63e7e7aab4f048ddeb8b85da7a782f121f1ed51a0e8c"
+}

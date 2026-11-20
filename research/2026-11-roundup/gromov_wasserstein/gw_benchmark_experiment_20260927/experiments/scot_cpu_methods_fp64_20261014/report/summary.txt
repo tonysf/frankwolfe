@@ -1,0 +1,35 @@
+SCOT1047: complete FP64 stochastic comparison, 2,000 updates per run.
+All three methods use 1,024 iid coupling-pair samples per update and the identical FP64 product start and geometry.
+Primary assessment: current and final saved-rounded full GW objective versus completed updates. No timing comparison.
+Initial full GW loss: 0.0704597574563
+Attainable local SCOT/POT feasible reference: 0.0166675970015
+
+FraMES (pair gradient + momentum)
+  Fresh seeds 811–813: median final loss 0.0254280560577; range [0.0209795850557, 0.0255558428849].
+  Reduction from product start: median 63.9112%; range [63.7299%, 70.2247%].
+  Selected prefactors: {'id': 'fw08', 'gamma0': 1.0, 'rho0': 0.3, 'mu_scale': 10.0}
+  Maximum independent saved-rounded marginal L1: 6.73398e-16.
+
+Entropic SMD (fresh pair gradient)
+  Fresh seeds 811–813: median final loss 0.0694126153156; range [0.0693871529198, 0.0694192955502].
+  Reduction from product start: median 1.48616%; range [1.47668%, 1.52229%].
+  Selected prefactors: {'id': 'smd03', 'prefactor_fraction': 1.0}
+  Maximum independent saved-rounded marginal L1: 6.97034e-16.
+
+MSBPG (paper momentum and schedules)
+  Fresh seeds 811–813: median final loss 0.0704543851507; range [0.0704543844875, 0.0704543905921].
+  Reduction from product start: median 0.00762464%; range [0.00761692%, 0.00762559%].
+  Selected prefactors: {'id': 'msbpg03', 'coupling_fraction': 1.0, 'momentum_prefactor': 1.0}
+  Maximum independent saved-rounded marginal L1: 6.98443e-16.
+
+Each method used four development candidates at seed810; fresh confirmation seeds did not select parameters. FraMES fw08 and its three earlier FP64 confirmations are reused once.
+The SMD/MSBPG controller selects the final saved-rounded objective from the runner’s separate Torch FP64 reevaluation. This report independently recomputes actual-marginal objectives with NumPy and POT and confirms each tuning winner.
+SMD and MSBPG use published update equations with theorem-admissible parameters, not a reproduction of the authors’ empirical presets. SMD uses a fresh gradient; MSBPG uses its published coupled momentum and step schedule.
+Every accepted transport proximal update has recorded actual-plan marginal L1 and guarded normalized primal-dual gap at most 1e-7. These numerical certificates do not supply an exact-proximal or inexact outer convergence theorem.
+Raw proximal plans are only approximately feasible; plotted rounded diagnostics are separately checked at 100*eps64. FraMES raw plans obey row constraints and may have column residuals. All losses use actual marginals, including raw plans.
+The independently weighted SMD/MSBPG output is a raw P_J with J in 0,...,T−1. It is kept separate from P_T, rounded diagnostics, and prefactor selection. The SMD BFBE quantity is not evaluated. The MSBPG selected squared-displacement statistic is numerical and is preserved separately.
+Matching seed labels do not imply identical sampled pairs: each method samples conditionally from its own evolving coupling. Equal iterations and pairs do not imply equal arithmetic work.
+Bands are ranges over three seeds on one fixed dataset, not confidence intervals. The SCOT/POT reference is an attained objective, not a certified optimum or a matched-iteration competitor.
+The primary figure uses a common objective axis. If produced, msbpg_detail explicitly magnifies a separate y-axis and does not establish a larger comparative improvement.
+
+Artifacts: report.json; scientific_plot.png/pdf; optional msbpg_detail.png/pdf; curve_data.csv; endpoints.csv; theory_outputs.csv; selection_audit.json.

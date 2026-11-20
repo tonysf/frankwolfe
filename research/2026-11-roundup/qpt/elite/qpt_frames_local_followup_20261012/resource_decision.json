@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-10-12T16:10:57.577405+00:00",
+  "dimensions": {
+    "3": {
+      "basis": "resource measurements only; loss and gate ignored",
+      "estimate_400k_seconds": 164.94293116871268,
+      "peak_rss_mib": 66.09765625,
+      "selected_steps": 400000
+    },
+    "4": {
+      "basis": "resource measurements only; loss and gate ignored",
+      "estimate_400k_seconds": 182.91707777930424,
+      "peak_rss_mib": 68.19921875,
+      "selected_steps": 400000
+    }
+  },
+  "pilot_audit_sha256": "9b939d1a73a0a471dce659531d8c56d5e4c7276afbf1af047c7b0915ff30d709",
+  "pilot_files_sha256": {
+    "n3-c0-i0-s0": {
+      "result.json": "ba090732daf2f045609c352cb74bed4a11f749d5aae7825674a4272a74db71b9",
+      "result.npz": "f25c1963d27a954304ce115e6f3d7e1400ca3ad28f6038df3b664fe735e26ed3",
+      "started.json": "df931a68ee68dec371b0f1329c124d70430e2158d639fca356e48ca3f0ecaf8f",
+      "summary.json": "1f159d13cdc0c54f0faffb1a864498445033254286a1088650b76101251ac63d"
+    },
+    "n4-c0-i0-s0": {
+      "result.json": "64d7c8b42caa1b277d06641782cf7546c397b7ae55c88fbb10493bc16c8ced29",
+      "result.npz": "5204a19d083231870bda519ef174d7531eb2feec0097c20e4be013770329c364",
+      "started.json": "2de1d459b16e5ad09ace98c30ce05249b610d59fb75ff90ef2f1da376215d38c",
+      "summary.json": "8fdbc5828b6f4c1093e46e933dbde8af21ead6e21f5b3229345a17a9c1d271a5"
+    }
+  },
+  "pilot_inventory_sha256": "4336ca3fd816464aaafdaa6a17d4692c649439226ff8eb5bce106ed65883a4ea",
+  "pilot_plan_sha256": "b12bb13157db0d3a468c3d973ca9523068949bc2fdda28ae920ab714608f4551",
+  "rule": {
+    "estimate_400k_seconds": "pilot.optimizer_seconds / pilot.steps * 400000 + pilot.total_seconds",
+    "fallback_estimate": "estimate_400k_seconds / 4",
+    "fallback_steps": 100000,
+    "full_steps": 400000,
+    "max_estimate_for_fallback_seconds": 300.0,
+    "max_estimate_for_full_seconds": 600.0,
+    "max_peak_rss_mib": 2048.0,
+    "numerical_gate_or_loss_may_affect_horizon": false,
+    "otherwise": "omit this dimension; preserve and report pilot",
+    "pilot_steps": 2000
+  }
+}

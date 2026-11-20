@@ -1,0 +1,76 @@
+Full-gradient POT entropy and initialization sensitivity, 2026-10-18
+
+Question
+Do smaller entropy coefficients or different feasible initial couplings move
+the full-gradient POT entropic GW update beyond the previously observed BMMC
+and SNARE plateaus? This is a deterministic diagnostic, not a comparison of
+stochastic theorem rates or a claim of global GW optimality.
+
+Fixed data and update
+Use the same archived BMMC6224 and SNARE10000 distance matrices and marginals
+as large_pot_frames_20261016. Preserve array hashes and preprocessing. FP64
+arithmetic, lossless promotion of archived FP32 distances, unchanged FP64
+marginals. Compute the entire ambient gradient of squared GW at each update.
+P_next minimizes <gradient(P),Q> + epsilon * sum Q_ij(log Q_ij - 1), subject
+to both prescribed marginals. The fixed product reference in the inner
+solver remains ab^T for EVERY outer initialization. Its contribution to
+the transport objective is constant on the feasible set.
+
+Design
+Cross epsilon in {0.001,0.0003,0.0001,0.00003} with these four initializations:
+  - product coupling ab^T, seed 810 (deterministic reproducibility control);
+  - 0.9 Pi/n + 0.1 ab^T for independent permutation seeds 901, 902, 903.
+Pi is a permutation matrix generated without cell labels or paired identities.
+These positive feasible starts require the verified uniform equal-size
+marginals. Constructor rejects other marginals. Pair each seed across all
+entropy coefficients. There are 16 runs per dataset, 32 total.
+These are independent fixed-epsilon runs, not entropy continuation runs.
+
+Numerical acceptance and stopping
+Retain actual marginal L1 residual <=1e-7 AND guarded normalized primal-dual
+gap <=1e-7 for each accepted entropic OT subproblem. Inner iteration cap100000;
+no kernel clipping and no relaxed tolerance at small epsilon. Existing
+log-domain fallback handles underflow. Record solver path and certificates.
+Maximum2000 outer updates; after at least50 updates, stop when the full
+coupling L1 update norm is <=1e-6 for10 consecutive updates. This is a
+numerical stabilization criterion, not an outer stationarity/global-optimum
+certificate. Save all tested update norms and the exact stopping reason.
+Save objective probes at0, every update1 through10,15,20, every25, and the
+final update.
+
+Interpretation
+Compare absolute unregularized feasible GW loss across all trials, retain
+each trial's initial loss, and also use the common product-start reference.
+Regularized objective values are comparable as an optimization trace within
+a fixed epsilon; epsilon changes the objective. Retain individual starts,
+observed ranges, missing/failed runs, and actual stopping iterations.
+Never extend an early-terminated trajectory with invented flat observations.
+The epsilon=.001 product control should reproduce the earlier trajectory.
+Three random starts cannot rule out a better data-informed initialization.
+
+Execution
+New immutable source snapshot; previous campaign and queued SHARE job untouched.
+One A100 per dataset stream,2 CPUs,32GiB RAM,fwllm,gpua100. At most24h per
+allocation and22h soft deadline. Checkpoint every100updates or30min. Deadline
+checks inside the inner solve discard unfinished work and save the preceding
+outer iterate; no incomplete solve enters the optimization trajectory.
+Afterany CPU dispatchers continue valid checkpoints without active polling.
+Explicit numerical inner-solve failures retain evidence, mark only that trial
+unsuccessful, and let other configurations proceed. Infrastructure failures
+stop the affected stream for review. Repeated no-progress resumptions stop.
+Initial storage check reserves60GiB for the existing SHARE campaign and10GiB
+for this sweep. Only active checkpoint generations are retained. Terminal
+numerical failures preserve certificates, accepted trajectories, identities
+and checkpoint manifests before removing their own tensor checkpoints.
+
+Gates
+CPU tests and independent tiny full-gradient/log-domain transport references
+cover all epsilon values and both initialization families. Forced underflow
+checks preserve the unmodified objective. Scheduled A100 gates repeat these
+checks and verify exact checkpoint restart, actual-data initialization,
+memory and restart before production. Actual-size low-entropy conditioning
+probes use epsilon3e-5 from product and permutation starts (two updates,
+15min limit each). Their certificates, fallback path and runtime are saved;
+time/inner-budget failures are labeled explicitly and do not block other
+sweep settings. Infrastructure failures block production. Queueing is not
+evidence these future gates passed; dependencies enforce gate completion.

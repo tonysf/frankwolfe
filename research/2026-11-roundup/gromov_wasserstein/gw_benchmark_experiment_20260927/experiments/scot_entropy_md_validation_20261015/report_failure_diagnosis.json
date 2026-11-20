@@ -1,0 +1,12 @@
+{
+  "status": "reporter_summation_defect_confirmed",
+  "affected_artifact": "runs/full_gradient/checkpoints/rounded_000000.npy",
+  "numerical_runs": "All four three-update smoke runs completed successfully; no production runs launched yet.",
+  "naive_numpy_marginal_l1": 2.3724837198979554e-14,
+  "contiguous_pairwise_marginal_l1": 2.277908764392045e-16,
+  "math_fsum_marginal_l1": 6.818547462761337e-16,
+  "strict_100eps64_tolerance": 2.220446049250313e-14,
+  "maximum_column_pairwise_vs_fsum_difference": 2.168404344971009e-19,
+  "interpretation": "Naive strided NumPy column reduction overstated the represented plan's marginal residual. Independent compensated summation passes the unchanged strict bound. Fix the reporter's marginal accumulation; do not change the optimizer, re-round the saved plan, or relax the tolerance.",
+  "preservation": "The original config, run metadata, campaign failure, and logs are retained unchanged. A separate smoke experiment will validate the corrected reporter. These are validation runs, not statistical repetitions."
+}

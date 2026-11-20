@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "scope": "Exactly the 15 job IDs in the bound ledger; one read-only sacct query, including steps for auditable exclusion.",
+  "requested_job_ids": [
+    1961444,
+    1961445,
+    1961447,
+    1961453,
+    1961459,
+    1961460,
+    1961471,
+    1961477,
+    1961478,
+    1961516,
+    1961539,
+    1961580,
+    1961687,
+    1961715,
+    1961716
+  ],
+  "started_utc": "2026-09-28T08:05:48.564685+00:00",
+  "command": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=20",
+    "-o",
+    "ServerAliveInterval=15",
+    "-o",
+    "ServerAliveCountMax=2",
+    "ruche",
+    "sacct --parsable2 --jobs=1961444,1961445,1961447,1961453,1961459,1961460,1961471,1961477,1961478,1961516,1961539,1961580,1961687,1961715,1961716 --starttime=2026-09-26T00:00:00 --format=JobID%128,JobIDRaw%40,JobName%100,Partition%40,Account%40,State%40,ExitCode,ElapsedRaw,AllocTRES%300,Submit,Start,End,NodeList%100,AllocCPUS,NNodes"
+  ],
+  "remote_argv": [
+    "sacct",
+    "--parsable2",
+    "--jobs=1961444,1961445,1961447,1961453,1961459,1961460,1961471,1961477,1961478,1961516,1961539,1961580,1961687,1961715,1961716",
+    "--starttime=2026-09-26T00:00:00",
+    "--format=JobID%128,JobIDRaw%40,JobName%100,Partition%40,Account%40,State%40,ExitCode,ElapsedRaw,AllocTRES%300,Submit,Start,End,NodeList%100,AllocCPUS,NNodes"
+  ],
+  "ledger_sha256": "2c681aa1c96b3626677d9790118a6912585bb370cbbf547050de91c11aedd5b6",
+  "returncode": 0,
+  "returned_utc": "2026-09-28T08:05:50.596674+00:00",
+  "stdout_sha256": "4c64be12db7503f257ba1de6b4a709baab4310bfaf30f412e4384d38ff892475",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

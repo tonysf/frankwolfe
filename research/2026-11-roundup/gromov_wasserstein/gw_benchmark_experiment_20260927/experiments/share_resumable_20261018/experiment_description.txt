@@ -1,0 +1,60 @@
+SHARE-seq campaign with extendable final FRAMES states, 2026-10-18
+
+User request
+Relaunch SHARE-seq with resumable checkpoints. The earlier submission already
+resumed interrupted allocations, but deleted final checkpoints on completion.
+This replacement retains the three final FRAMES confirmation checkpoints so
+the anytime schedules can later continue beyond 20,000 updates.
+
+Scientific design unchanged
+Exact archived 31,890-cell SHARE-seq matrices/marginals, FP64 arithmetic,
+product initialization, and 1,024 fresh iid coupling pairs per stochastic
+update. Full-gradient POT: one 2,000-update run. Pair-sampled POT: three
+2,000-update runs. POT epsilon=.001; both inner criteria stay at1e-7.
+FRAMES:24 prefactor candidates times two development seeds, each20,000 updates,
+then the selected candidate on three fresh confirmation seeds811,812,813.
+gamma0={.3,1}; rho0={.1,.3,1}; mu_scale={.1,1,10,100}; exponents3/4,1/2,1/4.
+This is55 runs total. No random-sign oracle and no change to numerical updates.
+
+Retention and extension
+All unfinished tasks retain transactional checkpoints across allocations.
+Each final FRAMES confirmation retains raw coupling P, stochastic momentum D,
+global update count, per-rank random states, counters and diagnostics. Finished
+development and POT tasks retain their metadata but prune tensor checkpoints.
+The three confirmation states are the final reported FRAMES replicates.
+
+New runner supports --extend-from CHECKPOINT_DIR into a fresh output directory
+with a strictly larger target horizon. Target horizon is separate from the
+numerical identity; all other numerical settings, source, data and topology
+must match. Same-output interruption resumes remain strict. Parent checkpoints
+remain unchanged, including their manifest and provenance. A continuation uses
+the original global iteration and momentum; schedules are not restarted.
+This launch still targets20,000 FRAMES updates. It enables later extensions;
+it does not independently authorize or submit a30,000-update experiment.
+
+Execution and storage
+One serial SHARE stream on4A100,8CPUs,128GiB,fwllm/gpua100;24h allocation limit,
+22h soft stop, checkpoint every5,000 updates or30min, automatic CPU dispatchers.
+Three final FRAMES states occupy45.46GiB; the peak while writing the third
+transactional checkpoint is60.62GiB. Reserve62GiB for SHARE and3GiB for the
+two serialized entropy streams,65GiB total. The epsilon1e-6 additions follow
+the existing entropy streams by dependency, avoiding overlapping same-dataset
+checkpoint demands. No full retained archive of48 development states.
+
+Validation
+Local tests and scheduled CPU/four-A100 gates check completed4->extended6
+against uninterrupted6 bit-for-bit for coupling, momentum, random state,
+trajectory and counters, and verify the parent checkpoint is unchanged.
+Actual-size gates verify initialization, memory and interruption/resume for
+all three methods. Production depends on these new source-specific gates.
+
+Replacement scope
+Old pending SHARE production2082903 was held before any update; its dispatcher
+is2082904. Both are superseded only when the new replacement is queued safely.
+Historical CUDA failure evidence and all completed BMMC/SNARE results remain.
+
+Storage calculation: combined tensor peak=62.684 GiB; the65 GiB reservation
+leaves2.316 GiB for serialization, manifests, logs and other small outputs.
+The earlier68 GiB pre-submission check failed before any jobs were submitted.
+Controllers finish interrupted pruning of validated completed nonretained
+checkpoints before advancing, preserving terminal receipts and retained states.

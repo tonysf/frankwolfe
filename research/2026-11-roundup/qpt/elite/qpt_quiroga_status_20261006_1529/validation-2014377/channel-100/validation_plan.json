@@ -1,0 +1,133 @@
+{
+  "analysis_policy": {
+    "no_selection_or_reranking": true,
+    "paired_scores": "Physical metrics only; native penalized objectives are not paired scores.",
+    "primary_gate_estimand": "Mean sampling pass rate within initialization, then equal-weight mean across channels; failed runs remain in denominators.",
+    "printed_deduplication": "Verify matching non-timing endpoints and final-factor hashes across sampling streams; count once per channel/initialization."
+  },
+  "array_channel_mapping": "channel_id=100+SLURM_ARRAY_TASK_ID",
+  "campaign_id": "qpt_quiroga_n2_full_validation_20261005_2136",
+  "channels": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107
+  ],
+  "environment": {
+    "conda_environment": "qpt",
+    "module": "anaconda3/2023.09-0/none-none",
+    "threads": 2
+  },
+  "expected_counts": {
+    "frames_executions": 24,
+    "paired_trials": 24,
+    "paired_trials_per_channel": 3,
+    "printed_executions": 24,
+    "unique_frames_outcomes": 24,
+    "unique_printed_outcomes": 8
+  },
+  "failure_policy": {
+    "exit2": "Continue only after both artifacts validate and at least one method is failed; retain this outcome in the gate denominator.",
+    "invalid_archive_or_infrastructure": "Preserve logs, partial artifacts and entire pending inventory, then stop the channel with exit3.",
+    "no_overwrite": true,
+    "time_guard": "Do not begin a new trial with120seconds or less remaining; retain pending inventory and exit75.",
+    "valid_runner_exits": [
+      0,
+      2
+    ]
+  },
+  "frozen_utc": "2026-10-05T19:47:54.929968+00:00",
+  "initialization_indices": [
+    0
+  ],
+  "kind": "frozen_confirmatory_validation_plan",
+  "matched_budget": {
+    "checkpoints_including_initial": 101,
+    "frames_steps": 40000,
+    "nominal_row_accesses_per_method": 1280000,
+    "printed_steps": 10000
+  },
+  "output_root": "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_c7a8c9789b7814ede1c95e53eef13bfe1dd58c63_20261005_02",
+  "resources": {
+    "account": "fwllm",
+    "array": "0-7%1",
+    "cpus_per_task": 2,
+    "memory": "1G",
+    "minimum_seconds_before_new_trial": 120,
+    "nodes": 1,
+    "partition": "cpu_short",
+    "tasks": 1,
+    "walltime_seconds": 1200
+  },
+  "sampling_indices": [
+    0,
+    1,
+    2
+  ],
+  "schema_version": 1,
+  "scientific_role": "Confirm the independently selected calibration configurations on separate validation channels; never rerank or retune on these outcomes.",
+  "seed_formulas": {
+    "initialization": "200000+10*channel_id+initialization_index",
+    "sampling": "300000+100*channel_id+10*initialization_index+sampling_index",
+    "subset": "400000+channel_id"
+  },
+  "selection": {
+    "manifest_filename": "selection_manifest.json",
+    "manifest_sha256": "fa9b5d5287f260296d7ee8fa292f303b389494fe6413d897bd6c60afa06d4178",
+    "selected": {
+      "frames": {
+        "alpha0": 5e-05,
+        "config_id": "n2f-f-a5em5-p025-v1"
+      },
+      "printed-adafgd": {
+        "alpha": 0.5,
+        "config_id": "n2f-q-a5em1-e1em2-v1",
+        "eta_scale": 0.01
+      }
+    }
+  },
+  "shared": {
+    "active_rows": 128,
+    "batch_size": 32,
+    "checkpoint_epochs": 100,
+    "dense_max_process_dimension": 1024,
+    "frames_penalty_exponent": 0.25,
+    "gate": {
+      "fidelity_min": 0.99,
+      "name": "noiseless_recovery_v1",
+      "normalized_tp_max": 0.001,
+      "rmse_max": 1e-06
+    },
+    "n_qubits": 2,
+    "noise_seed": 0,
+    "noise_std": 0,
+    "observation_mode": "noiseless",
+    "rank": 1,
+    "rho_schedule": {
+      "exponent": 0.6,
+      "offset": 4,
+      "scale": 2
+    },
+    "row_epochs": 10000,
+    "shot_seed": 0,
+    "spectral_norm_method": "dense",
+    "spectral_norm_tolerance": 1e-10,
+    "step_schedule": {
+      "exponent": 1,
+      "offset": 2,
+      "scale": 2
+    },
+    "subset_size": 0,
+    "tau": 2
+  },
+  "source": {
+    "commit": "c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+    "repo": "/gpfs/workdir/silvetian/frankwolfe-quiroga-c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+    "require_clean": true
+  },
+  "staged_files_directory": "validation-stage-20261005-2136"
+}

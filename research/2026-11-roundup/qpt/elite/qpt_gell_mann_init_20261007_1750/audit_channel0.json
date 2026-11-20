@@ -1,0 +1,518 @@
+{
+  "audit_passed": true,
+  "audit_script_sha256": "dfc9c59f4f5d61edfeef1c47f71ef6139e9f01824c27bd995229535ec2b9e100",
+  "audited_trials": 4,
+  "cases": [
+    {
+      "actual_optimizer_row_accesses": 467712,
+      "baseline": {
+        "actual_optimizer_row_accesses": 493056,
+        "coefficient_draw_max_absolute_error": 0.0,
+        "coefficient_draw_tolerance": {
+          "atol": 1e-15,
+          "rtol": 1e-14
+        },
+        "completed_steps": 1853,
+        "dense_initializer_max_absolute_error": 6.13071990641655e-17,
+        "endpoint_physical": {
+          "factor_frobenius_norm": 2.0000000000218936,
+          "factor_operator_norm": 2.0000000000218936,
+          "measurement_loss_mean": 6.5128164910384324e-21,
+          "measurement_loss_sum": 8.336405108529193e-19,
+          "normalized_tp_violation": 2.0708729051423294e-10,
+          "process_fidelity": 1.0,
+          "rmse": 1.1412989521627041e-10,
+          "tp_violation": 4.1417458102846587e-10
+        },
+        "gate": {
+          "components": {
+            "fidelity": true,
+            "full_design_rmse": true,
+            "normalized_tp": true
+          },
+          "method_status": "converged",
+          "pass": true,
+          "thresholds": {
+            "fidelity_min": 0.99,
+            "normalized_tp_max": 0.001,
+            "rmse_max": 1e-06
+          }
+        },
+        "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-armijo-a5em4-gradstop/result.json",
+        "json_sha256": "ef0964d9e09e954395bfb2141a222ed63e4375c4443345bb3eff8e3575643aac",
+        "npz_sha256": "29e003d03f6b4bbcce7dbfa49a60ddda039e113257bec10d6fbb0cb07e74e95d",
+        "qualification": "Same coefficient draw, data, and algorithm configuration; only initializer coordinate basis changed. No trajectory equality is assumed.",
+        "status": "converged",
+        "trial_id": "c0-armijo-a5em4-gradstop"
+      },
+      "channel": 0,
+      "completed_steps": 1747,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999999999907943,
+        "factor_operator_norm": 1.9999999999907945,
+        "measurement_loss_mean": 8.791910167790708e-21,
+        "measurement_loss_sum": 1.1253645014772106e-18,
+        "normalized_tp_violation": 2.363164936731846e-10,
+        "process_fidelity": 0.9999999999999997,
+        "rmse": 1.326039981885215e-10,
+        "tp_violation": 4.726329873463692e-10
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "2e9ed3ffdfdde3e8ce2098dce00551e4543872a4aa89dc8402567b585fe6f183",
+      "first_recorded_physical_gate": {
+        "charged_rows": 268672,
+        "metrics": {
+          "measurement_loss_mean": 3.039672313869426e-13,
+          "measurement_loss_sum": 3.890780561752865e-11,
+          "normalized_tp_violation": 1.495218007947144e-06,
+          "process_fidelity": 0.9999999991938748,
+          "rmse": 7.797015215926445e-07,
+          "tp_violation": 2.990436015894288e-06
+        },
+        "step": 1000
+      },
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": true,
+          "normalized_tp": true
+        },
+        "method_status": "converged",
+        "pass": true,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_gell_mann_init_20261007_1750/completed_channels/channel-0/c0-armijo-a5em4-gradstop/result.json",
+      "json_sha256": "4279c51a531a0edbc79dd05cdf3406000cee5eb33d98d42cae69ea8c036fdcef",
+      "method": "armijo-fgd",
+      "npz_sha256": "f67e53e977c90bfaeb8a43dd97683b902deb74f1de55a4356570585e9c78d47e",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "1991631fccbb666771362122dc6fff28ea36d0fa0708853f8ae4e020f8380d1b",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "converged",
+      "stopping_audit": {
+        "archived_termination": {
+          "full_gradient_norm": 2.485255876352078e-10,
+          "gradient_threshold": 2.832608881629113e-10,
+          "initial_full_gradient_norm": 2.822608881629113,
+          "reason": "full_gradient_tolerance"
+        },
+        "comparison_atol": 1e-13,
+        "independent_full_gradient_norm": 2.4852558763520785e-10,
+        "independent_initial_full_gradient_norm": 2.822608881629113
+      },
+      "trial": {
+        "alpha": 0.0005,
+        "armijo_gradient_atol": 1e-12,
+        "armijo_gradient_rtol": 1e-10,
+        "channel": 0,
+        "checkpoint_epochs": 100,
+        "eta_scale": 0.01,
+        "id": "c0-armijo-a5em4-gradstop",
+        "method": "armijo-fgd",
+        "row_epochs": 10000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-armijo-a5em4-gradstop",
+      "work_accounting_audit": {
+        "accepted_gradient_passes": 1747,
+        "accepted_iteration_objective_evaluations": 1906,
+        "rule": "128*(accepted gradients + accepted-iteration objective evaluations) + terminal attempt",
+        "terminal_attempt_rows": 128,
+        "verified_terminal_rows": 467712
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 12800000,
+      "baseline": {
+        "actual_optimizer_row_accesses": 12800000,
+        "coefficient_draw_max_absolute_error": 0.0,
+        "coefficient_draw_tolerance": {
+          "atol": 1e-15,
+          "rtol": 1e-14
+        },
+        "completed_steps": 400000,
+        "dense_initializer_max_absolute_error": 6.13071990641655e-17,
+        "endpoint_physical": {
+          "factor_frobenius_norm": 1.9999916229485166,
+          "factor_operator_norm": 1.9999916229485166,
+          "measurement_loss_mean": 6.169356029109496e-13,
+          "measurement_loss_sum": 7.896775717260155e-11,
+          "normalized_tp_violation": 9.522904138219925e-06,
+          "process_fidelity": 0.9999999999620974,
+          "rmse": 1.1107975539322632e-06,
+          "tp_violation": 1.904580827643985e-05
+        },
+        "gate": {
+          "components": {
+            "fidelity": true,
+            "full_design_rmse": false,
+            "normalized_tp": true
+          },
+          "method_status": "complete",
+          "pass": false,
+          "thresholds": {
+            "fidelity_min": 0.99,
+            "normalized_tp_max": 0.001,
+            "rmse_max": 1e-06
+          }
+        },
+        "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-f-fast-average-100kep/result.json",
+        "json_sha256": "8b3610ea5020dc25a484b0981ee4e97615d342719652f2c0aae7e3dba3f9db0a",
+        "npz_sha256": "4ef4aafcc6640a8c64bbd16b4a641204af88d6fe53aecea84a75f1eba5adb0d2",
+        "qualification": "Same coefficient draw, data, and algorithm configuration; only initializer coordinate basis changed. No trajectory equality is assumed.",
+        "status": "complete",
+        "trial_id": "c0-f-fast-average-100kep"
+      },
+      "channel": 0,
+      "completed_steps": 400000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9999916229485397,
+        "factor_operator_norm": 1.99999162294854,
+        "measurement_loss_mean": 6.169355996343334e-13,
+        "measurement_loss_sum": 7.896775675319468e-11,
+        "normalized_tp_violation": 9.522904112325497e-06,
+        "process_fidelity": 0.9999999999620972,
+        "rmse": 1.1107975509824763e-06,
+        "tp_violation": 1.9045808224650995e-05
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "79cc0bfcb7c11be4c4ac8616b1a1e6a3d9704fd88342c39a9812a9d9cc50758f",
+      "first_recorded_physical_gate": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": true
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_gell_mann_init_20261007_1750/completed_channels/channel-0/c0-f-fast-average-100kep/result.json",
+      "json_sha256": "a91a71b6807631d019091a31ca03be16ae17dd989b7e7f2894acbc1a7d6e18df",
+      "method": "frames",
+      "npz_sha256": "0b47f3c36c94f2d01b8ed312b0ca8b93ac3d3af4bf042a76ec7a3aacad91710f",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "1991631fccbb666771362122dc6fff28ea36d0fa0708853f8ae4e020f8380d1b",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "stopping_audit": null,
+      "trial": {
+        "alpha": 5e-05,
+        "armijo_gradient_atol": 0.0,
+        "armijo_gradient_rtol": 0.0,
+        "channel": 0,
+        "checkpoint_epochs": 1000,
+        "eta_scale": 0.01,
+        "id": "c0-f-fast-average-100kep",
+        "method": "frames",
+        "row_epochs": 100000,
+        "step_schedule": {
+          "cap": 1.0,
+          "exponent": 1.0,
+          "offset": 4.0,
+          "scale": 4.0
+        },
+        "tau": 2.0
+      },
+      "trial_id": "c0-f-fast-average-100kep",
+      "work_accounting_audit": {
+        "rule": "32*completed_steps",
+        "verified_terminal_rows": 12800000
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 12800000,
+      "baseline": {
+        "actual_optimizer_row_accesses": 12800000,
+        "coefficient_draw_max_absolute_error": 0.0,
+        "coefficient_draw_tolerance": {
+          "atol": 1e-15,
+          "rtol": 1e-14
+        },
+        "completed_steps": 100000,
+        "dense_initializer_max_absolute_error": 6.13071990641655e-17,
+        "endpoint_physical": {
+          "factor_frobenius_norm": 2.0000228464959227,
+          "factor_operator_norm": 2.0000228464959227,
+          "measurement_loss_mean": 1.2838868502588216e-06,
+          "measurement_loss_sum": 0.00016433751683312916,
+          "normalized_tp_violation": 0.0030064317388624967,
+          "process_fidelity": 0.9965358827134398,
+          "rmse": 0.0016024274400164406,
+          "tp_violation": 0.0060128634777249935
+        },
+        "gate": {
+          "components": {
+            "fidelity": true,
+            "full_design_rmse": false,
+            "normalized_tp": false
+          },
+          "method_status": "complete",
+          "pass": false,
+          "thresholds": {
+            "fidelity_min": 0.99,
+            "normalized_tp_max": 0.001,
+            "rmse_max": 1e-06
+          }
+        },
+        "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-q-a5em4-e1-100kep/result.json",
+        "json_sha256": "854629738be893280c4e95b2f152b086fca9b9d16a217fbcf6404221236f89f8",
+        "npz_sha256": "080c03707c823385d949e070b1e101028e4fa3cb8080f0d30db90d77e2f37415",
+        "qualification": "Same coefficient draw, data, and algorithm configuration; only initializer coordinate basis changed. No trajectory equality is assumed.",
+        "status": "complete",
+        "trial_id": "c0-q-a5em4-e1-100kep"
+      },
+      "channel": 0,
+      "completed_steps": 100000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.999788083276795,
+        "factor_operator_norm": 1.9997880832767947,
+        "measurement_loss_mean": 5.46197762231934e-07,
+        "measurement_loss_sum": 6.991331356568755e-05,
+        "normalized_tp_violation": 0.0022052819788151694,
+        "process_fidelity": 0.9986987989149955,
+        "rmse": 0.001045177269396856,
+        "tp_violation": 0.004410563957630339
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "c970974816d4e4c88b6e3a51399f5679f38ba59cd9eb756bc67ce0a06a117cb5",
+      "first_recorded_physical_gate": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": false
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_gell_mann_init_20261007_1750/completed_channels/channel-0/c0-q-a5em4-e1-100kep/result.json",
+      "json_sha256": "6d7aed9b4984811fad878926bb94229a7c26c35ca1cdc4faf76964522de8a660",
+      "method": "printed-adafgd",
+      "npz_sha256": "c71deb6226383dece9c4fe5ec5141748976d5771a02efde604be837221c9b8eb",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "1991631fccbb666771362122dc6fff28ea36d0fa0708853f8ae4e020f8380d1b",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "stopping_audit": null,
+      "trial": {
+        "alpha": 0.0005,
+        "armijo_gradient_atol": 0.0,
+        "armijo_gradient_rtol": 0.0,
+        "channel": 0,
+        "checkpoint_epochs": 1000,
+        "eta_scale": 1.0,
+        "id": "c0-q-a5em4-e1-100kep",
+        "method": "printed-adafgd",
+        "row_epochs": 100000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-q-a5em4-e1-100kep",
+      "work_accounting_audit": {
+        "failed_terminal_attempt_rows": 0,
+        "rule": "128*completed_steps plus one attempted pass only on failed terminal update",
+        "verified_terminal_rows": 12800000
+      }
+    },
+    {
+      "actual_optimizer_row_accesses": 12800000,
+      "baseline": {
+        "actual_optimizer_row_accesses": 12800000,
+        "coefficient_draw_max_absolute_error": 0.0,
+        "coefficient_draw_tolerance": {
+          "atol": 1e-15,
+          "rtol": 1e-14
+        },
+        "completed_steps": 100000,
+        "dense_initializer_max_absolute_error": 6.13071990641655e-17,
+        "endpoint_physical": {
+          "factor_frobenius_norm": 1.9993094545875225,
+          "factor_operator_norm": 1.9993094545875223,
+          "measurement_loss_mean": 1.1951995907421415e-06,
+          "measurement_loss_sum": 0.0001529855476149941,
+          "normalized_tp_violation": 0.007113939279086928,
+          "process_fidelity": 0.9967170083266248,
+          "rmse": 0.0015460915825022408,
+          "tp_violation": 0.014227878558173855
+        },
+        "gate": {
+          "components": {
+            "fidelity": true,
+            "full_design_rmse": false,
+            "normalized_tp": false
+          },
+          "method_status": "complete",
+          "pass": false,
+          "thresholds": {
+            "fidelity_min": 0.99,
+            "normalized_tp_max": 0.001,
+            "rmse_max": 1e-06
+          }
+        },
+        "json_path": "/home/tony/qpt_quiroga_followup_20261006_1820/completed_channels/channel-0/c0-q-a5em6-e1-100kep/result.json",
+        "json_sha256": "15bec7142e0a526458b4cfb985febc4315cb024869103410aa416c5a1f97efee",
+        "npz_sha256": "61c49b83a2d1893540dc2fd86aec5eca7e55c2a743d865d070ace47f94a36de7",
+        "qualification": "Same coefficient draw, data, and algorithm configuration; only initializer coordinate basis changed. No trajectory equality is assumed.",
+        "status": "complete",
+        "trial_id": "c0-q-a5em6-e1-100kep"
+      },
+      "channel": 0,
+      "completed_steps": 100000,
+      "endpoint_physical": {
+        "factor_frobenius_norm": 1.9990732413871148,
+        "factor_operator_norm": 1.999073241387115,
+        "measurement_loss_mean": 1.4702727991615176e-06,
+        "measurement_loss_sum": 0.00018819491829267425,
+        "normalized_tp_violation": 0.008672929630548944,
+        "process_fidelity": 0.9959649208644281,
+        "rmse": 0.0017148019122694713,
+        "tp_violation": 0.017345859261097888
+      },
+      "failure_reason": null,
+      "final_factor_sha256": "70835c629fb7894b78bb3d75be9fb1013eedc1448c01823c176418ef77193de1",
+      "first_recorded_physical_gate": null,
+      "gate": {
+        "components": {
+          "fidelity": true,
+          "full_design_rmse": false,
+          "normalized_tp": false
+        },
+        "method_status": "complete",
+        "pass": false,
+        "thresholds": {
+          "fidelity_min": 0.99,
+          "normalized_tp_max": 0.001,
+          "rmse_max": 1e-06
+        }
+      },
+      "json_path": "/home/tony/qpt_gell_mann_init_20261007_1750/completed_channels/channel-0/c0-q-a5em6-e1-100kep/result.json",
+      "json_sha256": "1f26a321d3b9895d11393bde55fb5f2d01b0a042ee2372a6bbe7040bbbbded38",
+      "method": "printed-adafgd",
+      "npz_sha256": "1e243c13d00613d4eddea2eaebbda2701b87e46a97de37e3ae23281b6b5bef5a",
+      "shared_array_hashes": {
+        "active_observations": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+        "active_rows": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+        "initial_factor": "1991631fccbb666771362122dc6fff28ea36d0fa0708853f8ae4e020f8380d1b",
+        "truth_factor": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9"
+      },
+      "status": "complete",
+      "stopping_audit": null,
+      "trial": {
+        "alpha": 5e-06,
+        "armijo_gradient_atol": 0.0,
+        "armijo_gradient_rtol": 0.0,
+        "channel": 0,
+        "checkpoint_epochs": 1000,
+        "eta_scale": 1.0,
+        "id": "c0-q-a5em6-e1-100kep",
+        "method": "printed-adafgd",
+        "row_epochs": 100000,
+        "tau": 2.0
+      },
+      "trial_id": "c0-q-a5em6-e1-100kep",
+      "work_accounting_audit": {
+        "failed_terminal_attempt_rows": 0,
+        "rule": "128*completed_steps plus one attempted pass only on failed terminal update",
+        "verified_terminal_rows": 12800000
+      }
+    }
+  ],
+  "created_utc": "2026-10-07T18:02:35.719602+00:00",
+  "expected_trials": 8,
+  "inventories": [
+    {
+      "channel": 0,
+      "path": "/home/tony/qpt_gell_mann_init_20261007_1750/completed_channels/channel-0/inventory.json",
+      "sha256": "f149452107ef302a772f9795e85334ab93d83ade00000d3cfe1ddc50352c3af6",
+      "state": "complete"
+    }
+  ],
+  "kind": "qpt_gell_mann_audit",
+  "method_counts": {
+    "armijo-fgd": {
+      "official_endpoint_gate_passes": 1,
+      "status_counts": {
+        "converged": 1
+      }
+    },
+    "frames": {
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "complete": 1
+      }
+    },
+    "printed-adafgd": {
+      "official_endpoint_gate_passes": 0,
+      "status_counts": {
+        "complete": 2
+      }
+    }
+  },
+  "missing_trial_ids": [
+    "c1-armijo-a5em4-gradstop",
+    "c1-f-fast-average-100kep",
+    "c1-q-a5em4-e1-100kep",
+    "c1-q-a5em6-e1-100kep"
+  ],
+  "paired_reference_script_sha256": "5aca1b009a4657d3f559db17d23a0b1b9619d69c3eae8097d96580d22bec1541",
+  "partial_mode": true,
+  "prior_audit": {
+    "path": "/home/tony/qpt_quiroga_followup_20261006_1820/audit_complete.json",
+    "sha256": "a091664e575338ff7a1947eae0d195ea349f64ca8881566dc15d712da2b120de"
+  },
+  "provenance": {
+    "campaign_id": "qpt_gell_mann_init_20261007",
+    "plan_builder_sha256": "242b2798440c1a888765b3b27639fd84d1a05cdd5fe757168ec8adb6e494fe0d",
+    "plan_sha256": "cc34b86834f9a6a26a798f8a3d2b39e2de8b850b6564017f87dfbc56d2f016bb",
+    "runner_sha256": "cc577b317992f224e139454b7fd9beb19a152c2caf008e05a813ae2f4449697c",
+    "source_commit": "966ef74f57a3e4d9fcd1378df99df3e4641a7d31",
+    "source_sha256": {
+      "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+      "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+      "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+      "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+      "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+      "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+      "paper/experiments/qpt_quiroga_campaign.py": "fceb93c00b278aef58b44971223ea1ac9db5c770bee9f164aea1a364f5da84d6",
+      "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+      "paper/experiments/qpt_quiroga_initialization.py": "7f171780eb939e57cf32d0dc6205c7673473255aea551b736c3087a47a6caf31",
+      "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+      "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652",
+      "scripts/qpt_gell_mann_diagnostic/audit_results.py": "dfc9c59f4f5d61edfeef1c47f71ef6139e9f01824c27bd995229535ec2b9e100",
+      "scripts/qpt_gell_mann_diagnostic/diagnostic.sbatch": "3a87069dc85d5b760c1be789d78b19e48bba14ab25940b939fe465a22f0909ad",
+      "scripts/qpt_gell_mann_diagnostic/freeze_plan.py": "242b2798440c1a888765b3b27639fd84d1a05cdd5fe757168ec8adb6e494fe0d",
+      "scripts/qpt_gell_mann_diagnostic/paired_reference.py": "5aca1b009a4657d3f559db17d23a0b1b9619d69c3eae8097d96580d22bec1541",
+      "scripts/qpt_gell_mann_diagnostic/run_diagnostic.py": "cc577b317992f224e139454b7fd9beb19a152c2caf008e05a813ae2f4449697c",
+      "scripts/qpt_gell_mann_diagnostic/support.py": "cb2690059046ed47ac06c9d4f1bb13fae88599ba2dd9746e0115465e93c7d863",
+      "scripts/qpt_gell_mann_diagnostic/test_harness.py": "25ba61c78b3725835e8d7e4a23399427acd10c8a8a48772aeb5cfcd2bd4ec557",
+      "scripts/qpt_gell_mann_diagnostic/work_accounting.py": "2cc6b4f916bbc2ac7afa9d41015d6b691713031b371e6ee8e3a982a09d854638"
+    }
+  },
+  "qualification": "Exploratory calibration only, not selection or unseen validation. Convergence is an optimizer stop, not a recovery certificate. Earlier-checkpoint physical gates are retrospective diagnostics and never relabel failed terminal status. Armijo row charges are not nominal-budget-matched to the primary methods.",
+  "schema_version": 1,
+  "trial_ids_without_inventory_checksum": [],
+  "work_accounting_script_sha256": "2cc6b4f916bbc2ac7afa9d41015d6b691713031b371e6ee8e3a982a09d854638"
+}

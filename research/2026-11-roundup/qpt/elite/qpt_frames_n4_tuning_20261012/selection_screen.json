@@ -1,0 +1,89 @@
+{
+  "audit_sha256": "636bbc0c73d731cea3c9f8cecc038005751f10fdde59e668a3aa8349d8a17e07",
+  "created_utc": "2026-10-12T18:23:22.441059+00:00",
+  "ranking_inputs": [
+    {
+      "both_pass": false,
+      "config_id": "penalty-div8",
+      "worst_deficit": 3062.3601189157102,
+      "worst_fidelity": 0.003463524783648705,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "penalty-div64",
+      "worst_deficit": 3266.9009941482796,
+      "worst_fidelity": 0.016290464479212795,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "penalty-div512",
+      "worst_deficit": 2419.0232634003196,
+      "worst_fidelity": 0.1317518526054749,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "penalty-slow",
+      "worst_deficit": 3170.1109223186677,
+      "worst_fidelity": 0.020778611219336964,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "step-wide",
+      "worst_deficit": 448.86508037348335,
+      "worst_fidelity": 0.9474657309735204,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "step-slow",
+      "worst_deficit": 204.5759402032039,
+      "worst_fidelity": 0.9878121691484216,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "batch128",
+      "worst_deficit": 3264.697047687335,
+      "worst_fidelity": 0.018655862482307176,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "rho-half",
+      "worst_deficit": 3485.2053367136878,
+      "worst_fidelity": 0.004651523527343816,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "penalty64-stepwide",
+      "worst_deficit": 893.2891628136485,
+      "worst_fidelity": 0.7782787347635498,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "penalty64-stepslow",
+      "worst_deficit": 14.010141534246484,
+      "worst_fidelity": 0.9999982515673668,
+      "worst_persistent_gate_rows": null
+    },
+    {
+      "both_pass": false,
+      "config_id": "penalty64-batch128",
+      "worst_deficit": 3107.8804442056053,
+      "worst_fidelity": 0.01683224524261709,
+      "worst_persistent_gate_rows": null
+    }
+  ],
+  "rule": "Among new configurations completing both channels, nominate minimum worst-channel joint deficit and maximum worst-channel fidelity; deduplicate and fill the second slot by joint-deficit order. Ties: worst deficit, config ID for fidelity; config ID for deficit.",
+  "selected_config_ids": [
+    "penalty64-stepslow",
+    "step-slow"
+  ],
+  "spec_sha256": "eab442b19fb1d057fd757b169da789b467a17b8ad05b7227f15d0a8b53c6d7fb"
+}

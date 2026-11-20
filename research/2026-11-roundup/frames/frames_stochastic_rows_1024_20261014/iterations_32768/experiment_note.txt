@@ -1,0 +1,214 @@
+                   Stochastic FRAMES: experiment specification
+                       Nonconvex ℓ1 -constrained least squares in dimension 1024
+                         14 October 2026       ·     Uniform sampling of individual data rows
+
+Problem. With d = m = 1024, the problem and its four ingredients are
+
+                                                                           2  5
+                                 min f (x) + g(T x),       f (x) = ∥Ax − B∥2 − (u⊤ x)2 ,
+                                 x∈C                                          8
+                                                                                    (
+                                                                                     0,        z ∈ D,
+          C = {x ∈ R1024 : ∥x∥1 ≤ 1},          T = I1024 ,          g(z) = ιD (z) =                        D = R1024
+                                                                                                                + .
+                                                                                     +∞,       z∈/ D,
+                                                                                 1024
+                                              P
+Thus original feasibility means x ≥ 0 and          j xj ≤ 1. The vectors a, u ∈ R     are
+                        
+                        1/32,          1 ≤ j ≤ 64,                      (
+                                                                          (−1)j−1 /8,
+                        
+                                                                                          1 ≤ j ≤ 64,
+                    aj = −3/128,        65 ≤ j ≤ 128,               uj =
+                                                                         0,              65 ≤ j ≤ 1024.
+                          1/128,        129 ≤ j ≤ 1024,
+                        
+
+Define a Hadamard matrix recursively and set the data matrix and response to
+                                                         
+                                             Wn       Wn                     W1024 diag(c)
+                   W1 = [1],        W2n =                   ,         A=       √           ,       B = Aa.
+                                             Wn       −Wn                        2048
+
+The signs cj ∈ {−1, 1} are drawn independently and uniformly once, using NumPy’s default random generator
+                                                                                                2
+with seed 20261014, and fixed for every run. Since A⊤ A = I/2, the least-squares term is ∥x − a∥2 /2. Writing
+         5   ⊤
+Q = I − 4 uu , we have
+
+                               ∇f (x) = Qx − a,         ∇2 f = Q,          spec(Q) = {−1/4, 1}.
+
+The shared concave quadratic makes f nonconvex; its gradient is globally 1-Lipschitz.
+Row-sampled stochastic gradient. Let Ai be row i of A, and Bi the corresponding response. The finite sum
+and sampled gradient are
+                                m
+                             1 X                                  5
+                         f=        fi ,  fi (x) = m(Ai x − Bi )2 − (u⊤ x)2 ,
+                             m i=1                                8
+
+                                                  5 ⊤
+                       qk = 2m(Aik xk − Bik )A⊤
+                                              ik − (u xk )u,                 ik ∼ Uniform{1, . . . , m}.
+                                                  4
+Rows are sampled independently with replacement; the concave term is evaluated exactly. If Fk denotes the history
+before the fresh row draw, then
+
+                                                                     2                         2     318153
+                  E[qk | Fk ] = ∇f (xk ),      E[∥qk − ∇f (xk )∥2 | Fk ] = 1023 ∥xk − a∥2 ≤                 .
+                                                                                                       256
+
+Initialization and parameters. For each seed s ∈ {0, . . . , 7}, draw Js uniformly from {1, . . . , 1024} independently
+of all row draws, and set
+                                                          (s)
+                                                         x0 = −eJs .
+Here ej has entry 1 in position j and zeros elsewhere. Thus the initial point has one random entry equal to −1, with
+  (s)                    (s)
+ x0      = 1 and distD (x0 ) = 1. Initialize momentum with the first sampled gradient. Use N = 32768 updates per
+       1
+seed, 8 seeds, float64 arithmetic, and
+
+                  γk = (k + 1)−3/4 ,        βk = (k + 1)−1/4 ,           αk = (k + 1)−1/2 ,        0 ≤ k < N.
+
+These are respectively the Frank–Wolfe step size, smoothing parameter, and weight on the new stochastic gradient.
+All prefactors are 1; one row is sampled per update.
+
+
+
+
+                                                                1
+Gap and feasibility notation. Define (xk )− = min(xk , 0) coordinatewise, and set
+
+                                                                                                                                                 (xk )−
+                                                                 zk := ∇f (xk ) = Qxk − a,                                    hk := zk +                .
+                                                                                                                                                   βk
+The reported gaps use these exact vectors, rather than the sampled gradient:
+
+                        Gk := max⟨hk , xk − v⟩ = ⟨hk , xk ⟩ + ∥hk ∥∞ ,                                                                                  smoothed Frank–Wolfe gap,
+                                    v∈C
+
+                    Hk := max ⟨zk , xk − v⟩ = ⟨zk , xk ⟩ + max{0, − min zk,j } ,                                                                        original constrained gap,
+                                   v∈C∩D                                                                                j
+
+
+                        δk := distD (xk ) = ∥(xk )− ∥2 ,                                                                                                feasibility violation.
+
+Since xk ∈ C, Gk ≥ 0. However, Hk can be negative when xk ∈        / D; the cumulative original-gap plot therefore
+reports |Hk |. Feasibility and the original gap are interpreted together.
+What the plots average. For Zk ∈ {Gk , |Hk |, δk }, define
+                                                                                              N −1                                   7
+                                                                       (s)              1 X (s)                         bZ (N ) = 1
+                                                                                                                                    X   (s)
+                                                                     ZN =                  Zk ,                         A              Z .
+                                                                                        N                                         8 s=0 N
+                                                                                              k=0
+
+Every pre-update iterate x0 , . . . , xN −1 is included. Thin curves are individual seed averages; the black curve is
+AbZ (N ); the band is ±2 standard errors across the eight seed averages (descriptive). The dashed N −1/3 line is a
+comparison slope only, not a claimed convergence guarantee or a numerical upper bound.
+
+Plots. Eight seeds with random negative-vertex initialization.
+
+                                                                     Nonconvex 1024D least squares: one sampled row per update
+                                   True smoothed gap                                                         Original gap magnitude                                                    Feasibility violation
+                                                  8-seed mean; band ±2 SE                                                                                          100
+                                                  N −1/3 comparison guide
+
+                                                                                        100
+            100
+                                                                                                                                                  ∑ dist (x )
+                                                                                                                                                         k
+                                                                            ∑ |H |
+  k
+
+
+
+
+                                                                               k
+
+
+
+
+                                                                                                                                                         D
+
+
+
+
+                                                                                                                                                                  10−1
+∑G
+   <N
+
+
+
+
+                                                                                 <N
+       k
+
+
+
+
+                                                                                                                                                             <N
+                                                                                   k
+N −1
+
+
+
+
+                                                                            N −1
+
+
+
+
+                                                                                                                                                             k
+                                                                                                                                                    N −1
+
+
+
+
+                                                                                       10−1
+           10−1
+                                                                                                                                                                  10−2
+
+                  100           101      102        103        104                            100           101      102        103        104                           100       101      102        103       104
+                                  Sampled rows / updates N                                                    Sampled rows / updates N                                               Sampled rows / updates N
+
+
+Cumulative averages of Gk , |Hk |, and δk over all recorded iterates.
+
+
+                                                                            Instantaneous certificates: fluctuations are permitted
+                                  True smoothed gap                                                           Signed original gap                                                      Feasibility violation
+                                                                                 0.028
+       0.030                                                                                                                                                 0.0055
+                                                                                 0.027
+       0.028                                                                                                                                                 0.0050
+                                                                                 0.026
+                                                                                 0.025                                                                       0.0045
+                                                                                                                                                 distD(xk)
+
+
+
+
+       0.026
+                                                                            Hk
+Gk
+
+
+
+
+                                                                                 0.024                                                                       0.0040
+       0.024                                                                     0.023                                                                       0.0035
+                                                                                 0.022                                                                       0.0030
+       0.022
+                                                                                 0.021                                                                       0.0025
+                        31000        31500       32000       32500                                  31000       31500       32000        32500                                 31000     31500       32000      32500
+                                        Iteration k                                                                Iteration k                                                              Iteration k
+
+
+Individual values of Gk , signed Hk , and δk during the final 2048 iterations. Each color represents one seed.
+
+
+
+
+                                                                                                                    2
+

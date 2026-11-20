@@ -1,0 +1,335 @@
+{
+  "aggregation": "linear interpolation of each FRAMES trace on the union of measured times within shared observed support; median and min\u2013max across three seeds",
+  "csv": "traces.csv",
+  "datasets": {
+    "bmmc6224": {
+      "frames_common_time_interval_seconds": [
+        1.4617191702127457,
+        1478.5794515297748
+      ],
+      "frames_three_seeds": {
+        "final_loss": {
+          "maximum": 0.14564951306206764,
+          "median": 0.14556595332899003,
+          "minimum": 0.14459074037370678
+        },
+        "last_diagnostic_elapsed_seconds": {
+          "maximum": 1504.0740632931702,
+          "median": 1485.349239396397,
+          "minimum": 1478.5794515297748
+        },
+        "loss_reduction_fraction": {
+          "maximum": 0.10214318985384407,
+          "median": 0.096087466015784,
+          "minimum": 0.0955685899438874
+        },
+        "total_elapsed_seconds": {
+          "maximum": 1505.3693187069148,
+          "median": 1486.5634890720248,
+          "minimum": 1479.8661441118456
+        }
+      },
+      "frames_to_pot_total_elapsed_ratio": 0.836458369238046,
+      "full_gradient_pot": {
+        "final_loss": 0.1451625462999262,
+        "initial_loss": 0.1610398659783734,
+        "last_diagnostic_elapsed_seconds": 1776.3589360131882,
+        "loss_reduction_fraction": 0.0985924794583436,
+        "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/bmmc6224/baseline/pot-full_seed810/metadata.json",
+        "metadata_sha256": "981527c1b63ffd7c014db9b27829f6914b8b31ea98f42a824bd0c8ff9336e389",
+        "method": "pot-full",
+        "seed": 810,
+        "slurm_job_id": "2089227",
+        "timing": {
+          "clock": "time.monotonic",
+          "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+          "elapsed_prior_seconds": 0.0,
+          "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+          "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+          "resume_elapsed_source": "new_run",
+          "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+          "resume_unmeasured_tail_possible": false,
+          "start": "before data validation/loading; after CUDA/distributed initialization",
+          "units": "seconds"
+        },
+        "total_elapsed_seconds": 1777.2115669380873,
+        "updates": 2000
+      },
+      "runs": [
+        {
+          "final_loss": 0.1451625462999262,
+          "initial_loss": 0.1610398659783734,
+          "last_diagnostic_elapsed_seconds": 1776.3589360131882,
+          "loss_reduction_fraction": 0.0985924794583436,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/bmmc6224/baseline/pot-full_seed810/metadata.json",
+          "metadata_sha256": "981527c1b63ffd7c014db9b27829f6914b8b31ea98f42a824bd0c8ff9336e389",
+          "method": "pot-full",
+          "seed": 810,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 1777.2115669380873,
+          "updates": 2000
+        },
+        {
+          "final_loss": 0.14564951306206764,
+          "initial_loss": 0.1610398659783734,
+          "last_diagnostic_elapsed_seconds": 1485.349239396397,
+          "loss_reduction_fraction": 0.0955685899438874,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/bmmc6224/confirmation/c08_seed811/metadata.json",
+          "metadata_sha256": "fc032b6e69b94c53be6323836178b971a7ea066d8dd86415ae6f989332368f4c",
+          "method": "frames",
+          "seed": 811,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 1486.5634890720248,
+          "updates": 20000
+        },
+        {
+          "final_loss": 0.14556595332899003,
+          "initial_loss": 0.1610398659783734,
+          "last_diagnostic_elapsed_seconds": 1504.0740632931702,
+          "loss_reduction_fraction": 0.096087466015784,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/bmmc6224/confirmation/c08_seed812/metadata.json",
+          "metadata_sha256": "995073d3ad56839d0ed6786699ecc63f3e7c2845f49df68b8c3d242e8b21de38",
+          "method": "frames",
+          "seed": 812,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 1505.3693187069148,
+          "updates": 20000
+        },
+        {
+          "final_loss": 0.14459074037370678,
+          "initial_loss": 0.1610398659783734,
+          "last_diagnostic_elapsed_seconds": 1478.5794515297748,
+          "loss_reduction_fraction": 0.10214318985384407,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/bmmc6224/confirmation/c08_seed813/metadata.json",
+          "metadata_sha256": "c3113a8186323cdfa78a7176a089ff5f191f2e4315c9cbabd1e77c304a8bac79",
+          "method": "frames",
+          "seed": 813,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 1479.8661441118456,
+          "updates": 20000
+        }
+      ]
+    },
+    "snare_full": {
+      "frames_common_time_interval_seconds": [
+        3.0999949271790683,
+        2009.4989191750064
+      ],
+      "frames_three_seeds": {
+        "final_loss": {
+          "maximum": 0.08373538591781449,
+          "median": 0.08368684832898499,
+          "minimum": 0.08364291618110364
+        },
+        "last_diagnostic_elapsed_seconds": {
+          "maximum": 2025.7119179680012,
+          "median": 2017.8133527929895,
+          "minimum": 2009.4989191750064
+        },
+        "loss_reduction_fraction": {
+          "maximum": 0.1108672601560109,
+          "median": 0.11040025693808875,
+          "minimum": 0.10988429741262273
+        },
+        "total_elapsed_seconds": {
+          "maximum": 2029.32741291821,
+          "median": 2021.2187175331637,
+          "minimum": 2012.5453454111703
+        }
+      },
+      "frames_to_pot_total_elapsed_ratio": 1.205901930435086,
+      "full_gradient_pot": {
+        "final_loss": 0.0843443317702176,
+        "initial_loss": 0.09407247358339316,
+        "last_diagnostic_elapsed_seconds": 1674.3598833139986,
+        "loss_reduction_fraction": 0.1034111408216748,
+        "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/snare_full/baseline/pot-full_seed810/metadata.json",
+        "metadata_sha256": "687a29c7601631b7a7b15ef2442c699de7cb7089d9d12fdc9f625c3db9124e0d",
+        "method": "pot-full",
+        "seed": 810,
+        "slurm_job_id": "2089227",
+        "timing": {
+          "clock": "time.monotonic",
+          "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+          "elapsed_prior_seconds": 0.0,
+          "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+          "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+          "resume_elapsed_source": "new_run",
+          "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+          "resume_unmeasured_tail_possible": false,
+          "start": "before data validation/loading; after CUDA/distributed initialization",
+          "units": "seconds"
+        },
+        "total_elapsed_seconds": 1676.1053834650666,
+        "updates": 2000
+      },
+      "runs": [
+        {
+          "final_loss": 0.0843443317702176,
+          "initial_loss": 0.09407247358339316,
+          "last_diagnostic_elapsed_seconds": 1674.3598833139986,
+          "loss_reduction_fraction": 0.1034111408216748,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/snare_full/baseline/pot-full_seed810/metadata.json",
+          "metadata_sha256": "687a29c7601631b7a7b15ef2442c699de7cb7089d9d12fdc9f625c3db9124e0d",
+          "method": "pot-full",
+          "seed": 810,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 1676.1053834650666,
+          "updates": 2000
+        },
+        {
+          "final_loss": 0.08368684832898499,
+          "initial_loss": 0.09407247358339316,
+          "last_diagnostic_elapsed_seconds": 2025.7119179680012,
+          "loss_reduction_fraction": 0.11040025693808875,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/snare_full/confirmation/c06_seed811/metadata.json",
+          "metadata_sha256": "ca0fd348dffefcfd2b100239b52dc01326340da8539058f39dfb6ea78a8c2ffe",
+          "method": "frames",
+          "seed": 811,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 2029.32741291821,
+          "updates": 20000
+        },
+        {
+          "final_loss": 0.08364291618110364,
+          "initial_loss": 0.09407247358339316,
+          "last_diagnostic_elapsed_seconds": 2009.4989191750064,
+          "loss_reduction_fraction": 0.1108672601560109,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/snare_full/confirmation/c06_seed812/metadata.json",
+          "metadata_sha256": "11b16182f92c1ba931ae041df93021454e52ea128dfb89c1d1082733adce5394",
+          "method": "frames",
+          "seed": 812,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 2012.5453454111703,
+          "updates": 20000
+        },
+        {
+          "final_loss": 0.08373538591781449,
+          "initial_loss": 0.09407247358339316,
+          "last_diagnostic_elapsed_seconds": 2017.8133527929895,
+          "loss_reduction_fraction": 0.10988429741262273,
+          "metadata_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339/results/snare_full/confirmation/c06_seed813/metadata.json",
+          "metadata_sha256": "6ff205815e2fd62a61f3a4ea25dca3b32fc736ad4be17b005d2970bc115a4a51",
+          "method": "frames",
+          "seed": 813,
+          "slurm_job_id": "2089227",
+          "timing": {
+            "clock": "time.monotonic",
+            "diagnostic_timestamp": "after complete diagnostic, including device synchronization",
+            "elapsed_prior_seconds": 0.0,
+            "excludes": "queueing, imports, CUDA/distributed initialization, final receipt write and checkpoint cleanup",
+            "includes": "data validation/loading, optimization, full-loss diagnostics, checkpoint transactions",
+            "resume_elapsed_source": "new_run",
+            "resume_note": "Active chunk times are summed. Work after the last durable matching receipt is not recoverable after a crash.",
+            "resume_unmeasured_tail_possible": false,
+            "start": "before data validation/loading; after CUDA/distributed initialization",
+            "units": "seconds"
+          },
+          "total_elapsed_seconds": 2021.2187175331637,
+          "updates": 20000
+        }
+      ]
+    }
+  },
+  "figures": {
+    "bmmc6224": [
+      "bmmc6224_loss_vs_time.png",
+      "bmmc6224_loss_vs_time.pdf"
+    ],
+    "snare_full": [
+      "snare_full_loss_vs_time.png",
+      "snare_full_loss_vs_time.pdf"
+    ]
+  },
+  "generated_at": "2026-10-18T22:19:15.153326+00:00",
+  "metric": "rounded_loss",
+  "root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/wallclock_replay_20261018_6927339",
+  "status": "completed",
+  "time_axis": "measured elapsed_seconds; no iteration-based estimates",
+  "timing": "Includes loading, diagnostics and checkpoint writes. Excludes queueing, imports, CUDA initialization, final receipt/cleanup and prefactor tuning. Resumed time sums active chunks and may omit work after the last durable receipt before a crash.",
+  "uncertainty": "Seed range is descriptive, not a confidence interval; full-gradient POT has one observed trajectory"
+}

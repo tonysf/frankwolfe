@@ -1,0 +1,140 @@
+{
+  "classification": "native_numerical_failure_not_infrastructure_failure",
+  "run_id": "final_product/native-sampled-gw/c08/metric512_noisy_s2000/s103_i100",
+  "slurm_array_job_id": 1961580,
+  "slurm_array_task_id": 0,
+  "slurm_job_id": 1961581,
+  "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+  "pot_version": "0.9.6.post1",
+  "instance_sha256": "33009f382973532aba7a2d0df97dc38c053886938719e01255fe706b738ff11f",
+  "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+  "config": {
+    "dtype": "float32",
+    "batch": 128,
+    "epsilon": 0.01,
+    "budget": 300.0,
+    "seed": 103,
+    "init_seed": 100,
+    "max_iter": 1000000
+  },
+  "error": "ValueError: probabilities contain NaN",
+  "completed_iterations": 540,
+  "completed_updates": 540,
+  "failed_attempt_ordinal": 541,
+  "failure_location": "native conditional target sampling: T[index0_i,:] / sum(T[index0_i,:]), instrumented_function.py:86; numpy.random.RandomState.choice rejects probabilities containing NaN",
+  "warning_counts": [
+    {
+      "category": "UserWarning",
+      "message": "Sinkhorn did not converge. You might want to increase the number of iterations `numItermax` or the regularization parameter `reg`.",
+      "count": 538
+    },
+    {
+      "category": "UserWarning",
+      "message": "Warning: numerical errors at iteration 0",
+      "count": 2
+    }
+  ],
+  "warning_count": 540,
+  "timing": {
+    "preparation_seconds": 0.9357141529908404,
+    "solver_seconds": 283.5823488564929,
+    "repair_seconds": 0.027601537760347128,
+    "exact_diagnostic_seconds": 0.33430213993415236,
+    "final_float64_validation_seconds": 0.0,
+    "serialization_seconds": 0.008468392072245479,
+    "total_elapsed_seconds_before_final_metadata_write": 285.11497767607216,
+    "unclassified_instrumentation_and_python_seconds": 0.22654259682167321
+  },
+  "launcher_process_seconds": 294.9621515159961,
+  "launcher_returncode": 1,
+  "infrastructure_error": null,
+  "failure_timing_complete": false,
+  "failure_timing_note": "on failure solver_seconds is the last completed callback clock; total elapsed still includes rejected work",
+  "final_float64_validation": null,
+  "final_npz_exists": false,
+  "checkpoint_observations": [
+    {
+      "target_seconds": 1.0,
+      "actual_solver_seconds": 1.209559942013584,
+      "iteration": 2,
+      "rounded_loss_float32": 0.03590559959411621,
+      "raw_zero_entries": 8888
+    },
+    {
+      "target_seconds": 3.0,
+      "actual_solver_seconds": 3.325953991035931,
+      "iteration": 6,
+      "rounded_loss_float32": 0.033649563789367676,
+      "raw_zero_entries": 212392
+    },
+    {
+      "target_seconds": 10.0,
+      "actual_solver_seconds": 10.187173686223105,
+      "iteration": 19,
+      "rounded_loss_float32": 0.03276801109313965,
+      "raw_zero_entries": 260953
+    },
+    {
+      "target_seconds": 30.0,
+      "actual_solver_seconds": 30.220249082776718,
+      "iteration": 57,
+      "rounded_loss_float32": 0.03266024589538574,
+      "raw_zero_entries": 261601
+    },
+    {
+      "target_seconds": 100.0,
+      "actual_solver_seconds": 100.27650555188302,
+      "iteration": 190,
+      "rounded_loss_float32": 0.03266024589538574,
+      "raw_zero_entries": 261626
+    }
+  ],
+  "missing_checkpoint_targets": [
+    300.0
+  ],
+  "root_cause_limit": "The terminal invalid transport and conditional probability vector were not saved. Exact zero-row versus nonfinite-state propagation cannot be distinguished without a rerun; no rerun was performed. Late Sinkhorn numerical warnings and severe observed support loss are consistent with native finite-precision degradation, not a proof of the precise first invalid arithmetic operation.",
+  "instrumentation_validation": {
+    "scope": "Read-only failure audit. Native AST/source hashes independently checked. Reporter parsing uses only a temporary path mapping and parser-smoke scope for this copied record; no synthetic production ledger, no rerun, no input dataset opened.",
+    "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+    "receipt_matches_frozen_spec": true,
+    "archived_native_hashes_valid": true,
+    "source_snapshot_hashes_valid": true,
+    "instrumentation_reversal_matches_native_AST": true,
+    "native_semantic_ast_sha256": "31347198bec93adf8db71d8199f36b3ad3405dd59777a83a3e245fee85fa8885",
+    "reporter_status": "failed",
+    "reporter_execution_terminal": true,
+    "reporter_final_eligible": false,
+    "reporter_failure_penalty": "+inf",
+    "reporter_observed_checkpoint_targets": [
+      1.0,
+      3.0,
+      10.0,
+      30.0,
+      100.0
+    ],
+    "reporter_missing_targets": [
+      300.0
+    ],
+    "reporter_recorded_solver_seconds": 283.5823488564929,
+    "reporter_retained_instrumented_seconds": 285.11497767607216,
+    "reporter_issues": [
+      "ValueError: probabilities contain NaN"
+    ],
+    "last_observed_saved_raw_plan": {
+      "shape": [
+        512,
+        512
+      ],
+      "dtype": "float32",
+      "finite": true,
+      "zero_entries": 261626,
+      "zero_rows": 0,
+      "minimum_row_sum_float64": 0.0019531248835846782
+    }
+  },
+  "reporting_policy": "Keep failed terminal status and all earlier observed checkpoints at their actual times; do not fabricate the300s point or a final rounded64 score. The final output remains ineligible (+inf failure penalty). No replacement setting, repeat, or candidate reselection.",
+  "evidence_root": "/home/tony/gw_benchmark_experiment_20260927/ruche_results/final_native_failure_preview",
+  "transfer_verification_sha256": "b60728e4d9fed069b3916dd8ae08d7ae1caece61cebc20306182d79f67f1d491",
+  "sinkhorn_source_verification_sha256": "71bdb857afbc2ad71168f3d8e8a76534cf21992253c73dcca46f0a7c4634392d",
+  "scope": "Read-only postmortem of one genuine failed final trial; copied only this trial/log and the source file named in its warnings. No input dataset, other trial, solver rerun, retuning, cancellation, or runtime source modification."
+}

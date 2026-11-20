@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "collected_date": "2026-11-06",
+  "execution_host": "Elite",
+  "tested_package_commit": "4ce1108a0692edc43b47ef465dbc74a42397765e",
+  "python_version": "3.11.2",
+  "dependency_versions": "requirements-tested.txt",
+  "cpu_tests": [
+    {
+      "files": [
+        "tests/test_qpt_armijo_stopping.py",
+        "tests/test_qpt_quiroga_campaign.py",
+        "tests/test_qpt_quiroga_direct_comparison.py",
+        "tests/test_qpt_quiroga_failure_archival.py",
+        "tests/test_qpt_quiroga_initialization.py",
+        "tests/test_qpt_quiroga_linesearch.py",
+        "tests/test_qpt_quiroga_frames.py",
+        "tests/test_qpt_quiroga_sensing.py"
+      ],
+      "passed": 164,
+      "skipped": 4,
+      "failed": 0
+    },
+    {
+      "files": [
+        "scripts/qpt_quiroga_tuning/test_tuning_harness.py"
+      ],
+      "passed": 16,
+      "skipped": 0,
+      "failed": 0,
+      "warnings": "12 expected numerical overflow/invalid-value warnings in intentional catastrophic-step failure-archive test"
+    },
+    {
+      "files": [
+        "scripts/qpt_gell_mann_diagnostic/test_harness.py"
+      ],
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "cpu_test_invocation": "PYTHONDONTWRITEBYTECODE=1 MPLCONFIGDIR=/tmp/research-roundup-mpl OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -m pytest -q -p no:cacheprovider <files>",
+  "cpu_total": {
+    "passed": 189,
+    "skipped": 4,
+    "failed": 0
+  },
+  "scope": "CPU tests exercise the six existing unpublished QPT commits. Collected historical campaigns were not rerun; no cluster numerical tests, submissions, cancellations or source modifications were performed.",
+  "archive_checks": [
+    "Every indexed public file SHA-256 and byte size checked by verify.py",
+    "Python AST, JSON/JSONL parsing, no symlinks or raw array/executable dependency payloads",
+    "Targeted credential patterns and authored PDF review",
+    "GW and QPT selected logical layouts fully reconstructed into fresh temporary directories and hashes verified",
+    "Restoration helpers reviewed for traversal, symlink, overwrite and partial-validation handling"
+  ],
+  "area_validation": [
+    "frames/VALIDATION.json",
+    "gromov_wasserstein/validation.json",
+    "qpt/provenance/collection-validation.json"
+  ],
+  "independent_review": "A separate agent reviewed inventory pointers, the restoration helpers, metadata exclusions, authored PDF/article headers and archive/scientific limits; no remaining publication blocker found.",
+  "backup_record": "backup_record.json",
+  "scientific_limit": "Static collection validation and software unit tests do not independently reproduce all numerical claims or certify unfinished campaigns.",
+  "archive_whitespace": "Historical snapshots preserve original bytes and CRLF/whitespace under scoped .gitattributes -text -whitespace, matching the repository existing results/** convention. Standard staged git diff --check passes with this archival attribute."
+}

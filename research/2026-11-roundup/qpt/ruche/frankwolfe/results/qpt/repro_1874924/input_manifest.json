@@ -1,0 +1,176 @@
+{
+  "configuration": {
+    "h5": "/gpfs/workdir/silvetian/QPT_BFW/jax_arr_gt_xi_0.05.h5",
+    "save": "results/qpt/benchmark_1865396/result.json",
+    "artifacts_dir": "results/qpt/benchmark_1865396/artifacts",
+    "device": "gpu",
+    "device_index": 0,
+    "precision": "64",
+    "steps": 1000,
+    "rank": 1,
+    "tau": 10.0,
+    "batch_size": 32,
+    "chunk_steps": 100,
+    "metrics_every": 0,
+    "metric_mode": "full",
+    "metric_samples": 512,
+    "metric_batch_size": 32,
+    "metric_seed": 12345,
+    "initialization_seed": 0,
+    "sampling_seed": 0,
+    "repeats": 3,
+    "backends": [
+      "dense",
+      "structured"
+    ],
+    "measurement_backend": "tensor",
+    "rtol": 1e-10,
+    "atol": 1e-12,
+    "allocator": "grow",
+    "profile_memory": false,
+    "memory_poll_ms": 100.0,
+    "require_gpu_memory": false,
+    "rho_scale": 2.0,
+    "rho_offset": 4.0,
+    "rho_exponent": 0.6,
+    "smoothing_scale": 10.0,
+    "smoothing_offset": 1.0,
+    "smoothing_exponent": 0.25,
+    "step_scale": 2.0,
+    "step_offset": 2.0,
+    "step_exponent": 1.0
+  },
+  "measurement_backend": "tensor",
+  "scan_chunk_steps": 100,
+  "source": {
+    "report": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_1865396/result.json",
+    "report_sha256": "e8bf96df42577ca6481ca93cde23767496613cbe6712657395fef84e8690d937",
+    "compact_data": "/gpfs/workdir/silvetian/frankwolfe/results/qpt/benchmark_1865396/artifacts/data.npz",
+    "compact_sha256": "7792bb14d89b12a5d00e55189f21b1a740d3962c2288ba7485478b6833b5f3b1",
+    "benchmark_status": "failed"
+  },
+  "frozen_inputs": {
+    "arrays": {
+      "bank": {
+        "shape": [
+          24,
+          4,
+          4
+        ],
+        "dtype": "complex128",
+        "sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea"
+      },
+      "basis": {
+        "shape": [
+          4,
+          2,
+          2
+        ],
+        "dtype": "complex128",
+        "sha256": "6d17ffd5fe17793afa08a7a28a6a6aa6a91e82cbe32e0d4ecc8ce4d2efb3263a"
+      },
+      "beta": {
+        "shape": [
+          1000
+        ],
+        "dtype": "float64",
+        "sha256": "cbc8435e57e464b402d5222a9eabcb490ea633b1beaa9cec71c5bcad97733c4e"
+      },
+      "boundaries": {
+        "shape": [
+          11
+        ],
+        "dtype": "int64",
+        "sha256": "c97f09b7d6651cc374d501a12e4ab1dd6a55e9018231b3ef1658697a85c60c87"
+      },
+      "factor0": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "f4934586d9f3ceebb7eba8889f4a282b7ea7a235ec555d7e7c57234bec8ba597"
+      },
+      "gamma": {
+        "shape": [
+          1000
+        ],
+        "dtype": "float64",
+        "sha256": "bd41a5aeda2fed02d1625f107f9d6edb6661860077ddce5e1d4e861b6e53e928"
+      },
+      "local_measurements": {
+        "shape": [
+          24,
+          4,
+          4
+        ],
+        "dtype": "complex128",
+        "sha256": "84f524bfc7f3a9fddab6a11f5a15111126e496b80a34838e2ec9cff86ff3ddea"
+      },
+      "momentum0": {
+        "shape": [
+          64,
+          1
+        ],
+        "dtype": "complex128",
+        "sha256": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+      },
+      "observations": {
+        "shape": [
+          1000,
+          32
+        ],
+        "dtype": "float64",
+        "sha256": "abeb6a141e091672393ab4532b53daf2a6dcbadba02cd3dd16379dd4ee912cfc"
+      },
+      "rho": {
+        "shape": [
+          1000
+        ],
+        "dtype": "float64",
+        "sha256": "0573973211fba17ed713d15df003db31864848eede9cfdf4ddee2f7116a2f28e"
+      },
+      "symbols": {
+        "shape": [
+          1000,
+          32,
+          3
+        ],
+        "dtype": "int32",
+        "sha256": "35382d8b0154a2a159989a0513ac06d5e73c1306823283bd270670fc6f134ee3"
+      },
+      "truth": {
+        "shape": [
+          64,
+          0
+        ],
+        "dtype": "complex128",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "input_sha256": "7b0c28a486301f5d8ade1d8ab28b53a9df488f8b5c91bd059b2f03b5701540a1",
+    "bundle_sha256": "10c20d41dc1655dd30b56a15db114b394289e5dfa028ec41e6031259e3726ae0",
+    "initial_factor_sha256": "f4934586d9f3ceebb7eba8889f4a282b7ea7a235ec555d7e7c57234bec8ba597",
+    "batch_symbols_sha256": "35382d8b0154a2a159989a0513ac06d5e73c1306823283bd270670fc6f134ee3"
+  },
+  "controls": {
+    "replays": 3,
+    "device": "gpu",
+    "rtol": 1e-10,
+    "atol": 1e-12,
+    "max_reference_bytes": 134217728
+  },
+  "numerical_source_sha256": {
+    "scripts/diagnose_qpt_reproducibility.py": "6f52fdc33ce5905f8d3fef10a1f1e5bed4f1cccec38c1275526fed639c1e6d6b",
+    "paper/experiments/quantum_process_tomography_structured_jax.py": "8c6cde6891c466d87d1b5395817feafd2be9341529fb3db556cf72abfbcc7775",
+    "paper/experiments/qpt_structured_operators.py": "f0d955d900f2c3ed77b0a8e5bea06acf03dbadfa272abb9e708c357e219c715d",
+    "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652",
+    "paper/experiments/quantum_process_tomography_jax.py": "31b7746d52282096536d9e061b37a040b2bfc1cbd769d45537278ca2c093f619",
+    "paper/experiments/qpt_reproducibility_probes.py": "4399940d5a44edf6eabbf2144aefd5b31e5f50227917c439c4a9b4a51751178f"
+  },
+  "storage": {
+    "plan_array_bytes": 664000,
+    "per_worker_trace_array_bytes": 91584,
+    "note": "Diagnostic freezes the complete plan and saves chunk states; not a memory benchmark."
+  }
+}
