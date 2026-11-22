@@ -23,7 +23,7 @@
       "archive_relative_path": "report_update.json",
       "sha256": "d2fdfb459f757509c085be1f7f43560be0ba2bcb705aad862230905b78a678fa"
     },
-    "scientific_content": "Current report files and source appendix preserve their published Elite bytes. Prior numerical evidence and the gradient-estimator explanation are retained. Only public appendix links are relocated.",
+    "scientific_content": "Report files and the source appendix preserve the current Elite document bytes. Document revisions record explanatory edits after the frozen experiment publication; numerical results and figures are unchanged. Only public appendix links are relocated.",
     "predecessor_snapshot": {
       "date": "2026-11-19",
       "published_utc": "2026-11-19T17:56:32.202562+00:00",
@@ -92,10 +92,10 @@
   ],
   "files": {
     "report/ct_experiments.tex": {
-      "bytes": 12966,
-      "sha256": "81d65544d1cd8513fa365e2e6a8288f7e589b96cb616126b9d7599c585f3de88",
+      "bytes": 12943,
+      "sha256": "98218eae74e019e5575eac9388c1cf0304f57d9f3cfe8babb17ae4b7623cc0dd",
       "copy_mode": "byte-identical",
-      "original_sha256": "81d65544d1cd8513fa365e2e6a8288f7e589b96cb616126b9d7599c585f3de88",
+      "original_sha256": "98218eae74e019e5575eac9388c1cf0304f57d9f3cfe8babb17ae4b7623cc0dd",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/ct_experiments.tex"
     },
     "report/ct_reproducibility_link.tex": {
@@ -106,10 +106,10 @@
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/ct_reproducibility_link.tex"
     },
     "report/sframes_ct_section.pdf": {
-      "bytes": 2116814,
-      "sha256": "e29f08dfe7ac9f6e24bde2384942e4548f107e0540fc07003f44c7172e4e80c7",
+      "bytes": 2116507,
+      "sha256": "138e01f35ac0d583bf3d2a6fb2e9c57609608bf60423a403d4f55c6d9561a942",
       "copy_mode": "byte-identical",
-      "original_sha256": "e29f08dfe7ac9f6e24bde2384942e4548f107e0540fc07003f44c7172e4e80c7",
+      "original_sha256": "138e01f35ac0d583bf3d2a6fb2e9c57609608bf60423a403d4f55c6d9561a942",
       "source_relative_path": "spectral_balls/expanded/reports/paper_section/revised/sframes_ct_section.pdf"
     },
     "report/sframes_ct_section.tex": {
@@ -183,5 +183,60 @@
     "proxsarah",
     "spring"
   ],
-  "document_revisions": []
+  "document_revisions": [
+    {
+      "date": "2026-11-22",
+      "updated_utc": "2026-11-22T11:57:48.718746+00:00",
+      "description": "Report the full paired L-BFGS-B evaluation and qualify the formal domain difference: every recorded evaluation iterate satisfies the spectral bounds. Compact one redundant protocol sentence; retain all metrics and figures.",
+      "previous_pdf_sha256": "e29f08dfe7ac9f6e24bde2384942e4548f107e0540fc07003f44c7172e4e80c7",
+      "pdf_sha256": "138e01f35ac0d583bf3d2a6fb2e9c57609608bf60423a403d4f55c6d9561a942",
+      "previous_tex_sha256": "81d65544d1cd8513fa365e2e6a8288f7e589b96cb616126b9d7599c585f3de88",
+      "tex_sha256": "98218eae74e019e5575eac9388c1cf0304f57d9f3cfe8babb17ae4b7623cc0dd",
+      "numerical_results_unchanged": true,
+      "pages": 5,
+      "figures": 2,
+      "tables": 1,
+      "evaluation_audit": {
+        "source_summary_sha256": "39682d73c343c9ee44b77321f4ea973842c8e99da796656532048a17a9935323",
+        "comparison": "joint_lbfgsb against per-slice median loss-tuned SFRAMES",
+        "view_counts": {
+          "360": {
+            "feasible_loss": {
+              "lbfgsb_lower": 14,
+              "sframes_lower": 0,
+              "ties": 0
+            },
+            "validation_loss": {
+              "lbfgsb_lower": 8,
+              "sframes_lower": 6,
+              "ties": 0
+            },
+            "reference_relative_error": {
+              "lbfgsb_lower": 0,
+              "sframes_lower": 14,
+              "ties": 0
+            }
+          },
+          "1080": {
+            "feasible_loss": {
+              "lbfgsb_lower": 1,
+              "sframes_lower": 13,
+              "ties": 0
+            },
+            "validation_loss": {
+              "lbfgsb_lower": 1,
+              "sframes_lower": 13,
+              "ties": 0
+            },
+            "reference_relative_error": {
+              "lbfgsb_lower": 1,
+              "sframes_lower": 13,
+              "ties": 0
+            }
+          }
+        },
+        "maximum_recorded_evaluation_spectral_radius_ratio": 0.948121339222305
+      }
+    }
+  ]
 }

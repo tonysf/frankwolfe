@@ -120,9 +120,11 @@ Table~\ref{tab:ct-results} gives endpoint metrics; Figures~\ref{fig:ct-trajector
 and~\ref{fig:ct-trajectories-1080} show progress versus iterations, oracle calls,
 and processed views.
 
-Joint L-BFGS-B gives raw/evaluated losses of \(5.61\) and \(6.82\) (\(\times10^3\)) at \(N=360,1{,}080\), respectively. Like NNLS and multiplicative
-updates, it remains nonnegative. These methods optimize over \(D\) alone,
-so quality differences also reflect the optimization domain.
+Compared with per-slice median loss-tuned SFRAMES, L-BFGS-B improves
+evaluated loss but worsens reference error on all 14 slices at \(N=360\).
+SFRAMES improves both on 13 of 14 slices at \(N=1{,}080\).
+All recorded L-BFGS-B evaluation iterates satisfy the spectral bounds;
+these results do not establish a benefit from removing them.
 
 \begin{table}[!htbp]
 \centering
@@ -175,7 +177,6 @@ respectively. No evaluation slice enters parameter selection.
 SPRING--SARAH uses \(64\)-view differences, independent full-gradient
 refreshes with probability \(1/16\), and steps \(1/(2\widetilde L)\).
 PALM uses full block gradients and steps \(1/\widehat L\).
-Both retain their original steps and sampling rules during continuation.
 They estimate current block curvature by five power iterations followed
 by a final norm evaluation, using minibatches for SPRING and all views for PALM.
 ProxSARAH uses the paper's constant-parameter variant v3: full snapshots,
