@@ -94,7 +94,8 @@ def validate_bundle(root=BUNDLE, require_archive=False):
             except ValueError:
                 expected = ("../../../results/stochastic_matrix_factorization/ct/",
                             "../../../results/stochastic_matrix_factorization/ct_nonnegative/",
-                            "../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/")
+                            "../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/",
+                            "../../../results/stochastic_matrix_factorization/ct_robustness_20261122/")
                 if not relative.startswith(expected):
                     raise ValueError("Unexpected external local document link: " + target)
                 archive_links += 1

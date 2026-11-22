@@ -4,6 +4,8 @@ This bundle compares SFRAMES, SPRING–SARAH, ProxSARAH and PALM with nonnegativ
 
 The [PDF](report/sframes_ct_section.pdf), LaTeX, figures and [public appendix](CT_REPRODUCIBILITY.md) are bundled. [Joint L-BFGS-B evidence](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/archive_manifest.json), [NNLS/MU evidence](../../../results/stochastic_matrix_factorization/ct_nonnegative/archive_manifest.json), and [original evidence](../../../results/stochastic_matrix_factorization/ct/archive_manifest.json) retain frozen sources, settings and trajectories. The [manifest](manifest.json) records hashes and predecessor provenance. The gradient-estimator explanation is preserved.
 
+The [expanded evaluation protocol](ROBUSTNESS_EVALUATION.md) specifies the next campaign: four view counts, additional sampling repetitions, deterministic FraMES, batch and averaging controls, joint tuning, rank/radius/initialization sensitivity, and fresh slices. Its implementation is included here; the captured PDF continues to report the completed predecessor evaluation until the expanded results pass validation.
+
 ## Validate
 
 From the repository root:
