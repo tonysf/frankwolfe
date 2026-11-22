@@ -373,8 +373,8 @@ def alternative_start(problem, U, V, reference_caps, initialization, seed):
         if norm > limits[index]:
             factor *= limits[index] / norm
     return (*factors, dict(initialization=initialization, initialization_seed=int(seed),
-        unconstrained_amplitude=amplitude, fitted_amplitude=fitted,
-        amplitude_limited_by_reference_spectral_bounds=amplitude > capacity,
+        unconstrained_amplitude=amplitude, fitted_amplitude=float(fitted),
+        amplitude_limited_by_reference_spectral_bounds=bool(amplitude > capacity),
         fit_views=views.tolist(), reference_curvature_scales_retained=True))
 
 

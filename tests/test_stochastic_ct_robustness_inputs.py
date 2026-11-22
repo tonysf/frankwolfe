@@ -107,3 +107,81 @@ def test_new_problem_reuses_original_implementation_without_global_mutation(monk
     assert inputs.base_problem.view_split is original_split
     assert inputs.NewCTProblem.forward is inputs.base_problem.CTProblem.forward
     assert inputs.NewCTProblem.backward is inputs.base_problem.CTProblem.backward
+
+
+class ReceiptProblem(SimpleProblem):
+    """Tiny operator exercising the real NPZ and JSON preparation boundary."""
+    instances = []
+
+    def __init__(self, data, size, n_train):
+        self.U = np.arange(1.,9.).reshape(4,2)/10
+        self.V = self.U[::-1].copy()
+        super().__init__(1000*self.U@self.V.T)
+        self.calibration_work = dict(forward_calls=0,backward_calls=0,forward_views=0,backward_views=0)
+        self.closed = False
+        self.instances.append(self)
+
+    def calibration(self, rank, seed):
+        return self.U.copy(),self.V.copy(),np.array([99.,99.]),np.array([1.,2.])
+
+    def forward(self, image, views):
+        self.calibration_work['forward_calls'] += 1
+        self.calibration_work['forward_views'] += len(views)
+        return super().forward(image,views)
+
+    def close(self):
+        self.closed = True
+
+
+@pytest.mark.parametrize('family',['perturbed','random'])
+def test_prepare_calibration_writes_native_json_scalars_and_reuses_receipt(tmp_path,monkeypatch,family):
+    ReceiptProblem.instances=[]
+    monkeypatch.setattr(inputs,'_CalibrationProblem',ReceiptProblem)
+    data=tmp_path/'data.npz'
+    data.write_bytes(b'fixed fake measurements')
+    standard=inputs._prepare_calibration(tmp_path,data,'slice00001',2,'standard',201)
+    output=inputs._prepare_calibration(tmp_path,data,'slice00001',2,family,202,standard)
+    receipt=inputs.read(output.with_suffix('.json'))
+    assert type(receipt['amplitude_limited_by_reference_spectral_bounds']) is bool
+    assert receipt['amplitude_limited_by_reference_spectral_bounds'] is True
+    assert type(receipt['fitted_amplitude']) is float
+    assert receipt['calibration_work']['forward_views']==120
+    assert receipt['reference_calibration_sha256']==inputs.sha256(standard)
+    assert receipt['preparation_source_sha256']==inputs.sha256(inputs.__file__)
+    assert receipt['calibration_sha256']==inputs.sha256(output)
+    with np.load(standard) as reference,np.load(output) as alternative:
+        np.testing.assert_array_equal(alternative['caps'],reference['caps'])
+        np.testing.assert_array_equal(alternative['curvature'],reference['curvature'])
+    assert inputs._prepare_calibration(tmp_path,data,'slice00001',2,family,202,standard)==output
+    assert len(ReceiptProblem.instances)==2 and all(p.closed for p in ReceiptProblem.instances)
+
+
+def test_resume_npz_without_receipt_recomputes_and_retains_provenance_guard(tmp_path,monkeypatch):
+    ReceiptProblem.instances=[]
+    monkeypatch.setattr(inputs,'_CalibrationProblem',ReceiptProblem)
+    data=tmp_path/'data.npz'
+    data.write_bytes(b'fixed fake measurements')
+    standard=inputs._prepare_calibration(tmp_path,data,'slice00001',2,'standard',201)
+    write=inputs.write
+    def fail_receipt(path,value):
+        raise TypeError('simulated receipt serialization failure')
+    monkeypatch.setattr(inputs,'write',fail_receipt)
+    with pytest.raises(TypeError,match='receipt serialization'):
+        inputs._prepare_calibration(tmp_path,data,'slice00001',2,'random',202,standard)
+    output=tmp_path/'calibration/slice00001_rank2_random_seed202.npz'
+    receipt=output.with_suffix('.json')
+    assert output.exists() and not receipt.exists() and ReceiptProblem.instances[-1].closed
+    with np.load(output) as saved:
+        original={name:saved[name].copy() for name in saved.files}
+    monkeypatch.setattr(inputs,'write',write)
+    assert inputs._prepare_calibration(tmp_path,data,'slice00001',2,'random',202,standard)==output
+    assert receipt.exists() and len(ReceiptProblem.instances)==3
+    with np.load(output) as saved:
+        for name,value in original.items():
+            np.testing.assert_array_equal(saved[name],value)
+    record=inputs.read(receipt)
+    record['preparation_source_sha256']='0'*64
+    inputs.write(receipt,record)
+    with pytest.raises(ValueError,match='provenance changed'):
+        inputs._prepare_calibration(tmp_path,data,'slice00001',2,'random',202,standard)
+    assert len(ReceiptProblem.instances)==3
