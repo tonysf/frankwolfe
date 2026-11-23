@@ -1,0 +1,256 @@
+{
+  "title": "Practical-run parser smoke using preserved CPU test outputs",
+  "scope": "parser-smoke",
+  "scope_statement": "This is an output-parser/plotting test using preserved small CPU runs and a separate fixture plan. These records are not A100 Stage C results.",
+  "status": "partial",
+  "generated_utc": "2026-09-27T18:33:52.667797+00:00",
+  "input_root": "/home/tony/gw_benchmark_experiment_20260927/reports/practical_summarizer_smoke/failure_input",
+  "command": [
+    "summarize_practical.py",
+    "--root",
+    "reports/practical_summarizer_smoke/failure_input",
+    "--out",
+    "reports/practical_summarizer_smoke/failure_parser_report",
+    "--plan",
+    "reports/practical_summarizer_smoke/failure_fixture_plan.json",
+    "--scope",
+    "parser-smoke"
+  ],
+  "plan": {
+    "scope": "parser fixture from preserved real n16 CPU test runs",
+    "budget_solver_seconds": 0.03,
+    "checkpoints_seconds": [
+      0.03
+    ],
+    "instances": [
+      "toy_failure.npz"
+    ],
+    "stochastic_seed": 100,
+    "initialization": "product",
+    "initialization_seed": 200,
+    "dtype": "float64",
+    "device": "CPU parser fixture",
+    "threads": 1,
+    "methods": {
+      "fw": {}
+    }
+  },
+  "plan_sha256": "9863a258a3f6ac2f1c997eddf0e4eff639dbb9d8cee085fd382a072ae1a59aee",
+  "runs": [
+    {
+      "instance": "toy_failure",
+      "method": "fw",
+      "path": "/home/tony/gw_benchmark_experiment_20260927/reports/practical_summarizer_smoke/failure_input/toy_failure/fw",
+      "status": "failed",
+      "issues": [
+        "FloatingPointError: Nonfinite gradient rejected."
+      ],
+      "failure_events": [
+        {
+          "iteration": 0,
+          "type": "run_rejected",
+          "error": "FloatingPointError: Nonfinite gradient rejected."
+        }
+      ],
+      "plot_eligible": true,
+      "recorded_status": "failed",
+      "n": 16,
+      "m": 16,
+      "recorded_device": "cpu",
+      "recorded_gpu": null,
+      "dtype": "float64",
+      "environment": {
+        "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+        "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+        "hostname": "elite",
+        "cpu_model": "AMD Ryzen 5 PRO 3400G with Radeon Vega Graphics",
+        "torch_num_threads": 1,
+        "torch_num_interop_threads": 8,
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "MKL_NUM_THREADS": "1",
+          "OPENBLAS_NUM_THREADS": "1"
+        },
+        "packages": {
+          "numpy": "2.4.6",
+          "scipy": "1.17.1",
+          "torch": "2.14.0+cpu",
+          "POT": "0.9.7.post1"
+        },
+        "cuda_runtime": null,
+        "deterministic_algorithms": true,
+        "float32_matmul_precision": "highest",
+        "cuda_matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "amp": false,
+        "device": "cpu",
+        "cublas_workspace_config": ":4096:8"
+      },
+      "config": {
+        "instance": "/tmp/pytest-of-tony/pytest-45/test_nonfinite_gradient_reject0/toy_failure.npz",
+        "method": "fw",
+        "out": "/tmp/pytest-of-tony/pytest-45/test_nonfinite_gradient_reject0/run",
+        "budget": 0.03,
+        "checkpoints": null,
+        "device": "cpu",
+        "dtype": "float64",
+        "threads": 1,
+        "seed": 100,
+        "init_seed": 200,
+        "oracle": "sketch",
+        "oracle_selection_status": "development_candidate_not_frozen",
+        "batch": 32,
+        "mu0": null,
+        "mu_scale": 1.0,
+        "gamma0": null,
+        "rho0": null,
+        "eta": 10.0,
+        "eta_power": 0.0,
+        "inner_tol": 1e-30,
+        "inner_max": 1,
+        "gap_max_n": 0,
+        "pg_max_n": 128
+      },
+      "parameters": {
+        "lmo": "exact SciPy assignment",
+        "line_search": "exact quadratic"
+      },
+      "counters": {
+        "oracle_evaluations": 1,
+        "exact_gradient_calls": 1,
+        "stochastic_gradient_calls": 0,
+        "sketch_probes": 0,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 0,
+        "row_lmo_calls": 0,
+        "row_projection_calls": 0,
+        "transport_lmo_calls": 0,
+        "kl_projection_calls": 0,
+        "euclidean_projection_calls": 0,
+        "inner_iterations_total": 0,
+        "inner_stopping_failures": 0,
+        "underflow_steps": 0,
+        "underflow_entries_total": 0,
+        "underflow_entries_max": 0,
+        "attempted_updates": 1,
+        "completed_updates": 0
+      },
+      "timing": {
+        "preparation_seconds": 0.016084157046861947,
+        "solver_seconds": 0.0001334400149062276,
+        "repair_seconds": 0.00031956995371729136,
+        "exact_diagnostic_seconds": 0.0003971210680902004,
+        "final_float64_validation_seconds": 0.0,
+        "serialization_seconds": 0.0013113910099491477,
+        "total_elapsed_seconds_before_final_metadata_write": 0.01829793897923082,
+        "unclassified_python_overhead_seconds": 5.225988570600748e-05
+      },
+      "memory": {
+        "cpu_process_peak_rss_kib": 370468,
+        "cpu_peak_scope": "process lifetime, includes preparation and float64 validation",
+        "cuda_peak_allocated_bytes": null,
+        "cuda_peak_reserved_bytes": null
+      },
+      "array_sha256": {
+        "A": "5e6f26c8039c48e8f61c1093856c1c73e5676ffa7e1324e4517abdf7407961c3",
+        "B": "9f42011c7228942b8a1e61f3f3e423106ac40da77be6aacc05cfd4d1dff920b6",
+        "a": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2",
+        "b": "d5ced4a0fdc0dcd83f097357e679dbf69e71f01d4ada5a7f7670adac84ceb6c2"
+      },
+      "diagnostic_counts": {
+        "loss_calls": 2,
+        "full_gradient_calls": 0,
+        "assignment_lmo_calls": 0
+      },
+      "final_float64_validation": null,
+      "stop_reason": null,
+      "source_commit": "0b329bcd0847442b0d76223cf5101996a3c45219",
+      "source_file_sha256": {
+        "run_benchmark.py": "cf0e3c70d7bbe1cb53a85179cd6260f86c0742863649261d34226369699545ba",
+        "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+        "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04"
+      },
+      "source_artifact_sha256": {
+        "metadata.json": "94d6200d700f308aae291e34f9cde237a1d71ed154774ef312e9d36e3a5096c3",
+        "trace.csv": "fa350720746e31cd63597835364f6acb82fedbf80d28b45b3a3fdf24649b8f29",
+        "failures.json": "1cf70020baddb87b236db3a15a0d373cb7744259025ab0957cf3024e4f2f9210"
+      },
+      "numerical_policy": "negative losses retained without clamping; negative/nonfinite plans rejected",
+      "checkpoint_policy": "first completed iterate crossing earliest target; additional crossed windows marked missed",
+      "native_instrumentation": null,
+      "native_warnings": [],
+      "timing_scope": null,
+      "observed_checkpoints": {},
+      "missed_checkpoints": {
+        "0.03": {
+          "reason": "run_ended_before_target",
+          "actual_solver_seconds": 0.0001334400149062276,
+          "iteration": 0
+        }
+      },
+      "last_observed_point": {
+        "kind": "initial",
+        "target_solver_seconds": "",
+        "actual_solver_seconds": "7.427996024489403e-05",
+        "iteration": "0",
+        "raw_loss": "0.10601944285350928",
+        "rounded_loss": "0.10601944285350928",
+        "repair_l1": "0.0",
+        "repair_seconds_current": "0.00031956995371729136",
+        "repair_seconds_cumulative": "0.00031956995371729136",
+        "time_to_this_feasible_output": "0.0003938499139621854",
+        "row_l1": "0.0",
+        "col_l1": "0.0",
+        "col_l2": "0.0",
+        "both_l1": "0.0",
+        "mass_error": "0.0",
+        "min_entry": "0.00390625",
+        "rounded_row_l1": "0.0",
+        "rounded_col_l1": "0.0",
+        "rounded_col_l2": "0.0",
+        "rounded_both_l1": "0.0",
+        "rounded_mass_error": "0.0",
+        "rounded_min_entry": "0.00390625",
+        "cumulative_oracle_evaluations": "0",
+        "cumulative_exact_gradient_calls": "0",
+        "cumulative_stochastic_gradient_calls": "0",
+        "cumulative_sketch_probes": "0",
+        "cumulative_anchor_samples": "0",
+        "cumulative_initialization_oracle_calls": "0",
+        "cumulative_row_lmo_calls": "0",
+        "cumulative_row_projection_calls": "0",
+        "cumulative_transport_lmo_calls": "0",
+        "cumulative_kl_projection_calls": "0",
+        "cumulative_euclidean_projection_calls": "0",
+        "cumulative_inner_iterations_total": "0",
+        "cumulative_inner_stopping_failures": "0",
+        "cumulative_underflow_steps": "0",
+        "cumulative_underflow_entries_total": "0",
+        "cumulative_underflow_entries_max": "0",
+        "cumulative_attempted_updates": "0",
+        "cumulative_completed_updates": "0",
+        "diagnostic_seconds_cumulative": "0.0003971210680902004",
+        "reason": ""
+      },
+      "terminal_solver_seconds": 0.0001334400149062276,
+      "ended_before_budget": true
+    }
+  ],
+  "successful_runs": 0,
+  "all_run_records_successful": false,
+  "missing_checkpoint_observations": 1,
+  "full_study_complete": false,
+  "winner_selected": null,
+  "fitted_slopes": null,
+  "speedup_claim": null,
+  "figures": [
+    "current_rounded_objective.png",
+    "current_rounded_objective.pdf",
+    "rounded_original_fw_gap.png",
+    "rounded_original_fw_gap.pdf",
+    "raw_feasibility.png",
+    "raw_feasibility.pdf"
+  ],
+  "script_sha256": "6f4f2b39fe769d9322a6b4cfb90a6173651a8fcdf55b33b22744144c5c00e676",
+  "plot_library": "matplotlib 3.11.2"
+}

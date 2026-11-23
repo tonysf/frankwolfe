@@ -1,0 +1,17 @@
+{
+  "checked_utc": "2026-10-05T19:54:18Z",
+  "job_array_id": "2014377",
+  "scheduler_state": "RUNNING: task 1 (channel 101); tasks 2-7 pending at JobArrayTaskLimit",
+  "completed_paired_trials": 3,
+  "completed_count_definition": "Paired trial archives retained and checked by the cluster wrapper, including numerical failures; not successful recovery count.",
+  "method_failure_pairs": 3,
+  "first_trial_sidecar": "/home/tony/qpt_quiroga_validation_20261005_2136/first_trial/qpt-val-n2f-c100-i0-s0-20261005-2136/pair.json",
+  "first_trial_local_archive_validation": "passed, including all execution-status artifact hashes, selection provenance and endpoint/checkpoint accounting",
+  "completed_channels": [100],
+  "running_channels": [101],
+  "pending_channels": [102, 103, 104, 105, 106, 107],
+  "channel_100_inventory_sha256": "c270c3457d5f479eb4a9a6952c2a54fd0168dc3453126fc4032a63e1500a440c",
+  "channel_100_elapsed": "00:01:40",
+  "channel_100_maxrss": "128324K",
+  "note": "Channel 100 finished all three paired archives. Its Slurm FAILED/exit2 records retained numerical method failures, not lost or missing trials. Quiroga is deterministic across those three sampling repetitions: these are one independent channel outcome, not three independent channel failures. Remaining channels continue unchanged. No validation-based retuning or reranking."
+}

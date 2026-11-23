@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-10-15T22:24:30.150707+00:00",
+  "authorization": "User explicitly requested POT-step baseline on the same large datasets, followed by longer-horizon FraMES prefactor tuning with fixed theoretical exponents, queued on Ruche.",
+  "datasets": [
+    "bmmc6224",
+    "snare_full",
+    "shareseq_full"
+  ],
+  "unchanged_geometry": true,
+  "oracle": "1024 iid coupling pairs, including represented mass correction",
+  "precision": "FP64 for all methods; identical promotion of original archived FP32 distances",
+  "baselines": {
+    "full_gradient_runs": 1,
+    "pair_seeds": [
+      811,
+      812,
+      813
+    ],
+    "iterations": 2000,
+    "epsilon": 0.001,
+    "eta": 1000,
+    "inner_marginal_tol": 1e-07,
+    "inner_guarded_gap_tol": 1e-07
+  },
+  "frames": {
+    "gamma0": [
+      0.3,
+      1.0
+    ],
+    "mu_scale": [
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "rho0": [
+      0.1,
+      0.3,
+      1.0
+    ],
+    "exponents": {
+      "gamma": 0.75,
+      "momentum": 0.5,
+      "smoothing": 0.25
+    },
+    "development_seeds": [
+      810,
+      814
+    ],
+    "development_iterations": 20000,
+    "selection": "median final rounded full GW loss",
+    "confirmation_seeds": [
+      811,
+      812,
+      813
+    ],
+    "confirmation_iterations": 20000,
+    "loss_based_early_stopping": false
+  },
+  "execution": {
+    "account": "fwllm",
+    "partition": "gpua100",
+    "gpus": {
+      "bmmc6224": 1,
+      "snare_full": 1,
+      "shareseq_full": 4
+    },
+    "slurm_job_limit_hours": 24,
+    "automatic_checkpoint_continuation": true,
+    "active_monitoring": false
+  },
+  "storage_issue": "Live workdir quota473GiB/500GiB; safe two-generation FP64 SHAREseq FraMES checkpoints require additional space. Investigating reversible verified archival of completed task-owned artifacts.",
+  "storage_resolution": {
+    "status": "resolved",
+    "archive_receipt": "archive_finalized.json",
+    "quota_available_bytes": 76152553472
+  },
+  "submission_receipt": "submission_receipt.json"
+}

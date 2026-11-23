@@ -1,0 +1,188 @@
+{
+  "baseline": {
+    "file": "frozen_baselines.json",
+    "methods": [
+      "smoothing-fw",
+      "published-smd"
+    ],
+    "sha256": "b0b2379b758fb544597c641de1c62fe34fcc0097c47016c1898af647c5106f8a",
+    "source_commit": "38b5ea80e63cbaee2166ddff671edc3ac9f9a794",
+    "source_config_sha256": "63593d4c24903a02606f0b04e7c2980387f36216f57ff2b612e5622cc77b071f",
+    "source_report_sha256": "0ec392782fa31c99a560a31fe483f490392a271da659139aeeb8592d20050736"
+  },
+  "budget_policy": "Twelve theorem-admissible MSBPG candidates, matching original candidate count. Same fixed T and q128: exactly one gradient call per update. Existing baselines are reused, not rerun. Solver time includes inner solves/certificates. No horizon extension or unobserved time extrapolation.",
+  "checkpoint_seconds": [
+    10,
+    30,
+    100,
+    300
+  ],
+  "deferred": "FAUST remains deferred pending licensed archive.",
+  "development_seeds": [
+    710,
+    711,
+    712
+  ],
+  "final_checkpoint_iterations": [
+    100,
+    300,
+    1000,
+    2000
+  ],
+  "final_iterations": 2000,
+  "final_marginal_l1_tolerance": 1.1920928955078125e-05,
+  "final_seeds": [
+    810,
+    811,
+    812
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "instances": {
+    "bmmc6224": {
+      "array_files_sha256": {
+        "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+        "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+        "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+        "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+      },
+      "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+      "n": 6224,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.json",
+        "metadata_sha256": "48820164157773734f12a6d83d9cd64ad6a9ca47e28055ee683393304c506014",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.npz"
+      },
+      "world_size": 1
+    },
+    "shareseq_full": {
+      "array_files_sha256": {
+        "A.npy": "5c0592a0e800f9ce7bb686b1a578b2f321367ca91c90f0d601bd9c26b77f56ff",
+        "B.npy": "5750c6dfd3d75e7651ab435be09bc222f192137c366068a453b8e15567e76bef",
+        "a.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2",
+        "b.npy": "0a46f5cd80ef72bfb00c501452fe752756d46917cf3b67060f412a87bb12b6c2"
+      },
+      "instance_manifest_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b",
+      "n": 31890,
+      "source_input": {
+        "directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full",
+        "kind": "canonical",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/shareseq_20260930/full_preparation_78b1461/data/shareseq_full/manifest.json",
+        "metadata_sha256": "f523e178216596501bfe90aabe182e72d37d0387039ba02a66744e1dd2055a6b"
+      },
+      "world_size": 4
+    },
+    "snare_full": {
+      "array_files_sha256": {
+        "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+        "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+        "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+        "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+      },
+      "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+      "n": 10000,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.json",
+        "metadata_sha256": "99c24af82ee8abcc966e956ea0204a4b9c40428bddb98b31cda658bd6f47acb8",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.npz",
+        "sha256": "924f0a95feb5389758b29cfc2156fac09c6796b5f5c2e85718f72afbb0ac60d3"
+      },
+      "world_size": 1
+    }
+  },
+  "methods": {
+    "published-msbpg": [
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg00",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg01",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 1.0,
+        "id": "msbpg02",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.5,
+        "id": "msbpg03",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.5,
+        "id": "msbpg04",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.5,
+        "id": "msbpg05",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.25,
+        "id": "msbpg06",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.25,
+        "id": "msbpg07",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.25,
+        "id": "msbpg08",
+        "momentum_prefactor": 0.1
+      },
+      {
+        "coupling_fraction": 0.125,
+        "id": "msbpg09",
+        "momentum_prefactor": 1.0
+      },
+      {
+        "coupling_fraction": 0.125,
+        "id": "msbpg10",
+        "momentum_prefactor": 0.3
+      },
+      {
+        "coupling_fraction": 0.125,
+        "id": "msbpg11",
+        "momentum_prefactor": 0.1
+      }
+    ]
+  },
+  "run_counts": {
+    "final": 18,
+    "tuning": 216
+  },
+  "run_timeout_seconds": 7200,
+  "runner": {
+    "batch": 128,
+    "certificate_block_rows": 256,
+    "check_every": 10,
+    "dtype": "float32",
+    "exact_block_rows": 256,
+    "inner_gap_tol": 1e-07,
+    "inner_max": 10000,
+    "inner_tol": 1e-07,
+    "progress_every": 100
+  },
+  "schema_version": 1,
+  "scope": "Theorem-parameter-matched Ding-Li-Toh (2025) MSBPG versus frozen completed stochastic FraMES; previous published fresh-gradient SMD retained as reference. Only MSBPG runs execute.",
+  "selection_rule": "MSBPG only: one candidate per dataset, minimum median FP64 last-rounded GW loss at T=200 over all six development start/seed cells; every cell must pass; ties by candidate ID; no fallback. Old FraMES/SMD choices remain frozen.",
+  "storage_policy": "No dense tuning files. All final MSBPG snapshots retained for BMMC/SNARE; SHARE snapshots retained for first final seed 810 and both initializations. Other SHARE finals retain hashes and FP64 validated metrics. Approximately46GB new dense outputs; no previous data deleted.",
+  "theory_scope": "Ding-Li-Toh (2025), MSBPG Eq8-9/Theorem24; explicit globally strongly convex entropy extension leaves every feasible KL update unchanged. Schedule parameters are coupled and checked against certified constants. Record sampled normalized displacement separately from endpoint GW loss. Finite 1e-7 inner solves are numerical choices, not a proved inexact-outer convergence guarantee.",
+  "tuning_checkpoint_iterations": [
+    50,
+    100,
+    200
+  ],
+  "tuning_iterations": 200
+}

@@ -1,0 +1,45 @@
+Additive full-gradient POT entropy experiment, 2026-10-18
+
+This adds epsilon=10^-6 to the immutable pot_entropy_init_20261018 grid.
+It adds exactly eight runs: BMMC6224 and SNARE10000, each with product
+initialization (seed810) and permutation-mixture starts (seeds901,902,903).
+The mixture is P0=0.1 ab^T+0.9 Permutation(seed)/n, with uniform marginals.
+Existing epsilon={10^-3,3*10^-4,10^-4,3*10^-5} runs are not rerun or changed.
+
+Numerical specification: FP64, exact full squared-GW gradient, fixed entropy
+POT entropic-GW PGD update with eta=10^6. The existing certified transport
+runner is reused unchanged. Both marginal L1 and guarded normalized
+primal-dual gap must be <=10^-7; maximum inner iterations100000. Kernel
+underflow invokes the existing log-domain method without clipping. Each
+trial ends by2000 accepted updates or after at least50 updates and10
+consecutive coupling-update L1 norms<=10^-6. This stopping diagnostic is
+not a certificate of global GW optimality.
+
+Validation: CPU and A100 tiny checks compare the full gradient/transport
+update at epsilon10^-6 to an independent dense reference, using a scaled
+synthetic fixture with nontrivial cost/epsilon. A separate additive-cost
+fixture forces log-domain fallback. Exact checkpoint/restart equality is
+verified at10^-6. The CPU test suite also exercises soft-deadline interruption
+and exact subsequent continuation. Two actual-data probes (product and
+permutation-mixture seed901) attempt2 updates each with15-minute soft limits;
+completion, numerical-cap failure and time-budget exhaustion are recorded
+explicitly. Only numerical-cap failure can mark one production trial
+unsuccessful and move to the next; infrastructure errors freeze the stream.
+A probe timeout or numerical-cap failure is not an accepted optimization result.
+
+Ruche: each dataset has one serial A100 stream,2 CPUs,32 GiB RAM,24-hour
+Slurm limit,22-hour soft deadline. CPU gates/dispatchers use2 CPUs and8 GiB.
+Checkpoints include the raw coupling, iteration, stopping state, RNG,
+trajectory, counters and source/data identity. The runner interrupts an
+unfinished inner solve at its soft deadline, checkpoints the last accepted
+iterate and recomputes the deterministic unfinished update on continuation.
+Transactional shards are verified before continuation. Terminal entropy
+trial matrices are pruned; numerical receipts and trajectories remain.
+
+A scheduler-only CPU bridge waits for the whole corresponding original
+entropy stream, following continuation-dispatcher dependencies rather than
+polling. Only after all16 original trials are accounted for does it release
+the epsilon10^-6 actual-data gate and production. No GPU is held while
+waiting. Parent source/config hashes are verified. Storage reservation is
+68 GiB total:64 GiB for retained SHARE confirmation states and transient
+checkpoints, plus4 GiB for the two serialized entropy dataset streams.

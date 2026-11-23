@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "checkpoint_counters_equal": false,
+    "counter_values_equal": true,
+    "cuda_rng_state_both_none": true,
+    "final_loss_bitwise_equal": true,
+    "first_chunk_checkpointed_three": true,
+    "generator_state_bitwise_equal": true,
+    "immutable_identity_equal": true,
+    "momentum_bitwise_equal": true,
+    "one_thread_each_launch": true,
+    "pair_count_24576": true,
+    "plan_bitwise_equal": true,
+    "profile_launch_update_counts_6_3_3": true,
+    "resume_uses_durable_post_checkpoint_clock": true,
+    "resumed_completed_six": true,
+    "six_fresh_oracle_calls": true,
+    "torch_rng_state_bitwise_equal": true,
+    "trace_equal_excluding_elapsed_seconds": true,
+    "uninterrupted_completed_six": true
+  },
+  "configuration": {
+    "gamma0": 0.3,
+    "iterations": 6,
+    "method": "frames",
+    "mu_scale": 10.0,
+    "num_threads": 1,
+    "pairs": 4096,
+    "rho0": 1.0,
+    "seed": 811
+  },
+  "elapsed_seconds": 9.819020830094814,
+  "error": "AssertionError: checkpoint_counters_equal",
+  "finished_at": "2026-10-18T20:02:16.932815+00:00",
+  "host": "elite",
+  "limitations": "Checks checkpoint continuity and wrapper parity on a small fixture; does not establish full-size memory fit or final BMMC loss.",
+  "platform": "Linux-6.1.0-47-amd64-x86_64-with-glibc2.36",
+  "scope": "3-by-3 fixture, CPU FP64, q4096; six uninterrupted updates versus two chunks of three",
+  "started_at": "2026-10-18T20:02:10.097983+00:00",
+  "status": "failed"
+}

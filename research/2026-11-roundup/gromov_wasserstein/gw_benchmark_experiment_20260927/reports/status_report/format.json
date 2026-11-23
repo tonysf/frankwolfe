@@ -1,0 +1,29 @@
+{
+  "format": "Three pages per experiment",
+  "page_1": {
+    "source": "reports/status_report/gw_problem.tex",
+    "content": "Fixed GW explanation: data, coupling, objective, f/g/T formulation, Moreau envelope, adjoint T*, explicit smoothed-constraint gradient and feasible loss.",
+    "rule": "Reuse the same page; do not insert run-specific counts, settings, dates or results."
+  },
+  "page_2": {
+    "source": "reports/status_report/gw_stochastic_oracle.tex",
+    "content": "Full GW gradient, random-sign probes, implemented two-term oracle, scalar sketch, conditional unbiasedness and probe-count variance.",
+    "rule": "Reuse the same oracle reference page across experiments; put run-specific settings and results on page 3."
+  },
+  "builder": "reports/status_report/build_status.py",
+  "build_command": ".venv/bin/python reports/status_report/build_status.py --latex /path/to/tectonic",
+  "current_experiments": [
+    "synthetic_probe_count_status",
+    "bmmc_probe_count_status"
+  ],
+  "page_3": {
+    "content": [
+      "Dataset identity, size and preprocessing",
+      "Question and exact experimental settings",
+      "Results and loss-versus-iteration/time plots",
+      "Interpretation and limitations",
+      "Timing, precision, output statistic and dated provenance"
+    ],
+    "rule": "Update from validated experimental evidence; distinguish completed results from submitted work."
+  }
+}

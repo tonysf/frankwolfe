@@ -1,0 +1,6679 @@
+{
+  "checkpoints": [
+    0,
+    100,
+    300,
+    1000,
+    2000,
+    3000,
+    5000,
+    7500,
+    10000,
+    12500,
+    15000,
+    17500,
+    20000
+  ],
+  "config_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/source_1963919/extensions/long_horizon_20261007/campaign.json",
+  "config_sha256": "da603d653024fcf4f8d30c93e562da0819a92c65ce53ed2a81be51a811ed8e48",
+  "figures": {
+    "files": [
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/figures/median_loss_iterations.png",
+      "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/figures/median_loss_iterations.pdf"
+    ],
+    "status": "generated"
+  },
+  "final_iterations": 20000,
+  "final_seeds": [
+    810,
+    811,
+    812
+  ],
+  "final_summaries": [
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "statistics": {
+        "certificate_checks": {
+          "median": 0.0,
+          "n": 3,
+          "q25": 0.0,
+          "q75": 0.0
+        },
+        "inner_iterations": {
+          "median": 0.0,
+          "n": 3,
+          "q25": 0.0,
+          "q75": 0.0
+        },
+        "last_feasible_output_seconds": {
+          "median": 371.2797411820611,
+          "n": 3,
+          "q25": 370.79212806989926,
+          "q75": 372.18720025340554
+        },
+        "last_rounded_loss": {
+          "median": 0.16061004904308024,
+          "n": 3,
+          "q25": 0.16057788871522205,
+          "q75": 0.16063428875755062
+        },
+        "sketch_probes": {
+          "median": 2560000.0,
+          "n": 3,
+          "q25": 2560000.0,
+          "q75": 2560000.0
+        },
+        "solver_seconds": {
+          "median": 371.27052839305907,
+          "n": 3,
+          "q25": 370.78298829039704,
+          "q75": 372.17804507340406
+        },
+        "stochastic_gradient_calls": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "statistics": {
+        "certificate_checks": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        },
+        "inner_iterations": {
+          "median": 200000.0,
+          "n": 3,
+          "q25": 200000.0,
+          "q75": 200000.0
+        },
+        "last_feasible_output_seconds": {
+          "median": 3215.7346950210376,
+          "n": 3,
+          "q25": 3215.6966388518795,
+          "q75": 3218.2532693240664
+        },
+        "last_rounded_loss": {
+          "median": 0.15929053810544397,
+          "n": 3,
+          "q25": 0.15928171741088878,
+          "q75": 0.15933286596673946
+        },
+        "sketch_probes": {
+          "median": 2560000.0,
+          "n": 3,
+          "q25": 2560000.0,
+          "q75": 2560000.0
+        },
+        "solver_seconds": {
+          "median": 3215.7259479030363,
+          "n": 3,
+          "q25": 3215.687691904388,
+          "q75": 3218.2446091730544
+        },
+        "stochastic_gradient_calls": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "statistics": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "statistics": {
+        "certificate_checks": {
+          "median": 0.0,
+          "n": 3,
+          "q25": 0.0,
+          "q75": 0.0
+        },
+        "inner_iterations": {
+          "median": 0.0,
+          "n": 3,
+          "q25": 0.0,
+          "q75": 0.0
+        },
+        "last_feasible_output_seconds": {
+          "median": 358.38823658203546,
+          "n": 3,
+          "q25": 357.4605298830629,
+          "q75": 365.3064633081267
+        },
+        "last_rounded_loss": {
+          "median": 0.16061252090600475,
+          "n": 3,
+          "q25": 0.16060990305100287,
+          "q75": 0.16061266166615623
+        },
+        "sketch_probes": {
+          "median": 2560000.0,
+          "n": 3,
+          "q25": 2560000.0,
+          "q75": 2560000.0
+        },
+        "solver_seconds": {
+          "median": 358.3797122850374,
+          "n": 3,
+          "q25": 357.4520332035645,
+          "q75": 365.29766128812844
+        },
+        "stochastic_gradient_calls": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "statistics": {
+        "certificate_checks": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        },
+        "inner_iterations": {
+          "median": 200000.0,
+          "n": 3,
+          "q25": 200000.0,
+          "q75": 200000.0
+        },
+        "last_feasible_output_seconds": {
+          "median": 3193.447402073769,
+          "n": 3,
+          "q25": 3190.5050407950766,
+          "q75": 3201.6481472079176
+        },
+        "last_rounded_loss": {
+          "median": 0.1593256586464109,
+          "n": 3,
+          "q25": 0.15930508739945115,
+          "q75": 0.15936178276285345
+        },
+        "sketch_probes": {
+          "median": 2560000.0,
+          "n": 3,
+          "q25": 2560000.0,
+          "q75": 2560000.0
+        },
+        "solver_seconds": {
+          "median": 3193.4388841728214,
+          "n": 3,
+          "q25": 3190.4965473165503,
+          "q75": 3201.6393832629547
+        },
+        "stochastic_gradient_calls": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "statistics": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "statistics": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "statistics": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "statistics": {
+        "certificate_checks": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        },
+        "inner_iterations": {
+          "median": 200000.0,
+          "n": 3,
+          "q25": 200000.0,
+          "q75": 200000.0
+        },
+        "last_feasible_output_seconds": {
+          "median": 12168.72974530398,
+          "n": 3,
+          "q25": 12144.572980776662,
+          "q75": 12170.675130551099
+        },
+        "last_rounded_loss": {
+          "median": 0.0940721477212837,
+          "n": 3,
+          "q25": 0.09407214701315247,
+          "q75": 0.09407215172691402
+        },
+        "sampled_normalized_displacement_squared": {
+          "median": 0.0036442084568408424,
+          "n": 3,
+          "q25": 0.003434121230561568,
+          "q75": 0.003944420443702479
+        },
+        "sketch_probes": {
+          "median": 2560000.0,
+          "n": 3,
+          "q25": 2560000.0,
+          "q75": 2560000.0
+        },
+        "solver_seconds": {
+          "median": 12168.715094350977,
+          "n": 3,
+          "q25": 12144.55885210412,
+          "q75": 12170.66055898706
+        },
+        "stochastic_gradient_calls": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "statistics": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "statistics": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "statistics": {
+        "certificate_checks": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        },
+        "inner_iterations": {
+          "median": 200000.0,
+          "n": 3,
+          "q25": 200000.0,
+          "q75": 200000.0
+        },
+        "last_feasible_output_seconds": {
+          "median": 12163.695594114717,
+          "n": 3,
+          "q25": 12156.480009892257,
+          "q75": 12190.853377957596
+        },
+        "last_rounded_loss": {
+          "median": 0.09407251756541624,
+          "n": 3,
+          "q25": 0.09407024415394677,
+          "q75": 0.09407346376327344
+        },
+        "sampled_normalized_displacement_squared": {
+          "median": 0.2541707669428904,
+          "n": 3,
+          "q25": 0.2328952851050756,
+          "q75": 0.276931676819823
+        },
+        "sketch_probes": {
+          "median": 2560000.0,
+          "n": 3,
+          "q25": 2560000.0,
+          "q75": 2560000.0
+        },
+        "solver_seconds": {
+          "median": 12163.681087021716,
+          "n": 3,
+          "q25": 12156.465525759268,
+          "q75": 12190.838833692134
+        },
+        "stochastic_gradient_calls": {
+          "median": 20000.0,
+          "n": 3,
+          "q25": 20000.0,
+          "q75": 20000.0
+        }
+      },
+      "status": "completed"
+    }
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "instances": {
+    "bmmc6224": {
+      "array_files_sha256": {
+        "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+        "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+        "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+        "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+      },
+      "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+      "n": 6224,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.json",
+        "metadata_sha256": "48820164157773734f12a6d83d9cd64ad6a9ca47e28055ee683393304c506014",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.npz"
+      },
+      "world_size": 1
+    },
+    "snare_full": {
+      "array_files_sha256": {
+        "A.npy": "136e83df07269117d6eaa1785627dedb03194acd54759161ad1a1632030574fe",
+        "B.npy": "6bc9c3a9afa4a935a39837a7ce7976807f04cabfcd513be45bc0af0b3a4a1a46",
+        "a.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899",
+        "b.npy": "cadcb214a28eda7a2943f8c3dbaca94eb8b3f8d8d578c94bcce09762cfb96899"
+      },
+      "instance_manifest_sha256": "ef9ee369e6acab0f981dea233e97104e39df0deb7cf6ca1bebea43fba190f40d",
+      "n": 10000,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.json",
+        "metadata_sha256": "99c24af82ee8abcc966e956ea0204a4b9c40428bddb98b31cda658bd6f47acb8",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/cross_dataset_20260929/preparation_430ae68/data/snare_full.npz",
+        "sha256": "924f0a95feb5389758b29cfc2156fac09c6796b5f5c2e85718f72afbb0ac60d3"
+      },
+      "world_size": 1
+    }
+  },
+  "methods": {
+    "published-msbpg": "MSBPG (theorem parameter choices)",
+    "published-smd": "Entropic SMD (fresh stochastic gradient, no momentum)",
+    "smoothing-fw": "FraMES (stochastic gradient momentum)"
+  },
+  "objective": "Unregularized squared GW loss of the current rounded feasible plan; no entropy term or factor of one half.",
+  "precision_policy": "Intermediate diagnostics use the optimizer dtype; final endpoint loss uses independent FP64 evaluation. Small differences across these precisions require caution.",
+  "prepared_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared",
+  "progress_from_reference": [
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": {
+        "median": 0.16061004904308024,
+        "n": 3,
+        "q25": 0.16057788871522205,
+        "q75": 0.16063428875755062
+      },
+      "final_precision": "float64",
+      "initialization": "product",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "paired_loss_drop": {
+        "median": -0.00087287930049601,
+        "n": 3,
+        "q25": -0.0008878802950262055,
+        "q75": -0.000570918548062016
+      },
+      "paired_relative_loss_drop_percent": {
+        "median": -0.546447205683343,
+        "n": 3,
+        "q25": -0.5558055664467443,
+        "q75": -0.3571277751790102
+      },
+      "reference_iteration": 2000,
+      "reference_loss": {
+        "median": 0.1597556471824646,
+        "n": 3,
+        "q25": 0.15974640846252441,
+        "q75": 0.16001620888710022
+      },
+      "reference_precision": "float32",
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": {
+        "median": 0.15929053810544397,
+        "n": 3,
+        "q25": 0.15928171741088878,
+        "q75": 0.15933286596673946
+      },
+      "final_precision": "float64",
+      "initialization": "product",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "paired_loss_drop": {
+        "median": 0.0013842126994571546,
+        "n": 3,
+        "q25": 0.0013379509316064908,
+        "q75": 0.0013951791612242526
+      },
+      "paired_relative_loss_drop_percent": {
+        "median": 0.8614998265271505,
+        "n": 3,
+        "q25": 0.8327273275580398,
+        "q75": 0.8683133946359083
+      },
+      "reference_iteration": 2000,
+      "reference_loss": {
+        "median": 0.16067475080490112,
+        "n": 3,
+        "q25": 0.16067081689834595,
+        "q75": 0.16067689657211304
+      },
+      "reference_precision": "float32",
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": null,
+      "final_precision": "float64",
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "paired_loss_drop": null,
+      "paired_relative_loss_drop_percent": null,
+      "reference_iteration": 2000,
+      "reference_loss": null,
+      "reference_precision": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": {
+        "median": 0.16061252090600475,
+        "n": 3,
+        "q25": 0.16060990305100287,
+        "q75": 0.16061266166615623
+      },
+      "final_precision": "float64",
+      "initialization": "randomized",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "paired_loss_drop": {
+        "median": -0.0008277105493240677,
+        "n": 3,
+        "q25": -0.0008472738736390872,
+        "q75": -0.0005842636291994441
+      },
+      "paired_relative_loss_drop_percent": {
+        "median": -0.5180148783600605,
+        "n": 3,
+        "q25": -0.5303342098313513,
+        "q75": -0.36533210540309924
+      },
+      "reference_iteration": 2000,
+      "reference_loss": {
+        "median": 0.15978509187698364,
+        "n": 3,
+        "q25": 0.15976276993751526,
+        "q75": 0.1600283980369568
+      },
+      "reference_precision": "float32",
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": {
+        "median": 0.1593256586464109,
+        "n": 3,
+        "q25": 0.15930508739945115,
+        "q75": 0.15936178276285345
+      },
+      "final_precision": "float64",
+      "initialization": "randomized",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "paired_loss_drop": {
+        "median": 0.001361430319958723,
+        "n": 3,
+        "q25": 0.0013145773674566041,
+        "q75": 0.0013748192072230436
+      },
+      "paired_relative_loss_drop_percent": {
+        "median": 0.8472555752401851,
+        "n": 3,
+        "q25": 0.8181503761607357,
+        "q75": 0.8556264672321574
+      },
+      "reference_iteration": 2000,
+      "reference_loss": {
+        "median": 0.16067272424697876,
+        "n": 3,
+        "q25": 0.16066917777061462,
+        "q75": 0.1606799066066742
+      },
+      "reference_precision": "float32",
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": null,
+      "final_precision": "float64",
+      "initialization": "randomized",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "paired_loss_drop": null,
+      "paired_relative_loss_drop_percent": null,
+      "reference_iteration": 2000,
+      "reference_loss": null,
+      "reference_precision": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": null,
+      "final_precision": "float64",
+      "initialization": "product",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "paired_loss_drop": null,
+      "paired_relative_loss_drop_percent": null,
+      "reference_iteration": 2000,
+      "reference_loss": null,
+      "reference_precision": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": null,
+      "final_precision": "float64",
+      "initialization": "product",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "paired_loss_drop": null,
+      "paired_relative_loss_drop_percent": null,
+      "reference_iteration": 2000,
+      "reference_loss": null,
+      "reference_precision": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": {
+        "median": 0.0940721477212837,
+        "n": 3,
+        "q25": 0.09407214701315247,
+        "q75": 0.09407215172691402
+      },
+      "final_precision": "float64",
+      "initialization": "product",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "paired_loss_drop": {
+        "median": 2.4579104573874133e-07,
+        "n": 3,
+        "q25": 2.2070248489880484e-07,
+        "q75": 2.4979667606617184e-07
+      },
+      "paired_relative_loss_drop_percent": {
+        "median": 0.000261278591550685,
+        "n": 3,
+        "q25": 0.0002346092406436298,
+        "q75": 0.00026553662075218894
+      },
+      "reference_iteration": 2000,
+      "reference_loss": {
+        "median": 0.09407240152359009,
+        "n": 3,
+        "q25": 0.0940723717212677,
+        "q75": 0.09407240152359009
+      },
+      "reference_precision": "float32",
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": null,
+      "final_precision": "float64",
+      "initialization": "randomized",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "paired_loss_drop": null,
+      "paired_relative_loss_drop_percent": null,
+      "reference_iteration": 2000,
+      "reference_loss": null,
+      "reference_precision": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": null,
+      "final_precision": "float64",
+      "initialization": "randomized",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "paired_loss_drop": null,
+      "paired_relative_loss_drop_percent": null,
+      "reference_iteration": 2000,
+      "reference_loss": null,
+      "reference_precision": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "final_iteration": 20000,
+      "final_loss": {
+        "median": 0.09407251756541624,
+        "n": 3,
+        "q25": 0.09407024415394677,
+        "q75": 0.09407346376327344
+      },
+      "final_precision": "float64",
+      "initialization": "randomized",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "paired_loss_drop": {
+        "median": 2.565389609077151e-07,
+        "n": 3,
+        "q25": 2.4906250170597666e-07,
+        "q75": 2.574974697078236e-07
+      },
+      "paired_relative_loss_drop_percent": {
+        "median": 0.0002726971781584423,
+        "n": 3,
+        "q25": 0.0002647524143116035,
+        "q75": 0.00027372545941589313
+      },
+      "reference_iteration": 2000,
+      "reference_loss": {
+        "median": 0.09407275915145874,
+        "n": 3,
+        "q25": 0.09407049417495728,
+        "q75": 0.09407371282577515
+      },
+      "reference_precision": "float32",
+      "status": "completed"
+    }
+  ],
+  "runs": [
+    {
+      "candidate_id": "fw08",
+      "certificate_checks": 0,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 373.09465932474995,
+      "last_rounded_loss": 0.16054572838736386,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/smoothing-fw/product/seed810/output/metadata.json",
+      "metadata_sha256": "a4300d51fcc39cbe7a74d0bc99a2c5ada668368a5b63494711ffb20803893c5b",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 810,
+      "sketch_probes": 2560000,
+      "solver_seconds": 373.08556175374906,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.002330839997739531,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.13688344999900437
+        },
+        {
+          "actual_solver_seconds": 2.2035170050148736,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16101056337356567,
+          "time_to_this_feasible_output": 2.2126444300156436
+        },
+        {
+          "actual_solver_seconds": 5.93305280003915,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609552800655365,
+          "time_to_this_feasible_output": 5.942117765040166
+        },
+        {
+          "actual_solver_seconds": 18.986554373008403,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16053563356399536,
+          "time_to_this_feasible_output": 18.9956725160082
+        },
+        {
+          "actual_solver_seconds": 37.6331279500082,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16027677059173584,
+          "time_to_this_feasible_output": 37.64223373400819
+        },
+        {
+          "actual_solver_seconds": 56.29113149596742,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16032522916793823,
+          "time_to_this_feasible_output": 56.300249717965926
+        },
+        {
+          "actual_solver_seconds": 93.57790500895862,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1606566309928894,
+          "time_to_this_feasible_output": 93.58701139995901
+        },
+        {
+          "actual_solver_seconds": 140.17287970801044,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16075927019119263,
+          "time_to_this_feasible_output": 140.18199284200819
+        },
+        {
+          "actual_solver_seconds": 186.76610661087034,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607646942138672,
+          "time_to_this_feasible_output": 186.7752142808713
+        },
+        {
+          "actual_solver_seconds": 233.34830742087797,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16065502166748047,
+          "time_to_this_feasible_output": 233.3574284148781
+        },
+        {
+          "actual_solver_seconds": 279.9286398037548,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16064929962158203,
+          "time_to_this_feasible_output": 279.93777046975447
+        },
+        {
+          "actual_solver_seconds": 326.5177553647118,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1605449914932251,
+          "time_to_this_feasible_output": 326.5269293777128
+        },
+        {
+          "actual_solver_seconds": 373.08556175374906,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.16054572838736386,
+          "time_to_this_feasible_output": 373.09465932474995
+        }
+      ]
+    },
+    {
+      "candidate_id": "fw08",
+      "certificate_checks": 0,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 371.2797411820611,
+      "last_rounded_loss": 0.16061004904308024,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/smoothing-fw/product/seed811/output/metadata.json",
+      "metadata_sha256": "3ba7037adff9feb7789e7c4b6b06eefb3f30d0cb713696a89b161fc1c68384bd",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 811,
+      "sketch_probes": 2560000,
+      "solver_seconds": 371.27052839305907,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.001542433998110937,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.05160344999603694
+        },
+        {
+          "actual_solver_seconds": 1.970333237975865,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16103839874267578,
+          "time_to_this_feasible_output": 1.9793932709726505
+        },
+        {
+          "actual_solver_seconds": 5.685329143019771,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609480381011963,
+          "time_to_this_feasible_output": 5.6943427530168265
+        },
+        {
+          "actual_solver_seconds": 18.68740824600536,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1604773998260498,
+          "time_to_this_feasible_output": 18.696432859003835
+        },
+        {
+          "actual_solver_seconds": 37.254319463954744,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15973716974258423,
+          "time_to_this_feasible_output": 37.26339915295466
+        },
+        {
+          "actual_solver_seconds": 55.81651058497664,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15973031520843506,
+          "time_to_this_feasible_output": 55.82557960997656
+        },
+        {
+          "actual_solver_seconds": 92.94665730696215,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16069400310516357,
+          "time_to_this_feasible_output": 92.9558203429624
+        },
+        {
+          "actual_solver_seconds": 139.34983758408998,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16073185205459595,
+          "time_to_this_feasible_output": 139.35888739309303
+        },
+        {
+          "actual_solver_seconds": 185.7299590380062,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16070425510406494,
+          "time_to_this_feasible_output": 185.73900741000762
+        },
+        {
+          "actual_solver_seconds": 232.0979320259721,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16067880392074585,
+          "time_to_this_feasible_output": 232.1069970009703
+        },
+        {
+          "actual_solver_seconds": 278.5068577769671,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16066068410873413,
+          "time_to_this_feasible_output": 278.51602417496906
+        },
+        {
+          "actual_solver_seconds": 324.90249657206004,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1606540083885193,
+          "time_to_this_feasible_output": 324.91154922405985
+        },
+        {
+          "actual_solver_seconds": 371.27052839305907,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.16061004904308024,
+          "time_to_this_feasible_output": 371.2797411820611
+        }
+      ]
+    },
+    {
+      "candidate_id": "fw08",
+      "certificate_checks": 0,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 370.3045149577374,
+      "last_rounded_loss": 0.160658528472021,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/smoothing-fw/product/seed812/output/metadata.json",
+      "metadata_sha256": "585771627bc3fb14f388d1e6e31d6a4b6b9435790438c945ac5cd98128b0e499",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 812,
+      "sketch_probes": 2560000,
+      "solver_seconds": 370.295448187735,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.0017585200002940837,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.05213188999914564
+        },
+        {
+          "actual_solver_seconds": 2.147898441991856,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16102132201194763,
+          "time_to_this_feasible_output": 2.1569434299926797
+        },
+        {
+          "actual_solver_seconds": 5.848163573002239,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609688103199005,
+          "time_to_this_feasible_output": 5.857199412999762
+        },
+        {
+          "actual_solver_seconds": 18.80043636697519,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16042250394821167,
+          "time_to_this_feasible_output": 18.809443232974445
+        },
+        {
+          "actual_solver_seconds": 37.30603156001962,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1597556471824646,
+          "time_to_this_feasible_output": 37.315078055016784
+        },
+        {
+          "actual_solver_seconds": 55.81280906999018,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1599000096321106,
+          "time_to_this_feasible_output": 55.82181684999159
+        },
+        {
+          "actual_solver_seconds": 92.8212739620758,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16067743301391602,
+          "time_to_this_feasible_output": 92.83027035407576
+        },
+        {
+          "actual_solver_seconds": 139.08730435908365,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16071826219558716,
+          "time_to_this_feasible_output": 139.0963485190805
+        },
+        {
+          "actual_solver_seconds": 185.31976900307563,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16072607040405273,
+          "time_to_this_feasible_output": 185.32878991507823
+        },
+        {
+          "actual_solver_seconds": 231.58391833496353,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16074132919311523,
+          "time_to_this_feasible_output": 231.59292529396407
+        },
+        {
+          "actual_solver_seconds": 277.82352638187876,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16070759296417236,
+          "time_to_this_feasible_output": 277.83256375587735
+        },
+        {
+          "actual_solver_seconds": 324.0493738177356,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16069209575653076,
+          "time_to_this_feasible_output": 324.05836044473835
+        },
+        {
+          "actual_solver_seconds": 370.295448187735,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.160658528472021,
+          "time_to_this_feasible_output": 370.3045149577374
+        }
+      ]
+    },
+    {
+      "candidate_id": "fw08",
+      "certificate_checks": 0,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 356.5328231840904,
+      "last_rounded_loss": 0.16061252090600475,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/smoothing-fw/randomized/seed810/output/metadata.json",
+      "metadata_sha256": "6d58aab136c5a860a0e2deb5f7bd7936a66385b623520c9cc4ca26283c03230f",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 810,
+      "sketch_probes": 2560000,
+      "solver_seconds": 356.5243541220916,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 1.2756352450014674,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.1610514521598816,
+          "time_to_this_feasible_output": 1.3179874000015843
+        },
+        {
+          "actual_solver_seconds": 3.0676560130195867,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16101080179214478,
+          "time_to_this_feasible_output": 3.076104412022687
+        },
+        {
+          "actual_solver_seconds": 6.627605672016216,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609569489955902,
+          "time_to_this_feasible_output": 6.636028282013285
+        },
+        {
+          "actual_solver_seconds": 19.06710587098496,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1605256199836731,
+          "time_to_this_feasible_output": 19.075548042987066
+        },
+        {
+          "actual_solver_seconds": 36.83367924301638,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16027170419692993,
+          "time_to_this_feasible_output": 36.84209572501641
+        },
+        {
+          "actual_solver_seconds": 54.60704377004731,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16042989492416382,
+          "time_to_this_feasible_output": 54.615427103046386
+        },
+        {
+          "actual_solver_seconds": 90.13556842614707,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16075479984283447,
+          "time_to_this_feasible_output": 90.14402608214732
+        },
+        {
+          "actual_solver_seconds": 134.52134540717452,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16084003448486328,
+          "time_to_this_feasible_output": 134.52975946517472
+        },
+        {
+          "actual_solver_seconds": 178.91257426614902,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16066712141036987,
+          "time_to_this_feasible_output": 178.92098475414969
+        },
+        {
+          "actual_solver_seconds": 223.29949387822126,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16066110134124756,
+          "time_to_this_feasible_output": 223.3079234022225
+        },
+        {
+          "actual_solver_seconds": 267.7186411300754,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16068339347839355,
+          "time_to_this_feasible_output": 267.72707073807396
+        },
+        {
+          "actual_solver_seconds": 312.1255824740365,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16069072484970093,
+          "time_to_this_feasible_output": 312.1340087950375
+        },
+        {
+          "actual_solver_seconds": 356.5243541220916,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.16061252090600475,
+          "time_to_this_feasible_output": 356.5328231840904
+        }
+      ]
+    },
+    {
+      "candidate_id": "fw08",
+      "certificate_checks": 0,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 372.22469003421793,
+      "last_rounded_loss": 0.16060728519600098,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/smoothing-fw/randomized/seed811/output/metadata.json",
+      "metadata_sha256": "25f67d4ab4ef6df54265e6268f2b3683d51b70e1018d28373a3c354419e2a60b",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 811,
+      "sketch_probes": 2560000,
+      "solver_seconds": 372.2156102912195,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 1.5636556620011106,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103172302246094,
+          "time_to_this_feasible_output": 1.6060566640007892
+        },
+        {
+          "actual_solver_seconds": 3.4324658600089606,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16103917360305786,
+          "time_to_this_feasible_output": 3.4414987650088733
+        },
+        {
+          "actual_solver_seconds": 7.1472495710149815,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609399914741516,
+          "time_to_this_feasible_output": 7.156281563016819
+        },
+        {
+          "actual_solver_seconds": 20.130278396070935,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16048210859298706,
+          "time_to_this_feasible_output": 20.13929939107038
+        },
+        {
+          "actual_solver_seconds": 38.67301434608453,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15974044799804688,
+          "time_to_this_feasible_output": 38.68208295908698
+        },
+        {
+          "actual_solver_seconds": 57.21972094808007,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15961772203445435,
+          "time_to_this_feasible_output": 57.22875396008021
+        },
+        {
+          "actual_solver_seconds": 94.27529708907969,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607125997543335,
+          "time_to_this_feasible_output": 94.28432658507882
+        },
+        {
+          "actual_solver_seconds": 140.5966396101685,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16078811883926392,
+          "time_to_this_feasible_output": 140.60565219116688
+        },
+        {
+          "actual_solver_seconds": 186.9292704041436,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607692837715149,
+          "time_to_this_feasible_output": 186.93829295114483
+        },
+        {
+          "actual_solver_seconds": 233.25431502011634,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607239842414856,
+          "time_to_this_feasible_output": 233.2633430291171
+        },
+        {
+          "actual_solver_seconds": 279.5939756461121,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16067081689834595,
+          "time_to_this_feasible_output": 279.60301604211054
+        },
+        {
+          "actual_solver_seconds": 325.8949256721353,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1606312394142151,
+          "time_to_this_feasible_output": 325.90393827813386
+        },
+        {
+          "actual_solver_seconds": 372.2156102912195,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.16060728519600098,
+          "time_to_this_feasible_output": 372.22469003421793
+        }
+      ]
+    },
+    {
+      "candidate_id": "fw08",
+      "certificate_checks": 0,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "inner_iterations": 0,
+      "last_feasible_output_seconds": 358.38823658203546,
+      "last_rounded_loss": 0.1606128024263077,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/smoothing-fw/randomized/seed812/output/metadata.json",
+      "metadata_sha256": "bb223249f4c0771b5a1ad807a3573803700e4a606a056d151833eb7890a1e30d",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 812,
+      "sketch_probes": 2560000,
+      "solver_seconds": 358.3797122850374,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 1.8824349320020701,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103386878967285,
+          "time_to_this_feasible_output": 1.9243877470034931
+        },
+        {
+          "actual_solver_seconds": 3.8945762690054835,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16102126240730286,
+          "time_to_this_feasible_output": 3.9030500080043566
+        },
+        {
+          "actual_solver_seconds": 7.4643792640199536,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16096895933151245,
+          "time_to_this_feasible_output": 7.472842269020475
+        },
+        {
+          "actual_solver_seconds": 19.958058913991408,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16041886806488037,
+          "time_to_this_feasible_output": 19.966521330989053
+        },
+        {
+          "actual_solver_seconds": 37.77190403099303,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15978509187698364,
+          "time_to_this_feasible_output": 37.78038314499281
+        },
+        {
+          "actual_solver_seconds": 55.59393896799156,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15992164611816406,
+          "time_to_this_feasible_output": 55.60241732099166
+        },
+        {
+          "actual_solver_seconds": 91.22701388897258,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16071641445159912,
+          "time_to_this_feasible_output": 91.23547977397175
+        },
+        {
+          "actual_solver_seconds": 135.7506008420023,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607666015625,
+          "time_to_this_feasible_output": 135.7590361840048
+        },
+        {
+          "actual_solver_seconds": 180.26313962997665,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607663631439209,
+          "time_to_this_feasible_output": 180.2715976859763
+        },
+        {
+          "actual_solver_seconds": 224.788190072024,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16066187620162964,
+          "time_to_this_feasible_output": 224.79665809102153
+        },
+        {
+          "actual_solver_seconds": 269.32601119107494,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16066259145736694,
+          "time_to_this_feasible_output": 269.33447800807335
+        },
+        {
+          "actual_solver_seconds": 313.86685612400834,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1606597900390625,
+          "time_to_this_feasible_output": 313.87532585400913
+        },
+        {
+          "actual_solver_seconds": 358.3797122850374,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.1606128024263077,
+          "time_to_this_feasible_output": 358.38823658203546
+        }
+      ]
+    },
+    {
+      "candidate_id": "smd11",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 3215.7346950210376,
+      "last_rounded_loss": 0.15929053810544397,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-smd/product/seed810/output/metadata.json",
+      "metadata_sha256": "035445225515f0a0d433baf8c6aa0ade15c3dc91c28c1dc5c65816a800ed24bd",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 810,
+      "sketch_probes": 2560000,
+      "solver_seconds": 3215.7259479030363,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.048340290999476565,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.13540184299927205
+        },
+        {
+          "actual_solver_seconds": 16.502608458005852,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16098183393478394,
+          "time_to_this_feasible_output": 16.51126242000464
+        },
+        {
+          "actual_solver_seconds": 48.56893337798829,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16091054677963257,
+          "time_to_this_feasible_output": 48.57749511298971
+        },
+        {
+          "actual_solver_seconds": 160.7912995660081,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16080808639526367,
+          "time_to_this_feasible_output": 160.79985579100685
+        },
+        {
+          "actual_solver_seconds": 321.0789611479522,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16067475080490112,
+          "time_to_this_feasible_output": 321.08752001095127
+        },
+        {
+          "actual_solver_seconds": 481.36770254000294,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16056984663009644,
+          "time_to_this_feasible_output": 481.37620523600344
+        },
+        {
+          "actual_solver_seconds": 801.8062760729226,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16039162874221802,
+          "time_to_this_feasible_output": 801.8147933179207
+        },
+        {
+          "actual_solver_seconds": 1202.2994634190582,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16019278764724731,
+          "time_to_this_feasible_output": 1202.3079886670566
+        },
+        {
+          "actual_solver_seconds": 1602.8044614101855,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1599941849708557,
+          "time_to_this_feasible_output": 1602.8130125381867
+        },
+        {
+          "actual_solver_seconds": 2003.3081973441367,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1598082184791565,
+          "time_to_this_feasible_output": 2003.316749260135
+        },
+        {
+          "actual_solver_seconds": 2407.1823646201883,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15963876247406006,
+          "time_to_this_feasible_output": 2407.1909736691887
+        },
+        {
+          "actual_solver_seconds": 2811.536833954142,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.159454345703125,
+          "time_to_this_feasible_output": 2811.5453742151403
+        },
+        {
+          "actual_solver_seconds": 3215.7259479030363,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.15929053810544397,
+          "time_to_this_feasible_output": 3215.7346950210376
+        }
+      ]
+    },
+    {
+      "candidate_id": "smd11",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 3215.6585826827213,
+      "last_rounded_loss": 0.15937519382803494,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-smd/product/seed811/output/metadata.json",
+      "metadata_sha256": "2ad604a7120f2df7884afa838daa4ced2a2c78e4e3fd6f9d16a55036cb966114",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 811,
+      "sketch_probes": 2560000,
+      "solver_seconds": 3215.6494359057397,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.026141159003600478,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.6623610260430723
+        },
+        {
+          "actual_solver_seconds": 17.39124238677323,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16095679998397827,
+          "time_to_this_feasible_output": 17.40037638368085
+        },
+        {
+          "actual_solver_seconds": 49.545569016598165,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1608932614326477,
+          "time_to_this_feasible_output": 49.55468133580871
+        },
+        {
+          "actual_solver_seconds": 162.07607781956904,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1607959270477295,
+          "time_to_this_feasible_output": 162.08519273856655
+        },
+        {
+          "actual_solver_seconds": 322.80664761038497,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16066688299179077,
+          "time_to_this_feasible_output": 322.81574658933096
+        },
+        {
+          "actual_solver_seconds": 483.51442168746144,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16057175397872925,
+          "time_to_this_feasible_output": 483.52351631433703
+        },
+        {
+          "actual_solver_seconds": 804.942849998828,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16040271520614624,
+          "time_to_this_feasible_output": 804.9519490287639
+        },
+        {
+          "actual_solver_seconds": 1206.7068375705276,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16020214557647705,
+          "time_to_this_feasible_output": 1206.7159942795988
+        },
+        {
+          "actual_solver_seconds": 1608.5016116732731,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16001266241073608,
+          "time_to_this_feasible_output": 1608.510714104399
+        },
+        {
+          "actual_solver_seconds": 2010.2920394153334,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1598476767539978,
+          "time_to_this_feasible_output": 2010.3011690813582
+        },
+        {
+          "actual_solver_seconds": 2412.094484683592,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15969115495681763,
+          "time_to_this_feasible_output": 2412.1035984805785
+        },
+        {
+          "actual_solver_seconds": 2813.8809110927396,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15954309701919556,
+          "time_to_this_feasible_output": 2813.890009166673
+        },
+        {
+          "actual_solver_seconds": 3215.6494359057397,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.15937519382803494,
+          "time_to_this_feasible_output": 3215.6585826827213
+        }
+      ]
+    },
+    {
+      "candidate_id": "smd11",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 3220.771843627095,
+      "last_rounded_loss": 0.1592728967163336,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-smd/product/seed812/output/metadata.json",
+      "metadata_sha256": "608d30fd1401b6840213dd2b513d5d1870fa9249e67bc30b6f0bd672420ea7bb",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 812,
+      "sketch_probes": 2560000,
+      "solver_seconds": 3220.7632704430725,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.02616683510132134,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103965044021606,
+          "time_to_this_feasible_output": 0.6619774161372334
+        },
+        {
+          "actual_solver_seconds": 17.377271725563332,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609470248222351,
+          "time_to_this_feasible_output": 17.385757834650576
+        },
+        {
+          "actual_solver_seconds": 49.55964428768493,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16089504957199097,
+          "time_to_this_feasible_output": 49.56808517873287
+        },
+        {
+          "actual_solver_seconds": 162.2357226125896,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16079699993133545,
+          "time_to_this_feasible_output": 162.24416996352375
+        },
+        {
+          "actual_solver_seconds": 323.19217656040564,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16067904233932495,
+          "time_to_this_feasible_output": 323.2006416544318
+        },
+        {
+          "actual_solver_seconds": 484.13723078463227,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16058099269866943,
+          "time_to_this_feasible_output": 484.1456994707696
+        },
+        {
+          "actual_solver_seconds": 806.0448506849352,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16038739681243896,
+          "time_to_this_feasible_output": 806.0532853219192
+        },
+        {
+          "actual_solver_seconds": 1208.4438694484998,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16020292043685913,
+          "time_to_this_feasible_output": 1208.452369202394
+        },
+        {
+          "actual_solver_seconds": 1610.881442106096,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1600077748298645,
+          "time_to_this_feasible_output": 1610.8898930309806
+        },
+        {
+          "actual_solver_seconds": 2013.3510868465528,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1598082184791565,
+          "time_to_this_feasible_output": 2013.3595644445159
+        },
+        {
+          "actual_solver_seconds": 2415.822177030612,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15963691473007202,
+          "time_to_this_feasible_output": 2415.830657464685
+        },
+        {
+          "actual_solver_seconds": 2818.283523369115,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15945219993591309,
+          "time_to_this_feasible_output": 2818.292003443232
+        },
+        {
+          "actual_solver_seconds": 3220.7632704430725,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.1592728967163336,
+          "time_to_this_feasible_output": 3220.771843627095
+        }
+      ]
+    },
+    {
+      "candidate_id": "smd11",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 3193.447402073769,
+      "last_rounded_loss": 0.1593256586464109,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-smd/randomized/seed810/output/metadata.json",
+      "metadata_sha256": "bdfa0588887d58b2a199ee0d009529a973431ef70375895497f78e427ea0cbe2",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 810,
+      "sketch_probes": 2560000,
+      "solver_seconds": 3193.4388841728214,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 1.442077323095873,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.1610514521598816,
+          "time_to_this_feasible_output": 1.5600164050702006
+        },
+        {
+          "actual_solver_seconds": 17.451396089512855,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16098886728286743,
+          "time_to_this_feasible_output": 17.45993988867849
+        },
+        {
+          "actual_solver_seconds": 49.37946370965801,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16091960668563843,
+          "time_to_this_feasible_output": 49.38800709764473
+        },
+        {
+          "actual_solver_seconds": 161.1148183438927,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16081839799880981,
+          "time_to_this_feasible_output": 161.12336154771037
+        },
+        {
+          "actual_solver_seconds": 320.7121596697252,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16068708896636963,
+          "time_to_this_feasible_output": 320.72067754669115
+        },
+        {
+          "actual_solver_seconds": 480.30065256310627,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16058295965194702,
+          "time_to_this_feasible_output": 480.30918711517006
+        },
+        {
+          "actual_solver_seconds": 799.5127104378771,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1604076623916626,
+          "time_to_this_feasible_output": 799.5212480248883
+        },
+        {
+          "actual_solver_seconds": 1198.596218477236,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16021251678466797,
+          "time_to_this_feasible_output": 1198.6049320891034
+        },
+        {
+          "actual_solver_seconds": 1597.682598327985,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16001641750335693,
+          "time_to_this_feasible_output": 1597.6911441897973
+        },
+        {
+          "actual_solver_seconds": 1996.6653863771353,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.159834086894989,
+          "time_to_this_feasible_output": 1996.6738890621345
+        },
+        {
+          "actual_solver_seconds": 2395.6231019392144,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15966814756393433,
+          "time_to_this_feasible_output": 2395.631586355157
+        },
+        {
+          "actual_solver_seconds": 2794.532841353677,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15948617458343506,
+          "time_to_this_feasible_output": 2794.541319423588
+        },
+        {
+          "actual_solver_seconds": 3193.4388841728214,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.1593256586464109,
+          "time_to_this_feasible_output": 3193.447402073769
+        }
+      ]
+    },
+    {
+      "candidate_id": "smd11",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 3187.5626795163844,
+      "last_rounded_loss": 0.159397906879296,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-smd/randomized/seed811/output/metadata.json",
+      "metadata_sha256": "b5fe5aa22543e3f72a6a1e1a6696d648def3a7abf4dbb560a88b2f160449202e",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 811,
+      "sketch_probes": 2560000,
+      "solver_seconds": 3187.554210460279,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 1.4418120048940182,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103172302246094,
+          "time_to_this_feasible_output": 1.5600983917247504
+        },
+        {
+          "actual_solver_seconds": 17.411901535466313,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16095250844955444,
+          "time_to_this_feasible_output": 17.42037617135793
+        },
+        {
+          "actual_solver_seconds": 49.28123483643867,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16088956594467163,
+          "time_to_this_feasible_output": 49.28971346328035
+        },
+        {
+          "actual_solver_seconds": 160.8198457597755,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16079312562942505,
+          "time_to_this_feasible_output": 160.8283226727508
+        },
+        {
+          "actual_solver_seconds": 320.1344883539714,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1606656312942505,
+          "time_to_this_feasible_output": 320.1429363079369
+        },
+        {
+          "actual_solver_seconds": 479.4397368740756,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16057223081588745,
+          "time_to_this_feasible_output": 479.44817849015817
+        },
+        {
+          "actual_solver_seconds": 798.0549397689756,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16040778160095215,
+          "time_to_this_feasible_output": 798.0634143820498
+        },
+        {
+          "actual_solver_seconds": 1196.311252124142,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16020911931991577,
+          "time_to_this_feasible_output": 1196.3197228491772
+        },
+        {
+          "actual_solver_seconds": 1594.5901646933053,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1600232720375061,
+          "time_to_this_feasible_output": 1594.598629947286
+        },
+        {
+          "actual_solver_seconds": 1992.8240808395203,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15986168384552002,
+          "time_to_this_feasible_output": 1992.8325350685045
+        },
+        {
+          "actual_solver_seconds": 2391.1040584314615,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1597084403038025,
+          "time_to_this_feasible_output": 2391.1125218444504
+        },
+        {
+          "actual_solver_seconds": 2789.371739434777,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1595631241798401,
+          "time_to_this_feasible_output": 2789.3801613207906
+        },
+        {
+          "actual_solver_seconds": 3187.554210460279,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.159397906879296,
+          "time_to_this_feasible_output": 3187.5626795163844
+        }
+      ]
+    },
+    {
+      "candidate_id": "smd11",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 3209.8488923420664,
+      "last_rounded_loss": 0.1592845161524914,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-smd/randomized/seed812/output/metadata.json",
+      "metadata_sha256": "228b50e7b55a4c75a80215b543db78b2dd984a394d68e6495377d71044e8d3f4",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 812,
+      "sketch_probes": 2560000,
+      "solver_seconds": 3209.839882353088,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 2.2468266910873353,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.16103386878967285,
+          "time_to_this_feasible_output": 2.2893341111484915
+        },
+        {
+          "actual_solver_seconds": 18.387631505029276,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1609419584274292,
+          "time_to_this_feasible_output": 18.396690476918593
+        },
+        {
+          "actual_solver_seconds": 50.48428561305627,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16088837385177612,
+          "time_to_this_feasible_output": 50.493327415082604
+        },
+        {
+          "actual_solver_seconds": 162.82215263391845,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16078919172286987,
+          "time_to_this_feasible_output": 162.83119244291447
+        },
+        {
+          "actual_solver_seconds": 323.2934544093441,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16067272424697876,
+          "time_to_this_feasible_output": 323.30250769131817
+        },
+        {
+          "actual_solver_seconds": 483.7116006028373,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16057437658309937,
+          "time_to_this_feasible_output": 483.7205876528751
+        },
+        {
+          "actual_solver_seconds": 804.50112451124,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16038060188293457,
+          "time_to_this_feasible_output": 804.5101419813
+        },
+        {
+          "actual_solver_seconds": 1205.4314347743057,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1601964831352234,
+          "time_to_this_feasible_output": 1205.4404194923118
+        },
+        {
+          "actual_solver_seconds": 1606.3503713831306,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.16000771522521973,
+          "time_to_this_feasible_output": 1606.3593458121177
+        },
+        {
+          "actual_solver_seconds": 2007.2410035179928,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.1598101258277893,
+          "time_to_this_feasible_output": 2007.249957819935
+        },
+        {
+          "actual_solver_seconds": 2408.1122331337538,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15964078903198242,
+          "time_to_this_feasible_output": 2408.1212036837824
+        },
+        {
+          "actual_solver_seconds": 2808.975172713399,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.15946024656295776,
+          "time_to_this_feasible_output": 2808.9841220094822
+        },
+        {
+          "actual_solver_seconds": 3209.839882353088,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.1592845161524914,
+          "time_to_this_feasible_output": 3209.8488923420664
+        }
+      ]
+    },
+    {
+      "candidate_id": "msbpg00",
+      "dataset": "bmmc6224",
+      "failure_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/product/seed810/status.json",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/product/seed810/output/metadata.json",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "reason": "ValueError('Runner subprocess failed with exit status 1.')",
+      "seed": 810,
+      "status": "failed"
+    },
+    {
+      "candidate_id": "msbpg00",
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/product/seed811/output/metadata.json",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "seed": 811,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "msbpg00",
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/product/seed812/output/metadata.json",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "seed": 812,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "msbpg00",
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/randomized/seed810/output/metadata.json",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "seed": 810,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "msbpg00",
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/randomized/seed811/output/metadata.json",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "seed": 811,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "msbpg00",
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/bmmc6224/published-msbpg/randomized/seed812/output/metadata.json",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "seed": 812,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "fw04",
+      "dataset": "snare_full",
+      "failure_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/product/seed810/status.json",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/product/seed810/output/metadata.json",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "reason": "ValueError('Runner subprocess failed with exit status 1.')",
+      "seed": 810,
+      "status": "failed"
+    },
+    {
+      "candidate_id": "fw04",
+      "dataset": "snare_full",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/product/seed811/output/metadata.json",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 811,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "fw04",
+      "dataset": "snare_full",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/product/seed812/output/metadata.json",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 812,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "fw04",
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/randomized/seed810/output/metadata.json",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 810,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "fw04",
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/randomized/seed811/output/metadata.json",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 811,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "fw04",
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/smoothing-fw/randomized/seed812/output/metadata.json",
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "seed": 812,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "smd11",
+      "dataset": "snare_full",
+      "failure_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/product/seed810/status.json",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/product/seed810/output/metadata.json",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "reason": "ValueError('Runner subprocess failed with exit status 1.')",
+      "seed": 810,
+      "status": "failed"
+    },
+    {
+      "candidate_id": "smd11",
+      "dataset": "snare_full",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/product/seed811/output/metadata.json",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 811,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "smd11",
+      "dataset": "snare_full",
+      "initialization": "product",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/product/seed812/output/metadata.json",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 812,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "smd11",
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/randomized/seed810/output/metadata.json",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 810,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "smd11",
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/randomized/seed811/output/metadata.json",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 811,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "smd11",
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-smd/randomized/seed812/output/metadata.json",
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "seed": 812,
+      "status": "missing"
+    },
+    {
+      "candidate_id": "msbpg00",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 12120.416216249345,
+      "last_rounded_loss": 0.0940721477212837,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-msbpg/product/seed810/output/metadata.json",
+      "metadata_sha256": "a80088c12591f52b43d81030f9b38a0e99c88cf7a03e3d592bf0258cce2501ec",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "sampled_normalized_displacement_squared": 0.0042446324305641155,
+      "seed": 810,
+      "sketch_probes": 2560000,
+      "solver_seconds": 12120.402609857265,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.2785010440275073,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.43631482985801995
+        },
+        {
+          "actual_solver_seconds": 61.36271900939755,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 61.37639495334588
+        },
+        {
+          "actual_solver_seconds": 182.5938727001194,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 182.60750664910302
+        },
+        {
+          "actual_solver_seconds": 606.8012860128656,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 606.814942416735
+        },
+        {
+          "actual_solver_seconds": 1212.6527698352002,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 1212.666386717232
+        },
+        {
+          "actual_solver_seconds": 1818.5941867711954,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 1818.607822624268
+        },
+        {
+          "actual_solver_seconds": 3030.751033810666,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 3030.7647094656713
+        },
+        {
+          "actual_solver_seconds": 4546.052089524921,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 4546.065761128906
+        },
+        {
+          "actual_solver_seconds": 6061.203810581705,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 6061.217447873671
+        },
+        {
+          "actual_solver_seconds": 7576.300201838603,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 7576.313828278566
+        },
+        {
+          "actual_solver_seconds": 9090.959768890403,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 9090.973390133586
+        },
+        {
+          "actual_solver_seconds": 10605.794349080883,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 10605.807979866862
+        },
+        {
+          "actual_solver_seconds": 12120.402609857265,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.0940721477212837,
+          "time_to_this_feasible_output": 12120.416216249345
+        }
+      ]
+    },
+    {
+      "candidate_id": "msbpg00",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 12168.72974530398,
+      "last_rounded_loss": 0.09407215573254435,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-msbpg/product/seed811/output/metadata.json",
+      "metadata_sha256": "8eaaae48bdfe8e511ee8cceb0c9c159a73a90ddc71935de000d76a629881662d",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "sampled_normalized_displacement_squared": 0.0036442084568408424,
+      "seed": 811,
+      "sketch_probes": 2560000,
+      "solver_seconds": 12168.715094350977,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.008960433071479201,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.05696531501598656
+        },
+        {
+          "actual_solver_seconds": 60.90724466042593,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407246112823486,
+          "time_to_this_feasible_output": 60.921889818506315
+        },
+        {
+          "actual_solver_seconds": 182.60499548353255,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407246112823486,
+          "time_to_this_feasible_output": 182.6197018895764
+        },
+        {
+          "actual_solver_seconds": 608.5105722881854,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 608.5252146830317
+        },
+        {
+          "actual_solver_seconds": 1216.900131457718,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 1216.9147556228563
+        },
+        {
+          "actual_solver_seconds": 1825.2849841865245,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 1825.2996114224661
+        },
+        {
+          "actual_solver_seconds": 3042.0629207503516,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407234191894531,
+          "time_to_this_feasible_output": 3042.0775885833427
+        },
+        {
+          "actual_solver_seconds": 4563.203986028209,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 4563.218564672396
+        },
+        {
+          "actual_solver_seconds": 6084.329508227529,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 6084.34414386563
+        },
+        {
+          "actual_solver_seconds": 7605.439377133502,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 7605.454034364549
+        },
+        {
+          "actual_solver_seconds": 9126.540704483632,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 9126.55527335871
+        },
+        {
+          "actual_solver_seconds": 10647.64398905146,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 10647.658601892646
+        },
+        {
+          "actual_solver_seconds": 12168.715094350977,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.09407215573254435,
+          "time_to_this_feasible_output": 12168.72974530398
+        }
+      ]
+    },
+    {
+      "candidate_id": "msbpg00",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "product",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 12172.620515798219,
+      "last_rounded_loss": 0.09407214630502125,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-msbpg/product/seed812/output/metadata.json",
+      "metadata_sha256": "ffaba4875c8a4dd0c6c353691b03be7c128e207c7a0bd08339e63f128f142153",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "sampled_normalized_displacement_squared": 0.0032240340042822935,
+      "seed": 812,
+      "sketch_probes": 2560000,
+      "solver_seconds": 12172.606023623142,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.009073732886463404,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.09407249093055725,
+          "time_to_this_feasible_output": 0.05716074095107615
+        },
+        {
+          "actual_solver_seconds": 60.93240553163923,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 60.94690127973445
+        },
+        {
+          "actual_solver_seconds": 182.66754902363755,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 182.68200839869678
+        },
+        {
+          "actual_solver_seconds": 608.7161876971368,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407240152359009,
+          "time_to_this_feasible_output": 608.7306176561397
+        },
+        {
+          "actual_solver_seconds": 1217.288091137074,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407234191894531,
+          "time_to_this_feasible_output": 1217.3024745481089
+        },
+        {
+          "actual_solver_seconds": 1825.874254066497,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407234191894531,
+          "time_to_this_feasible_output": 1825.8886709425133
+        },
+        {
+          "actual_solver_seconds": 3043.126165931113,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 3043.140550035285
+        },
+        {
+          "actual_solver_seconds": 4564.716811216669,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407228231430054,
+          "time_to_this_feasible_output": 4564.73122299579
+        },
+        {
+          "actual_solver_seconds": 6086.304768681992,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407222270965576,
+          "time_to_this_feasible_output": 6086.319196181139
+        },
+        {
+          "actual_solver_seconds": 7607.901962788776,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407222270965576,
+          "time_to_this_feasible_output": 7607.9163677827455
+        },
+        {
+          "actual_solver_seconds": 9129.486051889602,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 9129.50046015461
+        },
+        {
+          "actual_solver_seconds": 10651.00834862166,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407216310501099,
+          "time_to_this_feasible_output": 10651.022744630696
+        },
+        {
+          "actual_solver_seconds": 12172.606023623142,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.09407214630502125,
+          "time_to_this_feasible_output": 12172.620515798219
+        }
+      ]
+    },
+    {
+      "candidate_id": "msbpg00",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 12149.264425669797,
+      "last_rounded_loss": 0.09407440996113065,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-msbpg/randomized/seed810/output/metadata.json",
+      "metadata_sha256": "3acc48fe9532c12da40cf537a12400c2093543776d2873ce638a0aa190f0a5af",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "sampled_normalized_displacement_squared": 0.29969258669675564,
+      "seed": 810,
+      "sketch_probes": 2560000,
+      "solver_seconds": 12149.24996449682,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.7581794878933579,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.09407490491867065,
+          "time_to_this_feasible_output": 0.798488758970052
+        },
+        {
+          "actual_solver_seconds": 61.51367283123545,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407472610473633,
+          "time_to_this_feasible_output": 61.528196573257446
+        },
+        {
+          "actual_solver_seconds": 182.99947678297758,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407466650009155,
+          "time_to_this_feasible_output": 183.01394382794388
+        },
+        {
+          "actual_solver_seconds": 608.1899676471949,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407466650009155,
+          "time_to_this_feasible_output": 608.2044392812531
+        },
+        {
+          "actual_solver_seconds": 1215.6379784690216,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407466650009155,
+          "time_to_this_feasible_output": 1215.6524435880128
+        },
+        {
+          "actual_solver_seconds": 1823.1225733230822,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.094074547290802,
+          "time_to_this_feasible_output": 1823.137084219139
+        },
+        {
+          "actual_solver_seconds": 3038.1879176530056,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407460689544678,
+          "time_to_this_feasible_output": 3038.20236603613
+        },
+        {
+          "actual_solver_seconds": 4556.810692033498,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.094074547290802,
+          "time_to_this_feasible_output": 4556.825095984619
+        },
+        {
+          "actual_solver_seconds": 6075.300743641099,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407448768615723,
+          "time_to_this_feasible_output": 6075.315132638905
+        },
+        {
+          "actual_solver_seconds": 7593.799425737001,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407448768615723,
+          "time_to_this_feasible_output": 7593.813848794904
+        },
+        {
+          "actual_solver_seconds": 9112.32224769611,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407442808151245,
+          "time_to_this_feasible_output": 9112.33668189426
+        },
+        {
+          "actual_solver_seconds": 10630.787786007626,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407442808151245,
+          "time_to_this_feasible_output": 10630.80218000384
+        },
+        {
+          "actual_solver_seconds": 12149.24996449682,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.09407440996113065,
+          "time_to_this_feasible_output": 12149.264425669797
+        }
+      ]
+    },
+    {
+      "candidate_id": "msbpg00",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 12218.011161800474,
+      "last_rounded_loss": 0.09407251756541624,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-msbpg/randomized/seed811/output/metadata.json",
+      "metadata_sha256": "16ed0f8547ceeb1407a37793fadeb2b7a2e162efd3e1d2a753c84ec2c9b96d8d",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "sampled_normalized_displacement_squared": 0.2541707669428904,
+      "seed": 811,
+      "sketch_probes": 2560000,
+      "solver_seconds": 12217.996580362553,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.2483375130686909,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.09407305717468262,
+          "time_to_this_feasible_output": 0.2896404240746051
+        },
+        {
+          "actual_solver_seconds": 61.39917835476808,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407275915145874,
+          "time_to_this_feasible_output": 61.41432855371386
+        },
+        {
+          "actual_solver_seconds": 183.66875441838056,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407281875610352,
+          "time_to_this_feasible_output": 183.68382508447394
+        },
+        {
+          "actual_solver_seconds": 611.6580744537059,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407275915145874,
+          "time_to_this_feasible_output": 611.6732251907233
+        },
+        {
+          "actual_solver_seconds": 1223.077078915434,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407275915145874,
+          "time_to_this_feasible_output": 1223.0922208724078
+        },
+        {
+          "actual_solver_seconds": 1834.4838472653646,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407275915145874,
+          "time_to_this_feasible_output": 1834.4990009772591
+        },
+        {
+          "actual_solver_seconds": 3057.300209225854,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407263994216919,
+          "time_to_this_feasible_output": 3057.315373533871
+        },
+        {
+          "actual_solver_seconds": 4585.887515553273,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407263994216919,
+          "time_to_this_feasible_output": 4585.902633321239
+        },
+        {
+          "actual_solver_seconds": 6114.27370216907,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407263994216919,
+          "time_to_this_feasible_output": 6114.28876647912
+        },
+        {
+          "actual_solver_seconds": 7640.946332375286,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407258033752441,
+          "time_to_this_feasible_output": 7640.960921417223
+        },
+        {
+          "actual_solver_seconds": 9166.634246906266,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407258033752441,
+          "time_to_this_feasible_output": 9166.648799213348
+        },
+        {
+          "actual_solver_seconds": 10692.31556519703,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09407258033752441,
+          "time_to_this_feasible_output": 10692.330097173108
+        },
+        {
+          "actual_solver_seconds": 12217.996580362553,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.09407251756541624,
+          "time_to_this_feasible_output": 12218.011161800474
+        }
+      ]
+    },
+    {
+      "candidate_id": "msbpg00",
+      "certificate_checks": 20000,
+      "completed_updates": 20000,
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "inner_iterations": 200000,
+      "last_feasible_output_seconds": 12163.695594114717,
+      "last_rounded_loss": 0.0940679707424773,
+      "metadata_file": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/snare_full/published-msbpg/randomized/seed812/output/metadata.json",
+      "metadata_sha256": "2e35414e5c0e6502cc14f1cfb1074a14b32a8541c93b25b7463fe80020d3e2f3",
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "sampled_normalized_displacement_squared": 0.21161980326726076,
+      "seed": 812,
+      "sketch_probes": 2560000,
+      "solver_seconds": 12163.681087021716,
+      "status": "completed",
+      "stochastic_gradient_calls": 20000,
+      "trajectory": [
+        {
+          "actual_solver_seconds": 0.5626166800502688,
+          "iteration": 0,
+          "kind": "initial",
+          "precision": "float32",
+          "rounded_loss": 0.09406843781471252,
+          "time_to_this_feasible_output": 0.6028504022397101
+        },
+        {
+          "actual_solver_seconds": 61.39574072929099,
+          "iteration": 100,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406828880310059,
+          "time_to_this_feasible_output": 61.41030464321375
+        },
+        {
+          "actual_solver_seconds": 183.0169551859144,
+          "iteration": 300,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406828880310059,
+          "time_to_this_feasible_output": 183.0314654908143
+        },
+        {
+          "actual_solver_seconds": 608.6961300217081,
+          "iteration": 1000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406822919845581,
+          "time_to_this_feasible_output": 608.7106486319099
+        },
+        {
+          "actual_solver_seconds": 1216.8320294155274,
+          "iteration": 2000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406822919845581,
+          "time_to_this_feasible_output": 1216.8465701076202
+        },
+        {
+          "actual_solver_seconds": 1824.9312107828446,
+          "iteration": 3000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406810998916626,
+          "time_to_this_feasible_output": 1824.9456920067314
+        },
+        {
+          "actual_solver_seconds": 3041.049062537262,
+          "iteration": 5000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406816959381104,
+          "time_to_this_feasible_output": 3041.0635202282574
+        },
+        {
+          "actual_solver_seconds": 4561.601731358096,
+          "iteration": 7500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406810998916626,
+          "time_to_this_feasible_output": 4561.616231468972
+        },
+        {
+          "actual_solver_seconds": 6082.405517986044,
+          "iteration": 10000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406805038452148,
+          "time_to_this_feasible_output": 6082.420034694951
+        },
+        {
+          "actual_solver_seconds": 7603.023931510979,
+          "iteration": 12500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406805038452148,
+          "time_to_this_feasible_output": 7603.038451681146
+        },
+        {
+          "actual_solver_seconds": 9123.238461005269,
+          "iteration": 15000,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406805038452148,
+          "time_to_this_feasible_output": 9123.252978877397
+        },
+        {
+          "actual_solver_seconds": 10643.516106750583,
+          "iteration": 17500,
+          "kind": "current_diagnostic",
+          "precision": "float32",
+          "rounded_loss": 0.09406799077987671,
+          "time_to_this_feasible_output": 10643.530581704574
+        },
+        {
+          "actual_solver_seconds": 12163.681087021716,
+          "iteration": 20000,
+          "kind": "last",
+          "precision": "float64",
+          "rounded_loss": 0.0940679707424773,
+          "time_to_this_feasible_output": 12163.695594114717
+        }
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "source_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/source_1963919",
+  "status": "incomplete",
+  "summary_policy": "Median and linear-interpolation IQR across all configured final seeds. Missing, failed or invalid seeds prevent a complete median.",
+  "task_counts": {
+    "completed": 18,
+    "failed": 3,
+    "invalid": 0,
+    "missing": 15,
+    "started_without_result": 0
+  },
+  "theorem_scope": "MSBPG uses the theorem parameter prescription with numerical proximal solves at the configured tolerance; its sampled displacement statistic is separate from feasible GW loss.",
+  "timing_scope": "Observed solver times at the same update count, not time to equal accuracy. Diagnostic evaluation and final FP64 validation are outside solver time.",
+  "trajectory_policy": "Exact observed iteration indices only. No nearest-checkpoint substitution, extrapolation, seed-trace interpolation, or best-so-far selection. The final endpoint uses the FP64 last-rounded validation.",
+  "trajectory_summaries": [
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 0,
+      "median": 0.16103965044021606,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16103965044021606,
+      "q75": 0.16103965044021606,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 100,
+      "median": 0.16102132201194763,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16101594269275665,
+      "q75": 0.1610298603773117,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 300,
+      "median": 0.1609552800655365,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1609516590833664,
+      "q75": 0.1609620451927185,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 1000,
+      "median": 0.1604773998260498,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16044995188713074,
+      "q75": 0.16050651669502258,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 2000,
+      "median": 0.1597556471824646,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15974640846252441,
+      "q75": 0.16001620888710022,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 3000,
+      "median": 0.1599000096321106,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15981516242027283,
+      "q75": 0.16011261940002441,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 5000,
+      "median": 0.16067743301391602,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1606670320034027,
+      "q75": 0.1606857180595398,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 7500,
+      "median": 0.16073185205459595,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16072505712509155,
+      "q75": 0.1607455611228943,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 10000,
+      "median": 0.16072607040405273,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16071516275405884,
+      "q75": 0.16074538230895996,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 12500,
+      "median": 0.16067880392074585,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16066691279411316,
+      "q75": 0.16071006655693054,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 15000,
+      "median": 0.16066068410873413,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16065499186515808,
+      "q75": 0.16068413853645325,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 17500,
+      "median": 0.1606540083885193,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1605994999408722,
+      "q75": 0.16067305207252502,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 20000,
+      "median": 0.16061004904308024,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float64",
+      "q25": 0.16057788871522205,
+      "q75": 0.16063428875755062,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 0,
+      "median": 0.16103965044021606,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16103965044021606,
+      "q75": 0.16103965044021606,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 100,
+      "median": 0.16095679998397827,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1609519124031067,
+      "q75": 0.1609693169593811,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 300,
+      "median": 0.16089504957199097,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16089415550231934,
+      "q75": 0.16090279817581177,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 1000,
+      "median": 0.16079699993133545,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16079646348953247,
+      "q75": 0.16080254316329956,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 2000,
+      "median": 0.16067475080490112,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16067081689834595,
+      "q75": 0.16067689657211304,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 3000,
+      "median": 0.16057175397872925,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16057080030441284,
+      "q75": 0.16057637333869934,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 5000,
+      "median": 0.16039162874221802,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1603895127773285,
+      "q75": 0.16039717197418213,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 7500,
+      "median": 0.16020214557647705,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16019746661186218,
+      "q75": 0.1602025330066681,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 10000,
+      "median": 0.1600077748298645,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1600009799003601,
+      "q75": 0.1600102186203003,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 12500,
+      "median": 0.1598082184791565,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1598082184791565,
+      "q75": 0.15982794761657715,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 15000,
+      "median": 0.15963876247406006,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15963783860206604,
+      "q75": 0.15966495871543884,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 17500,
+      "median": 0.159454345703125,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15945327281951904,
+      "q75": 0.15949872136116028,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 20000,
+      "median": 0.15929053810544397,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float64",
+      "q25": 0.15928171741088878,
+      "q75": 0.15933286596673946,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 0,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 100,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 300,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 1000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 2000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 3000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 5000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 7500,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 10000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 12500,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 15000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 17500,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 20000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 0,
+      "median": 0.16103386878967285,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1610327959060669,
+      "q75": 0.16104266047477722,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 100,
+      "median": 0.16102126240730286,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16101603209972382,
+      "q75": 0.16103021800518036,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 300,
+      "median": 0.1609569489955902,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1609484702348709,
+      "q75": 0.16096295416355133,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 1000,
+      "median": 0.16048210859298706,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16045048832893372,
+      "q75": 0.16050386428833008,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 2000,
+      "median": 0.15978509187698364,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15976276993751526,
+      "q75": 0.1600283980369568,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 3000,
+      "median": 0.15992164611816406,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1597696840763092,
+      "q75": 0.16017577052116394,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 5000,
+      "median": 0.16071641445159912,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1607145071029663,
+      "q75": 0.1607356071472168,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 7500,
+      "median": 0.16078811883926392,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16077736020088196,
+      "q75": 0.1608140766620636,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 10000,
+      "median": 0.1607663631439209,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16071674227714539,
+      "q75": 0.1607678234577179,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 12500,
+      "median": 0.16066187620162964,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1606614887714386,
+      "q75": 0.16069293022155762,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 15000,
+      "median": 0.16067081689834595,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16066670417785645,
+      "q75": 0.16067710518836975,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 17500,
+      "median": 0.1606597900390625,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1606455147266388,
+      "q75": 0.1606752574443817,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 20000,
+      "median": 0.16061252090600475,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 3,
+      "precision": "float64",
+      "q25": 0.16060990305100287,
+      "q75": 0.16061266166615623,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 0,
+      "median": 0.16103386878967285,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1610327959060669,
+      "q75": 0.16104266047477722,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 100,
+      "median": 0.16095250844955444,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16094723343849182,
+      "q75": 0.16097068786621094,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 300,
+      "median": 0.16088956594467163,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16088896989822388,
+      "q75": 0.16090458631515503,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 1000,
+      "median": 0.16079312562942505,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16079115867614746,
+      "q75": 0.16080576181411743,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 2000,
+      "median": 0.16067272424697876,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16066917777061462,
+      "q75": 0.1606799066066742,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 3000,
+      "median": 0.16057437658309937,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1605733036994934,
+      "q75": 0.1605786681175232,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 5000,
+      "median": 0.1604076623916626,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16039413213729858,
+      "q75": 0.16040772199630737,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 7500,
+      "median": 0.16020911931991577,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16020280122756958,
+      "q75": 0.16021081805229187,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 10000,
+      "median": 0.16001641750335693,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.16001206636428833,
+      "q75": 0.16001984477043152,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 12500,
+      "median": 0.159834086894989,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15982210636138916,
+      "q75": 0.15984788537025452,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 15000,
+      "median": 0.15966814756393433,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.15965446829795837,
+      "q75": 0.1596882939338684,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 17500,
+      "median": 0.15948617458343506,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.1594732105731964,
+      "q75": 0.15952464938163757,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 20000,
+      "median": 0.1593256586464109,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 3,
+      "precision": "float64",
+      "q25": 0.15930508739945115,
+      "q75": 0.15936178276285345,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 0,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 100,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 300,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 1000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 2000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 3000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 5000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 7500,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 10000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 12500,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 15000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 17500,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "bmmc6224",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 20000,
+      "median": null,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 0,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 100,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 300,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 1000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 2000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 3000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 5000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 7500,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 10000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 12500,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 15000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 17500,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 20000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 0,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 100,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 300,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 1000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 2000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 3000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 5000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 7500,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 10000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 12500,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 15000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 17500,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 20000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 0,
+      "median": 0.09407249093055725,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407249093055725,
+      "q75": 0.09407249093055725,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 100,
+      "median": 0.09407240152359009,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407240152359009,
+      "q75": 0.09407243132591248,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 300,
+      "median": 0.09407240152359009,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407240152359009,
+      "q75": 0.09407243132591248,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 1000,
+      "median": 0.09407240152359009,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407240152359009,
+      "q75": 0.09407240152359009,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 2000,
+      "median": 0.09407240152359009,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.0940723717212677,
+      "q75": 0.09407240152359009,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 3000,
+      "median": 0.09407234191894531,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407231211662292,
+      "q75": 0.0940723717212677,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 5000,
+      "median": 0.09407228231430054,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407228231430054,
+      "q75": 0.09407231211662292,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 7500,
+      "median": 0.09407228231430054,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407228231430054,
+      "q75": 0.09407228231430054,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 10000,
+      "median": 0.09407228231430054,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407225251197815,
+      "q75": 0.09407228231430054,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 12500,
+      "median": 0.09407216310501099,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407216310501099,
+      "q75": 0.09407219290733337,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 15000,
+      "median": 0.09407216310501099,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407216310501099,
+      "q75": 0.09407216310501099,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 17500,
+      "median": 0.09407216310501099,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407216310501099,
+      "q75": 0.09407216310501099,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "product",
+      "iteration": 20000,
+      "median": 0.0940721477212837,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float64",
+      "q25": 0.09407214701315247,
+      "q75": 0.09407215172691402,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 0,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 100,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 300,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 1000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 2000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 3000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 5000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 7500,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 10000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 12500,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 15000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 17500,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 20000,
+      "median": null,
+      "method": "smoothing-fw",
+      "method_label": "FraMES (stochastic gradient momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 0,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 100,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 300,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 1000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 2000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 3000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 5000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 7500,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 10000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 12500,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 15000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 17500,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 20000,
+      "median": null,
+      "method": "published-smd",
+      "method_label": "Entropic SMD (fresh stochastic gradient, no momentum)",
+      "n": 0,
+      "precision": null,
+      "q25": null,
+      "q75": null,
+      "status": "incomplete"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 0,
+      "median": 0.09407305717468262,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407074749469757,
+      "q75": 0.09407398104667664,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 100,
+      "median": 0.09407275915145874,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407052397727966,
+      "q75": 0.09407374262809753,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 300,
+      "median": 0.09407281875610352,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407055377960205,
+      "q75": 0.09407374262809753,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 1000,
+      "median": 0.09407275915145874,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407049417495728,
+      "q75": 0.09407371282577515,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 2000,
+      "median": 0.09407275915145874,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407049417495728,
+      "q75": 0.09407371282577515,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 3000,
+      "median": 0.09407275915145874,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.0940704345703125,
+      "q75": 0.09407365322113037,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 5000,
+      "median": 0.09407263994216919,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407040476799011,
+      "q75": 0.09407362341880798,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 7500,
+      "median": 0.09407263994216919,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407037496566772,
+      "q75": 0.0940735936164856,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 10000,
+      "median": 0.09407263994216919,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407034516334534,
+      "q75": 0.09407356381416321,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 12500,
+      "median": 0.09407258033752441,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407031536102295,
+      "q75": 0.09407353401184082,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 15000,
+      "median": 0.09407258033752441,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407031536102295,
+      "q75": 0.09407350420951843,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 17500,
+      "median": 0.09407258033752441,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float32",
+      "q25": 0.09407028555870056,
+      "q75": 0.09407350420951843,
+      "status": "completed"
+    },
+    {
+      "completed_seeds": [
+        810,
+        811,
+        812
+      ],
+      "dataset": "snare_full",
+      "expected_seeds": [
+        810,
+        811,
+        812
+      ],
+      "initialization": "randomized",
+      "iteration": 20000,
+      "median": 0.09407251756541624,
+      "method": "published-msbpg",
+      "method_label": "MSBPG (theorem parameter choices)",
+      "n": 3,
+      "precision": "float64",
+      "q25": 0.09407024415394677,
+      "q75": 0.09407346376327344,
+      "status": "completed"
+    }
+  ]
+}

@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "audited_utc": "2026-09-27T21:26:53.854711+00:00",
+  "scope": "First terminal trial only from array1961580 tasks0/1/2. Three outputs from one held-out clean synthetic n=512 instance, stochastic seeds100/101/102. Not a campaign completion or comparative performance report.",
+  "array_job_id": 1961580,
+  "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+  "selection_sha256": "4cfa1ef2a2ea127ba33987378b7a89c1922cfc6bedd1a433696136641c616fe7",
+  "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+  "dispatch_plan_sha256": "891a3c0c9fec0b3ae7da4fdcc564f30388cc22331c0b757960fe634f72a0084d",
+  "transfer_verification": "ruche_results/final_first_outputs_preview/transfer_verification.json",
+  "transfer_verification_sha256": "3d63d123e8d79df96f3557eb18888614c2bf3b7f66925701c1821b59ea78564e",
+  "trial_files_checksum_stable": 15,
+  "source_file_sha256": {
+    "run_benchmark.py": "569e0bce0eee05b6897dbff1b4fd5056e87145305f2d26e38f06b5caf5889485",
+    "smoothing_fw.py": "edf880d12394c681e2cbc36b1bf53b45d51d22ba8988c3ce671fce8d6bb45dd6",
+    "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444"
+  },
+  "audit_script_sha256": "1964cdf5a5915e96a44c4b8f7e2efe9ca34b3b22dad81b3c6c6f360fa80452b8",
+  "local_execution": {
+    "host": "elite",
+    "python": "3.11.2",
+    "numpy": "2.4.6",
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "cpu_affinity": [
+      0
+    ]
+  },
+  "method": "NumPy float64 actual-marginal quadratic GW expression using saved canonical A/B/a/b and actual saved P_raw/P_rounded; no re-rounding, no labels, no optimizer or kernel import.",
+  "validation_tolerances": {
+    "loss_absolute": 5e-12,
+    "loss_relative": 5e-12,
+    "marginal_absolute": 1e-12,
+    "rounded_combined_l1": 1.1920928955078125e-05
+  },
+  "runs": [
+    {
+      "run_id": "final_product/smoothing-fw/c08/metric512_s2000/s100_i100",
+      "task_index": 0,
+      "slurm_job_id": "1961581",
+      "method": "smoothing-fw",
+      "candidate_id": "c08",
+      "instance": "metric512_s2000.npz",
+      "stochastic_seed": 100,
+      "status": "completed",
+      "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+      "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+      "instance_sha256": "23fa57b33a11e7cb54df1f0b4c688067f6d2d3372300cce9b460277536b1190b",
+      "final_npz_sha256": "2acc6e7f90c8e810be6ac47371874464797ab909ff7228bb651a0d03d78d2afc",
+      "canonical_array_sha256": {
+        "A": "65caebdbd0d75a8e715e94ccd2d9977049ca5b64bcb1a56f56d197bf1568a522",
+        "B": "2257f98915e98a312267b06d807bcbaf5f2e4da2ca959201ff9c297a41517e6b",
+        "a": "8c74246543874a35da372ef26ccdb31ce88d8366951703be4b70427ff681dc3e",
+        "b": "8c74246543874a35da372ef26ccdb31ce88d8366951703be4b70427ff681dc3e"
+      },
+      "actual_solver_seconds": 300.0010470539564,
+      "time_to_final_feasible_output_seconds": 300.001832542941,
+      "budget_seconds": 300,
+      "observed_checkpoints_seconds": [
+        1,
+        3,
+        10,
+        30,
+        100,
+        300
+      ],
+      "cpu_float64": {
+        "raw": {
+          "loss": 0.0437658612734404,
+          "loss_terms": [
+            0.581804241405613,
+            0.5817875174974212,
+            1.1198258976295938
+          ],
+          "residuals": {
+            "row_l1": 2.2398378973775834e-07,
+            "col_l1": 0.02240098430044668,
+            "col_l2": 0.001211474996758644,
+            "both_l1": 0.022401208284236418,
+            "mass_error": 2.2398378973775834e-07,
+            "min_entry": 4.376011304429994e-07
+          }
+        },
+        "rounded": {
+          "loss": 0.04376756160355155,
+          "loss_terms": [
+            0.5818039935866983,
+            0.5818039934964236,
+            1.1198404254795704
+          ],
+          "residuals": {
+            "row_l1": 2.6622899440553738e-08,
+            "col_l1": 3.512963075991138e-08,
+            "col_l2": 1.973316546328904e-09,
+            "both_l1": 6.175253020046512e-08,
+            "mass_error": 1.0902510894084116e-08,
+            "min_entry": 5.349079401639756e-07
+          }
+        }
+      },
+      "recorded_cuda_float64": {
+        "raw_loss": 0.043765861273440176,
+        "rounded_loss": 0.043767561603551774
+      },
+      "cpu_minus_recorded_loss": {
+        "raw": 2.220446049250313e-16,
+        "rounded": -2.220446049250313e-16
+      },
+      "cpu_minus_recorded_residuals": {
+        "raw": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        }
+      },
+      "repair_entrywise_l1": 0.022400972113160833,
+      "counters": {
+        "oracle_evaluations": 160857,
+        "exact_gradient_calls": 0,
+        "stochastic_gradient_calls": 160857,
+        "sketch_probes": 20589696,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 160857,
+        "row_projection_calls": 0,
+        "transport_lmo_calls": 0,
+        "kl_projection_calls": 0,
+        "euclidean_projection_calls": 0,
+        "inner_iterations_total": 0,
+        "inner_stopping_failures": 0,
+        "underflow_steps": 0,
+        "underflow_entries_total": 0,
+        "underflow_entries_max": 0,
+        "attempted_updates": 160857,
+        "completed_updates": 160857
+      },
+      "diagnostic_counts": {
+        "loss_calls": 14,
+        "full_gradient_calls": 14,
+        "assignment_lmo_calls": 7
+      },
+      "timing": {
+        "preparation_seconds": 0.9668858119985089,
+        "solver_seconds": 300.0010470539564,
+        "repair_seconds": 0.02894410106819123,
+        "exact_diagnostic_seconds": 9.064704931923188,
+        "final_float64_validation_seconds": 0.06627836299594492,
+        "serialization_seconds": 0.06010616500861943,
+        "total_elapsed_seconds_before_final_metadata_write": 311.70667082897853,
+        "unclassified_python_overhead_seconds": 1.5187044020276517
+      },
+      "memory": {
+        "cpu_process_peak_rss_kib": 1048212,
+        "cpu_peak_scope": "process lifetime, includes preparation and float64 validation",
+        "cuda_peak_allocated_bytes": 57692672,
+        "cuda_peak_reserved_bytes": 69206016
+      },
+      "failure_event_count": 0,
+      "terminal_trace_original_fw_gap": 0.00021994677081238478
+    },
+    {
+      "run_id": "final_product/smoothing-fw/c08/metric512_s2000/s101_i100",
+      "task_index": 1,
+      "slurm_job_id": "1961582",
+      "method": "smoothing-fw",
+      "candidate_id": "c08",
+      "instance": "metric512_s2000.npz",
+      "stochastic_seed": 101,
+      "status": "completed",
+      "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+      "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+      "instance_sha256": "23fa57b33a11e7cb54df1f0b4c688067f6d2d3372300cce9b460277536b1190b",
+      "final_npz_sha256": "31e7dae22fb0186f6fe1280e6a5d973ce6a935a5869b7b8de3cccae96b1cc96a",
+      "canonical_array_sha256": {
+        "A": "65caebdbd0d75a8e715e94ccd2d9977049ca5b64bcb1a56f56d197bf1568a522",
+        "B": "2257f98915e98a312267b06d807bcbaf5f2e4da2ca959201ff9c297a41517e6b",
+        "a": "8c74246543874a35da372ef26ccdb31ce88d8366951703be4b70427ff681dc3e",
+        "b": "8c74246543874a35da372ef26ccdb31ce88d8366951703be4b70427ff681dc3e"
+      },
+      "actual_solver_seconds": 300.00178620999213,
+      "time_to_final_feasible_output_seconds": 300.00258767593186,
+      "budget_seconds": 300,
+      "observed_checkpoints_seconds": [
+        1,
+        3,
+        10,
+        30,
+        100,
+        300
+      ],
+      "cpu_float64": {
+        "raw": {
+          "loss": 0.04376916616922588,
+          "loss_terms": [
+            0.5818044646454348,
+            0.5818121064569279,
+            1.1198474049331368
+          ],
+          "residuals": {
+            "row_l1": 4.157633100021485e-07,
+            "col_l1": 0.022471386609396404,
+            "col_l2": 0.0012327610177648425,
+            "both_l1": 0.022471802372706406,
+            "mass_error": 4.157633100021485e-07,
+            "min_entry": 2.5570338380020985e-07
+          }
+        },
+        "rounded": {
+          "loss": 0.04376905597221081,
+          "loss_terms": [
+            0.581803994419098,
+            0.581803994368846,
+            1.1198389328157332
+          ],
+          "residuals": {
+            "row_l1": 2.6068846636917442e-08,
+            "col_l1": 3.510666601869161e-08,
+            "col_l2": 1.9579543226663287e-09,
+            "both_l1": 6.117551265560905e-08,
+            "mass_error": 1.1611291483859532e-08,
+            "min_entry": 3.226354863272718e-07
+          }
+        }
+      },
+      "recorded_cuda_float64": {
+        "raw_loss": 0.043769166169226104,
+        "rounded_loss": 0.043769055972211035
+      },
+      "cpu_minus_recorded_loss": {
+        "raw": -2.220446049250313e-16,
+        "rounded": -2.220446049250313e-16
+      },
+      "cpu_minus_recorded_residuals": {
+        "raw": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        }
+      },
+      "repair_entrywise_l1": 0.022471373928311777,
+      "counters": {
+        "oracle_evaluations": 160225,
+        "exact_gradient_calls": 0,
+        "stochastic_gradient_calls": 160225,
+        "sketch_probes": 20508800,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 160225,
+        "row_projection_calls": 0,
+        "transport_lmo_calls": 0,
+        "kl_projection_calls": 0,
+        "euclidean_projection_calls": 0,
+        "inner_iterations_total": 0,
+        "inner_stopping_failures": 0,
+        "underflow_steps": 0,
+        "underflow_entries_total": 0,
+        "underflow_entries_max": 0,
+        "attempted_updates": 160225,
+        "completed_updates": 160225
+      },
+      "diagnostic_counts": {
+        "loss_calls": 14,
+        "full_gradient_calls": 14,
+        "assignment_lmo_calls": 7
+      },
+      "timing": {
+        "preparation_seconds": 1.368841556017287,
+        "solver_seconds": 300.00178620999213,
+        "repair_seconds": 0.07419744483195245,
+        "exact_diagnostic_seconds": 8.559744954109192,
+        "final_float64_validation_seconds": 0.7226045269053429,
+        "serialization_seconds": 0.20092327101156116,
+        "total_elapsed_seconds_before_final_metadata_write": 312.4956288400572,
+        "unclassified_python_overhead_seconds": 1.5675308771897107
+      },
+      "memory": {
+        "cpu_process_peak_rss_kib": 1023536,
+        "cpu_peak_scope": "process lifetime, includes preparation and float64 validation",
+        "cuda_peak_allocated_bytes": 57692672,
+        "cuda_peak_reserved_bytes": 69206016
+      },
+      "failure_event_count": 0,
+      "terminal_trace_original_fw_gap": 0.00021924800239503384
+    },
+    {
+      "run_id": "final_product/smoothing-fw/c08/metric512_s2000/s102_i100",
+      "task_index": 2,
+      "slurm_job_id": "1961583",
+      "method": "smoothing-fw",
+      "candidate_id": "c08",
+      "instance": "metric512_s2000.npz",
+      "stochastic_seed": 102,
+      "status": "completed",
+      "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+      "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+      "instance_sha256": "23fa57b33a11e7cb54df1f0b4c688067f6d2d3372300cce9b460277536b1190b",
+      "final_npz_sha256": "0f766dc14487aac402737af5f346c57f894a90dcf31152e7e8dade21d06d4f62",
+      "canonical_array_sha256": {
+        "A": "65caebdbd0d75a8e715e94ccd2d9977049ca5b64bcb1a56f56d197bf1568a522",
+        "B": "2257f98915e98a312267b06d807bcbaf5f2e4da2ca959201ff9c297a41517e6b",
+        "a": "8c74246543874a35da372ef26ccdb31ce88d8366951703be4b70427ff681dc3e",
+        "b": "8c74246543874a35da372ef26ccdb31ce88d8366951703be4b70427ff681dc3e"
+      },
+      "actual_solver_seconds": 300.00032422714867,
+      "time_to_final_feasible_output_seconds": 300.00105220114347,
+      "budget_seconds": 300,
+      "observed_checkpoints_seconds": [
+        1,
+        3,
+        10,
+        30,
+        100,
+        300
+      ],
+      "cpu_float64": {
+        "raw": {
+          "loss": 0.04377014900815679,
+          "loss_terms": [
+            0.5818039773418897,
+            0.5818357220947782,
+            1.1198695504285112
+          ],
+          "residuals": {
+            "row_l1": 2.518009978302871e-08,
+            "col_l1": 0.021217094697533412,
+            "col_l2": 0.0011657947958881503,
+            "both_l1": 0.021217119877633195,
+            "mass_error": 2.991612291225465e-09,
+            "min_entry": 3.474235086287081e-07
+          }
+        },
+        "rounded": {
+          "loss": 0.04376705794843039,
+          "loss_terms": [
+            0.5818039938091922,
+            0.5818039939553178,
+            1.1198409298160796
+          ],
+          "residuals": {
+            "row_l1": 2.4872406356735155e-08,
+            "col_l1": 3.26785993820522e-08,
+            "col_l2": 1.834711393650492e-09,
+            "both_l1": 5.755100573878735e-08,
+            "mass_error": 1.1122892829007469e-08,
+            "min_entry": 3.8428493098763283e-07
+          }
+        }
+      },
+      "recorded_cuda_float64": {
+        "raw_loss": 0.043770149008156345,
+        "rounded_loss": 0.043767057948430166
+      },
+      "cpu_minus_recorded_loss": {
+        "raw": 4.440892098500626e-16,
+        "rounded": 2.220446049250313e-16
+      },
+      "cpu_minus_recorded_residuals": {
+        "raw": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        },
+        "rounded": {
+          "row_l1": 0.0,
+          "col_l1": 0.0,
+          "col_l2": 0.0,
+          "both_l1": 0.0,
+          "mass_error": 0.0,
+          "min_entry": 0.0
+        }
+      },
+      "repair_entrywise_l1": 0.021217084488910132,
+      "counters": {
+        "oracle_evaluations": 169572,
+        "exact_gradient_calls": 0,
+        "stochastic_gradient_calls": 169572,
+        "sketch_probes": 21705216,
+        "anchor_samples": 0,
+        "initialization_oracle_calls": 1,
+        "row_lmo_calls": 169572,
+        "row_projection_calls": 0,
+        "transport_lmo_calls": 0,
+        "kl_projection_calls": 0,
+        "euclidean_projection_calls": 0,
+        "inner_iterations_total": 0,
+        "inner_stopping_failures": 0,
+        "underflow_steps": 0,
+        "underflow_entries_total": 0,
+        "underflow_entries_max": 0,
+        "attempted_updates": 169572,
+        "completed_updates": 169572
+      },
+      "diagnostic_counts": {
+        "loss_calls": 14,
+        "full_gradient_calls": 14,
+        "assignment_lmo_calls": 7
+      },
+      "timing": {
+        "preparation_seconds": 1.103205851977691,
+        "solver_seconds": 300.00032422714867,
+        "repair_seconds": 0.13170209003146738,
+        "exact_diagnostic_seconds": 8.837970866938122,
+        "final_float64_validation_seconds": 0.013866541092284024,
+        "serialization_seconds": 0.05330745398532599,
+        "total_elapsed_seconds_before_final_metadata_write": 311.7015588450013,
+        "unclassified_python_overhead_seconds": 1.5611818138277158
+      },
+      "memory": {
+        "cpu_process_peak_rss_kib": 1026220,
+        "cpu_peak_scope": "process lifetime, includes preparation and float64 validation",
+        "cuda_peak_allocated_bytes": 57692672,
+        "cuda_peak_reserved_bytes": 69206016
+      },
+      "failure_event_count": 0,
+      "terminal_trace_original_fw_gap": 0.00022244019783101976
+    }
+  ],
+  "max_abs_loss_difference": 4.440892098500626e-16,
+  "max_rounded_combined_l1": 6.175253020046512e-08,
+  "failure_count": 0,
+  "retuning_or_scientific_changes": false,
+  "reproduce": ".venv/bin/python ruche_results/final_first_outputs_preview/audit_saved_plans.py"
+}

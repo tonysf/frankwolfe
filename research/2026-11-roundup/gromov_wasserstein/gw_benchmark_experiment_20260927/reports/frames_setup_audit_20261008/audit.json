@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-08",
+  "status": "diagnosis_complete; no production changes or new Slurm jobs",
+  "scope": "Read-only code audit, checksum-verified current13FraMESrunmetadata, archived tuning/final results, tiny independent algebra checks and BMMC1000 fixed-plan CPU64 oracle diagnostics.",
+  "confirmed_findings": [
+    {
+      "topic": "tuning_horizon_mismatch",
+      "detail": "Currentprefactors chosen at200updates and evaluatedat2000/20000. OldBMMCdevelopmentwithin-campaignprefersmu_scale10over.1 near5660updates; current200-stepselectionprefers.1. Differentcampaignseeds/runnerspreventcausalattributionofalllong-runlossdifference.",
+      "new_mu01_loss": 0.160970515033,
+      "new_mu10_loss": 0.160980576043,
+      "old_mu01_loss": 0.16067955404869083,
+      "old_mu10_loss": 0.15881085155352836,
+      "old_selected_frames6224_final_loss": 0.156729,
+      "current_frames6224_product_median_final_loss": 0.16061004904308024
+    },
+    {
+      "topic": "oracle_signal_to_noise",
+      "detail": "At frozenBMMC1000productstart,q128raw gradient sketches have mean82.9times the feasible-tangentgradientnorm error across16batches. Eachbatch sendsallrows toonecolumn. Independent expectationcheck passes; this is variance,not demonstratedbias.",
+      "unmeasured": "Magnitude/contributiononcurrentfull6224/10000/31890trajectories and momentum-reducednoise."
+    },
+    {
+      "topic": "rounding_can_erase_rank_one_updates",
+      "detail": "If P=a c^T androwLMOselectsonecommontargetcolumn,the nextiterate remainsrankone; standardroundingreturnsab^T. Verifiedfirstupdate3seeds onBMMC1000. This is a concrete zero-feasible-progress mechanism."
+    },
+    {
+      "topic": "actual_large_run_feasibility",
+      "detail": "Completedproduct-start20krawcolumnL1residualsremainlarge; outputrepair materially changescoupling.",
+      "endpoints": [
+        {
+          "dataset": "bmmc6224",
+          "n": 3,
+          "raw_col_l1_median": 0.5778472423553467,
+          "repair_l1_median": 0.5778472423553467,
+          "raw_loss_median": 0.16028273105621338,
+          "rounded_loss_median": 0.16061007976531982
+        },
+        {
+          "dataset": "snare_full",
+          "n": 3,
+          "raw_col_l1_median": 0.33648908138275146,
+          "repair_l1_median": 0.3364890217781067,
+          "raw_loss_median": 0.0936979353427887,
+          "rounded_loss_median": 0.09385746717453003
+        },
+        {
+          "dataset": "shareseq_full",
+          "n": 1,
+          "raw_col_l1_median": 0.7131147384643555,
+          "repair_l1_median": 0.7131147384643555,
+          "raw_loss_median": 0.10830146074295044,
+          "rounded_loss_median": 0.11464428901672363
+        }
+      ]
+    }
+  ],
+  "cleared_suspects": [
+    "Actual-marginal GW loss/gradient match independent four-index/autogradchecks",
+    "Sketchexpectation matches gradient on exhaustive tinyRademacherprobes",
+    "No sign/factor2/probe-normalization bugfound",
+    "No \u03bcdimension scaling or scheduleexponent/indextranscriptionbugfound",
+    "Bothhistorical/currentFWreuseinitialgradientatupdate0"
+  ],
+  "candidate_remedies_not_yet_applied": [
+    "Selectprefactorsusingrepresentative longerdevelopmenthorizons withfixedseeds",
+    "Controlledmu_scale.1vs10ablation oncurrentrunner",
+    "Independentcandidateoracleusingfixedproductcontrolvariate ghat(P,Z)-ghat(P0,Z)+g(P0),sameZ; unbiasedandcheapproductgradient. Validatefulltrajectoriesandtheorymappingbeforea newcomparison."
+  ],
+  "unchanged": [
+    "Allcurrentlysubmittedimmutablesources/configurations/results",
+    "Ruchequeue",
+    "Theoryexponents andmethoddefinitions"
+  ],
+  "input_hashes": {
+    "gw_core.py": "5df67e09c61f3cf273128d26ae8ba840fac2f009bc23062d5cbe9f67d58ec444",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/published_stochastic_20261002/run_published.py": "7f923fda41636545de199f11ab9a832d1b1f79fe3db80b146c409ffeb494714b",
+    "extensions/long_horizon_20261007/campaign.json": "da603d653024fcf4f8d30c93e562da0819a92c65ce53ed2a81be51a811ed8e48"
+  },
+  "local_diagnostic_instance_sha256": "99989d1cc37a90a35c1f2db48734951ba6184437ddadff711272465c8cacbebe",
+  "collected_metadata": "logs/frames_audit_20261008/collection.json",
+  "files": {
+    "current_trace_diagnostics.csv": "a4cd88540243a8abca1b7ca9d2c3ad944026a6e28490a4a98d62c98d1a39bda2",
+    "reproduce_first_update.py": "4f0d2a5ddaf392c3d6b4e442c7935cfc4f1977f991a6f6b2b9b8a6003e892a39",
+    "oracle_diagnostics.json": "6dc11d8350fc025b4419dd0d763928480f516f415984fe0d17d13c08858a31c3",
+    "hyperparameter_audit.json": "fe1326fdd369f5ea26f8dd9d45a34d968cebc9f45bb853b3568a991ae9bba20b",
+    "reproduce_oracle_diagnostics.py": "669a7aa72d213d42a9cf79d48de856727a04aee740b45252944d0dc0faee4fa9",
+    "first_update.json": "86030514f5b2ee6995ec225e65db71c8fa895a7d856653cf66148458fd25bcd8"
+  }
+}

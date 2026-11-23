@@ -1,0 +1,255 @@
+{
+  "jobs": [
+    {
+      "job_id": 1961444,
+      "purpose": "CPU environment preparation",
+      "status": "failed_missing_python310_marker_dependencies",
+      "resolution": "added tomli and exceptiongroup wheelhouse; resumed same new environment"
+    },
+    {
+      "job_id": 1961445,
+      "purpose": "CPU environment preparation retry",
+      "status": "completed",
+      "runtime_seconds": 89
+    },
+    {
+      "job_id": 1961447,
+      "purpose": "A100 Stage A/B validation and diagnostics",
+      "status": "completed",
+      "runtime_seconds": 263,
+      "source_commit": "8da53a73676cd645f0707f70819f60c0a519e328"
+    },
+    {
+      "job_id": 1961453,
+      "purpose": "first practical pilot launch",
+      "status": "failed_before_benchmark_data",
+      "runtime_seconds": 127,
+      "source_commit": "e6a6e179db08ea64a17e5474005ef1677095146d",
+      "reason": "PyTorch 2.5 requires an indexed device for cuda.set_device; unsuffixed cuda was rejected",
+      "resolution": "normalize to logical cuda:0, add regression and real GPU-runner smokes; new immutable source"
+    },
+    {
+      "job_id": 1961459,
+      "purpose": "30-second practical pilot retry",
+      "status": "completed",
+      "source_commit": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "runtime_seconds": 734,
+      "completed_runs": 18,
+      "requested_checkpoint_observations": 72,
+      "transfer_checksum_files_verified": 225,
+      "report": "reports/a100_practical/report.md"
+    },
+    {
+      "job_id": 1961460,
+      "purpose": "ten independent small theory replicates",
+      "status": "completed",
+      "source_commit": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699",
+      "valid_replicates": 10,
+      "runtime_seconds": 172,
+      "report": "reports/a100_theory/theory_replicates.md"
+    },
+    {
+      "job_id": 1961471,
+      "purpose": "A100 full Stage C source and randomized initialization preflight",
+      "status": "failed_before_tuning",
+      "source_commit": "7721d208e1514d88c632cf272dcfa3916ba116ce",
+      "tuning_manifest_sha256": "81d1c301eb4be2657f0aa5907e4be036ce3c475422fefbd016daa5c0b951465b",
+      "cpu_tests_on_allocated_host_passed": 76,
+      "reason": "PyTorch2.5 CUDA cumulative sum lacks a deterministic implementation; row-simplex projection runner rejected under deterministic mode",
+      "resolution": "prepare fixed-order deterministic CUDA scan; repeat preflight before tuning"
+    },
+    {
+      "job_id": 1961477,
+      "purpose": "deterministic CUDA projection and full runner preflight retry",
+      "status": "completed",
+      "source_commit": "aaeb5fa67fe8cd43ae05fc7aad9fa529188f8caf",
+      "tests_passed": 86,
+      "projection_gpu_cases_passed": 18,
+      "actual_runner_gpu_smokes_passed": 13,
+      "transferred_files_verified": 118
+    },
+    {
+      "job_id": 1961478,
+      "purpose": "Stage C prescribed equal-budget tuning; four one-A100 shards",
+      "status": "tasks0_1_2_completed; unstarted3_cancelled_and_replaced",
+      "source_commit": "aaeb5fa67fe8cd43ae05fc7aad9fa529188f8caf",
+      "dependency": "afterok:1961477",
+      "array_tasks": 4,
+      "gpus_per_task": 1,
+      "max_concurrent_tasks": 4,
+      "prescribed_runs": 1164,
+      "nominal_solver_seconds": 11640,
+      "tuning_manifest_sha256": "81d1c301eb4be2657f0aa5907e4be036ce3c475422fefbd016daa5c0b951465b",
+      "remote_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/tuning_aaeb5fa",
+      "running_shards_at_last_check": [],
+      "pending_shards_at_last_check": [],
+      "replaced_pending_task": 3,
+      "replacement_array": 1961516,
+      "completed_shards_at_last_check": [
+        0,
+        1,
+        2
+      ],
+      "completed_runs": 873,
+      "task_runtime_seconds": {
+        "0": 4228,
+        "1": 4123,
+        "2": 4125
+      }
+    },
+    {
+      "job_id": 1961516,
+      "purpose": "Scheduling-only replacement of unstarted tuning shard3: exact same291 prescribed trials split into97-run tasks",
+      "status": "completed",
+      "array_task_indices": [
+        3,
+        7,
+        11
+      ],
+      "shard_count": 12,
+      "initial_concurrency": 1,
+      "prescribed_runs": 291,
+      "source_commit": "aaeb5fa67fe8cd43ae05fc7aad9fa529188f8caf",
+      "manifest_sha256": "81d1c301eb4be2657f0aa5907e4be036ce3c475422fefbd016daa5c0b951465b",
+      "launcher_sha256": "0fbda690623f74208b62cebe94d488fe944f64e16cb42dbb9bf2a2a415b4ea3b",
+      "wall_time_limit_seconds": 5400,
+      "remote_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/tuning_aaeb5fa",
+      "current_array_throttle": 3,
+      "throttle_change_reason": "Verified original1/2 and replacement3 completed, original0 and preflight1961539 running: remaining experiment concurrency at most4.",
+      "completed_runs": 291,
+      "task_runtime_seconds": {
+        "3": 1466,
+        "7": 1439,
+        "11": 1445
+      },
+      "completed_shards": [
+        3,
+        7,
+        11
+      ],
+      "tuning_all_1164_outputs_valid": true,
+      "transferred_files_verified": 13422,
+      "collection_report": "ruche_results/tuning_aaeb5fa_collection/collection_verification.json",
+      "scientific_report": "reports/stage_c_tuning/report.md"
+    },
+    {
+      "job_id": 1961539,
+      "purpose": "A100 validation of required momentum-KL comparator and shared final-panel dispatcher",
+      "status": "completed",
+      "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+      "bundle_sha256": "ba4441b83f7ed147453e3405e3ffdc637509ec947a16e2bbfdd545f61d665068",
+      "gpus": 1,
+      "wall_time_limit_seconds": 600,
+      "prospective_checks": {
+        "pytest": 125,
+        "projection_gpu_cases": 18,
+        "runner_smokes": 20
+      },
+      "remote_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/preflight_1961539",
+      "runtime_seconds": 204,
+      "tests_passed": 125,
+      "projection_gpu_cases_passed": 18,
+      "actual_runner_gpu_smokes_passed": 20,
+      "transferred_files_verified": 182,
+      "audit_checks_passed": 424,
+      "report": "reports/final_a100_preflight.md"
+    },
+    {
+      "job_id": 1961580,
+      "purpose": "Selected Stage C final product/randomized/small-PG panels and required momentum-KL supplement",
+      "status": "completed",
+      "source_commit": "af7b7c549351b81de2aa886b987bc3e56ffeff9c",
+      "array_tasks": 56,
+      "max_concurrent_tasks": 4,
+      "gpus_per_task": 1,
+      "wall_time_limit_seconds": 5400,
+      "prescribed_runs": 723,
+      "nominal_solver_seconds": 104850,
+      "selection_sha256": "4cfa1ef2a2ea127ba33987378b7a89c1922cfc6bedd1a433696136641c616fe7",
+      "dispatch_plan_sha256": "891a3c0c9fec0b3ae7da4fdcc564f30388cc22331c0b757960fe634f72a0084d",
+      "submission_report": "reports/final_submission.json",
+      "remote_output_roots": {
+        "final_product": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/final_product_af7b7c5",
+        "final_randomized": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/final_randomized_af7b7c5",
+        "small_pg": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/small_pg_af7b7c5",
+        "momentum_product": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/momentum_product_af7b7c5",
+        "momentum_randomized": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/a100_campaign/momentum_randomized_af7b7c5"
+      },
+      "terminal_runs": 723,
+      "completed_runs": 718,
+      "valid_final_outputs": 718,
+      "scientific_failed_runs": 5,
+      "scientific_status_counts": {
+        "completed": 397,
+        "completed_with_inner_failures": 271,
+        "completed_with_warnings": 50,
+        "failed": 5
+      },
+      "scheduler_tasks_completed": 56,
+      "infrastructure_failures": 0,
+      "transfer_checksum_files_verified": 7839,
+      "transferred_slurm_logs": 56,
+      "requested_checkpoint_observations": 3508,
+      "observed_checkpoint_windows": 3485,
+      "missing_checkpoint_windows": 23,
+      "collection_report": "reports/FINAL_ARCHIVE_COLLECTION.json",
+      "scientific_report": "reports/stage_c_final/report.md",
+      "failure_audit": "reports/FINAL_FAILURES.json",
+      "checkpoint_coverage_audit": "reports/FINAL_CHECKPOINT_COVERAGE.json",
+      "figure_qa": "reports/FINAL_FIGURE_QA.json",
+      "feasible_references": "reports/stage_c_final/feasible_references/feasible_references.json",
+      "allocation_accounting_status": "pending_final_sacct; nominal_solver_seconds is a prescribed budget, not measured allocation time"
+    },
+    {
+      "job_id": 1961687,
+      "purpose": "A100 exact momentum-diagnostic replay and prospective logging preflight",
+      "status": "completed",
+      "source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+      "runtime_seconds": 666,
+      "verified_reconstructions": 18,
+      "new_logging_smokes": 6,
+      "production_pilot_companions": 6,
+      "transferred_files_verified": 119,
+      "report": "reports/momentum_replay_a100_preflight.md"
+    },
+    {
+      "job_id": 1961715,
+      "purpose": "tuning fixed-iteration momentum diagnostics; original outputs/timing read-only",
+      "status": "completed",
+      "source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+      "prescribed_replays": 504,
+      "array_tasks": 8,
+      "max_concurrent_tasks": 4,
+      "gpus_per_task": 1,
+      "wall_time_limit_seconds": 5400,
+      "dependency": null,
+      "submission_report": "reports/replay_tuning_submission_active.json",
+      "verified_replays": 504,
+      "scheduler_tasks_completed": 8,
+      "transfer_checksum_files_verified": 2537,
+      "transferred_slurm_logs": 8,
+      "observed_checkpoints": 2016,
+      "exact_original_scalar_comparisons": 79596,
+      "original_endpoint_arrays_matched": 1008,
+      "local_output": "ruche_results/momentum_diagnostic_replay_tuning",
+      "audit_report": "reports/momentum_replay_tuning_audit.json",
+      "full_796_replay_completion_claimed": false,
+      "allocation_accounting_status": "pending_final_sacct"
+    },
+    {
+      "job_id": 1961716,
+      "purpose": "finals fixed-iteration momentum diagnostics; original outputs/timing read-only",
+      "status": "running",
+      "source_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+      "prescribed_replays": 286,
+      "array_tasks": 32,
+      "max_concurrent_tasks": 4,
+      "gpus_per_task": 1,
+      "wall_time_limit_seconds": 5400,
+      "dependency": "afterok:1961580",
+      "submission_report": "reports/replay_finals_submission_active.json",
+      "completion_audit_status": "pending; combined796 companion report and cross-original archive audit not complete",
+      "allocation_accounting_status": "pending_final_sacct"
+    }
+  ]
+}

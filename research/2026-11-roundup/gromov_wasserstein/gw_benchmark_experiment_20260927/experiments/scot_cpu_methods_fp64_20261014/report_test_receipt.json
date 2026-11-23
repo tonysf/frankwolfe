@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "generated_utc": "2026-10-14T12:42:03.097727+00:00",
+  "reporter_sha256": "d3dcadcfb8c7ca3a2ae64b2ffe20a683fb98d5d33705193acf2172c6bdb045ce",
+  "test_source_sha256": "3c79b207c7d73a8c549206b454a44fe1a0d4a3b30101f0295d061b501e15ff63",
+  "test_command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 .venv/bin/python -m unittest discover -s extensions/scot_cpu_methods_fp64_20261014 -p test_summarize.py -v",
+  "test_exit_code": 0,
+  "test_count": 10,
+  "test_seconds": 0.5528130070306361,
+  "test_coverage": [
+    "Actual200-step SMD/MSBPG certificate and schedule metadata",
+    "Guarded gap violation despite small raw gap",
+    "Single violating marginal residual despite valid summary maxima",
+    "MSBPG current-beta versus next-beta index",
+    "Changed SMD step",
+    "Random output cannot be terminal P_T",
+    "Independent tuning winner reversal stops without reselection",
+    "Missing seed cannot receive three-seed uncertainty band",
+    "Actual recorded intermediate FP64 residuals",
+    "Oversized, negative or nonfinite intermediate rounded residual rejected"
+  ],
+  "fixture_sha256": {
+    "pilot_smd": "f0b6c3cf959990890a04a8d1764c9a3708367891d60a17ed7adac64bd0417629",
+    "pilot_msbpg": "7326952c337088cf8be8234df46e0b9abe0b2c178e0d2682ba3753a4e35baab7"
+  },
+  "current_config_sha256": "6ddbf54d2d25fa270d4b962270f766f6bafc8cbdb8748513b674db63e7d2aaf7",
+  "static_integration": {
+    "frozen_config_source_input_bindings": "passed",
+    "frames_reused_confirmation_count": 3,
+    "frames_report_sha256": "94e9b6f08ca63b0f920179e9c48b1d7638ede6948c55ad41d6d4ff4e7e47e62f",
+    "frames_independent_tuning_winner_confirmed": true,
+    "frames_recorded_curve_checks": {
+      "confirm_fw08_seed811": {
+        "observed_count": 17,
+        "maximum_recorded_marginal_l1": 2.916503843986007e-16,
+        "marginal_l1_tolerance": 2.220446049250313e-14,
+        "validation_source": "Recorded FP64 residuals of every current rounded observation, including all plotted common checkpoints. Intermediate plans are unsaved; this is a log audit, not an independent recomputation."
+      },
+      "confirm_fw08_seed812": {
+        "observed_count": 17,
+        "maximum_recorded_marginal_l1": 2.211772431870429e-16,
+        "marginal_l1_tolerance": 2.220446049250313e-14,
+        "validation_source": "Recorded FP64 residuals of every current rounded observation, including all plotted common checkpoints. Intermediate plans are unsaved; this is a log audit, not an independent recomputation."
+      },
+      "confirm_fw08_seed813": {
+        "observed_count": 17,
+        "maximum_recorded_marginal_l1": 3.1517757154153614e-16,
+        "marginal_l1_tolerance": 2.220446049250313e-14,
+        "validation_source": "Recorded FP64 residuals of every current rounded observation, including all plotted common checkpoints. Intermediate plans are unsaved; this is a log audit, not an independent recomputation."
+      }
+    }
+  },
+  "independent_pilot_numerical_audit_sha256": "41600ba507e6e29a2388572fb1ce8adedba9754001f9ec4de9ff99a050d3b663",
+  "execution_scope": "Reporter unit/static checks only. No optimization, matrix load, objective contraction, or new sampling. Independent pilot numerical audit was performed separately and is hash-linked here. Full14-run baseline report remains pending completion.",
+  "independent_review": "scot_audit found no blocker in the preceding reporter revision; the final narrow addition audits every recorded rounded checkpoint and is covered by two additional tests.",
+  "cli": ".venv/bin/python extensions/scot_cpu_methods_fp64_20261014/summarize.py --root experiments/scot_cpu_methods_fp64_20261014",
+  "expected_future_artifacts": [
+    "report/report.json",
+    "report/summary.txt",
+    "report/scientific_plot.png",
+    "report/scientific_plot.pdf",
+    "report/curve_data.csv",
+    "report/endpoints.csv",
+    "report/theory_outputs.csv",
+    "report/selection_audit.json"
+  ],
+  "optional_future_artifacts": [
+    "report/msbpg_detail.png",
+    "report/msbpg_detail.pdf"
+  ],
+  "test_log_sha256": "f1039ee5a918b4f2f2968a4a5e0a1f5cf5fce3b245b0e64aa1cbd7d2f5d9e0c5",
+  "formatting_update": {
+    "prior_reporter_sha256": "1e780fd1912c675ac8d0f25da3c26985148c562bd80dc7369451ebe552907c9e",
+    "change": "Removed one extra blank line at EOF only; all10report checks rerun successfully; prior static integration remains applicable."
+  }
+}

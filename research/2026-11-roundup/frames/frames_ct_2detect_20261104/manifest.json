@@ -1,0 +1,65 @@
+{
+  "sources": {
+    "campaign.py": "56f414c50181ffe629865b792ad4d08c47a94d7daba98617c910ee4cca979679",
+    "run.py": "2fc409fbbe1438a9207cf0cc3962492cc23918050534d52b8d0c14f4bc6a4c4c",
+    "ct_problem.py": "85b0935aa70b3b10aefd8cd3632d4804e2dfcfe5d07c2cbc0c726799cd6d9faa",
+    "methods.py": "e0392c36cfdca8df919cab42224e6c40ff0ae87c27fe081773bc288b58c7c4dc",
+    "report.py": "b427fb8fc8a204ae6a2466ddba865b458bf73ef8f925a5f4028bd9c9a34a3e55"
+  },
+  "data": {
+    "slice04300": "79bd0ea3739e02c1f4aad189ad6eb5910242bb819eafe4b90693013e1990a907",
+    "slice04531": "e4ca9924bea7059e3dd43308f48c9bd84f32cfabfcc249074466147d589e090b",
+    "slice04800": "11485b748fc2826e778fbd10065975ddf44664e68b9c52446b93ddb7a00112ac"
+  },
+  "host": "elite",
+  "python": "/home/tony/zofw_experiments/.venv/bin/python",
+  "cpus": [
+    0,
+    2,
+    4,
+    6
+  ],
+  "blas_threads": 1,
+  "design": {
+    "development_slice": "slice04300",
+    "evaluation_slices": [
+      "slice04531",
+      "slice04800"
+    ],
+    "grid": 512,
+    "rank": 64,
+    "development_view_budget": 5760,
+    "evaluation_view_budget": 21600,
+    "evaluation_training_views": [
+      360,
+      1080
+    ],
+    "stochastic_batch": 64,
+    "heldout_views": 360,
+    "development_rates": {
+      "sframes": [
+        0.1,
+        0.25
+      ],
+      "spring_sarah": [
+        0.3,
+        0.7
+      ],
+      "prox_sarah": [
+        0.4,
+        0.9
+      ],
+      "palm": [
+        0.6,
+        1.1
+      ]
+    },
+    "stop": "First completed update reaching the forward-view budget.",
+    "timing": "Optimizer work only. Arms share the host, one BLAS thread per physical core.",
+    "spring": "Alternating SPRING-SARAH, practical tuned fixed steps, independent 1/16 full refresh per block.",
+    "proxsarah": "Joint Algorithm 1 with minibatch snapshots, empirical tuned steps.",
+    "constraints": "Nonnegative factors with separate Frobenius caps.",
+    "reference": "Mode 2 TIFF reflected into DeepInv convention and converted to per-mm attenuation.",
+    "inference": "One development slice and two held-out evaluation slices. Pilot."
+  }
+}

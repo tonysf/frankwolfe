@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Direct FRAMES–Quiroga Comparison Setup</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 17mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Liberation Sans", Arial, sans-serif; color: #18232d; font-size: 10.4pt; line-height: 1.38; margin: 0; }
+  h1 { font-size: 23pt; line-height: 1.08; color: #102f4a; margin: 0 0 5mm; }
+  h2 { font-size: 14.5pt; color: #174f73; border-bottom: 1px solid #bdd1dd; padding-bottom: 1.5mm; margin: 7mm 0 3mm; }
+  h3 { font-size: 11.5pt; color: #27566f; margin: 4.5mm 0 1.5mm; }
+  p { margin: 0 0 2.8mm; }
+  ul, ol { margin: 1.5mm 0 3mm 5mm; padding-left: 4mm; }
+  li { margin: 0 0 1.3mm; }
+  code { font-family: "Liberation Mono", monospace; font-size: 9pt; background: #edf3f6; padding: 0.3mm 0.8mm; }
+  .subtitle { color: #526875; font-size: 11.5pt; margin-bottom: 5mm; }
+  .status { background: #e8f5ed; border-left: 4px solid #2d8b57; padding: 3.2mm 4mm; margin: 0 0 5mm; }
+  .warning { background: #fff5df; border-left: 4px solid #c88716; padding: 3.2mm 4mm; margin: 4mm 0; }
+  .note { background: #edf4f8; border-left: 4px solid #3e7898; padding: 3.2mm 4mm; margin: 4mm 0; }
+  .small { color: #5c6f79; font-size: 9pt; }
+  table { width: 100%; border-collapse: collapse; margin: 2.5mm 0 4mm; page-break-inside: avoid; }
+  th { background: #174f73; color: white; font-weight: bold; text-align: left; }
+  th, td { border: 1px solid #b9c9d2; padding: 2mm 2.3mm; vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f8fa; }
+  .mono { font-family: "Liberation Mono", monospace; font-size: 8.7pt; overflow-wrap: anywhere; }
+  .formula { text-align: center; background: #f3f7f9; border: 1px solid #cbdbe3; padding: 3mm; margin: 3mm 0; font-family: "Liberation Serif", serif; font-size: 11pt; }
+  .pagebreak { page-break-before: always; }
+  .footer { color: #6d7c84; font-size: 8.5pt; margin-top: 7mm; border-top: 1px solid #ccd7dd; padding-top: 2mm; }
+</style>
+</head>
+<body>
+<h1>Direct FRAMES–Quiroga Comparison Setup</h1>
+<div class="subtitle">Implementation and experiment-readiness report · 4 October 2026</div>
+
+<div class="status">
+  <strong>Outcome:</strong> the paired comparison is implemented, committed locally on Elite, and validated. The exact n=2 launcher-equivalent smoke completed for both methods. No Ruche job or production sweep has been submitted.
+</div>
+
+<table>
+<tr><th>Item</th><th>Status</th></tr>
+<tr><td>Local source revision</td><td><span class="mono">3bf36c4f47ac2c637df9fe3e1d9db0d8173484e2</span></td></tr>
+<tr><td>Focused comparison tests</td><td>8 passed, 0 failed</td></tr>
+<tr><td>Quiroga/FRAMES regression tests</td><td>96 passed, 0 failed</td></tr>
+<tr><td>Full repository suite</td><td>525 passed, 55 skipped, 0 failed</td></tr>
+<tr><td>Elite n=2 paired smoke</td><td>Both methods complete; matched 256 nominal row accesses each; artifacts verified</td></tr>
+<tr><td>GitHub / origin</td><td>Not updated: push requires explicit authorization for code egress</td></tr>
+<tr><td>Ruche</td><td>Script and resource request staged locally; no checkout created and no job submitted</td></tr>
+</table>
+
+<h2>What is now a direct comparison</h2>
+
+<p>Every primary run invokes printed adaFGD and stochastic FRAMES together on the same Quiroga-style global-probe / generalized 2d-outcome-POVM dataset. They receive the same active rows, observations, truth factor, rank, and serialized initial factor.</p>
+
+<p>The portable penalty parameter is the per-row coefficient α. For m active rows:</p>
+
+<div class="formula">
+  L<sub>α</sub>(U) = (1 / 2m) ‖A<sub>S</sub>(UU<sup>H</sup>) − y<sub>S</sub>‖² + α ‖Tr<sub>out</sub>(UU<sup>H</sup>) − I‖²<br>
+  printed adaFGD: λ = mα &nbsp;&nbsp;&nbsp; FRAMES: β = 1 / (2α)
+</div>
+
+<p>This makes the printed summed objective exactly m times the FRAMES mean-loss objective. The primary grid is shared across methods:</p>
+
+<table>
+<tr><th>α</th><th>Equivalent fixed FRAMES β</th></tr>
+<tr><td>0.5</td><td>1</td></tr>
+<tr><td>0.05</td><td>10</td></tr>
+<tr><td>0.005</td><td>100</td></tr>
+<tr><td>0.0005</td><td>1,000</td></tr>
+<tr><td>0.00005</td><td>10,000</td></tr>
+</table>
+
+<p>Earlier n=4 held-out artifacts used different penalties for the two methods (adaFGD β=100, FRAMES β=1,000). They remain preserved as exploratory evidence but are not counted as the new primary comparison.</p>
+
+<h2>Fairness and statistical unit</h2>
+
+<ul>
+  <li><strong>Budget:</strong> equal logical active-row epochs and aligned checkpoints. These are not compute-equivalent: adaFGD also pays for a spectral-norm numerator, while FRAMES uses stochastic batches.</li>
+  <li><strong>Primary scientific unit:</strong> an independent channel/data instance—not a stochastic sampling seed.</li>
+  <li><strong>Aggregation:</strong> sampling replicates are averaged within one initialization; initializations are averaged within one channel; channels are then weighted equally.</li>
+  <li><strong>Gate estimand:</strong> the primary success rate is the nested mean of Boolean gate outcomes. “All replicates pass” is retained only as a robustness diagnostic, because it changes with the number of stochastic replicates.</li>
+  <li><strong>Domain disclosure:</strong> FRAMES uses an operator-norm ball; printed adaFGD is unconstrained. The runner verifies that the truth and initial factor lie inside the chosen FRAMES ball.</li>
+</ul>
+
+<div class="note">
+  The baseline is the literal adaptive update printed by Quiroga and Kyrillidis, with project-calibrated constants where the paper is underspecified. At n=4 this is a Quiroga-style higher-qubit extension, not a claim of exact reproduction of an unpublished n=4 setup.
+</div>
+
+<div class="pagebreak"></div>
+<h2>Recovery gate and staged ladder</h2>
+
+<p>A noiseless endpoint passes only when all three conditions hold:</p>
+
+<table>
+<tr><th>Metric</th><th>Threshold</th></tr>
+<tr><td>Process fidelity</td><td>≥ 0.99</td></tr>
+<tr><td>Full-design measurement RMSE</td><td>≤ 10<sup>−6</sup></td></tr>
+<tr><td>‖Tr<sub>out</sub>(UU<sup>H</sup>) − I‖<sub>F</sub> / √d</td><td>≤ 10<sup>−3</sup></td></tr>
+</table>
+
+<ol>
+  <li><strong>n=2 full design:</strong> all 128 rows.</li>
+  <li><strong>n=2 published-scale subset:</strong> 96 shared training rows, with the gate evaluated on all 128 rows at the endpoint.</li>
+  <li><strong>n=4 full design:</strong> all 8,192 rows, only after n=2 accounting and archive checks pass.</li>
+</ol>
+
+<p>Calibration uses fresh, role-separated seeds and successive budgets of 400, 2,000, then at most 10,000 row epochs for n=2 and 20,000 for n=4. The printed-adaFGD η grid is 10<sup>−4</sup>, 3×10<sup>−4</sup>, 10<sup>−3</sup>, 3×10<sup>−3</sup>, 10<sup>−2</sup>, and 3×10<sup>−2</sup>. Hyperparameters are frozen before fresh validation and final held-out channels.</p>
+
+<h3>Elite smoke evidence</h3>
+
+<p>The exact n=2 full-design smoke configuration intended for Ruche was run locally for two logical epochs. Both optimizers completed and were charged 256 active-row accesses. It is a plumbing check, not a recovery result; neither method is expected to pass after two epochs.</p>
+
+<table>
+<tr><th>Artifact</th><th>SHA-256</th></tr>
+<tr><td>pair.npz</td><td class="mono">423e4e4723c28d5773362864de14471e7e23236ff3478667b77e3d68d283095d</td></tr>
+<tr><td>pair.json</td><td class="mono">25accd1752caf2b47848947c81be04a3c122db2952da4f5dae8fd7ed447cca4b</td></tr>
+</table>
+
+<h2>Ruche-ready smoke</h2>
+
+<table>
+<tr><th>Setting</th><th>Value</th></tr>
+<tr><td>Partition / time</td><td><code>cpu_short</code> / 00:20:00</td></tr>
+<tr><td>Resources</td><td>1 node, 1 task, 2 CPUs, 1 GiB RAM</td></tr>
+<tr><td>Environment</td><td><code>anaconda3/2023.09-0/none-none</code>, Conda environment <code>qpt</code></td></tr>
+<tr><td>Immutable checkout target</td><td class="mono">/gpfs/workdir/silvetian/frankwolfe-quiroga-3bf36c4</td></tr>
+<tr><td>Output target</td><td class="mono">/gpfs/workdir/silvetian/qpt_quiroga_direct_3bf36c4_20261004_01/smoke</td></tr>
+</table>
+
+<p>The batch script pins the full commit, requires a clean worktree, keeps results outside the checkout, records software/Slurm provenance, refuses overwrite, and exits nonzero if either method fails.</p>
+
+<div class="warning">
+  <strong>Not yet synchronized:</strong> the commit is one revision ahead of <code>origin/stochastic-frames</code>. The attempted push was blocked pending explicit authorization. Until that is approved, the Ruche checkout and scheduler smoke should not be created from an unshared revision.
+</div>
+
+<h2>Known limitations before paper production</h2>
+
+<ul>
+  <li>Current paired sidecars rerun deterministic adaFGD for each FRAMES sampling seed. Aggregation verifies and collapses identical scientific endpoints, but the production launcher should compute/reuse adaFGD once.</li>
+  <li>The built-in aggregator validates JSON sidecars, not the associated NPZ arrays and checksums. A separate archive validator is required before paper use.</li>
+  <li>If FRAMES raises mid-run, the current core retains the shared initial state, not the last finite FRAMES iterate.</li>
+  <li>Fixed method order makes recorded optimizer times descriptive only. Controlled speed claims need fresh processes, balanced/randomized order, and hardware accounting.</li>
+  <li>For the 96-row subset, full-design recovery is endpoint-only until every checkpoint factor is retained or reevaluated on all 128 rows.</li>
+</ul>
+
+<h2>Immediate next move</h2>
+
+<p>Authorize the push of commit <span class="mono">3bf36c4</span> to <code>origin/stochastic-frames</code>. Then create the commit-specific Ruche checkout, transfer this setup bundle, submit exactly one scheduler smoke, inspect its JSON/NPZ/logs and <code>seff</code>, and only then open the bounded n=2 calibration array. No n=4 production work should start before that n=2 pipeline passes.</p>
+
+<div class="footer">
+  Setup directory: <span class="mono">/home/tony/qpt_quiroga_direct_20261004_01</span><br>
+  Protocol: <span class="mono">/home/tony/frankwolfe/docs/qpt_quiroga_direct_comparison.md</span><br>
+  Primary paper reference reviewed: arXiv:2312.01311
+</div>
+</body>
+</html>

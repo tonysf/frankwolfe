@@ -1,0 +1,27 @@
+Local SCOT1047 float64 CPU comparison: complete, validated; 2,000 updates per FraMES run.
+Selected prefactors (best final tuning loss, seed810): {'id': 'fw08', 'gamma0': 1.0, 'rho0': 0.3, 'mu_scale': 10.0}
+FraMES = smoothed row Frank-Wolfe + momentum, with 1,024 iid coupling-pair samples per update.
+Initial full GW loss: 0.0704597574563
+Local SCOT/POT repaired feasible loss: 0.0166675970015
+Confirmation saved-rounded float64 loss median/range: {'median': 0.025428056057700155, 'minimum': 0.02097958505572539, 'maximum': 0.025555842884900426, 'n': 3}
+Saved feasible percentage reduction median/range: {'median': 63.91123532680074, 'minimum': 63.729873891829044, 'maximum': 70.2247271164023, 'n': 3}
+Saved feasible loss minus local reference median/range: {'median': 0.008760459056169623, 'minimum': 0.00431198805419486, 'maximum': 0.008888245883369894, 'n': 3}
+Auxiliary NumPy float64 repair loss median/range: {'median': 0.025428056057700155, 'minimum': 0.020979585055725503, 'maximum': 0.025555842884900204, 'n': 3}
+Local reference warnings: 119; raw marginal L1: 0.00133109
+Saved-output combined marginal L1 tolerance: 2.220446e-14 (100 times float64 machine epsilon)
+Auxiliary NumPy repair tolerance: 1e-12, the unchanged reference helper criterion; auxiliary repairs exceeding the saved-output bound: 1/7.
+
+Previous float32 selected candidate: {'id': 'fw05', 'gamma0': 0.3, 'rho0': 0.3, 'mu_scale': 10.0}
+Float64 independently retuned selected candidate: {'id': 'fw08', 'gamma0': 1.0, 'rho0': 0.3, 'mu_scale': 10.0}
+Selected candidate changed: True
+Previous float32 confirmation saved-rounded loss median/range (float64 evaluation): {'median': 0.02782128606409573, 'minimum': 0.019951439358093848, 'maximum': 0.029201276796948394, 'n': 3}
+New float64 confirmation saved-rounded loss median/range: {'median': 0.025428056057700155, 'minimum': 0.02097958505572539, 'maximum': 0.025555842884900426, 'n': 3}
+Matching seed numbers are descriptive bookkeeping, not identical sampled-pair paths. The sampling law depends on each evolving coupling, so precision and independently selected prefactors can change later samples. No precision-isolated causal or paired-path equivalence claim.
+
+Execution: user_amended_parallel_confirmation. Assessment uses completed iterations only; no CPU timing comparison is performed. Raw timing observations remain archived in JSON.
+Both the NumPy/POT reference and PyTorch/FraMES optimizer, gradients, momentum, repairs and diagnostics use float64 on the original float64 distances. Precision is matched; numerical libraries and algorithms still differ.
+Online curves show actual current repaired outputs, not best-so-far values. Medians use common logged iterations. The SCOT/POT endpoint is an attainable-loss reference, not a matched-iteration competitor.
+The additional float64 repair uses the saved raw endpoint after the run. Its loss/residual/time are reported separately, never substituted into the original trajectory, selection or timing. The saved-output tolerance remains 100*eps64; the independent NumPy repair uses its original 1e-12 criterion because its reduction and clipping roundoff differs.
+Three confirmation seeds on one fixed dataset; range is not a confidence interval. This pilot does not establish a general performance ranking or a last-iterate theorem.
+
+Artifacts: report.json, scientific_plot.png, scientific_plot.pdf, curve_data.csv, endpoints.csv, precision_comparison.json, precision_comparison.csv.

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-15T19:02:37.854275+00:00",
+  "source_commit": "07af815a84a6e99a2b1768b65dc3790b40f878cf",
+  "source_file_sha256": {
+    "extensions/scot_pot_step_20261015/run.py": "49e92011afa16438f5fd4e38c68c5fe26f48b98bbf5902f00f9ef56c82592fc9",
+    "extensions/scot_pot_step_20261015/fast_prox.py": "566f64d34dd4191f568bf0490ecb95d96a062112bad98d19a69f1e9b947f9573",
+    "extensions/shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94",
+    "extensions/published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "extensions/published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "extensions/pair_sampling_20261011/oracle.py": "5b6d5b963e28f5188491d0f966d4ba6489095bd6749f3858bf1b1bb3d95294b0",
+    "extensions/scot_pot_step_20261015/campaign.py": "351a199a6e8e641d4ec4c3360a18ef087fdcfd6ad32a0035c7b3487d93d6c7ac",
+    "extensions/scot_pot_step_20261015/summarize.py": "c93243008c89687d58f78faf7a8367e43f805d78192df59b5114144038904e3f",
+    "extensions/scot_reproduction_20261014/reference.py": "e913b2510d18fe4981dcc3ac0d5485e08473dc19a063feff62a51a3f69fc6dd6"
+  },
+  "config_sha256": "11ebf099b7728c3e29da5d4bd86e1f8cf33ca16b5c90f250771cd81fcacacd5f",
+  "tests": {
+    "command": ".venv/bin/python -m unittest discover -s extensions/scot_pot_step_20261015 -p 'test_*.py'",
+    "passed": 41,
+    "failed": 0,
+    "test_file_sha256": {
+      "extensions/scot_pot_step_20261015/test_campaign.py": "9db1b17e30733d3875784ff4e7847ce4e93f6f6ac3b7667ea2950d8177a29a5c",
+      "extensions/scot_pot_step_20261015/test_fast_prox.py": "08fe843499c86d0c4ca02ab50658f87678606eb7e9c0910c20c5202cbb22fdf4",
+      "extensions/scot_pot_step_20261015/test_run.py": "435b67bc8d58900f085356f99343ecd4b5bd6831eea32674e3962148daf760db",
+      "extensions/scot_pot_step_20261015/test_summarize.py": "7de961b140d8c1e0ca73ae6338ed320e740854dbbf234da8af0cdac9f7226151"
+    }
+  },
+  "validation": {
+    "directory": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_pot_step_validation_fast_20261015",
+    "status": "completed",
+    "runs": 4,
+    "updates_per_run": 20,
+    "accepted_updates": 80,
+    "config_sha256": "b02747a39e8a6a14e6e0d56330a68e56c51052b8250fdab2fb3963b6316abc01",
+    "report_sha256": "9b2bc876762b70587d8864b18207efc597e9e13b4e965beccb2d3ba10017ac9f",
+    "same_numerical_sources": true,
+    "production_difference": "2000 updates and larger safety/time caps; epsilon, oracle, initialization, precision and both inner tolerances unchanged."
+  },
+  "pot_parity": "/home/tony/gw_benchmark_experiment_20260927/experiments/scot_pot_step_preflight_20261015/pot_parity.json",
+  "independent_review": "Fast Sinkhorn candidates reconstruct the original log-kernel and use the unchanged numerical certificate; fallback respects one total inner budget.",
+  "monitoring": "Automatic completion validation and plotting only; no active polling requested after launch."
+}

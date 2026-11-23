@@ -1,0 +1,39 @@
+{
+  "pot_version": "0.9.7.post1",
+  "signatures": {
+    "entropic_gromov_wasserstein": "(C1, C2, p=None, q=None, loss_fun='square_loss', epsilon=0.1, symmetric=None, G0=None, max_iter=1000, tol=1e-09, solver='PGD', warmstart=False, verbose=False, log=False, **kwargs)",
+    "sampled_gromov_wasserstein": "(C1, C2, p, q, loss_fun, nb_samples_grad=100, epsilon=1, max_iter=500, log=False, verbose=False, random_state=None)",
+    "gromov_wasserstein": "(C1, C2, p=None, q=None, loss_fun='square_loss', symmetric=None, log=False, armijo=False, G0=None, max_iter=10000.0, tol_rel=1e-09, tol_abs=1e-09, **kwargs)",
+    "init_matrix": "(C1, C2, p, q, loss_fun='square_loss', nx=None)",
+    "gwloss": "(constC, hC1, hC2, T, nx=None)",
+    "gwggrad": "(constC, hC1, hC2, T, nx=None)",
+    "sinkhorn": "(a, b, M, reg, method='sinkhorn', numItermax=1000, stopThr=1e-09, verbose=False, log=False, warn=True, warmstart=None, **kwargs)"
+  },
+  "source_modules": {
+    "ot.gromov._bregman": {
+      "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_bregman.py",
+      "archived_path": "provenance/pot_ot_gromov__bregman.py",
+      "sha256": "075b5284dbde58d5f25aa3209dbecb80281b0250d37913507931ff3ea8063b5f"
+    },
+    "ot.gromov._estimators": {
+      "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_estimators.py",
+      "archived_path": "provenance/pot_ot_gromov__estimators.py",
+      "sha256": "c9462eb8a9b98eb2c5bbf73a87a43886f2043ad6c374d5ea91ee5160407922b4"
+    },
+    "ot.gromov._gw": {
+      "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_gw.py",
+      "archived_path": "provenance/pot_ot_gromov__gw.py",
+      "sha256": "d7f07fc7de6e1d837dde738bd55aa2735c6a8442cc08cbefe1a66c5aeedebd20"
+    },
+    "ot.gromov._utils": {
+      "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/gromov/_utils.py",
+      "archived_path": "provenance/pot_ot_gromov__utils.py",
+      "sha256": "622c91958f38b55c63c7409b6f9c245d6cdd5b2e6ff61d4902634908347ded4b"
+    },
+    "ot.bregman._sinkhorn": {
+      "installed_path": "/home/tony/gw_benchmark_experiment_20260927/.venv/lib/python3.11/site-packages/ot/bregman/_sinkhorn.py",
+      "archived_path": "provenance/pot_ot_bregman__sinkhorn.py",
+      "sha256": "671958232afa87b8908d183c935475746f3d02c34827e78354d7505200e2dab2"
+    }
+  }
+}

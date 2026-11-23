@@ -1,0 +1,105 @@
+{
+  "batches": [
+    128,
+    1024,
+    2048
+  ],
+  "checkpoint_seconds": [],
+  "comparison_scope": "Isolate independent Rademacher probe count. Same FraMES estimator, prefactors, schedules and starts. Development diagnostics, not held-out final performance. No loss-based early stopping or candidate pruning.",
+  "development_seeds": [
+    710,
+    711,
+    712
+  ],
+  "diagnostic_output": "Rounded current-iterate loss is diagnostic, not a FraMES theorem-output claim.",
+  "experiment": "batch_size_20261008",
+  "final_marginal_l1_tolerance": 1.1920928955078125e-05,
+  "initializations": [
+    "product"
+  ],
+  "instances": {
+    "bmmc6224": {
+      "array_files_sha256": {
+        "A.npy": "26e07f93cb3c088cc45a328cf24f27ac2206e386b38961bb414ce856daa6ac5d",
+        "B.npy": "578d2994bb57f1a18d5a1af72005e1d4d784126e8a2b5ec90bbc7089940e766f",
+        "a.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060",
+        "b.npy": "562e59ac604dba54ae351bddd3e64853fc7ab66355a6e95fe51fd820687f7060"
+      },
+      "final_checkpoint_iterations": [
+        200,
+        2000,
+        5000,
+        10000,
+        15000,
+        20000
+      ],
+      "final_iterations": 20000,
+      "instance_manifest_sha256": "d2cb80815d72d441dc94167a6411084a6b4086eeb0b788ff70bed301b20a35cd",
+      "n": 6224,
+      "prefactors": {
+        "gamma0": 1.0,
+        "mu_scale": 0.1,
+        "rho0": 0.3
+      },
+      "run_timeout_seconds": 7200,
+      "source_input": {
+        "kind": "npz",
+        "metadata": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.json",
+        "metadata_sha256": "48820164157773734f12a6d83d9cd64ad6a9ca47e28055ee683393304c506014",
+        "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_scaling_20260928/job_1968437/data/bmmc6224.npz"
+      },
+      "world_size": 1
+    },
+    "metric512_s1000": {
+      "array_files_sha256": {
+        "A.npy": "558422c91f0885eb35995d07e5f8e6935f90c1e4be855bd8205f2a12833caf4b",
+        "B.npy": "1e8fb1a3b9c743735b9fa4118aba8434d24595b60e2c4ab804b460c6582d1cfe",
+        "a.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588",
+        "b.npy": "f3e2bf6003151a141935d0874ca99c67753e1684d68027c667276909842a1588"
+      },
+      "final_checkpoint_iterations": [
+        200,
+        2000,
+        5000,
+        20000,
+        50000,
+        100000,
+        160000,
+        200000
+      ],
+      "final_iterations": 200000,
+      "instance_manifest_sha256": "e9929dc6c02f0b9680b55c7ea99a30ea80c0304140077d87e8dc0646aa3b73e0",
+      "n": 512,
+      "prefactors": {
+        "gamma0": 1.0,
+        "mu_scale": 10.0,
+        "rho0": 0.3
+      },
+      "run_timeout_seconds": 7200,
+      "world_size": 1
+    }
+  },
+  "method": "smoothing-fw",
+  "plan_storage": "none",
+  "preflight": {
+    "batch": 2048,
+    "iterations": 200,
+    "maximum_gpu_reserved_fraction": 0.9,
+    "run_timeout_seconds": 1200,
+    "runtime_safety_factor": 2.0,
+    "seed": 710
+  },
+  "runner": {
+    "certificate_block_rows": 256,
+    "check_every": 10,
+    "dtype": "float32",
+    "exact_block_rows": 256,
+    "inner_gap_tol": 1e-07,
+    "inner_max": 10000,
+    "inner_tol": 1e-07,
+    "progress_every": 1000
+  },
+  "schema_version": 1,
+  "seed_pairing": "Identical seeds across batches pair initialization and RNG seed, but tensor-shaped draws are not nested probe streams.",
+  "storage_policy": "Metadata, scalar diagnostics and all four output hashes only; independent exact FP64 validation, no dense output persistence."
+}

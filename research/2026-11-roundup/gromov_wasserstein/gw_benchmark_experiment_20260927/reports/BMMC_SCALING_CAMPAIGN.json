@@ -1,0 +1,511 @@
+{
+  "status": "complete",
+  "recorded_utc": "2026-09-28T13:39:59.955893+00:00",
+  "source_commit": "53cc4e9d853250e8719997c7c0073ad052432f30",
+  "runtime_commit": "b5851980646be55a148b083a89cfbf6153dac77e",
+  "pilot_job_id": 1968437,
+  "failed_pilot_job_id": 1968346,
+  "failed_pilot_state": "FAILED",
+  "failed_pilot_reason": "180-second environment validation timeout before any optimizer/data preparation; empty environment output. Retry extends limit to600s with diagnostic stack dumps.",
+  "failed_pilot_allocation_seconds": 534,
+  "latest_retry_observation": "Completed all four pilot runs at both sizes; eligibility passed.",
+  "jobs": [
+    {
+      "stage": "gate",
+      "status": "submitted",
+      "remote_command": [
+        "sbatch",
+        "--parsable",
+        "--kill-on-invalid-dep=yes",
+        "--job-name=gw_bmmc_gate_53cc4e9",
+        "--dependency=afterok:1968437",
+        "--time=00:15:00",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9/cpu.sbatch",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9",
+        "gate",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_campaign_53cc4e9"
+      ],
+      "depends_on": "1968437",
+      "stdout": "1968447\n",
+      "stderr": "",
+      "returncode": 0,
+      "job_id": 1968447,
+      "execution_status": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "stage": "tuning",
+      "status": "submitted",
+      "remote_command": [
+        "sbatch",
+        "--parsable",
+        "--kill-on-invalid-dep=yes",
+        "--job-name=gw_bmmc_tuning_53cc4e9",
+        "--dependency=afterok:1968447",
+        "--array=0-23%3",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9/gpu.sbatch",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9",
+        "tuning",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_campaign_53cc4e9"
+      ],
+      "depends_on": "1968447",
+      "stdout": "1968448\n",
+      "stderr": "",
+      "returncode": 0,
+      "job_id": 1968448,
+      "execution_status": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "stage": "select",
+      "status": "submitted",
+      "remote_command": [
+        "sbatch",
+        "--parsable",
+        "--kill-on-invalid-dep=yes",
+        "--job-name=gw_bmmc_select_53cc4e9",
+        "--dependency=afterok:1968448",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9/cpu.sbatch",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9",
+        "select",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_campaign_53cc4e9"
+      ],
+      "depends_on": "1968448",
+      "stdout": "1968449\n",
+      "stderr": "",
+      "returncode": 0,
+      "job_id": 1968449,
+      "execution_status": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "stage": "final",
+      "status": "submitted",
+      "remote_command": [
+        "sbatch",
+        "--parsable",
+        "--kill-on-invalid-dep=yes",
+        "--job-name=gw_bmmc_final_53cc4e9",
+        "--dependency=afterok:1968449",
+        "--array=0-19%3",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9/gpu.sbatch",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9",
+        "final",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_campaign_53cc4e9"
+      ],
+      "depends_on": "1968449",
+      "stdout": "1968450\n",
+      "stderr": "",
+      "returncode": 0,
+      "job_id": 1968450,
+      "execution_status": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "stage": "report",
+      "status": "submitted",
+      "remote_command": [
+        "sbatch",
+        "--parsable",
+        "--kill-on-invalid-dep=yes",
+        "--job-name=gw_bmmc_report_53cc4e9",
+        "--dependency=afterany:1968450",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9/cpu.sbatch",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9",
+        "report",
+        "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_campaign_53cc4e9"
+      ],
+      "depends_on": "1968450",
+      "stdout": "1968451\n",
+      "stderr": "",
+      "returncode": 0,
+      "job_id": 1968451,
+      "execution_status": "COMPLETED",
+      "exit_code": "0:0"
+    }
+  ],
+  "output_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/bmmc_campaign_53cc4e9",
+  "extension_directory": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/extensions/bmmc_campaign_53cc4e9",
+  "transfer_checksums_verified": true,
+  "payload_sha256": "77aba10d97bfddcbb1416db6cf437bb680e6871e87789757fdf367fbe23057c9",
+  "campaign_config_sha256": "dc34fc883db63151b7de7813fae3cc37b7f6ca0605f3340a6268fceba5a8bf55",
+  "design": {
+    "sizes": [
+      3000,
+      6224
+    ],
+    "methods": [
+      "smoothing-fw",
+      "stochastic-kl-momentum"
+    ],
+    "tuning_runs": 288,
+    "tuning_seconds": 60,
+    "final_runs": 40,
+    "final_seconds": 300,
+    "development_seeds": [
+      0,
+      1,
+      2
+    ],
+    "final_seeds": [
+      200,
+      201,
+      202,
+      203,
+      204
+    ],
+    "initializations": [
+      "product",
+      "randomized"
+    ],
+    "nominal_solver_gpu_hours": 8.133333333333333,
+    "max_concurrent_campaign_gpus": 3
+  },
+  "validation": "21 selection/saved-output tests passed; syntax checks passed; missing-output reporter smoke passed; independent implementation review addressed.",
+  "pipeline": "pilot\u2192CPU eligibility\u2192tuning array\u2192CPU selection\u2192final array\u2192CPU report; scientific/provenance/resource gates retained; invalid dependencies cancel downstream jobs rather than run ungated.",
+  "scheduler_dependency_snapshot": {
+    "path": "logs/bmmc_scaling_campaign_20260928/scheduler_initial.psv",
+    "sha256": "f149ec3067136a0335588c2c7b8ec8b4ab59b780a9b40b4228f9b4c89a8cf51f",
+    "observed_utc": "2026-09-28T13:40:59.476811+00:00",
+    "dependencies_verified": true,
+    "rows": [
+      [
+        "1968451",
+        "PENDING",
+        "afterany:1968450_*(unfulfilled)",
+        "N/A",
+        "0:00",
+        "",
+        "(Dependency)"
+      ],
+      [
+        "1968449",
+        "PENDING",
+        "afterok:1968448_*(unfulfilled)",
+        "N/A",
+        "0:00",
+        "",
+        "(Dependency)"
+      ],
+      [
+        "1968447",
+        "PENDING",
+        "afterok:1968437(unfulfilled)",
+        "N/A",
+        "0:00",
+        "",
+        "(Dependency)"
+      ],
+      [
+        "1968450_[0-19%3]",
+        "PENDING",
+        "afterok:1968449(unfulfilled)",
+        "gres/gpu:1",
+        "0:00",
+        "",
+        "(Dependency)"
+      ],
+      [
+        "1968448_[0-23%3]",
+        "PENDING",
+        "afterok:1968447(unfulfilled)",
+        "gres/gpu:1",
+        "0:00",
+        "",
+        "(Dependency)"
+      ],
+      [
+        "1968437",
+        "RUNNING",
+        "(null)",
+        "gres/gpu:1",
+        "9:20",
+        "ruche-gpu17",
+        "ruche-gpu17"
+      ]
+    ]
+  },
+  "latest_status": {
+    "observed_utc": "2026-09-29T10:40:30.235810+00:00",
+    "status": "complete",
+    "tuning_tasks_complete": 24,
+    "tuning_runs_finished": 288,
+    "prescribed_tuning_runs": 288,
+    "tuning_run_statuses": {
+      "completed": 193,
+      "completed_with_inner_failures": 95
+    },
+    "pilot": "completed_all_four_runs_at_both_sizes",
+    "eligibility_gate": "completed",
+    "final_stage": "completed",
+    "final_tasks_complete": 20,
+    "final_runs_valid": 40,
+    "final_run_statuses": {
+      "completed": 30,
+      "completed_with_inner_failures": 10
+    },
+    "report": "reports/bmmc_scaling_final/report.md",
+    "report_generated_utc": "2026-09-28T21:22:35.578315+00:00"
+  },
+  "completed_observation_utc": "2026-09-29T10:40:30.235810+00:00",
+  "completion": {
+    "observed_utc": "2026-09-29T10:40:30.235810+00:00",
+    "report_generated_utc": "2026-09-28T21:22:35.578315+00:00",
+    "execution_complete": true,
+    "counts": {
+      "valid": 40,
+      "scientific_failure": 0,
+      "missing": 0,
+      "infrastructure_or_provenance_failure": 0
+    },
+    "tuning_runs": 288,
+    "tuning_run_statuses": {
+      "completed": 193,
+      "completed_with_inner_failures": 95
+    },
+    "final_run_statuses": {
+      "completed": 30,
+      "completed_with_inner_failures": 10
+    },
+    "all_20_paired_losses_favor_kl": true,
+    "paired_comparisons": [
+      {
+        "n": 3000,
+        "initialization": "product",
+        "seed": 200,
+        "fw_minus_kl_loss": 0.0029421529225657217
+      },
+      {
+        "n": 3000,
+        "initialization": "product",
+        "seed": 201,
+        "fw_minus_kl_loss": 0.0037559693295081686
+      },
+      {
+        "n": 3000,
+        "initialization": "product",
+        "seed": 202,
+        "fw_minus_kl_loss": 0.0048836747934082325
+      },
+      {
+        "n": 3000,
+        "initialization": "product",
+        "seed": 203,
+        "fw_minus_kl_loss": 0.003961886270529735
+      },
+      {
+        "n": 3000,
+        "initialization": "product",
+        "seed": 204,
+        "fw_minus_kl_loss": 0.0035593249055194676
+      },
+      {
+        "n": 3000,
+        "initialization": "randomized",
+        "seed": 200,
+        "fw_minus_kl_loss": 0.003312095057200315
+      },
+      {
+        "n": 3000,
+        "initialization": "randomized",
+        "seed": 201,
+        "fw_minus_kl_loss": 0.0039914110984715645
+      },
+      {
+        "n": 3000,
+        "initialization": "randomized",
+        "seed": 202,
+        "fw_minus_kl_loss": 0.003570814181337867
+      },
+      {
+        "n": 3000,
+        "initialization": "randomized",
+        "seed": 203,
+        "fw_minus_kl_loss": 0.004105548743744136
+      },
+      {
+        "n": 3000,
+        "initialization": "randomized",
+        "seed": 204,
+        "fw_minus_kl_loss": 0.0035476603200378376
+      },
+      {
+        "n": 6224,
+        "initialization": "product",
+        "seed": 200,
+        "fw_minus_kl_loss": 0.001454229903601223
+      },
+      {
+        "n": 6224,
+        "initialization": "product",
+        "seed": 201,
+        "fw_minus_kl_loss": 0.004968005115649876
+      },
+      {
+        "n": 6224,
+        "initialization": "product",
+        "seed": 202,
+        "fw_minus_kl_loss": 0.004241019545453528
+      },
+      {
+        "n": 6224,
+        "initialization": "product",
+        "seed": 203,
+        "fw_minus_kl_loss": 0.004587811524431773
+      },
+      {
+        "n": 6224,
+        "initialization": "product",
+        "seed": 204,
+        "fw_minus_kl_loss": 0.0040981108717866865
+      },
+      {
+        "n": 6224,
+        "initialization": "randomized",
+        "seed": 200,
+        "fw_minus_kl_loss": 0.0016948672120925545
+      },
+      {
+        "n": 6224,
+        "initialization": "randomized",
+        "seed": 201,
+        "fw_minus_kl_loss": 0.0025980516815894417
+      },
+      {
+        "n": 6224,
+        "initialization": "randomized",
+        "seed": 202,
+        "fw_minus_kl_loss": 0.004111993883333609
+      },
+      {
+        "n": 6224,
+        "initialization": "randomized",
+        "seed": 203,
+        "fw_minus_kl_loss": 0.004799552989037781
+      },
+      {
+        "n": 6224,
+        "initialization": "randomized",
+        "seed": 204,
+        "fw_minus_kl_loss": 0.0045647703494512415
+      }
+    ],
+    "group_summary": [
+      {
+        "n": 3000,
+        "initialization": "product",
+        "fw_median": 0.14961893270680848,
+        "kl_median": 0.14584269171626452,
+        "kl_loss_reduction_percent": 2.523905846824776,
+        "fw_updates_median": 96721.0,
+        "kl_updates_median": 28814.0
+      },
+      {
+        "n": 3000,
+        "initialization": "randomized",
+        "fw_median": 0.14958918101611407,
+        "kl_median": 0.14585863533856958,
+        "kl_loss_reduction_percent": 2.4938606202694777,
+        "fw_updates_median": 96491.0,
+        "kl_updates_median": 27914.0
+      },
+      {
+        "n": 6224,
+        "initialization": "product",
+        "fw_median": 0.15672914793487236,
+        "kl_median": 0.15248812838941883,
+        "kl_loss_reduction_percent": 2.7059545727996,
+        "fw_updates_median": 28317.0,
+        "kl_updates_median": 8233.0
+      },
+      {
+        "n": 6224,
+        "initialization": "randomized",
+        "fw_median": 0.15696796370239385,
+        "kl_median": 0.15244230101182143,
+        "kl_loss_reduction_percent": 2.8831760212886035,
+        "fw_updates_median": 28022.0,
+        "kl_updates_median": 8177.0
+      }
+    ],
+    "selected": {
+      "3000": {
+        "smoothing-fw": {
+          "candidate_id": "c10",
+          "score": 0.15333796869771898,
+          "parameters": {
+            "gamma0": 1.0,
+            "mu_scale": 10.0
+          }
+        },
+        "stochastic-kl-momentum": {
+          "candidate_id": "c00",
+          "score": 0.1536826838339782,
+          "parameters": {
+            "eta": 0.1,
+            "eta_power": 0.0,
+            "inner_tol": 0.0001
+          }
+        }
+      },
+      "6224": {
+        "smoothing-fw": {
+          "candidate_id": "c10",
+          "score": 0.15881085155352836,
+          "parameters": {
+            "gamma0": 1.0,
+            "mu_scale": 10.0
+          }
+        },
+        "stochastic-kl-momentum": {
+          "candidate_id": "c00",
+          "score": 0.160032797594521,
+          "parameters": {
+            "eta": 0.1,
+            "eta_power": 0.0,
+            "inner_tol": 0.0001
+          }
+        }
+      }
+    },
+    "max_rounded_both_l1": 1.0741585942272117e-07,
+    "files": [
+      {
+        "path": "reports/bmmc_scaling_final/product_quality.pdf",
+        "sha256": "b338f1553dec31a1275e7c49d693b667c0b566b38d2064b872b59c1110c32168",
+        "bytes": 30428
+      },
+      {
+        "path": "reports/bmmc_scaling_final/product_quality.png",
+        "sha256": "c41292eafc0c5c13b593a2009bb1ca358353e0b24887b78063a59de678fed225",
+        "bytes": 173014
+      },
+      {
+        "path": "reports/bmmc_scaling_final/randomized_quality.pdf",
+        "sha256": "15ac4ae037d61119a29ffdcc7d2aa68d8644695cfbb6490a719aecd157c0f820",
+        "bytes": 30470
+      },
+      {
+        "path": "reports/bmmc_scaling_final/randomized_quality.png",
+        "sha256": "44774d46a473e2414109802f1ddff8fcf0b83d582949bc52052169447f1da5df",
+        "bytes": 172456
+      },
+      {
+        "path": "reports/bmmc_scaling_final/report.json",
+        "sha256": "5e50adde4eb9343060e74d9efb5a6f242563424ed9bda18ea373f7521e732878",
+        "bytes": 92700856
+      },
+      {
+        "path": "reports/bmmc_scaling_final/report.md",
+        "sha256": "4e8f2af83aa75929bbf63de9eb7be4fe2bff282d8513169a5243bafcc53e483b",
+        "bytes": 10483
+      },
+      {
+        "path": "reports/bmmc_scaling_final/selection.json",
+        "sha256": "5c957787ff4fa7fcdf9c1b5ac77fc83fa566ad8b3211652809be5f7b961eaa71",
+        "bytes": 1915166
+      }
+    ],
+    "dense_couplings": "Retained in the frozen remote campaign output; not downloaded during this report collection."
+  }
+}

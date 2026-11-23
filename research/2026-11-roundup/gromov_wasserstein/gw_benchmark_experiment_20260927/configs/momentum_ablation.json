@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "prospectively_frozen_unretuned_supplement_before_final_selection",
+  "freeze_reason": "Protocol section 8B requires the same-momentum stochastic KL ablation. Add this omitted comparator before final selection and held-out execution, without changing the frozen base tuning grid or selecting extra parameters.",
+  "parent_campaign_config_sha256": "02263a91fa7dad587fd222674fe037c6b9cab79a6f6d77af033b54259dbeed5f",
+  "tuning_manifest_sha256": "81d1c301eb4be2657f0aa5907e4be036ce3c475422fefbd016daa5c0b951465b",
+  "method": "stochastic-kl-momentum",
+  "source_method_for_selection": "stochastic-kl",
+  "momentum_source_method_for_selection": "smoothing-fw",
+  "parameter_rule": "Inherit selected stochastic-KL eta, eta-power, inner tolerance and all other solver settings; add selected smoothing rho0 with fixed beta=0.5. No additional tuning or held-out parameter selection.",
+  "momentum_beta": 0.5,
+  "momentum_convention": "d0=g0 at product or matched randomized P0; reuse initial gradient for the first step; subsequent d_k=(1-rho_k)d_(k-1)+rho_k*g_k with rho_k=rho0*(k+1)^(-1/2); smooth gradient only, no marginal penalty.",
+  "oracle": "sketch",
+  "batch": 128,
+  "phases": {
+    "momentum_product": {"comparison_phase": "final_product", "run_count": 55, "budget_seconds": 300, "checkpoints_seconds": [1, 3, 10, 30, 100, 300]},
+    "momentum_randomized": {"comparison_phase": "final_randomized", "run_count": 55, "budget_seconds": 30, "checkpoints_seconds": [1, 3, 10, 30]}
+  },
+  "matching": "Clone every selected stochastic-KL base run cell: same instance and array hashes, stochastic seed, initialization seed and mode, precision policy, nominal solver budget and checkpoint opportunities. Only add momentum and change method/run identity.",
+  "candidate_id": "kl_cXX_rho_cYY identifies inherited KL and smoothing candidates; it is not a separately tuned configuration.",
+  "selection_gate": "Require the complete authoritative base selection, exact base-campaign/tuning/selection hashes, selected eligible candidate audit records, and already-frozen base final manifests before creating supplemental manifests. Never read held-out arrays here.",
+  "raw_solver_budget_seconds": {"momentum_product": 16500, "momentum_randomized": 1650, "total": 18150},
+  "raw_solver_budget_gpu_hours": 5.041666666666667,
+  "budget_note": "Additional nominal solver budget only; initialization/iteration overshoot, diagnostics and other overhead are recorded separately. No base candidate or final budget is changed."
+}

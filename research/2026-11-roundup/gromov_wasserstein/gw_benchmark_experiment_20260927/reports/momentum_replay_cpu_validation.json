@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "integrated_focused_tests": 67,
+  "integrated_xml": "reports/momentum_replay_cpu_validation.xml",
+  "post_bytecode_hardening_utility_tests": 11,
+  "post_hardening_seconds": 33.92,
+  "post_hardening_runner": "kernel_audit agent; same shared local checkout",
+  "independent_reviews": [
+    "prior-input/current-output semantics and prospective logging checked by baseline_validation",
+    "archived-source replay and three corrected evidence gaps checked by baseline_validation",
+    "preflight and Slurm integration checked by oracle_diagnostics",
+    "manifest/launcher/validation code checked by root"
+  ],
+  "A100_status": "pending; CPU checks do not prove CUDA trajectory reproduction",
+  "source_sha256": {
+    "run_benchmark.py": "7607a3a9727d0414b3a3ca16b2f2af0a7d3ca4a5920b8c7a7e647d89fb4ef83c",
+    "replay_momentum_diagnostics.py": "88bd717799ac573390e61b7ea0687a1b0e003fc35368e2cc3abeeec201594a71",
+    "prepare_momentum_replays.py": "702f9712a2e00f9be9b27e0c9bf45950d0625120db2cab44fbf80376bbdc36b9",
+    "run_momentum_replay_shard.py": "21423917c01b22590f5e50966baa4c6232d6574e1c867613b499de9776d115ad",
+    "validate_momentum_replay_gpu.py": "eb26193ea6bf05ee5be45604865c9e2cf72257a087389aabc5ef52bba48ce7eb",
+    "test_practical_momentum_logging.py": "b7ce8101818ade5dd92aedf44130e6b04d7d947952ef79f77f1659500937578d",
+    "test_momentum_replay.py": "6dcd2ed7df2f1eaceb9e059baa6cf81eae37e265acdbfbecb8c62fbee525b293",
+    "test_momentum_replays.py": "fbf9b1933e568e8fa6b8b0460823c95c59b4adc59b8e43efb57bba379219b40d",
+    "slurm/a100_momentum_replay.sbatch": "06ee63b48c6231d4c35a43dd3353d78fae6b0ee5f0308cb8c26f422f19eb0503",
+    "slurm/a100_momentum_replay_preflight.sbatch": "6c2805bc08f19cfaa36a7d445b527664283f0403fd6dbadb0b711179f34064dd"
+  },
+  "replay_manifests": {
+    "finals": {
+      "sha256": "eba876afe02ecd2f1fc206a03e01816a67a7473b0ade6322d80aff4cf777f02c",
+      "runs": 286
+    },
+    "pilot": {
+      "sha256": "45f0f398469190481b1c2b267715b0a4efeb15ad41ab98ebeae7da26d1a17fd9",
+      "runs": 6
+    },
+    "tuning": {
+      "sha256": "ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455",
+      "runs": 504
+    }
+  }
+}

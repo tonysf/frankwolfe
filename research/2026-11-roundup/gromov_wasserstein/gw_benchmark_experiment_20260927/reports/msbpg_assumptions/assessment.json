@@ -1,0 +1,42 @@
+{
+  "checked_utc": "2026-10-05T17:58:29.877119+00:00",
+  "paper": "Ding,Li,Toh,JMLR2025,MSBPG,Theorem24",
+  "source_url": "https://www.jmlr.org/papers/volume26/23-0657/23-0657.pdf",
+  "verdict": "Ideal exact-proximal MSBPG can be matched to this GW problem with an explicit entropy extension outside the feasible set, preserving every feasible KL update.",
+  "mapping": {
+    "open_kernel_domain": "strictly positive matrices",
+    "smooth_objective": "full unregularized squared GW",
+    "regularizer": "indicator of U(a,b)",
+    "kernel": "entropy t(log(t)-1) for0<=t<=1; -1+(t-1)^2/2 for t>=1; +infinity for t<0"
+  },
+  "assumptions": {
+    "objective_and_lower_bound": "pass: polynomial, nonnegative on compact U",
+    "regularizer_and_domain_intersection": "pass: closed convex transport indicator and positive product coupling",
+    "global_kernel": "pass using explicit extension; raw entropy alone is not globally uniformly strongly convex on whole positive orthant",
+    "smooth_adaptivity": "pass globally with L_F=L>=norm(HessianGW)",
+    "gradient_difference": "pass globally with kappa=2L^2 and mu=1",
+    "noise": "pass: fresh independent q128 probes give conditional unbiasedness and uniformly finite variance/q on compact U",
+    "initializations": "pass for current square uniform-marginal product and randomized starts",
+    "exact_prox": "ideal minimizer stays positive; existing finite-tolerance numerical solver is not covered directly"
+  },
+  "conservative_schedule": {
+    "alpha_k": "s*beta_(k+1)",
+    "beta_(k+1)": "theta/sqrt(k+1)",
+    "s": "0<s<=1/(4L)",
+    "theta": "0<theta<=1",
+    "L": "any positive Hessian operator-norm upper bound;2nm*Cmax sufficient ifCmax>0",
+    "note": "Sufficient conservative construction, not a recommended optimized tuning range."
+  },
+  "output": "Independent alpha-weighted random index J; expected squared Frobenius norm of (P_J-P_(J+1))/alpha_J. Not identical to Fatkhullin-He BFBE, endpoint loss, or an ordinary boundary KKT guarantee.",
+  "historical_custom_comparator": "Constant proximal step with decreasing EMA coefficient did not match required coupling; cannot retrospectively relabel.",
+  "numerical_tolerance": "1e-7 feasibility/gap tests do not prove an inexact extension of Theorem24.",
+  "experiment_changes": false,
+  "new_jobs_submitted": false,
+  "pdf": "reports/msbpg_assumptions/msbpg_gw_assumptions.pdf",
+  "pdf_sha256": "6af91a1b24493e99e2125fe7be900d51f41a9f241e1e2b1027322ecba41b2752",
+  "review": {
+    "independent_math_review": "passed",
+    "pages": 2,
+    "visual_review": "passed"
+  }
+}

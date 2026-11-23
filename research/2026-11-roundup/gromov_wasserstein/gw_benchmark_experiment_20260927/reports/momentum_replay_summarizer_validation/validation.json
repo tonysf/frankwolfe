@@ -1,0 +1,54 @@
+{
+  "scope": "Parser and layout validation only; constructed fixture is not experiment data. No optimizer reruns, coupling arrays, or GPU use.",
+  "script_sha256": "8972f375c610cfa3bd5d6653523379a2f1a1dfaae706404c0e4c7683af19a79b",
+  "test_sha256": "2140011fe279791a55769412167d61a9817ce87e728ee74b99246f7ca831142c",
+  "focused_tests": {
+    "command": ".venv/bin/python -m pytest -q test_summarize_momentum_replays.py",
+    "passed": 8,
+    "elapsed_seconds": 0.07,
+    "scope": "Original eight parser cases passed before final report-only population enhancement; affected missing-record case rerun with new denominator case below."
+  },
+  "frozen_manifest_missing_root_integration": {
+    "prescribed_runs": 796,
+    "terminal_runs": 0,
+    "verified_runs": 0,
+    "provenance_valid": true,
+    "figures": [],
+    "require_complete_exit_code": 1,
+    "manifest_sha256": {
+      "tuning": "ee78d6164db8a7cc53b134cf11146fa27cce79df5940938b1d8e064ef3e24455",
+      "pilot": "45f0f398469190481b1c2b267715b0a4efeb15ad41ab98ebeae7da26d1a17fd9",
+      "finals": "eba876afe02ecd2f1fc206a03e01816a67a7473b0ade6322d80aff4cf777f02c"
+    }
+  },
+  "prior_preserved_tiny_cpu_proof_integration": {
+    "accepted_cases": [
+      "sketch product",
+      "exact randomized",
+      "row-projection randomized",
+      "legacy pilot source"
+    ],
+    "checkpoints_each": 3,
+    "scope": "Existing pytest-83 proof/CSV pairs were parsed, with no numerical rerun. They were subsequently removed by automatic pytest temporary-directory rotation; these actual proof files are not re-created or claimed to be archived here."
+  },
+  "layout_fixture_figures": [
+    "final_randomized_momentum_errors.png",
+    "final_randomized_momentum_errors.pdf"
+  ],
+  "independent_review": "oracle_diagnostics: no remaining consequential findings; read-only review, no duplicate test run.",
+  "plot_qa": "Inspected regenerated PNG: open markers show incomplete prescribed populations; filled exact-BMMC fixture markers show complete population; captions, shared legend, labels and explicit NOT EXPERIMENT DATA watermark are readable. Manifest-derived counts retained in JSON/CSV even for empty windows. report.md links generated PNG/PDF artifacts.",
+  "population_regression": {
+    "command": ".venv/bin/python -m pytest -q test_summarize_momentum_replays.py -k 'prescribed_plot_denominators or missing_prescribed_receipt'",
+    "passed": 2,
+    "deselected": 7,
+    "elapsed_seconds": 0.05,
+    "assertions": [
+      "All-missing windows retain prescribed populations",
+      "Exact product synthetic population is five runs/five instances per clean or noisy family",
+      "Exact product BMMC population is one run/one instance",
+      "Missing replay and missing window reduce observed counts without reducing denominators",
+      "Complete exact BMMC has one uncertainty sample, no duplicate starts"
+    ]
+  },
+  "layout_fixture_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python reports/momentum_replay_summarizer_validation/plot_fixture/manual_plot_fixture.py"
+}

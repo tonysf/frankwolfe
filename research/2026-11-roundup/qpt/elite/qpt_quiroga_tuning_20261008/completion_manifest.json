@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "qpt_quiroga_adaptive_tuning_completion",
+  "source_commit": "4ce1108a0692edc43b47ef465dbc74a42397765e",
+  "source_merged_locally": true,
+  "source_pushed": false,
+  "audits": {
+    "screen": {"path": "audit_screen.json", "sha256": "ce5135b4e04535bf90fa143cf7372341428fb15217986c8a8443f5536f356074", "trials": 50, "gate_passes": 6},
+    "confirmation": {"path": "audit_confirmation.json", "sha256": "13d46076f3106915099124828a9dc53b866d35a8df0c5cbb5385f088c34a7e07", "trials": 6, "gate_passes": 6},
+    "historical_revalidation": {"path": "audit_revalidation.json", "sha256": "145b80ad7fd2ea34459cda1cf311e37bd579b8e8c009ea1492251629caa3b889", "trials": 8, "gate_passes": 8}
+  },
+  "selection": {"path": "selection_screen.json", "sha256": "6f429f7adca8617bdb246e52839fd663ac64b6f1bc6adf0fa2e2cfdc55246a2f"},
+  "pdf": {"path": "QPT_QUIROGA_ADAPTIVE_TUNING_20261008.pdf", "sha256": "fc50cd7b7208b2a558aacbd697906706bcb5fb200d7d27afd75a53ce6539177b", "pages": 2, "text_and_visual_checks_passed": true},
+  "jobs": {
+    "2039775": {"array_tasks": 2, "final_state": "FAILED", "exit_code": 2, "complete_inventories": 2, "reason": "Expected explicit nonzero exit for archived numerical method failures, not infrastructure failure."},
+    "2039794": {"array_tasks": 6, "final_state": "COMPLETED", "exit_code": 0},
+    "2039814": {"array_tasks": 8, "final_state": "COMPLETED", "exit_code": 0}
+  },
+  "fixed_selected_configuration": {"method": "exact-linesearch-fgd", "alpha": 0.00005, "lambda": 0.0064, "n_steps_max": 10000, "gradient_atol": 1e-12, "gradient_rtol": 1e-10},
+  "selected_configuration_channels": [0, 1, 2, 3, 4, 5, 6, 7, 100, 101, 102, 103, 104, 105, 106, 107],
+  "selected_configuration_gate_passes": 16,
+  "selected_configuration_extrema": {"min_fidelity": 0.9999999999999994, "max_rmse": 1.607230011270104e-10, "max_normalized_tp": 7.79522266695423e-10, "min_accepted_updates": 794, "max_accepted_updates": 1882},
+  "independent_integrity_review": {"passed": true, "archives": 64, "complete_inventories": 16, "plans": 3, "source_files": 63, "successful_endpoint_metrics_recomputed": true},
+  "printed_rule_new_trials": {"complete_gate_failures": 14, "numerical_failures": 30, "gate_passes": 0},
+  "literal_100k_extension_launched": false,
+  "held_out_1000_1019_used": false,
+  "n_qubits": 2,
+  "rank": 1,
+  "observation_mode": "noiseless",
+  "qualification": "Successful fixed-penalty FGD with an explicitly modified exact factor-ray adaptive step. The printed Quiroga ratio remains unresolved, not disproved. Channels100..107 are historical revalidation, not unseen validation. No new FRAMES or higher-qubit campaign in this tuning batch. All prior artifacts and numerical failures preserved."
+}

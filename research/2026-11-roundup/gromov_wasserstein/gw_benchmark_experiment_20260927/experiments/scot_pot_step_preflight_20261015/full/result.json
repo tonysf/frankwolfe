@@ -1,0 +1,89 @@
+{
+  "oracle": "full",
+  "seed": 811,
+  "q": null,
+  "eta": 1000.0,
+  "epsilon": 0.001,
+  "stopping": {
+    "marginal_l1": 1e-07,
+    "guarded_normalized_primal_dual_gap": 1e-07,
+    "inner_max": 10000,
+    "check_every": 10
+  },
+  "fixed_reference": "unit-mass product a*b, cost G + epsilon*log(a*b)",
+  "kernel_identity_max_error": 2.842170943040401e-14,
+  "cmax": 1.0,
+  "array_hashes": {
+    "A.npy": "dd3aaef7227b9fefd6562c6aad2d4965d48e0255b5d2a09c71d7a370306d635e",
+    "B.npy": "1c552d4684b00cc30e8c092ee7824e09868836f5402dc52a8447a45f8dd27b15",
+    "a.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33",
+    "b.npy": "ecb623e162bce125436d2a2c8fb8a1bdd6cdebf2d2d00704dfe189870819cd33"
+  },
+  "manifest_hash": "9334c5d0b4040e40aabd8e14f1cbf039290ebed1d86cd96a5f4f6b458ec7165c",
+  "certificate": {
+    "primal_objective": 0.12176928431791058,
+    "dual_objective": 0.1217692842209344,
+    "primal_dual_gap": 9.697617708859241e-11,
+    "normalized_primal_dual_gap": 9.697617708859241e-11,
+    "gap_normalizer": 1.0,
+    "gap_roundoff_tolerance": 5.684341886080802e-14,
+    "stable_primal_dual_gap": 9.697618899712397e-11,
+    "gap_arithmetic_crosscheck_error": 1.19085315638632e-17,
+    "primal_witness_marginal_l1": 1.4951147958575106e-16,
+    "primal_witness_feasibility_tolerance": 1.1368683772161605e-13,
+    "primal_witness_plan_l1_difference": 3.0250302455412737e-08,
+    "reference_mass": 1.0,
+    "dual_candidate_mass": 1.0000000000000009,
+    "certificate_valid": true,
+    "proximal_optimality_certified": true,
+    "arithmetic_certificate": "FP64 arithmetic; not interval-certified",
+    "certificate_primal": "FP64 rounded feasible witness of returned plan",
+    "plan_dtype": "torch.float64",
+    "retained_log_dtype": "torch.float64",
+    "inner_iterations": 120,
+    "certificate_checks": 12,
+    "marginal_l1": 3.0250304979798255e-08,
+    "converged": true,
+    "marginal_tolerance": 1e-07,
+    "normalized_gap_tolerance": 1e-07,
+    "sinkhorn_arithmetic": "FP64 bounded blocks and vector reductions",
+    "underflow_entries": 0
+  },
+  "diagnosis": {
+    "raw_loss": 0.06326074583741453,
+    "rounded_loss": 0.06326074576529722,
+    "raw_entropy": -13.934197794237408,
+    "rounded_entropy": -13.934198007223118,
+    "raw_regularized_loss": 0.049326548043177126,
+    "rounded_regularized_loss": 0.0493265477580741,
+    "raw_residuals": {
+      "row_l1": 3.0250302463907114e-08,
+      "col_l1": 2.515674300818116e-15,
+      "col_l2": 1.0991612535746904e-16,
+      "both_l1": 3.0250304979581415e-08,
+      "mass_error": 8.881784197001252e-16,
+      "min_entry": 1.8776440067762287e-49
+    },
+    "rounded_residuals": {
+      "row_l1": 6.320898665590491e-17,
+      "col_l1": 8.61940727125976e-17,
+      "col_l2": 3.700609299437006e-18,
+      "both_l1": 1.494030593685025e-16,
+      "mass_error": 2.220446049250313e-16,
+      "min_entry": 1.6933063320214298e-48
+    }
+  },
+  "timings": {
+    "solve_seconds": 5.352232110220939,
+    "total_seconds": 6.255535350181162
+  },
+  "environment": {
+    "affinity": [
+      0
+    ],
+    "torch_threads": 1,
+    "torch_interop_threads": 1
+  },
+  "minimum_log_plan": -112.19665175364796,
+  "maximum_log_plan": -8.355530498915307
+}

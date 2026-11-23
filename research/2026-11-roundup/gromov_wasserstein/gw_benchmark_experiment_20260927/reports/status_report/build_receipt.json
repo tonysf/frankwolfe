@@ -1,0 +1,33 @@
+{
+  "layout": "Shared GW problem page, shared stochastic oracle page, then one data/settings/results page per experiment.",
+  "reference_pages_sha256": {
+    "reports/status_report/gw_problem.tex": "858261e3f05029638fefdb6fc78efb274c3281dcde624d5aa0ccf06084a7edca",
+    "reports/status_report/gw_stochastic_oracle.tex": "49dca2250f85e24dd5c6b2590a7fc362bcd5259d7a823fd70f1ab1171f6be1a1"
+  },
+  "source_reports": [
+    {
+      "file": "reports/batch_size_20261008/report.json",
+      "sha256": "6ce0b0198875649d7a524abceef5d8c5e4d904c7711bd8d22949c28534808640"
+    },
+    {
+      "file": "reports/probe8192_20261009/report.json",
+      "sha256": "969f9f3b225c832a493c29cea509603a2fea59bd40aca00eded8c0b6c87e1952"
+    }
+  ],
+  "builder_sha256": "b5f123739372d02fc05dcaad3dcae08c02a731656bd7714df0c03d29146f33f4",
+  "outputs": [
+    {
+      "dataset": "metric512_s1000",
+      "pdf": "reports/status_report/synthetic_probe_count_status.pdf",
+      "pdf_sha256": "a74860963b714368716139169a4bce52dacff78bf27cc94f7b94dd2980c37305",
+      "pages": 3
+    },
+    {
+      "dataset": "bmmc6224",
+      "pdf": "reports/status_report/bmmc_probe_count_status.pdf",
+      "pdf_sha256": "c816be3f194dcbd1b14a7be0d364b7615ff8440ec790cf1f1f02799eca88eaf8",
+      "pages": 3
+    }
+  ],
+  "status_scope": "Synthetic: 12 completed runs, including three q8192 runs verified 11 October 2026. BMMC: unchanged nine-run snapshot verified 9 October. No remote status query during this document update."
+}

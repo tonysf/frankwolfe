@@ -1,0 +1,39 @@
+{
+  "slice_number": 3041,
+  "measurement_mode": 1,
+  "reference_mode": 2,
+  "raw_source": "https://zenodo.org/records/8014829/files/2DeteCT_slices3001-4000.zip?download=1",
+  "reference_source": "https://zenodo.org/records/8017618/files/2DeteCT_slices3001-4000_RecSeg.zip?download=1",
+  "preprocess_source": "https://deepinv.org/auto_examples/external-libraries/demo_astra_2detect.html",
+  "dataset_paper": "https://arxiv.org/html/2306.05907",
+  "tiff_entries": {
+    "slice03041/mode1/sinogram.tif": "efb8da924a1c17146b04f83124cd511cd924459e0a9fffee3702257608f65ce8",
+    "slice03041/mode1/dark.tif": "862314b367d6e67505f43e76e162d6bcd561e30ac3541b6186b2c25044ff1484",
+    "slice03041/mode1/flat1.tif": "7d583c4e133055f5d077f493abd1268676eafb3eb6ed3a106b92171ea5164d5e",
+    "slice03041/mode1/flat2.tif": "22d12788706bbde3eec025efcf7a641301199c8b398482b590f453c938d56db7",
+    "slice03041/mode2/reconstruction.tif": "239ae1c1a475dab1cc6484b6217805e32f8495918be4d1c71055b53c03750a68"
+  },
+  "clamped_count": 0,
+  "measured_shape": [
+    3600,
+    956
+  ],
+  "reference_shape": [
+    1024,
+    1024
+  ],
+  "sinogram_convention": "DeepInverse: bin adjacent raw detector cells, drop last view, correct flat/dark, clip at 1e-6, negate log, reverse detector",
+  "reference_convention": "Mode 2 TIFF stored without conversion. For DeepInverse angles with detector reversal, a physical-mm ASTRA model uses a vertical flip and divides attenuation by native voxel width in mm.",
+  "reference_source_code": "https://github.com/mbkiss/2DeteCTcodes/blob/main/Reconstructions_2DeteCT.py",
+  "geometry_mm": {
+    "detector_spacing": 0.1496,
+    "source_origin": 431.019989,
+    "origin_detector": 97.98049900000001,
+    "volume_width": 116.52814274682939,
+    "volume_center": [
+      -0.11379701440120057,
+      -0.11379701440120057
+    ],
+    "reference_voxel_width": 0.11379701440120057
+  }
+}

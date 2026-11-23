@@ -1,0 +1,325 @@
+{
+  "status": "completed",
+  "recorded_utc": "2026-10-04T19:09:04.959015+00:00",
+  "submission_completed_at": "2026-10-04T21:07:30+02:00",
+  "source_commit": "38b5ea80e63cbaee2166ddff671edc3ac9f9a794",
+  "source_manifest_sha256": "c7cf8139d505a8059f0b8e08545e04da53b7b55f0e36ca2e19182d2a6d42c25d",
+  "source_archive_sha256": "20a6bfd7e55afc64e338a7a5dae9a8a0cb0271c4ef63b3e497a31c08f4217d67",
+  "config_sha256": "63593d4c24903a02606f0b04e7c2980387f36216f57ff2b612e5622cc77b071f",
+  "site": "Ruche",
+  "account": "fwllm",
+  "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8",
+  "remote_source": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/source_38b5ea8",
+  "prepared_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/prepared",
+  "remote_output": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/published_campaign_20261004_38b5ea8/results",
+  "local_evidence_directory": "logs/published_campaign_20261004_38b5ea8",
+  "source_transfer_checksums_verified": true,
+  "scheduler_resources_and_dependencies_verified": true,
+  "methods": [
+    "Stochastic FraMES with momentum and theoretical schedule exponents",
+    "Fatkhullin-He (2024) stochastic entropic mirror descent, fresh gradient"
+  ],
+  "datasets": {
+    "bmmc6224": {
+      "cells": 6224,
+      "a100_per_run": 1
+    },
+    "snare_full": {
+      "cells": 10000,
+      "a100_per_run": 1
+    },
+    "shareseq_full": {
+      "cells": 31890,
+      "a100_per_run": 4
+    }
+  },
+  "runs": {
+    "tuning": 432,
+    "final": 36,
+    "total": 468
+  },
+  "iterations": {
+    "tuning": 200,
+    "final": 2000
+  },
+  "development_seeds": [
+    710,
+    711,
+    712
+  ],
+  "final_seeds": [
+    810,
+    811,
+    812
+  ],
+  "initializations": [
+    "product",
+    "randomized"
+  ],
+  "inner_tolerances": {
+    "summed_marginal_l1": 1e-07,
+    "normalized_guarded_primal_dual_gap": 1e-07
+  },
+  "validation": {
+    "local_tests": {
+      "passed": 66,
+      "seconds": 23.32
+    },
+    "prior_gpu_validation_job": 1986380,
+    "prior_four_a100_checks": 40,
+    "core_optimizer_source_unchanged_since_gpu_validation": true
+  },
+  "comparison_scope": "Fixed update horizons and paired q128 gradient calls: both methods make exactly one call per update. FW reuses its first gradient for momentum initialization; its initialization_oracle_calls field labels that reuse, not an additional call. Actual measured time curves are reported separately without extrapolation.",
+  "selection": "Per dataset/method, lowest median FP64 last-rounded loss over all six development start/seed cells; ties by candidate ID. Twelve candidates per method.",
+  "failure_policy": "Any failed tuning task blocks selection/finals for that dataset; report depends afterany on the entire campaign and preserves failures/missing runs.",
+  "storage_policy": "Tuning retains metrics/hashes without dense plans. Final BMMC/SNARE retain all plans; SHARE retains all four snapshots only for seed810, both starts/methods. Estimated new dense outputs91.7GB.",
+  "theory_scope": "Finite inner tolerances are numerical criteria, not a proved inexact-outer convergence guarantee.",
+  "jobs": [
+    {
+      "stage": "prepare",
+      "instance": "all",
+      "job_id": 1993990,
+      "ArrayTaskId": null,
+      "JobState": "RUNNING",
+      "Reason": "None",
+      "Dependency": "(null)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "tuning",
+      "instance": "bmmc6224",
+      "job_id": 1993991,
+      "ArrayTaskId": "0-11%2",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993990(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "02:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "select",
+      "instance": "bmmc6224",
+      "job_id": 1993992,
+      "ArrayTaskId": null,
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993991_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "final",
+      "instance": "bmmc6224",
+      "job_id": 1993993,
+      "ArrayTaskId": "0-5%2",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993992(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "04:15:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "tuning",
+      "instance": "snare_full",
+      "job_id": 1993994,
+      "ArrayTaskId": "0-11%2",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993990(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "02:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "select",
+      "instance": "snare_full",
+      "job_id": 1993995,
+      "ArrayTaskId": null,
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993994_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "final",
+      "instance": "snare_full",
+      "job_id": 1993996,
+      "ArrayTaskId": "0-5%2",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993995(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "TimeLimit": "04:15:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "tuning",
+      "instance": "shareseq_full",
+      "job_id": 1993997,
+      "ArrayTaskId": "0-11%1",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993990(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "8",
+      "ReqTRES": "cpu=8,mem=128G,node=1,billing=8,gres/gpu=4",
+      "TimeLimit": "02:00:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "select",
+      "instance": "shareseq_full",
+      "job_id": 1993998,
+      "ArrayTaskId": null,
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993997_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    },
+    {
+      "stage": "final",
+      "instance": "shareseq_full",
+      "job_id": 1993999,
+      "ArrayTaskId": "0-5%1",
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterok:1993998(unfulfilled)",
+      "Partition": "gpua100",
+      "NumCPUs": "8",
+      "ReqTRES": "cpu=8,mem=128G,node=1,billing=8,gres/gpu=4",
+      "TimeLimit": "04:15:00",
+      "ExcNodeList": "ruche-gpu[16,19]"
+    },
+    {
+      "stage": "report",
+      "instance": "all",
+      "job_id": 1994000,
+      "ArrayTaskId": null,
+      "JobState": "PENDING",
+      "Reason": "Dependency",
+      "Dependency": "afterany:1993990(unfulfilled),afterany:1993991_*(unfulfilled),afterany:1993992(unfulfilled),afterany:1993993_*(unfulfilled),afterany:1993994_*(unfulfilled),afterany:1993995(unfulfilled),afterany:1993996_*(unfulfilled),afterany:1993997_*(unfulfilled),afterany:1993998(unfulfilled),afterany:1993999_*(unfulfilled)",
+      "Partition": "cpu_short",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=16G,node=1,billing=2",
+      "TimeLimit": "01:00:00",
+      "ExcNodeList": "(null)"
+    }
+  ],
+  "scientific_results": "All468 runs completed and passed automated campaign validation. At2000updates, FraMES median solver time is8.8\u201310.3 times shorter; median endpoint GWloss is lower on BMMC/SNARE and slightly higher on SHARE, for both starts. Comparison is fixed-update, not equal walltime.",
+  "next_action": "No queued or running campaign jobs remain. Use the verified report/CSV/figures for analysis; do not resubmit. Dense plans remain on Ruche; only17 small report/selection/figure artifacts collected in this status check.",
+  "completion": {
+    "checked_utc": "2026-10-05T16:41:39.324071+00:00",
+    "scheduler_checked_at": "2026-10-05T18:39:00+02:00",
+    "finished_at": "2026-10-05T11:03:55+02:00",
+    "all_scheduler_jobs_completed_exit_zero": true,
+    "active_campaign_jobs": [],
+    "run_counts": {
+      "completed": 468,
+      "failed": 0,
+      "invalid": 0,
+      "missing": 0,
+      "started_without_result": 0
+    },
+    "tuning_completed": 432,
+    "final_completed": 36,
+    "local_verified_artifacts": 17,
+    "local_report": "logs/published_campaign_20261004_38b5ea8/status_20261005/report_artifacts/report.json",
+    "local_csv": "logs/published_campaign_20261004_38b5ea8/status_20261005/report_artifacts/report.csv",
+    "local_figures": "logs/published_campaign_20261004_38b5ea8/status_20261005/report_artifacts/figures",
+    "local_evidence": "logs/published_campaign_20261004_38b5ea8/status_20261005",
+    "report_sha256": "0ec392782fa31c99a560a31fe483f490392a271da659139aeeb8592d20050736",
+    "final_summary": [
+      {
+        "dataset": "bmmc6224",
+        "initialization": "product",
+        "iterations": 2000,
+        "seeds": 3,
+        "frames_median_loss": 0.1597556191930975,
+        "smd_median_loss": 0.16067466923818935,
+        "frames_median_solver_seconds": 36.12011088498821,
+        "smd_median_solver_seconds": 317.27810432998695,
+        "ratio_smd_to_frames_solver_time": 8.783973707618106
+      },
+      {
+        "dataset": "bmmc6224",
+        "initialization": "randomized",
+        "iterations": 2000,
+        "seeds": 3,
+        "frames_median_loss": 0.15978511297130937,
+        "smd_median_loss": 0.16067265875145698,
+        "frames_median_solver_seconds": 36.30770073598387,
+        "smd_median_solver_seconds": 321.34440173401936,
+        "ratio_smd_to_frames_solver_time": 8.850585281362667
+      },
+      {
+        "dataset": "snare_full",
+        "initialization": "product",
+        "iterations": 2000,
+        "seeds": 3,
+        "frames_median_loss": 0.09380960171761554,
+        "smd_median_loss": 0.09385536948193718,
+        "frames_median_solver_seconds": 73.35943673024303,
+        "smd_median_solver_seconds": 748.7674078908458,
+        "ratio_smd_to_frames_solver_time": 10.206831476149548
+      },
+      {
+        "dataset": "snare_full",
+        "initialization": "randomized",
+        "iterations": 2000,
+        "seeds": 3,
+        "frames_median_loss": 0.09380961233727436,
+        "smd_median_loss": 0.09385240997319472,
+        "frames_median_solver_seconds": 72.59990628695232,
+        "smd_median_solver_seconds": 746.796288863552,
+        "ratio_smd_to_frames_solver_time": 10.286463537732782
+      },
+      {
+        "dataset": "shareseq_full",
+        "initialization": "product",
+        "iterations": 2000,
+        "seeds": 3,
+        "frames_median_loss": 0.11694595287129322,
+        "smd_median_loss": 0.11678934552972203,
+        "frames_median_solver_seconds": 202.5787800408434,
+        "smd_median_solver_seconds": 2012.1659033671021,
+        "ratio_smd_to_frames_solver_time": 9.932757532459295
+      },
+      {
+        "dataset": "shareseq_full",
+        "initialization": "randomized",
+        "iterations": 2000,
+        "seeds": 3,
+        "frames_median_loss": 0.11694838774231431,
+        "smd_median_loss": 0.11678730438691232,
+        "frames_median_solver_seconds": 204.11241536750458,
+        "smd_median_solver_seconds": 2013.1586662114132,
+        "ratio_smd_to_frames_solver_time": 9.862989777406334
+      }
+    ]
+  }
+}

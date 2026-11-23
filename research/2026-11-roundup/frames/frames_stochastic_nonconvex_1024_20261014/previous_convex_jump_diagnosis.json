@@ -1,0 +1,47 @@
+{
+  "source": "/home/tony/frames_stochastic_l1ls_1024_20261014/results.npz",
+  "index_convention": "k denotes preupdate iterate; cumulative horizon N includes x0 through x_(N-1)",
+  "early_jump": {
+    "G0": 0.03125,
+    "G1": 1.9375,
+    "mean_gap_N2": 0.984375,
+    "x1": "e_j for j in first64, because gamma0=1",
+    "x2": "(1-2^(1/4))*e_j for every sampling history",
+    "delta2": 0.18920711500272103,
+    "mean_delta_N3": 0.06306903833424034,
+    "cause": "Unit first FW step goes to a vertex, then next direction reverses with a step exceeding one half. Zero initialization makes the pre-jump gap small and feasibility exactly zero."
+  },
+  "later_feasibility_hump": {
+    "local_cumulative_min_N": 364,
+    "local_cumulative_min": 0.004142724260003096,
+    "local_cumulative_max_N": 1529,
+    "local_cumulative_max": 0.01904372306968136,
+    "instant_peak_after_k64": 514,
+    "instant_peak_after_k64_value": 0.03774702917798037,
+    "negative_coordinate_location": "All negative coordinates at k=128,256,384,512,768,1024,1536,2048,4095 are in coordinates65:128. Early violations at k2 andk8 are in first64 instead.",
+    "reason": "The negative block becomes populated because the smoothed objective prefers negative values there. Finite FW steps overshoot its small negative minimizer coordinates. The hump persists with exact full gradients and no momentum, so neither noise nor momentum is necessary. Cumulative feasibility rises whenever current feasibility exceeds its preceding cumulative mean; the theorem requires neither monotonicity nor per-iterate feasibility."
+  },
+  "controlled_initialization_check": {
+    "xstar_first_step": "Starting at the exact original solution xstar, a sampled LMO picks a negative vertex in coordinates65:128 for either sign of sample noise. Since gamma0=1, delta1=1.",
+    "conclusion": "Changing only x0 does not remove the full-step transient."
+  },
+  "diagnostic_ablations_only": {
+    "description": "4096-step deterministic diagnostic checks, not replacements for the reported stochastic algorithm. Same old convex objective, zero start, gamma and beta schedules.",
+    "exact_gradient_no_momentum": {
+      "local_average_min_N": 432,
+      "local_average_min": 0.0032858711753603305,
+      "subsequent_average_max_N": 2604,
+      "subsequent_average_max": 0.014817984082999155,
+      "instant_peak_k_after64": 805,
+      "instant_peak_value": 0.03681418819019956
+    },
+    "no_noise_with_momentum": {
+      "local_average_min_N": 429,
+      "local_average_min": 0.0031829500573879862,
+      "subsequent_average_max_N": 1590,
+      "subsequent_average_max": 0.018305351992117486,
+      "instant_peak_k_after64": 596,
+      "instant_peak_value": 0.040143243856826945
+    }
+  }
+}

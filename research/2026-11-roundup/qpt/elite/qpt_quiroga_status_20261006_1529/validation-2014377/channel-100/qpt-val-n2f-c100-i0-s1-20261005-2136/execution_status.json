@@ -1,0 +1,162 @@
+{
+  "archive_validation": {
+    "data_instance_sha256": "5ff16d2d235efde30efc6a1f2448d142fd10db42446335a9499322b1c29ee83b",
+    "method_gate": {
+      "frames": {
+        "component_passes": {
+          "normalized_tp_violation": true,
+          "process_fidelity": true,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.00017900942882852572,
+          "process_fidelity": 0.999999990582662,
+          "rmse": 1.661083987296072e-05
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      },
+      "printed-adafgd": {
+        "component_passes": {
+          "normalized_tp_violation": false,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": null,
+          "process_fidelity": null,
+          "rmse": null
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": false
+      }
+    },
+    "method_statuses": {
+      "frames": "complete",
+      "printed-adafgd": "failed"
+    },
+    "nonfinite_arrays_retained_only_for_failed_methods": [
+      "printed_adafgd_measurement_loss_sum",
+      "printed_adafgd_measurement_loss_mean",
+      "printed_adafgd_rmse",
+      "printed_adafgd_tp_violation",
+      "printed_adafgd_normalized_tp_violation",
+      "printed_adafgd_penalized_objective",
+      "printed_adafgd_process_fidelity"
+    ],
+    "paired_instance_sha256": "b86c33f61d993c21de97d4d3649afa05802eba49bb92420bd69ee7d599965e60"
+  },
+  "artifacts": {
+    "pair.json": {
+      "bytes": 29293,
+      "sha256": "7121f0c5967955a7944f637ad7356c0abccb32d4161fd00dca82741cb85ba3d6"
+    },
+    "pair.npz": {
+      "bytes": 1552080,
+      "sha256": "1a88439b01d8e8ca79504ead35d05a8a07e8ffc46c0087a7e0285da7b034066b"
+    },
+    "stderr.log": {
+      "bytes": 2554,
+      "sha256": "0d35bba8affad641043f0a7c28f3f0343d17f172c35ddb4efc9dc6b9f3d04a7a"
+    },
+    "stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "command": [
+    "/gpfs/users/silvetian/.conda/envs/qpt/bin/python",
+    "-m",
+    "paper.experiments.qpt_quiroga_direct_comparison",
+    "--n-qubits",
+    "2",
+    "--row-epochs",
+    "10000",
+    "--checkpoint-epochs",
+    "100",
+    "--printed-tp-weight-per-row",
+    "0.5",
+    "--frames-initial-tp-weight-per-row",
+    "5e-05",
+    "--frames-penalty-exponent",
+    "0.25",
+    "--eta-scale",
+    "0.01",
+    "--rank",
+    "1",
+    "--tau",
+    "2",
+    "--batch-size",
+    "32",
+    "--subset-size",
+    "0",
+    "--subset-seed",
+    "400100",
+    "--channel-seed",
+    "100",
+    "--initialization-seed",
+    "201000",
+    "--sampling-seed",
+    "310001",
+    "--observation-mode",
+    "noiseless",
+    "--noise-std",
+    "0",
+    "--noise-seed",
+    "0",
+    "--shot-seed",
+    "0",
+    "--spectral-norm-method",
+    "dense",
+    "--dense-max-process-dimension",
+    "1024",
+    "--spectral-norm-tolerance",
+    "1e-10",
+    "--gate-name",
+    "noiseless_recovery_v1",
+    "--gate-fidelity-min",
+    "0.99",
+    "--gate-rmse-max",
+    "1e-06",
+    "--gate-normalized-tp-max",
+    "0.001",
+    "--selection-manifest-sha256",
+    "fa9b5d5287f260296d7ee8fa292f303b389494fe6413d897bd6c60afa06d4178",
+    "--printed-config-id",
+    "n2f-q-a5em1-e1em2-v1",
+    "--frames-config-id",
+    "n2f-f-a5em5-p025-v1",
+    "--cohort-id",
+    "n2-full-validation-n2f-q-a5em1-e1em2-v1__n2f-f-a5em5-p025-v1-c7a8c97-fa9b5d5287f2",
+    "--trial-id",
+    "qpt-val-n2f-c100-i0-s1-20261005-2136",
+    "--split",
+    "validation",
+    "--expected-commit",
+    "c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+    "--save",
+    "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_c7a8c9789b7814ede1c95e53eef13bfe1dd58c63_20261005_02/validation-2014377/channel-100/qpt-val-n2f-c100-i0-s1-20261005-2136/pair.npz",
+    "--rho-exponent",
+    "0.6",
+    "--rho-offset",
+    "4",
+    "--rho-scale",
+    "2",
+    "--step-exponent",
+    "1",
+    "--step-offset",
+    "2",
+    "--step-scale",
+    "2",
+    "--require-clean",
+    "--quiet",
+    "--fail-on-method-failure"
+  ],
+  "finished_utc": "2026-10-05T19:53:15.476983+00:00",
+  "runner_exit_code": 2,
+  "started_utc": "2026-10-05T19:52:50.573363+00:00",
+  "status": "method_failure_archived",
+  "trial_id": "qpt-val-n2f-c100-i0-s1-20261005-2136"
+}

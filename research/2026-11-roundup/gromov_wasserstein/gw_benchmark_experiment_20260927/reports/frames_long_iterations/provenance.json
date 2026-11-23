@@ -1,0 +1,103 @@
+{
+  "source_files": {
+    "original_report.json": {
+      "remote_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_20261007_1963919/results/report.json",
+      "sha256": "0241088fa028235d0f22db340cae35bbb3030b948a55b857321283ddfca55662"
+    },
+    "retry_report.json": {
+      "remote_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/retry/results/report.json",
+      "sha256": "4769069be706432bc22e9a22c798e358871c22f1aa7fee2e3004137e24d20031"
+    },
+    "share_metadata.json": {
+      "remote_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/share/results/shareseq_full/smoothing-fw/product/seed810/output/metadata.json",
+      "sha256": "3218259192c2e87066b78af69572dcacd581c969c8344a8d01602a59877d232d"
+    },
+    "share_status.json": {
+      "remote_path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/long_horizon_all_20261007_eb08011/share/results/shareseq_full/smoothing-fw/product/seed810/status.json",
+      "sha256": "f87de72199c52db76888c07887ccaa651bb1219f01021fb338242ed90d258f5b"
+    }
+  },
+  "config_sha256": "da603d653024fcf4f8d30c93e562da0819a92c65ce53ed2a81be51a811ed8e48",
+  "share_config_sha256": "4134ba6b243bacd6ab9b80a8e3b99a8d3b3abb7416cacf8afad15347bae38174",
+  "completed_runs": 13,
+  "observations": 169,
+  "summaries": 65,
+  "checkpoints": [
+    0,
+    100,
+    300,
+    1000,
+    2000,
+    3000,
+    5000,
+    7500,
+    10000,
+    12500,
+    15000,
+    17500,
+    20000
+  ],
+  "aggregation": "All three seeds for each BMMC/SNARE initialization; single SHARE product seed810. No incomplete medians or missing-seed substitution.",
+  "output_statistic": "Current rounded feasible-plan loss; exact final FP64 last-rounded loss at20000. This plot is not the theorem sampled output statistic.",
+  "plotter_sha256": "ce12dfdc671d68b6b3e2698e8711ca1b0a9ebd28d5a52a55a6bc8d0ffb855e45",
+  "endpoints": [
+    {
+      "dataset": "bmmc6224",
+      "initialization": "product",
+      "n": 3,
+      "initial_loss": 0.16103965044021606,
+      "loss_at_2000": 0.1597556471824646,
+      "loss_at_20000": 0.16061004904308024,
+      "median_reduction_percent_at_20000": 0.2667674674910636,
+      "lowest_observed_median_iteration": 2000
+    },
+    {
+      "dataset": "bmmc6224",
+      "initialization": "randomized",
+      "n": 3,
+      "initial_loss": 0.16103386878967285,
+      "loss_at_2000": 0.15978509187698364,
+      "loss_at_20000": 0.16061252090600475,
+      "median_reduction_percent_at_20000": 0.26357404522135963,
+      "lowest_observed_median_iteration": 2000
+    },
+    {
+      "dataset": "snare_full",
+      "initialization": "product",
+      "n": 3,
+      "initial_loss": 0.09407249093055725,
+      "loss_at_2000": 0.09380963444709778,
+      "loss_at_20000": 0.09385746854878918,
+      "median_reduction_percent_at_20000": 0.22857094527963195,
+      "lowest_observed_median_iteration": 5000
+    },
+    {
+      "dataset": "snare_full",
+      "initialization": "randomized",
+      "n": 3,
+      "initial_loss": 0.09407305717468262,
+      "loss_at_2000": 0.093809574842453,
+      "loss_at_20000": 0.09385445996562147,
+      "median_reduction_percent_at_20000": 0.2323696238076275,
+      "lowest_observed_median_iteration": 5000
+    },
+    {
+      "dataset": "shareseq_full",
+      "initialization": "product",
+      "n": 1,
+      "initial_loss": 0.11722314357757568,
+      "loss_at_2000": 0.11693233251571655,
+      "loss_at_20000": 0.11464426484062473,
+      "median_reduction_percent_at_20000": 2.1999740479953145,
+      "lowest_observed_median_iteration": 20000
+    }
+  ],
+  "files": {
+    "observations.csv": "1d811bd87875751d833571afc1c7d94da5cbf399499bfa7801860edac98d9d38",
+    "summary.csv": "8ece282ab6fa5a812c840e7e13ca1b2073eed45110b4c193d921feb52d1bbec6",
+    "endpoints.csv": "17ba954c26007d0f5cd2f3b37bec425f79332df00a64bcfdcbabf95ea697012a",
+    "frames_20000_iterations.png": "e91c46f06c991942b3a116b6d6d20cb7f2eb07cd3f8604e17fc0ed6671a5a612",
+    "frames_20000_iterations.pdf": "3aa9b25eaeac5c1f0245d877c64c339f77c28b46dbe37a1f44e7b8c16b6b9395"
+  },
+  "figure_review": "PNG visually inspected: all six panels, labels, legend, uncertainty bands and preliminary single-seed SHARE scope are readable; PDF generated from the same figure."
+}

@@ -1,0 +1,83 @@
+{
+  "hostname": "ruche-gpu17.cluster",
+  "platform": "Linux-4.18.0-553.144.1.el8_10.x86_64-x86_64-with-glibc2.28",
+  "python": "3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]",
+  "python_executable": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/.venv/bin/python",
+  "cpu": {
+    "returncode": 0,
+    "stdout": "Architecture:        x86_64\nCPU op-mode(s):      32-bit, 64-bit\nByte Order:          Little Endian\nCPU(s):              32\nOn-line CPU(s) list: 0-31\nThread(s) per core:  1\nCore(s) per socket:  16\nSocket(s):           2\nNUMA node(s):        2\nVendor ID:           GenuineIntel\nCPU family:          6\nModel:               106\nModel name:          Intel(R) Xeon(R) Gold 6346 CPU @ 3.10GHz\nStepping:            6\nCPU MHz:             3100.000\nCPU max MHz:         3100.0000\nCPU min MHz:         800.0000\nBogoMIPS:            6200.00\nL1d cache:           48K\nL1i cache:           32K\nL2 cache:            1280K\nL3 cache:            36864K\nNUMA node0 CPU(s):   0-15\nNUMA node1 CPU(s):   16-31\nFlags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 invpcid_single intel_ppin ssbd mba ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect wbnoinvd dtherm arat pln pts avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid fsrm md_clear pconfig flush_l1d arch_capabilities\n",
+    "stderr": ""
+  },
+  "device": "cuda",
+  "gpu": {
+    "name": "NVIDIA A100-SXM4-40GB",
+    "total_memory_bytes": 42404806656,
+    "capability": [
+      8,
+      0
+    ],
+    "visible_count": 1,
+    "driver": {
+      "returncode": 0,
+      "stdout": "name, driver_version, memory.total [MiB]\nNVIDIA A100-SXM4-40GB, 580.167.08, 40960 MiB\n",
+      "stderr": ""
+    }
+  },
+  "torch_cuda_runtime": "12.1",
+  "torch_version": "2.5.1+cu121",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "torch": "2.5.1+cu121",
+    "pytest": "9.1.1",
+    "POT": "0.9.6.post1"
+  },
+  "threads": 1,
+  "interop_threads": 1,
+  "deterministic_algorithms": true,
+  "matmul_precision": "highest",
+  "allow_tf32": false,
+  "AMP": false,
+  "cpu_validation_dtype": "float64",
+  "gpu_experiment_dtype": "float32",
+  "git": {
+    "returncode": 0,
+    "stdout": "564d56dc5ee7563ee8d689b9d8f213bc6e68a699\n",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "source_sha256": {
+    "capture_environment.py": "1d18f419dca0f910a9cf5b54761ba08294b5d782d9c4d70950594f41e27d0544",
+    "gw_core.py": "2cf01a2d084c6f6535ce9ba81838e6c53c33c321b9f07caadec572b9a95b3d04",
+    "make_instances.py": "ecf425940b3c6ac5f77fe37b93a12c75ec052cddc5c03ab352c889f06c4f3903",
+    "native_sampled_gw.py": "0b4bfa72772925d50694de7b1a377c34ed9b4b546671258341c26907804a838a",
+    "oracle_diagnostics.py": "33bf59f0d08faa70b7d87ebdc6ecdebc4a0abc216fb44f3b0c9a6b1d0aab0005",
+    "prepare_development_data.py": "e083d64021ae53653ff1019c185d342b4350f3faa7b76a9668b7d7831d5c322c",
+    "run_benchmark.py": "e553cf4890e73caeb729e24c2a205857f82e8e495d8933c72cabc97283d19ac0",
+    "run_native_sampled.py": "b0cba9678844544af3c05c07c51772fc75c3f500e2b1ede73208ef140936bb16",
+    "run_reference.py": "d6f54a62850072f0b3f11b56f74a1c11277f8f683d38054e3213d81b6a320926",
+    "run_smoothing.py": "e74a36b8ac4c8c93bdfb246bfa068b88c16bfe228b2f1ac2403a7ef8ad3b4e7d",
+    "smoothing_fw.py": "60607e0d49634bbaa4d7b18aae94eafd6314573449ff8de629f3924cfef5a2d7",
+    "summarize_diagnostics.py": "40bcb90bbb40c2bd83de3ee7a6ff3a465fc80ec24c2fe182659f04e1c9a56d93",
+    "test_benchmark.py": "6ca2a5616d9bfaf330e174553fba2ca63c6106958070c951f08ca72fd22e71e2",
+    "test_gw_core.py": "b0ce961c335b698e657b478235dc6367e866efeef8ee686246b24dbf2f71502e",
+    "test_native_runner.py": "edba03f54615116c50e3cda8f1cb601f942c832a618c8d6eea4ede1501cffb4c",
+    "test_protocol_checks.py": "e4947898b7ff1715b66722fe95f30f27299fd317bcb332f6f1c077f251e42efd",
+    "test_smoothing_fw.py": "bbfdb9fbf882443b1dcd4634f7c0db77b37bde728138530aed658a9ef8ae6e3e",
+    "validate_baselines.py": "515ec4e837a454d060a08763503ceef368093767ba25386a076084d4605e807c",
+    "validate_gpu.py": "56cadb7c41f9544a20aa135b25918fba83861fe465c278aea3d80f859bcda2c7",
+    "validate_native_gpu.py": "3bff42491f8d4adfb66b196fe7771f46358aa3937bff90ddfcc7cb55c413c5f2"
+  },
+  "job_id": "1961459",
+  "cuda_visible_devices": "0",
+  "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  }
+}

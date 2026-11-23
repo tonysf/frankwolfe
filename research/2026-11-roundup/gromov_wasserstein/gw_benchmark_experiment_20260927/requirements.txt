@@ -1,0 +1,11 @@
+# Install an appropriate CUDA build of torch separately on GPU hosts.
+# These broad constraints are bootstrapping instructions, NOT a publication lockfile.
+# Freeze the resolved environment after your own tests.
+numpy>=1.24
+scipy>=1.10
+torch>=2.1
+pytest>=7
+# Optional for the real-data preprocessing:
+anndata>=0.9
+# Optional for published/package reference solvers:
+POT>=0.9.5

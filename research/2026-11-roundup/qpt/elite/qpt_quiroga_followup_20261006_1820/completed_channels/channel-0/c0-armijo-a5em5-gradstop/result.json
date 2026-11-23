@@ -1,0 +1,276 @@
+{
+  "active_observations_sha256": "504457ba5999813a328d88947edc6ad3015ff11437b21eb00717c2629d303991",
+  "active_row_count": 128,
+  "active_rows_sha256": "fe5e6bd1a2570bcaddc80f71772420ec4445d600f2436e2ec42e973b490a91e2",
+  "armijo_slope": "-2*||half_gradient_direction||_F^2",
+  "configuration": {
+    "armijo_constant": 0.0001,
+    "armijo_gradient_atol": 1e-12,
+    "armijo_gradient_rtol": 1e-10,
+    "armijo_initial_step": 1.0,
+    "armijo_max_backtracks": 30,
+    "armijo_shrink": 0.5,
+    "batch_size": 32,
+    "dense_max_process_dimension": 1024,
+    "eta_scale": 0.01,
+    "frames_beta": 10000.0,
+    "frames_beta0": 10000.0,
+    "frames_initial_tp_weight_lambda": 0.0064,
+    "frames_initial_tp_weight_per_row_alpha": 5e-05,
+    "frames_metrics_frequency": 400,
+    "frames_penalty_mode": "independent_schedule",
+    "frames_smoothing_schedule": {
+      "cap": null,
+      "exponent": 0.25,
+      "offset": 1.0,
+      "scale": 10000.0,
+      "type": "PowerSchedule"
+    },
+    "frames_steps": 40000,
+    "initialization_seed": 200000,
+    "methods": [
+      "armijo-fgd"
+    ],
+    "metrics_frequency": 100,
+    "n_steps": 10000,
+    "rank": 1,
+    "rho_schedule": {
+      "cap": 1,
+      "exponent": 0.6,
+      "offset": 4,
+      "scale": 2,
+      "type": "PowerSchedule"
+    },
+    "sampling_seed": 300000,
+    "spectral_norm_maxiter": null,
+    "spectral_norm_method": "dense",
+    "spectral_norm_tolerance": 1e-10,
+    "step_size_schedule": {
+      "cap": 1,
+      "exponent": 1,
+      "offset": 2,
+      "scale": 2,
+      "type": "PowerSchedule"
+    },
+    "tau": 2.0,
+    "tp_weight_lambda": 0.0064
+  },
+  "created_utc": "2026-10-06T16:31:10.056475+00:00",
+  "data_metadata": {
+    "channel_model": "haar_unitary",
+    "channel_rng": "Generator(PCG64(SeedSequence(channel_seed, spawn_key=(0,))))",
+    "channel_seed": 0,
+    "design": {
+      "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+      "convention": "quiroga_global_probes_2d_povm_choi_v1",
+      "d": 4,
+      "n_qubits": 2,
+      "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+      "outcomes": 8,
+      "povm_a": 0.1,
+      "povm_b": 0.1,
+      "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+      "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+      "probes": 16,
+      "row_index": "s = 2*d*probe + outcome",
+      "rows": 128,
+      "throwaway_min_eigenvalue": 0.09999999999999992
+    },
+    "generator": "qpt_quiroga_sensing_v1",
+    "noise_generator": null,
+    "numpy_version": "2.5.3",
+    "python_version": "3.12.14",
+    "shot_generator": null,
+    "truth_factor_sha256": "df22ca51f4aee15a813d31516f6df2858f8bd519b26eb898758bd050e3d8d9e3",
+    "truth_rank": 1,
+    "truth_tp_violation": 6.974882823045959e-16,
+    "truth_trace": 3.9999999999999996
+  },
+  "design": {
+    "choi_convention": "U[i*d+o,a]=K_a[o,i]; J=sum_ij |i><j| (x) E(|i><j|); D_s^H=rho^T (x) E",
+    "convention": "quiroga_global_probes_2d_povm_choi_v1",
+    "d": 4,
+    "n_qubits": 2,
+    "outcome_order": "a|0><0|; b(I+|0><m|+|m><0|); b(I+i|0><m|-i|m><0|) for m=1..d-1; I-sum",
+    "outcomes": 8,
+    "povm_a": 0.1,
+    "povm_b": 0.1,
+    "povm_constant_rule": "a=b=2/(4d-1+sqrt(8d-7)); lambda_min(E_2d)=b",
+    "probe_order": "|k>; (|k>+|l>)/sqrt2 for k<l; (|k>+i|l>)/sqrt2 for k<l (lexicographic)",
+    "probes": 16,
+    "row_index": "s = 2*d*probe + outcome",
+    "rows": 128,
+    "throwaway_min_eigenvalue": 0.09999999999999992
+  },
+  "diagnostic": {
+    "base_runner_sha256": "13bcfa92d5d4876cc68f4d04fa4b0869d611c67d42ec52cc56c067925c3884b6",
+    "budget": {
+      "actual_optimizer_row_accesses": 459904,
+      "actual_optimizer_row_epochs": 3593.0,
+      "primary_equal_work_comparison": false,
+      "qualification": "Printed100000 updates and FRAMES400000 batch32 updates charge12800000 nominal optimizer rows when complete; spectral work and checkpoints are excluded. Armijo has10000 maximum iterations with actual line-search and terminal-gradient row charges, not equal work. Converged Armijo endpoints must independently pass the physical gate.",
+      "requested_iterations": 10000,
+      "requested_nominal_row_accesses": null
+    },
+    "campaign_id": "qpt_followup_20261006_1820",
+    "endpoint_metric_errors": {},
+    "failure_archival_qualification": null,
+    "full_design_endpoint": {
+      "factor_frobenius_norm": 1.9999999999853557,
+      "factor_operator_norm": 1.9999999999853557,
+      "measurement_loss_mean": 4.020978189658749e-21,
+      "measurement_loss_sum": 5.146852082763198e-19,
+      "normalized_tp_violation": 3.5008738443013487e-10,
+      "process_fidelity": 0.9999999999999996,
+      "rmse": 8.967695567601243e-11,
+      "tp_violation": 7.001747688602697e-10
+    },
+    "gate": {
+      "components": {
+        "fidelity": true,
+        "full_design_rmse": true,
+        "normalized_tp": true
+      },
+      "method_status": "converged",
+      "pass": true,
+      "thresholds": {
+        "fidelity_min": 0.99,
+        "normalized_tp_max": 0.001,
+        "rmse_max": 1e-06
+      }
+    },
+    "hostname": "node075",
+    "initialization": "trace_normalized_choi_uniform",
+    "plan_builder_sha256": "1ae3d27db688336e34aa7beab28f6e8de5724adb673b371bf2bc3116780e898c",
+    "plan_sha256": "97cf81b50dc033cbb91139d43cf4e6b52d5fd429c55d938895c73647f41e7ad4",
+    "requested_configuration": {
+      "armijo_constant": 0.0001,
+      "armijo_gradient_atol": 1e-12,
+      "armijo_gradient_rtol": 1e-10,
+      "armijo_initial_step": 1.0,
+      "armijo_max_backtracks": 30,
+      "armijo_shrink": 0.5,
+      "batch_size": 32,
+      "dense_max_process_dimension": 1024,
+      "eta_scale": 0.01,
+      "frames_beta0": 10000.0,
+      "frames_metrics_frequency": 400,
+      "frames_smoothing_schedule": {
+        "cap": null,
+        "exponent": 0.25,
+        "offset": 1.0,
+        "scale": 10000.0
+      },
+      "frames_steps": 40000,
+      "initialization_seed": 200000,
+      "methods": [
+        "armijo-fgd"
+      ],
+      "metrics_frequency": 100,
+      "n_steps": 10000,
+      "rank": 1,
+      "rho_schedule": {
+        "cap": 1,
+        "exponent": 0.6,
+        "offset": 4,
+        "scale": 2
+      },
+      "sampling_seed": 300000,
+      "show_progress": false,
+      "spectral_norm_maxiter": null,
+      "spectral_norm_method": "dense",
+      "spectral_norm_tolerance": 1e-10,
+      "step_size_schedule": {
+        "cap": 1,
+        "exponent": 1,
+        "offset": 2,
+        "scale": 2
+      },
+      "tau": 2.0,
+      "tp_weight": 0.0064
+    },
+    "role": "Exploratory calibration horizon/stopping diagnostic; not selection robustness or unseen validation.",
+    "runner_sha256": "fb73fd3727dd151291c101d7c84ba5247244f7223cd9fe0db560a29756e39fdb",
+    "slurm_array_job_id": "2027604",
+    "slurm_array_task_id": "0",
+    "slurm_job_id": "2027605",
+    "source_commit": "0f7857e94f6b16ac07733be248f68aa6904d287b",
+    "source_sha256": {
+      "frank_wolfe/__init__.py": "43d45cb56edf0d13301333d82e08bee36e99a629da28d110412b8d3f4988244e",
+      "frank_wolfe/algorithms/base.py": "29c82c2d58f303a0cb2a82f73cc8928db095510f11a21fb5c40fca4afb6bd951",
+      "frank_wolfe/algorithms/frames.py": "c7c77490e3be59fd6f7ab648205eb02512ae47577ecab9fb4e555a4dd853c742",
+      "frank_wolfe/core/objective.py": "cb6a38e9d7e4ef5a2bdc07fe7de627e99924ca2763e59c236bde9024b04a2717",
+      "paper/experiments/qpt_generate_data.py": "665a862ce7d41122d16755288c98352736def7f00994fbd7a01f2764db4957cb",
+      "paper/experiments/qpt_observation_noise.py": "1198072dbc9ff86d6cef225db1c4942a6047a1533f86442f81dde8c9608930a3",
+      "paper/experiments/qpt_quiroga_campaign.py": "86c964316754f4cb8eb989e50653143095ca759165af1ca5d125a2cbd2e1baea",
+      "paper/experiments/qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+      "paper/experiments/qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3",
+      "paper/experiments/quantum_process_tomography.py": "16a3a1b864419c449c83e04cfa1513ac79b825f0e68da748852fc1d5133fc652"
+    },
+    "split": "calibration",
+    "trial": {
+      "alpha": 5e-05,
+      "armijo_gradient_atol": 1e-12,
+      "armijo_gradient_rtol": 1e-10,
+      "channel": 0,
+      "checkpoint_epochs": 100,
+      "eta_scale": 0.01,
+      "id": "c0-armijo-a5em5-gradstop",
+      "method": "armijo-fgd",
+      "row_epochs": 10000,
+      "tau": 2.0
+    },
+    "trial_id": "c0-armijo-a5em5-gradstop"
+  },
+  "format": "qpt_quiroga_campaign",
+  "initial_factor_sha256": "f4ff4b825806f2bfcb9e8bbf402415a9216ee713dec43d5fc937e58a272ccefc",
+  "method_domains": {
+    "armijo-fgd": {
+      "constraint": "none",
+      "projection": "none"
+    },
+    "frames": {
+      "constraint": "operator_norm_ball",
+      "tau": 2.0
+    },
+    "printed-adafgd": {
+      "constraint": "none",
+      "projection": "none"
+    }
+  },
+  "methods": {
+    "armijo-fgd": {
+      "completed_steps": 1794,
+      "cumulative_data_row_accesses": 459904,
+      "failure_reason": null,
+      "measurement_loss_mean": 4.020978189658749e-21,
+      "measurement_loss_sum": 5.146852082763198e-19,
+      "normalized_tp_violation": 3.5008738443013487e-10,
+      "optimizer_seconds": 0.7720732185989618,
+      "penalized_objective": 5.178227744007904e-19,
+      "process_fidelity": 0.9999999999999996,
+      "rmse": 8.967695567601243e-11,
+      "status": "converged",
+      "termination": {
+        "full_gradient_norm": 1.5584025112128378e-10,
+        "gradient_threshold": 1.5735392397431955e-10,
+        "initial_full_gradient_norm": 1.5635392397431955,
+        "reason": "full_gradient_tolerance"
+      },
+      "tp_violation": 7.001747688602697e-10
+    }
+  },
+  "numpy_version": "2.5.3",
+  "objective": "0.5*sum(residual^2)+lambda*||Tr_out(UU^H)-I||_F^2",
+  "observation_mode": "noiseless",
+  "python_version": "3.12.14",
+  "schema_version": 1,
+  "scipy_version": "1.18.1",
+  "source_sha256": {
+    "qpt_quiroga_campaign.py": "86c964316754f4cb8eb989e50653143095ca759165af1ca5d125a2cbd2e1baea",
+    "qpt_quiroga_frames.py": "6af507de835861c4b03572a2bc13252b7aa3788f3391b12b92747b30c5f61501",
+    "qpt_quiroga_sensing.py": "2ea5c1c980f67491264546db9e35a84a153e123c67d9e3e0c8173559eb24eac3"
+  },
+  "truth_factor_sha256": "125170c2e574e2e64a9b710c695fc336336a2ff1237569fcef9fc634977bbff9",
+  "work_counter": "nominal optimizer active-row accesses; not a total compute/work-equivalent; excludes checkpoint passes, TP work, full structured forward/adjoint overhead, and separately reported adaFGD spectral-norm operations"
+}

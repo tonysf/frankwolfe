@@ -1,0 +1,91 @@
+{
+  "status": "verified_and_backed_up",
+  "job_id": "1939620",
+  "scheduler_state": "COMPLETED",
+  "scheduler_exit_code": "0:0",
+  "scheduler_elapsed": "00:12:17",
+  "scheduler_start": "2026-09-24T10:38:40+02:00",
+  "scheduler_end": "2026-09-24T10:50:57+02:00",
+  "scheduler_node": "ruche-gpu15",
+  "elite_snapshot": "/home/tony/qpt_n8_continuation_20260923/n8_continue_200k_20260923_01",
+  "all_elite_files_matched_remote_sha256_at_collection": true,
+  "internal_manifest": {
+    "final.npz": {
+      "recorded": "6521b319b0e1cc68bb058c8be5e653b8aeac6bba35d724a2b588674681e89987",
+      "actual": "6521b319b0e1cc68bb058c8be5e653b8aeac6bba35d724a2b588674681e89987",
+      "matches": true
+    },
+    "latest_restart.npz": {
+      "recorded": "3f3226f00c31d6b82029f3ac7ad40f742ed8d3099c5edd3f8adac84e2b45b663",
+      "actual": "3f3226f00c31d6b82029f3ac7ad40f742ed8d3099c5edd3f8adac84e2b45b663",
+      "matches": true
+    },
+    "optimizer.log": {
+      "recorded": "add34c5c848c1301d4380b6c650ef4e8383e1882da28c45cc11d1944a18f3be0",
+      "actual": "add34c5c848c1301d4380b6c650ef4e8383e1882da28c45cc11d1944a18f3be0",
+      "matches": true
+    },
+    "proposal.json": {
+      "recorded": "509d7b98b3b00865778e87bb30a857f7507192a663a9c4d9f25e92c2c2086457",
+      "actual": "509d7b98b3b00865778e87bb30a857f7507192a663a9c4d9f25e92c2c2086457",
+      "matches": true
+    },
+    "provenance.json": {
+      "recorded": "880ca9bbb373f005ed18435a1f565161b1281fe22ca4496e746b272240f38e3e",
+      "actual": "880ca9bbb373f005ed18435a1f565161b1281fe22ca4496e746b272240f38e3e",
+      "matches": true
+    },
+    "run_continuation.py": {
+      "recorded": "bbb3476977a7dd644ca5cc2f10bb1833dd5129bc6b834839d587fd182101ca90",
+      "actual": "bbb3476977a7dd644ca5cc2f10bb1833dd5129bc6b834839d587fd182101ca90",
+      "matches": true
+    },
+    "slurm-1939620.out": {
+      "recorded": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "3d382dd60fbe47dc8753c313ea88107945c10078f2423630f3b998f37464851c",
+      "matches": false
+    },
+    "summary.json": {
+      "recorded": "a4c8a8278c47161dbcd6cabb66f8dea30c46f8963abb64ad7e5068d513e898ca",
+      "actual": "a4c8a8278c47161dbcd6cabb66f8dea30c46f8963abb64ad7e5068d513e898ca",
+      "matches": true
+    },
+    "verification.json": {
+      "recorded": "1ff2679d77642d2dc62ddfd0ce8ae0b85ab77dccfe24fe253b841a22243a6db0",
+      "actual": "1ff2679d77642d2dc62ddfd0ce8ae0b85ab77dccfe24fe253b841a22243a6db0",
+      "matches": true
+    },
+    "verification.log": {
+      "recorded": "cc5bbd42d9c592f9d8309489a511579ac3ec1616be79c085d89375adf48bea46",
+      "actual": "cc5bbd42d9c592f9d8309489a511579ac3ec1616be79c085d89375adf48bea46",
+      "matches": true
+    }
+  },
+  "internal_manifest_note": "All scientific artifacts match. Slurm stdout was hashed while empty inside the wrapper, then Slurm appended the final COMPLETE line after wrapper finalization; the copied final stdout matches Ruche.",
+  "report_inputs": {
+    "parent_summary": {
+      "path": "/home/tony/frankwolfe/results/qpt/n8_scale_tuning_20260923_01/n8_step0p5_rho0p6/summary.json",
+      "sha256": "173ac64b417d0cd190c1889530b2cc5de53973ac69f11c6b623a5be44f58ed24"
+    },
+    "continuation_summary": {
+      "path": "/home/tony/qpt_n8_continuation_20260923/n8_continue_200k_20260923_01/summary.json",
+      "sha256": "a4c8a8278c47161dbcd6cabb66f8dea30c46f8963abb64ad7e5068d513e898ca"
+    },
+    "verification": {
+      "path": "/home/tony/qpt_n8_continuation_20260923/n8_continue_200k_20260923_01/verification.json",
+      "sha256": "1ff2679d77642d2dc62ddfd0ce8ae0b85ab77dccfe24fe253b841a22243a6db0"
+    },
+    "status": {
+      "path": "/home/tony/qpt_n8_continuation_20260923/n8_continue_200k_20260923_01/status.json",
+      "sha256": "b177ec53f9dfe4c7a76531dc920091111d34f57dfb721e7a653561335fc435e9"
+    },
+    "proposal": {
+      "path": "/home/tony/qpt_n8_continuation_20260923/n8_continue_200k_20260923_01/proposal.json",
+      "sha256": "509d7b98b3b00865778e87bb30a857f7507192a663a9c4d9f25e92c2c2086457"
+    },
+    "provenance": {
+      "path": "/home/tony/qpt_n8_continuation_20260923/n8_continue_200k_20260923_01/provenance.json",
+      "sha256": "880ca9bbb373f005ed18435a1f565161b1281fe22ca4496e746b272240f38e3e"
+    }
+  }
+}

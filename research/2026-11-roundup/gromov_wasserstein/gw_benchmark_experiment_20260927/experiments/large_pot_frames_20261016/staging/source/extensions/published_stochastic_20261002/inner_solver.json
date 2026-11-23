@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "selected_by": "user",
+  "selected_date": "2026-10-02",
+  "summed_marginal_l1_tolerance": 1e-07,
+  "normalized_primal_dual_gap_tolerance": 1e-07,
+  "normalized_primal_dual_gap_definition": "(primal-dual)/max(1,abs(primal),abs(dual))",
+  "proximal_objective": "<G,Q> + KL(Q||P)/eta",
+  "acceptance": "Both criteria must pass; primal candidate must be feasible and dual bound valid.",
+  "on_failure": "Record failure; do not silently accept or relax either tolerance.",
+  "implementation_status": "Integrated certified row-sharded solver and fixed-horizon published-method runner; GPU validation is recorded separately.",
+  "theory_status": "Numerical accuracy choice, not a theorem-derived inexactness guarantee.",
+  "maximum_sinkhorn_iterations": 10000,
+  "check_every": 10,
+  "certificate_block_rows": 256,
+  "retained_log_dtype": "float64",
+  "sinkhorn_and_certificate_dtype": "float64",
+  "production_plan_and_gradient_dtype": "float32",
+  "numerical_acceptance": "Both actual stored-plan marginal L1 and (max(raw_gap, stable_gap)+roundoff)/max(1,abs(primal),abs(dual)) must be <= their selected tolerances; validate FP64 feasible witness and gap crosscheck.",
+  "primal_witness": "Separately rounded FP64 witness; record L1 difference from actual stored plan.",
+  "failure_policy": "Exit nonzero, retain failed certificate and inner work counters; never accept failure or relax tolerances."
+}

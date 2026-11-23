@@ -1,0 +1,117 @@
+{
+  "checks": [
+    "q2048 matches prior batch runner exactly",
+    "q8192 diagnostics enabled/disabled matches coupling hashes, counters, FP64 losses and traces",
+    "Independent four-index autodiff confirms diagnostic gradient and norm formulas; RNG and tensors unchanged",
+    "Frozen controller provenance, dense coverage, time accounting and tamper/resource rejection tested",
+    "Three-seed reporting, incomplete-results handling, baseline provenance and PNG/PDF generation tested",
+    "Scheduled GPU parity helper uses production block size256; A100 gate pending"
+  ],
+  "controller_source_sha256": {
+    "batch_size_20261008/campaign.py": "e89ccb9060b15707126d8e91b71a75fecc5cec679d4168ee95f50a26b6773c75",
+    "batch_size_20261008/run_batch.py": "0242e8790d249b18319c45298fe49a2306c83db871f5ce29d65b528b9813b693",
+    "probe8192_20261009/campaign.py": "d5c1315a110e7222cbe45f1e794f9211df985769af29af9dace3dbef84e483c1",
+    "probe8192_20261009/trajectory_parity.py": "21929d5775dcaa3275241b932cb402f78052d61fa13305e5cc0fccb9886c22fa",
+    "probe8192_20261009/verify_gpu.py": "63ec16a0d544f613b84f13ed64f4813f8ee74ad3330e7f53e4e5da24dd24c79c",
+    "published_stochastic_20261002/campaign.py": "45dfa508ced18d3b0bfc8c91b4eb87fa38f124f9c765510e08e9570393ffd79d"
+  },
+  "created_utc": "2026-10-09T13:53:06.086139+00:00",
+  "gpu_validation": "Not yet run; queued production requires scheduled A100 parity and production-shape preflight.",
+  "integration": {
+    "batch": 8192,
+    "dimensions": {
+      "source": 512,
+      "target": 512
+    },
+    "direction_indices": [
+      0,
+      1,
+      2
+    ],
+    "iterations": 3,
+    "loss": 0.043883648236420214,
+    "metadata_sha256": "730d1ccf3a1d1ec9511f2e54922b0d203a864bcceb4af90242d6e1edfdde00ae",
+    "scope": "Actual 512-point CPU runner output accepted by numerical/provenance/counter/output and dense-direction audits. GPU memory fields omitted only in diagnostic audit because they do not exist on CPU; actual GPU memory/parity gate pending.",
+    "sketch_probes": 24576,
+    "status": "passed"
+  },
+  "launcher": {
+    "checks": [
+      "A100 gate then three-task dependent array",
+      "failure-preserving dependent CPU report",
+      "exclusive marker rejects repeated submission without creating jobs"
+    ],
+    "mock_calls": [
+      [
+        "--parsable",
+        "--job-name=gw8192_abcdef1_gate",
+        "--time=00:45:00",
+        "--output=/tmp/gw8192-launch-nfs_b7sl/campaign/scheduler/gate-%j.out",
+        "extensions/probe8192_20261009/gpu.sbatch",
+        "/tmp/gw8192-launch-nfs_b7sl/source",
+        "/tmp/gw8192-launch-nfs_b7sl/campaign",
+        "preflight"
+      ],
+      [
+        "--parsable",
+        "--job-name=gw8192_abcdef1_synthetic",
+        "--dependency=afterok:910001",
+        "--kill-on-invalid-dep=yes",
+        "--array=0-2%3",
+        "--output=/tmp/gw8192-launch-nfs_b7sl/campaign/scheduler/synthetic-%A_%a.out",
+        "extensions/probe8192_20261009/gpu.sbatch",
+        "/tmp/gw8192-launch-nfs_b7sl/source",
+        "/tmp/gw8192-launch-nfs_b7sl/campaign",
+        "run",
+        "metric512_s1000"
+      ],
+      [
+        "--parsable",
+        "--job-name=gw8192_abcdef1_report",
+        "--dependency=afterany:910001:910002",
+        "--output=/tmp/gw8192-launch-nfs_b7sl/campaign/scheduler/report-%j.out",
+        "extensions/probe8192_20261009/report.sbatch",
+        "/tmp/gw8192-launch-nfs_b7sl/source",
+        "/tmp/gw8192-launch-nfs_b7sl/campaign"
+      ]
+    ],
+    "status": "passed"
+  },
+  "source_file_sha256": {
+    "probe8192_20261009/direction_diagnostics.py": "5d9442874a7cd2a6ddb1cbcdeac5023eb34d5d3d8b9232d72c7f58e92b979ef9",
+    "probe8192_20261009/run_diagnostic.py": "14fd184ec6a4668dac1abd0649c31105f5c449d0c35684a4306fd59fa677174f",
+    "published_stochastic_20261002/certified_prox.py": "8770762da34ccc41cf72ce2933a1e4126b725b1a6431313ae04c041bafcd4ea9",
+    "published_stochastic_20261002/inner_solver.json": "c0b9cd22bf3a7c39614634374a6d2276f37e81b65f5f964747ed50947542b79b",
+    "published_stochastic_20261002/run_published.py": "5c5689ea5bc17ed22b265f74fb8002737d514e18e8bfc376a1b2e969defda28d",
+    "published_stochastic_20261002/smd.py": "c71c950164fb8184c0386f524e0f41167d75a84b6e8c1eb883e2682e7fa921cc",
+    "shareseq_25000_20260930/run_sharded.py": "716347b2638b75319183ab09059337a1649243f8477c2ea6d2345114aabc1d68",
+    "shareseq_25000_20260930/sharded_gw.py": "8c4122a3569ef31a19c2ab3a9a71c3ebca40ec801a3a293f167092defeee0e94"
+  },
+  "status": "passed",
+  "suites": [
+    {
+      "errors": 0,
+      "failures": 0,
+      "junit_file": "logs/probe8192_20261009/legacy_tests.xml",
+      "junit_sha256": "10869025f966446081258feacb18b3884651776beac677f0b72ef72753581c11",
+      "skipped": 0,
+      "suite": "legacy",
+      "tests": 36
+    },
+    {
+      "errors": 0,
+      "failures": 0,
+      "junit_file": "logs/probe8192_20261009/new_tests.xml",
+      "junit_sha256": "f6a30ccaabd32a18a52ac0da30c3ca0c2cbc2dade51684a69680c0341943d034",
+      "skipped": 0,
+      "suite": "new",
+      "tests": 18
+    }
+  ],
+  "test_count_note": "JUnit count includes pytest subtests: 47 test functions and 7 subtests.",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "passed": 54
+  }
+}

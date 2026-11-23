@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "plan_sha256": "891a3c0c9fec0b3ae7da4fdcc564f30388cc22331c0b757960fe634f72a0084d",
+  "selection_sha256": "4cfa1ef2a2ea127ba33987378b7a89c1922cfc6bedd1a433696136641c616fe7",
+  "tasks": 56,
+  "runs": 723,
+  "nominal_solver_seconds": 104850,
+  "nominal_solver_gpu_hours": 29.125,
+  "phases": [
+    {
+      "phase": "final_product",
+      "manifest": "/home/tony/gw_benchmark_experiment_20260927/configs/stage_c_final_manifests/final_product.json",
+      "manifest_sha256": "8e5ac3c4944865747192096991ffd1a8813e041dd9804bca1948b9d41931a2a4",
+      "runs": 253,
+      "shards": 32,
+      "min_nominal_solver_seconds": 2100,
+      "max_nominal_solver_seconds": 2400
+    },
+    {
+      "phase": "final_randomized",
+      "manifest": "/home/tony/gw_benchmark_experiment_20260927/configs/stage_c_final_manifests/final_randomized.json",
+      "manifest_sha256": "8769cf1a1566c9ede153353b0336b0424a06abae14e13ac2c13e042b559f3c9b",
+      "runs": 330,
+      "shards": 12,
+      "min_nominal_solver_seconds": 810,
+      "max_nominal_solver_seconds": 840
+    },
+    {
+      "phase": "small_pg",
+      "manifest": "/home/tony/gw_benchmark_experiment_20260927/configs/stage_c_final_manifests/small_pg.json",
+      "manifest_sha256": "23a6d48d5f3b30fafbddbb9be819a1e8c56009aeb428b3fe2ed4f7ba6ef7c600",
+      "runs": 30,
+      "shards": 2,
+      "min_nominal_solver_seconds": 450,
+      "max_nominal_solver_seconds": 450
+    },
+    {
+      "phase": "momentum_product",
+      "manifest": "/home/tony/gw_benchmark_experiment_20260927/configs/momentum_final_manifests/momentum_product.json",
+      "manifest_sha256": "b4014f38cb34ea24e56b965fd24af3746e836d592ad2dd1c83579536a21eab82",
+      "runs": 55,
+      "shards": 8,
+      "min_nominal_solver_seconds": 1800,
+      "max_nominal_solver_seconds": 2100
+    },
+    {
+      "phase": "momentum_randomized",
+      "manifest": "/home/tony/gw_benchmark_experiment_20260927/configs/momentum_final_manifests/momentum_randomized.json",
+      "manifest_sha256": "92fb4d65669ba6a6762b5e651fdfd28ad53e5f88f74b4773d8c7cc5f4a0818b8",
+      "runs": 55,
+      "shards": 2,
+      "min_nominal_solver_seconds": 810,
+      "max_nominal_solver_seconds": 840
+    }
+  ],
+  "coverage": "Each scientific run appears exactly once; all shards nonempty; validate_plan checked all56 with local manifest paths; remote paths await transfer verification."
+}

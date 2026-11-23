@@ -1,0 +1,157 @@
+{
+  "archive_validation": {
+    "data_instance_sha256": "6eb6d162d4e2d3e24f2c66c1e87473c7aabd57b21edc1affee9d19f78c5767c6",
+    "method_gate": {
+      "frames": {
+        "component_passes": {
+          "normalized_tp_violation": false,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": 0.0055084841063295555,
+          "process_fidelity": 0.9658909145331314,
+          "rmse": 0.00651951307464986
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": true
+      },
+      "printed-adafgd": {
+        "component_passes": {
+          "normalized_tp_violation": false,
+          "process_fidelity": false,
+          "rmse": false
+        },
+        "metric_values": {
+          "normalized_tp_violation": null,
+          "process_fidelity": null,
+          "rmse": null
+        },
+        "passed": false,
+        "rmse_source": "full_design",
+        "status_eligible": false
+      }
+    },
+    "method_statuses": {
+      "frames": "complete",
+      "printed-adafgd": "failed"
+    },
+    "nonfinite_arrays_retained_only_for_failed_methods": [
+      "printed_adafgd_measurement_loss_sum",
+      "printed_adafgd_measurement_loss_mean",
+      "printed_adafgd_rmse",
+      "printed_adafgd_tp_violation",
+      "printed_adafgd_normalized_tp_violation",
+      "printed_adafgd_penalized_objective",
+      "printed_adafgd_process_fidelity"
+    ],
+    "paired_instance_sha256": "707b731f540d59197545cb2d92ae8a317364d0fdfa38a9424a34ffbc86075764",
+    "validation": "metadata coherence, candidate identity, embedded metadata, shapes/dtypes, array hashes, finite successful trajectories and endpoint/row accounting"
+  },
+  "artifacts": {
+    "pair.json": {
+      "bytes": 28478,
+      "sha256": "b67241154647490ba85d2293c74c8017dc30a214e5820e1249fa0a2e71a02d77"
+    },
+    "pair.npz": {
+      "bytes": 339508,
+      "sha256": "c36b22d4b72c6113b99d90b060458fd2a7d276858221df5972d85487ef03aa6f"
+    },
+    "stderr.log": {
+      "bytes": 588,
+      "sha256": "ca8cb608f34d49715ae78e5c74d300b922cdf26de24149330255ca14db6663d3"
+    },
+    "stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "command": [
+    "/gpfs/users/silvetian/.conda/envs/qpt/bin/python",
+    "-m",
+    "paper.experiments.qpt_quiroga_direct_comparison",
+    "--n-qubits",
+    "2",
+    "--row-epochs",
+    "2000",
+    "--checkpoint-epochs",
+    "100",
+    "--printed-tp-weight-per-row",
+    "0.5",
+    "--frames-initial-tp-weight-per-row",
+    "0.005",
+    "--frames-penalty-exponent",
+    "0.25",
+    "--eta-scale",
+    "0.03",
+    "--rank",
+    "1",
+    "--tau",
+    "2",
+    "--batch-size",
+    "32",
+    "--subset-size",
+    "0",
+    "--subset-seed",
+    "400006",
+    "--channel-seed",
+    "6",
+    "--initialization-seed",
+    "200060",
+    "--sampling-seed",
+    "300600",
+    "--observation-mode",
+    "noiseless",
+    "--noise-std",
+    "0",
+    "--noise-seed",
+    "0",
+    "--shot-seed",
+    "0",
+    "--spectral-norm-method",
+    "dense",
+    "--dense-max-process-dimension",
+    "1024",
+    "--spectral-norm-tolerance",
+    "1e-10",
+    "--gate-name",
+    "noiseless_recovery_v1",
+    "--gate-fidelity-min",
+    "0.99",
+    "--gate-rmse-max",
+    "1e-06",
+    "--gate-normalized-tp-max",
+    "0.001",
+    "--cohort-id",
+    "n2-full-calibration-n2f-q-a5em1-e3em2-v1__n2f-f-a5em3-p025-v1-c7a8c97",
+    "--trial-id",
+    "qpt-cal-n2f-c6-i0-s0-p05-20261005-r2",
+    "--split",
+    "calibration",
+    "--expected-commit",
+    "c7a8c9789b7814ede1c95e53eef13bfe1dd58c63",
+    "--save",
+    "/gpfs/workdir/silvetian/qpt_quiroga_best_for_best_c7a8c9789b7814ede1c95e53eef13bfe1dd58c63_20261005_02/calibration-2014222/channel-6/qpt-cal-n2f-c6-i0-s0-p05-20261005-r2/pair.npz",
+    "--rho-scale",
+    "2",
+    "--rho-offset",
+    "4",
+    "--rho-exponent",
+    "0.6",
+    "--step-scale",
+    "2",
+    "--step-offset",
+    "2",
+    "--step-exponent",
+    "1",
+    "--require-clean",
+    "--quiet",
+    "--fail-on-method-failure"
+  ],
+  "finished_utc": "2026-10-05T18:01:28.667691+00:00",
+  "runner_exit_code": 2,
+  "started_utc": "2026-10-05T18:01:22.970282+00:00",
+  "status": "method_failure_archived",
+  "trial_id": "qpt-cal-n2f-c6-i0-s0-p05-20261005-r2"
+}

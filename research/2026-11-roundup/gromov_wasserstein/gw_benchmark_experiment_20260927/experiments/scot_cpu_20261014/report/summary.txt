@@ -1,0 +1,22 @@
+Local SCOT1047 CPU pilot: complete, validated; 2,000 updates per FraMES run.
+Selected prefactors (best final tuning loss, seed810): {'id': 'fw05', 'gamma0': 0.3, 'rho0': 0.3, 'mu_scale': 10.0}
+FraMES = smoothed row Frank-Wolfe + momentum, with 1,024 iid coupling-pair samples per update.
+Initial full GW loss: 0.0704597574563
+Local SCOT/POT repaired feasible loss: 0.0166675970015
+Local SCOT/POT solver + repair seconds: 142.721
+Confirmation saved-rounded float64 loss median/range: {'median': 0.02782128606409573, 'minimum': 0.019951439358093848, 'maximum': 0.029201276796948394, 'n': 3}
+Confirmation additionally repaired float64 feasible loss median/range: {'median': 0.027821282136067382, 'minimum': 0.019951437943992012, 'maximum': 0.029201273445503606, 'n': 3}
+Strict feasible percentage reduction median/range: {'median': 60.514649580883926, 'minimum': 58.55609712589895, 'maximum': 71.68392474757708, 'n': 3}
+Strict feasible loss minus local reference median/range: {'median': 0.01115368513453685, 'minimum': 0.00328384094246148, 'maximum': 0.012533676443973074, 'n': 3}
+Confirmation solver seconds median/range: {'median': 197.66151254344732, 'minimum': 196.10705102211796, 'maximum': 200.6264059310779, 'n': 3}
+Confirmation solver + current repair seconds median/range: {'median': 197.6818678835407, 'minimum': 196.12446878408082, 'maximum': 200.6446287110448, 'n': 3}
+Confirmation runner elapsed seconds median/range: {'median': 202.4618379229214, 'minimum': 200.91693083406426, 'maximum': 205.44080466590822, 'n': 3}
+Local reference warnings: 119; raw marginal L1: 0.00133109
+
+Timing: confirmation runs were sequential, configured for one CPU thread; the four tuning runs used two concurrent workers and their times are excluded from comparisons.
+The baseline uses NumPy/POT float64; FraMES optimization/online diagnostics use PyTorch float32, with final evaluation on original float64 distances. This is an implementation-level local comparison, not a precision-matched speedup study.
+Online curves show actual current repaired outputs, not best-so-far values. Medians use common logged iterations; time coordinates are medians at those iterations, without interpolating a common-time curve.
+The additional float64 repair uses the saved raw endpoint after the run. Its loss/residual/time are reported separately, never substituted into the original trajectory, selection or timing.
+Three confirmation seeds on one fixed dataset; range is not a confidence interval. This pilot does not establish a general performance ranking or a last-iterate theorem.
+
+Artifacts: report.json, scientific_plot.png, scientific_plot.pdf, curve_data.csv, endpoints.csv.

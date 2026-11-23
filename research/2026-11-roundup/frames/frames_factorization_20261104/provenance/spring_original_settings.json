@@ -1,0 +1,94 @@
+{
+  "repository": "https://gitlab.com/jesuslovesbilly/SPRING1.0",
+  "commit": "e756ade993f8331ae805fa115a844a77bcdb0bad",
+  "recorded_utc": "2026-11-04T11:29:49.668066+00:00",
+  "source_hashes": {
+    "algorithms/SNMF_SPRING_SARAH_e.m": "f6dbdc9a6004980e3ce387b06052d4527b34d540d830f855e9a0b2ab92fd4c35",
+    "auxiliary/power_method.m": "916aa9336674e9ab8beae34b323bc77e1d32bace27a3257a3cffda9207ffc7b9",
+    "demos/SNMF_demo_1m.m": "2db315774f08a478b7628f50fbc8c387941630176ba3cad6e78483e468284309",
+    "demos/SNMF_demo_2.m": "448c653fc2b848afc31eb197536fcfa2f50d28857a8c0c56e32c13aa70b6fb11",
+    "data/init_snmf_orl_s.mat": "e638e88bd04fb69f1f11b3bd5c25d04aabeeef8e696b1798f33903277ad14699",
+    "data/init_snmf_yale.mat": "d0c2f86ca209a2424a33ddf950e21c322d5f3c2ffad3f5c779cb67883955e81f"
+  },
+  "problem": "min 0.5 ||M-U V^T||_F^2, U>=0, V>=0, each U column has at most tau nonzeros. No spectral bounds.",
+  "datasets": {
+    "orl64": {
+      "file": "data/processed/orl64_unitnorm.npz",
+      "sha256": "9d88ccfd56aa85ae161127e5c8adbe9a17b3b056558aacacf357fc435f18b364",
+      "shape": [
+        4096,
+        400
+      ],
+      "rank": 25,
+      "tau": 1024,
+      "dtype": "float64",
+      "max_column_l2_error": 1.199040866595169e-14,
+      "raw_author_arrays_equal_official_download": true,
+      "initial_negative_entries": 54818,
+      "initial_loss": 202.05563437649909
+    },
+    "yaleb32": {
+      "file": "data/processed/yaleb32_unitnorm.npz",
+      "sha256": "d306df9da4e3ae4a9c98ab5f8ec25b13da4066524a74150b8262ad8b6ed25f65",
+      "shape": [
+        1024,
+        2414
+      ],
+      "rank": 49,
+      "tau": 256,
+      "dtype": "float64",
+      "max_column_l2_error": 1.199040866595169e-14,
+      "raw_author_arrays_equal_official_download": true,
+      "initial_negative_entries": 81225,
+      "initial_loss": 1222.6382632286018
+    }
+  },
+  "optimizer": {
+    "name": "SPRING-SARAH empirical author-code control",
+    "row_blocks": 20,
+    "column_blocks": 20,
+    "block_rule": "Fixed contiguous blocks, floor(length/20) each, last block absorbs remainder; independent shuffled row and column orders per outer cycle.",
+    "outer_cycle_1": "20 alternating plain stochastic gradient block updates.",
+    "outer_cycles_after_1": "One alternating full gradient refresh/step, then 20 alternating SARAH differences.",
+    "inner_steps": "0.5 / local block Lipschitz estimate",
+    "full_refresh_steps": "0.5 / (power estimate / 20), multiplying gradient divided by 20.",
+    "power_method": "5 normalized power iterations initialized with a fresh Gaussian vector, then ||M^T M v||; original two unused calls retained.",
+    "outer_sparsity": "Keep tau largest raw entries of each U column, then clip negatives.",
+    "inner_sparsity": "Hard threshold at tau-th absolute magnitude with STRICT >, then clip negatives; generally retains at most tau-1. This is not the exact nonnegative+l0 projection.",
+    "initialization": "Saved author Ain and xin, including negative entries, unchanged.",
+    "source_demo_total_epochs": 250,
+    "source_demo_outer_cycles": 125,
+    "source_epoch_axis": "2 times outer cycles. Warmup consumes 2 full residual passes; later cycles consume 6 including full refresh and old/current differences.",
+    "original_repeats": 10,
+    "our_control_repeats": "Chosen externally by root; each invocation is one NumPy seed.",
+    "source_threads": 1,
+    "loss": "0.5 * squared Frobenius reconstruction residual; source plots log10(loss)."
+  },
+  "faithfulness_limits": [
+    "Python port uses NumPy PCG64, not MATLAB RNG; saved initial factors are identical but stochastic draw sequence differs.",
+    "Original fea arrays are uint8. Demo omits double cast before normalization. Port explicitly casts to FP64 to implement intended per-image unit-L2 normalization; literal bundled MATLAB script is not claimed executable unchanged.",
+    "No MATLAB or Octave installed, so validation is source inspection plus synthetic behavioral/restart checks, not MATLAB cross-execution.",
+    "Supplied ORL demo horizon is 250 source epochs; final paper ORL figure uses 1000, so the current control is a source-demo control, not an exact final-figure replication.",
+    "Empirical author-code control is not theorem matched: shuffled blocks, deterministic refresh, practical power-estimate steps, and hard-threshold/clipping order differ from convergence-theorem prescriptions.",
+    "Our output also records residual-entry work including refresh and old-gradient costs; diagnostic evaluations and checkpoint I/O excluded from optimizer_seconds."
+  ],
+  "primary_references": [
+    "https://gitlab.com/jesuslovesbilly/SPRING1.0",
+    "https://junqitang.com/publications/",
+    "https://arxiv.org/abs/2002.12266",
+    "https://epubs.siam.org/doi/10.1137/20M1387213",
+    "http://www.cad.zju.edu.cn/home/dengcai/Data/FaceData.html",
+    "https://www.mathworks.com/help/wavelet/ref/wthresh.html",
+    "https://www.mathworks.com/help/matlab/matlab_prog/integers.html",
+    "https://www.mathworks.com/help/matlab/ref/norm.html"
+  ],
+  "validation": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/tony/zofw_experiments/.venv/bin/python tests/test_control_runner.py",
+    "passed": [
+      "threshold order and strict boundary",
+      "warmup/refresh residual work counts and sparse nonnegative iterates",
+      "bitwise identical checkpoint-resumed vs uninterrupted factors and RNG state"
+    ],
+    "heavy_experiments_launched_by_this_agent": false
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "status": "submitted_and_verified",
+  "verified_utc": "2026-10-15T22:58:24.899091+00:00",
+  "source_commit": "6a472d4f31badff84a686db096c1597d151fa9f1",
+  "remote_root": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/large_pot_frames_20261016_6a472d4",
+  "source_manifest_sha256": "e6d1fa910fbecec4e5179dbf24ad853aeacd899786fe50d42a779475dec3b350",
+  "config_sha256": "8ccf8da894d8657ae218883ae906d30d23c70b0649c058692753d6506845af6f",
+  "jobs": [
+    {
+      "job_id": "2074303",
+      "phase": "cpu-gate",
+      "dataset": "",
+      "world_size": 1,
+      "state_at_verification": "RUNNING"
+    },
+    {
+      "job_id": "2074304",
+      "phase": "tiny-gate",
+      "dataset": "",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074305",
+      "phase": "tiny-gate",
+      "dataset": "",
+      "world_size": 4,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074306",
+      "phase": "dataset-gate",
+      "dataset": "bmmc6224",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074307",
+      "phase": "production",
+      "dataset": "bmmc6224",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074308",
+      "phase": "dispatch",
+      "dataset": "bmmc6224",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074309",
+      "phase": "dataset-gate",
+      "dataset": "snare_full",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074310",
+      "phase": "production",
+      "dataset": "snare_full",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074311",
+      "phase": "dispatch",
+      "dataset": "snare_full",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074312",
+      "phase": "dataset-gate",
+      "dataset": "shareseq_full",
+      "world_size": 4,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074313",
+      "phase": "production",
+      "dataset": "shareseq_full",
+      "world_size": 4,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074314",
+      "phase": "dispatch",
+      "dataset": "shareseq_full",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    },
+    {
+      "job_id": "2074315",
+      "phase": "report",
+      "dataset": "",
+      "world_size": 1,
+      "state_at_verification": "PENDING"
+    }
+  ],
+  "production_resources": [
+    {
+      "JobId": "2074307",
+      "JobName": "gwlarge_production_bmmc6224",
+      "Account": "fwllm",
+      "Partition": "gpua100",
+      "TimeLimit": "1-00:00:00",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "Dependency": "afterok:2074306(unfulfilled)"
+    },
+    {
+      "JobId": "2074310",
+      "JobName": "gwlarge_production_snare_full",
+      "Account": "fwllm",
+      "Partition": "gpua100",
+      "TimeLimit": "1-00:00:00",
+      "NumCPUs": "2",
+      "ReqTRES": "cpu=2,mem=32G,node=1,billing=2,gres/gpu=1",
+      "Dependency": "afterok:2074309(unfulfilled)"
+    },
+    {
+      "JobId": "2074313",
+      "JobName": "gwlarge_production_shareseq_full",
+      "Account": "fwllm",
+      "Partition": "gpua100",
+      "TimeLimit": "1-00:00:00",
+      "NumCPUs": "8",
+      "ReqTRES": "cpu=8,mem=128G,node=1,billing=8,gres/gpu=4",
+      "Dependency": "afterok:2074312(unfulfilled)"
+    }
+  ],
+  "local_validation_tests_passed": 47,
+  "gpu_gates": "pending",
+  "planned_production_runs": 165,
+  "runs_per_dataset": 55,
+  "pot_outer_updates": 2000,
+  "frames_outer_updates": 20000,
+  "frames_exponents": {
+    "gamma": 0.75,
+    "rho": 0.5,
+    "mu": 0.25
+  },
+  "frames_candidates": 24,
+  "development_seeds": [
+    810,
+    814
+  ],
+  "confirmation_seeds": [
+    811,
+    812,
+    813
+  ],
+  "oracle_pairs": 1024,
+  "dtype": "float64",
+  "inner_tolerance": 1e-07,
+  "automatic_checkpoint_continuations": true,
+  "active_monitoring": false,
+  "quota_available_bytes": 76152553472,
+  "archive_root": "/home/tony/gw_benchmark_experiment_20260927/experiments/large_pot_frames_20261016/archive/shareseq_full_20261001",
+  "archived_bytes": 48814666944,
+  "archive_receipt": "/home/tony/gw_benchmark_experiment_20260927/experiments/large_pot_frames_20261016/archive_finalized.json",
+  "verification_note": "The initial comma-separated scontrol query was rejected; individual production-job queries then verified all three resource requests. No jobs were resubmitted."
+}

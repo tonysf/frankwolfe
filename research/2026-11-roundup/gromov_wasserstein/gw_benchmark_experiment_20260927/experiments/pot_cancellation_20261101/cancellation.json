@@ -1,0 +1,86 @@
+{
+  "actions": [
+    {
+      "command": [
+        "scancel",
+        "--user=silvetian",
+        "2268523",
+        "2268522",
+        "2268129",
+        "2268128"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "scancel",
+        "--user=silvetian",
+        "2268521",
+        "2268127"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "after": {
+    "command": [
+      "squeue",
+      "-u",
+      "silvetian",
+      "-h",
+      "-o",
+      "%i|%j|%T|%R"
+    ],
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "2082937|gwshare_resume_report_1|PENDING|(Dependency)\n2082936|gwshare_resume_dispatch_shareseq_full|PENDING|(Dependency)\n2268521|gwentropy_production_bmmc6224|COMPLETING|ruche-gpu17\n2268127|gwentropy_production_snare_full|COMPLETING|ruche-gpu17\n2082935|gwshare_resume_production_shareseq_full|PENDING|(QOSMaxGRESPerUser)\n"
+  },
+  "before": {
+    "command": [
+      "squeue",
+      "-u",
+      "silvetian",
+      "-h",
+      "-o",
+      "%i|%j|%T|%R"
+    ],
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "2268523|gwentropy_await-parent_bmmc6224|PENDING|(Dependency)\n2268522|gwentropy_dispatch_bmmc6224|PENDING|(Dependency)\n2268129|gwentropy_await-parent_snare_full|PENDING|(Dependency)\n2268128|gwentropy_dispatch_snare_full|PENDING|(Dependency)\n2082937|gwshare_resume_report_1|PENDING|(Dependency)\n2082936|gwshare_resume_dispatch_shareseq_full|PENDING|(Dependency)\n2082935|gwshare_resume_production_shareseq_full|PENDING|(QOSMaxGRESPerUser)\n2268521|gwentropy_production_bmmc6224|RUNNING|ruche-gpu17\n2268127|gwentropy_production_snare_full|RUNNING|ruche-gpu17\n"
+  },
+  "checkpoints": [
+    {
+      "committed_manifest": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/checkpoints/bmmc6224/epsilon_3e-05/permutation-mixture_seed901/COMMITTED.json",
+      "generation": "generation-000000576-840a991c6f3b4f07b6a31857b2715fc0",
+      "iteration": 576,
+      "run": "bmmc6224/epsilon_3e-05/permutation-mixture_seed901",
+      "shards": [
+        {
+          "actual_bytes": 310223060,
+          "exists": true,
+          "expected_bytes": 310223060,
+          "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/checkpoints/bmmc6224/epsilon_3e-05/permutation-mixture_seed901/generation-000000576-840a991c6f3b4f07b6a31857b2715fc0/rank-0000.pt"
+        }
+      ]
+    },
+    {
+      "committed_manifest": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/checkpoints/snare_full/epsilon_3e-05/product_seed810/COMMITTED.json",
+      "generation": "generation-000000932-d2459662b79e44e7b53784479ee863da",
+      "iteration": 932,
+      "run": "snare_full/epsilon_3e-05/product_seed810",
+      "shards": [
+        {
+          "actual_bytes": 800497748,
+          "exists": true,
+          "expected_bytes": 800497748,
+          "path": "/gpfs/workdir/silvetian/gw_benchmark_experiment_20260927/pot_entropy_init_20261018_3807d9b/checkpoints/snare_full/epsilon_3e-05/product_seed810/generation-000000932-d2459662b79e44e7b53784479ee863da/rank-0000.pt"
+        }
+      ]
+    }
+  ],
+  "requested_utc": "2026-11-01T16:37:25.289954+00:00",
+  "scope": "Cancel BMMC/SNARE POT parent sweeps, dispatchers and epsilon=1e-6 bridges; preserve SHARE-seq and all files"
+}
