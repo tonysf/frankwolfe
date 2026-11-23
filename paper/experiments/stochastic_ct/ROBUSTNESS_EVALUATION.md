@@ -210,6 +210,12 @@ after every planned evaluation result validates. Numerical completion and
 report publication have distinct statuses, so a publication guard cannot be
 mistaken for a failed or incomplete numerical campaign.
 
+The entire experimental section is limited to 1.5--2 pages, including figures
+and the table. It contains the mathematical setup, data source, a concise
+description of the methods and essential settings, and interpreted results.
+Screening stages, search grids, seed lists, repetition bookkeeping and full
+secondary analyses belong in this repository documentation. The two figure
+slots are reserved for a method comparison and a stochastic-mechanism study.
 The final paper retains two figures and one table; detailed settings, response
 surfaces and secondary studies belong in reproducibility materials. Raw data,
 calibration arrays, environments and optimizer checkpoints remain outside Git.

@@ -7,6 +7,7 @@ checkpoints remain outside Git. All older result archives are preserved.
 import gzip
 import importlib.util
 from pathlib import Path
+import re
 import shutil
 import tarfile
 
@@ -231,6 +232,8 @@ def build_stage(root, publication, audit):
         domains='Spectral-constrained methods and a nonnegative-only L-BFGS-B application reference.',
         curvature_accounting='Gradient/solver caps; curvature and diagnostic costs recorded separately.')
     manifest['document_revisions'] = []
+    manifest['bibliography_keys'] = re.findall(r'\\bibitem\{([^}]+)\}',
+        (bundle/'report/sframes_ct_section.tex').read_text())
     for name in ('ROBUSTNESS_RESULTS.md','ROBUSTNESS_EVALUATION.md'):
         manifest['files'][name] = dict(copy_mode='byte-identical', source_relative_path=str((Path(publication['runtime_report']).parent/name).relative_to(root.parents[2])))
     for name, record in manifest['files'].items():

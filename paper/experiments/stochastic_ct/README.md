@@ -1,6 +1,6 @@
 # Stochastic CT paper section
 
-This bundle compares SFRAMES, SPRING–SARAH, ProxSARAH and PALM with nonnegative-only alternating NNLS, multiplicative updates and joint L-BFGS-B on 2DeteCT. The latter three methods have no spectral constraints. The two mean ±1 SD figures and endpoint table cover 532 physical trajectories at a 69,120-view cap per direction. All joint L-BFGS-B line-search work is charged; historical curvature work remains separate.
+This bundle compares SFRAMES, SPRING–SARAH, ProxSARAH and PALM with nonnegative-only alternating NNLS, multiplicative updates and joint L-BFGS-B on 2DeteCT. The latter three methods have no spectral constraints. The two-page paper section uses two compact mean ±1 SD figures and an endpoint table covering 532 physical trajectories at a 69,120-view cap per direction. All joint L-BFGS-B line-search work is charged; historical curvature work remains separate.
 
 The [PDF](report/sframes_ct_section.pdf), LaTeX, figures and [public appendix](CT_REPRODUCIBILITY.md) are bundled. [Joint L-BFGS-B evidence](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/archive_manifest.json), [NNLS/MU evidence](../../../results/stochastic_matrix_factorization/ct_nonnegative/archive_manifest.json), and [original evidence](../../../results/stochastic_matrix_factorization/ct/archive_manifest.json) retain frozen sources, settings and trajectories. The [manifest](manifest.json) records hashes and predecessor provenance. The gradient-estimator explanation is preserved.
 

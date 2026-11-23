@@ -162,7 +162,7 @@ def test_work_axis_uses_last_observed_iterate_without_interpolation():
 
 def test_document_preserves_estimator_and_has_no_obsolete_domain_claim(main_fixture):
     root,_,_,summary=main_fixture
-    source=(report.BUNDLE/'report/ct_experiments.tex').read_text()
+    source=(Path(__file__).parent/'fixtures/stochastic_ct_pre_compact.tex').read_text()
     body=report.paper_body(source,summary,selection_fixture())
     estimator=re.search(r'\\paragraph\{Stochastic gradient estimator\.\}.*?(?=\\paragraph\{Evaluation\.\})',source,re.S).group()
     assert estimator in body

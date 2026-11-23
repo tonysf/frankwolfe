@@ -5,37 +5,21 @@
 \usepackage{amsmath,amssymb,booktabs,graphicx}
 \usepackage[hidelinks]{hyperref}
 \setlength{\emergencystretch}{2em}
-\setcounter{topnumber}{2}
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\textfraction}{0.08}
-\makeatletter
-\setlength{\@fptop}{0pt}
-\setlength{\@fpsep}{18pt}
-\makeatother
-\hypersetup{pdftitle={Numerical experiments: spectrally constrained low-dose CT}}
+\setlength{\textfloatsep}{9pt}
+\setlength{\intextsep}{9pt}
+\setlength{\abovecaptionskip}{4pt}
+\setcounter{topnumber}{3}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\hypersetup{pdftitle={Numerical experiments}}
 \input{ct_reproducibility_link.tex}
 \begin{document}
 \input{ct_experiments.tex}
-\begin{thebibliography}{9}
-\bibitem{detect}
-M.~B.~Kiss et al.
-\emph{2DeteCT: A large 2D expandable, trainable, experimental Computed Tomography
-dataset for machine learning}. Scientific Data 10, article 576, 2023.
-\href{https://doi.org/10.1038/s41597-023-02484-6}{DOI}.
-\bibitem{spring}
-D.~Driggs, J.~Tang, J.~Liang, M.~E.~Davies, and C.-B.~Sch\"onlieb.
-\emph{A Stochastic Proximal Alternating Method for Nonsmooth and Nonconvex Optimization}.
-SIAM Journal on Imaging Sciences 14(4), 1932--1970, 2021.
-\href{https://doi.org/10.1137/20M1387213}{DOI}.
-\bibitem{proxsarah}
-N.~H.~Pham, L.~M.~Nguyen, D.~T.~Phan, and Q.~Tran-Dinh.
-\emph{ProxSARAH: An Efficient Algorithmic Framework for Stochastic Composite Nonconvex Optimization}.
-Journal of Machine Learning Research 21(110), 1--48, 2020.
-\href{https://www.jmlr.org/papers/v21/19-248.html}{Article}.
-\bibitem{palm}
-J.~Bolte, S.~Sabach, and M.~Teboulle.
-\emph{Proximal alternating linearized minimization for nonconvex and nonsmooth problems}.
-Mathematical Programming 146, 459--494, 2014.
-\href{https://doi.org/10.1007/s10107-013-0701-9}{DOI}.
-\end{thebibliography}
+\begingroup\small
+\begin{thebibliography}{9}\setlength{\itemsep}{0pt}
+\bibitem{detect} M.~B.~Kiss et al. 2DeteCT. \emph{Scientific Data} 10:576, 2023.
+\bibitem{spring} D.~Driggs et al. SPRING. \emph{SIAM J. Imaging Sci.} 14:1932--1970, 2021.
+\bibitem{proxsarah} N.~H.~Pham et al. ProxSARAH. \emph{JMLR} 21(110):1--48, 2020.
+\bibitem{palm} J.~Bolte, S.~Sabach, and M.~Teboulle. PALM. \emph{Math. Program.} 146:459--494, 2014.
+\end{thebibliography}\endgroup
 \end{document}

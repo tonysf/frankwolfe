@@ -336,3 +336,12 @@ Evaluation stops within 69,120 views separately in the forward and adjoint direc
 
 The [campaign notes](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/README.md), [selection](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/selection.json), [completion audit](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/validation_summary.json), and [publication audit](../../../results/stochastic_matrix_factorization/ct_joint_lbfgsb/report_update.json) retain the exact configuration and results. The previous scientific publication and the subsequent gradient-estimator editorial revision are preserved in the predecessor records and document backup.
 <!-- CT_JOINT_LBFGSB_END -->
+
+
+## Compact paper presentation (23 November 2026)
+
+The paper section occupies two pages, including the table and two figures. It retains the mathematical model and sampling estimator, data source, essential settings, and results with interpretations. Development grids, screening stages, exact seed values, numerical tolerances and full work accounting remain in the sections above and in the [expanded protocol](ROBUSTNESS_EVALUATION.md).
+
+The current endpoint table contains all nine methods. The figures emphasize loss-tuned and joint-tuned SFRAMES, ProxSARAH, SPRING-SARAH and joint L-BFGS-B, showing raw loss and raw orthant distance against iterations, gradient-oracle calls and processed views. The plotted means, standard deviations and observation alignment are unchanged. Full evaluated-loss and held-out-loss curves, and the other method curves, remain available in the frozen [360-view figure](https://github.com/tonysf/frankwolfe/blob/3da4834c42c928a2488a721a04a142efb5bc5719/paper/experiments/stochastic_ct/report/trajectories_360.png) and [1,080-view figure](https://github.com/tonysf/frankwolfe/blob/3da4834c42c928a2488a721a04a142efb5bc5719/paper/experiments/stochastic_ct/report/trajectories_1080.png).
+
+The larger campaign remains in progress. Its completed results will use the same two-page limit, replacing the second comparison figure with the prespecified stochastic-mechanism panel. No pending experimental result is presented as completed in the current paper.

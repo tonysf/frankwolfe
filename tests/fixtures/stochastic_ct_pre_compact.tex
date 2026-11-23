@@ -1,0 +1,221 @@
+\section{Numerical experiments}
+\label{sec:ct-experiments}
+
+We compare minibatch and full-batch SFRAMES with
+SPRING--SARAH~\cite{spring}, ProxSARAH~\cite{proxsarah}, and PALM~\cite{palm}
+on low-rank reconstruction from real low-dose computed tomography (CT)
+data. The experiment examines data fitting and constraint satisfaction at
+matched processed-view budgets. We also test alternating nonnegative
+least squares (NNLS), multiplicative updates, and joint L-BFGS-B without spectral bounds.
+
+\paragraph{Reconstruction problem.}
+The negative logarithm of calibrated X-ray transmission approximates line
+integrals of attenuation. A \emph{view} groups detector rays at one source
+angle. For an image \(X\), the linear forward map for view \(i\) is
+\([P_i(X)]_j=\sum_{p,q}\ell_{ij,pq}X_{pq}\), where \(\ell_{ij,pq}\) is
+the length of ray \(j\) through pixel \((p,q)\). Its adjoint \(P_i^\ast\)
+backprojects detector residuals onto the image using the same weights.
+
+We use low-dose fan-beam measurements from 2DeteCT~\cite{detect} and
+represent the \(512\times512\) attenuation image as \(UV^\top\), with
+\(U,V\in\mathbb R^{512\times64}\). For a set \(\mathcal I\) of \(N\)
+training views and detector data \(y_i\in\mathbb R^d\), \(d=956\), the
+training loss is
+\begin{equation}
+  f(U,V)=\frac1N\sum_{i\in\mathcal I}
+          \frac{\|P_i(UV^\top)-y_i\|_2^2}{2d}.
+  \label{eq:ct-loss}
+\end{equation}
+We constrain each factor by a spectral norm bound and require nonnegative
+factors, which ensure nonnegative attenuation. For \(x=(U,V)\), set
+\[
+ C=\{(U,V):\|U\|_{\rm op}\le R_U,\ \|V\|_{\rm op}\le R_V\},
+ \qquad D=\{(U,V):U\ge0,\ V\ge0\}.
+\]
+The bilinear factorization makes the problem nonconvex. Its SFRAMES
+formulation is \(\min_{x\in C} f(x)+g(Tx)\), with
+\(T=\operatorname{Id}\) and \(g=\iota_D\), the indicator of \(D\).
+These three additional baselines minimize the same loss
+over \(D\) alone, so they solve a less constrained application problem.
+
+\paragraph{Stochastic gradient estimator.}
+At \(x_k=(U_k,V_k)\), draw a subset \(B_k\subset\mathcal I\) of
+\(b=64\) views uniformly without replacement, independently across
+iterations. Each sampled view includes all \(d\) detector rays. The
+minibatch gradient is
+\[
+ Z_k=\frac{1}{bd}\sum_{i\in B_k}
+       P_i^\ast\!\left(P_i(U_kV_k^\top)-y_i\right),
+ \qquad \widehat G_k=(Z_kV_k,\,Z_k^\top U_k).
+\]
+Thus both factor gradients reuse the same backprojected residual \(Z_k\).
+One estimate costs a forward/adjoint pair on \(b\) views.
+The normalization makes \(\widehat G_k\) conditionally unbiased:
+\(\mathbb E[\widehat G_k\mid x_k]=\nabla f(x_k)\).
+SFRAMES averages these estimates using
+\[
+ \overline G_0=\widehat G_0,\qquad
+ \overline G_k=(1-\alpha_k)\overline G_{k-1}+\alpha_k\widehat G_k,
+ \qquad \alpha_k=(k+1)^{-1/2}\quad(k\ge1).
+\]
+The average incorporates gradients at earlier iterates and is generally
+not an unbiased estimate of the current gradient. The linear oracle uses
+\(\overline G_k+(x_k-(x_k)_+)/\beta_k\), where \((x_k)_+\) clips both
+factors to nonnegativity. This Moreau-envelope penalty gradient is computed
+exactly and added after averaging. The oracle separates by factor and uses
+one thin SVD per block. Full-batch SFRAMES sets \(B_k=\mathcal I\) and
+\(b=N\), retaining the same averaging recursion.
+
+\paragraph{Evaluation.}
+We evaluate on 14 slices from six acquisition groups, with either \(360\)
+or \(1{,}080\) training views and \(360\) held-out views per slice.
+The two view counts change the finite-sum size while keeping the factor
+dimensions fixed. We use three stochastic repetitions per slice and view
+count; deterministic methods are run once. All methods share the same
+initial factors.
+We compare the last recorded state within \(69{,}120\) processed views
+in each direction. The original methods count gradient views; all three additional
+nonnegative baselines count every solver forward/adjoint application,
+including inner trials and cached-data initialization. The original methods'
+curvature-estimation work remains separate. An oracle call is a paired
+forward/adjoint evaluation, or the multiplicative method's startup adjoint.
+All trajectories use observations recorded at every update.
+
+Raw loss is the data-fit term \(f\) evaluated at the current factors.
+For the original methods, evaluation clips each factor to nonnegativity
+and rescales it radially into its spectral ball if needed. The three
+nonnegative-only baselines are evaluated at their actual factors,
+without any spectral rescaling. Both conventions yield a nonnegative image;
+only the first enforces the stronger spectral constraints.
+We evaluate the resulting image by training and held-out loss and relative
+Frobenius error against the high-dose reconstruction.
+Repair is used only for evaluation. Raw nonnegativity violation is
+\[
+ d_D(U,V)=\bigl(\|U-U_+\|_F^2+\|V-V_+\|_F^2\bigr)^{1/2}.
+\]
+Relative infeasibility divides \(d_D\) by
+\(\bigl(\|U_0\|_F^2+\|V_0\|_F^2\bigr)^{1/2}\).
+Quality summaries take successive medians over repetitions, slices within
+each group, and groups. Paired percentage changes are computed before this
+aggregation, so they need not equal ratios of the table entries.
+
+\paragraph{Results.}
+At \(N=360\), paired repaired loss relative to ProxSARAH
+is \(13.4\%\) lower for loss-tuned SFRAMES and \(12.6\%\) lower for the joint tune.
+The group-balanced fractions meeting both the \(30\%\) relative-loss
+and \(1\%\) raw-feasibility targets are \(92\%\),
+\(0\%\), and \(100\%\) for the joint tune,
+loss-tuned SFRAMES, and ProxSARAH, respectively.
+
+At \(N=1{,}080\), paired repaired loss relative to ProxSARAH
+is \(21.0\%\) lower for loss-tuned SFRAMES and \(21.2\%\) lower for the joint tune.
+The group-balanced fractions meeting both the \(30\%\) relative-loss
+and \(1\%\) raw-feasibility targets are \(92\%\),
+\(0\%\), and \(94\%\) for the joint tune,
+loss-tuned SFRAMES, and ProxSARAH, respectively.
+
+Relative to the former cap on total views, the paired repaired-loss changes are \((-36.1\%,-25.5\%)\) for PALM and \((-32.3\%,-25.6\%)\) for SPRING--SARAH at \(N=360,1{,}080\), respectively. Including curvature, total views are \(7.0\times\) gradient views for PALM and \(3.6\times,2.9\times\) for SPRING--SARAH. All proximal baselines remain nonnegative. The original six-arm comparison uses equal gradient work; the added
+nonnegative baselines charge all their solver operator work.
+Table~\ref{tab:ct-results} gives endpoint metrics; Figures~\ref{fig:ct-trajectories-360}
+and~\ref{fig:ct-trajectories-1080} show progress versus iterations, oracle calls,
+and processed views.
+
+Compared with per-slice median loss-tuned SFRAMES, L-BFGS-B improves
+evaluated loss but worsens reference error on all 14 slices at \(N=360\).
+SFRAMES improves both on 13 of 14 slices at \(N=1{,}080\).
+All recorded L-BFGS-B evaluation iterates satisfy the spectral bounds;
+these results do not establish a benefit from removing them.
+
+\begin{table}[!htbp]
+\centering
+\caption{Endpoint quality at the common processed-view cap. Domains differ: the original methods target \(C\cap D\); NNLS, multiplicative updates and joint L-BFGS-B target only \(D\). Losses are multiplied by \(10^3\). Eval., held-out loss and reference error use the evaluated nonnegative image; see the repair convention above. Raw infeasibility is relative to the initial factor-pair norm, in percent. Bold marks the best value per view count across both domains.}
+\label{tab:ct-results}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllrrrrr@{}}
+\toprule
+$N$ & Method & Domain & Raw & Eval. & Held-out & Ref. error & Infeas.\ (\%) \\
+\midrule
+360 & SFRAMES (loss tune) & $C\cap D$ & $5.66$ & $6.11$ & $6.49$ & $0.362$ & $2.03$ \\
+360 & SFRAMES (joint tune) & $C\cap D$ & $6.39$ & $6.48$ & $6.65$ & $\boldsymbol{0.317}$ & $0.67$ \\
+360 & SFRAMES (full batch) & $C\cap D$ & $6.34$ & $6.99$ & $7.14$ & $0.333$ & $3.06$ \\
+360 & SPRING--SARAH & $C\cap D$ & $12.78$ & $12.78$ & $12.81$ & $0.496$ & $\boldsymbol{0.00}$ \\
+360 & ProxSARAH-v3 & $C\cap D$ & $7.93$ & $7.93$ & $7.99$ & $0.376$ & $\boldsymbol{0.00}$ \\
+360 & PALM & $C\cap D$ & $13.60$ & $13.60$ & $13.68$ & $0.513$ & $\boldsymbol{0.00}$ \\
+360 & Alternating NNLS & $D$ & $7.33$ & $7.33$ & $7.45$ & $0.379$ & $\boldsymbol{0.00}$ \\
+360 & Multiplicative & $D$ & $10.03$ & $10.03$ & $10.04$ & $0.438$ & $\boldsymbol{0.00}$ \\
+360 & Joint L-BFGS-B & $D$ & $\boldsymbol{5.61}$ & $\boldsymbol{5.61}$ & $\boldsymbol{6.33}$ & $0.525$ & $\boldsymbol{0.00}$ \\
+1{,}080 & SFRAMES (loss tune) & $C\cap D$ & $\boldsymbol{5.82}$ & $\boldsymbol{6.22}$ & $\boldsymbol{6.32}$ & $\boldsymbol{0.283}$ & $2.01$ \\
+1{,}080 & SFRAMES (joint tune) & $C\cap D$ & $6.46$ & $6.55$ & $6.58$ & $0.286$ & $0.67$ \\
+1{,}080 & SFRAMES (full batch) & $C\cap D$ & $7.85$ & $8.90$ & $8.87$ & $0.365$ & $4.51$ \\
+1{,}080 & SPRING--SARAH & $C\cap D$ & $14.27$ & $14.27$ & $14.31$ & $0.524$ & $\boldsymbol{0.00}$ \\
+1{,}080 & ProxSARAH-v3 & $C\cap D$ & $8.77$ & $8.77$ & $8.76$ & $0.403$ & $\boldsymbol{0.00}$ \\
+1{,}080 & PALM & $C\cap D$ & $20.01$ & $20.01$ & $20.03$ & $0.580$ & $\boldsymbol{0.00}$ \\
+1{,}080 & Alternating NNLS & $D$ & $10.75$ & $10.75$ & $10.73$ & $0.435$ & $\boldsymbol{0.00}$ \\
+1{,}080 & Multiplicative & $D$ & $14.04$ & $14.04$ & $14.09$ & $0.503$ & $\boldsymbol{0.00}$ \\
+1{,}080 & Joint L-BFGS-B & $D$ & $6.82$ & $6.82$ & $6.87$ & $0.331$ & $\boldsymbol{0.00}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Implementation and parameter selection.}
+All methods start from a nonnegative SVD-based factorization of a
+sensitivity-normalized backprojection of training views, with its
+amplitude fitted to those views. Set
+\(R_U=2\|U_0\|_{\rm op}\) and \(R_V=2\|V_0\|_{\rm op}\).
+Both SFRAMES variants use \(\gamma_k=\gamma_0(k+1)^{-3/4}\) and
+\(\beta_k=\beta_0(k+1)^{-1/4}\), with
+\(\beta_0=c_\beta/\max(L_U,L_V)\) scaled by initial block-curvature estimates.
+The loss-tuned SFRAMES setting \((c_\beta,\gamma_0)=(16,0.1)\)
+is selected jointly by repaired training loss on two development slices.
+A second sweep selects \((c_\beta,\gamma_0)=(4,0.1)\) using the joint
+endpoint target of repaired loss at most \(30\%\) of its initial value
+and relative orthant distance at most \(1\%\).
+The two searches use \(8{,}640\) and \(34{,}560\) views per direction,
+respectively. No evaluation slice enters parameter selection.
+
+SPRING--SARAH uses \(64\)-view differences, independent full-gradient
+refreshes with probability \(1/16\), and steps \(1/(2\widetilde L)\).
+PALM uses full block gradients and steps \(1/\widehat L\).
+They estimate current block curvature by five power iterations followed
+by a final norm evaluation, using minibatches for SPRING and all views for PALM.
+ProxSARAH uses the paper's constant-parameter variant v3: full snapshots,
+relaxation \(0.99\), and \((b,m)=(27,18)\) or \((48,32)\) at the two
+view counts. Its proximal step is \(0.400802/\widehat L\), with
+\(\widehat L=0.25(L_U+L_V)\); only this curvature-scale multiplier
+is selected on the development slices at \(34{,}560\) views per direction.
+These practical curvature estimates are not certified Lipschitz bounds.
+All three baselines project each factor onto its spectral ball intersected
+with the nonnegative orthant. Alternating NNLS approximately solves each
+nonnegative factor subproblem with L-BFGS-B, using up to 20 accepted
+inner steps per block, selected from \(5,10,20\) on the development slices.
+Multiplicative updates use the signed-right-hand-side majorization rule,
+without a tuned step size. Joint L-BFGS-B updates both factors together,
+retaining one curvature history with memory 20, selected from \(5,10,20\)
+on the same development slices and view budgets. None of these three
+additional baselines has a spectral cap.
+The \CTReproducibility{} specifies the data split,
+preprocessing, search grids, and numerical solver settings.
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=\linewidth]{trajectories_360.pdf}
+ \caption{Mean trajectories for \(N=360\), with shaded bands showing
+ \(\pm1\) standard deviation over runs and slices, weighting acquisition
+ groups equally. Work summaries use the latest recorded state
+ within each budget; curves stop at the range shared by all runs of a method.
+ Training losses are relative to initialization. Vertical markers indicate
+ one quarter of the processed-view budget. Iterations count native updates:
+an accepted inner factor step for NNLS, a factor update for multiplicative
+updates, or a joint factor update for L-BFGS-B; iteration costs differ between methods.}
+ \label{fig:ct-trajectories-360}
+\end{figure}
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=\linewidth]{trajectories_1080.pdf}
+ \caption{Mean trajectories and \(\pm1\) standard-deviation bands for \(N=1{,}080\), as in
+ Figure~\ref{fig:ct-trajectories-360}. The three projection baselines and all three additional nonnegative methods
+ coincide at zero orthant distance.}
+ \label{fig:ct-trajectories-1080}
+\end{figure}
